@@ -1,9 +1,27 @@
-name: "my-website"
+name: "Estadística-básica"
 output_dir: "."
+include: ["import.R"]
+exclude: ["docs.txt", "*.csv"]
 navbar:
-  title: "My Website"
+  title: "Estadística"
   left:
-    - text: "Home"
+    - text: "Estadística"
+      icon: fa-home
       href: index.html
-    - text: "About"
+    - text: "Aplicaciones Shiny"
+      icon: fa-home
       href: about.html
+  right:
+    - icon: ion-university
+      href: http://ciencias.medellin.unal.edu.co/escuelas/estadistica/
+    - icon: fa-lightbulb-o
+      href: http://ciencias.medellin.unal.edu.co/escuelas/estadistica/herramientas.html
+    - icon: fa-github
+      href: https://github.com/jtrochezg/jtrochezg.github.io
+output:
+  html_document:
+    theme: flatly
+    highlight: espresso
+    include:
+     after_body: footer.html
+     css: styles.css
