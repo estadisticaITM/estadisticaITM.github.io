@@ -20,9 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 
 
@@ -83,6 +82,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -97,7 +99,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -117,6 +118,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -138,18 +176,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -168,17 +265,24 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="pagin1.html">
     <span class="fa fa-home"></span>
      
-    Estadística
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin1.html">
+    <span class="fa fa-home"></span>
+     
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="about.html">
     <span class="fa fa-home"></span>
      
-    Aplicaciones Shiny
+    Semillero de R
   </a>
 </li>
       </ul>
@@ -209,56 +313,9 @@ $(document).ready(function () {
 
 
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-<div id="hola-a-todos-bienvenidos-al-curso-de-estadistica-basica" class="section level2">
-<h2>Hola a todos Bienvenidos al curso de estadística básica</h2>
-<div id="documentos-de-interes-por-parte-de-la-escuela" class="section level3">
-<h3>Documentos de interés por parte de la escuela:</h3>
-<ul>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/compromiso.pdf">Compromiso académico</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/DIA-%20DIA_ESTADISTICA_BASICA_2017-2oficial%20adriana%20guerrero.pdf">Día a día</a></p></li>
-</ul>
-</div>
-<div id="a-continuacion-encontrara-el-material-necesario-para-el-desarrollo-del-curso" class="section level3">
-<h3>A continuación encontrará el material necesario para el desarrollo del curso</h3>
-<ul>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Presentaci%C3%B3n%20del%20curso%20estad%C3%ADstica%20basica2.pdf">Introducción del curso</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Regresi%C3%B3n%20lineal.pdf">Regresión lineal</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/Probabilidad.pdf">Probabilidad</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/ITM_VAD_EBX.pdf">Distribuciones discretas</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/FUNCIONES%20DE%20DISTRIBUCI%C3%93N%20DE%20PROBABILIDAD%20CONTINUAS.pdf">Distribuciones continuas</a></p></li>
-</ul>
-</div>
-<div id="asi-mismo-encontrara-los-talleres-correspondientes" class="section level3">
-<h3>Así mismo encontrará los talleres correspondientes:</h3>
-<ul>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/taller%20de%20regresi%C3%B3n%20lineal%20simple.pdf">Taller de regresión lineal</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/taller%20de%20probabilidad.pdf">Taller de probabilidad</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/taller%20de%20distribuciones%20continuas.pdf">Taller de distribuciones continuas</a></p></li>
-</ul>
-</div>
-<div id="trabajo-final-de-la-asignatura-poster" class="section level3">
-<h3>Trabajo final de la asignatura <a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/Poster%20de%20estad%C3%ADstica%20descriptiva.pdf">Poster</a></h3>
-</div>
 <div id="encuesta" class="section level3">
 <h3>Encuesta</h3>
 <p>Por favor conteste la siguiente <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-lyIiDmro19r9E5ubNdNJNc9J4k_XLTJOaY8dAjCo1P6khg/viewform?vc=0&amp;c=0&amp;w=1">encuesta</a></p>
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="las-tablas-las-puedes-encontrar-aqui" class="section level3">
-<h3>Las tablas las puedes encontrar <a href="https://github.com/estadisticaITM/repositoriodeprueba/blob/master/tabla%20de%20diferentes%20probabilidades.pdf">Aqui</a></h3>
-</div>
-<div id="videos-de-intereres" class="section level3">
-<h3>videos de intererés:</h3>
-<ul>
-<li><p>como estimar la media, la desviación estandar en la <a href="https://www.youtube.com/watch?v=4eXrcn6QLgs">calculadora</a>, <a href="https://www.youtube.com/watch?v=6jqoucoas8Y">Otro video</a></p></li>
-<li><p>como estimar un modelo de <a href="https://www.youtube.com/watch?v=4_WO31Dapv0">regresión lineal</a> en la calculadora</p></li>
-<li><p>Como estimar <a href="https://www.youtube.com/watch?v=q0TNGY2xMrM">combinatorias y permutaciones</a> en la calculadora</p></li>
-</ul>
-</div>
-<div id="bibliografia" class="section level3">
-<h3>BIBLIOGRAFIA</h3>
-<p>-Probabilidad y estadística para ingeniería y ciencias Jay L. Devore</p>
-<p>-Guerrero P, A., Buitrago C, M. V., &amp; Curieses P, M. d. (2010). Estadistica Basica (2da ed.). Medellin: Fondo Editorial ITM.</p>
 </div>
 <div id="contador-de-visitas" class="section level3">
 <h3>Contador de visitas</h3>
@@ -269,7 +326,6 @@ $(document).ready(function () {
 <a href="http://www.hitwebcounter.com" target="_blank"> <img src="http://hitwebcounter.com/counter/counter.php?page=7013435&style=0005&nbdigits=5&type=page&initCount=0" title="web page hit counters codes Free" Alt="web page hit counters codes Free"   border="10" >
 </center>
 <p></a> <br/></p>
-</div>
 </div>
 
 <p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>

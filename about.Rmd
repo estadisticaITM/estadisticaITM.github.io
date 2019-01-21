@@ -1,5 +1,57 @@
 ---
-title: "About This Website"
+title: "Semillero de R"
 ---
 
-More about this website.
+```{r fig.asp=0.3, fig.align='right', echo=FALSE}
+library(png)
+library(grid)
+IM <- readPNG("semi.png")
+grid.raster(IM)
+```
+
+#Aplicaciones desarrolladas en Shiny
+
+
+R es una herramienta de análisis estadístico que permite el desarrollo de multiples aplicaciones a traves R studio y su librería shiny
+
+
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img2 <- readPNG("img2.png")
+grid.raster(img2)
+```
+
+En esta sección se muestran algunos de los múltiples usos y aplicaciones que se pueden realizar:
+
+
+
+##Una encuesta
+
+
+
+
+```{r echo=FALSE}
+knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
+                   height = "800px")
+```
+
+
+##Un análisis descriptivo
+
+
+
+```{r echo=FALSE}
+knitr::include_app("https://trochez.shinyapps.io/APPJOA/",
+                   height = "800px")
+```
+
+
+
+## Ajuste de modelo lineal mixto
+
+```{r echo=FALSE}
+knitr::include_app("https://jtrochezg.shinyapps.io/linear_mixed_model/",
+                   height = "800px")
+```
