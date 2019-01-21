@@ -1,0 +1,181 @@
+
+
+---
+title: "Regresión lineal"
+author: "Johanna Trochez"
+date: "21 de enero de 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Regresión lineal 
+
+Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa – efecto.
+
+El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
+
+
+## Modelo de regresión lineal básico
+
+El modelo más simple de regresión corresponde a: 
+$$y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$
+Donde:
+
+$y_i$Es la variable respuesta o dependiente para la i-ésima observación\
+
+
+$\beta_0$ Intercepto\
+
+
+$\beta_1$ Pendiente\
+
+
+$X_i$ Variable predictora independiente para la i-ésima observación\
+
+
+$\varepsilon_i$ Error aleatorio para la i-ésima observación\
+
+
+$$\varepsilon_i \sim N (0,\sigma^2)$$
+
+
+## Objetivos de la regresión lineal
+
+- Construir un modelo que describa cómo influye una variable X sobre otra variable Y. 
+
+- Obtener estimaciones puntuales de los parámetros de dicho modelo. 
+
+- Estimar el valor promedio de Y para un valor de X 
+
+- Predecir futuros de la variable respuesta Y
+
+## Algunos ejemplos
+
+- Estudiar cómo influye la estatura del padre sobre la estatura del hijo. 
+
+- Estimar el precio de una vivienda en función de su área.
+
+- Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
+
+##Diagrama de dispersión
+
+Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.
+
+
+```{r pressure}
+plot(pressure)
+```
+
+
+##Ejemplo
+Los siguientes datos proveen las velocidades en metros por hora y las distancias necesarias para  frenar en metros
+
+```{r echo = TRUE}
+head(cars)
+
+```
+
+En este caso ¿Cuál es la variable dependiente e independiente?
+
+## Diagrama de dispersión
+```{r echo=TRUE}
+
+plot(cars$speed,cars$dist)
+
+```
+
+
+## Modelo de regresión lineal
+
+Para este modelo el modelo de regresión lineal es
+
+$$\hat{y}=-17.57+3.93x$$
+
+Donde 
+
+- X representa la velocidad en metros por segundo
+
+- y es la distancia de frenado en metros
+
+## Grafico del modelo ajustado
+
+```{r echo=FALSE}
+
+plot(cars$speed,cars$dist)
+
+md=lm(cars$dist~cars$speed)
+
+j=fitted(md)
+
+lines(cars$speed,j, col=2, lwd=2)
+
+```
+
+##Residuales
+
+La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
+$$\varepsilon_i= y_i- \hat{y_i}$$
+Ejemplo: Para cada uno de los valores existe un posible error, estímelo.
+
+
+```{r echo = TRUE}
+head(cars)
+
+```
+
+
+##Medidas de dependencia lineal
+
+
+La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
+
+$$cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
+- Si hay relación lineal positiva, la covarianza será positiva y grande.
+
+- Si hay relación lineal negativa, la covarianza será negativa y grande en valor absoluto.
+
+- Si no hay relación entre las variables la covarianza será próxima a cero.
+
+- La covarianza depende de las unidades de medida de las variables.
+
+##Coeficiente de correlación
+
+Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
+
+
+$$cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$
+
+##Características del coeficiente de correlación
+
+- Rango entre -1 y 1
+
+- Valores cercanos a -1 la relación es fuertemente negativa.
+
+- Valores cercanos a 1 la relación es fuertemente positiva.
+
+- Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal
+
+
+```{r fig.asp=0.3, fig.align='right', echo=FALSE}
+library(png)
+library(grid)
+IM <- readPNG("corre.png")
+grid.raster(IM)
+```
+
+
+##Estimador de mínimos cuadrados
+Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
+
+$$y_i=\beta_0+\beta_1x_i+\varepsilon_i$$
+
+El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:
+
+
+
+$$\sum_{i=1}^n(y_i-\hat{y_i})^2=
+\sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2$$
