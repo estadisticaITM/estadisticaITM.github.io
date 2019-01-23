@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Johanna Trochez" />
 
 
-<title>Regresión lineal</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -374,17 +373,18 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Regresión lineal</h1>
-<h4 class="author"><em>Johanna Trochez</em></h4>
-<h4 class="date"><em>21 de enero de 2019</em></h4>
 
 </div>
 
 
 <div id="regresion-lineal" class="section level2">
 <h2>Regresión lineal</h2>
-<p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa – efecto.</p>
+<p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.</p>
 <p>El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
+</div>
+<div id="antes-de-hacer-un-modelo-de-egresion-lineal" class="section level2">
+<h2>Antes de hacer un modelo de egresión lineal</h2>
+<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.</p>
 </div>
 <div id="modelo-de-regresion-lineal-basico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
@@ -404,7 +404,7 @@ $(document).ready(function () {
 <div id="objetivos-de-la-regresion-lineal" class="section level2">
 <h2>Objetivos de la regresión lineal</h2>
 <ul>
-<li><p>Construir un modelo que describa cómo influye una variable X sobre otra variable Y.</p></li>
+<li><p>Construir un modelo que describa el efecto o relación entre una variable X sobre otra variable Y.</p></li>
 <li><p>Obtener estimaciones puntuales de los parámetros de dicho modelo.</p></li>
 <li><p>Estimar el valor promedio de Y para un valor de X</p></li>
 <li><p>Predecir futuros de la variable respuesta Y</p></li>
@@ -422,50 +422,6 @@ $(document).ready(function () {
 <h2>Diagrama de dispersión</h2>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
 <p><img src="regrelineal_files/figure-html/pressure-1.png" width="672" /></p>
-</div>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
-<p>Los siguientes datos proveen las velocidades en metros por hora y las distancias necesarias para frenar en metros</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(cars)</code></pre></div>
-<pre><code>##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10</code></pre>
-<p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
-</div>
-<div id="diagrama-de-dispersion-1" class="section level2">
-<h2>Diagrama de dispersión</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars<span class="op">$</span>speed,cars<span class="op">$</span>dist)</code></pre></div>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="modelo-de-regresion-lineal" class="section level2">
-<h2>Modelo de regresión lineal</h2>
-<p>Para este modelo el modelo de regresión lineal es</p>
-<p><span class="math display">\[\hat{y}=-17.57+3.93x\]</span></p>
-<p>Donde</p>
-<ul>
-<li><p>X representa la velocidad en metros por segundo</p></li>
-<li><p>y es la distancia de frenado en metros</p></li>
-</ul>
-</div>
-<div id="grafico-del-modelo-ajustado" class="section level2">
-<h2>Grafico del modelo ajustado</h2>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
-<div id="residuales" class="section level2">
-<h2>Residuales</h2>
-<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\varepsilon_i= y_i- \hat{y_i}\]</span> Ejemplo: Para cada uno de los valores existe un posible error, estímelo.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(cars)</code></pre></div>
-<pre><code>##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10</code></pre>
 </div>
 <div id="medidas-de-dependencia-lineal" class="section level2">
 <h2>Medidas de dependencia lineal</h2>
@@ -491,7 +447,7 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="estimador-de-minimos-cuadrados" class="section level2">
 <h2>Estimador de mínimos cuadrados</h2>
@@ -500,6 +456,189 @@ $(document).ready(function () {
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
 <p><span class="math display">\[\sum_{i=1}^n(y_i-\hat{y_i})^2=
 \sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2\]</span></p>
+<p>el resultado que se obtiene es:</p>
+<p><span class="math display">\[\hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
+<p>A las cantidades <span class="math inline">\(S_{xx}\)</span> y <span class="math inline">\(S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
+</div>
+<div id="residuales" class="section level2">
+<h2>Residuales</h2>
+<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\varepsilon_i= y_i- \hat{y_i}\]</span> La varianza de los términos de error <span class="math inline">\(\varepsilon_i\)</span>, es decir, <span class="math inline">\(V[\varepsilon_i]=\sigma^2\)</span>, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:</p>
+<p><span class="math display">\[SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i\]</span> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, para obtener a <span class="math inline">\(\hat{y_i}\)</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
+<p><span class="math display">\[MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
+<p>Se puede demostrar que MSE, es un estimador insesgado de <span class="math inline">\(\sigma^2\)</span> para el modelo de RLS, es decir que:</p>
+<p><span class="math display">\[\sigma^2=MSE\]</span> Además <span class="math display">\[E(MSE)=\sigma\]</span> ###Suma total de cuadrados</p>
+<p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span> ## Suma cuadrática de regresión La diferencia entre la SST y la SSE se denota por:</p>
+<p><span class="math display">\[SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2\]</span> La SSR es una medida de la parte de la variabilidad de las observaciones <span class="math inline">\(y_i\)</span>, la cual está asociada con la línea de regresión ajustada.</p>
+<p>De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:</p>
+<p><span class="math display">\[SST = SSR + SSE\]</span></p>
+<p>Aquí, SST: Variabilidad muestral total y tiene n−1 grados de libertad.</p>
+<p>SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.</p>
+<p>SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.</p>
+</div>
+<div id="medias-cuadraticas" class="section level2">
+<h2>Medias cuadráticas</h2>
+<p>Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:</p>
+<p><span class="math inline">\(MST=\frac{SST}{n-1}\)</span>: Cuadrado medio total</p>
+<p><span class="math inline">\(MSR=\frac{SSR}{1}\)</span>:Cuadrado medio de la regresión</p>
+<p><span class="math inline">\(MSE=\frac{SSE}{n-2}\)</span>: Cuadrado medio del error</p>
+</div>
+<div id="tabla-de-resumen-del-analisis-de-varianza" class="section level2">
+<h2>Tabla de resumen del análisis de varianza</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Factor</th>
+<th>Grados de libertad</th>
+<th>Suma de cuadrados</th>
+<th>Medias cuadráticas</th>
+<th>Estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regresión</td>
+<td>1</td>
+<td>SSR</td>
+<td>MSR</td>
+<td>Fc</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>n-2</td>
+<td>SSE</td>
+<td>MSE</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>n-1</td>
+<td>SST</td>
+<td>MST</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="prueba-de-significancia-de-la-regresion" class="section level2">
+<h2>Prueba de significancia de la regresión</h2>
+<p>Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:</p>
+<p>Hipótesis nula: <span class="math inline">\(H_0: \beta_i=0\)</span> el parámetro no es significativo</p>
+<p>Hipótesis alternativa: <span class="math inline">\(H_1: \beta_i \not= 0\)</span>: el parámeto es significativo</p>
+<p>El estadístico de prueba corresponde a</p>
+<p><span class="math display">\[F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}\]</span></p>
+</div>
+<div id="desicion" class="section level2">
+<h2>Desición</h2>
+<p>Rechazar <span class="math inline">\(H_0\)</span> si <span class="math inline">\(F_c&gt;F_{(1,n-2)}\)</span></p>
+</div>
+<div id="valor-p" class="section level2">
+<h2>Valor p</h2>
+</div>
+<div id="estimacion-de-la-varianza" class="section level2">
+<h2>Estimación de la varianza</h2>
+<p>Para estimar la varianza de los errores <span class="math inline">\(\sigma^2\)</span>, podemos utilizar el estimador máximo verosimil:</p>
+<p><span class="math display">\[{\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}\]</span></p>
+</div>
+<div id="significado-de-beta_0-y-beta_1" class="section level2">
+<h2>Significado de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span></h2>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span> es el intercepto</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span> es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta <span class="math inline">\(\beta_1\)</span> unidades</p></li>
+</ul>
+</div>
+<div id="ejemplo" class="section level2">
+<h2>Ejemplo</h2>
+<p>Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(cars)</code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
+</div>
+<div id="diagrama-de-dispersion-1" class="section level2">
+<h2>Diagrama de dispersión</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars<span class="op">$</span>speed,cars<span class="op">$</span>dist)</code></pre></div>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="modelo-de-regresion-lineal" class="section level2">
+<h2>Modelo de regresión lineal</h2>
+<p>Para este modelo el modelo de regresión lineal es</p>
+<p><span class="math display">\[\hat{y}=-17.57+3.93x\]</span></p>
+<p>Donde</p>
+<ul>
+<li><p>X representa la velocidad en metros por segundo</p></li>
+<li><p>y es la distancia de frenado en metros</p></li>
+</ul>
+</div>
+<div id="resultados-del-modelo-en-r" class="section level2">
+<h2>Resultados del modelo en R</h2>
+<pre><code>## 
+## Call:
+## lm(formula = cars$dist ~ cars$speed)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## [1] 0.8068949</code></pre>
+<div id="anova-del-modelo" class="section level3">
+<h3>anova del modelo</h3>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: cars$dist
+##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
+## Residuals  48  11354   236.5                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
+<h2>Modelo de regresión lineal simple en la calculadora</h2>
+<ul>
+<li>como estimar un modelo de <a href="https://www.youtube.com/watch?v=4_WO31Dapv0">regresión lineal</a> en la calculadora</li>
+<li>Dados los siguientes datos elabore</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Diagrama de dispersión</li>
+<li>Ajuste del modelo lineal</li>
+<li>Estime el valor de la correlación</li>
+</ol>
+</div>
+<div id="validacion-de-los-supuestos" class="section level2">
+<h2>Validación de los supuestos</h2>
+<p>A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.</p>
+<div id="qqplot" class="section level3">
+<h3>QQplot</h3>
+<p>permite verificar la normalidad de los errores. Si es cierta la normalidad de los residuos, los puntos deben estar alineados con la diagonal.</p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-6-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+</div>
+<div id="grafico-de-los-residuos-versus-los-valores-ajustados" class="section level3">
+<h3>Gráfico de los residuos versus los valores ajustados</h3>
+<p>Si los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Note que si se observa una tendencia, estaríamos violando el supuesto de linealidad (lo cual sugiere alguna transformación), y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+</div>
+</div>
+<div id="modelo-de-regresion-lineal-con-variables-indicadoras" class="section level2">
+<h2>Modelo de regresión lineal con variables indicadoras</h2>
+</div>
+<div id="modelo-de-regresion-multiple" class="section level2">
+<h2>Modelo de regresión multiple</h2>
+<p>Sucede cuando son mas de 2 variables regresoras</p>
 </div>
 
 <p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
