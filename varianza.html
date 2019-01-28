@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-home"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-home"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-home"></span>
+     
+    Semillero de R
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="http://itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="introduccion-al-analisis-de-varianza" class="section level2">
+<h2>Introducción al análisis de varianza</h2>
+<div id="diseno-experimental" class="section level3">
+<h3>Diseño experimental</h3>
+<p><img src="varianza_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:</p>
+<ul>
+<li><p>Objetivos específicos del experimento.</p></li>
+<li><p>Identificación de los factores que influyen y cuáles de ellos varían y cuáles permanecen constantes.</p></li>
+<li><p>Características a medir.</p></li>
+<li><p>Procedimientos particulares para realizar las pruebas o medir las características.</p></li>
+<li><p>Número de repeticiones del experimento básico a realizar.</p></li>
+<li><p>Recursos y materiales disponibles.</p></li>
+</ul>
+<p>Las preguntas que centran nuestra atención a través del proceso de diseño incluyen:</p>
+<ul>
+<li><p>¿Cuál es mi objetivo?</p></li>
+<li><p>¿Qué quiero saber?</p></li>
+<li><p>¿Por qué quiero saberlo?</p></li>
+</ul>
+<p>Además, existen preguntas de seguimiento productivo para cada actividad en el proceso, tales como:</p>
+<ul>
+<li><p>¿Cómo voy a realizar el experimento?</p></li>
+<li><p>¿Por que hago el experimento?</p></li>
+</ul>
+</div>
+<div id="aplicaciones-del-diseno-experimental" class="section level3">
+<h3>Aplicaciones del diseño experimental</h3>
+<ul>
+<li><p>Evaluación y comparación de diseños básicos.</p></li>
+<li><p>Evaluación de materiales alternativos.</p></li>
+<li><p>Selección de parámetros del diseño para que el producto tenga un buen funcionamiento en una amplia variedad de condiciones de campo.</p></li>
+</ul>
+</div>
+<div id="definiciones-del-diseno-experimental" class="section level3">
+<h3>Definiciones del diseño experimental</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Experimento comparativo</strong></li>
+</ol>
+<p>Se utiliza en áreas como biología, medicina, agricultura, ingeniería, sicología y otras ciencias experimentales, en el que se establece más de un conjunto de circunstancias en el experimento para comparar entre sí las respuestas.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Tratamientos</strong></li>
+</ol>
+<p>Conjunto de circunstancias creadas para el experimento, en respuesta a la hipótesis de investigación. Entre los ejemplos de tratamientos se encuentran dietas de animales, producción de variedades de cultivos,temperaturas, tipos de suelo y cantidades de nutrientes.</p>
+<p>En un estudio comparativo se usan dos o más tratamientos y se comparan sus efectos en el sujeto de estudio.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Experimento</strong></li>
+</ol>
+<p>La unidad experimental es la entidad física o el sujeto expuesto al tratamiento. La unidad experimental, una vez expuesta al tratamiento,constituye una sola réplica del tratamiento.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Error experimental</strong></li>
+</ol>
+<p>Describe la variación entre las unidades experimentales tratadas de manera idéntica e independiente. Los distintos orígenes del error experimental son:</p>
+<ul>
+<li>La variación natural entre unidades experimentales.</li>
+<li>La variabilidad en la medición de la respuesta.</li>
+<li>La imposibilidad de reproducir las condiciones del tratamiento con exactitud de una unidad a otra.</li>
+<li>La interacción de los tratamientos con las unidades experimentales.</li>
+<li>Cualquier otro factor externo que influya en las características medidas.</li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<p>La imposibilidad de reproducir el tratamiento con exactitud se da cuando las réplicas de los tubos de ensayo se preparan de modo independiente, con la misma mezcla de compuestos, y el peso de los productos químicos obtenidos en cada tubo difiere en 0.1 microgramo (pg). Los procesos en pipetas o básculas no son exactos, por lo tanto, introducen una pequeña variación durante la preparación del tratamiento.</p>
+<p><img src="varianza_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Un importante objetivo de los cálculos estadísticos es lograr una estimación de la varianza del error experimental. En su forma más simple, el error experimental es la varianza en unidades de las observaciones del experimento, cuando las diferencias entre éstas se pueden atribuir sólo al error experimental.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Estudios por observaciones comparativas</strong></li>
+</ol>
+<p>Son aquellos para los que desearíamos hacer un experimento, pero no es posible por razones económicas, prácticas o éticas.</p>
+<p>El investigador tiene en mente condiciones o tratamientos que tienen efectos causales en sujetos para los que no es posible efectuar experimentos hasta obtener respuestas. Los investigadores de las ciencias sociales, ecología, vida silvestre, vida marina y otros recursos naturales, a menudo han de llevar a cabo estudios por observación en vez de la experimentación directa.</p>
+<p><strong>Ejemplo</strong> Considerando un estudio para comparar la severidad de las lesiones por accidentes automovilísticos con y sin el cinturón de seguridad puesto; sería clara la falta de ética si se asignara al azar un tratamiento de personas con cinturón y sin cinturón y después se provocaran colisiones de los autos contra una pared de concreto, tampoco habría quién se prestara para esto. En su lugar, los investigadores se apoyan en los datos de lesiones en los accidentes y comparan los datos de cinturón puesto y sin cinturón.</p>
+<p><img src="varianza_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><p><strong>Hipótesis de investigación</strong> Establece un conjunto de circunstancias y sus consecuencias. Los tratamientos son una creación de las circunstancias para el experimento. Así, es importante identificar los tratamientos con el papel que cada uno tiene en la evaluación de la hipótesis de investigación.</p></li>
+<li><p><strong>Relación entre los tratamientos y las hipótesis</strong></p></li>
+</ol>
+<p>Cuando se eligen los tratamientos adecuados en respuesta a una hipótesis de investigación, es posible comprender mejor los procesos físicos, químicos biológicos o sociales.</p>
+<p>A continuación se presentan tratamientos, usados en el marco de investigaciones reales, generados por hipótesis de investigación:</p>
+<ul>
+<li>Se estudió la cinética de bebida de las abejas productoras de miel a diferentes temperaturas ambientales, para responder a la hipótesis de que la energía requerida al reunir comida para la colonia era independiente de la temperatura.</li>
+</ul>
+<p><img src="varianza_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>La supervivencia de siembras de Euphorbia (género de plantas) atacadas por un patógeno del suelo se determinó para distintos tipos de tratamientos de fungicida, en respuesta a la hipótesis de que no todos los fungicidas tienen la misma eficiencia para controlar tal patógeno.</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li><strong>Tratamiento control</strong></li>
+</ol>
+<p>Muchas veces se requieren tratamientos adicionales para evaluar por completo las consecuencias de la hipótesis. Una componente importante de muchos diseños de tratamiento es el tratamiento de control.</p>
+<p>El tratamiento de control es un punto necesario para evaluar el efecto de los tratamientos experimentales; existen diversas circunstancias en las que el tratamiento de control es útil y necesario. Un control al que no se da tratamiento revelará las condiciones en las que se efectuó el experimento.</p>
+<ol start="9" style="list-style-type: decimal">
+<li><strong>Control local de errores experimentales</strong></li>
+</ol>
+<p>Los principales objetivos de la mayoría de los experimentos son las comparaciones claras y exactas entre tratamientos a través de un conjunto apropiado de condiciones.</p>
+<p>El control local describe las acciones que emplea un investigador para reducir o controlar el error experimental, incrementar la exactitud de las observaciones y establecer la base de la inferencia de un estudio.</p>
+<p>El investigador controla:</p>
+<ul>
+<li>Técnica.</li>
+<li>Selección de unidades experimentales</li>
+<li>Bloquización o aseguramiento de la uniformidad de información en todos los tratamientos.</li>
+<li>Selección del diseño experimental.</li>
+<li>Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).</li>
+</ul>
+<ol start="10" style="list-style-type: decimal">
+<li><strong>Replicar para obtener experimentos válidos</strong></li>
+</ol>
+<p>La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:</p>
+<ul>
+<li>Permiten estimar el error experimental</li>
+<li>Ejerce control sobre la varianza del error experimental</li>
+<li>Mejora la precisión de un experimento mediante la reducción de la desviación estándar de una media de tratamiento</li>
+<li>A mayor número de repeticiones mayor precisión</li>
+<li>Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)</li>
+</ul>
+<ol start="11" style="list-style-type: decimal">
+<li><strong>Las unidades de observación y las experimentales pueden ser claramente distintas</strong></li>
+</ol>
+<p>La unidad de observación puede no ser equivalente a la unidad experimental. La primera puede ser una muestra de la última, como muestras individuales de plantas de una parcela.</p>
+<p>Ejemplo: Un estudio sencillo de raciones de dieta animal tiene un corral con seis animales asignados a la ración A y otro con seis más asignados a la ración B. Se reúnen datos sobre el aumento de peso. Al final del estudio, se toman de cada animal las medidas necesarias.</p>
+<p><strong>Unidad experimental:</strong>El corral, porque es la unidad a la que se administró el tratamiento independiente.</p>
+<p><strong>Unidades de observación:</strong> Los animales en el corral.</p>
+<p><img src="varianza_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="12" style="list-style-type: decimal">
+<li><strong>Aleatorizar para tener inferencias válidas</strong></li>
+</ol>
+<p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926) La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
+<ul>
+<li>La validación del error experimental</li>
+<li>Evita sesgos.</li>
+<li>Garantiza la independencia de los errores.</li>
+</ul>
+<p><img src="varianza_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>La aleatorización puede realizarse por medio de muchos métodos algunos de los cuales se describen a continuación:</p>
+</div>
+<div id="diseno-completamente-al-azar-dca" class="section level3">
+<h3>Diseño Completamente al Azar (DCA)</h3>
+<p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
+<ul>
+<li><p>En total se tienen N unidades experimentales (UE) homogéneas (N=tr)</p></li>
+<li><p>con r Unidades experimentales por cada tratamiento t, distribuidas al azar.</p></li>
+</ul>
+<p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Flexibilidad: Cualquier número de tratamientos y cualquier número de réplicas pueden ser usadas, siempre y cuando se tengan suficientes UE homogéneas.</p></li>
+<li><p>Análisis Estadístico simple: el análisis estadístico es simple ya sea cuando todos los tratamientos tengan igual número de réplicas (balanceado), diferente número de réplicas (desbalanceado) o pérdida de datos, caso en el cual se trata como un análisis desbalanceado.</p></li>
+<li><p>Máximo número de grados de libertad para el error:dados por la expresión t(r − 1), que corresponden a dos fuentes de variación que son los tratamientos y el error.</p></li>
+<li><p>Precisión: Es muy preciso si se tienen en cuenta UE homogéneas.</p></li>
+</ul>
+<p><strong>Desventajas </strong></p>
+<ul>
+<li><p>Se puede obtener baja precisión cuando las unidades experimentales no sean muy homogéneas y así ser ineficiente.</p></li>
+<li><p>Es recomendado cuando gran parte de las UE no respondan al tratamiento o puedan perderse durante el experimento.</p></li>
+<li><p>Es útil en experimentos en los que el número de UE es limitado, ya que provee el máximo número de grados de libertad del error.</p></li>
+</ul>
+</div>
+<div id="diseno-en-bloque" class="section level3">
+<h3>Diseño en bloque</h3>
+</div>
+<div id="diseno-factor" class="section level3">
+<h3>Diseño factor</h3>
+</div>
+</div>
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
