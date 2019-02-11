@@ -25,7 +25,7 @@ $\Large y_i$Es la variable respuesta o dependiente para la i-ésima observación
 $\Large \beta_0$ Intercepto\
 
 
-$\Large \beta_1$ Pendiente\
+$\Large\beta_1$ Pendiente\
 
 
 $\Large X_i$ Variable predictora independiente para la i-ésima observación\
@@ -90,6 +90,7 @@ $$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$
 
 
+
 ##Características del coeficiente de correlación
 
 - Rango entre -1 y 1
@@ -107,6 +108,7 @@ library(grid)
 IM <- readPNG("corre.png")
 grid.raster(IM)
 ```
+
 
 ## Medida de bondad de ajuste R^2
 
@@ -127,6 +129,7 @@ $$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
 
 
+
 ##Estimador de mínimos cuadrados
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
@@ -136,7 +139,7 @@ El método consiste en minimizar la suma de los cuadrados de las distancias vert
 
 
 
-$$\Large \sum_{i=1}^n(y_i-\hat{y_i})^2=
+$$\sum_{i=1}^n(y_i-\hat{y_i})^2=
 \sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2$$
 
 
@@ -152,8 +155,7 @@ $$\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}$$
 ##Residuales
 
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
-$$\Large e_i= y_i- \hat{y_i}$$
-
+$$\Large \varepsilon_i= y_i- \hat{y_i}$$
 
 
 
@@ -165,184 +167,6 @@ grid.raster(IM4)
 ```
 
 
-
-
-La varianza de los términos de error $\varepsilon_i$, es decir, $V[\varepsilon_i]=\sigma^2$, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:
-
-$$\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i$$
-La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar $\beta_0$ y $\beta_1$, para obtener a $\hat{y_i}$, de lo anterior se obtiene la media cuadática de errores dada por:
-
-$$\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}$$
-
-Se puede demostrar que MSE, es un estimador insesgado de $\Large \sigma^2$ para el modelo de RLS, es decir que:
-
-$$\Large \sigma^2=MSE$$
-Además
-$$\Large E(MSE)=\sigma$$
-###Suma total de cuadrados
-
-La medida de variación de y alrededor de la la media muestral $\bar{y}$ es:
-$$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
-## Suma cuadrática de regresión
-La diferencia entre la SST y la SSE se denota por:
-
-$$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$
-La SSR es una medida de la parte de la variabilidad de las observaciones $y_i$, la cual está asociada con la línea de regresión ajustada.
-
-De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:
-
-$$\Large SST = SSR + SSE$$
-
-Aquí,
-SST: Variabilidad muestral total y tiene n−1 grados de libertad.
-
-SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.
-
-SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.
-
-## Medias cuadráticas 
-Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:
-
-$\Large MST=\frac{SST}{n-1}$: Cuadrado medio total
-
-$\Large MSR=\frac{SSR}{1}$:Cuadrado medio de la regresión
-
-$\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
-
-
-
-##Tabla de resumen del análisis de varianza
-
-|Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
-|---------|------------------|-----------------|------------------|-----------|
-|Regresión|1                 |SSR              |MSR               |Fc         |
-|Error    |n-2               |SSE              |MSE               |           |
-|Total    |n-1               |SST              |MST               |           |
-
-
-##Prueba de significancia de la regresión
-
-Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
-
-Hipótesis nula:   $\LargeH_0: \beta_i=0$ el parámetro no es significativo
-
-Hipótesis alternativa:  $\Large H_1: \beta_i \not= 0$: el parámeto es significativo
-
-El estadístico de prueba corresponde a 
-
-$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
-
-##Desición
-
-Rechazar $\Large H_0$ si $\Large F_c>F_{(1,n-2)}$
-
-##Valor p
-
-
-
-##Estimación de la varianza
-Para estimar la varianza de los errores $\sigma^2$, podemos utilizar el estimador máximo verosimil:
-
-
-$$\Large {\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}$$
-
-
-## Significado de $\beta_0$ y $\beta_1$
-
-- $\Large \beta_0$ es el intercepto
-
-- $\Large \beta_1$ es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta $\beta_1$ unidades
-
-
-##Ejemplo
-Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros
-
-```{r echo = TRUE}
-head(cars)
-
-```
-
-En este caso ¿Cuál es la variable dependiente e independiente?
-
-## Diagrama de dispersión
-```{r echo=TRUE}
-
-plot(cars$speed,cars$dist)
-
-```
-
-
-## Modelo de regresión lineal
-
-Para este modelo el modelo de regresión lineal es
-
-$$\Large \hat{y}=-17.57+3.93x$$
-
-Donde 
-
-- X representa la velocidad en metros por segundo
-
-- y es la distancia de frenado en metros
-
-## Resultados del modelo en R
-
-```{r}
-
-plot(cars$speed,cars$dist)
-
-md=lm(cars$dist~cars$speed)
-
-summary(md)
-
-j=fitted(md)
-
-lines(cars$speed,j, col=2, lwd=2)
-
-cor(cars$dist,cars$speed)
-
-```
-
-###anova del modelo
-
-```{r}
-
-md=lm(cars$dist~cars$speed)
-
-anova(md)
-
-
-
-```
-
-
-
-
-## Modelo de regresión lineal simple en la calculadora
-
-- como estimar un modelo de [regresión lineal](https://www.youtube.com/watch?v=4_WO31Dapv0) en la calculadora
-- Dados los siguientes datos elabore 
-1. Diagrama de dispersión
-2. Ajuste del modelo lineal
-3. Estime el valor de la correlación
-
-##Validación de los supuestos
-
-A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
-
-###QQplot 
-permite verificar la normalidad de los errores. Si es cierta la normalidad de los residuos, los puntos deben estar alineados con la diagonal.
-
-```{r}
-
-md=lm(cars$dist~cars$speed)
-rr=residuals(md)
-plot(md)
-
-```
-
-###Gráfico de los residuos versus los valores ajustados
-
-Si los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Note que si se observa una tendencia, estaríamos violando el supuesto de linealidad (lo cual sugiere alguna transformación), y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
 
 
 ##Regresión lineal múltiple
