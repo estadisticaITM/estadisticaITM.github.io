@@ -304,8 +304,10 @@ $(document).ready(function () {
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
 <p><img src="regrelineal_files/figure-html/pressure-1.png" width="672" /></p>
 </div>
-<div id="medidas-de-dependencia-lineal" class="section level2">
-<h2>Medidas de dependencia lineal</h2>
+<div id="medidas-de-dependencia-lineal" class="section level1">
+<h1>Medidas de dependencia lineal</h1>
+<div id="covarianza" class="section level2">
+<h2>Covarianza</h2>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
 <p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
@@ -351,11 +353,12 @@ $(document).ready(function () {
 <p>el resultado que se obtiene es:</p>
 <p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
 <p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
 <h2>Residuales</h2>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>La varianza de los términos de error <span class="math inline">\(\varepsilon_i\)</span>, es decir, <span class="math inline">\(V[\varepsilon_i]=\sigma^2\)</span>, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:</p>
 <p><span class="math display">\[\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i\]</span> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, para obtener a <span class="math inline">\(\hat{y_i}\)</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
 <p><span class="math display">\[\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
@@ -456,7 +459,7 @@ $(document).ready(function () {
 <div id="diagrama-de-dispersion-1" class="section level2">
 <h2>Diagrama de dispersión</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars<span class="op">$</span>speed,cars<span class="op">$</span>dist)</code></pre></div>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="modelo-de-regresion-lineal" class="section level2">
 <h2>Modelo de regresión lineal</h2>
@@ -488,7 +491,7 @@ $(document).ready(function () {
 ## Residual standard error: 15.38 on 48 degrees of freedom
 ## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
 ## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre><code>## [1] 0.8068949</code></pre>
 <div id="anova-del-modelo" class="section level3">
 <h3>anova del modelo</h3>
@@ -520,7 +523,7 @@ $(document).ready(function () {
 <div id="qqplot" class="section level3">
 <h3>QQplot</h3>
 <p>permite verificar la normalidad de los errores. Si es cierta la normalidad de los residuos, los puntos deben estar alineados con la diagonal.</p>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-7-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-7-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-8-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-8-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
 </div>
 <div id="grafico-de-los-residuos-versus-los-valores-ajustados" class="section level3">
 <h3>Gráfico de los residuos versus los valores ajustados</h3>
@@ -587,7 +590,7 @@ Estrato 4 $$  I_4 =
 ## 5    1 1231           120
 ## 6    1 1372           142</code></pre>
 <p>El diagrama de dispersión simple es:</p>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>El modelo de regresión lineal simple corresponde a:</p>
 <pre><code>## 
 ## Call:
@@ -608,8 +611,9 @@ Estrato 4 $$  I_4 =
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
+</div>
 </div>
 
 <br>
