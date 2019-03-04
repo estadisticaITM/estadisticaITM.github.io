@@ -326,48 +326,10 @@ $(document).ready(function () {
 <h2>Tipos de variables y de efectos en los modelos</h2>
 <p>Las variables predictoras pueden ser:  Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
-<p>Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
-<p>Estrato 1: $$ </p>
-I_1 =
-<span class="math display">\[\begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 1}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
-<p>.</p>
-<p>$$ Estrato 2</p>
-<p>$$ </p>
-<pre><code>     I_2 =\left\lbrace   \begin{array}{rcl}
-        
-        {1\quad familia \quad estrato \quad 2}
-     \\
-        
-        {0 \quad En \quad otro \quad caso  }
-     \end{array}  \right.
-     
-     $$</code></pre>
-<p>Estrato 3</p>
-<p>$$ </p>
-<pre><code>     I_3 =\left\lbrace   \begin{array}{rcl}
-        
-        {1\quad familia \quad estrato \quad 3}
-     \\
-        
-        {0 \quad En \quad otro \quad caso  }
-     \end{array}  \right. 
-     </code></pre>
-<p>$$</p>
-Estrato 4 $$  I_4 =
-<span class="math display">\[\begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 4}
-         \\
-            
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
-<p>.</p>
-<pre><code>     $$</code></pre>
-<p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
+<p>Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora.</p>
+<p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c-1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v=eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Ejemplo: La siguiente base de datos relaciona 7 medidas del crecimiento de 5 arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre><code>##   Tree  age circumference
 ## 1    1  118            30
@@ -397,9 +359,33 @@ Estrato 4 $$  I_4 =
 ## Residual standard error: 23.74 on 33 degrees of freedom
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
-<p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
+<p>La linea de regresión ajustada corresponde a</p>
 <p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
+<p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
+<pre><code>## 
+## Call:
+## lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -30.505  -8.790   3.737   7.650  21.859 
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
+## Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
+## as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
+## as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
+## as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
+## as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.26 on 29 degrees of freedom
+## Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
+## F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 

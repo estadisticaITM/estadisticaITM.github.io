@@ -192,60 +192,16 @@ Las variables predictoras pueden ser:
 
  Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
 
-Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:
+Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora.
 
 
-Estrato 1:
-$$ \Large
+En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c-1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.
 
-I_1 =\left\lbrace \begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 1}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. 
-         
-$$
-Estrato 2
 
-$$ \Large
-         
-         I_2 =\left\lbrace   \begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 2}
-         \\
-            
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.
-         
-         $$
-Estrato 3
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v=eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-$$ \Large
 
-         I_3 =\left\lbrace   \begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 3}
-         \\
-            
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. 
-         
-  $$
-  
-  Estrato 4
-  $$
-    \Large     
-         I_4 =\left\lbrace   \begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 4}
-         \\
-            
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.
-         
-         $$
 
-En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.
 
 Ejemplo:
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 arboles en el tiempo en meses y el diámetro en mm.
@@ -277,6 +233,22 @@ summary(model)
 
 
 
+La linea de regresión ajustada corresponde a
+
+```{r}
+
+model=lm(Orange$circumference~Orange$age)
+
+
+plot(Orange$age,Orange$circumference,lwd=3)
+
+yest=fitted(model)
+lines(Orange$age,yest,col=2)
+abline(coef(model))
+
+
+```
+
 
 
 El diagrama de dispersión discriminando por los niveles de la variables factor es:
@@ -289,6 +261,7 @@ plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
 El modelo de regresión lineal con factores corresponde a 
 ```{r}
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+summary(model)
 ```
 
 
