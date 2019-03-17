@@ -371,64 +371,57 @@ Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por fa
 
 
 Estrato 1:
-$$ \Large
-
-I_1 =\left\lbrace \begin{array}{rcl}
+$$ \Large  I_1 =\left\lbrace \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 1}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. 
+         \end{array}  \right. $$
          
-$$
+
 Estrato 2
 
 $$ \Large
-         
-         I_2 =\left\lbrace   \begin{array}{rcl}
-            
+           I_2 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 2}
-         \\
-            
+            \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.
-         
-         $$
+         \end{array}  \right.          $$
 Estrato 3
 
-$$ \Large
-
-         I_3 =\left\lbrace   \begin{array}{rcl}
+$$ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
             
             {1\quad familia \quad estrato \quad 3}
          \\
-            
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. 
-         
-  $$
+         \end{array}  \right.  $$
   
   Estrato 4
-  $$
-    \Large     
+$$    \Large     
          I_4 =\left\lbrace   \begin{array}{rcl}
             
             {1\quad familia \quad estrato \quad 4}
          \\
-            
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.
-         
-         $$
+         \end{array}  \right.$$
+  
+
+
+
 
 En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.
 
-Ejemplo:
-La siguiente base de datos relaciona 7 medidas del crecimiento de 5 arboles en el tiempo en meses y el diámetro en mm.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+## Ejemplo:
+
+La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
 ```{r}
 
 head (Orange)
-
 
 
 ```
@@ -446,12 +439,34 @@ El modelo de regresión lineal simple corresponde a:
 model=lm(Orange$circumference~Orange$age)
 summary(model)
 
+```
+
+La ecuación del modelo de regresión general es:
+
+$$\Large \hat y_i=17.4+0.1x_{i}$$
+Donde $y_i$ es la circunferenciua del
+
+La linea de regresión ajustada corresponde a
+
+```{r}
+
+model=lm(Orange$circumference~Orange$age)
+
+
+plot(Orange$age,Orange$circumference,lwd=3)
+
+yest=fitted(model)
+lines(Orange$age,yest,col=2)
+abline(coef(model))
 
 
 ```
 
+## Significado de la pendiente y el intercepto
 
+El intercepto es la respuesta media observada en el crecimiento de los arboles.
 
+La  péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades
 
 
 El diagrama de dispersión discriminando por los niveles de la variables factor es:
@@ -464,6 +479,32 @@ plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
 El modelo de regresión lineal con factores corresponde a 
 ```{r}
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+summary(model)
 ```
+
+
+La recta general del modelo es:
+
+$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol_2+2.51arbol_3-8.26arbol_4-4.69arbol_5$$
+
+Las rectas ajustadas para cada arbol son:
+
+
+
+Arbol 1:
+
+$$\Large \hat y_i=17.4+0.1x_{i}$$
+
+Arbol 2:
+     $$\Large \hat y_i=57.33+0.1x_{i}$$
+Arbol 3:
+     $$\Large \hat y_i=19.92+0.1x_{i}$$
+
+Arbol 4:
+     $$\Large \hat y_i=9.14+0.1x_{i}$$
+Arbol 5:
+     $$\Large \hat y_i=12.71+0.1x_{i}$$
+
+
 
 
