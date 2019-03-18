@@ -1,5 +1,11 @@
 
 
+---
+title: "Regresión lineal"
+---
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -60,7 +66,7 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.
 
 
-```{r pressure}
+```{r pressure, echo = TRUE}
 plot(pressure)
 
 ```
@@ -240,7 +246,7 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
-```{r}
+```{r echo = TRUE}
 
 head (Orange)
 
@@ -249,13 +255,13 @@ head (Orange)
 
 El diagrama de dispersión simple es:
 
-```{r}
+```{r echo = TRUE}
 plot(Orange$age,Orange$circumference,lwd=3)
 ```
 
 El modelo de regresión lineal simple corresponde a:
 
-```{r}
+```{r echo = TRUE}
 
 model=lm(Orange$circumference~Orange$age)
 summary(model)
@@ -269,7 +275,7 @@ Donde $y_i$ es la circunferenciua del
 
 La linea de regresión ajustada corresponde a
 
-```{r}
+```{r echo = TRUE}
 
 model=lm(Orange$circumference~Orange$age)
 
@@ -292,21 +298,23 @@ La  péndiente indica que por cada mes que pasa la circunferencia del arbol aume
 
 El diagrama de dispersión discriminando por los niveles de la variables factor es:
 
-```{r}
+```{r echo = TRUE }
 plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
 
 ```
 
 El modelo de regresión lineal con factores corresponde a 
-```{r}
+```{r echo = TRUE}
+
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 summary(model)
+
 ```
 
 
 La recta general del modelo es:
 
-$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol_2+2.51arbol_3-8.26arbol_4-4.69arbol_5$$
+$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$
 
 Las rectas ajustadas para cada arbol son:
 
@@ -325,6 +333,4 @@ Arbol 4:
      $$\Large \hat y_i=9.14+0.1x_{i}$$
 Arbol 5:
      $$\Large \hat y_i=12.71+0.1x_{i}$$
-
-
 

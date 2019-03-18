@@ -1,5 +1,12 @@
 
 
+---
+title: "Regresión lineal"
+---
+
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -233,7 +240,7 @@ $\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
 
 Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
 
-Hipótesis nula:   $\LargeH_0: \beta_i=0$ el parámetro no es significativo
+Hipótesis nula:   $\Large H_0: \beta_i=0$ el parámetro no es significativo
 
 Hipótesis alternativa:  $\Large H_1: \beta_i \not= 0$: el parámeto es significativo
 
@@ -419,7 +426,7 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
-```{r}
+```{r echo = TRUE}
 
 head (Orange)
 
@@ -428,13 +435,13 @@ head (Orange)
 
 El diagrama de dispersión simple es:
 
-```{r}
+```{r echo = TRUE}
 plot(Orange$age,Orange$circumference,lwd=3)
 ```
 
 El modelo de regresión lineal simple corresponde a:
 
-```{r}
+```{r echo = TRUE}
 
 model=lm(Orange$circumference~Orange$age)
 summary(model)
@@ -448,7 +455,7 @@ Donde $y_i$ es la circunferenciua del
 
 La linea de regresión ajustada corresponde a
 
-```{r}
+```{r echo = TRUE}
 
 model=lm(Orange$circumference~Orange$age)
 
@@ -471,13 +478,13 @@ La  péndiente indica que por cada mes que pasa la circunferencia del arbol aume
 
 El diagrama de dispersión discriminando por los niveles de la variables factor es:
 
-```{r}
+```{r echo = TRUE}
 plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
 
 ```
 
 El modelo de regresión lineal con factores corresponde a 
-```{r}
+```{r echo = TRUE}
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 summary(model)
 ```
@@ -485,7 +492,7 @@ summary(model)
 
 La recta general del modelo es:
 
-$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol_2+2.51arbol_3-8.26arbol_4-4.69arbol_5$$
+$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$
 
 Las rectas ajustadas para cada arbol son:
 
