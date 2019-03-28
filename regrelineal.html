@@ -15,81 +15,47 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
 
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #bdae9d; background-color: #2a211c; }
-code > span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
-code > span.dt { text-decoration: underline; } /* DataType */
-code > span.dv { color: #44aa43; } /* DecVal */
-code > span.bn { color: #44aa43; } /* BaseN */
-code > span.fl { color: #44aa43; } /* Float */
-code > span.ch { color: #049b0a; } /* Char */
-code > span.st { color: #049b0a; } /* String */
-code > span.co { color: #0066ff; font-style: italic; } /* Comment */
-code > span.al { color: #ffff00; } /* Alert */
-code > span.fu { color: #ff9358; font-weight: bold; } /* Function */
-code > span.er { color: #ffff00; font-weight: bold; } /* Error */
-code > span.wa { color: #ffff00; font-weight: bold; } /* Warning */
-code > span.cn { } /* Constant */
-code > span.sc { color: #049b0a; } /* SpecialChar */
-code > span.vs { color: #049b0a; } /* VerbatimString */
-code > span.ss { color: #049b0a; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
-code > span.op { } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #0066ff; font-style: italic; } /* Documentation */
-code > span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
-code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
 
 
 <style type="text/css">
@@ -156,33 +122,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -389,18 +355,18 @@ $(document).ready(function () {
 </div>
 <div id="modelo-de-regresion-lineal-basico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
-<p>El modelo más simple de regresión corresponde a: <span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span> Donde:</p>
-<p><span class="math inline">\(\Large y_i\)</span>Es la variable respuesta o dependiente para la i-ésima observación<br />
+<p>El modelo más simple de regresión corresponde a: <br /><span class="math display">$$\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$</span><br /> Donde:</p>
+<p><span class="math inline">$\Large y_i$</span>Es la variable respuesta o dependiente para la i-ésima observación<br />
 </p>
-<p><span class="math inline">\(\Large \beta_0\)</span> Intercepto<br />
+<p><span class="math inline">$\Large \beta_0$</span> Intercepto<br />
 </p>
-<p><span class="math inline">\(\Large \beta_1\)</span> Pendiente<br />
+<p><span class="math inline">$\Large \beta_1$</span> Pendiente<br />
 </p>
-<p><span class="math inline">\(\Large X_i\)</span> Variable predictora independiente para la i-ésima observación<br />
+<p><span class="math inline">$\Large X_i$</span> Variable predictora independiente para la i-ésima observación<br />
 </p>
-<p><span class="math inline">\(\Large \varepsilon_i\)</span> Error aleatorio para la i-ésima observación<br />
+<p><span class="math inline">$\Large \varepsilon_i$</span> Error aleatorio para la i-ésima observación<br />
 </p>
-<p><span class="math display">\[\Large \varepsilon_i \sim N (0,\sigma^2)\]</span></p>
+<p><br /><span class="math display">$$\Large \varepsilon_i \sim N (0,\sigma^2)$$</span><br /></p>
 </div>
 <div id="objetivos-de-la-regresion-lineal" class="section level2">
 <h2>Objetivos de la regresión lineal</h2>
@@ -429,7 +395,7 @@ $(document).ready(function () {
 <div id="covarianza" class="section level2">
 <h2>Covarianza</h2>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
-<p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
+<p><br /><span class="math display">$$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$</span><br /> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
 <li><p>Si hay relación lineal negativa, la covarianza será negativa y grande en valor absoluto.</p></li>
 <li><p>Si no hay relación entre las variables la covarianza será próxima a cero.</p></li>
@@ -439,8 +405,8 @@ $(document).ready(function () {
 <div id="coeficiente-de-correlacion" class="section level2">
 <h2>Coeficiente de correlación</h2>
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
-<p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
-{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
+<p><br /><span class="math display">$$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$</span><br /></p>
 </div>
 <div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
 <h2>Características del coeficiente de correlación</h2>
@@ -455,39 +421,39 @@ $(document).ready(function () {
 <div id="medida-de-bondad-de-ajuste-r2" class="section level2">
 <h2>Medida de bondad de ajuste R^2</h2>
 <p>Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal. Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:</p>
-<p><span class="math display">\[\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}\]</span> Donde</p>
+<p><br /><span class="math display">$$\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}$$</span><br /> Donde</p>
 <p>SSE: es la suma de cuadrados del error SST: suma de cuadrados totales</p>
 </div>
 <div id="error-de-pronostico-medio-mape" class="section level2">
 <h2>Error de pronóstico medio MAPE</h2>
 <p>Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:</p>
-<p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
+<p><br /><span class="math display">$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$</span><br /></p>
 </div>
 <div id="estimador-de-minimos-cuadrados" class="section level2">
 <h2>Estimador de mínimos cuadrados</h2>
-<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
-<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
+<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">$\hat{\beta_0}, \hat {\beta_1}$</span> que mejor se ajustan a los datos:</p>
+<p><br /><span class="math display">$$\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i$$</span><br /></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
-<p><span class="math display">\[\Large \sum_{i=1}^n(y_i-\hat{y_i})^2=
-\sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2\]</span></p>
+<p><br /><span class="math display">$$\Large \sum_{i=1}^n(y_i-\hat{y_i})^2=
+\sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2$$</span><br /></p>
 <p>el resultado que se obtiene es:</p>
-<p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
-<p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
+<p><br /><span class="math display">$$\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}$$</span><br /></p>
+<p>A las cantidades <span class="math inline">$\Large S_{xx}$</span> y <span class="math inline">$\Large S_{xy}$</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <br /><span class="math display">$$\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}$$</span><br /></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
 <h2>Residuales</h2>
-<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
+<p>La diferencia de cada valor <span class="math inline"><em>y</em><sub><em>i</em></sub></span> de la variable respuesta y su estimación <span class="math inline">$\hat{y_i}$</span> se llama residuo. <br /><span class="math display">$$\Large e_i= y_i- \hat{y_i}$$</span><br /></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-<p>La varianza de los términos de error <span class="math inline">\(\varepsilon_i\)</span>, es decir, <span class="math inline">\(V[\varepsilon_i]=\sigma^2\)</span>, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:</p>
-<p><span class="math display">\[\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i\]</span> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, para obtener a <span class="math inline">\(\hat{y_i}\)</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
-<p><span class="math display">\[\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
-<p>Se puede demostrar que MSE, es un estimador insesgado de <span class="math inline">\(\Large \sigma^2\)</span> para el modelo de RLS, es decir que:</p>
-<p><span class="math display">\[\Large \sigma^2=MSE\]</span> Además <span class="math display">\[\Large E(MSE)=\sigma\]</span> ###Suma total de cuadrados</p>
-<p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span> ## Suma cuadrática de regresión La diferencia entre la SST y la SSE se denota por:</p>
-<p><span class="math display">\[\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2\]</span> La SSR es una medida de la parte de la variabilidad de las observaciones <span class="math inline">\(y_i\)</span>, la cual está asociada con la línea de regresión ajustada.</p>
+<p>La varianza de los términos de error <span class="math inline"><em>ε</em><sub><em>i</em></sub></span>, es decir, <span class="math inline"><em>V</em>[<em>ε</em><sub><em>i</em></sub>]=<em>σ</em><sup>2</sup></span>, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:</p>
+<p><br /><span class="math display">$$\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i$$</span><br /> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline"><em>β</em><sub>0</sub></span> y <span class="math inline"><em>β</em><sub>1</sub></span>, para obtener a <span class="math inline">$\hat{y_i}$</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
+<p><br /><span class="math display">$$\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}$$</span><br /></p>
+<p>Se puede demostrar que MSE, es un estimador insesgado de <span class="math inline">$\Large \sigma^2$</span> para el modelo de RLS, es decir que:</p>
+<p><br /><span class="math display">$$\Large \sigma^2=MSE$$</span><br /> Además <br /><span class="math display">$$\Large E(MSE)=\sigma$$</span><br /> ###Suma total de cuadrados</p>
+<p>La medida de variación de y alrededor de la la media muestral <span class="math inline">$\bar{y}$</span> es: <br /><span class="math display">$$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$</span><br /> ## Suma cuadrática de regresión La diferencia entre la SST y la SSE se denota por:</p>
+<p><br /><span class="math display">$$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$</span><br /> La SSR es una medida de la parte de la variabilidad de las observaciones <span class="math inline"><em>y</em><sub><em>i</em></sub></span>, la cual está asociada con la línea de regresión ajustada.</p>
 <p>De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:</p>
-<p><span class="math display">\[\Large SST = SSR + SSE\]</span></p>
+<p><br /><span class="math display">$$\Large SST = SSR + SSE$$</span><br /></p>
 <p>Aquí, SST: Variabilidad muestral total y tiene n−1 grados de libertad.</p>
 <p>SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.</p>
 <p>SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.</p>
@@ -495,9 +461,9 @@ $(document).ready(function () {
 <div id="medias-cuadraticas" class="section level2">
 <h2>Medias cuadráticas</h2>
 <p>Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:</p>
-<p><span class="math inline">\(\Large MST=\frac{SST}{n-1}\)</span>: Cuadrado medio total</p>
-<p><span class="math inline">\(\Large MSR=\frac{SSR}{1}\)</span>:Cuadrado medio de la regresión</p>
-<p><span class="math inline">\(\Large MSE=\frac{SSE}{n-2}\)</span>: Cuadrado medio del error</p>
+<p><span class="math inline">$\Large MST=\frac{SST}{n-1}$</span>: Cuadrado medio total</p>
+<p><span class="math inline">$\Large MSR=\frac{SSR}{1}$</span>:Cuadrado medio de la regresión</p>
+<p><span class="math inline">$\Large MSE=\frac{SSE}{n-2}$</span>: Cuadrado medio del error</p>
 </div>
 <div id="tabla-de-resumen-del-analisis-de-varianza" class="section level2">
 <h2>Tabla de resumen del análisis de varianza</h2>
@@ -539,34 +505,34 @@ $(document).ready(function () {
 <div id="prueba-de-significancia-de-la-regresion" class="section level2">
 <h2>Prueba de significancia de la regresión</h2>
 <p>Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:</p>
-<p>Hipótesis nula: <span class="math inline">\(\Large H_0: \beta_i=0\)</span> el parámetro no es significativo</p>
-<p>Hipótesis alternativa: <span class="math inline">\(\Large H_1: \beta_i \not= 0\)</span>: el parámeto es significativo</p>
+<p>Hipótesis nula: <span class="math inline">$\Large H_0: \beta_i=0$</span> el parámetro no es significativo</p>
+<p>Hipótesis alternativa: <span class="math inline">$\Large H_1: \beta_i \not= 0$</span>: el parámeto es significativo</p>
 <p>El estadístico de prueba corresponde a</p>
-<p><span class="math display">\[\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}\]</span></p>
+<p><br /><span class="math display">$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$</span><br /></p>
 </div>
 <div id="desicion" class="section level2">
 <h2>Desición</h2>
-<p>Rechazar <span class="math inline">\(\Large H_0\)</span> si <span class="math inline">\(\Large F_c&gt;F_{(1,n-2)}\)</span></p>
+<p>Rechazar <span class="math inline">$\Large H_0$</span> si <span class="math inline">$\Large F_c&gt;F_{(1,n-2)}$</span></p>
 </div>
 <div id="valor-p" class="section level2">
 <h2>Valor p</h2>
 </div>
 <div id="estimacion-de-la-varianza" class="section level2">
 <h2>Estimación de la varianza</h2>
-<p>Para estimar la varianza de los errores <span class="math inline">\(\sigma^2\)</span>, podemos utilizar el estimador máximo verosimil:</p>
-<p><span class="math display">\[\Large {\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}\]</span></p>
+<p>Para estimar la varianza de los errores <span class="math inline"><em>σ</em><sup>2</sup></span>, podemos utilizar el estimador máximo verosimil:</p>
+<p><br /><span class="math display">$$\Large {\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}$$</span><br /></p>
 </div>
 <div id="significado-de-beta_0-y-beta_1" class="section level2">
-<h2>Significado de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span></h2>
+<h2>Significado de <span class="math inline"><em>β</em><sub>0</sub></span> y <span class="math inline"><em>β</em><sub>1</sub></span></h2>
 <ul>
-<li><p><span class="math inline">\(\Large \beta_0\)</span> es el intercepto</p></li>
-<li><p><span class="math inline">\(\Large \beta_1\)</span> es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta <span class="math inline">\(\beta_1\)</span> unidades</p></li>
+<li><p><span class="math inline">$\Large \beta_0$</span> es el intercepto</p></li>
+<li><p><span class="math inline">$\Large \beta_1$</span> es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta <span class="math inline"><em>β</em><sub>1</sub></span> unidades</p></li>
 </ul>
 </div>
 <div id="ejemplo" class="section level2">
 <h2>Ejemplo</h2>
 <p>Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(cars)</code></pre></div>
+<pre class="r"><code>head(cars)</code></pre>
 <pre><code>##   speed dist
 ## 1     4    2
 ## 2     4   10
@@ -578,13 +544,13 @@ $(document).ready(function () {
 </div>
 <div id="diagrama-de-dispersion-1" class="section level2">
 <h2>Diagrama de dispersión</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars<span class="op">$</span>speed,cars<span class="op">$</span>dist)</code></pre></div>
+<pre class="r"><code>plot(cars$speed,cars$dist)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="modelo-de-regresion-lineal" class="section level2">
 <h2>Modelo de regresión lineal</h2>
 <p>Para este modelo el modelo de regresión lineal es</p>
-<p><span class="math display">\[\Large \hat{y}=-17.57+3.93x\]</span></p>
+<p><br /><span class="math display">$$\Large \hat{y}=-17.57+3.93x$$</span><br /></p>
 <p>Donde</p>
 <ul>
 <li><p>X representa la velocidad en metros por segundo</p></li>
@@ -653,40 +619,30 @@ $(document).ready(function () {
 <div id="regresion-lineal-multiple" class="section level2">
 <h2>Regresión lineal múltiple</h2>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
-<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
+<p><br /><span class="math display">$$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$</span><br /></p>
 </div>
 <div id="tipos-de-variables-y-de-efectos-en-los-modelos" class="section level2">
 <h2>Tipos de variables y de efectos en los modelos</h2>
 <p>Las variables predictoras pueden ser:  Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
 <p>Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
-<p>Estrato 1: <span class="math display">\[ \Large  I_1 =\left\lbrace \begin{array}{rcl}
+<p>Estrato 1: <br /><span class="math display">$$ \Large  I_1 =\left\lbrace \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 1}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. \]</span></p>
+         \end{array}  \right. $$</span><br /></p>
 <p>Estrato 2</p>
-<p><span class="math display">\[ \Large
+<p><br /><span class="math display">$$ \Large
            I_2 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 2}
             \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.          \]</span> Estrato 3</p>
+         \end{array}  \right.          $$</span><br /> Estrato 3</p>
 $$ I_3 =
-<span class="math display">\[\begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 3}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
+
 <p>. $$</p>
 Estrato 4 $$  I_4 =
-<span class="math display">\[\begin{array}{rcl}
-            
-            {1\quad familia \quad estrato \quad 4}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
+
 <p>.$$</p>
 <p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -695,7 +651,7 @@ Estrato 4 $$  I_4 =
 <div id="ejemplo-1" class="section level2">
 <h2>Ejemplo:</h2>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span> (Orange)</code></pre></div>
+<pre class="r"><code>head (Orange)</code></pre>
 <pre><code>##   Tree  age circumference
 ## 1    1  118            30
 ## 2    1  484            58
@@ -704,11 +660,11 @@ Estrato 4 $$  I_4 =
 ## 5    1 1231           120
 ## 6    1 1372           142</code></pre>
 <p>El diagrama de dispersión simple es:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Orange<span class="op">$</span>age,Orange<span class="op">$</span>circumference,<span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>El modelo de regresión lineal simple corresponde a:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model=<span class="kw">lm</span>(Orange<span class="op">$</span>circumference<span class="op">~</span>Orange<span class="op">$</span>age)
-<span class="kw">summary</span>(model)</code></pre></div>
+<pre class="r"><code>model=lm(Orange$circumference~Orange$age)
+summary(model)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = Orange$circumference ~ Orange$age)
@@ -728,16 +684,16 @@ Estrato 4 $$  I_4 =
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>La ecuación del modelo de regresión general es:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la circunferenciua del</p>
+<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}$$</span><br /> Donde <span class="math inline"><em>y</em><sub><em>i</em></sub></span> es la circunferenciua del</p>
 <p>La linea de regresión ajustada corresponde a</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model=<span class="kw">lm</span>(Orange<span class="op">$</span>circumference<span class="op">~</span>Orange<span class="op">$</span>age)
+<pre class="r"><code>model=lm(Orange$circumference~Orange$age)
 
 
-<span class="kw">plot</span>(Orange<span class="op">$</span>age,Orange<span class="op">$</span>circumference,<span class="dt">lwd=</span><span class="dv">3</span>)
+plot(Orange$age,Orange$circumference,lwd=3)
 
-yest=<span class="kw">fitted</span>(model)
-<span class="kw">lines</span>(Orange<span class="op">$</span>age,yest,<span class="dt">col=</span><span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="kw">coef</span>(model))</code></pre></div>
+yest=fitted(model)
+lines(Orange$age,yest,col=2)
+abline(coef(model))</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
@@ -745,11 +701,11 @@ yest=<span class="kw">fitted</span>(model)
 <p>El intercepto es la respuesta media observada en el crecimiento de los arboles.</p>
 <p>La péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades</p>
 <p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Orange<span class="op">$</span>age,Orange<span class="op">$</span>circumference,<span class="dt">col=</span>Orange<span class="op">$</span>Tree,<span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model=<span class="kw">lm</span>(Orange<span class="op">$</span>circumference<span class="op">~</span>Orange<span class="op">$</span>age<span class="op">+</span><span class="kw">as.factor</span>(Orange<span class="op">$</span>Tree))
-<span class="kw">summary</span>(model)</code></pre></div>
+<pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+summary(model)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
@@ -773,12 +729,12 @@ yest=<span class="kw">fitted</span>(model)
 ## Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
 ## F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>La recta general del modelo es:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i\]</span></p>
+<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$</span><br /></p>
 <p>Las rectas ajustadas para cada arbol son:</p>
 <p>Arbol 1:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span></p>
-<p>Arbol 2: <span class="math display">\[\Large \hat y_i=57.33+0.1x_{i}\]</span> Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
-<p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span> Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
+<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}$$</span><br /></p>
+<p>Arbol 2: <br /><span class="math display">$$\Large \hat y_i=57.33+0.1x_{i}$$</span><br /> Arbol 3: <br /><span class="math display">$$\Large \hat y_i=19.92+0.1x_{i}$$</span><br /></p>
+<p>Arbol 4: <br /><span class="math display">$$\Large \hat y_i=9.14+0.1x_{i}$$</span><br /> Arbol 5: <br /><span class="math display">$$\Large \hat y_i=12.71+0.1x_{i}$$</span><br /></p>
 </div>
 </div>
 
@@ -804,15 +760,6 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 
 </body>
 </html>

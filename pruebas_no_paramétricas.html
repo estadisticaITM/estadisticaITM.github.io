@@ -15,81 +15,47 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
 
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #bdae9d; background-color: #2a211c; }
-code > span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
-code > span.dt { text-decoration: underline; } /* DataType */
-code > span.dv { color: #44aa43; } /* DecVal */
-code > span.bn { color: #44aa43; } /* BaseN */
-code > span.fl { color: #44aa43; } /* Float */
-code > span.ch { color: #049b0a; } /* Char */
-code > span.st { color: #049b0a; } /* String */
-code > span.co { color: #0066ff; font-style: italic; } /* Comment */
-code > span.al { color: #ffff00; } /* Alert */
-code > span.fu { color: #ff9358; font-weight: bold; } /* Function */
-code > span.er { color: #ffff00; font-weight: bold; } /* Error */
-code > span.wa { color: #ffff00; font-weight: bold; } /* Warning */
-code > span.cn { } /* Constant */
-code > span.sc { color: #049b0a; } /* SpecialChar */
-code > span.vs { color: #049b0a; } /* VerbatimString */
-code > span.ss { color: #049b0a; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
-code > span.op { } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #0066ff; font-style: italic; } /* Documentation */
-code > span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
-code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
 
 
 <style type="text/css">
@@ -156,33 +122,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -384,14 +350,14 @@ $(document).ready(function () {
 <div id="test-de-kolmogorov-smirnov" class="section level2">
 <h2>Test de Kolmogorov-Smirnov</h2>
 <p>Este test nos permite contrastar si un conjunto de datos muestrales proviene de una población normal. El contraste es el siguiente.</p>
-<p><span class="math display">\[H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad se\quad distribuyen \quad normal\]</span></p>
+<p><br /><span class="math display"><em>H</em><sub>0</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>s</em><em>e</em> <em>d</em><em>i</em><em>s</em><em>t</em><em>r</em><em>i</em><em>b</em><em>u</em><em>y</em><em>e</em><em>n</em> <em>n</em><em>o</em><em>r</em><em>m</em><em>a</em><em>l</em></span><br /> <br /><span class="math display"><em>H</em><sub>1</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>n</em><em>o</em> <em>s</em><em>e</em> <em>d</em><em>i</em><em>s</em><em>t</em><em>r</em><em>i</em><em>b</em><em>u</em><em>y</em><em>e</em><em>n</em> <em>n</em><em>o</em><em>r</em><em>m</em><em>a</em><em>l</em></span><br /></p>
 <div id="ejemplo-en-r" class="section level3">
 <h3>Ejemplo en R</h3>
 <p>Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x=<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">170</span>,<span class="dv">8</span>)
-<span class="kw">plot</span>(<span class="kw">density</span>(x))</code></pre></div>
+<pre class="r"><code>x=rnorm(100,170,8)
+plot(density(x))</code></pre>
 <p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ks.test</span>(x, <span class="st">&quot;pnorm&quot;</span>,<span class="dv">170</span>,<span class="dv">8</span>)</code></pre></div>
+<pre class="r"><code>ks.test(x, &quot;pnorm&quot;,170,8)</code></pre>
 <p>¿Según los criterios vistos en clase cuál es la desición apropiada?</p>
 </div>
 </div>
@@ -406,21 +372,21 @@ $(document).ready(function () {
 <li>Verifique la igualdad de varianzas entre los grupos de datos</li>
 <li>Según la prueba de varianzas, que prueba recomienda para comparar las medias entre los grupos de madres</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###Ingresamos los datos como vectores de los dos grupos de madres
+<pre class="r"><code>###Ingresamos los datos como vectores de los dos grupos de madres
 
-grupo1=<span class="kw">c</span>(<span class="dv">411</span>,<span class="dv">466</span>,<span class="dv">432</span>,<span class="dv">409</span>,<span class="dv">381</span>,<span class="dv">363</span>,<span class="dv">449</span>,<span class="dv">483</span>,<span class="dv">438</span>,<span class="dv">381</span>)
-grupo2=<span class="kw">c</span>(<span class="dv">584</span>,<span class="dv">553</span>,<span class="dv">516</span>,<span class="dv">688</span>,<span class="dv">650</span>,<span class="dv">590</span>,<span class="dv">574</span>,<span class="dv">700</span>,<span class="dv">831</span>,<span class="dv">688</span>,<span class="dv">478</span>,<span class="dv">689</span>)         
+grupo1=c(411,466,432,409,381,363,449,483,438,381)
+grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)         
 
 
 ## Prueba de normalidad
-<span class="kw">shapiro.test</span>(grupo1)
-<span class="kw">shapiro.test</span>(grupo2)
+shapiro.test(grupo1)
+shapiro.test(grupo2)
 
 ## Prueba de igualdad entre varinzas
-<span class="kw">var.test</span>(grupo1,grupo2)
+var.test(grupo1,grupo2)
 
 ## prueba de diferencias entre medias
-<span class="kw">t.test</span> (grupo1,grupo2,<span class="dt">paired=</span><span class="ot">FALSE</span>,<span class="dt">conf.level=</span><span class="fl">0.95</span>)</code></pre></div>
+t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
 </div>
 </div>
 <div id="test-de-mann-whitney-o-prueba-de-wilcoxon" class="section level2">
@@ -434,15 +400,15 @@ grupo2=<span class="kw">c</span>(<span class="dv">584</span>,<span class="dv">55
 <li><p>realice una prueba de normalidad para verificar la normalidad en los conjuntos de datos</p></li>
 <li><p>Asumiendo que los datos no son normales, pruebe aun nivel de significancia de α = 0.05 para chequear la alternativa, mayor permeabilidad de la membrana chorioamnion para el inicio del embarazo.</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x=<span class="kw">c</span>(<span class="fl">0.80</span>, <span class="fl">0.83</span>, <span class="fl">1.89</span>, <span class="fl">1.04</span>, <span class="fl">1.45</span>, <span class="fl">1.38</span>, <span class="fl">1.91</span>, <span class="fl">1.64</span>, <span class="fl">0.73</span>, <span class="fl">1.46</span>)
-y=<span class="kw">c</span>(<span class="fl">1.15</span>, <span class="fl">0.88</span>, <span class="fl">0.90</span>, <span class="fl">0.74</span>, <span class="fl">1.21</span>)
+<pre class="r"><code>x=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+y=c(1.15, 0.88, 0.90, 0.74, 1.21)
 
-<span class="co"># prueba no parametrica dewilcoxon</span>
-<span class="kw">wilcox.test</span>(x,y, <span class="dt">alternative =</span> <span class="st">&quot;g&quot;</span>)
+# prueba no parametrica dewilcoxon
+wilcox.test(x,y, alternative = &quot;g&quot;)
 
 ##PRUEBA DE NORMALIDAD
-<span class="kw">shapiro.test</span>(x)
-<span class="kw">shapiro.test</span>(y)</code></pre></div>
+shapiro.test(x)
+shapiro.test(y)</code></pre>
 <div id="prueba-t-student-en-r" class="section level3">
 <h3>Prueba t-Student en R</h3>
 <p>Los siguientes datos corresponden al rendimiento por hectárea de cierta nueva variedad de trigo, medido en 9 lotes experimentales:</p>
@@ -453,34 +419,34 @@ y=<span class="kw">c</span>(<span class="fl">1.15</span>, <span class="fl">0.88<
 <li><p>Para la salida de R construya una prueba de hipótesis</p></li>
 <li><p>Verifique la hipótesis que el rendimiento medio es mayor que 4</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vector de datos</span>
-T&lt;-<span class="kw">c</span>(<span class="fl">3.35</span>,<span class="fl">3.92</span>,<span class="fl">4.26</span>,<span class="fl">3.36</span>,<span class="fl">3.72</span>,<span class="fl">4.19</span>,<span class="fl">3.42</span>,<span class="fl">4.38</span>,<span class="fl">4.5</span>)
+<pre class="r"><code>#vector de datos
+T&lt;-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
 
-<span class="co">#Prueba de normalidad sobre el vector T</span>
-<span class="kw">shapiro.test</span>(T)
+#Prueba de normalidad sobre el vector T
+shapiro.test(T)
 
-<span class="co">#Tabulación de datos</span>
-<span class="kw">table</span>(T)
+#Tabulación de datos
+table(T)
 
-<span class="co">#histograma de los datos</span>
-<span class="kw">hist</span>(T,<span class="dt">breaks=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="dv">4</span>)</code></pre></div>
+#histograma de los datos
+hist(T,breaks=3,col=4)</code></pre>
 <p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#gráfico de densidad de dtos</span>
-<span class="kw">plot</span>(<span class="kw">density</span>(T))</code></pre></div>
+<pre class="r"><code>#gráfico de densidad de dtos
+plot(density(T))</code></pre>
 <p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##prueba t de dos colas
-<span class="kw">t.test</span>(T,<span class="dt">conf.level=</span><span class="fl">0.90</span>)
+<pre class="r"><code>##prueba t de dos colas
+t.test(T,conf.level=0.90)
 
 ##prueba t de cola superior
-<span class="kw">t.test</span>(T,<span class="dt">conf.level=</span><span class="fl">0.90</span>,<span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>,<span class="dt">mu=</span><span class="dv">4</span>)</code></pre></div>
+t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
 </div>
 </div>
 <div id="test-de-independencia" class="section level2">
 <h2>Test de independencia</h2>
-<p>Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra. Asuma que <span class="math inline">\(Oij\)</span> es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.</p>
-<p><strong>Prueba de hipótesis</strong> <span class="math display">\[H_0:  \quad Los\quad datos\quad son \quad independientes\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad son \quad independientes\]</span></p>
+<p>Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra. Asuma que <span class="math inline"><em>O</em><em>i</em><em>j</em></span> es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.</p>
+<p><strong>Prueba de hipótesis</strong> <br /><span class="math display"><em>H</em><sub>0</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>s</em><em>o</em><em>n</em> <em>i</em><em>n</em><em>d</em><em>e</em><em>p</em><em>e</em><em>n</em><em>d</em><em>i</em><em>e</em><em>n</em><em>t</em><em>e</em><em>s</em></span><br /> <br /><span class="math display"><em>H</em><sub>1</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>n</em><em>o</em> <em>s</em><em>o</em><em>n</em> <em>i</em><em>n</em><em>d</em><em>e</em><em>p</em><em>e</em><em>n</em><em>d</em><em>i</em><em>e</em><em>n</em><em>t</em><em>e</em><em>s</em></span><br /></p>
 <p><strong>Estadístico:</strong></p>
-<p><span class="math display">\[ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}\]</span></p>
+<p><br /><span class="math display">$$ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}$$</span><br /></p>
 </div>
 <div id="ejemplo-en-r-2" class="section level2">
 <h2>Ejemplo en R:</h2>
@@ -488,25 +454,25 @@ T&lt;-<span class="kw">c</span>(<span class="fl">3.35</span>,<span class="fl">3.
 <ol style="list-style-type: decimal">
 <li>Valide la hipótesis de si el hábito de fumar es independiente del nivel de ejercicios de los estudiantes usando un nivel de significancia del 0.05.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Para instalar librerías use
+<pre class="r"><code>## Para instalar librerías use
 
-<span class="co"># install.packages(&quot;MASS&quot;)</span>
+# install.packages(&quot;MASS&quot;)
 
 ## Para llamar la librería
-<span class="kw">library</span>(MASS)
+library(MASS)
 
 ##la base de datos total corresponde a 
 survey
 
 ##Para ver el encabezado de los datos
-<span class="kw">head</span>(survey)
+head(survey)
 
 
 ##Para ver la ultima parte de los datos
-<span class="kw">tail</span>(survey)
+tail(survey)
 
 ## Para obtener un resumen de los datos
-<span class="kw">summary</span>(survey)
+summary(survey)
 
 
 ## se usan las variables
@@ -514,18 +480,18 @@ survey
 ## EJERCICIO (Exer) con los niveles: Freq, Some, y None
 ##se tabulan
 
-tbl=<span class="kw">table</span>(survey<span class="op">$</span>Smoke,survey<span class="op">$</span>Exer)
+tbl=table(survey$Smoke,survey$Exer)
 tbl
 
-<span class="kw">chisq.test</span>(tbl)</code></pre></div>
+chisq.test(tbl)</code></pre>
 <pre><code>## Warning in chisq.test(tbl): Chi-squared approximation may be incorrect</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Note que aparece un mensaje de alerta. Esto es debido a que en algunas celdas las</span>
-<span class="co">#frecuencias son muy pequeñas. Podemos solucionar esto agrupando algunas columnas.</span>
+<pre class="r"><code>#Note que aparece un mensaje de alerta. Esto es debido a que en algunas celdas las
+#frecuencias son muy pequeñas. Podemos solucionar esto agrupando algunas columnas.
 
-ctbl =<span class="st"> </span><span class="kw">cbind</span>(tbl[,<span class="st">&quot;Freq&quot;</span>], tbl[,<span class="st">&quot;None&quot;</span>] <span class="op">+</span><span class="st"> </span>tbl[,<span class="st">&quot;Some&quot;</span>])
+ctbl = cbind(tbl[,&quot;Freq&quot;], tbl[,&quot;None&quot;] + tbl[,&quot;Some&quot;])
 ctbl
 
-<span class="kw">chisq.test</span>(ctbl)</code></pre></div>
+chisq.test(ctbl)</code></pre>
 </div>
 </div>
 
@@ -551,15 +517,6 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 
 </body>
 </html>

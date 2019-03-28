@@ -22,8 +22,13 @@ navbar:
       href: https://github.com/estadisticaITM
 output:
   html_document:
-    theme: flatly
-    highlight: espresso
+    theme: cosmo
+    highlight: textmate
+    mathjax: null
+    toc_depth: 8
+    toc_float:
+      collapsed: false
     include:
+     in_header: include_head.html
      after_body: footer.html
      css: styles.css
