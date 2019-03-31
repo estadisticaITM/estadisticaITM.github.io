@@ -198,31 +198,32 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-line-chart"></span>
      
     Estadística Básica
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
     Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="http://itm.edu.co">
+<li>
+  <a href="https://www.itm.edu.co">
     <span class="ion ion-university"></span>
      
   </a>
@@ -253,7 +254,7 @@ $(document).ready(function () {
 <div id="test-de-kolmogorov-smirnov" class="section level2">
 <h2>Test de Kolmogorov-Smirnov</h2>
 <p>Este test nos permite contrastar si un conjunto de datos muestrales proviene de una población normal. El contraste es el siguiente.</p>
-<p><br /><span class="math display"><em>H</em><sub>0</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>s</em><em>e</em> <em>d</em><em>i</em><em>s</em><em>t</em><em>r</em><em>i</em><em>b</em><em>u</em><em>y</em><em>e</em><em>n</em> <em>n</em><em>o</em><em>r</em><em>m</em><em>a</em><em>l</em></span><br /> <br /><span class="math display"><em>H</em><sub>1</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>n</em><em>o</em> <em>s</em><em>e</em> <em>d</em><em>i</em><em>s</em><em>t</em><em>r</em><em>i</em><em>b</em><em>u</em><em>y</em><em>e</em><em>n</em> <em>n</em><em>o</em><em>r</em><em>m</em><em>a</em><em>l</em></span><br /></p>
+<p><span class="math display">\[H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad se\quad distribuyen \quad normal\]</span></p>
 <div id="ejemplo-en-r" class="section level3">
 <h3>Ejemplo en R</h3>
 <p>Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.</p>
@@ -346,10 +347,10 @@ t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
 </div>
 <div id="test-de-independencia" class="section level2">
 <h2>Test de independencia</h2>
-<p>Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra. Asuma que <span class="math inline"><em>O</em><em>i</em><em>j</em></span> es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.</p>
-<p><strong>Prueba de hipótesis</strong> <br /><span class="math display"><em>H</em><sub>0</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>s</em><em>o</em><em>n</em> <em>i</em><em>n</em><em>d</em><em>e</em><em>p</em><em>e</em><em>n</em><em>d</em><em>i</em><em>e</em><em>n</em><em>t</em><em>e</em><em>s</em></span><br /> <br /><span class="math display"><em>H</em><sub>1</sub> :  <em>L</em><em>o</em><em>s</em> <em>d</em><em>a</em><em>t</em><em>o</em><em>s</em> <em>n</em><em>o</em> <em>s</em><em>o</em><em>n</em> <em>i</em><em>n</em><em>d</em><em>e</em><em>p</em><em>e</em><em>n</em><em>d</em><em>i</em><em>e</em><em>n</em><em>t</em><em>e</em><em>s</em></span><br /></p>
+<p>Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra. Asuma que <span class="math inline">\(Oij\)</span> es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.</p>
+<p><strong>Prueba de hipótesis</strong> <span class="math display">\[H_0:  \quad Los\quad datos\quad son \quad independientes\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad son \quad independientes\]</span></p>
 <p><strong>Estadístico:</strong></p>
-<p><br /><span class="math display">$$ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}$$</span><br /></p>
+<p><span class="math display">\[ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}\]</span></p>
 </div>
 <div id="ejemplo-en-r-2" class="section level2">
 <h2>Ejemplo en R:</h2>
@@ -420,6 +421,15 @@ $(document).ready(function () {
 
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 </body>
 </html>

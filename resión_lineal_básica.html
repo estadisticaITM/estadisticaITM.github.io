@@ -198,31 +198,32 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-line-chart"></span>
      
     Estadística Básica
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
     Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="http://itm.edu.co">
+<li>
+  <a href="https://www.itm.edu.co">
     <span class="ion ion-university"></span>
      
   </a>
@@ -258,18 +259,18 @@ $(document).ready(function () {
 </div>
 <div id="modelo-de-regresion-lineal-basico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
-<p>El modelo más simple de regresión corresponde a: <br /><span class="math display">$$\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$</span><br /> Donde:</p>
-<p><span class="math inline">$\Large y_i$</span>Es la variable respuesta o dependiente para la i-ésima observación<br />
+<p>El modelo más simple de regresión corresponde a: <span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span> Donde:</p>
+<p><span class="math inline">\(\Large y_i\)</span>Es la variable respuesta o dependiente para la i-ésima observación<br />
 </p>
-<p><span class="math inline">$\Large \beta_0$</span> Intercepto<br />
+<p><span class="math inline">\(\Large \beta_0\)</span> Intercepto<br />
 </p>
-<p><span class="math inline">$\Large\beta_1$</span> Pendiente<br />
+<p><span class="math inline">\(\Large\beta_1\)</span> Pendiente<br />
 </p>
-<p><span class="math inline">$\Large X_i$</span> Variable predictora independiente para la i-ésima observación<br />
+<p><span class="math inline">\(\Large X_i\)</span> Variable predictora independiente para la i-ésima observación<br />
 </p>
-<p><span class="math inline">$\Large \varepsilon_i$</span> Error aleatorio para la i-ésima observación<br />
+<p><span class="math inline">\(\Large \varepsilon_i\)</span> Error aleatorio para la i-ésima observación<br />
 </p>
-<p><br /><span class="math display">$$\Large \varepsilon_i \sim N (0,\sigma^2)$$</span><br /></p>
+<p><span class="math display">\[\Large \varepsilon_i \sim N (0,\sigma^2)\]</span></p>
 </div>
 <div id="objetivos-de-la-regresion-lineal" class="section level2">
 <h2>Objetivos de la regresión lineal</h2>
@@ -299,7 +300,7 @@ $(document).ready(function () {
 <div id="covarianza" class="section level2">
 <h2>Covarianza</h2>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
-<p><br /><span class="math display">$$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$</span><br /> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
+<p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
 <li><p>Si hay relación lineal negativa, la covarianza será negativa y grande en valor absoluto.</p></li>
 <li><p>Si no hay relación entre las variables la covarianza será próxima a cero.</p></li>
@@ -309,8 +310,8 @@ $(document).ready(function () {
 <div id="coeficiente-de-correlacion" class="section level2">
 <h2>Coeficiente de correlación</h2>
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
-<p><br /><span class="math display">$$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
-{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$</span><br /></p>
+<p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
 </div>
 <div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
 <h2>Características del coeficiente de correlación</h2>
@@ -325,29 +326,29 @@ $(document).ready(function () {
 <div id="medida-de-bondad-de-ajuste-r2" class="section level2">
 <h2>Medida de bondad de ajuste R^2</h2>
 <p>Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal. Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:</p>
-<p><br /><span class="math display">$$\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}$$</span><br /> Donde</p>
+<p><span class="math display">\[\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}\]</span> Donde</p>
 <p>SSE: es la suma de cuadrados del error SST: suma de cuadrados totales</p>
 </div>
 <div id="error-de-pronostico-medio-mape" class="section level2">
 <h2>Error de pronóstico medio MAPE</h2>
 <p>Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:</p>
-<p><br /><span class="math display">$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$</span><br /></p>
+<p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
 </div>
 <div id="estimador-de-minimos-cuadrados" class="section level2">
 <h2>Estimador de mínimos cuadrados</h2>
-<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">$\hat{\beta_0}, \hat {\beta_1}$</span> que mejor se ajustan a los datos:</p>
-<p><br /><span class="math display">$$\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i$$</span><br /></p>
+<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
+<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
-<p><br /><span class="math display">$$\sum_{i=1}^n(y_i-\hat{y_i})^2=
-\sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2$$</span><br /></p>
+<p><span class="math display">\[\sum_{i=1}^n(y_i-\hat{y_i})^2=
+\sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2\]</span></p>
 <p>el resultado que se obtiene es:</p>
-<p><br /><span class="math display">$$\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}$$</span><br /></p>
-<p>A las cantidades <span class="math inline">$\Large S_{xx}$</span> y <span class="math inline">$\Large S_{xy}$</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <br /><span class="math display">$$\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}$$</span><br /></p>
+<p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
+<p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
 <p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
 <h2>Residuales</h2>
-<p>La diferencia de cada valor <span class="math inline"><em>y</em><sub><em>i</em></sub></span> de la variable respuesta y su estimación <span class="math inline">$\hat{y_i}$</span> se llama residuo. <br /><span class="math display">$$\Large \varepsilon_i= y_i- \hat{y_i}$$</span><br /></p>
+<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large \varepsilon_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="como-obtener-un-modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
@@ -361,7 +362,7 @@ $(document).ready(function () {
 <div id="regresion-lineal-multiple" class="section level2">
 <h2>Regresión lineal múltiple</h2>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
-<p><br /><span class="math display">$$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$</span><br /></p>
+<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
 </div>
 <div id="tipos-de-variables-y-de-efectos-en-los-modelos" class="section level2">
 <h2>Tipos de variables y de efectos en los modelos</h2>
@@ -369,27 +370,27 @@ $(document).ready(function () {
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
 <p>Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora.</p>
 <p>Por ejemplo, suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
-<p>Estrato 1: <br /><span class="math display">$$ \Large  I_1 =\left\lbrace \begin{array}{rcl}
+<p>Estrato 1: <span class="math display">\[ \Large  I_1 =\left\lbrace \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 1}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. $$</span><br /></p>
+         \end{array}  \right. \]</span></p>
 <p>Estrato 2</p>
-<p><br /><span class="math display">$$ \Large   I_2 =\left\lbrace   \begin{array}{rcl}
+<p><span class="math display">\[ \Large   I_2 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 2}
             \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.          $$</span><br /> Estrato 3</p>
-<p><br /><span class="math display">$$ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
+         \end{array}  \right.          \]</span> Estrato 3</p>
+<p><span class="math display">\[ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 3}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.  $$</span><br /></p>
-<p>Estrato 4 <br /><span class="math display">$$    \Large I_4 =\left\lbrace   \begin{array}{rcl}
+         \end{array}  \right.  \]</span></p>
+<p>Estrato 4 <span class="math display">\[    \Large I_4 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 4}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.$$</span><br /></p>
+         \end{array}  \right.\]</span></p>
 <p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c-1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -430,7 +431,7 @@ summary(model)</code></pre>
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>La ecuación del modelo de regresión general es:</p>
-<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}$$</span><br /> Donde <span class="math inline"><em>y</em><sub><em>i</em></sub></span> es la circunferenciua del</p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la circunferenciua del</p>
 <p>La linea de regresión ajustada corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age)
 
@@ -475,12 +476,12 @@ summary(model)</code></pre>
 ## Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
 ## F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>La recta general del modelo es:</p>
-<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$</span><br /></p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i\]</span></p>
 <p>Las rectas ajustadas para cada arbol son:</p>
 <p>Arbol 1:</p>
-<p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}$$</span><br /></p>
-<p>Arbol 2: <br /><span class="math display">$$\Large \hat y_i=57.33+0.1x_{i}$$</span><br /> Arbol 3: <br /><span class="math display">$$\Large \hat y_i=19.92+0.1x_{i}$$</span><br /></p>
-<p>Arbol 4: <br /><span class="math display">$$\Large \hat y_i=9.14+0.1x_{i}$$</span><br /> Arbol 5: <br /><span class="math display">$$\Large \hat y_i=12.71+0.1x_{i}$$</span><br /></p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span></p>
+<p>Arbol 2: <span class="math display">\[\Large \hat y_i=57.33+0.1x_{i}\]</span> Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
+<p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span> Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
 </div>
 </div>
 
@@ -506,6 +507,15 @@ $(document).ready(function () {
 
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 </body>
 </html>
