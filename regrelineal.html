@@ -320,6 +320,7 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
+<pre><code>#&gt; Warning: package &#39;png&#39; was built under R version 3.5.2</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="prueba-de-significancia-de-la-correlacion" class="section level2">
@@ -623,23 +624,17 @@ plot(md)</code></pre>
             {0 \quad En \quad otro \quad caso  }
          \end{array}  \right.     \]</span></p>
 <p>Estrato 3:</p>
-$$ I_3 =
-<span class="math display">\[\begin{array}{rcl}
-            
+<p><span class="math display">\[ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 3}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
-<p>. $$</p>
+         \end{array}  \right.  \]</span></p>
 <p>Estrato 4:</p>
-$$ I_4 =
-<span class="math display">\[\begin{array}{rcl}
-            
+<p><span class="math display">\[    \Large     I_4 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 4}
          \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}\]</span>
-<p>.$$</p>
+         \end{array}  \right.    \]</span></p>
 <p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -761,6 +756,8 @@ plot(bosque)</code></pre>
 ###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
+#&gt; Loading required package: MASS
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
