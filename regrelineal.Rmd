@@ -1,12 +1,16 @@
 
 ---
-title: "Regresión lineal"
+title: "RegresiOn lineal"
 
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 
 
@@ -21,7 +25,6 @@ Se deben identificar observaciones extremas, alejadas hacia valores muy grandes 
 
 El modelo más simple de regresión corresponde a: 
 $$\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$
-
 
 
 Donde:
@@ -574,7 +577,7 @@ plot(bosque)
 
 
 ###correlaciones entre variables
-install.packages(ppcor)
+#install.packages(ppcor)
 library(ppcor)
 pcor(bosque)
 
@@ -595,3 +598,4 @@ plot(m1)
 el modelo ajustado corresponde a:
 
 $$\hat y=-105.9027+7.41D16+0.67HT$$
+

@@ -11,7 +11,7 @@
 
 
 
-<title>Regresión lineal</title>
+<title>RegresiOn lineal</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -339,7 +242,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Regresión lineal</h1>
+<h1 class="title toc-ignore">RegresiOn lineal</h1>
 
 </div>
 
@@ -386,6 +289,7 @@ $(document).ready(function () {
 <div id="diagrama-de-dispersion" class="section level2">
 <h2>Diagrama de dispersión</h2>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
+<pre class="r"><code>plot(pressure)</code></pre>
 <p><img src="regrelineal_files/figure-html/pressure-1.png" width="672" /></p>
 </div>
 <div id="medidas-de-dependencia-lineal" class="section level1">
@@ -414,6 +318,7 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
+<pre><code>#&gt; Warning: package &#39;png&#39; was built under R version 3.5.2</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="prueba-de-significancia-de-la-correlacion" class="section level2">
@@ -529,19 +434,21 @@ $(document).ready(function () {
 <div id="ejemplo" class="section level2">
 <h2>Ejemplo</h2>
 <p>Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros</p>
-<pre class="r"><code>head(cars)</code></pre>
-<pre><code>##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10</code></pre>
+<pre class="r"><code>
+head(cars)
+#&gt;   speed dist
+#&gt; 1     4    2
+#&gt; 2     4   10
+#&gt; 3     7    4
+#&gt; 4     7   22
+#&gt; 5     8   16
+#&gt; 6     9   10</code></pre>
 <p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
 </div>
 <div id="diagrama-de-dispersion-1" class="section level2">
 <h2>Diagrama de dispersión</h2>
-<pre class="r"><code>plot(cars$speed,cars$dist)</code></pre>
+<pre class="r"><code>
+plot(cars$speed,cars$dist)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="modelo-de-regresion-lineal" class="section level2">
@@ -556,55 +463,62 @@ $(document).ready(function () {
 </div>
 <div id="resultados-del-modelo-en-r" class="section level2">
 <h2>Resultados del modelo en R</h2>
-<pre class="r"><code>plot(cars$speed,cars$dist)
+<pre class="r"><code>
+plot(cars$speed,cars$dist)
 
-cor.test(cars$speed,cars$dist)</code></pre>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  cars$speed and cars$dist
-## t = 9.464, df = 48, p-value = 1.49e-12
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.6816422 0.8862036
-## sample estimates:
-##       cor 
-## 0.8068949</code></pre>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
+cor.test(cars$speed,cars$dist)
+#&gt; 
+#&gt;  Pearson&#39;s product-moment correlation
+#&gt; 
+#&gt; data:  cars$speed and cars$dist
+#&gt; t = 9.464, df = 48, p-value = 1.49e-12
+#&gt; alternative hypothesis: true correlation is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  0.6816422 0.8862036
+#&gt; sample estimates:
+#&gt;       cor 
+#&gt; 0.8068949
 
-summary(md)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = cars$dist ~ cars$speed)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -29.069  -9.525  -2.272   9.215  43.201 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
-## cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 15.38 on 48 degrees of freedom
-## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
-## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
-<pre class="r"><code>j=fitted(md)
+md=lm(cars$dist~cars$speed)
+
+summary(md)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = cars$dist ~ cars$speed)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -29.069  -9.525  -2.272   9.215  43.201 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+#&gt; cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 15.38 on 48 degrees of freedom
+#&gt; Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+#&gt; F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
+
+j=fitted(md)
 
 lines(cars$speed,j, col=2, lwd=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div id="anova-del-modelo" class="section level3">
 <h3>anova del modelo</h3>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: cars$dist
-##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
-## Residuals  48  11354   236.5                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>
+md=lm(cars$dist~cars$speed)
+
+anova(md)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: cars$dist
+#&gt;            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+#&gt; cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
+#&gt; Residuals  48  11354   236.5                     
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 </div>
 <div id="modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
@@ -625,6 +539,11 @@ lines(cars$speed,j, col=2, lwd=2)</code></pre>
 <div id="grafico-de-los-residuos-versus-los-valores-ajustados" class="section level3">
 <h3>Gráfico de los residuos versus los valores ajustados</h3>
 <p>Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+<pre class="r"><code>
+md=lm(cars$dist~cars$speed)
+rr=residuals(md)
+par(mfrow=c(2,2))
+plot(md)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="grafico-de-los-residuos-versus-los-valores-ajustados-1" class="section level3">
@@ -708,42 +627,45 @@ Estrato 4 $$  I_4 =
 <div id="ejemplo-1" class="section level2">
 <h2>Ejemplo:</h2>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
-<pre class="r"><code>head (Orange)</code></pre>
-<pre><code>##   Tree  age circumference
-## 1    1  118            30
-## 2    1  484            58
-## 3    1  664            87
-## 4    1 1004           115
-## 5    1 1231           120
-## 6    1 1372           142</code></pre>
+<pre class="r"><code>
+head (Orange)
+#&gt;   Tree  age circumference
+#&gt; 1    1  118            30
+#&gt; 2    1  484            58
+#&gt; 3    1  664            87
+#&gt; 4    1 1004           115
+#&gt; 5    1 1231           120
+#&gt; 6    1 1372           142</code></pre>
 <p>El diagrama de dispersión simple es:</p>
 <pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>El modelo de regresión lineal simple corresponde a:</p>
-<pre class="r"><code>model=lm(Orange$circumference~Orange$age)
-summary(model)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = Orange$circumference ~ Orange$age)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -46.310 -14.946  -0.076  19.697  45.111 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 17.399650   8.622660   2.018   0.0518 .  
-## Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 23.74 on 33 degrees of freedom
-## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
-## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
+<pre class="r"><code>
+model=lm(Orange$circumference~Orange$age)
+summary(model)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Orange$circumference ~ Orange$age)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -46.310 -14.946  -0.076  19.697  45.111 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 17.399650   8.622660   2.018   0.0518 .  
+#&gt; Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 23.74 on 33 degrees of freedom
+#&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
+#&gt; F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>La ecuación del modelo de regresión general es:</p>
 <p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}$$</span><br /> Donde <span class="math inline"><em>y</em><sub><em>i</em></sub></span> es la circunferenciua del</p>
 <p>La linea de regresión ajustada corresponde a</p>
-<pre class="r"><code>model=lm(Orange$circumference~Orange$age)
+<pre class="r"><code>
+model=lm(Orange$circumference~Orange$age)
 
 
 plot(Orange$age,Orange$circumference,lwd=3)
@@ -762,29 +684,29 @@ abline(coef(model))</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
-summary(model)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -30.505  -8.790   3.737   7.650  21.859 
-## 
-## Coefficients:
-##                           Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
-## Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
-## as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
-## as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
-## as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
-## as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 15.26 on 29 degrees of freedom
-## Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
-## F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+summary(model)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -30.505  -8.790   3.737   7.650  21.859 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
+#&gt; Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
+#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
+#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
+#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
+#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 15.26 on 29 degrees of freedom
+#&gt; Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
+#&gt; F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>La recta general del modelo es:</p>
 <p><br /><span class="math display">$$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$</span><br /></p>
 <p>Las rectas ajustadas para cada arbol son:</p>
@@ -800,67 +722,90 @@ summary(model)</code></pre>
 <h4>Ejemplo en R</h4>
 <p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son: HT = altura en pies DBH = diámetro del tronco a 4 pies de altura (en pulgadas) D16 = diámetro del tronco a 16 pies de altura (en pulgadas) V OL = volumen de madera obtenida (en pies cúbicos).</p>
 <p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras</p>
+<pre class="r"><code>
+
+DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+
+D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+
+HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+
+VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+
+bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+plot(bosque)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<pre><code>## Error in install.packages : object &#39;ppcor&#39; not found</code></pre>
-<pre><code>## Warning: package &#39;ppcor&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## $estimate
-##           VOL        DBH        D16         HT
-## VOL 1.0000000  0.3683119  0.7627127  0.7285511
-## DBH 0.3683119  1.0000000  0.2686789 -0.3107753
-## D16 0.7627127  0.2686789  1.0000000 -0.4513110
-## HT  0.7285511 -0.3107753 -0.4513110  1.0000000
-## 
-## $p.value
-##              VOL       DBH          D16           HT
-## VOL 0.0000000000 0.1326107 0.0002324675 0.0006056469
-## DBH 0.1326107400 0.0000000 0.2810102724 0.2094003059
-## D16 0.0002324675 0.2810103 0.0000000000 0.0601150552
-## HT  0.0006056469 0.2094003 0.0601150552 0.0000000000
-## 
-## $statistic
-##          VOL       DBH       D16        HT
-## VOL 0.000000  1.584644  4.717295  4.254366
-## DBH 1.584644  0.000000  1.115742 -1.307862
-## D16 4.717295  1.115742  0.000000 -2.022984
-## HT  4.254366 -1.307862 -2.022984  0.000000
-## 
-## $n
-## [1] 20
-## 
-## $gp
-## [1] 2
-## 
-## $method
-## [1] &quot;pearson&quot;</code></pre>
+<pre class="r"><code>
+
+###correlaciones entre variables
+#install.packages(ppcor)
+library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
+#&gt; Loading required package: MASS
+pcor(bosque)
+#&gt; $estimate
+#&gt;           VOL        DBH        D16         HT
+#&gt; VOL 1.0000000  0.3683119  0.7627127  0.7285511
+#&gt; DBH 0.3683119  1.0000000  0.2686789 -0.3107753
+#&gt; D16 0.7627127  0.2686789  1.0000000 -0.4513110
+#&gt; HT  0.7285511 -0.3107753 -0.4513110  1.0000000
+#&gt; 
+#&gt; $p.value
+#&gt;              VOL       DBH          D16           HT
+#&gt; VOL 0.0000000000 0.1326107 0.0002324675 0.0006056469
+#&gt; DBH 0.1326107400 0.0000000 0.2810102724 0.2094003059
+#&gt; D16 0.0002324675 0.2810103 0.0000000000 0.0601150552
+#&gt; HT  0.0006056469 0.2094003 0.0601150552 0.0000000000
+#&gt; 
+#&gt; $statistic
+#&gt;          VOL       DBH       D16        HT
+#&gt; VOL 0.000000  1.584644  4.717295  4.254366
+#&gt; DBH 1.584644  0.000000  1.115742 -1.307862
+#&gt; D16 4.717295  1.115742  0.000000 -2.022984
+#&gt; HT  4.254366 -1.307862 -2.022984  0.000000
+#&gt; 
+#&gt; $n
+#&gt; [1] 20
+#&gt; 
+#&gt; $gp
+#&gt; [1] 2
+#&gt; 
+#&gt; $method
+#&gt; [1] &quot;pearson&quot;</code></pre>
 <p>Al quitar la variable no significativa del modelo queda</p>
-<pre><code>## 
-## Call:
-## lm(formula = VOL ~ D16 + HT)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.2309 -1.8386 -0.4012  1.0922  6.9373 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -105.9027    14.6520  -7.228 1.41e-06 ***
-## D16            7.4128     0.5088  14.568 4.92e-11 ***
-## HT             0.6765     0.1698   3.985 0.000959 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.23 on 17 degrees of freedom
-## Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
-## F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: VOL
-##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## D16        1 3401.3  3401.3 326.019  1.58e-12 ***
-## HT         1  165.7   165.7  15.878 0.0009585 ***
-## Residuals 17  177.4    10.4                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>
+m1=lm(VOL~D16+HT)
+summary(m1)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = VOL ~ D16 + HT)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -4.2309 -1.8386 -0.4012  1.0922  6.9373 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -105.9027    14.6520  -7.228 1.41e-06 ***
+#&gt; D16            7.4128     0.5088  14.568 4.92e-11 ***
+#&gt; HT             0.6765     0.1698   3.985 0.000959 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 3.23 on 17 degrees of freedom
+#&gt; Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
+#&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
+anova(m1)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: VOL
+#&gt;           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; D16        1 3401.3  3401.3 326.019  1.58e-12 ***
+#&gt; HT         1  165.7   165.7  15.878 0.0009585 ***
+#&gt; Residuals 17  177.4    10.4                      
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+plot(m1)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-4.png" width="672" /> el modelo ajustado corresponde a:</p>
 <p><br /><span class="math display">$$\hat y=-105.9027+7.41D16+0.67HT$$</span><br /></p>
 </div>
