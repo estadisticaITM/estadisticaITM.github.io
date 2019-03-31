@@ -211,14 +211,17 @@ Se puede demostrar que MSE, es un estimador insesgado de $\Large \sigma^2$ para 
 $$\Large \sigma^2=MSE$$
 Además
 $$\Large E(MSE)=\sigma$$
+
 ###Suma total de cuadrados
 
 La medida de variación de y alrededor de la la media muestral $\bar{y}$ es:
 $$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
+
 ## Suma cuadrática de regresión
 La diferencia entre la SST y la SSE se denota por:
 
 $$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$
+
 La SSR es una medida de la parte de la variabilidad de las observaciones $y_i$, la cual está asociada con la línea de regresión ajustada.
 
 De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:
@@ -414,15 +417,16 @@ $$ \Large  I_1 =\left\lbrace \begin{array}{rcl}
          \end{array}  \right. $$
          
 
-Estrato 2
+Estrato 2:
 
 $$ \Large
            I_2 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 2}
             \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.          $$
-Estrato 3
+         \end{array}  \right.     $$
+
+Estrato 3:
 
 $$ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
             
@@ -430,10 +434,11 @@ $$ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
          \\
             {0 \quad En \quad otro \quad caso  }
          \end{array}  \right.  $$
+         
   
-  Estrato 4
-$$    \Large     
-         I_4 =\left\lbrace   \begin{array}{rcl}
+  Estrato 4:
+  
+$$    \Large     I_4 =\left\lbrace   \begin{array}{rcl}
             
             {1\quad familia \quad estrato \quad 4}
          \\

@@ -359,9 +359,17 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i\]</span> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, para obtener a <span class="math inline">\(\hat{y_i}\)</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
 <p><span class="math display">\[\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
 <p>Se puede demostrar que MSE, es un estimador insesgado de <span class="math inline">\(\Large \sigma^2\)</span> para el modelo de RLS, es decir que:</p>
-<p><span class="math display">\[\Large \sigma^2=MSE\]</span> Además <span class="math display">\[\Large E(MSE)=\sigma\]</span> ###Suma total de cuadrados</p>
-<p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span> ## Suma cuadrática de regresión La diferencia entre la SST y la SSE se denota por:</p>
-<p><span class="math display">\[\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2\]</span> La SSR es una medida de la parte de la variabilidad de las observaciones <span class="math inline">\(y_i\)</span>, la cual está asociada con la línea de regresión ajustada.</p>
+<p><span class="math display">\[\Large \sigma^2=MSE\]</span> Además <span class="math display">\[\Large E(MSE)=\sigma\]</span></p>
+<div id="suma-total-de-cuadrados" class="section level3">
+<h3>Suma total de cuadrados</h3>
+<p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span></p>
+</div>
+</div>
+<div id="suma-cuadratica-de-regresion" class="section level2">
+<h2>Suma cuadrática de regresión</h2>
+<p>La diferencia entre la SST y la SSE se denota por:</p>
+<p><span class="math display">\[\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2\]</span></p>
+<p>La SSR es una medida de la parte de la variabilidad de las observaciones <span class="math inline">\(y_i\)</span>, la cual está asociada con la línea de regresión ajustada.</p>
 <p>De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:</p>
 <p><span class="math display">\[\Large SST = SSR + SSE\]</span></p>
 <p>Aquí, SST: Variabilidad muestral total y tiene n−1 grados de libertad.</p>
@@ -607,13 +615,14 @@ plot(md)</code></pre>
          \\
             {0 \quad En \quad otro \quad caso  }
          \end{array}  \right. \]</span></p>
-<p>Estrato 2</p>
+<p>Estrato 2:</p>
 <p><span class="math display">\[ \Large
            I_2 =\left\lbrace   \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 2}
             \\
             {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.          \]</span> Estrato 3</p>
+         \end{array}  \right.     \]</span></p>
+<p>Estrato 3:</p>
 $$ I_3 =
 <span class="math display">\[\begin{array}{rcl}
             
@@ -622,7 +631,8 @@ $$ I_3 =
             {0 \quad En \quad otro \quad caso  }
          \end{array}\]</span>
 <p>. $$</p>
-Estrato 4 $$  I_4 =
+<p>Estrato 4:</p>
+$$ I_4 =
 <span class="math display">\[\begin{array}{rcl}
             
             {1\quad familia \quad estrato \quad 4}
