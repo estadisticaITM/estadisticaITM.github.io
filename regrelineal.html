@@ -243,18 +243,12 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Regresión lineal</h1>
+<h1 class="title toc-ignore"><strong>Regresión lineal</strong></h1>
 
 </div>
 
 
-
-<p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.</p>
-<p>El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
-<div id="antes-de-hacer-un-modelo-de-regresion-lineal" class="section level2">
-<h2>Antes de hacer un modelo de regresión lineal</h2>
-<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.</p>
-</div>
+<p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto. El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
 <div id="modelo-de-regresion-lineal-basico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
 <p>El modelo más simple de regresión corresponde a: <span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span></p>
@@ -295,9 +289,9 @@ $(document).ready(function () {
 <p><img src="regrelineal_files/figure-html/pressure-1.png" width="672" /></p>
 </div>
 <div id="medidas-de-dependencia-lineal" class="section level1">
-<h1>Medidas de dependencia lineal</h1>
+<h1><strong>Medidas de dependencia lineal</strong></h1>
 <div id="covarianza" class="section level2">
-<h2>Covarianza</h2>
+<h2><strong>Covarianza</strong></h2>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
 <p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
@@ -307,7 +301,7 @@ $(document).ready(function () {
 </ul>
 </div>
 <div id="coeficiente-de-correlacion" class="section level2">
-<h2>Coeficiente de correlación</h2>
+<h2><strong>Coeficiente de correlación</strong></h2>
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
 <p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
@@ -320,7 +314,6 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
-<pre><code>#&gt; Warning: package &#39;png&#39; was built under R version 3.5.2</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="prueba-de-significancia-de-la-correlacion" class="section level2">
@@ -330,18 +323,18 @@ $(document).ready(function () {
 <p>En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.</p>
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level2">
-<h2>Medida de bondad de ajuste R^2</h2>
+<h2><strong>Medida de bondad de ajuste R^2</strong></h2>
 <p>Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal. Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:</p>
 <p><span class="math display">\[\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}\]</span> Donde</p>
 <p>SSE: es la suma de cuadrados del error SST: suma de cuadrados totales</p>
 </div>
 <div id="error-de-pronostico-medio-mape" class="section level2">
-<h2>Error de pronóstico medio MAPE</h2>
-<p>Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:</p>
+<h2><strong>Error de pronóstico medio MAPE</strong></h2>
+<p>Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:</p>
 <p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
 </div>
 <div id="estimador-de-minimos-cuadrados" class="section level2">
-<h2>Estimador de mínimos cuadrados</h2>
+<h2><strong>Estimador de mínimos cuadrados</strong></h2>
 <p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
@@ -353,9 +346,12 @@ $(document).ready(function () {
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
-<h2>Residuales</h2>
+<h2>** Residuales**</h2>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<div id="test-lineal-general" class="section level2">
+<h2><strong>Test lineal general</strong></h2>
 <p>La varianza de los términos de error <span class="math inline">\(\varepsilon_i\)</span>, es decir, <span class="math inline">\(V[\varepsilon_i]=\sigma^2\)</span>, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:</p>
 <p><span class="math display">\[\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i\]</span> La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, para obtener a <span class="math inline">\(\hat{y_i}\)</span>, de lo anterior se obtiene la media cuadática de errores dada por:</p>
 <p><span class="math display">\[\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
@@ -539,26 +535,39 @@ anova(md)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="validacion-de-los-supuestos" class="section level2">
-<h2>Validación de los supuestos</h2>
+<div id="analisis-de-residuales-para-la-validacion-de-los-supuestos" class="section level2">
+<h2><strong>Análisis de residuales para la validación de los supuestos</strong></h2>
 <p>A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.</p>
-<div id="qqplot" class="section level3">
-<h3>QQplot</h3>
-<p>permite verificar la normalidad de los errores. Si es cierta la normalidad de los residuos, los puntos deben estar alineados con la diagonal.</p>
+<div id="normalidad-en-los-residuales" class="section level3">
+<h3>Normalidad en los residuales</h3>
+<p>Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:</p>
+<p><span class="math inline">\(H_o:\)</span>Los residuos son normales</p>
+<p><span class="math inline">\(H_1:\)</span>Los residuos no son normales</p>
 </div>
-<div id="grafico-de-los-residuos-versus-los-valores-ajustados" class="section level3">
-<h3>Gráfico de los residuos versus los valores ajustados</h3>
-<p>Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+<div id="varianza-constante" class="section level3">
+<h3>Varianza constante</h3>
+<p>Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+</div>
+<div id="otros-diagnosticos" class="section level3">
+<h3>Otros diagnósticos</h3>
+<p>Además de la validación de supuestos debemos chequear la presencia de:</p>
+<ul>
+<li>Observaciones atípicas</li>
+<li>Puntos de balanceo</li>
+<li>Observaciones influyentes</li>
+</ul>
 <pre class="r"><code>
 md=lm(cars$dist~cars$speed)
 rr=residuals(md)
 par(mfrow=c(2,2))
 plot(md)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-</div>
-<div id="grafico-de-los-residuos-versus-los-valores-ajustados-1" class="section level3">
-<h3>Gráfico de los residuos versus los valores ajustados</h3>
-<p>Si los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Note que si se observa una tendencia, estaríamos violando el supuesto de linealidad (lo cual sugiere alguna transformación), y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+<pre class="r"><code>shapiro.test(rr)
+#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  rr
+#&gt; W = 0.94509, p-value = 0.02152</code></pre>
 </div>
 </div>
 <div id="regresion-lineal-multiple" class="section level2">
@@ -571,43 +580,6 @@ plot(md)</code></pre>
 <p>Las variables predictoras pueden ser:</p>
 <p> Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
-</div>
-<div id="tabla-de-resumen-del-analisis-de-varianza-1" class="section level2">
-<h2>Tabla de resumen del análisis de varianza</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Factor</th>
-<th>Grados de libertad</th>
-<th>Suma de cuadrados</th>
-<th>Medias cuadráticas</th>
-<th>Estadístico</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Regresión</td>
-<td>p-1</td>
-<td>SSR</td>
-<td>MSR</td>
-<td>Fc</td>
-</tr>
-<tr class="even">
-<td>Error</td>
-<td>n-p</td>
-<td>SSE</td>
-<td>MSE</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td>n-1</td>
-<td>SST</td>
-<td>MST</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <div id="regresion-lineal-con-variables-indicadoras" class="section level3">
 <h3><strong>Regresión lineal con variables indicadoras</strong></h3>
 <p>Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
@@ -756,8 +728,6 @@ plot(bosque)</code></pre>
 ###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
-#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
-#&gt; Loading required package: MASS
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -821,8 +791,9 @@ anova(m1)
 #&gt; Residuals 17  177.4    10.4                      
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-16-4.png" width="672" /> el modelo ajustado corresponde a:</p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /> el modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat y=-105.9027+7.41D16+0.67HT\]</span></p>
 </div>
 </div>

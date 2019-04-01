@@ -1,10 +1,10 @@
 
 ---
-title: "Regresión lineal"
+title: "**Regresión lineal**"
 icon:   fa-chart-pie
 ---
 
-\usepackage[utf8]{inputenc}
+
 
 
 ```{r setup, include = FALSE}
@@ -15,12 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.
-
-El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
-
-##Antes de hacer un modelo de regresión lineal
-Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.
+Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto. El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
 
 ## Modelo de regresión lineal básico
 
@@ -78,9 +73,9 @@ plot(pressure)
 
 
 
-#Medidas de dependencia lineal
+#**Medidas de dependencia lineal**
 
-##Covarianza
+##**Covarianza**
 
 La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
 
@@ -93,7 +88,7 @@ $$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
 
 - La covarianza depende de las unidades de medida de las variables.
 
-##Coeficiente de correlación
+## **Coeficiente de correlación**
 
 Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
 
@@ -132,7 +127,7 @@ $$\Large H_1:  r\not=0$$
 En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.
 
 
-## Medida de bondad de ajuste R^2
+## **Medida de bondad de ajuste R^2**
 
 Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
 Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:
@@ -144,14 +139,14 @@ Donde
 SSE: es la suma de cuadrados del error
 SST: suma de cuadrados totales
 
-## Error de pronóstico medio MAPE
-Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:
+## **Error de pronóstico medio MAPE**
+Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
 
 $$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
 
 
-##Estimador de mínimos cuadrados
+##**Estimador de mínimos cuadrados**
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
 $$\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i$$
@@ -181,7 +176,7 @@ grid.raster(IM3)
 ```
 
 
-##Residuales
+##** Residuales**
 
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
 $$\Large e_i= y_i- \hat{y_i}$$
@@ -197,6 +192,7 @@ grid.raster(IM4)
 ```
 
 
+## **Test lineal general**
 
 
 La varianza de los términos de error $\varepsilon_i$, es decir, $V[\varepsilon_i]=\sigma^2$, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:
@@ -339,8 +335,6 @@ md=lm(cars$dist~cars$speed)
 
 anova(md)
 
-
-
 ```
 
 
@@ -354,17 +348,28 @@ anova(md)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-##Validación de los supuestos
+## **Análisis de residuales para la validación de los supuestos**
 A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
 
 
-###QQplot 
-permite verificar la normalidad de los errores. Si es cierta la normalidad de los residuos, los puntos deben estar alineados con la diagonal.
+###Normalidad en los residuales
+Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:
 
-###Gráfico de los residuos versus los valores ajustados
-Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
+$H_o:$Los residuos son normales
+
+$H_1:$Los residuos no son normales
 
 
+###Varianza constante
+Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
+
+###Otros diagnósticos
+
+Además de la validación de supuestos debemos chequear la presencia de:
+
+- Observaciones atípicas
+- Puntos de balanceo
+- Observaciones influyentes
 
 
 ```{r }
@@ -373,12 +378,10 @@ md=lm(cars$dist~cars$speed)
 rr=residuals(md)
 par(mfrow=c(2,2))
 plot(md)
+shapiro.test(rr)
 
 ```
 
-###Gráfico de los residuos versus los valores ajustados
-
-Si los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Note que si se observa una tendencia, estaríamos violando el supuesto de linealidad (lo cual sugiere alguna transformación), y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
 
 
 ##Regresión lineal múltiple
@@ -395,14 +398,6 @@ Las variables predictoras pueden ser:
 
  Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
 
-
-##Tabla de resumen del análisis de varianza
-
-|Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
-|---------|------------------|-----------------|------------------|-----------|
-|Regresión|p-1               |SSR              |MSR               |Fc         |
-|Error    |n-p               |SSE              |MSE               |           |
-|Total    |n-1               |SST              |MST               |           |
 
 
 ###**Regresión lineal con variables indicadoras**
@@ -597,6 +592,7 @@ Al quitar la variable no significativa del modelo queda
 m1=lm(VOL~D16+HT)
 summary(m1)
 anova(m1)
+par(mfrow=c(2,2))
 plot(m1)
 ```
 el modelo ajustado corresponde a:
