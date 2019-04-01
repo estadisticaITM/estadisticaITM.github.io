@@ -310,6 +310,8 @@ Donde
 
 - y es la distancia de frenado en metros
 
+- Por cada unidad que aumenta la velocidad la distancia de frenado aumenta 3.93 unidades
+
 ## Resultados del modelo en R
 
 ```{r echo=TRUE}
@@ -372,6 +374,25 @@ Además de la validación de supuestos debemos chequear la presencia de:
 - Observaciones influyentes
 
 
+Para detectar observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
+
+#### Tipos de residuales escalados
+#####Residuales estandarizados $d_i$
+El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen
+media cero y varianza aproximada de 1:
+
+
+$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}$$
+
+Un $d_i$ grande $(|di| > 3)$ es indicio de una observación atípica potencial.
+
+##### Residuales estudentizados $r_i$
+Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado
+
+$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
+Donde $h_{ii}$ es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.
+
+Se considera potencialmente atÍpica aquella observaci´on con $r_i$ grande $(|ri| > 3)$
 ```{r }
 
 md=lm(cars$dist~cars$speed)

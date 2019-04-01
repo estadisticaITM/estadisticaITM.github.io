@@ -194,7 +194,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Estadística</a>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -465,6 +465,7 @@ plot(cars$speed,cars$dist)</code></pre>
 <ul>
 <li><p>X representa la velocidad en metros por segundo</p></li>
 <li><p>y es la distancia de frenado en metros</p></li>
+<li><p>Por cada unidad que aumenta la velocidad la distancia de frenado aumenta 3.93 unidades</p></li>
 </ul>
 </div>
 <div id="resultados-del-modelo-en-r" class="section level2">
@@ -556,6 +557,20 @@ anova(md)
 <li>Puntos de balanceo</li>
 <li>Observaciones influyentes</li>
 </ul>
+<p>Para detectar observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.</p>
+<div id="tipos-de-residuales-escalados" class="section level4">
+<h4>Tipos de residuales escalados</h4>
+<div id="residuales-estandarizados-d_i" class="section level5">
+<h5>Residuales estandarizados <span class="math inline">\(d_i\)</span></h5>
+<p>El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen media cero y varianza aproximada de 1:</p>
+<p><span class="math display">\[\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}\]</span></p>
+<p>Un <span class="math inline">\(d_i\)</span> grande <span class="math inline">\((|di| &gt; 3)\)</span> es indicio de una observación atípica potencial.</p>
+</div>
+<div id="residuales-estudentizados-r_i" class="section level5">
+<h5>Residuales estudentizados <span class="math inline">\(r_i\)</span></h5>
+<p>Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado</p>
+<p><span class="math display">\[\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> Donde <span class="math inline">\(h_{ii}\)</span> es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.</p>
+<p>Se considera potencialmente atÍpica aquella observaci´on con <span class="math inline">\(r_i\)</span> grande <span class="math inline">\((|ri| &gt; 3)\)</span></p>
 <pre class="r"><code>
 md=lm(cars$dist~cars$speed)
 rr=residuals(md)
@@ -568,6 +583,8 @@ plot(md)</code></pre>
 #&gt; 
 #&gt; data:  rr
 #&gt; W = 0.94509, p-value = 0.02152</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div id="regresion-lineal-multiple" class="section level2">
