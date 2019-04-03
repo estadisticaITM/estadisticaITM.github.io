@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -346,7 +443,7 @@ $(document).ready(function () {
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
-<h2>** Residuales**</h2>
+<h2><strong>Residuales</strong></h2>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
@@ -424,11 +521,6 @@ $(document).ready(function () {
 <p>Hipótesis alternativa: <span class="math inline">\(\Large H_1: \beta_i \not= 0\)</span>: el parámeto es significativo</p>
 <p>El estadístico de prueba corresponde a</p>
 <p><span class="math display">\[\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}\]</span></p>
-</div>
-<div id="estimacion-de-la-varianza" class="section level2">
-<h2>Estimación de la varianza</h2>
-<p>Para estimar la varianza de los errores <span class="math inline">\(\sigma^2\)</span>, podemos utilizar el estimador máximo verosimil:</p>
-<p><span class="math display">\[\Large {\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}\]</span></p>
 </div>
 <div id="significado-de-beta_0-y-beta_1" class="section level2">
 <h2>Significado de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span></h2>
@@ -586,146 +678,32 @@ plot(md)</code></pre>
 </div>
 </div>
 </div>
+<div id="transformaciones" class="section level3">
+<h3><strong>Transformaciones</strong></h3>
+<p>En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras.</p>
+<p>Se debe tener cuidado cuando se transforma la variable respuesta,ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.</p>
+<p>Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna transformación resulta útil y/o interpretable, existe otra alternativa, los llamados modelos lineales generalizados con los cuales se pueden modelar respuestas que no se distribuyen normales; sin embargo, tales modelos están más allá del alcance de este curso.</p>
+</div>
 </div>
 <div id="regresion-lineal-multiple" class="section level2">
 <h2>Regresión lineal múltiple</h2>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
-<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
+<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span> ##<strong>Regresión lineal con efectos de interacción</strong> Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo.</p>
+<p>Por ejemplo, suponga un modelo de regresión con las variables predictoras<span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo corresponde a:</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i\]</span></p>
+<p>El término de interacción es representado por <span class="math inline">\(\beta_3X_{1}X_2\)</span>. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente <span class="math inline">\(X_3=X_{1}X_2\)</span> y rescribimos el modelo como:</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i\]</span></p>
 </div>
 <div id="tipos-de-variables-y-de-efectos-en-los-modelos" class="section level2">
 <h2>Tipos de variables y de efectos en los modelos</h2>
 <p>Las variables predictoras pueden ser:</p>
 <p> Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
-<div id="regresion-lineal-con-variables-indicadoras" class="section level3">
-<h3><strong>Regresión lineal con variables indicadoras</strong></h3>
-<p>Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
-<p>Estrato 1: <span class="math display">\[ \Large  I_1 =\left\lbrace \begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 1}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right. \]</span></p>
-<p>Estrato 2:</p>
-<p><span class="math display">\[ \Large
-           I_2 =\left\lbrace   \begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 2}
-            \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.     \]</span></p>
-<p>Estrato 3:</p>
-<p><span class="math display">\[ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 3}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.  \]</span></p>
-<p>Estrato 4:</p>
-<p><span class="math display">\[    \Large     I_4 =\left\lbrace   \begin{array}{rcl}
-            {1\quad familia \quad estrato \quad 4}
-         \\
-            {0 \quad En \quad otro \quad caso  }
-         \end{array}  \right.    \]</span></p>
-<p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-</div>
-<div id="ejemplo-1" class="section level2">
-<h2>Ejemplo:</h2>
-<p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
-<pre class="r"><code>
-head (Orange)
-#&gt;   Tree  age circumference
-#&gt; 1    1  118            30
-#&gt; 2    1  484            58
-#&gt; 3    1  664            87
-#&gt; 4    1 1004           115
-#&gt; 5    1 1231           120
-#&gt; 6    1 1372           142</code></pre>
-<p>El diagrama de dispersión simple es:</p>
-<pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>El modelo de regresión lineal simple corresponde a:</p>
-<pre class="r"><code>
-model=lm(Orange$circumference~Orange$age)
-summary(model)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Orange$circumference ~ Orange$age)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -46.310 -14.946  -0.076  19.697  45.111 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) 17.399650   8.622660   2.018   0.0518 .  
-#&gt; Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 23.74 on 33 degrees of freedom
-#&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
-#&gt; F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
-<p>La ecuación del modelo de regresión general es:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la circunferenciua del</p>
-<p>La linea de regresión ajustada corresponde a</p>
-<pre class="r"><code>
-model=lm(Orange$circumference~Orange$age)
-
-
-plot(Orange$age,Orange$circumference,lwd=3)
-
-yest=fitted(model)
-lines(Orange$age,yest,col=2)
-abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-</div>
-<div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
-<h2>Significado de la pendiente y el intercepto</h2>
-<p>El intercepto es la respuesta media observada en el crecimiento de los arboles.</p>
-<p>La péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades</p>
-<p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
-<pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>El modelo de regresión lineal con factores corresponde a</p>
-<pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
-summary(model)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -30.505  -8.790   3.737   7.650  21.859 
-#&gt; 
-#&gt; Coefficients:
-#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
-#&gt; Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
-#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
-#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
-#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 15.26 on 29 degrees of freedom
-#&gt; Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
-#&gt; F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>La recta general del modelo es:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i\]</span></p>
-<p>Las rectas ajustadas para cada arbol son:</p>
-<p>Arbol 1:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span></p>
-<p>Arbol 2: <span class="math display">\[\Large \hat y_i=57.33+0.1x_{i}\]</span></p>
-<p>Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
-<p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span></p>
-<p>Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
 <div id="regresion-lineal-con-variables-continuas" class="section level3">
 <h3><strong>Regresión lineal con variables continuas</strong></h3>
 <div id="ejemplo-en-r" class="section level4">
 <h4>Ejemplo en R</h4>
-<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son: HT = altura en pies DBH = diámetro del tronco a 4 pies de altura (en pulgadas) D16 = diámetro del tronco a 16 pies de altura (en pulgadas) V OL = volumen de madera obtenida (en pies cúbicos).</p>
+<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son: HT = altura en pies DBH = diámetro del tronco a 4 pies de altura (en pulgadas) D16 = diámetro del tronco a 16 pies de altura (en pulgadas) VOL = volumen de madera obtenida (en pies cúbicos).</p>
 <p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras</p>
 <pre class="r"><code>
 
@@ -739,12 +717,14 @@ VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16
 
 bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>
 
 ###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
+#&gt; Loading required package: MASS
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -798,7 +778,13 @@ summary(m1)
 #&gt; Residual standard error: 3.23 on 17 degrees of freedom
 #&gt; Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
 #&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
-anova(m1)
+
+par(mfrow=c(2,2))
+plot(m1)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /> el modelo ajustado corresponde a:</p>
+<p><span class="math display">\[\hat y=-105.9027+7.41D16+0.67HT\]</span></p>
+<p>Al evaluar la significancia de los parámetros del modelo se tiene:</p>
+<pre class="r"><code>anova(m1)
 #&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Response: VOL
@@ -807,13 +793,273 @@ anova(m1)
 #&gt; HT         1  165.7   165.7  15.878 0.0009585 ***
 #&gt; Residuals 17  177.4    10.4                      
 #&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="regresion-lineal-con-variables-indicadoras" class="section level3">
+<h3><strong>Regresión lineal con variables indicadoras</strong></h3>
+<p>Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
+<p>Estrato 1: <span class="math display">\[ \Large  I_1 =\left\lbrace \begin{array}{rcl}
+            {1\quad familia \quad estrato \quad 1}
+         \\
+            {0 \quad En \quad otro \quad caso  }
+         \end{array}  \right. \]</span></p>
+<p>Estrato 2:</p>
+<p><span class="math display">\[ \Large
+           I_2 =\left\lbrace   \begin{array}{rcl}
+            {1\quad familia \quad estrato \quad 2}
+            \\
+            {0 \quad En \quad otro \quad caso  }
+         \end{array}  \right.     \]</span></p>
+<p>Estrato 3:</p>
+<p><span class="math display">\[ \Large  I_3 =\left\lbrace   \begin{array}{rcl}
+            {1\quad familia \quad estrato \quad 3}
+         \\
+            {0 \quad En \quad otro \quad caso  }
+         \end{array}  \right.  \]</span></p>
+<p>Estrato 4:</p>
+<p><span class="math display">\[    \Large     I_4 =\left\lbrace   \begin{array}{rcl}
+            {1\quad familia \quad estrato \quad 4}
+         \\
+            {0 \quad En \quad otro \quad caso  }
+         \end{array}  \right.    \]</span></p>
+<p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="casos-de-regresion-lineal-con-variables-indicadoras" class="section level2">
+<h2><strong>Casos de regresión lineal con variables indicadoras</strong></h2>
+<div id="caso-1-intercepto-y-pendiente-diferente" class="section level3">
+<h3>Caso 1 Intercepto y pendiente diferente</h3>
+<p>En el primer caso es necesario considerar la interacción entre <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> en el modelo de regresión, y sólo utilizamos c − 1 de las posibles variables indicadoras de las categorías de la variable <span class="math inline">\(X_2\)</span>, es decir postulamos el modelo:</p>
+<p><span class="math display">\[\large Y=\beta_0 +\beta_1 I_1+\beta_3I_2+\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+\varepsilon\]</span></p>
+<p>Observe que la ecuación anterior define c rectas de regresión simple de Y vs <span class="math inline">\(X_1\)</span>, una en cada categoría de la variable cualitativa X2, así: - Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon\]</span> - Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon\]</span> ###caso 2 Intercepto aleatorio El modelo a considerar está dado por:</p>
+<p><span class="math display">\[\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ... \varepsilon\]</span> donde el efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta es el mismo sin importar la categoría en que sea observada <span class="math inline">\(X_2\)</span>, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,</p>
+<ul>
+<li><p>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon\]</span></p></li>
+<li><p>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon\]</span> ## Ejemplo:</p></li>
+</ul>
+<p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
+<pre class="r"><code>
+head (Orange)
+#&gt;   Tree  age circumference
+#&gt; 1    1  118            30
+#&gt; 2    1  484            58
+#&gt; 3    1  664            87
+#&gt; 4    1 1004           115
+#&gt; 5    1 1231           120
+#&gt; 6    1 1372           142</code></pre>
+<p>El diagrama de dispersión simple es:</p>
+<pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>El modelo de regresión lineal simple corresponde a:</p>
+<pre class="r"><code>
+model=lm(Orange$circumference~Orange$age)
+summary(model)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Orange$circumference ~ Orange$age)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -46.310 -14.946  -0.076  19.697  45.111 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 17.399650   8.622660   2.018   0.0518 .  
+#&gt; Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
+#&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-par(mfrow=c(2,2))
-plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /> el modelo ajustado corresponde a:</p>
-<p><span class="math display">\[\hat y=-105.9027+7.41D16+0.67HT\]</span></p>
+#&gt; 
+#&gt; Residual standard error: 23.74 on 33 degrees of freedom
+#&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
+#&gt; F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
+<p>La ecuación del modelo de regresión general es:</p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la circunferenciua del</p>
+<p>La linea de regresión ajustada corresponde a</p>
+<pre class="r"><code>
+model=lm(Orange$circumference~Orange$age)
+
+
+plot(Orange$age,Orange$circumference,lwd=3)
+
+yest=fitted(model)
+lines(Orange$age,yest,col=2)
+abline(coef(model))</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 </div>
+<div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
+<h2>Significado de la pendiente y el intercepto</h2>
+<p>El intercepto es la respuesta media observada en el crecimiento de los arboles.</p>
+<p>La péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades</p>
+<p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
+<pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>El modelo de regresión lineal con factores corresponde a</p>
+<pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+summary(model)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -30.505  -8.790   3.737   7.650  21.859 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
+#&gt; Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
+#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
+#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
+#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
+#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 15.26 on 29 degrees of freedom
+#&gt; Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
+#&gt; F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>La recta general del modelo es:</p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i\]</span></p>
+<p>Las rectas ajustadas para cada arbol son:</p>
+<p>Arbol 1:</p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span></p>
+<p>Arbol 2: <span class="math display">\[\Large \hat y_i=57.33+0.1x_{i}\]</span></p>
+<p>Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
+<p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span></p>
+<p>Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
+<p>Con base en la tabla ANOVA, y bajo los supuestosde los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera: <span class="math inline">\(H_0= \beta_1=\beta_2=...\beta_k\)</span> El modelo de regresión no es significativo. $H_1=Algún _k =0 $Existe una relación de regresión significativa con al menos una de las variables.</p>
+<p>Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.</p>
+<pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+anova(model)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Orange$circumference
+#&gt;                        Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; Orange$age              1  93772   93772 402.639 &lt; 2.2e-16 ***
+#&gt; as.factor(Orange$Tree)  4  11841    2960  12.711 4.289e-06 ***
+#&gt; Residuals              29   6754     233                      
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="procedimientos-de-reduccion-de-variables-mediante-seleccion-automatica" class="section level2">
+<h2><strong>Procedimientos de reducción de variables mediante selección automática</strong></h2>
+<p>Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:</p>
+<ul>
+<li><p><strong>Forward o selección hacia delante</strong> Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.</p></li>
+<li><p><strong>Backward o selección hacia atrás</strong> El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.</p></li>
+<li><p><strong>Stepwise, una combinación de los dos anteriores</strong> La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.</p></li>
+</ul>
+<pre class="r"><code>
+Seccion=c(rep(&quot;A&quot;,5),rep(&quot;B&quot;,5),rep(&quot;C&quot;,5))
+Publicidad=c(5.2,5.9,7.7,7.9,9.4,8.2,9,9.1,10.5,10.5,10,10.3,12.1,12.7,13.6)
+Ventas=c(9,10,12,12,14,13,13,12,13,14,18,19,20,21,22)
+
+datos=data.frame(Seccion,Publicidad,Ventas)
+
+
+###GRAFICANDO VENTAS VS. PUBLICIDAD SEG´UN SECCION###
+attach(datos)
+#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     Publicidad, Seccion, Ventas
+plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code>
+#USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
+
+###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
+#Con interacción entre la variable publicidad y sección
+
+modelo1=lm(Ventas~Publicidad*Seccion)
+summary(modelo1)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Ventas ~ Publicidad * Seccion)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -0.87683 -0.22516  0.04366  0.14985  0.64418 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)           3.0318     1.0346   2.930   0.0167 *  
+#&gt; Publicidad            1.1590     0.1403   8.262 1.71e-05 ***
+#&gt; SeccionB              6.7317     2.4423   2.756   0.0222 *  
+#&gt; SeccionC              5.2429     2.0724   2.530   0.0322 *  
+#&gt; Publicidad:SeccionB  -0.8169     0.2718  -3.005   0.0148 *  
+#&gt; Publicidad:SeccionC  -0.1603     0.2068  -0.775   0.4581    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.4709 on 9 degrees of freedom
+#&gt; Multiple R-squared:  0.9916, Adjusted R-squared:  0.9869 
+#&gt; F-statistic: 211.4 on 5 and 9 DF,  p-value: 4.782e-09
+confint(modelo1)
+#&gt;                          2.5 %     97.5 %
+#&gt; (Intercept)          0.6913867  5.3721561
+#&gt; Publicidad           0.8416690  1.4763999
+#&gt; SeccionB             1.2067246 12.2566144
+#&gt; SeccionC             0.5547971  9.9309735
+#&gt; Publicidad:SeccionB -1.4317793 -0.2020276
+#&gt; Publicidad:SeccionC -0.6280374  0.3074717
+anova(modelo1)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Ventas
+#&gt;                    Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+#&gt; Publicidad          1 193.859 193.859 874.1066 2.829e-10 ***
+#&gt; Seccion             2  38.523  19.261  86.8493 1.307e-06 ***
+#&gt; Publicidad:Seccion  2   2.023   1.011   4.5601   0.04289 *  
+#&gt; Residuals           9   1.996   0.222                       
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+
+
+###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
+modelo2=lm(Ventas~Publicidad+Seccion)
+summary(modelo2)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Ventas ~ Publicidad + Seccion)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -1.00202 -0.33520 -0.00202  0.29767  1.21398 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)   4.4437     0.9142   4.861 0.000502 ***
+#&gt; Publicidad    0.9635     0.1210   7.966 6.80e-06 ***
+#&gt; SeccionB     -0.5582     0.4686  -1.191 0.258600    
+#&gt; SeccionC      4.2451     0.6671   6.363 5.34e-05 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.6044 on 11 degrees of freedom
+#&gt; Multiple R-squared:  0.983,  Adjusted R-squared:  0.9784 
+#&gt; F-statistic:   212 on 3 and 11 DF,  p-value: 5.186e-10
+anova(modelo2)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Ventas
+#&gt;            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; Publicidad  1 193.859 193.859 530.631 1.168e-10 ***
+#&gt; Seccion     2  38.523  19.261  52.722 2.312e-06 ***
+#&gt; Residuals  11   4.019   0.365                      
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+confint(modelo2)
+#&gt;                  2.5 %    97.5 %
+#&gt; (Intercept)  2.4316194 6.4557425
+#&gt; Publicidad   0.6972616 1.2296965
+#&gt; SeccionB    -1.5894689 0.4730825
+#&gt; SeccionC     2.7767893 5.7133597</code></pre>
 </div>
 </div>
 

@@ -5,8 +5,6 @@ icon:   fa-chart-pie
 ---
 
 
-
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -176,7 +174,7 @@ grid.raster(IM3)
 ```
 
 
-##** Residuales**
+##**Residuales**
 
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
 $$\Large e_i= y_i- \hat{y_i}$$
@@ -264,12 +262,6 @@ El estadístico de prueba corresponde a
 $$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
 
 
-
-##Estimación de la varianza
-Para estimar la varianza de los errores $\sigma^2$, podemos utilizar el estimador máximo verosimil:
-
-
-$$\Large {\hat{\sigma}}^2=\frac{\sum_{i=1}^n {e}_i^2}{n}$$
 
 
 ## Significado de $\beta_0$ y $\beta_1$
@@ -389,7 +381,7 @@ Un $d_i$ grande $(|di| > 3)$ es indicio de una observación atípica potencial.
 ##### Residuales estudentizados $r_i$
 Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado
 
-$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
+$$\large r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
 Donde $h_{ii}$ es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.
 
 Se considera potencialmente atÍpica aquella observaci´on con $r_i$ grande $(|ri| > 3)$
@@ -405,11 +397,37 @@ shapiro.test(rr)
 
 
 
+### **Transformaciones**
+
+En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras. 
+
+Se debe tener cuidado cuando se transforma la variable respuesta,ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
+
+Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna transformación resulta útil y/o interpretable, existe otra alternativa, los llamados modelos lineales generalizados con los cuales se pueden modelar respuestas que no se distribuyen normales; sin embargo, tales modelos están más allá del alcance de este curso.
+
+
+
 ##Regresión lineal múltiple
 
 Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
 
 $$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$
+##**Regresión lineal con efectos de interacción**
+Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
+
+Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo
+corresponde a:
+
+$$Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
+
+ El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el
+modelo como:
+
+$$Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
+
+
+
+
 
 ## Tipos de variables y de efectos en los modelos
 
@@ -419,6 +437,63 @@ Las variables predictoras pueden ser:
 
  Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
 
+###**Regresión lineal con variables continuas**
+
+#### Ejemplo en R
+
+Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
+HT = altura en pies
+DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+VOL = volumen de madera obtenida (en pies cúbicos).
+
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen
+de madera, con el fin de poder predecir este último en función de las primeras
+
+```{r}
+
+
+DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+
+D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+
+HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+
+VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+
+bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+plot(bosque)
+
+
+###correlaciones entre variables
+#install.packages(ppcor)
+library(ppcor)
+pcor(bosque)
+
+
+
+```
+
+
+
+Al quitar la variable no significativa del modelo queda 
+```{r}
+
+m1=lm(VOL~D16+HT)
+summary(m1)
+
+par(mfrow=c(2,2))
+plot(m1)
+```
+el modelo ajustado corresponde a:
+
+$$\hat y=-105.9027+7.41D16+0.67HT$$
+
+Al evaluar la significancia de los parámetros del modelo se tiene:
+
+```{r}
+anova(m1)
+```
 
 
 ###**Regresión lineal con variables indicadoras**
@@ -468,8 +543,31 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
+##**Casos de regresión lineal con variables indicadoras**
 
+###Caso 1 Intercepto y pendiente diferente
 
+En el primer caso es necesario considerar la interacción entre $X_1$ y $X_2$ en el modelo de regresión, y sólo utilizamos c − 1 de las posibles variables indicadoras de las categorías de la
+variable $X_2$, es decir postulamos el modelo:
+
+$$\large Y=\beta_0 +\beta_1 I_1+\beta_3I_2+\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+\varepsilon$$
+
+Observe que la ecuación anterior define c rectas de regresión simple de Y vs $X_1$, una en cada categoría de la variable cualitativa X2, así:
+- Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
+$$\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon$$
+- Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
+$$\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon$$
+###caso 2 Intercepto aleatorio
+El modelo a considerar está dado por:
+
+$$\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ... \varepsilon$$
+donde el efecto promedio de $X_1$ sobre la respuesta es el mismo sin importar la categoría en que sea observada $X_2$, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,
+
+- Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
+$$\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon$$
+
+- Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
+$$\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon$$
 ## Ejemplo:
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
@@ -565,58 +663,68 @@ Arbol 4:
 Arbol 5:
      $$\Large \hat y_i=12.71+0.1x_{i}$$
      
+     
+Con base en la tabla ANOVA, y bajo los supuestosde los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:
+$H_0= \beta_1=\beta_2=...\beta_k$ El modelo de regresión no es significativo.
+$H_1=Algún \quad \beta_k \not=0 $Existe una relación de regresión significativa con al menos una de las variables.
 
+Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.
 
-
-###**Regresión lineal con variables continuas**
-
-#### Ejemplo en R
-
-Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
-HT = altura en pies
-DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
-D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
-V OL = volumen de madera obtenida (en pies cúbicos).
-
-El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen
-de madera, con el fin de poder predecir este último en función de las primeras
-
-```{r}
-
-
-DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
-
-D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
-
-HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
-
-VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
-
-bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
-plot(bosque)
-
-
-###correlaciones entre variables
-#install.packages(ppcor)
-library(ppcor)
-pcor(bosque)
 
 
 
+```{r}
+model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+anova(model)
 ```
 
 
 
-Al quitar la variable no significativa del modelo queda 
+
+
+## **Procedimientos de reducción de variables mediante selección automática**
+Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el
+procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
+
+- **Forward o selección hacia delante**
+Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.
+
+- **Backward o selección hacia atrás**
+El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.
+
+- **Stepwise, una combinación de los dos anteriores**
+La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
+
 ```{r}
 
-m1=lm(VOL~D16+HT)
-summary(m1)
-anova(m1)
-par(mfrow=c(2,2))
-plot(m1)
-```
-el modelo ajustado corresponde a:
+Seccion=c(rep("A",5),rep("B",5),rep("C",5))
+Publicidad=c(5.2,5.9,7.7,7.9,9.4,8.2,9,9.1,10.5,10.5,10,10.3,12.1,12.7,13.6)
+Ventas=c(9,10,12,12,14,13,13,12,13,14,18,19,20,21,22)
 
-$$\hat y=-105.9027+7.41D16+0.67HT$$
+datos=data.frame(Seccion,Publicidad,Ventas)
+
+
+###GRAFICANDO VENTAS VS. PUBLICIDAD SEG´UN SECCION###
+attach(datos)
+plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
+
+#USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
+
+###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
+#Con interacción entre la variable publicidad y sección
+
+modelo1=lm(Ventas~Publicidad*Seccion)
+summary(modelo1)
+confint(modelo1)
+anova(modelo1)
+
+
+
+###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
+modelo2=lm(Ventas~Publicidad+Seccion)
+summary(modelo2)
+anova(modelo2)
+confint(modelo2)
+```
 
