@@ -661,7 +661,7 @@ anova(md)
 <div id="residuales-estudentizados-r_i" class="section level5">
 <h5>Residuales estudentizados <span class="math inline">\(r_i\)</span></h5>
 <p>Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado</p>
-<p><span class="math display">\[\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> Donde <span class="math inline">\(h_{ii}\)</span> es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.</p>
+<p><span class="math display">\[\large r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> Donde <span class="math inline">\(h_{ii}\)</span> es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.</p>
 <p>Se considera potencialmente atÍpica aquella observaci´on con <span class="math inline">\(r_i\)</span> grande <span class="math inline">\((|ri| &gt; 3)\)</span></p>
 <pre class="r"><code>
 md=lm(cars$dist~cars$speed)
@@ -723,8 +723,6 @@ plot(bosque)</code></pre>
 ###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
-#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
-#&gt; Loading required package: MASS
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -964,6 +962,9 @@ datos=data.frame(Seccion,Publicidad,Ventas)
 ###GRAFICANDO VENTAS VS. PUBLICIDAD SEG´UN SECCION###
 attach(datos)
 #&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     Publicidad, Seccion, Ventas
+#&gt; The following objects are masked from datos (pos = 3):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
