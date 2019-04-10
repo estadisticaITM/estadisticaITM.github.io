@@ -2,11 +2,54 @@
 ---
 title: "Varianza"
 ---
-###Diseño experimental
+
+
+##Objetivos del diseño experimental
+
+- Planear pruebas experimentales, de forma que los datos generados se analicen estadísticamente para obtener conclusiones válidas y objetivas sobre un proceso.
+
+- Utilizar técnicas estadísticas para manipular un proceso con el fin de obtener la mayor información posible.
+
+- Determinar qué pruebas y cómo realizarlas,  para extraer conclusiones y tomar decisiones sobre un proceso.
+
+###Aplicaciones del diseño experimental
+
+**En la industria**
+
+- Comparar proveedores del mismo material para elegir el que mejor cumple especificaciones.
+
+- Comparar sistemas de medición para verificar si trabajan con la misma precisión y exactitud.
+
+- Proponer nueva manera de operar un proceso, variar sus condiciones y hacer cambios para reducir defectos.
+
+- Determinar factores o fuentes de variabilidad con impacto en la capacidad del proceso para cumplir requerimientos.
+
+- Localizar condiciones de operación para desempeño óptimo del proceso.
+
+- Proponer métodos de muestreos efectivos y más económicos.
+
+- Reducir tiempo de ciclo del proceso.
+
+- Hacer proceso robusto a oscilaciones de variables no controlables.
+
+- Apoyar en el diseño o rediseño del producto o proceso.
+
+
+**En la investigación**
+
+- Validar una hipótesis mediante evidencia objetiva.
+
+- Generar conocimiento y aprendizaje de forma eficiente. Dirección del aprendizaje: conocimiento, conjeturas, imaginación, experimentación, análisis y reflexión.
+
+- Evaluación y comparación de diseños básicos.
+
+- Evaluación de materiales alternativos.
+
+- Selección de parámetros del diseño para que el producto tenga un buen funcionamiento en una amplia variedad de condiciones de campo.
+
+
+
 ##Introducción al análisis de varianza
-
-
-
 
 
 ```{r fig.asp=0.6, fig.align='center', echo=FALSE}
@@ -23,13 +66,14 @@ Al iniciar el estudio, el investigador desarrolla una lista de verificación de 
 
 - Identificación de los factores que influyen y cuáles de ellos varían y cuáles permanecen constantes.
 
-- Características a medir.
+- Variables a medir.
 
 - Procedimientos particulares para realizar las pruebas o medir las características.
 
 - Número de repeticiones del experimento básico a realizar.
 
 - Recursos y materiales disponibles.
+
 
 Las preguntas que centran nuestra atención a través del proceso de diseño incluyen:
 
@@ -39,37 +83,44 @@ Las preguntas que centran nuestra atención a través del proceso de diseño inc
 
 - ¿Por qué quiero saberlo?
 
+
 Además, existen preguntas de seguimiento productivo para cada actividad en el proceso, tales como:
 
 - ¿Cómo voy a realizar el experimento? 
 
 - ¿Por que hago el experimento?
 
-###Aplicaciones del diseño experimental
+**Consideraciones prácticas**
 
-- Evaluación y comparación de diseños básicos.
+Las metodologías estadísticas por sí solas no garantizan investigaciones exitosas:
 
-- Evaluación de materiales alternativos.
+- El conocimiento no estadístico es vital: Se requiere buen conocimiento técnico y práctico del proceso.
 
-- Selección de parámetros del diseño para que el producto tenga un buen funcionamiento en una amplia variedad de condiciones de campo.
+- Reconocer la diferncia entre significancia estadística e importancia práctica: diferencias estadísticas no siempre corresponden a diferencias prácticas de importancia.
+
+- Preferir la experimentación secuencial que un experimento único y definitivo: La experimentación secuencial alcanza paulatinamente mayor precisión en los conocimientos y soluciones. Seguir una estrategia bien definida y pensada. 
+
 
 
 ###Definiciones del diseño experimental
 
-1. **Experimento comparativo**
+1. **Experimento**
 
-Se utiliza en áreas como biología, medicina, agricultura, ingeniería, sicología y otras ciencias experimentales, en el que se establece más de un conjunto de circunstancias en el experimento para comparar entre sí las respuestas.
+Cambio deliberado en las condiciones de operación de un proceso, con el fin de medir el efecto sobre una o varias propiedades del producto.
 
 
-
-2. **Tratamientos**
+2. **Tratamiento**
 
 Conjunto de circunstancias creadas para el experimento, en respuesta a la hipótesis de investigación.
 Entre los ejemplos de tratamientos se encuentran dietas de animales, producción de variedades de cultivos,temperaturas, tipos de suelo y cantidades de nutrientes.
 
 En un estudio comparativo se usan dos o más tratamientos y se comparan sus efectos en el sujeto de estudio.
 
-3. **Experimento**
+3. **Unidad experimental**
+
+Objetos u individuos básicos sobre los cuales se obtiene una medición o datos representativo:
+· Una pieza: En el estudio de la resistencia a la tracción de cierta componente
+· Un lote o grupo de piezas: En el estudio de la proporción de defectuosos en una operación
 
 La unidad experimental es la entidad física o el sujeto expuesto al tratamiento. La unidad experimental, una vez expuesta al tratamiento,constituye una sola réplica del tratamiento.
 

@@ -412,22 +412,22 @@ Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna tr
 Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
 
 $$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$
-##**Regresión lineal con efectos de interacción**
+
+
+###**Regresión lineal con efectos de interacción**
+
+
 Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
 
 Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo
 corresponde a:
 
-$$Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
 
  El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el
 modelo como:
 
-$$Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
-
-
-
-
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
 
 ## Tipos de variables y de efectos en los modelos
 
@@ -437,18 +437,37 @@ Las variables predictoras pueden ser:
 
  Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
 
+
+
+
+## **Procedimientos de reducción de variables mediante selección automática**
+Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
+
+- **Forward o selección hacia delante**
+Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.
+
+- **Backward o selección hacia atrás**
+El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.
+
+- **Stepwise, una combinación de los dos anteriores**
+La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
+
 ###**Regresión lineal con variables continuas**
 
 #### Ejemplo en R
 
 Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
+
+
 HT = altura en pies
+
 DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+
 D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+
 VOL = volumen de madera obtenida (en pies cúbicos).
 
-El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen
-de madera, con el fin de poder predecir este último en función de las primeras
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
 
 ```{r}
 
@@ -475,8 +494,24 @@ pcor(bosque)
 ```
 
 
+El modelo inicial ajustado corresponde a:
 
-Al quitar la variable no significativa del modelo queda 
+
+
+```{r}
+
+m1=lm(VOL~D16+HT+DBH)
+
+summary(m1)
+
+anova(m1)
+
+
+```
+
+Al quitar la variable no significativa del modelo queda: 
+
+
 ```{r}
 
 m1=lm(VOL~D16+HT)
@@ -545,30 +580,49 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 
 ##**Casos de regresión lineal con variables indicadoras**
 
+Se desea modelar por regresión lineal la relación de una variable respuesta
+cuantitativa $Y$ vs. $X_1$, siendo $X_1$ cuantitativa, en presencia de una variable categórica $X_2$. Es decir, se quiere determinar si la relación lineal entre $Y$ vs. $X_1$ depende de la variable categórica $X_2$. Asumiendo que $X_2$ es observada en c categorías.
+
+
+
+
+Podemos considerar las dos siguientes situaciones:
+
 ###Caso 1 Intercepto y pendiente diferente
 
-En el primer caso es necesario considerar la interacción entre $X_1$ y $X_2$ en el modelo de regresión, y sólo utilizamos c − 1 de las posibles variables indicadoras de las categorías de la
-variable $X_2$, es decir postulamos el modelo:
+El efecto promedio de $X_1$ sobre la respuesta $Y$ cambia según la categoría en que $X_2$ sea observada, para lo cual es necesario considerar la interacción entre $X_1$ y $X_2$ en el modelo de regresión, y sólo utilizamos c−1 de las posibles variables indicadoras de las categorías de la variable $X_2$, quedando el modelo:
 
-$$\large Y=\beta_0 +\beta_1 I_1+\beta_3I_2+\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+\varepsilon$$
+$$\large y=\beta_0+ \beta_1X_1+ \overbrace{\beta_2I_1+\beta_3I_2+...\beta_cI_{c-1}}^{Aporte\ variable\ cualitativa\ con\ c-1\ niveles}+\underbrace{\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+...+\beta_{1,c-1}X_1I_{c-1}}_{Efecto\ interacción}+\varepsilon_i$$
 
 Observe que la ecuación anterior define c rectas de regresión simple de Y vs $X_1$, una en cada categoría de la variable cualitativa X2, así:
+
+
 - Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
 $$\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon$$
 - Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
 $$\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon$$
-###caso 2 Intercepto aleatorio
-El modelo a considerar está dado por:
+- Finalmente, si $I_1 = I_2 = · · · I_{c−1} = 0$, necesariamente, la indicadora $I_c$ no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente
+cero, obtenemos la recta de regresión de Y vs. $X_1$, en la categoría c de la variable categórica X2, de la forma:
+     $$\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i$$
 
-$$\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ... \varepsilon$$
+###caso 2 Intercepto aleatorio
+El efecto promedio de $X_1$ sobre la respuesta Y es el mismo en todas las categorías de $X_2$ pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:
+
+
+$$\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ...\beta_cI_{c−1}+\varepsilon_i$$
 donde el efecto promedio de $X_1$ sobre la respuesta es el mismo sin importar la categoría en que sea observada $X_2$, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,
 
 - Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
-$$\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon$$
+$$\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon_i$$
 
 - Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
 $$\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon$$
-## Ejemplo:
+- Cuando  $I_1 = I_2 = · · · I_{c−1} = 0$, es decir, $I_c$ = 1, tenemos
+
+$$\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i$$
+
+##Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:
+
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
@@ -597,7 +651,8 @@ summary(model)
 La ecuación del modelo de regresión general es:
 
 $$\Large \hat y_i=17.4+0.1x_{i}$$
-Donde $y_i$ es la circunferenciua del
+Donde $y_i$ es la varaible respuesta
+$x_i$ es la edad del árbol, por cada unidad que aumente en edad el árbol, el diametro de la circunferencia aumenta 0.1.
 
 La linea de regresión ajustada corresponde a
 
@@ -626,13 +681,19 @@ El diagrama de dispersión discriminando por los niveles de la variables factor 
 
 ```{r echo = TRUE}
 plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
-
+abline(a=17.4,b=0.1,col=1,lwd=3)
+abline(a=57.33,b=0.1,col=2,lwd=3)
+abline(a=19.92,b=0.1,col=3,lwd=3)
+abline(a=9.14,b=0.1,col=4,lwd=3)
+abline(a=12.71,b=0.1,col=5,lwd=3)
 ```
 
 El modelo de regresión lineal con factores corresponde a 
 ```{r echo = TRUE}
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 summary(model)
+
+
 ```
 
 
@@ -664,9 +725,12 @@ Arbol 5:
      $$\Large \hat y_i=12.71+0.1x_{i}$$
      
      
-Con base en la tabla ANOVA, y bajo los supuestosde los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:
+Con base en la tabla ANOVA, y bajo los supuestos de los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:
+
 $H_0= \beta_1=\beta_2=...\beta_k$ El modelo de regresión no es significativo.
-$H_1=Algún \quad \beta_k \not=0 $Existe una relación de regresión significativa con al menos una de las variables.
+
+$H_1=Algún\ \beta_k \not=0$ Existe una relación de regresión significativa con al menos una de las variables.
+
 
 Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.
 
@@ -678,22 +742,8 @@ model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 anova(model)
 ```
 
+### Otro ejemplo Considerando pendiente e intercepto diferentes
 
-
-
-
-## **Procedimientos de reducción de variables mediante selección automática**
-Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el
-procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
-
-- **Forward o selección hacia delante**
-Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.
-
-- **Backward o selección hacia atrás**
-El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.
-
-- **Stepwise, una combinación de los dos anteriores**
-La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
 
 ```{r}
 
@@ -709,6 +759,7 @@ attach(datos)
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
 
+
 #USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
 
 ###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
@@ -720,11 +771,34 @@ confint(modelo1)
 anova(modelo1)
 
 
+#recta para la sección a
+abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 
+# Recta para la sección b
+abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
+
+#Recta para la sección c
+abline(a=8.27,b=1,col=3,pch=3,lwd=2)
+
+
+```
+
+###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO
+
+
+```{r}
 ###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
 summary(modelo2)
 anova(modelo2)
 confint(modelo2)
+
+plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
+
+
 ```
+
+
+
 

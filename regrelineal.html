@@ -688,22 +688,39 @@ plot(md)</code></pre>
 <div id="regresion-lineal-multiple" class="section level2">
 <h2>Regresión lineal múltiple</h2>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
-<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span> ##<strong>Regresión lineal con efectos de interacción</strong> Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo.</p>
+<p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
+<div id="regresion-lineal-con-efectos-de-interaccion" class="section level3">
+<h3><strong>Regresión lineal con efectos de interacción</strong></h3>
+<p>Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo.</p>
 <p>Por ejemplo, suponga un modelo de regresión con las variables predictoras<span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo corresponde a:</p>
-<p><span class="math display">\[Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i\]</span></p>
+<p><span class="math display">\[\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i\]</span></p>
 <p>El término de interacción es representado por <span class="math inline">\(\beta_3X_{1}X_2\)</span>. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente <span class="math inline">\(X_3=X_{1}X_2\)</span> y rescribimos el modelo como:</p>
-<p><span class="math display">\[Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i\]</span></p>
+<p><span class="math display">\[\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i\]</span></p>
+</div>
 </div>
 <div id="tipos-de-variables-y-de-efectos-en-los-modelos" class="section level2">
 <h2>Tipos de variables y de efectos en los modelos</h2>
 <p>Las variables predictoras pueden ser:</p>
 <p> Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
+</div>
+<div id="procedimientos-de-reduccion-de-variables-mediante-seleccion-automatica" class="section level2">
+<h2><strong>Procedimientos de reducción de variables mediante selección automática</strong></h2>
+<p>Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:</p>
+<ul>
+<li><p><strong>Forward o selección hacia delante</strong> Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.</p></li>
+<li><p><strong>Backward o selección hacia atrás</strong> El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.</p></li>
+<li><p><strong>Stepwise, una combinación de los dos anteriores</strong> La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.</p></li>
+</ul>
 <div id="regresion-lineal-con-variables-continuas" class="section level3">
 <h3><strong>Regresión lineal con variables continuas</strong></h3>
 <div id="ejemplo-en-r" class="section level4">
 <h4>Ejemplo en R</h4>
-<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son: HT = altura en pies DBH = diámetro del tronco a 4 pies de altura (en pulgadas) D16 = diámetro del tronco a 16 pies de altura (en pulgadas) VOL = volumen de madera obtenida (en pies cúbicos).</p>
+<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
+<p>HT = altura en pies</p>
+<p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>
+<p>D16 = diámetro del tronco a 16 pies de altura (en pulgadas)</p>
+<p>VOL = volumen de madera obtenida (en pies cúbicos).</p>
 <p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras</p>
 <pre class="r"><code>
 
@@ -723,6 +740,7 @@ plot(bosque)</code></pre>
 ###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -753,7 +771,44 @@ pcor(bosque)
 #&gt; 
 #&gt; $method
 #&gt; [1] &quot;pearson&quot;</code></pre>
-<p>Al quitar la variable no significativa del modelo queda</p>
+<p>El modelo inicial ajustado corresponde a:</p>
+<pre class="r"><code>
+m1=lm(VOL~D16+HT+DBH)
+
+summary(m1)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = VOL ~ D16 + HT + DBH)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -5.2548 -1.6765 -0.1277  1.5232  4.9990 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
+#&gt; D16            5.6714     1.2023   4.717 0.000232 ***
+#&gt; HT             0.6938     0.1631   4.254 0.000606 ***
+#&gt; DBH            1.6258     1.0259   1.585 0.132611    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 3.095 on 16 degrees of freedom
+#&gt; Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
+#&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
+
+anova(m1)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: VOL
+#&gt;           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+#&gt; D16        1 3401.3  3401.3 354.9987 2.396e-12 ***
+#&gt; HT         1  165.7   165.7  17.2890 0.0007408 ***
+#&gt; DBH        1   24.1    24.1   2.5111 0.1326107    
+#&gt; Residuals 16  153.3     9.6                       
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Al quitar la variable no significativa del modelo queda:</p>
 <pre class="r"><code>
 m1=lm(VOL~D16+HT)
 summary(m1)
@@ -779,7 +834,7 @@ summary(m1)
 
 par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /> el modelo ajustado corresponde a:</p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /> el modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat y=-105.9027+7.41D16+0.67HT\]</span></p>
 <p>Al evaluar la significancia de los parámetros del modelo se tiene:</p>
 <pre class="r"><code>anova(m1)
@@ -828,16 +883,33 @@ plot(m1)</code></pre>
 </div>
 <div id="casos-de-regresion-lineal-con-variables-indicadoras" class="section level2">
 <h2><strong>Casos de regresión lineal con variables indicadoras</strong></h2>
+<p>Se desea modelar por regresión lineal la relación de una variable respuesta cuantitativa <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span>, siendo <span class="math inline">\(X_1\)</span> cuantitativa, en presencia de una variable categórica <span class="math inline">\(X_2\)</span>. Es decir, se quiere determinar si la relación lineal entre <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span> depende de la variable categórica <span class="math inline">\(X_2\)</span>. Asumiendo que <span class="math inline">\(X_2\)</span> es observada en c categorías.</p>
+<p>Podemos considerar las dos siguientes situaciones:</p>
 <div id="caso-1-intercepto-y-pendiente-diferente" class="section level3">
 <h3>Caso 1 Intercepto y pendiente diferente</h3>
-<p>En el primer caso es necesario considerar la interacción entre <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> en el modelo de regresión, y sólo utilizamos c − 1 de las posibles variables indicadoras de las categorías de la variable <span class="math inline">\(X_2\)</span>, es decir postulamos el modelo:</p>
-<p><span class="math display">\[\large Y=\beta_0 +\beta_1 I_1+\beta_3I_2+\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+\varepsilon\]</span></p>
-<p>Observe que la ecuación anterior define c rectas de regresión simple de Y vs <span class="math inline">\(X_1\)</span>, una en cada categoría de la variable cualitativa X2, así: - Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon\]</span> - Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon\]</span> ###caso 2 Intercepto aleatorio El modelo a considerar está dado por:</p>
-<p><span class="math display">\[\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ... \varepsilon\]</span> donde el efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta es el mismo sin importar la categoría en que sea observada <span class="math inline">\(X_2\)</span>, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,</p>
+<p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta <span class="math inline">\(Y\)</span> cambia según la categoría en que <span class="math inline">\(X_2\)</span> sea observada, para lo cual es necesario considerar la interacción entre <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> en el modelo de regresión, y sólo utilizamos c−1 de las posibles variables indicadoras de las categorías de la variable <span class="math inline">\(X_2\)</span>, quedando el modelo:</p>
+<p><span class="math display">\[\large y=\beta_0+ \beta_1X_1+ \overbrace{\beta_2I_1+\beta_3I_2+...\beta_cI_{c-1}}^{Aporte\ variable\ cualitativa\ con\ c-1\ niveles}+\underbrace{\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+...+\beta_{1,c-1}X_1I_{c-1}}_{Efecto\ interacción}+\varepsilon_i\]</span></p>
+<p>Observe que la ecuación anterior define c rectas de regresión simple de Y vs <span class="math inline">\(X_1\)</span>, una en cada categoría de la variable cualitativa X2, así:</p>
 <ul>
-<li><p>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon\]</span></p></li>
-<li><p>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon\]</span> ## Ejemplo:</p></li>
+<li>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon\]</span></li>
+<li>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon\]</span></li>
+<li>Finalmente, si <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, necesariamente, la indicadora <span class="math inline">\(I_c\)</span> no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente cero, obtenemos la recta de regresión de Y vs. <span class="math inline">\(X_1\)</span>, en la categoría c de la variable categórica X2, de la forma: <span class="math display">\[\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i\]</span></li>
 </ul>
+</div>
+<div id="caso-2-intercepto-aleatorio" class="section level3">
+<h3>caso 2 Intercepto aleatorio</h3>
+<p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta Y es el mismo en todas las categorías de <span class="math inline">\(X_2\)</span> pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:</p>
+<p><span class="math display">\[\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ...\beta_cI_{c−1}+\varepsilon_i\]</span> donde el efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta es el mismo sin importar la categoría en que sea observada <span class="math inline">\(X_2\)</span>, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,</p>
+<ul>
+<li><p>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon_i\]</span></p></li>
+<li>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon\]</span></li>
+<li><p>Cuando <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, es decir, <span class="math inline">\(I_c\)</span> = 1, tenemos</p></li>
+</ul>
+<p><span class="math display">\[\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i\]</span></p>
+</div>
+</div>
+<div id="ejemplo-modelo-de-regresion-de-intercepto-aleatorio-conservando-la-misma-pendiente" class="section level2">
+<h2>Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:</h2>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>
 head (Orange)
@@ -850,7 +922,7 @@ head (Orange)
 #&gt; 6    1 1372           142</code></pre>
 <p>El diagrama de dispersión simple es:</p>
 <pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>El modelo de regresión lineal simple corresponde a:</p>
 <pre class="r"><code>
 model=lm(Orange$circumference~Orange$age)
@@ -874,7 +946,7 @@ summary(model)
 #&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 #&gt; F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>La ecuación del modelo de regresión general es:</p>
-<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la circunferenciua del</p>
+<p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span> Donde <span class="math inline">\(y_i\)</span> es la varaible respuesta <span class="math inline">\(x_i\)</span> es la edad del árbol, por cada unidad que aumente en edad el árbol, el diametro de la circunferencia aumenta 0.1.</p>
 <p>La linea de regresión ajustada corresponde a</p>
 <pre class="r"><code>
 model=lm(Orange$circumference~Orange$age)
@@ -885,16 +957,20 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-</div>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
 <h2>Significado de la pendiente y el intercepto</h2>
 <p>El intercepto es la respuesta media observada en el crecimiento de los arboles.</p>
 <p>La péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades</p>
 <p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
-<pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
+abline(a=17.4,b=0.1,col=1,lwd=3)
+abline(a=57.33,b=0.1,col=2,lwd=3)
+abline(a=19.92,b=0.1,col=3,lwd=3)
+abline(a=9.14,b=0.1,col=4,lwd=3)
+abline(a=12.71,b=0.1,col=5,lwd=3)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 summary(model)
@@ -929,7 +1005,9 @@ summary(model)
 <p>Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
 <p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span></p>
 <p>Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
-<p>Con base en la tabla ANOVA, y bajo los supuestosde los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera: <span class="math inline">\(H_0= \beta_1=\beta_2=...\beta_k\)</span> El modelo de regresión no es significativo. $H_1=Algún _k =0 $Existe una relación de regresión significativa con al menos una de las variables.</p>
+<p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:</p>
+<p><span class="math inline">\(H_0= \beta_1=\beta_2=...\beta_k\)</span> El modelo de regresión no es significativo.</p>
+<p><span class="math inline">\(H_1=Algún\ \beta_k \not=0\)</span> Existe una relación de regresión significativa con al menos una de las variables.</p>
 <p>Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 anova(model)
@@ -942,15 +1020,8 @@ anova(model)
 #&gt; Residuals              29   6754     233                      
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="procedimientos-de-reduccion-de-variables-mediante-seleccion-automatica" class="section level2">
-<h2><strong>Procedimientos de reducción de variables mediante selección automática</strong></h2>
-<p>Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:</p>
-<ul>
-<li><p><strong>Forward o selección hacia delante</strong> Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.</p></li>
-<li><p><strong>Backward o selección hacia atrás</strong> El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.</p></li>
-<li><p><strong>Stepwise, una combinación de los dos anteriores</strong> La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.</p></li>
-</ul>
+<div id="otro-ejemplo-considerando-pendiente-e-intercepto-diferentes" class="section level3">
+<h3>Otro ejemplo Considerando pendiente e intercepto diferentes</h3>
 <pre class="r"><code>
 Seccion=c(rep(&quot;A&quot;,5),rep(&quot;B&quot;,5),rep(&quot;C&quot;,5))
 Publicidad=c(5.2,5.9,7.7,7.9,9.4,8.2,9,9.1,10.5,10.5,10,10.3,12.1,12.7,13.6)
@@ -964,13 +1035,10 @@ attach(datos)
 #&gt; The following objects are masked _by_ .GlobalEnv:
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 3):
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
-legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<pre class="r"><code>
+legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)
+
+
 #USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
 
 ###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
@@ -1021,8 +1089,19 @@ anova(modelo1)
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 
+#recta para la sección a
+abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 
-###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
+# Recta para la sección b
+abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
+
+#Recta para la sección c
+abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="modelo-con-rectas-diferentes-solo-en-el-intercepto" class="section level3">
+<h3>MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO</h3>
+<pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
 summary(modelo2)
 #&gt; 
@@ -1060,7 +1139,12 @@ confint(modelo2)
 #&gt; (Intercept)  2.4316194 6.4557425
 #&gt; Publicidad   0.6972616 1.2296965
 #&gt; SeccionB    -1.5894689 0.4730825
-#&gt; SeccionC     2.7767893 5.7133597</code></pre>
+#&gt; SeccionC     2.7767893 5.7133597
+
+plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
 </div>
 </div>
 
