@@ -1008,22 +1008,27 @@ legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),p
 <div id="comparacion-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad" class="section level3">
 <h3><strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></h3>
 <p>Considere el MRLM</p>
-<p><span class="math display">\[Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
+<p><span class="math display">\[\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
 <p>Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
 <p>Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.</p>
 <p><strong>Escalonamiento normal unitario</strong></p>
 <p>Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:</p>
-<p><span class="math display">\[Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
-<p><span class="math display">\[X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
-<p>Ajustamos el modelo de regresión sin intercepto <span class="math display">\[ Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i \]</span> Los coeficientes de regresión estandarizados <span class="math inline">\(\beta_j^*\)</span> pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de <span class="math inline">\(X_J\)</span> dado que las demás variables explicatorias están en el modelo, además, los <span class="math inline">\(\beta_j\)</span> pueden servir para determinar la importancia relativa de <span class="math inline">\(X_j\)</span> en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.</p>
+<p><span class="math display">\[\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
+<p><span class="math display">\[\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
+<p>Ajustamos el modelo de regresión sin intercepto <span class="math display">\[\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i \]</span> Los coeficientes de regresión estandarizados <span class="math inline">\(\beta_j^*\)</span> pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de <span class="math inline">\(X_J\)</span> dado que las demás variables explicatorias están en el modelo, además, los <span class="math inline">\(\beta_j\)</span> pueden servir para determinar la importancia relativa de <span class="math inline">\(X_j\)</span> en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.</p>
 <p>NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.</p>
 <p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.</p>
 <p>Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.</p>
 </div>
 </div>
-<div id="ejemplo-1" class="section level2">
-<h2>Ejemplo</h2>
-<p>Retomando el ejemplo de los arboles</p>
+<div id="ejemplo-retomando-el-ejemplo-de-los-arboles" class="section level2">
+<h2>Ejemplo retomando el ejemplo de los arboles</h2>
+<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
+<p>HT = altura en pies</p>
+<p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>
+<p>D16 = diámetro del tronco a 16 pies de altura (en pulgadas)</p>
+<p>VOL = volumen de madera obtenida (en pies cúbicos).</p>
+<p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras</p>
 <pre class="r"><code>
 library(car)
 library(rgl)
@@ -1085,6 +1090,7 @@ miscoeficientes(m1,bosque)
 #&gt; D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
 #&gt; HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
 #&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
+<p>Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera.</p>
 </div>
 </div>
 
