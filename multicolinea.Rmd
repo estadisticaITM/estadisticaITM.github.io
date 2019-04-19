@@ -1,0 +1,81 @@
+---
+title: "Untitled"
+
+---
+
+
+
+
+###**COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD**
+
+Considere el MRLM 
+
+$$Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i$$
+
+Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de $\beta_j$􀟚􀯝 refleja las unidades de la variable $X_j$.
+
+Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.
+
+**Escalonamiento normal unitario**
+  
+  Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
+  
+  $$Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
+  
+  
+  
+  $$X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
+  
+Ajustamos el modelo de regresión sin intercepto
+$$ Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
+Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
+
+NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.
+
+DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.
+
+Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.
+
+
+##Ejemplo
+
+Retomando el ejemplo de los arboles
+
+```{r}
+
+library(car)
+library(rgl)
+library(perturb)
+library(leaps)
+library(scatterplot3d)
+
+
+DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+
+D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+
+HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+
+VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+
+bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+
+##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
+miscoeficientes=function(modeloreg,datosreg){
+  coefi=coef(modeloreg)
+  datos2=as.data.frame(scale(datosreg))
+  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
+  limites=confint(modeloreg,level=0.95)
+  vifs=c(0,vif(modeloreg))
+  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
+  cat("Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados","\n")
+  resul
+}
+
+
+m1=lm(VOL~D16+HT+DBH)
+
+summary(m1)
+miscoeficientes(m1,bosque)
+
+```

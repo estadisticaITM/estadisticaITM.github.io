@@ -1,0 +1,239 @@
+---
+title: "Trabajo Regresión Lineal"
+
+---
+
+Fecha de entrega: 29 de Abril
+
+El trabajo tiene tres partes: 
+
+1. La primera parte es común para todos los grupos, 
+2. una segunda parte para cada grupo, de acuerdo asignación y 
+3. Conclusiones del trabajo.
+
+Los valores son 60%, 30% y 10%, respectivamente.
+
+El reporte se elabora en un formato Word, tipo artículo (según formato suministrado en archivo Word), con énfasis en la sustentación de los resultados. No se anexan programas R.
+
+Hojas tamaño carta y formato tipo artículo: resumen, introducción, resultados, conclusión, referencias. Tablas y gráficos numerados con títulos, siguiendo el formato Word suministrado. No se admite la inclusión de los resultados del R tal cual los produce el paquete, estos deben ser debidamente editados colocándolos en tablas, como se muestra en la plantilla de Word. En lo posible, todas las figuras del mismo tamaño de modo que sea clara la información y la escala grafica pero sin exagerar el tamaño al punto de ocupar media página con una sola figura.
+
+**Descripción de la base de datos**
+
+La base de datos adjunta en archivo APC1modif.txt proporciona datos recolectados de un estudio sobre la eficacia del control de infecciones nosocomiales, cuyo objetivo principal fue determinar si los programas de vigilancia y control de infecciones han reducido las tasas de infección nosocomial adquiridas en los hospitales de Estados Unidos. Estos datos consisten de una muestra aleatoria de 113 hospitales seleccionados de los 338 hospitales originales investigados. Cada renglón del conjunto de datos tiene un número de identificación y proporciona información sobre otras 11 variables para un hospital. Los datos presentados corresponden al periodo de estudio 1975-76. Las 12 variables son descritas en la siguiente tabla.
+
+|Código de variable	|Nombre de la variable	    |Descripción|
+|-------------------|---------------------------|-----------|
+|ID	    | Número de identificación del registro	|1-113|
+|DPERM	|Longitud de permanencia                |Longitud promedio de permanencia de todos los pacientes en el hospital (en días)|
+|EDAD	  |Edad	                                  |Edad promedio de los pacientes (en años)|
+|RINF	  |Riesgo de infección	                  |Probabilidad promedio estimada de adquirir infección en el hospital (en porcentaje).
+|RRC	  |Razón de rutina de cultivos	          |Razón del número de cultivos desarrollados al número de pacientes sin signos o síntomas de infección adquirida en el hospital, por 100|
+|RRX	  |Razón de rutina de rayos X del pecho	  |Razón del número de rayos X llevados a cabo al número de pacientes sin signos o síntomas de neumonía, por 100|
+|NCAMAS	|Número de camas	|Número promedio de camas en el hospital durante el periodo de estudio|
+|AEM	  |Afiliación a escuela de medicina	      |1=SI, 2=NO|
+|REGION	|Región geográfica                    	|Donde 1=NE, 2=NC, 3=S, 4=W.|
+|PDP	  |Censo promedio diario	                |Número promedio de pacientes en el hospital por día durante el periodo de estudio|
+|FSD	  |Facilidades y servicios disponibles	  |Porcentaje de 35 facilidades potenciales y servicios que son proporcionados por el hospital.|
+
+
+
+#Parte I 
+
+Considere como variable respuesta DPERM y como predictoras todas las demás variables dadas, excepto ID, AEM y REGION.
+Para realizar esta parte del trabajo es necesario que retome los códigos vistos en los ejemplos
+
+1.	Haga la respectiva matriz de dispersión para el conjunto de variables a considerar, analice las relaciones que puedan existir entre la variable respuesta y las predictoras, y entre predictoras.
+
+2.	Ajuste un modelo de regresión lineal múltiple, muestre la tabla de parámetros ajustados y escriba la ecuación ajustada. 
+
+Calcule la Anova del modelo ¿Es significativo el modelo? escriba la hipótesis a probar
+
+¿Qué proporción de la variabilidad total de la respuesta es explicada por el modelo (R2)? Opine sobre esto último.
+
+3.	Calcule los coeficientes de regresión estandarizados y concluya acerca de cuál de las variables aporta más a la respuesta según la magnitud en valor absoluto de tales coeficientes (cuidado, no confunda esto con la significancia de los coeficientes de regresión).
+
+
+4.	Pruebe la significancia individual de cada uno de los parámetros del modelo (excepto intercepto), usando la prueba t, y para dos cualesquiera de las predictoras, usando la prueba F con sumas de cuadrados extras con test lineal general; en cada caso, especifique claramente el modelo reducido y completo, estadístico de la prueba, su distribución, cálculo de valor P, decisión y conclusión a la luz de los datos.
+
+5.	Calcule las sumas de cuadrados tipo I (secuenciales) y tipo II (parciales) ¿Cuál de las  variables tienen menor valor en tales sumas? ¿Qué puede significar ello?
+
+6.	Construya y analice gráficos de los residuales estudentizados vs. Valores ajustados y contra las variables de regresión utilizadas. ¿Qué información proporcionan estas graficas?
+
+7.	Construya una gráfica de probabilidad normal para los residuales estudentizados. ¿Existen razones para dudar de la hipótesis de normalidad sobre los errores en este modelo?
+
+8.	Diagnostique la presencia de observaciones atípicas, de balanceo y/o influenciales. Recuerde que cada unidad de observación  es una institución hospitalaria. En particular, ¿las observaciones 47 y 112 se diferencian del resto? Ajuste el modelo de regresión sin estas dos observaciones, presente solo la tabla de parámetros ajustados resultante ¿Cambian notoriamente las estimaciones de los parámetros, sus errores estándar y/o la significancia? ¿Que concluye al respecto? Evalúe el grafico de normalidad para los residuales estudentizados para este ajuste ¿mejor ´o la normalidad? Concluya sobre los efectos de este par de observaciones.
+
+9.	Para el modelo con todas las variables, realice diagnósticos de multicolinealidad mediante
+
+a) Matriz de correlación de las variables predictoras
+b) VIF’s
+c) Proporciones de varianza
+
+10.	En el modelo ajustado sin las observaciones 47 y 112, construya modelos de regresión utilizando los métodos de selección (muestre de cada método sólo la tabla de resumen de este y la tabla ANOVA y la de parámetros estimados del modelo finalmente resultante):
+
+11.	 Con base en los anteriores numerales, ¿Cual modelo sugiere para la variable respuesta? ¿por qué?
+
+
+
+# Parte II (TEMA A)
+Sin considerar las observaciones 47 y 112 de la base de datos original, y usando variables indicadoras R1, R2, R3 para las regiones 1, 2 y 3 respectivamente, suponga inicialmente que las rectas de regresión de DPERM VS. RINF en cada región no son iguales (que difieren tanto en intercepto como en las pendientes) realice lo siguiente:
+
+1.	Plantee el modelo de regresión apropiado si se espera una diferencia entre las rectas de DPERM VS. RINF que corresponden a las cuatro regiones. 
+
+2.  Ajuste el modelo general (muestre la tabla de parámetros estimados) y halle las ecuaciones ajustadas de las rectas en cada región.
+
+3.	Realice el grafico de dispersión con las líneas rectas estimadas
+
+4.	Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RINF). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.
+
+5.	Determine si existe diferencia entre las ordenadas en el origen de las rectas correspondientes a las regiones.
+
+6.	Determine si existe diferencia en las pendientes de las rectas correspondientes a las regiones. Interprete a la luz de los datos.
+
+7.	Si se quiere probar que la recta de DPERM vs. RINF es diferente para cada REGION, plantee la hipótesis a probar, el estadístico de prueba y región crítica al nivel de 0.05, realice la prueba y concluya.
+
+Ayuda R para la Parte II 
+(complete la programación, donde sea necesario).
+
+```{r eval=FALSE}
+library(car)
+library(perturb)
+library(leaps)
+
+
+
+#LEER DATOS EN APC1modif.TXT
+#datos=read.table(file.choose(),header=T)
+#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
+names(datos)
+#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
+datos3=datos[-c(47,112),]
+attach(datos3)
+
+###REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
+#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
+#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
+REGION=as.factor(REGION)
+REGION=relevel(REGION,ref="4")
+#AJUSTANDO MODELO GENERAL
+modeloRINF=lm(DPERM~RINF*REGION)
+summary(modeloRINF)
+
+#REALIZACI´ON DEL TEST LINEAL GENERAL PEDIDO EN 7.
+library(car)
+names(coef(modeloRINF)) 
+
+#Observe nombre de los términos en modeloRINF a ser
+#usados en la especificación del test lineal
+linearHypothesis(modeloRINF,c("REGION2=REGION3","RINF:REGION2=RINF:REGION3"))
+
+
+```
+
+
+
+
+# Parte II (TEMA B)
+
+Sin considerar las observaciones 47 y 112 de la base de datos original, y usando variables indicadoras R1, R2, R3 para las regiones 1, 2 y 3 respectivamente, suponga inicialmente que las rectas de regresión de DPERM VS. PDP en cada región no son iguales (que difieren tanto en intercepto como en las pendientes) realice lo siguiente:
+
+1.	Plantee el modelo de regresion apropiado si se espera una diferencia entre las rectas de DPERM VS. PDP que corresponden a las cuatro regiones.
+
+2.	Ajuste el modelo general (muestre la tabla de parámetros estimados) y halle las ecuaciones ajustadas de las rectas en cada región.
+
+3.	Realice el grafico de dispersión con las líneas rectas estimadas 
+
+4.	Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RINF). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.
+
+5.	Determine si existe diferencia entre las ordenadas en el origen de las rectas correspondientes a las regiones.
+
+6.	Determine si existe diferencia en las pendientes de las rectas correspondientes a las regiones. Interprete a la luz de los datos.
+
+7. Si se quiere probar que la recta de DPERM vs. PDP es diferente para cada REGION, plantee la hipótesis a probar, el estadístico de prueba y región crítica al nivel de 0.05, realice la prueba y concluya.
+
+
+
+
+```{r eval=FALSE}
+
+
+#LEER DATOS EN APC1modif.TXT
+datos=read.table(file.choose(),header=T)
+#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
+names(datos)
+#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
+datos3=datos[-c(47,112),]
+attach(datos3)
+#REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
+#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
+#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
+REGION=as.factor(REGION)
+REGION=relevel(REGION,ref="4")
+modeloPDP=lm(DPERM~PDP*REGION)
+summary(modeloPDP)
+
+#REALIZACI´ON DEL TEST LINEAL GENERAL PEDIDO EN 7.
+names(coef(modeloPDP)) 
+#Observe nombre de los t´erminos en modeloPDP a ser
+
+#usados en la especificacion del test lineal
+library(car)
+linearHypothesis(modeloPDP,c("PDP:REGION1=0","PDP:REGION2=0","PDP:REGION3=0"))
+
+
+
+```
+
+
+
+# Parte II (TEMA C)
+Sin considerar las observaciones 47 y 112 de la base de datos original, y usando variables indicadoras R1, R2, R3 para las regiones 1, 2 y 3 respectivamente, suponga inicialmente que las rectas de regresión de DPERM VS. RRX en cada región no son iguales (que difieren tanto
+en intercepto como en las pendientes) realice lo siguiente:
+
+1.	Plantee el modelo de regresion apropiado si se espera una diferencia entre las rectas de DPERM VS. RRX que corresponden a las cuatro regiones.
+
+2.	Ajuste el modelo general (muestre la tabla de parámetros estimados) y halle las ecuaciones ajustadas de las rectas en cada región.
+
+3.	Realice el grafico de dispersión con las líneas rectas estimadas
+
+4.	Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RRX). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.
+
+5.	Determine si existe diferencia entre las ordenadas en el origen de las rectas correspondientes a las regiones.
+
+6.	Determine si existe diferencia en las pendientes de las rectas correspondientes a las regiones. Interprete a la luz de los datos.
+
+7.	Si se quiere probar que la recta de DPERM vs. RRX es diferente para cada REGION, plantee la hipótesis a probar, el estadístico de prueba y región crítica al nivel de 0.05, realice la prueba y concluya.
+
+
+
+```{r eval=FALSE}
+library(car)
+library(perturb)
+library(leaps)
+
+#LEER DATOS EN APC1modif.TXT
+datos=read.table(file.choose(),header=T)
+#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
+names(datos)
+#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
+datos3=datos[-c(47,112),]
+attach(datos3)
+#REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
+#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
+#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
+REGION=as.factor(REGION)
+REGION=relevel(REGION,ref="4")
+modeloRRX=lm(DPERM~RRX*REGION)
+summary(modeloRRX)
+
+#REALIZACION DEL TEST LINEAL GENERAL PEDIDO EN 7.
+names(coef(modeloRRX)) #Observe nombre de los t´erminos en modeloRRX
+library(car)
+linearHypothesis(modeloRRX,c("RRX:REGION2=0","RRX:REGION3=0"))
+
+```
+
+
+
+
+
