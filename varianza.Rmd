@@ -62,17 +62,26 @@ grid.raster(img2)
 
 Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:
 
+
+
 - Objetivos específicos del experimento.
 
-- Identificación de los factores que influyen y cuáles de ellos varían y cuáles permanecen constantes.
+- ¿Cuáles variables respuesta se van a medir?
 
-- Variables a medir.
+- Qué factores influyen, cuáles de ellos varían y cuáles permanecen constantes.
+
+- ¿Cuáles factores serán controlables en el experimento?
+
+- ¿Qué niveles debe usarse de cada factor?
 
 - Procedimientos particulares para realizar las pruebas o medir las características.
 
-- Número de repeticiones del experimento básico a realizar.
+- Número de repeticiones del experimento.
 
 - Recursos y materiales disponibles.
+
+
+
 
 
 Las preguntas que centran nuestra atención a través del proceso de diseño incluyen:
@@ -83,12 +92,21 @@ Las preguntas que centran nuestra atención a través del proceso de diseño inc
 
 - ¿Por qué quiero saberlo?
 
-
-Además, existen preguntas de seguimiento productivo para cada actividad en el proceso, tales como:
-
 - ¿Cómo voy a realizar el experimento? 
 
 - ¿Por que hago el experimento?
+
+
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img3 <- readPNG("proceso.png")
+grid.raster(img3)
+```
+
+
+
 
 **Consideraciones prácticas**
 
@@ -96,7 +114,7 @@ Las metodologías estadísticas por sí solas no garantizan investigaciones exit
 
 - El conocimiento no estadístico es vital: Se requiere buen conocimiento técnico y práctico del proceso.
 
-- Reconocer la diferncia entre significancia estadística e importancia práctica: diferencias estadísticas no siempre corresponden a diferencias prácticas de importancia.
+- Reconocer la diferencia entre significancia estadística e importancia práctica: diferencias estadísticas no siempre corresponden a diferencias prácticas de importancia.
 
 - Preferir la experimentación secuencial que un experimento único y definitivo: La experimentación secuencial alcanza paulatinamente mayor precisión en los conocimientos y soluciones. Seguir una estrategia bien definida y pensada. 
 
@@ -104,135 +122,30 @@ Las metodologías estadísticas por sí solas no garantizan investigaciones exit
 
 ###Definiciones del diseño experimental
 
-1. **Experimento**
+**Experimento**
 
 Cambio deliberado en las condiciones de operación de un proceso, con el fin de medir el efecto sobre una o varias propiedades del producto.
 
 
-2. **Tratamiento**
+**Tratamiento**
 
 Conjunto de circunstancias creadas para el experimento, en respuesta a la hipótesis de investigación.
 Entre los ejemplos de tratamientos se encuentran dietas de animales, producción de variedades de cultivos,temperaturas, tipos de suelo y cantidades de nutrientes.
 
 En un estudio comparativo se usan dos o más tratamientos y se comparan sus efectos en el sujeto de estudio.
 
-3. **Unidad experimental**
+**Unidad experimental**
 
-Objetos u individuos básicos sobre los cuales se obtiene una medición o datos representativo:
-· Una pieza: En el estudio de la resistencia a la tracción de cierta componente
-· Un lote o grupo de piezas: En el estudio de la proporción de defectuosos en una operación
+Objeto o sujeto básico expuesto al tratamiento, sobre el cual se obtiene una medición o dato representativo
 
-La unidad experimental es la entidad física o el sujeto expuesto al tratamiento. La unidad experimental, una vez expuesta al tratamiento,constituye una sola réplica del tratamiento.
+- Una pieza: En el estudio de la resistencia a la tracción de cierta componente
 
-4. **Error experimental**
+- Un lote o grupo de piezas: En el estudio de la proporción de defectuosos en una operación
 
-Describe la variación entre las unidades experimentales tratadas de manera idéntica e independiente. Los distintos orígenes del error experimental son:
-
-- La variación natural entre unidades experimentales.
-- La variabilidad en la medición de la respuesta.
-- La imposibilidad de reproducir las condiciones del tratamiento con exactitud de una unidad a otra.
-- La interacción de los tratamientos con las unidades experimentales.
-- Cualquier otro factor externo que influya en las características medidas.
-
-**Ejemplo**
-
-La imposibilidad de reproducir el tratamiento con exactitud se da cuando las réplicas de los tubos de ensayo se preparan de modo independiente, con la misma mezcla de compuestos, y el peso de los productos químicos obtenidos en cada tubo difiere en 0.1 microgramo (pg). Los procesos en pipetas o básculas no son exactos, por lo tanto, introducen una pequeña variación durante la preparación del tratamiento.
-
-```{r fig.asp=0.6, fig.align='center', echo=FALSE}
-library(png)
-library(grid)
-img5 <- readPNG("exp3.png")
-grid.raster(img5)
-```
+La unidad experimental expuesta al tratamiento, constituye una réplica del tratamiento.
 
 
-Un importante objetivo de los cálculos estadísticos es lograr una estimación de la varianza del error experimental. En su forma más simple, el error experimental es la varianza en unidades de las observaciones del experimento, cuando las diferencias entre éstas se pueden atribuir sólo al error experimental.
-
-5. **Estudios por observaciones comparativas**
-
-Son aquellos para los que desearíamos hacer un experimento, pero no es posible por razones económicas, prácticas o éticas.
-
-El investigador tiene en mente condiciones o tratamientos que tienen efectos causales en sujetos para los que no es posible efectuar experimentos hasta obtener respuestas. Los investigadores de las ciencias sociales, ecología, vida silvestre, vida marina y otros  recursos naturales, a menudo han de llevar a cabo estudios por observación en vez de la experimentación directa.
-
-**Ejemplo**
-Considerando un estudio para comparar la severidad de las lesiones por accidentes automovilísticos con y sin el cinturón de seguridad puesto; sería clara la falta de ética si se asignara al azar un tratamiento de personas con cinturón y sin cinturón y después se provocaran colisiones de los autos contra una pared de concreto, tampoco habría quién se prestara para esto. En su lugar, los investigadores se apoyan en los datos de lesiones en los accidentes y comparan los datos de cinturón puesto y sin cinturón.
-
-
-```{r fig.asp=0.4, fig.align='center', echo=FALSE}
-library(png)
-library(grid)
-img6 <- readPNG("exp4.png")
-grid.raster(img6)
-```
-
-
-
-6. **Hipótesis de investigación**
-Establece un conjunto de circunstancias y sus consecuencias.
-Los tratamientos son una creación de las circunstancias para el experimento. Así, es importante identificar los tratamientos con el papel que cada uno tiene en la evaluación
-de la hipótesis de investigación.
-
-
-7. **Relación entre los tratamientos y las hipótesis**
-
-Cuando se eligen los tratamientos adecuados en respuesta a una hipótesis de investigación, es posible comprender mejor los procesos físicos, químicos biológicos o sociales.
-
-A continuación se presentan tratamientos, usados en el marco de investigaciones reales, generados por hipótesis de investigación:
-
-- Se estudió la cinética de bebida de las abejas productoras de miel a diferentes temperaturas ambientales, para responder a la hipótesis de que la energía requerida al reunir comida para la colonia era independiente de la temperatura.
-
-
-
-```{r fig.asp=0.4, fig.align='center', echo=FALSE}
-library(png)
-library(grid)
-ab <- readPNG("abeja.png")
-grid.raster(ab)
-```
-
-
-- La supervivencia de siembras de Euphorbia (género de plantas) atacadas por un patógeno del suelo se determinó para distintos tipos de tratamientos de fungicida, en respuesta a la hipótesis de que no todos los fungicidas tienen la misma eficiencia para controlar tal patógeno.
-
-
-
-
-
-
-8. **Tratamiento control**
-
-Muchas veces se requieren tratamientos adicionales para evaluar por completo las consecuencias de la hipótesis. Una componente importante de muchos diseños de tratamiento es el tratamiento de control.
-
-El tratamiento de control es un punto necesario para evaluar el efecto de los tratamientos experimentales; existen diversas circunstancias en las que el tratamiento de control es útil y necesario. Un control al que no se da tratamiento revelará las condiciones en las que se efectuó el experimento.
-
-9. **Control local de errores experimentales**
-
-Los principales objetivos de la mayoría de los experimentos son las comparaciones claras y exactas entre tratamientos a través de un conjunto apropiado de condiciones.
-
-El control local describe las acciones que emplea un investigador para reducir o controlar el error experimental, incrementar la exactitud de las observaciones y establecer la
-base de la inferencia de un estudio.
-
-El investigador controla:
-
-- Técnica.
-- Selección de unidades experimentales
-- Bloquización o aseguramiento de la uniformidad de información en todos los tratamientos.
-- Selección del diseño experimental.
-- Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).
-
-
-
-
-10. **Replicar para obtener experimentos válidos**
-
-La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:
-
-- Permiten estimar el error experimental
-- Ejerce control sobre la varianza del error experimental
-- Mejora la precisión de un experimento mediante la reducción de la desviación estándar de una media de tratamiento
-- A mayor número de repeticiones mayor precisión
-- Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)
-
-11. **Las unidades de observación y las experimentales pueden ser claramente distintas**
+ **Las unidades de observación y las experimentales pueden ser claramente distintas**
 
 La unidad de observación puede no ser equivalente a la unidad experimental. La primera puede ser una muestra de la última, como muestras individuales de plantas de una parcela.
 
@@ -252,15 +165,186 @@ grid.raster(cer)
 ```
 
 
+**Variable respuesta** 
+Característica o propiedad medida en cada unidad, cuyos cambios se desean estudiar. 
 
-12. **Aleatorizar para tener inferencias válidas**
 
-"la sola aleatorización proporciona estimaciones válidas de la varianza del error" (Fisher, 1926) 
-La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:
+**Factores controlables** 
+Variables del proceso que se pueden fijar en un valor o nivel de operación, ya que existe el mecanismo para cambiar su nivel. También se les llama variables de entrada, condiciones de proceso, o variables de diseño.
+Ej. Temperatura, velocidad, presión, concentración, tiempo de aplicación, etc.
+
+**Factores no controlables o de ruido** 
+Variables que no se pueden controlar durante la operación normal del proceso. 
+Ej. Variables ambientales, usos de un producto por los usuarios, etc.
+
+**Factores estudiados** 
+Variables cuyos efectos sobre la respuesta se investigan en el experimento: Pueden ser posiblemente controlables o no controlables durante el experimento. Se requiere probarlos en al menos dos niveles. Los factores en principio pueden afectar la media o la variabilidad de la variable respuesta.
+
+**Niveles** 
+Valores asignados a cada factor de estudio.
+
+**Tratamiento o punto de diseño** 
+Combinación de niveles de factores
+
+
+|Niveles de factor A (A1,A2) |Niveles de factor B (B1,B2)|tratamiento|
+|----------------------------|----------------------------|----------------------------|
+|A1| B1| A1B1|
+|A1| B2| A1B2|
+|A2| B1| A2B1|
+|A2|B2 |A2B2 |
+
+**Error aleatorio** 
+
+Variabilidad observada que no se puede explicar por los factores estudiados, es debido a “causas comunes o aleatorias”, que generan la “variabilidad inherente del proceso”. Incluye efectos pequeños de factores no estudiados, variabilidad de las mediciones hechas bajo mismas condiciones.
+
+
+**Error experimental**
+
+Describe la variación entre las unidades experimentales tratadas de manera idéntica e independiente. Los distintos orígenes del error experimental son:
+
+- La variación natural entre unidades experimentales.
+
+- La variabilidad en la medición de la respuesta.
+
+- La imposibilidad de reproducir las condiciones del tratamiento con exactitud de una unidad a otra.
+
+- La interacción de los tratamientos con las unidades experimentales.
+
+- Cualquier otro factor externo que influya en las características medidas.
+
+**Ejemplo**
+
+La imposibilidad de reproducir el tratamiento con exactitud se da cuando las réplicas de los tubos de ensayo se preparan de modo independiente, con la misma mezcla de compuestos, y el peso de los productos químicos obtenidos en cada tubo difiere en 0.1 microgramo (pg). Los procesos en pipetas o básculas no son exactos, por lo tanto, introducen una pequeña variación durante la preparación del tratamiento.
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img5 <- readPNG("exp3.png")
+grid.raster(img5)
+```
+
+
+Un importante objetivo de los cálculos estadísticos es lograr una estimación de la varianza del error experimental. En su forma más simple, el error experimental es la varianza en unidades de las observaciones del experimento, cuando las diferencias entre éstas se pueden atribuir sólo al error experimental.
+
+
+**NOTA**
+No se deben dejar variar libremente a factores que pueden ser influyentes sobre la respuesta: Principio de bloqueo.
+**Ejemplo**
+Factores y variables en la fabricación de un envase plástico:
+
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img4 <- readPNG("proces.png")
+grid.raster(img4)
+```
+
+**Estudios por observaciones comparativas**
+
+Son aquellos para los que desearíamos hacer un experimento, pero no es posible por razones económicas, prácticas o éticas.
+
+El investigador tiene en mente condiciones o tratamientos que tienen efectos causales en sujetos para los que no es posible efectuar experimentos hasta obtener respuestas. Los investigadores de las ciencias sociales, ecología, vida silvestre, vida marina y otros  recursos naturales, a menudo han de llevar a cabo estudios por observación en vez de la experimentación directa.
+
+**Ejemplo**
+Considerando un estudio para comparar la severidad de las lesiones por accidentes automovilísticos con y sin el cinturón de seguridad puesto; sería clara la falta de ética si se asignara al azar un tratamiento de personas con cinturón y sin cinturón y después se provocaran colisiones de los autos contra una pared de concreto, tampoco habría quién se prestara para esto. En su lugar, los investigadores se apoyan en los datos de lesiones en los accidentes y comparan los datos de cinturón puesto y sin cinturón.
+
+
+```{r fig.asp=0.4, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+img6 <- readPNG("exp4.png")
+grid.raster(img6)
+```
+
+
+
+ **Hipótesis de investigación**
+
+Establece un conjunto de circunstancias y sus consecuencias.
+Los tratamientos son una creación de las circunstancias para el experimento. Así, es importante identificar los tratamientos con el papel que cada uno tiene en la evaluación
+de la hipótesis de investigación.
+
+
+ **Relación entre los tratamientos y las hipótesis**
+
+Cuando se eligen los tratamientos adecuados en respuesta a una hipótesis de investigación, es posible comprender mejor los procesos físicos, químicos biológicos o sociales.
+
+A continuación se presentan tratamientos, usados en el marco de investigaciones reales, generados por hipótesis de investigación:
+
+- Se estudió la cinética de bebida de las abejas productoras de miel a diferentes temperaturas ambientales, para responder a la hipótesis de que la energía requerida al reunir comida para la colonia era independiente de la temperatura.
+
+
+
+```{r fig.asp=0.4, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+ab <- readPNG("abeja.png")
+grid.raster(ab)
+```
+
+
+- La supervivencia de siembras de Euphorbia (género de plantas) atacadas por un patógeno del suelo se determinó para distintos tipos de tratamientos de fungicida, en respuesta a la hipótesis de que no todos los fungicidas tienen la misma eficiencia para controlar tal patógeno.
+
+**Tratamiento control**
+
+Muchas veces se requieren tratamientos adicionales para evaluar por completo las consecuencias de la hipótesis. Una componente importante de muchos diseños de tratamiento es el tratamiento de control.
+
+El tratamiento de control es un punto necesario para evaluar el efecto de los tratamientos experimentales; existen diversas circunstancias en las que el tratamiento de control es útil y necesario. Un control al que no se da tratamiento revelará las condiciones en las que se efectuó el experimento.
+
+ **Control local de errores experimentales**
+
+Los principales objetivos de la mayoría de los experimentos son las comparaciones claras y exactas entre tratamientos a través de un conjunto apropiado de condiciones.
+
+El control local describe las acciones que emplea un investigador para reducir o controlar el error experimental, incrementar la exactitud de las observaciones y establecer la
+base de la inferencia de un estudio.
+
+El investigador controla:
+
+- Técnica.
+- Selección de unidades experimentales
+- Bloquización o aseguramiento de la uniformidad de información en todos los tratamientos.
+- Selección del diseño experimental.
+- Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).
+
+
+# Etapas del diseño experimental
+
+Varias preguntas deben resolverse antes de la experimentación:
+
+- ¿Cuántos tratamientos van a ser estudiados?
+
+- ¿Cuántas veces observar cada tratamiento (réplicas)?
+
+- ¿Cuáles son las unidades experimentales?
+
+- ¿Cómo se aplicarán los tratamientos a las unidades experimentales disponibles y luego observar las respuestas?
+
+- ¿Puede el diseño resultante ser analizado o se pueden hacer las comparaciones deseadas?
+
+
+```{r fig.asp=0.4, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+ab1 <- readPNG("deming.png")
+grid.raster(ab1)
+```
+
+
+
+#**Principios del diseño**
+
+## **Aleatorizar para tener inferencias válidas**
+
+"la sola aleatorización proporciona estimaciones válidas de la varianza del error" (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:
 
 - La validación del error experimental
+
 - Evita sesgos.
+
 - Garantiza la independencia de los errores.
+
 
 
 ```{r fig.asp=0.4, fig.align='center', echo=FALSE}
@@ -272,8 +356,61 @@ grid.raster(da)
 
 
 
-La aleatorización puede realizarse por medio de muchos métodos algunos de los cuales se describen a continuación:
+**Bloqueo**
 
+- Mientras más parecidas sean las unidades experimentales, mejor serán las comparaciones entre los tratamientos.
+
+- En la mayoría de los experimentos es imposible seleccionar todas las unidades experimentales idénticas.
+
+- La no similaridad entre las unidades experimentales contribuye al ruido.
+
+- Los experimentos pueden ser mejorados si agrupamos las unidades experimentales dentro de grupos de unidades cercanamente similares, llamadas unidades homogéneas.
+
+- Los tratamientos pueden ser comparados sobre las unidades experimentales similares donde la variación de grupo puede ser considerada para el análisis. Los grupos de unidades similares u homogéneas son denominados bloques.
+
+**Objetivo del bloqueo** 
+Seleccionar y agrupar el material experimental de modo que el ruido o error experimental en el experimento sea reducido. Así, las unidades experimentales sobre las cuales los tratamientos van a ser comparados deberían ser tan parecidas como sea posible para que la menor diferencia significativa entre dos tratamientos pueda ser detectada.
+
+
+2.2. Control factores de bloque y de ruido - Controles posibles sobre fuentes de variación adicionales a factores de
+estudio:
+· Bloqueo activo durante el experimento, lo que implica que el factor de ruido es parte del estudio y aparece
+explícitamente. En la práctica sólo controlar factores de bloque que se saben son influyentes y económicamente
+factibles de fijar en distintos niveles: operadores, tipos de producto, lotes, turnos, tipos de material, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ **Replicar para obtener experimentos válidos**
+
+La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:
+
+- Permiten estimar el error experimental
+- Ejerce control sobre la varianza del error experimental
+- Mejora la precisión de un experimento mediante la reducción de la desviación estándar de una media de tratamiento
+- A mayor número de repeticiones mayor precisión
+- Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)
+
+
+
+13. 
 
 
 ### Diseño Completamente al Azar (DCA)
