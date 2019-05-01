@@ -335,7 +335,7 @@ grid.raster(ab1)
 
 #**Principios del diseño**
 
-## **Aleatorizar para tener inferencias válidas**
+## ** 1. Aleatorizar para tener inferencias válidas**
 
 "la sola aleatorización proporciona estimaciones válidas de la varianza del error" (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:
 
@@ -356,7 +356,7 @@ grid.raster(da)
 
 
 
-**Bloqueo**
+##**2. Bloqueo**
 
 - Mientras más parecidas sean las unidades experimentales, mejor serán las comparaciones entre los tratamientos.
 
@@ -378,7 +378,6 @@ Controles posibles sobre fuentes de variación adicionales a factores de estudio
 
 - Bloqueo activo durante el experimento, lo que implica que el factor de ruido es parte del estudio y aparece explícitamente. En la práctica sólo controlar factores de bloque que se saben son influyentes y económicamente factibles de fijar en distintos niveles: operadores, tipos de producto, lotes, turnos, tipos de material, etc.
 
-
 - Nulificar los efectos al mantenerlos fijos en valor usual durante estudio: Resultados son válidos sólo para nivel seleccionado.
 
 - Aplicar aleatorización para nulificar efecto indeseable de factores de ruido: Posible efecto es repartido “equitativamente” en todos los tratamientos, y no se puede medir tal efecto posible. E.j. Variables ambientales, cansancio operadores, calentamiento equipo, variables que en general se mueven solas con el tiempo.
@@ -386,21 +385,7 @@ Controles posibles sobre fuentes de variación adicionales a factores de estudio
 
 
 
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
- **Replicar para obtener experimentos válidos**
+## **3. Replicar para obtener experimentos válidos**
 
 La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:
 
@@ -411,8 +396,70 @@ La réplica implica una repetición independiente del experimento básico, cada 
 - Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)
 
 
+#**ANALISIS DE VARIANZA ANOVA**
 
-13. 
+- Herramienta estadística para estudiar la relación entre una variable respuesta y una o más variables explicatorias.
+
+- No requiere ningún supuesto acerca de la relación estadística entre la variable respuesta y las predictoras.
+
+- No requiere que las variables predictoras sean cuantitativas.
+
+#MODELO LINEAL DE LA VARIABLE RESPUESTA
+
+- Cada respuesta medible, está representada matemáticamente en un modelo lineal.
+
+- La idea general de un modelo es expresar las observaciones generalmente denotadas por Y, en términos de “efectos” que contribuyen a Y.
+
+Esos efectos se pueden clasificar en tres categorías:
+
+## Efectos de Tratamiento:
+son un reflejo del efecto de diseño como también de los tratamientos simples o combinaciones
+de factores.
+
+## Efectos de Diseño
+son determinados por el diseño de control de error, en particular, efectos debidos a las varias clases de bloqueo.
+
+##  Efectos de Error.
+Representan diferentes clases de variación aleatoria. Estos son: el error experimental y El error observacional.
+
+
+# Estructura de un diseño experimental
+
+El diseño experimental comprende:
+
+- Elección de la estructura de tratamiento
+
+- Elección de la estructura de diseño y el método de aleatorización
+
+
+## ESTRUCTURA DE TRATAMIENTOS
+
+Conjunto de tratamientos que el experimentador ha seleccionado para estudiar y/o comparar.
+
+- Estructura de tratamiento de un sólo factor.
+- Estructura de tratamientos factoriales (dos o más factores)
+- Estructura de tratamientos $2^k$ y estructura de tratamientos factoriales fraccionados
+
+
+##ESTRUCTURA DE DISEÑO
+
+Agrupamiento de las unidades experimentales dentro de grupos homogéneos o bloques:
+
+- Diseño completamente aleatorizado
+- Diseño bloqueado:
+            - De bloques completos aleatorizados: Cuadrados latinos y grecolatinos
+            - De bloques incompletos
+
+A manera de resumen las estructuras del diseño son
+
+
+|Diseño                            | Factores de bloque |Técnicas estadísticas                      |Modelo estadístico|
+|----------------------------------|--------------------|-------------------------------------------|-----------------------------------------------------------|
+|Completamente aleatorizado        |0                   |ANOVA con un solo criterio de clasificación|$\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$               |
+|Bloques completamente aleatorizado|1                   |ANOVA con dos criterios de clasificación   |$\large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$       |
+|Cuadrado latino                   |2                   |ANOVA con tres criterios de clasificación  |$\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k +\varepsilon_{ijk}$|
+|Cuadrado greco latino             |3                   |ANOVA con cuatro criterios de clasificación|$\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k+\delta_l +\varepsilon_{ijkl}$|
+
 
 
 ### Diseño Completamente al Azar (DCA)

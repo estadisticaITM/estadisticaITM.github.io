@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -528,7 +431,7 @@ $(document).ready(function () {
 <div id="principios-del-diseno" class="section level1">
 <h1><strong>Principios del diseño</strong></h1>
 <div id="aleatorizar-para-tener-inferencias-validas" class="section level2">
-<h2><strong>Aleatorizar para tener inferencias válidas</strong></h2>
+<h2>** 1. Aleatorizar para tener inferencias válidas**</h2>
 <p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
 <ul>
 <li><p>La validación del error experimental</p></li>
@@ -536,7 +439,9 @@ $(document).ready(function () {
 <li><p>Garantiza la independencia de los errores.</p></li>
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Bloqueo</strong></p>
+</div>
+<div id="bloqueo" class="section level2">
+<h2><strong>2. Bloqueo</strong></h2>
 <ul>
 <li><p>Mientras más parecidas sean las unidades experimentales, mejor serán las comparaciones entre los tratamientos.</p></li>
 <li><p>En la mayoría de los experimentos es imposible seleccionar todas las unidades experimentales idénticas.</p></li>
@@ -552,7 +457,9 @@ $(document).ready(function () {
 <li><p>Nulificar los efectos al mantenerlos fijos en valor usual durante estudio: Resultados son válidos sólo para nivel seleccionado.</p></li>
 <li><p>Aplicar aleatorización para nulificar efecto indeseable de factores de ruido: Posible efecto es repartido “equitativamente” en todos los tratamientos, y no se puede medir tal efecto posible. E.j. Variables ambientales, cansancio operadores, calentamiento equipo, variables que en general se mueven solas con el tiempo.</p></li>
 </ul>
-<p><strong>Replicar para obtener experimentos válidos</strong></p>
+</div>
+<div id="replicar-para-obtener-experimentos-validos" class="section level2">
+<h2><strong>3. Replicar para obtener experimentos válidos</strong></h2>
 <p>La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:</p>
 <ul>
 <li>Permiten estimar el error experimental</li>
@@ -561,9 +468,102 @@ $(document).ready(function () {
 <li>A mayor número de repeticiones mayor precisión</li>
 <li>Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)</li>
 </ul>
-<ol start="13" style="list-style-type: decimal">
-<li></li>
-</ol>
+</div>
+</div>
+<div id="analisis-de-varianza-anova" class="section level1">
+<h1><strong>ANALISIS DE VARIANZA ANOVA</strong></h1>
+<ul>
+<li><p>Herramienta estadística para estudiar la relación entre una variable respuesta y una o más variables explicatorias.</p></li>
+<li><p>No requiere ningún supuesto acerca de la relación estadística entre la variable respuesta y las predictoras.</p></li>
+<li><p>No requiere que las variables predictoras sean cuantitativas.</p></li>
+</ul>
+</div>
+<div id="modelo-lineal-de-la-variable-respuesta" class="section level1">
+<h1>MODELO LINEAL DE LA VARIABLE RESPUESTA</h1>
+<ul>
+<li><p>Cada respuesta medible, está representada matemáticamente en un modelo lineal.</p></li>
+<li><p>La idea general de un modelo es expresar las observaciones generalmente denotadas por Y, en términos de “efectos” que contribuyen a Y.</p></li>
+</ul>
+<p>Esos efectos se pueden clasificar en tres categorías:</p>
+<div id="efectos-de-tratamiento" class="section level2">
+<h2>Efectos de Tratamiento:</h2>
+<p>son un reflejo del efecto de diseño como también de los tratamientos simples o combinaciones de factores.</p>
+</div>
+<div id="efectos-de-diseno" class="section level2">
+<h2>Efectos de Diseño</h2>
+<p>son determinados por el diseño de control de error, en particular, efectos debidos a las varias clases de bloqueo.</p>
+</div>
+<div id="efectos-de-error." class="section level2">
+<h2>Efectos de Error.</h2>
+<p>Representan diferentes clases de variación aleatoria. Estos son: el error experimental y El error observacional.</p>
+</div>
+</div>
+<div id="estructura-de-un-diseno-experimental" class="section level1">
+<h1>Estructura de un diseño experimental</h1>
+<p>El diseño experimental comprende:</p>
+<ul>
+<li><p>Elección de la estructura de tratamiento</p></li>
+<li><p>Elección de la estructura de diseño y el método de aleatorización</p></li>
+</ul>
+<div id="estructura-de-tratamientos" class="section level2">
+<h2>ESTRUCTURA DE TRATAMIENTOS</h2>
+<p>Conjunto de tratamientos que el experimentador ha seleccionado para estudiar y/o comparar.</p>
+<ul>
+<li>Estructura de tratamiento de un sólo factor.</li>
+<li>Estructura de tratamientos factoriales (dos o más factores)</li>
+<li>Estructura de tratamientos <span class="math inline">\(2^k\)</span> y estructura de tratamientos factoriales fraccionados</li>
+</ul>
+</div>
+<div id="estructura-de-diseno" class="section level2">
+<h2>ESTRUCTURA DE DISEÑO</h2>
+<p>Agrupamiento de las unidades experimentales dentro de grupos homogéneos o bloques:</p>
+<ul>
+<li>Diseño completamente aleatorizado</li>
+<li>Diseño bloqueado: - De bloques completos aleatorizados: Cuadrados latinos y grecolatinos - De bloques incompletos</li>
+</ul>
+<p>A manera de resumen las estructuras del diseño son</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="13%" />
+<col width="27%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Diseño</th>
+<th>Factores de bloque</th>
+<th>Técnicas estadísticas</th>
+<th>Modelo estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completamente aleatorizado</td>
+<td>0</td>
+<td>ANOVA con un solo criterio de clasificación</td>
+<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\)</span></td>
+</tr>
+<tr class="even">
+<td>Bloques completamente aleatorizado</td>
+<td>1</td>
+<td>ANOVA con dos criterios de clasificación</td>
+<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Cuadrado latino</td>
+<td>2</td>
+<td>ANOVA con tres criterios de clasificación</td>
+<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k +\varepsilon_{ijk}\)</span></td>
+</tr>
+<tr class="even">
+<td>Cuadrado greco latino</td>
+<td>3</td>
+<td>ANOVA con cuatro criterios de clasificación</td>
+<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k+\delta_l +\varepsilon_{ijkl}\)</span></td>
+</tr>
+</tbody>
+</table>
 <div id="diseno-completamente-al-azar-dca" class="section level3">
 <h3>Diseño Completamente al Azar (DCA)</h3>
 <p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
