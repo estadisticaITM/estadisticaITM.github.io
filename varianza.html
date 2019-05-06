@@ -281,6 +281,7 @@ $(document).ready(function () {
 </div>
 <div id="introduccion-al-analisis-de-varianza" class="section level2">
 <h2>Introducción al análisis de varianza</h2>
+<pre><code>## Warning: package &#39;png&#39; was built under R version 3.5.2</code></pre>
 <p><img src="varianza_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:</p>
 <ul>
@@ -638,7 +639,7 @@ $(document).ready(function () {
 <td>.</td>
 <td><span class="math inline">\(Y_{11}\)</span></td>
 <td><span class="math inline">\(Y_{11}\)</span></td>
-<td>…$</td>
+<td>…</td>
 <td><span class="math inline">\(Y_{11}\)</span></td>
 </tr>
 <tr class="odd">
@@ -687,20 +688,43 @@ $(document).ready(function () {
 <p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span> <span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
 <p>La tabla anova está definida de la forma</p>
 <table>
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="18%" />
+<col width="18%" />
+<col width="24%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Fuente de variación</th>
+<th>Grados de libertad</th>
+<th>Suma de cuadrados</th>
+<th>cuadrados medios</th>
+<th>Estadístico</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Factor</td>
+<td>a-1</td>
+<td>SSA</td>
+<td><span class="math inline">\(MSA=SSA/(a-1)\)</span></td>
+<td><span class="math inline">\(F_0=MSA/MSE\)</span></td>
 </tr>
 <tr class="even">
 <td>Error</td>
+<td>N-a</td>
+<td>SSE</td>
+<td><span class="math inline">\(MSE=SSE/(N-a)\)</span></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Total</td>
+<td>N-1</td>
+<td>SST</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -708,10 +732,22 @@ $(document).ready(function () {
 <div id="validacion-de-supuestos-del-modelo-anova" class="section level3">
 <h3>Validación de supuestos del modelo ANOVA</h3>
 <ul>
-<li><p>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot <span class="math inline">\(\Large H_0=\varepsilon_{ij} \sim Normal\)</span> <span class="math inline">\(\Large H_1= \varepsilon_{ij}\)</span> no son normales</p></li>
-<li><p>Varianza constante se chequea con la prueba de barlett y el grafico de rsiduales vs los valores ajustados <span class="math inline">\(\Large H_0=\sigma_1=\sigma_2=...=\sigma_i\)</span> <span class="math inline">\(\Large H_1= \sigma_1\not=\sigma_2 \not =...\not =\sigma_i\)</span></p></li>
-<li><p>Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales <span class="math inline">\(\Large H_0=\)</span> los errores son independientes <span class="math inline">\(\Large H_1=\)</span> los errores son dependientes</p></li>
-<li><p>El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.</p></li>
+<li>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\varepsilon_{ij} \sim Normal\)</span></p>
+<p><span class="math inline">\(\Large H_1= \varepsilon_{ij}\)</span> no son normales</p>
+<ul>
+<li>Varianza constante se chequea con la prueba de barlett y el grafico de rsiduales vs los valores ajustados.</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\sigma_1=\sigma_2=...=\sigma_i\)</span></p>
+<p><span class="math inline">\(\Large H_1= \sigma_1\not=\sigma_2 \not =...\not =\sigma_i\)</span></p>
+<ul>
+<li>Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\)</span> los errores son independientes</p>
+<p><span class="math inline">\(\Large H_1=\)</span> los errores son dependientes</p>
+<ul>
+<li>El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.</li>
 </ul>
 <p>Para cada problema experimental es posible hacer estimaciones de sus parámetros:</p>
 <ol style="list-style-type: decimal">
@@ -729,32 +765,68 @@ $(document).ready(function () {
 <thead>
 <tr class="header">
 <th>Réplicas</th>
+<th><span class="math inline">\(T_1\)</span></th>
+<th><span class="math inline">\(T_2\)</span></th>
+<th><span class="math inline">\(T_3\)</span></th>
+<th><span class="math inline">\(T_4\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
+<td>41</td>
+<td>48</td>
+<td>40</td>
+<td>40</td>
 </tr>
 <tr class="even">
 <td>2</td>
+<td>44</td>
+<td>49</td>
+<td>50</td>
+<td>39</td>
 </tr>
 <tr class="odd">
 <td>3</td>
+<td>45</td>
+<td>49</td>
+<td>44</td>
+<td>46</td>
 </tr>
 <tr class="even">
 <td>4</td>
+<td>43</td>
+<td>49</td>
+<td>48</td>
+<td>46</td>
 </tr>
 <tr class="odd">
 <td>5</td>
+<td>42</td>
+<td>45</td>
+<td>50</td>
+<td>41</td>
 </tr>
 <tr class="even">
 <td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+<td>215</td>
+<td>240</td>
+<td>232</td>
+<td>212</td>
 </tr>
 <tr class="odd">
 <td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+<td>43</td>
+<td>48</td>
+<td>46.4</td>
+<td>42.2</td>
 </tr>
 <tr class="even">
 <td>Varianzas</td>
+<td>2.5</td>
+<td>3</td>
+<td>18.8</td>
+<td>11.3</td>
 </tr>
 </tbody>
 </table>
@@ -766,41 +838,89 @@ $(document).ready(function () {
 <thead>
 <tr class="header">
 <th>Réplicas</th>
+<th><span class="math inline">\(T_1\)</span></th>
+<th><span class="math inline">\(T_2\)</span></th>
+<th><span class="math inline">\(T_3\)</span></th>
+<th><span class="math inline">\(T_4\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
+<td>62</td>
+<td>63</td>
+<td>68</td>
+<td>56</td>
 </tr>
 <tr class="even">
 <td>2</td>
+<td>60</td>
+<td>67</td>
+<td>66</td>
+<td>62</td>
 </tr>
 <tr class="odd">
 <td>3</td>
+<td>63</td>
+<td>71</td>
+<td>71</td>
+<td>60</td>
 </tr>
 <tr class="even">
 <td>4</td>
+<td>59</td>
+<td>64</td>
+<td>67</td>
+<td>63</td>
 </tr>
 <tr class="odd">
 <td>5</td>
+<td></td>
+<td>65</td>
+<td>68</td>
+<td>63</td>
 </tr>
 <tr class="even">
 <td>6</td>
+<td></td>
+<td>66</td>
+<td>68</td>
+<td>64</td>
 </tr>
 <tr class="odd">
 <td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td>63</td>
 </tr>
 <tr class="even">
 <td>8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>59</td>
 </tr>
 <tr class="odd">
 <td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+<td>215</td>
+<td>240</td>
+<td>232</td>
+<td>212</td>
 </tr>
 <tr class="even">
 <td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+<td>43</td>
+<td>48</td>
+<td></td>
+<td>46.4</td>
 </tr>
 <tr class="odd">
 <td>Varianzas</td>
+<td>2.5</td>
+<td>3</td>
+<td>18.8</td>
+<td>11.3</td>
 </tr>
 </tbody>
 </table>
