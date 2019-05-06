@@ -335,7 +335,7 @@ grid.raster(ab1)
 
 #**Principios del diseño**
 
-## ** 1. Aleatorizar para tener inferencias válidas**
+## **1. Aleatorizar para tener inferencias válidas**
 
 "la sola aleatorización proporciona estimaciones válidas de la varianza del error" (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:
 
@@ -404,24 +404,6 @@ La réplica implica una repetición independiente del experimento básico, cada 
 
 - No requiere que las variables predictoras sean cuantitativas.
 
-#MODELO LINEAL DE LA VARIABLE RESPUESTA
-
-- Cada respuesta medible, está representada matemáticamente en un modelo lineal.
-
-- La idea general de un modelo es expresar las observaciones generalmente denotadas por Y, en términos de “efectos” que contribuyen a Y.
-
-Esos efectos se pueden clasificar en tres categorías:
-
-## Efectos de Tratamiento:
-son un reflejo del efecto de diseño como también de los tratamientos simples o combinaciones
-de factores.
-
-## Efectos de Diseño
-son determinados por el diseño de control de error, en particular, efectos debidos a las varias clases de bloqueo.
-
-##  Efectos de Error.
-Representan diferentes clases de variación aleatoria. Estos son: el error experimental y El error observacional.
-
 
 # Estructura de un diseño experimental
 
@@ -450,6 +432,8 @@ Agrupamiento de las unidades experimentales dentro de grupos homogéneos o bloqu
             - De bloques completos aleatorizados: Cuadrados latinos y grecolatinos
             - De bloques incompletos
 
+Por lo general las comparaciones se hacen en términos de las medias poblacionales, aunque también es importante la
+comparación de varianzas y capacidad actual para cumplir ciertas especificaciones.
 A manera de resumen las estructuras del diseño son
 
 
@@ -461,8 +445,19 @@ A manera de resumen las estructuras del diseño son
 |Cuadrado greco latino             |3                   |ANOVA con cuatro criterios de clasificación|$\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k+\delta_l +\varepsilon_{ijkl}$|
 
 
+Donde:
 
-### Diseño Completamente al Azar (DCA)
+- Y es la variable respuesta
+- $\large \mu$ es la media global
+-$\large \alpha_i$ es el efecto del i-ésimo tratamiento
+- $\large \beta_j, \gamma_k, \delta_l$ efectos de bloques
+-$\large \varepsilon$ es el error aleatorio
+
+
+
+
+
+###**Diseño Completamente al Azar (DCA)**
 
 En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):
 
@@ -471,6 +466,30 @@ En este experimento hay igual número de réplicas por tratamiento, con una asig
 - con r Unidades experimentales por cada tratamiento t, distribuidas al azar.
 
 
+Se expresa de la forma:
+$$\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$      
+
+
+Donde 
+- $\large Y_{ij}$ es la  Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con  $i=1, 2,...,n$ y $j=1, 2, ..., ni$.
+
+- $\large \mu$ denota la respuesta global promedio
+
+- $\large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
+
+
+Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante $\large  \sigma^2$, es decir:
+
+$$\large  \varepsilon_i \sim N(0,\sigma^2)$$
+
+
+
+Por tanto el examen de diferencias entre las medias de tratamiento $\large \mu_i$ , es equivalente a examinar las diferencias entre los efectos $\alpha_i$, bajo la restricción lineal
+
+$$\large \sum_{i=1}^n n_i \alpha_i=0$$
+ para una solución única del sistema de ecuaciones de mínimos cuadrados.
+ 
+ 
 **Ventajas**
 
 - Flexibilidad: Cualquier número de tratamientos y cualquier número de réplicas pueden ser usadas, siempre y cuando se tengan suficientes UE homogéneas.
@@ -489,6 +508,155 @@ En este experimento hay igual número de réplicas por tratamiento, con una asig
 - Es recomendado cuando gran parte de las UE no respondan al tratamiento o puedan perderse durante el experimento.
 
 - Es útil en experimentos en los que el número de UE es limitado, ya que provee el máximo número de grados de libertad del error.
+
+ **ANOVA PARA EL DISEÑO COMPLETAMENTE ALEATORIZADO (DCA)**
+ 
+- El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.
+
+-◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales
+
+-◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes. 
+ 
+```{r fig.asp=0.2, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+da1 <- readPNG("var.png")
+grid.raster(da1)
+```
+
+ Tabla de entrada de datos
+ 
+|                     |niveles del factor||||
+|-------------------- |------|-----|---|-----|
+|Réplicas             | $A_1$|$A_2$|...|$A_a$|
+|            1        |$Y_{11}$      |$Y_{21}$|...|$Y_{a1}$|
+|            2        |$Y_{12}$      |$Y_{22}$|...|$Y_{a2}$|
+|   .                 |...           |...     |...|...     |
+|    .                |$Y_{1n_1}$    |$Y_{2n_2}$|...|$Y_{11}$|
+|             .       |$Y_{11}$      |$Y_{11}$|...$|$Y_{11}$|
+|Total                |$Y_{1\bullet}$|$Y_{2\bullet}$|...|$Y_{a\bullet}$|
+|# de réplicas        |              |              |   ||
+|$\mu$ por tratamiento|              |              |   ||
+
+
+
+Donde:
+
+- $Y_{i \bullet}=\sum_{j=1}^{ni}Y_{ij}$ es la suma de las observaciones en el nivel o tratamiento i
+
+- $Y_{\bullet  \bullet}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}Y_{ij}$ es la suma de todas las observaciones en el experimento
+
+Con estas cantidades se obtienen los siguientes estimadores:
+
+$$\Large \hat {\mu}=\bar{Y}_{\bullet \bullet}=\frac{1}{N}\sum_{i=1}^{a}Y_{i \bullet}$$
+$$\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{Y_{i \bullet}}{n_i}$$
+$$\Large \hat{\alpha_i}=\bar{Y}_{i \bullet}-\bar{Y}_{\bullet \bullet}$$
+Las respuestas ajustadas para el tratamiento i es:
+
+
+$$\Large \hat{Y}_{ij}= \bar{Y}_{i \bullet}$$
+Los residuales del modelo corresponden a 
+
+
+$$\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}$$
+
+
+Las sumas de cuadrados del modelo ANOVA  SST=SSA+SSE
+
+- La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por:
+$$\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:
+
+$$\Large SSA=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a n_i\bar{Y^2_{i\bullet}}-N\bar{Y}_{i \bullet}^2 $$
+
+- La variabilidad en la respuesta explicada por la aleatoriedad, con N-a grados de libertad, está dada por
+
+$$\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA$$
+
+
+
+
+La prueba de hipótesis asociada al ANOVA esta dad por:
+
+$\Large H_0=\mu_1=\mu_2=...=\mu_i$
+$\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
+
+La tabla anova está definida de la forma
+
+|Fuente de variación |Grados de libertad|Suma de cuadrados|cuadrados medios |Estadístico|Valor p|
+|-----------------------------------------------------------------------------------------------|
+|Factor              |a-1               |SSA     |$MSA=SSA/(a-1)$|$F_0=MSA/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|Error|N-a|SSE|$MSE=SSE/(N-a)$|||
+|Total |N-1|SST| | | |
+
+
+
+###Validación de supuestos del modelo ANOVA
+- Normalidad en los errores, el cual se se chequea con la prueba de shapiro  y con el gráfico qq plot
+$\Large H_0=\varepsilon_{ij} \sim Normal$
+$\Large H_1= \varepsilon_{ij}$ no son normales
+
+
+- Varianza constante se chequea con la prueba de barlett y el grafico de rsiduales vs los valores ajustados
+$\Large H_0=\sigma_1=\sigma_2=...=\sigma_i$
+$\Large H_1= \sigma_1\not=\sigma_2 \not =...\not =\sigma_i$
+
+- Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales 
+$\Large H_0=$ los errores son independientes
+$\Large H_1=$ los errores son dependientes 
+
+
+- El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son
+adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.
+
+
+Para cada problema experimental es posible hacer estimaciones de sus parámetros:
+
+1. Una estimación de la varianza del error experimental es $\Large \hat \sigma=MSE$,es muy útil para el análisis siempre que las varianzas de los tratamientos sean homogéneas.
+
+2. Una estimación puntual de la media global del experimento es $\Large \hat \mu= \bar yY_{\bullet \bullet} $
+
+3. Las medias de los tratamientos se estiman a partir de las medias muéstrales o
+medias de grupos para el tratamiento j−ésimo.
+
+4. Los efectos de los tratamientos del factor A son las diferencias entre la media general y la media del tratamiento 
+
+##Ejemplo de un modelo balanceado
+
+Se tienen 4 tratamientos médicos T1, T2, T3, y T4, aplicables a la misma enfermedad, y se desea comparar la efectividad de cada uno de ellos, en el peso.
+
+|Réplicas|$T_1$|$T_2$|$T_3$|$T_4$|
+|--------------------------------|
+|1|41|48|40|40|
+|2|44|49|50|39|
+|3|45|49|44|46|
+|4|43|49|48|46|
+|5|42|45|50|41|
+|Total $Y_{i\bullet}$|215|240|232|212|
+|Medias $\bar y_{i\bullet}$|43|48||46.4|42.2|
+|Varianzas|2.5|3|18.8|11.3|
+
+
+##Ejemplo de un modelo desbalanceado
+Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el
+tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió
+aleatoriamente una de las dietas.
+
+
+|Réplicas|$T_1$|$T_2$|$T_3$|$T_4$|
+|--------------------------------|
+|1|62|63|68|56|
+|2|60|67|66|62|
+|3|63|71|71|60|
+|4|59|64|67|63|
+|5|  |65|68|63|
+|6|  |66|68|64|
+|7|  |  |  |63|
+|8|  |  |  |59|
+|Total $Y_{i\bullet}$|215|240|232|212|
+|Medias $\bar y_{i\bullet}$|43|48||46.4|42.2|
+|Varianzas|2.5|3|18.8|11.3|
 
 
 ###Diseño en bloque

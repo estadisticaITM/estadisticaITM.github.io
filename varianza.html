@@ -431,7 +431,7 @@ $(document).ready(function () {
 <div id="principios-del-diseno" class="section level1">
 <h1><strong>Principios del diseño</strong></h1>
 <div id="aleatorizar-para-tener-inferencias-validas" class="section level2">
-<h2>** 1. Aleatorizar para tener inferencias válidas**</h2>
+<h2><strong>1. Aleatorizar para tener inferencias válidas</strong></h2>
 <p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
 <ul>
 <li><p>La validación del error experimental</p></li>
@@ -478,26 +478,6 @@ $(document).ready(function () {
 <li><p>No requiere que las variables predictoras sean cuantitativas.</p></li>
 </ul>
 </div>
-<div id="modelo-lineal-de-la-variable-respuesta" class="section level1">
-<h1>MODELO LINEAL DE LA VARIABLE RESPUESTA</h1>
-<ul>
-<li><p>Cada respuesta medible, está representada matemáticamente en un modelo lineal.</p></li>
-<li><p>La idea general de un modelo es expresar las observaciones generalmente denotadas por Y, en términos de “efectos” que contribuyen a Y.</p></li>
-</ul>
-<p>Esos efectos se pueden clasificar en tres categorías:</p>
-<div id="efectos-de-tratamiento" class="section level2">
-<h2>Efectos de Tratamiento:</h2>
-<p>son un reflejo del efecto de diseño como también de los tratamientos simples o combinaciones de factores.</p>
-</div>
-<div id="efectos-de-diseno" class="section level2">
-<h2>Efectos de Diseño</h2>
-<p>son determinados por el diseño de control de error, en particular, efectos debidos a las varias clases de bloqueo.</p>
-</div>
-<div id="efectos-de-error." class="section level2">
-<h2>Efectos de Error.</h2>
-<p>Representan diferentes clases de variación aleatoria. Estos son: el error experimental y El error observacional.</p>
-</div>
-</div>
 <div id="estructura-de-un-diseno-experimental" class="section level1">
 <h1>Estructura de un diseño experimental</h1>
 <p>El diseño experimental comprende:</p>
@@ -521,7 +501,7 @@ $(document).ready(function () {
 <li>Diseño completamente aleatorizado</li>
 <li>Diseño bloqueado: - De bloques completos aleatorizados: Cuadrados latinos y grecolatinos - De bloques incompletos</li>
 </ul>
-<p>A manera de resumen las estructuras del diseño son</p>
+<p>Por lo general las comparaciones se hacen en términos de las medias poblacionales, aunque también es importante la comparación de varianzas y capacidad actual para cumplir ciertas especificaciones. A manera de resumen las estructuras del diseño son</p>
 <table>
 <colgroup>
 <col width="21%" />
@@ -564,13 +544,29 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<p>Donde:</p>
+<ul>
+<li>Y es la variable respuesta</li>
+<li><span class="math inline">\(\large \mu\)</span> es la media global -<span class="math inline">\(\large \alpha_i\)</span> es el efecto del i-ésimo tratamiento</li>
+<li><span class="math inline">\(\large \beta_j, \gamma_k, \delta_l\)</span> efectos de bloques -<span class="math inline">\(\large \varepsilon\)</span> es el error aleatorio</li>
+</ul>
 <div id="diseno-completamente-al-azar-dca" class="section level3">
-<h3>Diseño Completamente al Azar (DCA)</h3>
+<h3><strong>Diseño Completamente al Azar (DCA)</strong></h3>
 <p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
 <ul>
 <li><p>En total se tienen N unidades experimentales (UE) homogéneas (N=tr)</p></li>
 <li><p>con r Unidades experimentales por cada tratamiento t, distribuidas al azar.</p></li>
 </ul>
+<p>Se expresa de la forma: <span class="math display">\[\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span></p>
+<p>Donde - <span class="math inline">\(\large Y_{ij}\)</span> es la Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con <span class="math inline">\(i=1, 2,...,n\)</span> y <span class="math inline">\(j=1, 2, ..., ni\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\large \mu\)</span> denota la respuesta global promedio</p></li>
+<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo tratamiento sobre el promedio global</p></li>
+</ul>
+<p>Este modelo es conocido como <strong>modelo de efectos de tratamientos</strong>, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante <span class="math inline">\(\large \sigma^2\)</span>, es decir:</p>
+<p><span class="math display">\[\large  \varepsilon_i \sim N(0,\sigma^2)\]</span></p>
+<p>Por tanto el examen de diferencias entre las medias de tratamiento <span class="math inline">\(\large \mu_i\)</span> , es equivalente a examinar las diferencias entre los efectos <span class="math inline">\(\alpha_i\)</span>, bajo la restricción lineal</p>
+<p><span class="math display">\[\large \sum_{i=1}^n n_i \alpha_i=0\]</span> para una solución única del sistema de ecuaciones de mínimos cuadrados.</p>
 <p><strong>Ventajas</strong></p>
 <ul>
 <li><p>Flexibilidad: Cualquier número de tratamientos y cualquier número de réplicas pueden ser usadas, siempre y cuando se tengan suficientes UE homogéneas.</p></li>
@@ -584,7 +580,230 @@ $(document).ready(function () {
 <li><p>Es recomendado cuando gran parte de las UE no respondan al tratamiento o puedan perderse durante el experimento.</p></li>
 <li><p>Es útil en experimentos en los que el número de UE es limitado, ya que provee el máximo número de grados de libertad del error.</p></li>
 </ul>
+<p><strong>ANOVA PARA EL DISEÑO COMPLETAMENTE ALEATORIZADO (DCA)</strong></p>
+<ul>
+<li>El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.</li>
+</ul>
+<p>-◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales</p>
+<p>-◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes.</p>
+<p><img src="varianza_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Tabla de entrada de datos</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>niveles del factor</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Réplicas</td>
+<td><span class="math inline">\(A_1\)</span></td>
+<td><span class="math inline">\(A_2\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(A_a\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td><span class="math inline">\(Y_{21}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(Y_{12}\)</span></td>
+<td><span class="math inline">\(Y_{22}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a2}\)</span></td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>.</td>
+<td><span class="math inline">\(Y_{1n_1}\)</span></td>
+<td><span class="math inline">\(Y_{2n_2}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td>…$</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(Y_{1\bullet}\)</span></td>
+<td><span class="math inline">\(Y_{2\bullet}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a\bullet}\)</span></td>
+</tr>
+<tr class="even">
+<td># de réplicas</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu\)</span> por tratamiento</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{i \bullet}=\sum_{j=1}^{ni}Y_{ij}\)</span> es la suma de las observaciones en el nivel o tratamiento i</p></li>
+<li><p><span class="math inline">\(Y_{\bullet \bullet}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}Y_{ij}\)</span> es la suma de todas las observaciones en el experimento</p></li>
+</ul>
+<p>Con estas cantidades se obtienen los siguientes estimadores:</p>
+<p><span class="math display">\[\Large \hat {\mu}=\bar{Y}_{\bullet \bullet}=\frac{1}{N}\sum_{i=1}^{a}Y_{i \bullet}\]</span> <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{Y_{i \bullet}}{n_i}\]</span> <span class="math display">\[\Large \hat{\alpha_i}=\bar{Y}_{i \bullet}-\bar{Y}_{\bullet \bullet}\]</span> Las respuestas ajustadas para el tratamiento i es:</p>
+<p><span class="math display">\[\Large \hat{Y}_{ij}= \bar{Y}_{i \bullet}\]</span> Los residuales del modelo corresponden a</p>
+<p><span class="math display">\[\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}\]</span></p>
+<p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSE</p>
+<ul>
+<li>La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por: <span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 \]</span></li>
+</ul>
+<p>-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSA=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a n_i\bar{Y^2_{i\bullet}}-N\bar{Y}_{i \bullet}^2 \]</span></p>
+<ul>
+<li>La variabilidad en la respuesta explicada por la aleatoriedad, con N-a grados de libertad, está dada por</li>
+</ul>
+<p><span class="math display">\[\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA\]</span></p>
+<p>La prueba de hipótesis asociada al ANOVA esta dad por:</p>
+<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span> <span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
+<p>La tabla anova está definida de la forma</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fuente de variación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Factor</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="validacion-de-supuestos-del-modelo-anova" class="section level3">
+<h3>Validación de supuestos del modelo ANOVA</h3>
+<ul>
+<li><p>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot <span class="math inline">\(\Large H_0=\varepsilon_{ij} \sim Normal\)</span> <span class="math inline">\(\Large H_1= \varepsilon_{ij}\)</span> no son normales</p></li>
+<li><p>Varianza constante se chequea con la prueba de barlett y el grafico de rsiduales vs los valores ajustados <span class="math inline">\(\Large H_0=\sigma_1=\sigma_2=...=\sigma_i\)</span> <span class="math inline">\(\Large H_1= \sigma_1\not=\sigma_2 \not =...\not =\sigma_i\)</span></p></li>
+<li><p>Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales <span class="math inline">\(\Large H_0=\)</span> los errores son independientes <span class="math inline">\(\Large H_1=\)</span> los errores son dependientes</p></li>
+<li><p>El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.</p></li>
+</ul>
+<p>Para cada problema experimental es posible hacer estimaciones de sus parámetros:</p>
+<ol style="list-style-type: decimal">
+<li><p>Una estimación de la varianza del error experimental es <span class="math inline">\(\Large \hat \sigma=MSE\)</span>,es muy útil para el análisis siempre que las varianzas de los tratamientos sean homogéneas.</p></li>
+<li><p>Una estimación puntual de la media global del experimento es $= yY_{} $</p></li>
+<li><p>Las medias de los tratamientos se estiman a partir de las medias muéstrales o medias de grupos para el tratamiento j−ésimo.</p></li>
+<li><p>Los efectos de los tratamientos del factor A son las diferencias entre la media general y la media del tratamiento</p></li>
+</ol>
+</div>
+</div>
+<div id="ejemplo-de-un-modelo-balanceado" class="section level2">
+<h2>Ejemplo de un modelo balanceado</h2>
+<p>Se tienen 4 tratamientos médicos T1, T2, T3, y T4, aplicables a la misma enfermedad, y se desea comparar la efectividad de cada uno de ellos, en el peso.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Réplicas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+</tr>
+<tr class="even">
+<td>Varianzas</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ejemplo-de-un-modelo-desbalanceado" class="section level2">
+<h2>Ejemplo de un modelo desbalanceado</h2>
+<p>Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió aleatoriamente una de las dietas.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Réplicas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+</tr>
+<tr class="even">
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+</tr>
+<tr class="even">
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+</tr>
+<tr class="even">
+<td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Varianzas</td>
+</tr>
+</tbody>
+</table>
 <div id="diseno-en-bloque" class="section level3">
 <h3>Diseño en bloque</h3>
 </div>
