@@ -577,7 +577,7 @@ $$\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA
 
 
 
-La prueba de hipótesis asociada al ANOVA esta dad por:
+La prueba de hipótesis asociada al ANOVA esta dado por:
 
 $\Large H_0=\mu_1=\mu_2=...=\mu_i$
 $\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
@@ -669,6 +669,124 @@ aleatoriamente una de las dietas.
 |Total $Y_{i\bullet}$|215|240|232|212|
 |Medias $\bar y_{i\bullet}$|43|48| |46.4|42.2|
 |Varianzas|2.5|3|18.8|11.3|
+
+
+### INFERENCIAS PARA MEDIAS DE TRATAMIENTOS ANOVA UN FACTOR, DCA
+
+Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario determinar cuáles tratamientos son estadísticamente distintos. Para ello, se recurre a diferentes técnicas de comparación de medias de tratamiento:
+
+- Comparaciones entre pares de medias
+- Comparaciones múltiples o pruebas de rango múltiple.
+- Comparaciones por contrastes
+- Comparaciones de tratamientos con un control
+
+####**Comparación de medias por medio del intervalo tukey**
+método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos
+balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia $\large \gamma$ con el valor crítico:
+
+$$\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} $$
+
+Donde:
+
+$\large q_\gamma(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados
+a son los niveles del factor 
+gl los grados de libertad del MSE. 
+Los pares de medias de tratamientos $\mu_i$ y $\mu_j$ difieren significativamente cuando:
+
+$$\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|>T_\gamma$$
+
+También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por
+
+$$\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}  $$
+#**Ejemplo**
+Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:
+
+|obs|1   |2|3|4|5|6|7|8|9|10|11|12|
+|---|----|--|--|--|--|--|--|--|--|--|--|--|
+|Alto|8.5|9.7|10.1|7.8|9.6|9.5|
+|Bajo|7.6|8.2|6.8 |5.8|6.9|6.6|6.3|7.7|6| | | |
+|Medio|6.7|8.1|9.4|8.6|7.8|7.7|8.9|7.9|8.3|8.7|7.1|8.4|
+
+Preguntas
+
+a) Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.
+
+
+$$\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$
+con 
+$$\Large \varepsilon \sim N(0,\sigma^2)$$
+i=1,2,3 y j=1,2,3,4,5,...12
+
+$$\sum_{i=1}^3 \alpha_i=0$$
+Donde 
+$Y_{ij}=$Puntuación obtenida en la escala de productividad i
+$\mu$ Promedio global de la puntuación obtenida 
+$\alpha_i$ Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos
+$\varepsilon_{ij}$ Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.
+
+b) Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o noaproximadamente constante?
+c) Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la media de mejoramiento de la productividad difiere según el nivel de gastos en investigación y desarrollo. Tenga en cuenta en sus cálculos que este problema es un caso de diseño desbalanceado.
+
+d) Realice la prueba de normalidad sobre los residuales
+
+
+
+
+
+
+
+```{r eval=FALSE}
+#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)["Mean Sq"][2,]
+df=anova(modeloanova)["Df"][2,]
+ni=unlist(model.tables(modeloanova,type = "means")["n"])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = "means")["tables"])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat("Tabla de medias de tratamientos y sus I.C de",nivel,"%","\n")
+cat("alfa"," ",alfa,"\n")
+cat("grados de libertad ",df,"\n")
+cat("error cuadrático medio",MSE,"\n")
+cat("valor crítico t ",t,"\n","\n")
+interval
+}
+#ENTRADA DE DATOS:
+diseño=data.frame(ID=factor(c(rep("alto",6),rep("bajo",9),rep("medio",12))),mprod=scan())
+8.5 9.7 10.1 7.8 9.6 9.5
+7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
+6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
+diseño
+attach(diseño)
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy=sapply(split(mprod,ID),mean)
+#BOXPLOTS COMPARATIVOS
+boxplot(mprod~ID,col=c("gray90","orange","cyan"))
+lines(1:3,mediasy,col=2,lty=2,type="b",pch=3)
+#AJUSTE MODELO ANOVA UN FACTOR
+modelo=aov(mprod~ID)
+#OBTENIENDO TABLA ANOVA
+anova(modelo) #o bien summary(modelo)
+plot(modelo)
+
+#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
+TukeyHSD(modelo,conf.level = 0.95)
+plot(TukeyHSD(modelo,conf.level = 0.95))
+
+```
+
+Dé una expresión general para el cálculo de los residuales. Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene. Realice el teste de normalidad con base en residuales estudentizados.
+e) Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión ydesarrollo.
+
+
 
 
 ###Diseño en bloque

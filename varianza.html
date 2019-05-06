@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -281,7 +378,6 @@ $(document).ready(function () {
 </div>
 <div id="introduccion-al-analisis-de-varianza" class="section level2">
 <h2>Introducción al análisis de varianza</h2>
-<pre><code>## Warning: package &#39;png&#39; was built under R version 3.5.2</code></pre>
 <p><img src="varianza_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:</p>
 <ul>
@@ -684,7 +780,7 @@ $(document).ready(function () {
 <li>La variabilidad en la respuesta explicada por la aleatoriedad, con N-a grados de libertad, está dada por</li>
 </ul>
 <p><span class="math display">\[\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA\]</span></p>
-<p>La prueba de hipótesis asociada al ANOVA esta dad por:</p>
+<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span> <span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
 <p>La tabla anova está definida de la forma</p>
 <table>
@@ -924,6 +1020,143 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<div id="inferencias-para-medias-de-tratamientos-anova-un-factor-dca" class="section level3">
+<h3>INFERENCIAS PARA MEDIAS DE TRATAMIENTOS ANOVA UN FACTOR, DCA</h3>
+<p>Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario determinar cuáles tratamientos son estadísticamente distintos. Para ello, se recurre a diferentes técnicas de comparación de medias de tratamiento:</p>
+<ul>
+<li>Comparaciones entre pares de medias</li>
+<li>Comparaciones múltiples o pruebas de rango múltiple.</li>
+<li>Comparaciones por contrastes</li>
+<li>Comparaciones de tratamientos con un control</li>
+</ul>
+<div id="comparacion-de-medias-por-medio-del-intervalo-tukey" class="section level4">
+<h4><strong>Comparación de medias por medio del intervalo tukey</strong></h4>
+<p>método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\large \gamma\)</span> con el valor crítico:</p>
+<p><span class="math display">\[\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} \]</span></p>
+<p>Donde:</p>
+<p>$q_(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados a son los niveles del factor gl los grados de libertad del MSE. Los pares de medias de tratamientos <span class="math inline">\(\mu_i\)</span> y <span class="math inline">\(\mu_j\)</span> difieren significativamente cuando:</p>
+<p><span class="math display">\[\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|&gt;T_\gamma\]</span></p>
+<p>También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por</p>
+<p><span class="math display">\[\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}  \]</span> #<strong>Ejemplo</strong> Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
+<table>
+<thead>
+<tr class="header">
+<th>obs</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alto</td>
+<td>8.5</td>
+<td>9.7</td>
+<td>10.1</td>
+<td>7.8</td>
+<td>9.6</td>
+<td>9.5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Bajo</td>
+<td>7.6</td>
+<td>8.2</td>
+<td>6.8</td>
+<td>5.8</td>
+<td>6.9</td>
+<td>6.6</td>
+<td>6.3</td>
+<td>7.7</td>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Medio</td>
+<td>6.7</td>
+<td>8.1</td>
+<td>9.4</td>
+<td>8.6</td>
+<td>7.8</td>
+<td>7.7</td>
+<td>8.9</td>
+<td>7.9</td>
+<td>8.3</td>
+<td>8.7</td>
+<td>7.1</td>
+<td>8.4</td>
+</tr>
+</tbody>
+</table>
+<p>Preguntas</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</li>
+</ol>
+<p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span> con <span class="math display">\[\Large \varepsilon \sim N(0,\sigma^2)\]</span> i=1,2,3 y j=1,2,3,4,5,…12</p>
+<p><span class="math display">\[\sum_{i=1}^3 \alpha_i=0\]</span> Donde <span class="math inline">\(Y_{ij}=\)</span>Puntuación obtenida en la escala de productividad i <span class="math inline">\(\mu\)</span> Promedio global de la puntuación obtenida <span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos <span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o noaproximadamente constante?</li>
+<li><p>Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la media de mejoramiento de la productividad difiere según el nivel de gastos en investigación y desarrollo. Tenga en cuenta en sus cálculos que este problema es un caso de diseño desbalanceado.</p></li>
+<li><p>Realice la prueba de normalidad sobre los residuales</p></li>
+</ol>
+<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
+df=anova(modeloanova)[&quot;Df&quot;][2,]
+ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+#ENTRADA DE DATOS:
+diseño=data.frame(ID=factor(c(rep(&quot;alto&quot;,6),rep(&quot;bajo&quot;,9),rep(&quot;medio&quot;,12))),mprod=scan())
+8.5 9.7 10.1 7.8 9.6 9.5
+7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
+6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
+diseño
+attach(diseño)
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy=sapply(split(mprod,ID),mean)
+#BOXPLOTS COMPARATIVOS
+boxplot(mprod~ID,col=c(&quot;gray90&quot;,&quot;orange&quot;,&quot;cyan&quot;))
+lines(1:3,mediasy,col=2,lty=2,type=&quot;b&quot;,pch=3)
+#AJUSTE MODELO ANOVA UN FACTOR
+modelo=aov(mprod~ID)
+#OBTENIENDO TABLA ANOVA
+anova(modelo) #o bien summary(modelo)
+plot(modelo)
+
+#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
+TukeyHSD(modelo,conf.level = 0.95)
+plot(TukeyHSD(modelo,conf.level = 0.95))</code></pre>
+<p>Dé una expresión general para el cálculo de los residuales. Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene. Realice el teste de normalidad con base en residuales estudentizados. e) Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión ydesarrollo.</p>
+</div>
+</div>
 <div id="diseno-en-bloque" class="section level3">
 <h3>Diseño en bloque</h3>
 </div>
