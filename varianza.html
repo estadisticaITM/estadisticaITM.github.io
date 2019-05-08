@@ -833,10 +833,10 @@ $(document).ready(function () {
 <p><span class="math inline">\(\Large H_0=\varepsilon_{ij} \sim Normal\)</span></p>
 <p><span class="math inline">\(\Large H_1= \varepsilon_{ij}\)</span> no son normales</p>
 <ul>
-<li>Varianza constante se chequea con la prueba de barlett y el grafico de rsiduales vs los valores ajustados.</li>
+<li>Varianza constante se chequea con la prueba de barlett o la de levene, además del grafico de residuales vs los valores ajustados.</li>
 </ul>
-<p><span class="math inline">\(\Large H_0=\sigma_1=\sigma_2=...=\sigma_i\)</span></p>
-<p><span class="math inline">\(\Large H_1= \sigma_1\not=\sigma_2 \not =...\not =\sigma_i\)</span></p>
+<p><span class="math inline">\(\Large H_0=\sigma_1^2=\sigma_2^2=...=\sigma_i^2\)</span></p>
+<p><span class="math inline">\(\Large H_1= \sigma_1^2\not=\sigma_2^2 \not =...\not =\sigma_i^2\)</span></p>
 <ul>
 <li>Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales</li>
 </ul>
@@ -1104,11 +1104,189 @@ $(document).ready(function () {
 <li>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</li>
 </ol>
 <p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span> con <span class="math display">\[\Large \varepsilon \sim N(0,\sigma^2)\]</span> i=1,2,3 y j=1,2,3,4,5,…12</p>
-<p><span class="math display">\[\sum_{i=1}^3 \alpha_i=0\]</span> Donde <span class="math inline">\(Y_{ij}=\)</span>Puntuación obtenida en la escala de productividad i <span class="math inline">\(\mu\)</span> Promedio global de la puntuación obtenida <span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos <span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
+<p><span class="math display">\[\sum_{i=1}^3 \alpha_i=0\]</span> Donde</p>
+<p><span class="math inline">\(Y_{ij}=\)</span>Puntuación obtenida en la escala de productividad i</p>
+<p><span class="math inline">\(\mu\)</span> Promedio global de la puntuación obtenida</p>
+<p><span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos.</p>
+<p><span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o noaproximadamente constante?</li>
+<li><p>Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o no aproximadamente constante?</p></li>
 <li><p>Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la media de mejoramiento de la productividad difiere según el nivel de gastos en investigación y desarrollo. Tenga en cuenta en sus cálculos que este problema es un caso de diseño desbalanceado.</p></li>
-<li><p>Realice la prueba de normalidad sobre los residuales</p></li>
+<li><p>Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene para probar la homogeneidad de las varianzas. Realice el test de normalidad con base en residuales estudentizados.</p></li>
+<li><p>Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión y desarrollo.</p></li>
+<li><p>Estime los efectos de cada nivel del factor y sus respectivos errores estándar, y pruebe la significancia de cada uno usando para cada prueba un nivel de significancia de 0.05</p></li>
+<li><p>Use el procedimiento de Tukey con un nivel de 0.05, para construir todos los intervalos de confianza posibles para las diferencias de medias por pares. Establezca los grupos de medias.</p></li>
+<li><p>Formule, estime y pruebe la significancia del contraste apropiado para probar si el promedio de mejora en productividad a un nivel alto de gasto en investigación y desarrollo, es:</p></li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>Significativamente diferente a los otros dos niveles</li>
+</ol>
+<p>NOTA: En los casos donde aplique exprese apropiadamente la prueba de hipótesis, el estadístico de prueba, el criterio de rechazo.</p>
+<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+diseño=data.frame(ID=factor(c(rep(&quot;alto&quot;,6),rep(&quot;bajo&quot;,9),rep(&quot;medio&quot;,12))),mprod=scan())
+8.5 9.7 10.1 7.8 9.6 9.5
+7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
+6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
+
+
+diseño
+attach(diseño)
+
+
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy=sapply(split(mprod,ID),mean)
+
+#BOXPLOTS COMPARATIVOS
+boxplot(mprod~ID,col=c(&quot;gray90&quot;,&quot;orange&quot;,&quot;cyan&quot;))
+lines(1:3,mediasy,col=2,lty=2,type=&quot;b&quot;,pch=3)
+
+#AJUSTE MODELO ANOVA UN FACTOR
+modelo=aov(mprod~ID)
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo) #o bien summary(modelo)
+
+#distribución de los gráficos
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo),rstudent(modelo),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(ID),rstudent(modelo),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt=&quot;n&quot;)
+axis(1,at=c(1,2,3),labels=levels(ID))
+abline(h=c(-2,0,2),col=2)
+
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo),cex=2)
+qqline(rstudent(modelo),col=2)
+legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
+
+#INVOCANDO LA PRUEBA DE BARTLETT
+bartlett.test(mprod~ID)
+
+##de otra forma
+plot(modelo)
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo,type = &quot;means&quot;,se=TRUE)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo,type = &quot;effects&quot;,se=TRUE)
+
+mean(mprod)
+
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
+df=anova(modeloanova)[&quot;Df&quot;][2,]
+ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratam*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+
+mismediastratamientos(modelo)
+
+#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.alto=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto alto&quot;=c(2/3,-1/3,-1/3)),conf=0.95)
+efect.bajo=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto bajo&quot;=c(-1/3,2/3,-1/3)),conf=0.95)
+efect.medio=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto medio&quot;=c(-1/3,-1/3,2/3)),conf=0.95)
+rbind(efect.alto,efect.bajo,efect.medio)
+
+#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
+TukeyHSD(modelo,conf.level = 0.95)
+plot(TukeyHSD(modelo,conf.level = 0.95))
+
+
+#CÁLCULO DEL CONTRASTE ID: ALTO VS. DEMÁS, TEST T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+contraste=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:ALTO VS. DEMAS&quot;=c(1,-1/2,-1/2)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE ID. ALTO VS. DEMÁS, Y SU I.C DEL 95%
+#LA FUNCIÓN glht REQUIERE LA LIBRERÍA multcomp
+
+contraste=rbind(&quot;alto vs. demás &quot;=c(1,-1/2,-1/2))
+confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
+</div>
+</div>
+</div>
+<div id="ejemplo-2" class="section level2">
+<h2>Ejemplo 2</h2>
+<p>Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Tratamiento</th>
+<th>Lechuga parcelas</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>104</td>
+<td>114</td>
+<td>90</td>
+<td>140</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>134</td>
+<td>130</td>
+<td>144</td>
+<td>174</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>146</td>
+<td>142</td>
+<td>152</td>
+<td>156</td>
+</tr>
+<tr class="even">
+<td>150</td>
+<td>147</td>
+<td>160</td>
+<td>160</td>
+<td>163</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td>131</td>
+<td>148</td>
+<td>154</td>
+<td>163</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>Especifique la estructura de tratamiento y de diseño empleado en este experimento Escriba el modelo ANOVA apropiado con sus supuestos y restricciones.</p></li>
+<li><p>Realice un análisis descriptivo de los datos experimentales establezca conclusiones preliminares sobre los posibles efectos en la producción promedio de los diferentes niveles de aplicación de nitrato.</p></li>
+<li><p>Realice el test de hipótesis asociado al modelo ANOVA, interprete a la luz del problema.</p></li>
+<li><p>Si el factor de tratamientos es significativo, estime las medias de producción y efectos según nivel de nitrato, agrupe las medias y pruebe si “aplicar nitrato produce una producción promedio diferente respecto a no aplicar nitrato”. También pruebe si “aplicar nitrato eleva la producción promedio respecto a no aplicar nitrato”.</p></li>
+<li><p>Valide los supuestos del modelo ANOVA de este experimento. Analice residuos estudentizados.</p></li>
 </ol>
 <pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
 library(gmodels)
@@ -1133,33 +1311,188 @@ cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
 cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
 interval
 }
-#ENTRADA DE DATOS:
-diseño=data.frame(ID=factor(c(rep(&quot;alto&quot;,6),rep(&quot;bajo&quot;,9),rep(&quot;medio&quot;,12))),mprod=scan())
-8.5 9.7 10.1 7.8 9.6 9.5
-7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
-6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
-diseño
-attach(diseño)
-#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
-mediasy=sapply(split(mprod,ID),mean)
-#BOXPLOTS COMPARATIVOS
-boxplot(mprod~ID,col=c(&quot;gray90&quot;,&quot;orange&quot;,&quot;cyan&quot;))
-lines(1:3,mediasy,col=2,lty=2,type=&quot;b&quot;,pch=3)
-#AJUSTE MODELO ANOVA UN FACTOR
-modelo=aov(mprod~ID)
-#OBTENIENDO TABLA ANOVA
-anova(modelo) #o bien summary(modelo)
-plot(modelo)
 
-#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
-TukeyHSD(modelo,conf.level = 0.95)
-plot(TukeyHSD(modelo,conf.level = 0.95))</code></pre>
-<p>Dé una expresión general para el cálculo de los residuales. Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene. Realice el teste de normalidad con base en residuales estudentizados. e) Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión ydesarrollo.</p>
+
+#ENTRADA DE DATOS
+#obseve que los renglones de datos corresponden a cada nivel desde 0 a 200, respectivamente
+diseño2=data.frame(nitrato=factor(c(rep(0,4),rep(50,4),rep(100,4),rep(150,4),rep(200,4))),
+nlechug=scan())
+104 114 90 140
+134 130 144 174
+146 142 152 156
+147 160 160 163
+131 148 154 163
+
+
+attach(diseño2)
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy2=sapply(split(nlechug,nitrato),mean)
+
+
+
+#BOXPLOTS COMPARATIVOS
+plot(diseño2)
+lines(1:5,mediasy2,col=2,lty=2,type=&quot;b&quot;,pch=3)
+
+
+
+#ANÁLISIS DE VARIANZA:
+modelo2=aov(nlechug~nitrato)
+
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo2)
+
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo2,type = &quot;means&quot;,se=TRUE)
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+mismediastratamientos(modelo2)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo2,type = &quot;effects&quot;,se=TRUE)
+
+
+#CÁLCULO INDIVIDUAL DE EFECTOS, SUS TESTES T Y I.C DEL 95%:
+efect.0=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 0&quot;=c(4/5,-1/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.50=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 50&quot;=c(-1/5,4/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.100=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 100&quot;=c(-1/5,-1/5,4/5,-1/5,-1/5)),conf=0.95)
+efect.150=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 150&quot;=c(-1/5,-1/5,-1/5,4/5,-1/5)),conf=0.95)
+efect.200=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 200&quot;=c(-1/5,-1/5,-1/5,-1/5,4/5)),conf=0.95)
+rbind(efect.0,efect.50,efect.100,efect.150,efect.200)
+
+#CÁLCULO DEL CONTRASTE CON NITRATO VS. SIN NITRATO, SU TEST T, Y I.C DEL 95%
+contraste=fit.contrast(modelo2,&quot;nitrato&quot;, rbind(&quot;:con nitrato vs. sin nitrato&quot;=c(-1,1/4,1/4,1/4,1/4)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE CON &quot;NITRATO VS. SIN NITRATO&quot; Y SU I.C DEL 95%
+contr=rbind(&quot;con nitrato vs. sin nitrato&quot;= c(-1,1/4,1/4,1/4,1/4))
+confint(glht(modelo2,linfct=mcp(nitrato=contr)))
+
+#INTERVALOS DE TUKEY
+TukeyHSD(modelo2, conf.level = 0.95)
+plot(TukeyHSD(modelo2, conf.level = 0.95),cex.lab=0.8,las=1)
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo2),rstudent(modelo2),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(nitrato),rstudent(modelo2),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt=&quot;n&quot;)
+axis(1,at=c(1:5),labels=levels(nitrato))
+abline(h=c(-2,0,2),col=2)
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo2)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo2),cex=2)
+qqline(rstudent(modelo2),col=2)
+legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
+
+#TESTES PARA HOMOGENEIDAD DE VARIANZA
+bartlett.test(nlechug~nitrato)
+leveneTest (nlechug~nitrato)</code></pre>
 </div>
 </div>
-<div id="diseno-en-bloque" class="section level3">
-<h3>Diseño en bloque</h3>
+<div id="diseno-en-bloque" class="section level1">
+<h1><strong>DISEÑO EN BLOQUE</strong></h1>
+<ul>
+<li><p>Un experimento puede involucrar uno o más factores con efecto sobre la respuesta.</p></li>
+<li><p>Compara los efectos de diferentes tratamientos y bloques, aplicados a las unidades experimentales sobre condiciones diferentes.</p></li>
+<li><p>Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser medidas bajo condiciones experimentales similares.</p></li>
+<li><p>Los grupos de unidades experimentales similares son llamados bloques</p></li>
+<li><p>Las condiciones que varían de bloque a bloque forman los niveles del factor de bloqueo.</p></li>
+<li><p>El propósito de bloquear es prevenir que diferencias grandes en las unidades experimentales enmascaren las diferencias entre los niveles del factor de tratamiento.</p></li>
+<li><p>Permita que los tratamientos sean examinados bajo diferentes condiciones experimentales.</p></li>
+<li><p>Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.</p></li>
+</ul>
+<div id="ejemplo" class="section level2">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Los experimentadores agrícolas pueden saber que parcelas cercanas en un campo son similares, en tanto que las parcelas lejanas no lo son.</p></li>
+<li><p>Los experimentadores industriales pueden saber que dos unidades producidas por una misma máquina tienen características similares, mientras que aquellas producidas por dos máquinas distintas son algo diferentes.</p></li>
+<li><p>Los experimentadores clínicos pueden saber que las mediciones tomadas sobre el mismo sujeto serán similares, mientras que aquellas tomadas sobre sujetos distintos no lo serán.</p></li>
+</ul>
 </div>
+<div id="aspectos-del-diseno-en-bloque" class="section level2">
+<h2><strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></h2>
+<ul>
+<li><p>Considere b bloques</p></li>
+<li><p>a niveles del factor de estudio</p></li>
+<li><p>Una vez determinado el número de bloques y se hayan agrupado a las unidades experimentales en tales grupos, a continuación se asignan las unidades a los tratamientos.</p></li>
+<li><p>La mejor asignación a cada tratamiento es distribuir el mismo número de unidades experimentales en cada bloque.</p></li>
+<li><p>Si el tamaño del bloque k es múltiplo del número de niveles o tratamientos del factor, el diseño recibe el nombre de ** bloques completos**</p></li>
+<li><p>Si el tamaño de bloque no es múltiplo de a, entonces el diseño es conocido como un diseño de <strong>bloques incompletos</strong></p></li>
+</ul>
+</div>
+<div id="ejemplo-1" class="section level2">
+<h2>Ejemplo</h2>
+<p>Se realiza un estudio para comprobar la efectividad en el retraso del crecimiento de bacterias utilizando cuatro soluciones diferentes para lavar los envases de la leche. El análisis se realiza en el laboratorio y sólo se pueden realizar seis pruebas en un mismo día. Como los días son una fuente de variabilidad potencial, el investigador decide utilizar un diseño aleatorizado por bloques, pero al recopilar las observaciones durante seis días no ha sido posible aplicar todos los tratamientos en cada día, sino que sólo se han podido aplicar dos de las cuatro soluciones cada día. Se decide utilizar un diseño en bloques incompletos balanceado.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>dias</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Soluciones</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>solución 1</td>
+<td>12</td>
+<td>24</td>
+<td>31</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>solución 2</td>
+<td>21</td>
+<td></td>
+<td></td>
+<td></td>
+<td>20</td>
+<td>21</td>
+</tr>
+<tr class="even">
+<td>solución 3</td>
+<td></td>
+<td></td>
+<td>19</td>
+<td>18</td>
+<td></td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>solución 4</td>
+<td></td>
+<td>15</td>
+<td></td>
+<td>19</td>
+<td>47</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <div id="diseno-factor" class="section level3">
 <h3>Diseño factor</h3>
 </div>
