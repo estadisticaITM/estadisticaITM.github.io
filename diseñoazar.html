@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -920,18 +1017,39 @@ confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
 </table>
 <p>Preguntas</p>
 <ol style="list-style-type: lower-alpha">
-<li>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</li>
+<li><p>Realice un análisis descriptivo (Boxplot)</p></li>
+<li><p>Ajuste un modelo de regresión lineal, que puede inferir cual es la recta de regresión ajustada</p></li>
+<li><p>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</p></li>
 </ol>
 <p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span> con <span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> i=1,2…5 y j=1,2,3,4,5</p>
 <p><span class="math display">\[\Large \sum_{i=1}^5 \alpha_i=0\]</span> Donde</p>
 <p><span class="math inline">\(Y_{ij}=\)</span>Resistencia de la j-ésima tela y en la i-esima mezcla</p>
 <p><span class="math inline">\(\mu\)</span> Promedio global de la resistencia</p>
-<p><span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre ls resistencia del i -ésimo nivel de porcentaje de algodón.</p>
+<p><span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre la resistencia del i-ésimo nivel de porcentaje de algodón.</p>
 <p><span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Realice un análisis descriptivo (Boxplot)</li>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la resistencia media difiere según el contenido pocentual de algodón.</p></li>
+<li><p>Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett para probar la homogeneidad de las varianzas. Realice el test de normalidad con base en residuales estudentizados.</p></li>
+<li><p>Calcule intervalos de confianza del 95% para cada porcentaje de algodón</p></li>
+<li><p>Estime los efectos de cada nivel del factor y sus respectivos errores estándar, y pruebe la significancia de cada uno usando para cada prueba un nivel de significancia de 0.05</p></li>
+<li><p>Use el procedimiento de Tukey con un nivel de 0.05, para construir todos los intervalos de confianza posibles para las diferencias de medias por pares. Establezca los grupos de medias.</p></li>
+<li><p>Es de interés saber si los promedios de los niveles 1 y 2, no difieren del promedio de los niveles 4 y 5, es decir, promedio de niveles más bajos vs promedio de niveles más altos, por lo que podemos estar interesados en el siguiente test:</p></li>
 </ol>
-<pre class="r"><code>p15=c(7,7,15,11,9)
+<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p><span class="math inline">\(\Large H_0= \mu_1+\mu_2-\mu_3-\mu_4=0\)</span> <span class="math inline">\(\Large H_1= \mu_1+\mu_2-\mu_3-\mu_4 \not =0\)</span></p>
+<p>De forma general, se quiere contrastar la siguiente hipótesis:</p>
+<p><span class="math display">\[\Large H_0=\sum_{i=1}^tc_i\mu_i=0\]</span> <span class="math display">\[\Large H_1=\sum_{i=1}^tc_i\mu_i\not=0\]</span></p>
+<p>Las constantes de los contrastes para la hipótesis de nuestro ejemplo son: <span class="math inline">\(\large c_1=c_2=1,\)</span> y <span class="math inline">\(\large c_3 = 0, c_4 = c_5 = −1\)</span></p>
+<p>El estadístico es</p>
+<p><span class="math display">\[\Large t_0=\frac{\sum_{i=1}^tc_iy_i}{\sqrt{nMSE\sum_{i=1}^tc_i}}\]</span> La hipótesis nula se rechazaría si <span class="math inline">\(|t_0|&gt;t_{\alpha/2,N-t}\)</span></p>
+<p>En este ejemplo se pueden probar las siguientes pruebas de hipótesis:</p>
+<p><span class="math inline">\(\Large H_0= \mu_1+\mu_2-\mu_3-\mu_4=0\)</span> <span class="math inline">\(\Large H_1= \mu_1+\mu_2-\mu_3-\mu_4 \not =0\)</span></p>
+<p><span class="math inline">\(\Large H_0= 4\mu_1-\mu_2-\mu_3-\mu_4=0\)</span> <span class="math inline">\(\Large H_1= 4\mu_1-\mu_2-\mu_3-\mu_4 \not =0\)</span></p>
+<p><span class="math inline">\(\Large H_0= \mu_2-\mu_3=0\)</span> <span class="math inline">\(\Large H_1= \mu_2-\mu_3 \not =0\)</span></p>
+<p><span class="math inline">\(\Large H_0= \mu_4-\mu_5=0\)</span> <span class="math inline">\(\Large H_1= \mu_4-\mu_5 \not =0\)</span></p>
+<pre class="r"><code>library(gmodels)
+
+p15=c(7,7,15,11,9)
 p20=c(12,17,12,18,18)
 p25=c(14,18,18,19,19)
 p30=c(19,25,22,19,23)
@@ -939,10 +1057,77 @@ p35=c(7,10,11,15,11)
 porcentaje=gl(5,5,labels=c(&quot;p15&quot;,&quot;p20&quot;,&quot;p25&quot;,&quot;p30&quot;,&quot;p35&quot;))
 resistencia=c(p15,p20,p25,p30,p35)
 
-
 ##boxplot
-boxplot(resistencia~porcentaje)</code></pre>
-<p><img src="diseñoazar_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+boxplot(resistencia~porcentaje)
+
+
+##Anova
+anv1=lm(resistencia~porcentaje)
+summary(anv1)
+modelo=aov(resistencia~porcentaje)
+
+
+plot(modelo)
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo),cex=2)
+qqline(rstudent(modelo),col=2)
+legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
+
+#INVOCANDO LA PRUEBA DE BARTLETT
+bartlett.test(mprod~ID)
+
+##de otra forma
+plot(modelo)
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo,type = &quot;means&quot;,se=TRUE)
+
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
+df=anova(modeloanova)[&quot;Df&quot;][2,]
+ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratam*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+
+mismediastratamientos(modelo)
+
+#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.alto=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto alto&quot;=c(2/3,-1/3,-1/3)),conf=0.95)
+efect.bajo=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto bajo&quot;=c(-1/3,2/3,-1/3)),conf=0.95)
+efect.medio=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto medio&quot;=c(-1/3,-1/3,2/3)),conf=0.95)
+rbind(efect.alto,efect.bajo,efect.medio)
+
+
+
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo,type = &quot;effects&quot;,se=TRUE)
+
+MatrizContraste= rbind(’T2;T3 vs T4;T5’=c(0,1,1,-1,-1),
+’T1 vs resto’=c(4,-1,-1,-1,-1),
+’T2 vs T3’=c(0,1,-1,0,0), ’T4 vs T5’=c(0,0,0,1,-1))
+mo=lm(resistencia~porcentaje)
+Contrastes=fit.contrast(mo,’porcentaje’,MatrizContraste,conf=0.95)
+Contrastes</code></pre>
 </div>
 </div>
 
