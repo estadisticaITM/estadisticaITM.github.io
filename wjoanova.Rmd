@@ -1,0 +1,142 @@
+---
+title: "Trabajo anova"
+---
+## Ejemplo 2
+Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.
+
+|Tratamiento| Lechuga parcelas|
+|---|---|--|--|--|
+|0  |104|114|90|140|
+|50 |134|130|144|174|
+|100|146|142|152|156|
+|150|147|160|160|163|
+|200|131|148|154|163|
+
+
+
+a) Especifique la estructura de tratamiento y de diseño empleado en este experimento Escriba el modelo ANOVA apropiado con sus supuestos y restricciones.
+
+b) Realice un análisis descriptivo de los datos experimentales establezca conclusiones preliminares sobre los posibles efectos en la producción promedio de los diferentes niveles de aplicación de nitrato.
+
+c) Realice el test de hipótesis asociado al modelo ANOVA, interprete a la luz del problema.
+
+d) Si el factor de tratamientos es significativo, estime las medias de producción y efectos según nivel de nitrato, agrupe las medias y pruebe si “aplicar nitrato produce una producción promedio diferente respecto a no aplicar nitrato”. También pruebe si “aplicar nitrato eleva la producción promedio respecto a no aplicar nitrato”.
+
+e) Valide los supuestos del modelo ANOVA de este experimento. Analice residuos estudentizados.
+
+
+
+```{r eval=FALSE}
+
+#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)["Mean Sq"][2,]
+df=anova(modeloanova)["Df"][2,]
+ni=unlist(model.tables(modeloanova,type = "means")["n"])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = "means")["tables"])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat("Tabla de medias de tratamientos y sus I.C de",nivel,"%","\n")
+cat("alfa"," ",alfa,"\n")
+cat("grados de libertad ",df,"\n")
+cat("error cuadrático medio",MSE,"\n")
+cat("valor crítico t ",t,"\n","\n")
+interval
+}
+
+
+#ENTRADA DE DATOS
+#obseve que los renglones de datos corresponden a cada nivel desde 0 a 200, respectivamente
+diseño2=data.frame(nitrato=factor(c(rep(0,4),rep(50,4),rep(100,4),rep(150,4),rep(200,4))),
+nlechug=scan())
+104 114 90 140
+134 130 144 174
+146 142 152 156
+147 160 160 163
+131 148 154 163
+
+
+attach(diseño2)
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy2=sapply(split(nlechug,nitrato),mean)
+
+
+
+#BOXPLOTS COMPARATIVOS
+plot(diseño2)
+lines(1:5,mediasy2,col=2,lty=2,type="b",pch=3)
+
+
+
+#ANÁLISIS DE VARIANZA:
+modelo2=aov(nlechug~nitrato)
+
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo2)
+
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo2,type = "means",se=TRUE)
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+mismediastratamientos(modelo2)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo2,type = "effects",se=TRUE)
+
+
+#CÁLCULO INDIVIDUAL DE EFECTOS, SUS TESTES T Y I.C DEL 95%:
+efect.0=fit.contrast(modelo2,"nitrato",
+rbind(":efecto 0"=c(4/5,-1/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.50=fit.contrast(modelo2,"nitrato",
+rbind(":efecto 50"=c(-1/5,4/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.100=fit.contrast(modelo2,"nitrato",
+rbind(":efecto 100"=c(-1/5,-1/5,4/5,-1/5,-1/5)),conf=0.95)
+efect.150=fit.contrast(modelo2,"nitrato",
+rbind(":efecto 150"=c(-1/5,-1/5,-1/5,4/5,-1/5)),conf=0.95)
+efect.200=fit.contrast(modelo2,"nitrato",
+rbind(":efecto 200"=c(-1/5,-1/5,-1/5,-1/5,4/5)),conf=0.95)
+rbind(efect.0,efect.50,efect.100,efect.150,efect.200)
+
+#CÁLCULO DEL CONTRASTE CON NITRATO VS. SIN NITRATO, SU TEST T, Y I.C DEL 95%
+contraste=fit.contrast(modelo2,"nitrato", rbind(":con nitrato vs. sin nitrato"=c(-1,1/4,1/4,1/4,1/4)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE CON "NITRATO VS. SIN NITRATO" Y SU I.C DEL 95%
+contr=rbind("con nitrato vs. sin nitrato"= c(-1,1/4,1/4,1/4,1/4))
+confint(glht(modelo2,linfct=mcp(nitrato=contr)))
+
+#INTERVALOS DE TUKEY
+TukeyHSD(modelo2, conf.level = 0.95)
+plot(TukeyHSD(modelo2, conf.level = 0.95),cex.lab=0.8,las=1)
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo2),rstudent(modelo2),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(nitrato),rstudent(modelo2),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt="n")
+axis(1,at=c(1:5),labels=levels(nitrato))
+abline(h=c(-2,0,2),col=2)
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo2)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo2),cex=2)
+qqline(rstudent(modelo2),col=2)
+legend("topleft",legend=rbind(names(test),test),cex=0.8)
+
+#TESTES PARA HOMOGENEIDAD DE VARIANZA
+bartlett.test(nlechug~nitrato)
+leveneTest (nlechug~nitrato)
+
+
+```

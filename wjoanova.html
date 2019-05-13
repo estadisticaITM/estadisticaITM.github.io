@@ -11,7 +11,7 @@
 
 
 
-<title>Análisis y diseño de experimentos</title>
+<title>Trabajo anova</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -243,82 +243,176 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Análisis y diseño de experimentos</h1>
+<h1 class="title toc-ignore">Trabajo anova</h1>
 
 </div>
 
 
-<p><img src="pagin2_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div id="documentos-de-interes" class="section level2">
-<h2>Documentos de interés</h2>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/FDE%20058%20Microdise%C3%B1o%20curricular%20V03%20(2).docx">Microcurrículo</a></p>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/compromiso%20dise%C3%B1o.docx">Compromiso académico</a></p>
-</div>
-<div id="orden-del-curso" class="section level2">
-<h2>Orden del curso</h2>
-<p>El orden de los temas que se llevará en el curso es:</p>
-<ol style="list-style-type: decimal">
-<li>Repaso de estadística descriptiva <a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/repaso%20estad%C3%ADstica%20b%C3%A1sica.pptx">Clase</a></li>
+<div id="ejemplo-2" class="section level2">
+<h2>Ejemplo 2</h2>
+<p>Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Tratamiento</th>
+<th>Lechuga parcelas</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>104</td>
+<td>114</td>
+<td>90</td>
+<td>140</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>134</td>
+<td>130</td>
+<td>144</td>
+<td>174</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>146</td>
+<td>142</td>
+<td>152</td>
+<td>156</td>
+</tr>
+<tr class="even">
+<td>150</td>
+<td>147</td>
+<td>160</td>
+<td>160</td>
+<td>163</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td>131</td>
+<td>148</td>
+<td>154</td>
+<td>163</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>Especifique la estructura de tratamiento y de diseño empleado en este experimento Escriba el modelo ANOVA apropiado con sus supuestos y restricciones.</p></li>
+<li><p>Realice un análisis descriptivo de los datos experimentales establezca conclusiones preliminares sobre los posibles efectos en la producción promedio de los diferentes niveles de aplicación de nitrato.</p></li>
+<li><p>Realice el test de hipótesis asociado al modelo ANOVA, interprete a la luz del problema.</p></li>
+<li><p>Si el factor de tratamientos es significativo, estime las medias de producción y efectos según nivel de nitrato, agrupe las medias y pruebe si “aplicar nitrato produce una producción promedio diferente respecto a no aplicar nitrato”. También pruebe si “aplicar nitrato eleva la producción promedio respecto a no aplicar nitrato”.</p></li>
+<li><p>Valide los supuestos del modelo ANOVA de este experimento. Analice residuos estudentizados.</p></li>
 </ol>
-<ul>
-<li><p>Aspectos generales y gráficos</p></li>
-<li><p>Análisis descriptivo en excel</p></li>
-<li><p>Introducción al R</p></li>
-</ul>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/index.mp4">Video</a> y <a href="%7Bhttps://github.com/estadisticaITM/repositorioprueba/blob/master/Semillero%20de%20R%20clase%201.pdf%7D">Clase</a></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Muestreo <a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Tama%C3%B1os%20de%20muestra.pdf">clase</a></li>
-</ol>
-<div id="videos-de-tamanos-de-muestra" class="section level4">
-<h4>Videos de Tamaños de muestra</h4>
-</div>
-<div id="para-la-media" class="section level4">
-<h4>Para la media</h4>
-<iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-</div>
-<div id="para-la-proporcion" class="section level4">
-<h4>Para la proporción</h4>
-<p><iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Intervalos de confianza</li>
-</ol>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Intervalos%20de%20confianzajtg.pdf">clase</a></p>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/f%C3%B3rmulas.pdf">Fórmulas</a></p>
-<ol start="4" style="list-style-type: decimal">
-<li>Pruebas de hipótesis</li>
-</ol>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf">Intervalos de confianza y test de hipótesis con R</a></p>
-<ol start="5" style="list-style-type: decimal">
-<li><p>Pruebas no paramétricas <a href="pruebas_no_paramétricas.html" target="_blank"> Clase de pruebas no paramétricas</a></p></li>
-<li><p>Regresión lineal <a href="regrelineal.html" target="_blank"> Clase de regresión</a></p></li>
-<li><p><strong>Introducción al análisis y diseño de experimentos </strong></p></li>
-</ol>
-<ul>
-<li><p><a href="varianza.html" target="_blank"> Introducción al análisis de varianza</a></p></li>
-<li><p><a href="diseñoazar.html" target="_blank"> Diseño completamente al azar</a></p></li>
-<li><p><a href="diseñobloque.html" target="_blank"> Diseño en Bloques </a></p></li>
-</ul>
-</div>
-</div>
-<div id="talleres" class="section level2">
-<h2>Talleres</h2>
-<ol style="list-style-type: decimal">
-<li><p><a href="wjoanova.html" target="_blank">Trabajo ANOVA</a> Fecha de entrega: 5 de Junio</p></li>
-<li><p>Taller de tamaños de muestra intervalos de confianza y pruebas de hipótesis</p></li>
-</ol>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Taller%20de%20tama%C3%B1os%20de%20muestra%2C%20intervalos%20de%20confianza%20y%20ph.pdf">Tamaños de muestra, intervalos de confianza, PH</a></p>
-<ol start="3" style="list-style-type: decimal">
-<li><a href="trabajoregrelineal.html" target="_blank"> Trabajo de regresión lineal </a></li>
-</ol>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/PlantillaTrabajos.doc">Plantilla</a></p>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/APC1modif.txt">Datos</a></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Diseño experimental</li>
-</ol>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Actividad%203&#39;dise%C3%B1o%20con%202%20factores.doc">Taller</a></p>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/produccion2.csv">Datos</a></p>
+<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
+df=anova(modeloanova)[&quot;Df&quot;][2,]
+ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+
+
+#ENTRADA DE DATOS
+#obseve que los renglones de datos corresponden a cada nivel desde 0 a 200, respectivamente
+diseño2=data.frame(nitrato=factor(c(rep(0,4),rep(50,4),rep(100,4),rep(150,4),rep(200,4))),
+nlechug=scan())
+104 114 90 140
+134 130 144 174
+146 142 152 156
+147 160 160 163
+131 148 154 163
+
+
+attach(diseño2)
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy2=sapply(split(nlechug,nitrato),mean)
+
+
+
+#BOXPLOTS COMPARATIVOS
+plot(diseño2)
+lines(1:5,mediasy2,col=2,lty=2,type=&quot;b&quot;,pch=3)
+
+
+
+#ANÁLISIS DE VARIANZA:
+modelo2=aov(nlechug~nitrato)
+
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo2)
+
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo2,type = &quot;means&quot;,se=TRUE)
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+mismediastratamientos(modelo2)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo2,type = &quot;effects&quot;,se=TRUE)
+
+
+#CÁLCULO INDIVIDUAL DE EFECTOS, SUS TESTES T Y I.C DEL 95%:
+efect.0=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 0&quot;=c(4/5,-1/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.50=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 50&quot;=c(-1/5,4/5,-1/5,-1/5,-1/5)),conf=0.95)
+efect.100=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 100&quot;=c(-1/5,-1/5,4/5,-1/5,-1/5)),conf=0.95)
+efect.150=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 150&quot;=c(-1/5,-1/5,-1/5,4/5,-1/5)),conf=0.95)
+efect.200=fit.contrast(modelo2,&quot;nitrato&quot;,
+rbind(&quot;:efecto 200&quot;=c(-1/5,-1/5,-1/5,-1/5,4/5)),conf=0.95)
+rbind(efect.0,efect.50,efect.100,efect.150,efect.200)
+
+#CÁLCULO DEL CONTRASTE CON NITRATO VS. SIN NITRATO, SU TEST T, Y I.C DEL 95%
+contraste=fit.contrast(modelo2,&quot;nitrato&quot;, rbind(&quot;:con nitrato vs. sin nitrato&quot;=c(-1,1/4,1/4,1/4,1/4)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE CON &quot;NITRATO VS. SIN NITRATO&quot; Y SU I.C DEL 95%
+contr=rbind(&quot;con nitrato vs. sin nitrato&quot;= c(-1,1/4,1/4,1/4,1/4))
+confint(glht(modelo2,linfct=mcp(nitrato=contr)))
+
+#INTERVALOS DE TUKEY
+TukeyHSD(modelo2, conf.level = 0.95)
+plot(TukeyHSD(modelo2, conf.level = 0.95),cex.lab=0.8,las=1)
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo2),rstudent(modelo2),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(nitrato),rstudent(modelo2),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt=&quot;n&quot;)
+axis(1,at=c(1:5),labels=levels(nitrato))
+abline(h=c(-2,0,2),col=2)
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo2)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo2),cex=2)
+qqline(rstudent(modelo2),col=2)
+legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
+
+#TESTES PARA HOMOGENEIDAD DE VARIANZA
+bartlett.test(nlechug~nitrato)
+leveneTest (nlechug~nitrato)</code></pre>
 </div>
 
 <br>

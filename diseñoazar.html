@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="diseno-completamente-al-azar-dca" class="section level1">
+<h1><strong>Diseño Completamente al Azar (DCA)</strong></h1>
+<p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
+<ul>
+<li><p>En total se tienen N unidades experimentales (UE) homogéneas (N=tr)</p></li>
+<li><p>con r Unidades experimentales por cada tratamiento t, distribuidas al azar.</p></li>
+</ul>
+<p>Se expresa de la forma: <span class="math display">\[\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span></p>
+<p>Donde - <span class="math inline">\(\large Y_{ij}\)</span> es la Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con <span class="math inline">\(i=1, 2,...,n\)</span> y <span class="math inline">\(j=1, 2, ..., ni\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\large \mu\)</span> denota la respuesta global promedio</p></li>
+<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo tratamiento sobre el promedio global</p></li>
+</ul>
+<p>Este modelo es conocido como <strong>modelo de efectos de tratamientos</strong>, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante <span class="math inline">\(\large \sigma^2\)</span>, es decir:</p>
+<p><span class="math display">\[\large  \varepsilon_i \sim N(0,\sigma^2)\]</span></p>
+<p>Por tanto el examen de diferencias entre las medias de tratamiento <span class="math inline">\(\large \mu_i\)</span> , es equivalente a examinar las diferencias entre los efectos <span class="math inline">\(\alpha_i\)</span>, bajo la restricción lineal</p>
+<p><span class="math display">\[\large \sum_{i=1}^n n_i \alpha_i=0\]</span> para una solución única del sistema de ecuaciones de mínimos cuadrados.</p>
+<p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Flexibilidad: Cualquier número de tratamientos y cualquier número de réplicas pueden ser usadas, siempre y cuando se tengan suficientes UE homogéneas.</p></li>
+<li><p>Análisis Estadístico simple: el análisis estadístico es simple ya sea cuando todos los tratamientos tengan igual número de réplicas (balanceado), diferente número de réplicas (desbalanceado) o pérdida de datos, caso en el cual se trata como un análisis desbalanceado.</p></li>
+<li><p>Máximo número de grados de libertad para el error:dados por la expresión t(r − 1), que corresponden a dos fuentes de variación que son los tratamientos y el error.</p></li>
+<li><p>Precisión: Es muy preciso si se tienen en cuenta UE homogéneas.</p></li>
+</ul>
+<p><strong>Desventajas </strong></p>
+<ul>
+<li><p>Se puede obtener baja precisión cuando las unidades experimentales no sean muy homogéneas y así ser ineficiente.</p></li>
+<li><p>Es recomendado cuando gran parte de las UE no respondan al tratamiento o puedan perderse durante el experimento.</p></li>
+<li><p>Es útil en experimentos en los que el número de UE es limitado, ya que provee el máximo número de grados de libertad del error.</p></li>
+</ul>
+<p><strong>ANOVA PARA EL DISEÑO COMPLETAMENTE ALEATORIZADO (DCA)</strong></p>
+<ul>
+<li>El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.</li>
+</ul>
+<p>-◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales</p>
+<p>-◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes.</p>
+<p><img src="diseñoazar_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Tabla de entrada de datos</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>niveles del factor</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Réplicas</td>
+<td><span class="math inline">\(A_1\)</span></td>
+<td><span class="math inline">\(A_2\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(A_a\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td><span class="math inline">\(Y_{21}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(Y_{12}\)</span></td>
+<td><span class="math inline">\(Y_{22}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a2}\)</span></td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>.</td>
+<td><span class="math inline">\(Y_{1n_1}\)</span></td>
+<td><span class="math inline">\(Y_{2n_2}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(Y_{1\bullet}\)</span></td>
+<td><span class="math inline">\(Y_{2\bullet}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{a\bullet}\)</span></td>
+</tr>
+<tr class="even">
+<td># de réplicas</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu\)</span> por tratamiento</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{i \bullet}=\sum_{j=1}^{ni}Y_{ij}\)</span> es la suma de las observaciones en el nivel o tratamiento i</p></li>
+<li><p><span class="math inline">\(Y_{\bullet \bullet}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}Y_{ij}\)</span> es la suma de todas las observaciones en el experimento</p></li>
+</ul>
+<p>Con estas cantidades se obtienen los siguientes estimadores:</p>
+<p><span class="math display">\[\Large \hat {\mu}=\bar{Y}_{\bullet \bullet}=\frac{1}{N}\sum_{i=1}^{a}Y_{i \bullet}\]</span> <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{Y_{i \bullet}}{n_i}\]</span> <span class="math display">\[\Large \hat{\alpha_i}=\bar{Y}_{i \bullet}-\bar{Y}_{\bullet \bullet}\]</span> Las respuestas ajustadas para el tratamiento i es:</p>
+<p><span class="math display">\[\Large \hat{Y}_{ij}= \bar{Y}_{i \bullet}\]</span> Los residuales del modelo corresponden a</p>
+<p><span class="math display">\[\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}\]</span></p>
+<p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSE</p>
+<ul>
+<li>La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por: <span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 \]</span></li>
+</ul>
+<p>-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSA=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a n_i\bar{Y^2_{i\bullet}}-N\bar{Y}_{i \bullet}^2 \]</span></p>
+<ul>
+<li>La variabilidad en la respuesta explicada por la aleatoriedad, con N-a grados de libertad, está dada por</li>
+</ul>
+<p><span class="math display">\[\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA\]</span></p>
+<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span> <span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
+<p>La tabla anova está definida de la forma</p>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="18%" />
+<col width="18%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fuente de variación</th>
+<th>Grados de libertad</th>
+<th>Suma de cuadrados</th>
+<th>cuadrados medios</th>
+<th>Estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Factor</td>
+<td>a-1</td>
+<td>SSA</td>
+<td><span class="math inline">\(MSA=SSA/(a-1)\)</span></td>
+<td><span class="math inline">\(F_0=MSA/MSE\)</span></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>N-a</td>
+<td>SSE</td>
+<td><span class="math inline">\(MSE=SSE/(N-a)\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>N-1</td>
+<td>SST</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="validacion-de-supuestos-del-modelo-anova" class="section level3">
+<h3>Validación de supuestos del modelo ANOVA</h3>
+<ul>
+<li>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\varepsilon_{ij} \sim Normal\)</span></p>
+<p><span class="math inline">\(\Large H_1= \varepsilon_{ij}\)</span> no son normales</p>
+<ul>
+<li>Varianza constante se chequea con la prueba de barlett o la de levene, además del grafico de residuales vs los valores ajustados.</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\sigma_1^2=\sigma_2^2=...=\sigma_i^2\)</span></p>
+<p><span class="math inline">\(\Large H_1= \sigma_1^2\not=\sigma_2^2 \not =...\not =\sigma_i^2\)</span></p>
+<ul>
+<li>Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales</li>
+</ul>
+<p><span class="math inline">\(\Large H_0=\)</span> los errores son independientes</p>
+<p><span class="math inline">\(\Large H_1=\)</span> los errores son dependientes</p>
+<ul>
+<li>El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.</li>
+</ul>
+<p>Para cada problema experimental es posible hacer estimaciones de sus parámetros:</p>
+<ol style="list-style-type: decimal">
+<li><p>Una estimación de la varianza del error experimental es <span class="math inline">\(\Large \hat \sigma=MSE\)</span>,es muy útil para el análisis siempre que las varianzas de los tratamientos sean homogéneas.</p></li>
+<li><p>Una estimación puntual de la media global del experimento es $= yY_{} $</p></li>
+<li><p>Las medias de los tratamientos se estiman a partir de las medias muéstrales o medias de grupos para el tratamiento j−ésimo.</p></li>
+<li><p>Los efectos de los tratamientos del factor A son las diferencias entre la media general y la media del tratamiento</p></li>
+</ol>
+</div>
+<div id="ejemplo-de-un-modelo-balanceado" class="section level2">
+<h2>Ejemplo de un modelo balanceado</h2>
+<p>Se tienen 4 tratamientos médicos T1, T2, T3, y T4, aplicables a la misma enfermedad, y se desea comparar la efectividad de cada uno de ellos, en el peso.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Réplicas</th>
+<th><span class="math inline">\(T_1\)</span></th>
+<th><span class="math inline">\(T_2\)</span></th>
+<th><span class="math inline">\(T_3\)</span></th>
+<th><span class="math inline">\(T_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>41</td>
+<td>48</td>
+<td>40</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>44</td>
+<td>49</td>
+<td>50</td>
+<td>39</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>45</td>
+<td>49</td>
+<td>44</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>43</td>
+<td>49</td>
+<td>48</td>
+<td>46</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>42</td>
+<td>45</td>
+<td>50</td>
+<td>41</td>
+</tr>
+<tr class="even">
+<td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+<td>215</td>
+<td>240</td>
+<td>232</td>
+<td>212</td>
+</tr>
+<tr class="odd">
+<td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+<td>43</td>
+<td>48</td>
+<td>46.4</td>
+<td>42.2</td>
+</tr>
+<tr class="even">
+<td>Varianzas</td>
+<td>2.5</td>
+<td>3</td>
+<td>18.8</td>
+<td>11.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ejemplo-de-un-modelo-desbalanceado" class="section level2">
+<h2>Ejemplo de un modelo desbalanceado</h2>
+<p>Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió aleatoriamente una de las dietas.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Réplicas</th>
+<th><span class="math inline">\(T_1\)</span></th>
+<th><span class="math inline">\(T_2\)</span></th>
+<th><span class="math inline">\(T_3\)</span></th>
+<th><span class="math inline">\(T_4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>62</td>
+<td>63</td>
+<td>68</td>
+<td>56</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>60</td>
+<td>67</td>
+<td>66</td>
+<td>62</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>63</td>
+<td>71</td>
+<td>71</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>59</td>
+<td>64</td>
+<td>67</td>
+<td>63</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+<td>65</td>
+<td>68</td>
+<td>63</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td></td>
+<td>66</td>
+<td>68</td>
+<td>64</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+<td>63</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>59</td>
+</tr>
+<tr class="odd">
+<td>Total <span class="math inline">\(Y_{i\bullet}\)</span></td>
+<td>215</td>
+<td>240</td>
+<td>232</td>
+<td>212</td>
+</tr>
+<tr class="even">
+<td>Medias <span class="math inline">\(\bar y_{i\bullet}\)</span></td>
+<td>43</td>
+<td>48</td>
+<td></td>
+<td>46.4</td>
+</tr>
+<tr class="odd">
+<td>Varianzas</td>
+<td>2.5</td>
+<td>3</td>
+<td>18.8</td>
+<td>11.3</td>
+</tr>
+</tbody>
+</table>
+<div id="inferencias-para-medias-de-tratamientos-anova-un-factor-dca" class="section level3">
+<h3>INFERENCIAS PARA MEDIAS DE TRATAMIENTOS ANOVA UN FACTOR, DCA</h3>
+<p>Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario determinar cuáles tratamientos son estadísticamente distintos. Para ello, se recurre a diferentes técnicas de comparación de medias de tratamiento:</p>
+<ul>
+<li>Comparaciones entre pares de medias</li>
+<li>Comparaciones múltiples o pruebas de rango múltiple.</li>
+<li>Comparaciones por contrastes</li>
+<li>Comparaciones de tratamientos con un control</li>
+</ul>
+<div id="comparacion-de-medias-por-medio-del-intervalo-tukey" class="section level4">
+<h4><strong>Comparación de medias por medio del intervalo tukey</strong></h4>
+<p>método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\large \gamma\)</span> con el valor crítico:</p>
+<p><span class="math display">\[\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} \]</span></p>
+<p>Donde:</p>
+<p>$q_(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados a son los niveles del factor gl los grados de libertad del MSE. Los pares de medias de tratamientos <span class="math inline">\(\mu_i\)</span> y <span class="math inline">\(\mu_j\)</span> difieren significativamente cuando:</p>
+<p><span class="math display">\[\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|&gt;T_\gamma\]</span></p>
+<p>También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por</p>
+<p><span class="math display">\[\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="ejemplo" class="section level1">
+<h1><strong>Ejemplo</strong></h1>
+<p>Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
+<table>
+<thead>
+<tr class="header">
+<th>obs</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alto</td>
+<td>8.5</td>
+<td>9.7</td>
+<td>10.1</td>
+<td>7.8</td>
+<td>9.6</td>
+<td>9.5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Bajo</td>
+<td>7.6</td>
+<td>8.2</td>
+<td>6.8</td>
+<td>5.8</td>
+<td>6.9</td>
+<td>6.6</td>
+<td>6.3</td>
+<td>7.7</td>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Medio</td>
+<td>6.7</td>
+<td>8.1</td>
+<td>9.4</td>
+<td>8.6</td>
+<td>7.8</td>
+<td>7.7</td>
+<td>8.9</td>
+<td>7.9</td>
+<td>8.3</td>
+<td>8.7</td>
+<td>7.1</td>
+<td>8.4</td>
+</tr>
+</tbody>
+</table>
+<p>Preguntas</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</li>
+</ol>
+<p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span> con <span class="math display">\[\Large \varepsilon \sim N(0,\sigma^2)\]</span> i=1,2,3 y j=1,2,3,4,5,…12</p>
+<p><span class="math display">\[\sum_{i=1}^3 \alpha_i=0\]</span> Donde</p>
+<p><span class="math inline">\(Y_{ij}=\)</span>Puntuación obtenida en la escala de productividad i</p>
+<p><span class="math inline">\(\mu\)</span> Promedio global de la puntuación obtenida</p>
+<p><span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos.</p>
+<p><span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o no aproximadamente constante?</p></li>
+<li><p>Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la media de mejoramiento de la productividad difiere según el nivel de gastos en investigación y desarrollo. Tenga en cuenta en sus cálculos que este problema es un caso de diseño desbalanceado.</p></li>
+<li><p>Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene para probar la homogeneidad de las varianzas. Realice el test de normalidad con base en residuales estudentizados.</p></li>
+<li><p>Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión y desarrollo.</p></li>
+<li><p>Estime los efectos de cada nivel del factor y sus respectivos errores estándar, y pruebe la significancia de cada uno usando para cada prueba un nivel de significancia de 0.05</p></li>
+<li><p>Use el procedimiento de Tukey con un nivel de 0.05, para construir todos los intervalos de confianza posibles para las diferencias de medias por pares. Establezca los grupos de medias.</p></li>
+<li><p>Formule, estime y pruebe la significancia del contraste apropiado para probar si el promedio de mejora en productividad a un nivel alto de gasto en investigación y desarrollo, es:</p></li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>Significativamente diferente a los otros dos niveles</li>
+</ol>
+<p>NOTA: En los casos donde aplique exprese apropiadamente la prueba de hipótesis, el estadístico de prueba, el criterio de rechazo.</p>
+<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+diseño=data.frame(ID=factor(c(rep(&quot;alto&quot;,6),rep(&quot;bajo&quot;,9),rep(&quot;medio&quot;,12))),mprod=scan())
+8.5 9.7 10.1 7.8 9.6 9.5
+7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
+6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
+
+
+diseño
+attach(diseño)
+
+
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy=sapply(split(mprod,ID),mean)
+
+#BOXPLOTS COMPARATIVOS
+boxplot(mprod~ID,col=c(&quot;gray90&quot;,&quot;orange&quot;,&quot;cyan&quot;))
+lines(1:3,mediasy,col=2,lty=2,type=&quot;b&quot;,pch=3)
+
+#AJUSTE MODELO ANOVA UN FACTOR
+modelo=aov(mprod~ID)
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo) #o bien summary(modelo)
+
+#distribución de los gráficos
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo),rstudent(modelo),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(ID),rstudent(modelo),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt=&quot;n&quot;)
+axis(1,at=c(1,2,3),labels=levels(ID))
+abline(h=c(-2,0,2),col=2)
+
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo),cex=2)
+qqline(rstudent(modelo),col=2)
+legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
+
+#INVOCANDO LA PRUEBA DE BARTLETT
+bartlett.test(mprod~ID)
+
+##de otra forma
+plot(modelo)
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo,type = &quot;means&quot;,se=TRUE)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo,type = &quot;effects&quot;,se=TRUE)
+
+mean(mprod)
+
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
+df=anova(modeloanova)[&quot;Df&quot;][2,]
+ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratam*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+
+mismediastratamientos(modelo)
+
+#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.alto=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto alto&quot;=c(2/3,-1/3,-1/3)),conf=0.95)
+efect.bajo=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto bajo&quot;=c(-1/3,2/3,-1/3)),conf=0.95)
+efect.medio=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto medio&quot;=c(-1/3,-1/3,2/3)),conf=0.95)
+rbind(efect.alto,efect.bajo,efect.medio)
+
+#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
+TukeyHSD(modelo,conf.level = 0.95)
+plot(TukeyHSD(modelo,conf.level = 0.95))
+
+
+#CÁLCULO DEL CONTRASTE ID: ALTO VS. DEMÁS, TEST T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+contraste=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:ALTO VS. DEMAS&quot;=c(1,-1/2,-1/2)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE ID. ALTO VS. DEMÁS, Y SU I.C DEL 95%
+#LA FUNCIÓN glht REQUIERE LA LIBRERÍA multcomp
+
+contraste=rbind(&quot;alto vs. demás &quot;=c(1,-1/2,-1/2))
+confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
+<div id="contrastes" class="section level2">
+<h2><strong>Contrastes</strong></h2>
+<p>Un contraste es toda combinación lineal de medias de tratamiento, donde la suma algebraica de sus coeficientes es igual a cero. En general una combinación lineal o contraste es de la forma:</p>
+<p><span class="math display">\[ \Large \Gamma =c_1\mu_1+c_2\mu_2+...+c_t\mu_t=\sum_{i=1}^tc_i\mu_i\]</span> Donde se comple que</p>
+<p><span class="math display">\[\Large \sum_{i=1}^tc_i=0\]</span></p>
+<p>En cualquier experimento se puede presentar la necesidad de comparar grupos de tratamientos, en estos casos el método de los contrastes resulta una alternativa para llevar a cabo dichas comparaciones.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tiene interés en investigar la resistencia a la tensión de una fibra sintética (lb/pulgada2) nueva que se usará para hacer tela de camisetas para caballero. Se sabe que la resistencia a la tensión se afecta por el peso porcentual del algodón utilizado en la mezcla de materiales de la fibra. Además, se sospecha que al aumentar el contenido de algodón se incrementará la resistencia. Se decide entonces probar ejemplares en cinco niveles del peso porcentual del algodón: 15, 20, 25, 30 y 35 por ciento. También se decide realizar cienco réplicas en cada nivel. Los datos se muestran como sigue:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Niveles del peso</th>
+<th>Repeticiones</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>Totales <span class="math inline">\(y_i\)</span></th>
+<th>Promedios <span class="math inline">\(\bar y_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>7</td>
+<td>7</td>
+<td>15</td>
+<td>11</td>
+<td>9</td>
+<td>49</td>
+<td>9.8</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>12</td>
+<td>17</td>
+<td>12</td>
+<td>18</td>
+<td>18</td>
+<td>77</td>
+<td>15.4</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>14</td>
+<td>18</td>
+<td>18</td>
+<td>19</td>
+<td>19</td>
+<td>88</td>
+<td>17.6</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>19</td>
+<td>25</td>
+<td>22</td>
+<td>19</td>
+<td>23</td>
+<td>108</td>
+<td>21.6</td>
+</tr>
+<tr class="odd">
+<td>T5</td>
+<td>7</td>
+<td>10</td>
+<td>11</td>
+<td>15</td>
+<td>11</td>
+<td>54</td>
+<td>10.8</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(y_{\bullet \bullet}=376\)</span></td>
+<td><span class="math inline">\(\bar y_{\bullet \bullet}=15.04\)</span>}</td>
+</tr>
+</tbody>
+</table>
+<p>Preguntas</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.</li>
+</ol>
+<p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span> con <span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> i=1,2…5 y j=1,2,3,4,5</p>
+<p><span class="math display">\[\Large \sum_{i=1}^5 \alpha_i=0\]</span> Donde</p>
+<p><span class="math inline">\(Y_{ij}=\)</span>Resistencia de la j-ésima tela y en la i-esima mezcla</p>
+<p><span class="math inline">\(\mu\)</span> Promedio global de la resistencia</p>
+<p><span class="math inline">\(\alpha_i\)</span> Efecto fijo sobre ls resistencia del i -ésimo nivel de porcentaje de algodón.</p>
+<p><span class="math inline">\(\varepsilon_{ij}\)</span> Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Realice un análisis descriptivo (Boxplot)</li>
+</ol>
+<pre class="r"><code>p15=c(7,7,15,11,9)
+p20=c(12,17,12,18,18)
+p25=c(14,18,18,19,19)
+p30=c(19,25,22,19,23)
+p35=c(7,10,11,15,11)
+porcentaje=gl(5,5,labels=c(&quot;p15&quot;,&quot;p20&quot;,&quot;p25&quot;,&quot;p30&quot;,&quot;p35&quot;))
+resistencia=c(p15,p20,p25,p30,p35)
+
+
+##boxplot
+boxplot(resistencia~porcentaje)</code></pre>
+<p><img src="diseñoazar_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

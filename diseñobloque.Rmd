@@ -1,0 +1,280 @@
+---
+title: "DISEÑO EN BLOQUE"
+---
+
+- Un experimento puede involucrar uno o más factores con efecto sobre la
+respuesta. 
+
+- Compara los efectos de diferentes tratamientos y bloques, aplicados a las unidades experimentales sobre condiciones diferentes.
+
+- Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser
+medidas bajo condiciones experimentales similares.
+
+- Los grupos de unidades experimentales similares son llamados bloques
+
+- Las condiciones que varían de bloque a bloque forman los niveles del factor de bloqueo. 
+
+- El propósito de bloquear es prevenir que diferencias grandes en las unidades experimentales enmascaren las diferencias entre los niveles del factor de tratamiento.
+
+- Permita que los tratamientos sean examinados bajo diferentes condiciones experimentales.
+
+- Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.
+
+##Ejemplo
+
+- Los experimentadores agrícolas pueden saber que parcelas cercanas en un campo son similares, en tanto que las parcelas lejanas no lo son. 
+
+- Los experimentadores industriales pueden saber que dos unidades producidas por una misma máquina tienen características similares, mientras que aquellas producidas por dos máquinas distintas son algo diferentes. 
+
+- Los experimentadores clínicos pueden saber que las mediciones tomadas sobre el mismo sujeto serán similares, mientras que aquellas tomadas sobre sujetos distintos no lo serán.
+
+##**ASPECTOS DEL DISEÑO EN BLOQUE**
+
+- Considere b bloques, de tamaño k
+
+- a niveles del factor de estudio
+
+- Una vez determinado el número de bloques y se hayan agrupado a las unidades experimentales en tales grupos, a continuación se asignan las unidades a los tratamientos.
+
+- La mejor asignación a cada tratamiento es distribuir el mismo número de unidades experimentales en cada bloque.
+
+- Si el tamaño del bloque k es múltiplo del número de niveles o tratamientos del factor, el diseño recibe el nombre de ** bloques completos**
+
+- Si el tamaño de bloque no es múltiplo de a, entonces el diseño es conocido como un diseño de **bloques incompletos**
+
+## Ejemplo
+
+Se realiza un estudio para comprobar la efectividad en el retraso del crecimiento de bacterias utilizando cuatro soluciones diferentes para lavar los envases de la leche. El análisis se realiza en el laboratorio y sólo se pueden realizar seis pruebas en un mismo día. Como los días son una fuente de variabilidad potencial, el investigador decide utilizar un diseño aleatorizado por bloques, pero al recopilar las observaciones durante seis días no ha sido posible aplicar todos los tratamientos en cada día, sino que sólo se han podido aplicar dos de las cuatro soluciones cada día. Se decide utilizar un diseño en bloques incompletos balanceado.
+
+|          | dias|  |  |  |  |  |
+|----------|-----|--|--|--|--|--|
+|Soluciones|1    |2 |3 | 4|5 |6 |  
+|solución 1|12   |24|31|  |  |  |
+|solución 2|21   |  |  |  |20|21|
+|solución 3|     |  |19|18|  |19|
+|solución 4|     |15|  |19|47|  | 
+
+En este experimento se tienen b=6 bloques que son los dias, de tamaño k=2, mientras que los tratamientos a=4, corresponden a las 4 soluciones
+
+
+
+##**Diseño en bloques completos al azar**
+
+- Este diseño con a tratamientos y con N=ab unidades experimentales agrupadas en b bloques.
+
+- las unidades dentro de un bloque son similares y unidades en bloques diferentes son sustancialmente distintas. 
+
+- Las unidades experimentales en cada bloque son asignadas aleatoriamente a los a tratamientos de modo que cada tratamiento es asignado a una unidad por bloque.
+
+- Una tabla de entrada de datos para este modelo es: 
+
+|                 | Bloques       |               |   |        |   |        |                      |
+|-----------------|---------------|---------------|---|--------|---|--------|----------------------|
+|Tratamientos     |1              |2              |...|       j|...|b       |Medias de tratamientos|
+| 1               |$Y_{11}$       |$Y_{12}$       |...|$Y_{1j}$|...|$Y_{1b}$|$\bar{Y_{1\bullet}}$|
+| 2               |$Y_{21}$       |$Y_{22}$       |...|$Y_{2j}$|...|$Y_{2b}$|$\bar{Y_{2\bullet}}$|
+| ...             |...            |...            |...|...     |...|...     |...                 |
+| i               |$Y_{i1}$       |$Y_{i2}$       |.. |$Y_{ij}$|...|$Y_{ib}$|$\bar{Y_{i\bullet}}$|
+| ...             |...            |...            |...|...            |...|...     |...                 |
+| a               |$Y_{a1}$       |$Y_{a2}$       |.. |$Y_{aj}$       |...|$Y_{ab}$|$\bar{Y_{a\bullet}}$|
+|Medias de bloques|$Y_{\bullet 1}$|$Y_{\bullet 2}$|.. |$Y_{\bullet j}$|...|$Y_{\bullet i}$|Media global $\bar{Y_{\bullet \bullet}}$|
+
+##**Modelo ANOVA**
+
+
+$$\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$$      
+
+
+Donde 
+- $\large Y_{ij}$ es la  Variable aleatoria que representala medición del bloque j, del tratamiento i.
+
+- $\large \mu$ denota la respuesta global promedio
+
+- $\large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
+
+-$\large \beta_j$ es el efecto del j-ésimo bloque
+
+
+
+
+
+Esten modelo asume que no existe interacción entre el factor de interés y el factor de bloqueo; en muchas situaciones esta presunción será razonable, sin embargo, si se sospecha que hay interacción, el tamaño del bloque deberá ser incrementado para permitir estimar estos
+efectos.
+
+Los niveles del factor de bloque representan agrupamientos intencionales de las unidades experimentales, mientras que los tratamientos son asignados de manera aleatoria a las unidades experimentales.
+
+El interés no está centrado en las medias de los bloques, si no en la suma de cuadrados medios debida al factor de bloqueo con el MSE del modelo, para determinar si bloquear fue o no benéfico en el experimento.
+
+
+|Fuente de variación |Grados de libertad|Suma de cuadrados|cuadrados medios |Valores esperados|F|
+|----------------|------------------|-----------------|-----------------|-----------------------|
+|Factor A  |a-1  |SSA     |$MSA=SSA/(a-1)$|$\Large E(MSA)=\sigma^2+ \frac{\sum_{i=1}^n\alpha_i^2}{a-1}$ |          $MSA/MSE$|
+|Bloque |b-1     |SSB     |$MSB=SSB/(b-1)$|$\Large E(MSB)=\sigma^2+ \frac{\sum_{i=1}^n\beta_i^2}{a-1}$          |          |
+Error   |(a-1)(b-1) |SSE     |$MSE=SSE/(a-1)(b-1)$|$E(MSE)=\sigma^2$             |                    |
+|Total   |ab-1     |SST     |               |             |                    |
+
+
+**Fórmulas**
+
+Las sumas de cuadrados del modelo ANOVA  SST=SSA+SSB+SSE
+
+
+
+$$\Large SST=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:
+
+$$\Large SSA=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a \bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el bloque B, con b-1 grados de libertad, está dada por:
+
+$$\Large SSB=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a \bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+- La variabilidad en la respuesta explicada por la aleatoriedad, con (a-1)(b-1) grados de libertad, está dada por
+
+$$\Large SSE=SST-SSA-SSB$$
+
+
+
+La media muestral en el nivel i del factor de tratamiento está dada por:
+$$\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}$$  
+
+La media muestral en el nivel j del bloque está dada por:
+
+$$\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}$$
+
+
+**Hipótesis de interés**
+
+La prueba de hipótesis asociada al ANOVA esta dado por:
+
+$\Large H_0=\mu_1=\mu_2=...=\mu_i$
+
+$\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
+
+
+
+
+
+**Notas de interés**
+
+- Si el MSB es considerablemente mayor que el MSE, esto sugiere que la creación de bloques valió la pena en el sentido de que sirvió para reducir el tamaño del error experimental.
+
+-Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.
+
+
+-También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey
+
+- se verifica independencia, normalidad y varianza constante en los residuales
+
+
+Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:
+
+|          |Método|  |  |  |
+|----------|------|--|--|--|
+|Operadores|A     |B |C | D|  
+|         1|6     |7 |10|10|
+|        2 |9     |10|16|13|
+|         3| 7    |11|11|11| 
+|         4|  8   |8 |14|9|   
+
+Se desea determinar si existen diferencias entre los cuatro métodos y cómo se diferencian, además elegir el mejor método, si lo hay.
+
+El modelo estadístico es:
+$$\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$$      
+coni=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores
+
+Donde 
+- $\large Y_{ij}$ es la  Variable aleatoria que representala medición del bloque j, del tratamiento i.
+
+- $\large \mu$ denota el tiempo promedio global
+
+- $\large \alpha$ es el efecto del i-ésimo método sobre el tiempo de ensamble
+
+-$\large \beta_j$ es el efecto del j-ésimo operador sobre el tiempo de ensamble
+
+
+Bajo los puestos de que 
+
+$$\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0$$
+
+
+```{r eval=FALSE}
+#creando función
+mismediastratamientosDBCA=function(respuesta,factor.trat,bloque,nivel=95){
+modeloanova=aov(respuesta~factor.trat+bloque)
+MSE=anova(modeloanova)["Mean Sq"][3,]
+df=anova(modeloanova)["Df"][3,]
+b=unlist(model.tables(modeloanova,type = "means",cterms="factor.trat")["n"])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type =
+"means",cterms="factor.trat")["tables"])[-1]
+interval=cbind(ni=b,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat("Tabla de medias de tratamientos y sus I.C de",nivel,"%","\n")
+cat("alfa"," ",alfa,"\n")
+cat("grados de libertad ",df,"\n")
+cat("error cuadrático medio",MSE,"\n")
+cat("valor crítico t ",t,"\n","\n")
+interval
+}
+
+#lectura de datos
+ensamble=data.frame(método=factor(rep(c("A","B","C","D"),4)),
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4))),tiempo=scan())
+6 7 10 10
+9 10 16 13
+7 11 11 11
+8 8 14 9
+ensamble
+attach(ensamble)􀀃
+
+
+#Boxplot
+mediastrat=sapply(split(tiempo,método),mean)
+mediasbloque=sapply(split(tiempo,operador),mean)
+nf=layout(cbind(c(1,1),c(2,2)))
+plot(tiempo~método)
+lines(1:4,mediastrat,col=2,lty=2,type="b",pch=3)
+plot(tiempo~operador)
+lines(1:4,mediasbloque,col=2,lty=2,type="b",pch=3)
+
+#Anova
+diseño=aov(tiempo~método+operador)
+anova(diseño)
+
+library(gmodels)
+library(multcomp)
+efect.métodoA=fit.contrast(diseño,"método",rbind(":efecto método A"=c(3/4,-1/4,-1/4,-1/4)),conf=0.95)
+efect.métodoB=fit.contrast(diseño,"método",rbind(":efecto método B"=c(-1/4,3/4,-1/4,-1/4)),conf=0.95)
+efect.métodoC=fit.contrast(diseño,"método",rbind(":efecto método C"=c(-1/4,-1/4,3/4,-1/4)),conf=0.95)
+efect.métodoD=fit.contrast(diseño,"método",rbind(":efecto método D"=c(-1/4,-1/4,-1/4,3/4)),conf=0.95)
+rbind(efect.métodoA,efect.métodoB,efect.métodoC,efect.métodoD)
+
+#medias dE tratamientos con sus INTERVALOS
+mismediastratamientosDBCA(respuesta=tiempo,factor.trat=método,bloque=operador)
+
+#iNTERVALOS TUKEY
+TukeyHSD(diseño,"método",conf.level=0.95)
+plot(TukeyHSD(diseño,"método",conf.level = 0.95),cex.lab=0.8,las=1)
+
+#vALIDACION DE LOS RESIDUALES
+
+nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+plot(fitted(diseño),rstandard(diseño),ylim=c(-2.5,2.5),cex=2,
+main="Residuales estandarizados vs. valores ajustados")
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(método),rstandard(diseño),xlab="Método",ylim=c(-2.5,2.5),cex=2,xaxt="n",
+main="Residuales estandarizados vs. método")
+axis(1,at=1:4,labels=levels(método))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(operador),rstandard(diseño),xlab="Operador",ylim=c(-2.5,2.5),cex=2,xaxt="n",
+main="Residuales estandarizados vs. operador")
+axis(1,at=1:4,labels=levels(operador))
+abline(h=c(-2,0,2),col=2)
+qqnorm(rstandard(diseño),cex=2)
+qqline(rstandard(diseño),col=2)
+
+```

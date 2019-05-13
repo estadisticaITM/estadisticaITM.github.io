@@ -1,0 +1,481 @@
+#**Diseño Completamente al Azar (DCA)**
+
+En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):
+
+- En total se tienen N unidades experimentales (UE) homogéneas (N=tr)
+
+- con r Unidades experimentales por cada tratamiento t, distribuidas al azar.
+
+
+Se expresa de la forma:
+$$\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$      
+
+
+Donde 
+- $\large Y_{ij}$ es la  Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con  $i=1, 2,...,n$ y $j=1, 2, ..., ni$.
+
+- $\large \mu$ denota la respuesta global promedio
+
+- $\large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
+
+
+Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante $\large  \sigma^2$, es decir:
+
+$$\large  \varepsilon_i \sim N(0,\sigma^2)$$
+
+
+
+Por tanto el examen de diferencias entre las medias de tratamiento $\large \mu_i$ , es equivalente a examinar las diferencias entre los efectos $\alpha_i$, bajo la restricción lineal
+
+$$\large \sum_{i=1}^n n_i \alpha_i=0$$
+ para una solución única del sistema de ecuaciones de mínimos cuadrados.
+ 
+ 
+**Ventajas**
+
+- Flexibilidad: Cualquier número de tratamientos y cualquier número de réplicas pueden ser usadas, siempre y cuando se tengan suficientes UE homogéneas.
+
+- Análisis Estadístico simple: el análisis estadístico es simple ya sea cuando todos los tratamientos tengan igual número de réplicas (balanceado), diferente número de réplicas (desbalanceado) o pérdida de datos, caso en el cual se trata como un análisis desbalanceado.
+
+- Máximo número de grados de libertad para el error:dados por la expresión t(r − 1), que corresponden a dos fuentes de variación que son los tratamientos y el error.
+
+- Precisión: Es muy preciso si se tienen en cuenta UE homogéneas.
+
+**Desventajas **
+
+
+- Se puede obtener baja precisión cuando las unidades experimentales no sean muy homogéneas y así ser ineficiente.
+
+- Es recomendado cuando gran parte de las UE no respondan al tratamiento o puedan perderse durante el experimento.
+
+- Es útil en experimentos en los que el número de UE es limitado, ya que provee el máximo número de grados de libertad del error.
+
+ **ANOVA PARA EL DISEÑO COMPLETAMENTE ALEATORIZADO (DCA)**
+ 
+- El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.
+
+-◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales
+
+-◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes. 
+ 
+```{r fig.asp=0.2, fig.align='center', echo=FALSE}
+library(png)
+library(grid)
+da1 <- readPNG("var.png")
+grid.raster(da1)
+```
+
+ Tabla de entrada de datos
+ 
+|                     |niveles del factor||||
+|-------------------- |------|-----|---|-----|
+|Réplicas             | $A_1$|$A_2$|...|$A_a$|
+|            1        |$Y_{11}$      |$Y_{21}$|...|$Y_{a1}$|
+|            2        |$Y_{12}$      |$Y_{22}$|...|$Y_{a2}$|
+|   .                 |...           |...     |...|...     |
+|    .                |$Y_{1n_1}$    |$Y_{2n_2}$|...|$Y_{11}$|
+|             .       |$Y_{11}$      |$Y_{11}$|...|$Y_{11}$|
+|Total                |$Y_{1\bullet}$|$Y_{2\bullet}$|...|$Y_{a\bullet}$|
+|# de réplicas        |              |              |   ||
+|$\mu$ por tratamiento|              |              |   ||
+
+
+
+Donde:
+
+- $Y_{i \bullet}=\sum_{j=1}^{ni}Y_{ij}$ es la suma de las observaciones en el nivel o tratamiento i
+
+- $Y_{\bullet  \bullet}=\sum_{i=1}^{a}\sum_{j=1}^{n_i}Y_{ij}$ es la suma de todas las observaciones en el experimento
+
+Con estas cantidades se obtienen los siguientes estimadores:
+
+$$\Large \hat {\mu}=\bar{Y}_{\bullet \bullet}=\frac{1}{N}\sum_{i=1}^{a}Y_{i \bullet}$$
+$$\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{Y_{i \bullet}}{n_i}$$
+$$\Large \hat{\alpha_i}=\bar{Y}_{i \bullet}-\bar{Y}_{\bullet \bullet}$$
+Las respuestas ajustadas para el tratamiento i es:
+
+
+$$\Large \hat{Y}_{ij}= \bar{Y}_{i \bullet}$$
+Los residuales del modelo corresponden a 
+
+
+$$\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}$$
+
+
+Las sumas de cuadrados del modelo ANOVA  SST=SSA+SSE
+
+- La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por:
+$$\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:
+
+$$\Large SSA=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a n_i\bar{Y^2_{i\bullet}}-N\bar{Y}_{i \bullet}^2 $$
+
+- La variabilidad en la respuesta explicada por la aleatoriedad, con N-a grados de libertad, está dada por
+
+$$\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA$$
+
+
+
+
+La prueba de hipótesis asociada al ANOVA esta dado por:
+
+$\Large H_0=\mu_1=\mu_2=...=\mu_i$
+$\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
+
+La tabla anova está definida de la forma
+
+
+|Fuente de variación |Grados de libertad|Suma de cuadrados|cuadrados medios |Estadístico|Valor p|
+|--------------------|------------------|-----------------|-----------------|-----------------------|
+|Factor              |a-1               |SSA     |$MSA=SSA/(a-1)$|$F_0=MSA/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|Error               |N-a               |SSE     |$MSE=SSE/(N-a)$|             |                    |
+|Total               |N-1               |SST     |               |             |                    |
+
+
+
+###Validación de supuestos del modelo ANOVA
+
+- Normalidad en los errores, el cual se se chequea con la prueba de shapiro  y con el gráfico qq plot
+
+
+$\Large H_0=\varepsilon_{ij} \sim Normal$
+
+$\Large H_1= \varepsilon_{ij}$ no son normales
+
+
+- Varianza constante se chequea con la prueba de barlett o la de levene, además del grafico de residuales vs los valores ajustados.
+
+
+$\Large H_0=\sigma_1^2=\sigma_2^2=...=\sigma_i^2$
+
+$\Large H_1= \sigma_1^2\not=\sigma_2^2 \not =...\not =\sigma_i^2$
+
+
+
+- Independencia en los errrores, se cheque con la prueba durbin watson y con el gráfico de residuales 
+
+$\Large H_0=$ los errores son independientes
+
+$\Large H_1=$ los errores son dependientes 
+
+
+- El ajuste del modelo planteado, realmente las respuestas medias de los tratamientos son adecuadamente descritos por el modelo lineal postulado, este supuesto se chequea mediante el gráfico de residuales estandarizados vs. niveles del factor. Patrones no aleatorios alrededor de la línea cero de este gráfico son indicios de carencia de ajuste.
+
+
+Para cada problema experimental es posible hacer estimaciones de sus parámetros:
+
+1. Una estimación de la varianza del error experimental es $\Large \hat \sigma=MSE$,es muy útil para el análisis siempre que las varianzas de los tratamientos sean homogéneas.
+
+2. Una estimación puntual de la media global del experimento es $\Large \hat \mu= \bar yY_{\bullet \bullet} $
+
+3. Las medias de los tratamientos se estiman a partir de las medias muéstrales o
+medias de grupos para el tratamiento j−ésimo.
+
+4. Los efectos de los tratamientos del factor A son las diferencias entre la media general y la media del tratamiento 
+
+##Ejemplo de un modelo balanceado
+
+Se tienen 4 tratamientos médicos T1, T2, T3, y T4, aplicables a la misma enfermedad, y se desea comparar la efectividad de cada uno de ellos, en el peso.
+
+
+
+|Réplicas|$T_1$|$T_2$|$T_3$|$T_4$|
+|--------|-----|-----|-----|--------|
+|1|41|48|40|40|
+|2|44|49|50|39|
+|3|45|49|44|46|
+|4|43|49|48|46|
+|5|42|45|50|41|
+|Total $Y_{i\bullet}$|215|240|232|212|
+|Medias $\bar y_{i\bullet}$|43|48|46.4|42.2|
+|Varianzas|2.5|3|18.8|11.3|
+
+
+##Ejemplo de un modelo desbalanceado
+Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el
+tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió aleatoriamente una de las dietas.
+
+
+|Réplicas|$T_1$|$T_2$|$T_3$|$T_4$|
+|--------|-----|-----|-----|---------|
+|1|62|63|68|56|
+|2|60|67|66|62|
+|3|63|71|71|60|
+|4|59|64|67|63|
+|5|  |65|68|63|
+|6|  |66|68|64|
+|7|  |  |  |63|
+|8|  |  |  |59|
+|Total $Y_{i\bullet}$|215|240|232|212|
+|Medias $\bar y_{i\bullet}$|43|48| |46.4|42.2|
+|Varianzas|2.5|3|18.8|11.3|
+
+
+### INFERENCIAS PARA MEDIAS DE TRATAMIENTOS ANOVA UN FACTOR, DCA
+
+Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario determinar cuáles tratamientos son estadísticamente distintos. Para ello, se recurre a diferentes técnicas de comparación de medias de tratamiento:
+
+- Comparaciones entre pares de medias
+- Comparaciones múltiples o pruebas de rango múltiple.
+- Comparaciones por contrastes
+- Comparaciones de tratamientos con un control
+
+####**Comparación de medias por medio del intervalo tukey**
+método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia $\large \gamma$ con el valor crítico:
+
+$$\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} $$
+
+Donde:
+
+$\large q_\gamma(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados
+a son los niveles del factor 
+gl los grados de libertad del MSE. 
+Los pares de medias de tratamientos $\mu_i$ y $\mu_j$ difieren significativamente cuando:
+
+$$\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|>T_\gamma$$
+
+También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por
+
+$$\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}$$
+
+#**Ejemplo**
+Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:
+
+|obs|1   |2|3|4|5|6|7|8|9|10|11|12|
+|---|---|--|--|--|--|--|--|--|--|--|--|--|
+|Alto|8.5|9.7|10.1|7.8|9.6|9.5|
+|Bajo|7.6|8.2|6.8 |5.8|6.9|6.6|6.3|7.7|6| | | |
+|Medio|6.7|8.1|9.4|8.6|7.8|7.7|8.9|7.9|8.3|8.7|7.1|8.4|
+
+Preguntas
+
+a) Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.
+
+
+$$\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$
+con 
+$$\Large \varepsilon \sim N(0,\sigma^2)$$
+i=1,2,3 y j=1,2,3,4,5,...12
+
+$$\sum_{i=1}^3 \alpha_i=0$$
+Donde 
+
+$Y_{ij}=$Puntuación obtenida en la escala de productividad i
+
+$\mu$ Promedio global de la puntuación obtenida 
+
+$\alpha_i$ Efecto fijo sobre la puntuación obtenida del i -ésimo nivel de gastos.
+
+$\varepsilon_{ij}$ Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.
+
+
+b) Haga un análisis descriptivo de los datos. ¿Qué puede concluir de estos en cuanto al promedio de mejoramiento de la productividad? ¿La variabilidad dentro de cada nivel del gasto en investigación y desarrollo puede considerarse o no aproximadamente constante?
+
+c) Calcule la tabla ANOVA, la tabla de parámetros estimados para los datos y la tabla de medias. Analice los resultados y pruebe a un nivel de significancia de 0.05, si la media de mejoramiento de la productividad difiere según el nivel de gastos en investigación y desarrollo. Tenga en cuenta en sus cálculos que este problema es un caso de diseño desbalanceado.
+
+d) Analice los gráficos de residuales estudentizados y úselos para validar los supuestos del modelo. Así mismo use los resultados de la prueba de Bartlett y de Levene para probar la homogeneidad de las varianzas. Realice el test de normalidad con base en residuales estudentizados. 
+
+e) Calcule intervalos de confianza del 95% para la mejora media de productividad para cada nivel de gasto en inversión y desarrollo.
+
+c) Estime los efectos de cada nivel del factor y sus respectivos errores estándar, y pruebe la significancia de cada uno usando para cada prueba un nivel de significancia de 0.05
+
+d) Use el procedimiento de Tukey con un nivel de 0.05, para construir todos los intervalos de confianza posibles para las diferencias de medias por pares. Establezca los grupos de medias.
+
+e) Formule, estime y pruebe la significancia del contraste apropiado para probar si el promedio de mejora en productividad a un nivel alto de gasto en investigación y desarrollo, es:
+
+1. Significativamente diferente a los otros dos niveles
+
+
+NOTA: En los casos donde aplique exprese apropiadamente la prueba de hipótesis, el estadístico de prueba, el criterio de rechazo.
+
+
+
+
+
+
+```{r eval=FALSE}
+#CARGANDO LIBRERÍAS NECESARÍAS
+library(gmodels)
+library(multcomp)
+library(car)
+
+diseño=data.frame(ID=factor(c(rep("alto",6),rep("bajo",9),rep("medio",12))),mprod=scan())
+8.5 9.7 10.1 7.8 9.6 9.5
+7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
+6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
+
+
+diseño
+attach(diseño)
+
+
+#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
+mediasy=sapply(split(mprod,ID),mean)
+
+#BOXPLOTS COMPARATIVOS
+boxplot(mprod~ID,col=c("gray90","orange","cyan"))
+lines(1:3,mediasy,col=2,lty=2,type="b",pch=3)
+
+#AJUSTE MODELO ANOVA UN FACTOR
+modelo=aov(mprod~ID)
+
+#OBTENIENDO TABLA ANOVA
+anova(modelo) #o bien summary(modelo)
+
+#distribución de los gráficos
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+
+
+#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
+plot(fitted(modelo),rstudent(modelo),cex=2,ylim=c(-2.5,2.5))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(ID),rstudent(modelo),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt="n")
+axis(1,at=c(1,2,3),labels=levels(ID))
+abline(h=c(-2,0,2),col=2)
+
+
+#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
+test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
+qqnorm(rstudent(modelo),cex=2)
+qqline(rstudent(modelo),col=2)
+legend("topleft",legend=rbind(names(test),test),cex=0.8)
+
+#INVOCANDO LA PRUEBA DE BARTLETT
+bartlett.test(mprod~ID)
+
+##de otra forma
+plot(modelo)
+
+#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
+model.tables(modelo,type = "means",se=TRUE)
+
+
+#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
+model.tables(modelo,type = "effects",se=TRUE)
+
+mean(mprod)
+
+
+#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
+#CREANDO FUNCIÓN USUARIO mismediastratamientos()
+
+mismediastratamientos=function(modeloanova,nivel=95){
+MSE=anova(modeloanova)["Mean Sq"][2,]
+df=anova(modeloanova)["Df"][2,]
+ni=unlist(model.tables(modeloanova,type = "means")["n"])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type = "means")["tables"])[-1]
+interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratam*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat("Tabla de medias de tratamientos y sus I.C de",nivel,"%","\n")
+cat("alfa"," ",alfa,"\n")
+cat("grados de libertad ",df,"\n")
+cat("error cuadrático medio",MSE,"\n")
+cat("valor crítico t ",t,"\n","\n")
+interval
+}
+
+mismediastratamientos(modelo)
+
+#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.alto=fit.contrast(modelo,"ID",rbind(":efecto alto"=c(2/3,-1/3,-1/3)),conf=0.95)
+efect.bajo=fit.contrast(modelo,"ID",rbind(":efecto bajo"=c(-1/3,2/3,-1/3)),conf=0.95)
+efect.medio=fit.contrast(modelo,"ID",rbind(":efecto medio"=c(-1/3,-1/3,2/3)),conf=0.95)
+rbind(efect.alto,efect.bajo,efect.medio)
+
+#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
+TukeyHSD(modelo,conf.level = 0.95)
+plot(TukeyHSD(modelo,conf.level = 0.95))
+
+
+#CÁLCULO DEL CONTRASTE ID: ALTO VS. DEMÁS, TEST T Y I.C DEL 95%:
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+contraste=fit.contrast(modelo,"ID",rbind(":ALTO VS. DEMAS"=c(1,-1/2,-1/2)),conf=0.95)
+contraste
+
+#OTRA FORMA PARA CÁLCULO DEL CONTRASTE ID. ALTO VS. DEMÁS, Y SU I.C DEL 95%
+#LA FUNCIÓN glht REQUIERE LA LIBRERÍA multcomp
+
+contraste=rbind("alto vs. demás "=c(1,-1/2,-1/2))
+confint(glht(modelo,linfct=mcp(ID=contrasteb)))
+```
+
+
+
+##**Contrastes**
+
+
+Un contraste es toda combinación lineal de medias de tratamiento, donde la suma algebraica de sus coeficientes es igual a cero. En general una combinación lineal o contraste es de la forma:
+
+$$ \Large \Gamma =c_1\mu_1+c_2\mu_2+...+c_t\mu_t=\sum_{i=1}^tc_i\mu_i$$
+Donde se comple que
+
+$$\Large \sum_{i=1}^tc_i=0$$
+
+
+En cualquier experimento se puede presentar la necesidad de comparar grupos de tratamientos, en estos casos el método de los contrastes resulta una alternativa para llevar a cabo dichas comparaciones.
+
+**Ejemplo**
+
+Se tiene interés en investigar la resistencia a la tensión de una fibra sintética (lb/pulgada2) nueva que se usará para hacer tela de camisetas para caballero. Se sabe que la resistencia a la tensión se afecta por el peso porcentual del algodón utilizado en la mezcla de materiales de la fibra. Además, se sospecha que al aumentar el contenido de algodón se incrementará la resistencia. Se decide entonces probar ejemplares en cinco niveles del peso porcentual del algodón: 15, 20, 25, 30 y 35 por ciento. También se decide realizar
+cienco réplicas en cada nivel. Los datos se muestran como sigue:
+
+
+|Niveles del peso| Repeticiones|             |  |  |  |Totales $y_i$|Promedios $\bar y_i$|
+|----------------|-------------|-------------|--|--|--|-------------|--------------------|
+|T1              |7            |7            |15|11|9 |49|9.8|
+|T2              |12           |17           |12|18|18|77|15.4|
+|T3              |14           |18           |18|19|19|88|17.6|
+|T4              |19           |25           |22|19|23|108|21.6|
+|T5              |7            |10           |11|15|11|54|10.8|
+|                |             |             |  |  |  |$y_{\bullet \bullet}=376$|$\bar y_{\bullet \bullet}=15.04$}|
+
+Preguntas
+
+a) Plantee un modelo estadístico apropiado para el ANOVA. Identifique sus términos y los supuestos necesarios.
+
+
+$$\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$
+con 
+$$\Large \varepsilon_{ij} \sim N(0,\sigma^2)$$
+i=1,2...5 y j=1,2,3,4,5
+
+$$\Large \sum_{i=1}^5 \alpha_i=0$$
+Donde 
+
+$Y_{ij}=$Resistencia de la j-ésima tela y en la i-esima mezcla 
+
+$\mu$ Promedio global de la resistencia
+
+$\alpha_i$ Efecto fijo sobre ls resistencia del i -ésimo nivel de porcentaje de algodón.
+
+$\varepsilon_{ij}$ Error aleatorio en el i-ésimo nivel de puntuación, en la j-ésima observación.
+
+b) Realice un análisis descriptivo (Boxplot)
+
+```{r}
+
+
+p15=c(7,7,15,11,9)
+p20=c(12,17,12,18,18)
+p25=c(14,18,18,19,19)
+p30=c(19,25,22,19,23)
+p35=c(7,10,11,15,11)
+porcentaje=gl(5,5,labels=c("p15","p20","p25","p30","p35"))
+resistencia=c(p15,p20,p25,p30,p35)
+
+
+##boxplot
+boxplot(resistencia~porcentaje)
+
+
+
+
+```
+
+
+

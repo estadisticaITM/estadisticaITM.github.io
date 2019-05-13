@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>DISEÑO EN BLOQUE</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">DISEÑO EN BLOQUE</h1>
+
+</div>
+
+
+<ul>
+<li><p>Un experimento puede involucrar uno o más factores con efecto sobre la respuesta.</p></li>
+<li><p>Compara los efectos de diferentes tratamientos y bloques, aplicados a las unidades experimentales sobre condiciones diferentes.</p></li>
+<li><p>Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser medidas bajo condiciones experimentales similares.</p></li>
+<li><p>Los grupos de unidades experimentales similares son llamados bloques</p></li>
+<li><p>Las condiciones que varían de bloque a bloque forman los niveles del factor de bloqueo.</p></li>
+<li><p>El propósito de bloquear es prevenir que diferencias grandes en las unidades experimentales enmascaren las diferencias entre los niveles del factor de tratamiento.</p></li>
+<li><p>Permita que los tratamientos sean examinados bajo diferentes condiciones experimentales.</p></li>
+<li><p>Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.</p></li>
+</ul>
+<div id="ejemplo" class="section level2">
+<h2>Ejemplo</h2>
+<ul>
+<li><p>Los experimentadores agrícolas pueden saber que parcelas cercanas en un campo son similares, en tanto que las parcelas lejanas no lo son.</p></li>
+<li><p>Los experimentadores industriales pueden saber que dos unidades producidas por una misma máquina tienen características similares, mientras que aquellas producidas por dos máquinas distintas son algo diferentes.</p></li>
+<li><p>Los experimentadores clínicos pueden saber que las mediciones tomadas sobre el mismo sujeto serán similares, mientras que aquellas tomadas sobre sujetos distintos no lo serán.</p></li>
+</ul>
+</div>
+<div id="aspectos-del-diseno-en-bloque" class="section level2">
+<h2><strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></h2>
+<ul>
+<li><p>Considere b bloques, de tamaño k</p></li>
+<li><p>a niveles del factor de estudio</p></li>
+<li><p>Una vez determinado el número de bloques y se hayan agrupado a las unidades experimentales en tales grupos, a continuación se asignan las unidades a los tratamientos.</p></li>
+<li><p>La mejor asignación a cada tratamiento es distribuir el mismo número de unidades experimentales en cada bloque.</p></li>
+<li><p>Si el tamaño del bloque k es múltiplo del número de niveles o tratamientos del factor, el diseño recibe el nombre de ** bloques completos**</p></li>
+<li><p>Si el tamaño de bloque no es múltiplo de a, entonces el diseño es conocido como un diseño de <strong>bloques incompletos</strong></p></li>
+</ul>
+</div>
+<div id="ejemplo-1" class="section level2">
+<h2>Ejemplo</h2>
+<p>Se realiza un estudio para comprobar la efectividad en el retraso del crecimiento de bacterias utilizando cuatro soluciones diferentes para lavar los envases de la leche. El análisis se realiza en el laboratorio y sólo se pueden realizar seis pruebas en un mismo día. Como los días son una fuente de variabilidad potencial, el investigador decide utilizar un diseño aleatorizado por bloques, pero al recopilar las observaciones durante seis días no ha sido posible aplicar todos los tratamientos en cada día, sino que sólo se han podido aplicar dos de las cuatro soluciones cada día. Se decide utilizar un diseño en bloques incompletos balanceado.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>dias</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Soluciones</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>solución 1</td>
+<td>12</td>
+<td>24</td>
+<td>31</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>solución 2</td>
+<td>21</td>
+<td></td>
+<td></td>
+<td></td>
+<td>20</td>
+<td>21</td>
+</tr>
+<tr class="even">
+<td>solución 3</td>
+<td></td>
+<td></td>
+<td>19</td>
+<td>18</td>
+<td></td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>solución 4</td>
+<td></td>
+<td>15</td>
+<td></td>
+<td>19</td>
+<td>47</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>En este experimento se tienen b=6 bloques que son los dias, de tamaño k=2, mientras que los tratamientos a=4, corresponden a las 4 soluciones</p>
+</div>
+<div id="diseno-en-bloques-completos-al-azar" class="section level2">
+<h2><strong>Diseño en bloques completos al azar</strong></h2>
+<ul>
+<li><p>Este diseño con a tratamientos y con N=ab unidades experimentales agrupadas en b bloques.</p></li>
+<li><p>las unidades dentro de un bloque son similares y unidades en bloques diferentes son sustancialmente distintas.</p></li>
+<li><p>Las unidades experimentales en cada bloque son asignadas aleatoriamente a los a tratamientos de modo que cada tratamiento es asignado a una unidad por bloque.</p></li>
+<li><p>Una tabla de entrada de datos para este modelo es:</p></li>
+</ul>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="16%" />
+<col width="16%" />
+<col width="4%" />
+<col width="9%" />
+<col width="4%" />
+<col width="9%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bloques</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tratamientos</td>
+<td>1</td>
+<td>2</td>
+<td>…</td>
+<td>j</td>
+<td>…</td>
+<td>b</td>
+<td>Medias de tratamientos</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(Y_{11}\)</span></td>
+<td><span class="math inline">\(Y_{12}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{1j}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{1b}\)</span></td>
+<td><span class="math inline">\(\bar{Y_{1\bullet}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(Y_{21}\)</span></td>
+<td><span class="math inline">\(Y_{22}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{2j}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{2b}\)</span></td>
+<td><span class="math inline">\(\bar{Y_{2\bullet}}\)</span></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>i</td>
+<td><span class="math inline">\(Y_{i1}\)</span></td>
+<td><span class="math inline">\(Y_{i2}\)</span></td>
+<td>..</td>
+<td><span class="math inline">\(Y_{ij}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{ib}\)</span></td>
+<td><span class="math inline">\(\bar{Y_{i\bullet}}\)</span></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>a</td>
+<td><span class="math inline">\(Y_{a1}\)</span></td>
+<td><span class="math inline">\(Y_{a2}\)</span></td>
+<td>..</td>
+<td><span class="math inline">\(Y_{aj}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{ab}\)</span></td>
+<td><span class="math inline">\(\bar{Y_{a\bullet}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Medias de bloques</td>
+<td><span class="math inline">\(Y_{\bullet 1}\)</span></td>
+<td><span class="math inline">\(Y_{\bullet 2}\)</span></td>
+<td>..</td>
+<td><span class="math inline">\(Y_{\bullet j}\)</span></td>
+<td>…</td>
+<td><span class="math inline">\(Y_{\bullet i}\)</span></td>
+<td>Media global <span class="math inline">\(\bar{Y_{\bullet \bullet}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="modelo-anova" class="section level2">
+<h2><strong>Modelo ANOVA</strong></h2>
+<p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\]</span></p>
+<p>Donde - <span class="math inline">\(\large Y_{ij}\)</span> es la Variable aleatoria que representala medición del bloque j, del tratamiento i.</p>
+<ul>
+<li><p><span class="math inline">\(\large \mu\)</span> denota la respuesta global promedio</p></li>
+<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo tratamiento sobre el promedio global</p></li>
+</ul>
+<p>-<span class="math inline">\(\large \beta_j\)</span> es el efecto del j-ésimo bloque</p>
+<p>Esten modelo asume que no existe interacción entre el factor de interés y el factor de bloqueo; en muchas situaciones esta presunción será razonable, sin embargo, si se sospecha que hay interacción, el tamaño del bloque deberá ser incrementado para permitir estimar estos efectos.</p>
+<p>Los niveles del factor de bloque representan agrupamientos intencionales de las unidades experimentales, mientras que los tratamientos son asignados de manera aleatoria a las unidades experimentales.</p>
+<p>El interés no está centrado en las medias de los bloques, si no en la suma de cuadrados medios debida al factor de bloqueo con el MSE del modelo, para determinar si bloquear fue o no benéfico en el experimento.</p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="19%" />
+<col width="18%" />
+<col width="18%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fuente de variación</th>
+<th>Grados de libertad</th>
+<th>Suma de cuadrados</th>
+<th>cuadrados medios</th>
+<th>Valores esperados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Factor A</td>
+<td>a-1</td>
+<td>SSA</td>
+<td><span class="math inline">\(MSA=SSA/(a-1)\)</span></td>
+<td><span class="math inline">\(\Large E(MSA)=\sigma^2+ \frac{\sum_{i=1}^n\alpha_i^2}{a-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Bloque</td>
+<td>b-1</td>
+<td>SSB</td>
+<td><span class="math inline">\(MSB=SSB/(b-1)\)</span></td>
+<td><span class="math inline">\(\Large E(MSB)=\sigma^2+ \frac{\sum_{i=1}^n\beta_i^2}{a-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Error</td>
+<td>(a-1)(b-1)</td>
+<td>SSE</td>
+<td><span class="math inline">\(MSE=SSE/(a-1)(b-1)\)</span></td>
+<td><span class="math inline">\(E(MSE)=\sigma^2\)</span></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>ab-1</td>
+<td>SST</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fórmulas</strong></p>
+<p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSB+SSE</p>
+<p><span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSA=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a \bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el bloque B, con b-1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSB=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a \bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<ul>
+<li>La variabilidad en la respuesta explicada por la aleatoriedad, con (a-1)(b-1) grados de libertad, está dada por</li>
+</ul>
+<p><span class="math display">\[\Large SSE=SST-SSA-SSB\]</span></p>
+<p>La media muestral en el nivel i del factor de tratamiento está dada por: <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}\]</span></p>
+<p>La media muestral en el nivel j del bloque está dada por:</p>
+<p><span class="math display">\[\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}\]</span></p>
+<p><strong>Hipótesis de interés</strong></p>
+<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span></p>
+<p><span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
+<p><strong>Notas de interés</strong></p>
+<ul>
+<li>Si el MSB es considerablemente mayor que el MSE, esto sugiere que la creación de bloques valió la pena en el sentido de que sirvió para reducir el tamaño del error experimental.</li>
+</ul>
+<p>-Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.</p>
+<p>-También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey</p>
+<ul>
+<li>se verifica independencia, normalidad y varianza constante en los residuales</li>
+</ul>
+<p>Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Método</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operadores</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>6</td>
+<td>7</td>
+<td>10</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>9</td>
+<td>10</td>
+<td>16</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>7</td>
+<td>11</td>
+<td>11</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>8</td>
+<td>8</td>
+<td>14</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>Se desea determinar si existen diferencias entre los cuatro métodos y cómo se diferencian, además elegir el mejor método, si lo hay.</p>
+<p>El modelo estadístico es: <span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\]</span><br />
+coni=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores</p>
+<p>Donde - <span class="math inline">\(\large Y_{ij}\)</span> es la Variable aleatoria que representala medición del bloque j, del tratamiento i.</p>
+<ul>
+<li><p><span class="math inline">\(\large \mu\)</span> denota el tiempo promedio global</p></li>
+<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo método sobre el tiempo de ensamble</p></li>
+</ul>
+<p>-<span class="math inline">\(\large \beta_j\)</span> es el efecto del j-ésimo operador sobre el tiempo de ensamble</p>
+<p>Bajo los puestos de que</p>
+<p><span class="math display">\[\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0\]</span></p>
+<pre class="r"><code>#creando función
+mismediastratamientosDBCA=function(respuesta,factor.trat,bloque,nivel=95){
+modeloanova=aov(respuesta~factor.trat+bloque)
+MSE=anova(modeloanova)[&quot;Mean Sq&quot;][3,]
+df=anova(modeloanova)[&quot;Df&quot;][3,]
+b=unlist(model.tables(modeloanova,type = &quot;means&quot;,cterms=&quot;factor.trat&quot;)[&quot;n&quot;])
+alfa=1-nivel/100
+alfa.med=(1-(nivel/100))/2
+t=qt(alfa.med,df=df,lower.tail=F)
+medias.tratam=unlist(model.tables(modeloanova,type =
+&quot;means&quot;,cterms=&quot;factor.trat&quot;)[&quot;tables&quot;])[-1]
+interval=cbind(ni=b,Medias=medias.tratam,LI=medias.tratamt*
+sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
+cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
+cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
+cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
+cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
+cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
+interval
+}
+
+#lectura de datos
+ensamble=data.frame(método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4)),
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4))),tiempo=scan())
+6 7 10 10
+9 10 16 13
+7 11 11 11
+8 8 14 9
+ensamble
+attach(ensamble)􀀃
+
+
+#Boxplot
+mediastrat=sapply(split(tiempo,método),mean)
+mediasbloque=sapply(split(tiempo,operador),mean)
+nf=layout(cbind(c(1,1),c(2,2)))
+plot(tiempo~método)
+lines(1:4,mediastrat,col=2,lty=2,type=&quot;b&quot;,pch=3)
+plot(tiempo~operador)
+lines(1:4,mediasbloque,col=2,lty=2,type=&quot;b&quot;,pch=3)
+
+#Anova
+diseño=aov(tiempo~método+operador)
+anova(diseño)
+
+library(gmodels)
+library(multcomp)
+efect.métodoA=fit.contrast(diseño,&quot;método&quot;,rbind(&quot;:efecto método A&quot;=c(3/4,-1/4,-1/4,-1/4)),conf=0.95)
+efect.métodoB=fit.contrast(diseño,&quot;método&quot;,rbind(&quot;:efecto método B&quot;=c(-1/4,3/4,-1/4,-1/4)),conf=0.95)
+efect.métodoC=fit.contrast(diseño,&quot;método&quot;,rbind(&quot;:efecto método C&quot;=c(-1/4,-1/4,3/4,-1/4)),conf=0.95)
+efect.métodoD=fit.contrast(diseño,&quot;método&quot;,rbind(&quot;:efecto método D&quot;=c(-1/4,-1/4,-1/4,3/4)),conf=0.95)
+rbind(efect.métodoA,efect.métodoB,efect.métodoC,efect.métodoD)
+
+#medias dE tratamientos con sus INTERVALOS
+mismediastratamientosDBCA(respuesta=tiempo,factor.trat=método,bloque=operador)
+
+#iNTERVALOS TUKEY
+TukeyHSD(diseño,&quot;método&quot;,conf.level=0.95)
+plot(TukeyHSD(diseño,&quot;método&quot;,conf.level = 0.95),cex.lab=0.8,las=1)
+
+#vALIDACION DE LOS RESIDUALES
+
+nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+plot(fitted(diseño),rstandard(diseño),ylim=c(-2.5,2.5),cex=2,
+main=&quot;Residuales estandarizados vs. valores ajustados&quot;)
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(método),rstandard(diseño),xlab=&quot;Método&quot;,ylim=c(-2.5,2.5),cex=2,xaxt=&quot;n&quot;,
+main=&quot;Residuales estandarizados vs. método&quot;)
+axis(1,at=1:4,labels=levels(método))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(operador),rstandard(diseño),xlab=&quot;Operador&quot;,ylim=c(-2.5,2.5),cex=2,xaxt=&quot;n&quot;,
+main=&quot;Residuales estandarizados vs. operador&quot;)
+axis(1,at=1:4,labels=levels(operador))
+abline(h=c(-2,0,2),col=2)
+qqnorm(rstandard(diseño),cex=2)
+qqline(rstandard(diseño),col=2)</code></pre>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
