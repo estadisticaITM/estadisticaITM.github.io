@@ -2,13 +2,11 @@
 title: "DISEÑO EN BLOQUE"
 ---
 
-- Un experimento puede involucrar uno o más factores con efecto sobre la
-respuesta. 
+- Un experimento puede involucrar uno o más factores con efecto sobre la respuesta. 
 
 - Compara los efectos de diferentes tratamientos y bloques, aplicados a las unidades experimentales sobre condiciones diferentes.
 
-- Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser
-medidas bajo condiciones experimentales similares.
+- Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser medidas bajo condiciones experimentales similares.
 
 - Los grupos de unidades experimentales similares son llamados bloques
 
@@ -160,13 +158,15 @@ $\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
 
 - Si el MSB es considerablemente mayor que el MSE, esto sugiere que la creación de bloques valió la pena en el sentido de que sirvió para reducir el tamaño del error experimental.
 
--Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.
+- Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.
 
 
--También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey
+- También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey
 
 - se verifica independencia, normalidad y varianza constante en los residuales
 
+
+## **Ejemplo**
 
 Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:
 
@@ -182,22 +182,34 @@ Se desea determinar si existen diferencias entre los cuatro métodos y cómo se 
 
 El modelo estadístico es:
 $$\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$$      
-coni=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores
+con i=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores
 
 Donde 
 - $\large Y_{ij}$ es la  Variable aleatoria que representala medición del bloque j, del tratamiento i.
 
 - $\large \mu$ denota el tiempo promedio global
 
-- $\large \alpha$ es el efecto del i-ésimo método sobre el tiempo de ensamble
+- $\large \alpha$ es el efecto del i-ésimo método sobre el tiempo de ensamble.
 
--$\large \beta_j$ es el efecto del j-ésimo operador sobre el tiempo de ensamble
+- $\large \beta_j$ es el efecto del j-ésimo operador sobre el tiempo de ensamble
 
 
 Bajo los puestos de que 
 
 $$\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0$$
+a) Analice los datos experimentales
 
+b) Especifique el modelo para este experimento.
+
+c) Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.
+
+d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+
+e) Estime e interprete los efectos de cada operario y metodo sobre lel tiempo de ensambe. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
+
+f) Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
+
+g) realice la prueba de constraste para verificar las diferencias entre los efectos en el tiempo de los operarios de los tipos de chocolate 
 
 ```{r eval=FALSE}
 #creando función
@@ -278,3 +290,9 @@ qqnorm(rstandard(diseño),cex=2)
 qqline(rstandard(diseño),col=2)
 
 ```
+
+
+
+
+
+

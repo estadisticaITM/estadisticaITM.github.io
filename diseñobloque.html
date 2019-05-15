@@ -634,13 +634,14 @@ $(document).ready(function () {
 <p><span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
 <p><strong>Notas de interés</strong></p>
 <ul>
-<li>Si el MSB es considerablemente mayor que el MSE, esto sugiere que la creación de bloques valió la pena en el sentido de que sirvió para reducir el tamaño del error experimental.</li>
+<li><p>Si el MSB es considerablemente mayor que el MSE, esto sugiere que la creación de bloques valió la pena en el sentido de que sirvió para reducir el tamaño del error experimental.</p></li>
+<li><p>Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.</p></li>
+<li><p>También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey</p></li>
+<li><p>se verifica independencia, normalidad y varianza constante en los residuales</p></li>
 </ul>
-<p>-Recuerde que no hay conclusión estadística acerca de la igualdad de medias de bloques o de significancia de efectos de bloques; la comparación se hace como una forma de establecer la utilidad de haber creado bloques en el experimento, proporciona información para la planeación futura de experimentos similares.</p>
-<p>-También se realiza la prueba de contrastes entre medias por medio de la prueba de intervalos tukey</p>
-<ul>
-<li>se verifica independencia, normalidad y varianza constante en los residuales</li>
-</ul>
+</div>
+<div id="ejemplo-2" class="section level2">
+<h2><strong>Ejemplo</strong></h2>
 <p>Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:</p>
 <table>
 <thead>
@@ -692,15 +693,23 @@ $(document).ready(function () {
 </table>
 <p>Se desea determinar si existen diferencias entre los cuatro métodos y cómo se diferencian, además elegir el mejor método, si lo hay.</p>
 <p>El modelo estadístico es: <span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\]</span><br />
-coni=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores</p>
+con i=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores</p>
 <p>Donde - <span class="math inline">\(\large Y_{ij}\)</span> es la Variable aleatoria que representala medición del bloque j, del tratamiento i.</p>
 <ul>
 <li><p><span class="math inline">\(\large \mu\)</span> denota el tiempo promedio global</p></li>
-<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo método sobre el tiempo de ensamble</p></li>
+<li><p><span class="math inline">\(\large \alpha\)</span> es el efecto del i-ésimo método sobre el tiempo de ensamble.</p></li>
+<li><p><span class="math inline">\(\large \beta_j\)</span> es el efecto del j-ésimo operador sobre el tiempo de ensamble</p></li>
 </ul>
-<p>-<span class="math inline">\(\large \beta_j\)</span> es el efecto del j-ésimo operador sobre el tiempo de ensamble</p>
 <p>Bajo los puestos de que</p>
-<p><span class="math display">\[\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0\]</span></p>
+<p><span class="math display">\[\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0\]</span> a) Analice los datos experimentales</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Especifique el modelo para este experimento.</p></li>
+<li><p>Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.</p></li>
+<li><p>Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.</p></li>
+<li><p>Estime e interprete los efectos de cada operario y metodo sobre lel tiempo de ensambe. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.</p></li>
+<li><p>Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?</p></li>
+<li><p>realice la prueba de constraste para verificar las diferencias entre los efectos en el tiempo de los operarios de los tipos de chocolate</p></li>
+</ol>
 <pre class="r"><code>#creando función
 mismediastratamientosDBCA=function(respuesta,factor.trat,bloque,nivel=95){
 modeloanova=aov(respuesta~factor.trat+bloque)

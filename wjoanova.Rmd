@@ -1,8 +1,10 @@
 ---
 title: "Trabajo anova"
 ---
-## Ejemplo 2
-Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.
+
+##Tema A
+
+1. (Valor 30%) Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.
 
 |Tratamiento| Lechuga parcelas|
 |---|---|--|--|--|
@@ -140,3 +142,466 @@ leveneTest (nlechug~nitrato)
 
 
 ```
+
+
+
+2. (Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de  grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso
+corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:
+
+|Edades|Extremadamente baja "Extbaja"|Medianamente baja "Medbaja"|Moderadamente baja "Modbaja"|
+|------|-----------------------------|---------------------------|----------------------------|
+|15-24 |0.73                         |0.67                       |0.15                        |
+|25-34 |0.86                         |0.75                       |0.21                        |
+|35-44 |0.94                         |0.81                       |0.26                        |
+|45-54 |1.4                          |1.32                       |0.75                        |
+|55-64 |1.62                         |1.41                       |0.78                        |
+
+
+a)Analice los datos experimentales
+b) Especifique cuál modelo aplica a este experimento
+c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes. Determine si fue útil el control por edad para reducir el error experimental.
+d) Valide supuestos. Analice puntos atípicos y su posible influencia
+e) Compare las medias de tratamiento mediante Tukey. También pruebe, mediante un contraste apropiado, si es mejor una dieta extremadamente baja en grasa vs. las otras dos, para reducir el nivel de lípidos en plasma, en promedio. Haga los cálculos manualmente.
+
+
+```{r eval=FALSE}
+
+dietas=data.frame(cont.grasa=factor(rep(c("ExtBaja","MedBaja","ModBaja"),5)),
+edad=factor(c(rep("15-24",3),rep("25-34",3),rep("35-44",3),rep("45-54",3),
+rep("55-64",3))),red.lipidos=scan())
+0.73 0.67 0.15
+0.86 0.75 0.21
+0.94 0.81 0.26
+1.40 1.32 0.75
+1.62 1.41 0.78
+Dietas
+attach(dietas)
+
+#GRÁFICOS PARA ANÁLISIS DESCRIPTIVO DE LOS DATOS
+layout(rbind(c(0,1,1,0),c(0,2,2,0)))
+plot(cont.grasa,red.lipidos)
+plot(edad,red.lipidos)
+#AJUSTE MODELO ANOVA
+modelo.dietas=aov(red.lipidos~cont.grasa+edad)
+anova(modelo.dietas)
+#COMPARACIONES DE TUKEY PARA MEDIAS DE TRATAMIENTOS
+TukeyHSD(modelo.dietas,"cont.grasa",conf.level = 0.95)
+#TEST DE NORMALIDAD CON RESIDUALES COMUNES
+shapiro.test(residuals(modelo.dietas))
+#GRÁFICOS DE RESIDUALES ESTUDENTIZADOS Y DE PROBABILIDAD NORMAL CON RESIDUALES COMUNES
+layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+plot(as.numeric(cont.grasa),rstudent(modelo.dietas),main="Residuos estudentizados vs. contenido de
+grasa",cex=2,xaxt='n',xlab="Cont. grasa en dieta")
+axis(1,at=1:3,c("ExtBaja","MedBaja","ModBaja"))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(edad),rstudent(modelo.dietas),main="Residuos estudentizados vs.
+Edad",cex=2,xaxt='n',xlab="Grupo de edad")
+axis(1,at=1:5,c("15-24","25-34","35-44","45-54","55-64"))
+abline(h=c(-2,0,2),col=2)
+plot(fitted(modelo.dietas),rstudent(modelo.dietas),main="Residuos estudentizados vs. valores
+ajustados",xlab="Reducción de lípidos estimada",cex=2)
+abline(h=c(-2,0,2),col=2)
+qqnorm(residuals(modelo.dietas),main="Grafico Probabilidad normal residuos ordinarios",cex=2)
+qqline(residuals(modelo.dietas),col=2)
+detach(dietas)
+###########################################################################################
+
+
+
+
+```
+
+3.(valor 40%) Un fabricante de dispositivos médicos produce venas artificiales. Estos injertos se producen mediante la extrusión de resina de politetrafluoroetileno (PTFE) combinada con un lubricante en tubos. Con frecuencia, algunos de los tubos en una ejecución de producción contienen pequeñas protuberancias duras en la superficie externa. Estos defectos se conocen como "gestos". El defecto es causa de rechazo de la unidad.
+El desarrollador del producto responsable de los injertos vasculares sospecha que la presión de extrusión afecta la aparición de películas y, por lo tanto, pretende realizar un experimento para investigar esta hipótesis. Sin embargo, la resina es fabricada por un proveedor externo y se entrega al fabricante del dispositivo médico en lotes. El ingeniero también sospecha que puede haber una variación significativa entre lotes, ya que si bien el material debe ser consistente con respecto a parámetros como el peso molecular, el tamaño medio de partículas, la retención y la relación de altura de pico, probablemente no sea debido a la variación de fabricación en el proveedor de resina y la variación natural en el material. Por lo tanto, el desarrollador del producto decide investigar el efecto de cuatro niveles diferentes de presión de extrusión además considera los bloques de resina BR. La variable respuesta son el porcentaje de unidades que no contenian defectos
+
+
+
+|Presión de extrucción| BR1|BR2 |BR3 |BR4 |BR5 |BR6 | 
+|---------------------|----|----|----|----|----|--- |
+|8500                 |90.3|89.2|98.2|93.9|87.4|97.9|
+|8700                 |92.5|89.5|90.6|94.7|87  |95.8|
+|8900                 |85.5|90.8|89.6|86.2|88  |93.4|
+|9100                 |82.5|89.5|85.6|87.4|78.9|90.7|
+
+
+a) Analice los datos experimentales
+
+b) Especifique el modelo para este experimento.
+
+c) Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.
+
+d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+
+e) Estime e interprete los efectos de la presión de extrusión sobre la calidad de los lotes de producción. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
+
+f) Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
+
+g) realice la prueba de constraste para verificar las diferencias entre los niveles de presión y los lotes de resina
+
+
+
+
+##Tema B
+
+
+1. (valor 30%) Considere el experimento del jabón realizado con el fin de comparar la extensión a la cual tres tipos particulares de jabón se disuelven en agua. Se espera que el experimento responda a las siguientes preguntas:
+
+- ¿Existen diferencias en la pérdida de peso (peso inicial menos peso final) entre los tres tipos de jabones considerados cuando son remojados en agua durante la misma longitud de tiempo?
+
+- ¿Cuáles son tales diferencias?
+Los datos recolectados durante el experimento:
+
+
+|Jabón        | Pérdida de peso (grs)|
+|-------------|----|----|-----|--|
+|1 Regular    |-0.3|-0.1|-0.14|0.40|
+|2 Desodorante|2.63|2.61|2.41 |3.15|
+|3 Hidratane  |1.86|2.03|2.26 |1.82|
+
+
+a) Analice los datos experimentales
+
+b) Especifique el modelo para este experimento.
+
+c) Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.
+
+d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+
+e) Estime e interprete los efectos de cada tipo de jabón sobre la media de pérdida de peso. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
+
+f) Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones
+atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
+
+
+
+```{r eval=FALSE}
+###########################################################################################
+#PROBLEMA 2
+#El factor de tratamientos es llamado jabon
+#la respuesta es llamada perd.peso
+#el modelo ANOVA es llamado modelo.jabones
+###########################################################################################
+#LECTURA DE LOS DATOS COMO ESTÁN EN LA TABLA DADA
+jabones=data.frame(jabon=factor(c(rep(1,4),rep(2,4),rep(3,4))),perd.peso=scan())
+-0.30 -0.10 -0.14 0.40
+2.63 2.61 2.41 3.15
+1.86 2.03 2.26 1.82
+Jabones
+attach(jabones)
+#GRÁFICO BOXPLOT PARA ANÁLISIS DESCRIPTIVO DE LOS DATOS
+plot(jabones,xaxt='n')
+axis(1,at=1:3,c("regular","desodorante","hidratante"))
+#AJUSTE DEL MODELO ANOVA
+modelo.jabones=aov(perd.peso~jabon)
+anova(modelo.jabones)
+#ESTIMACIÓN DE LOS EFECTOS DE CADA JABÓN, SOBRE LA MEDIA GLOBAL, CON
+#RESULTADOS PARA TESTES INDIVIDUALES DE SIGNIFICANCIA Y SUS I.C DEL 95%
+library(gmodels)
+library(multcomp)
+efect.1=fit.contrast(modelo.jabones,"jabon",rbind(":efecto regular"=c(2/3,-1/3,-1/3)),conf=0.95)
+efect.2=fit.contrast(modelo.jabones,"jabon",rbind(":efecto desodor."=c(-1/3,2/3,-1/3)),conf=0.95)
+efect.3=fit.contrast(modelo.jabones,"jabon",rbind(":efecto hidratante"=c(-1/3,-1/3,2/3)),conf=0.95)
+rbind(efect.1,efect.2,efect.3)
+
+#COMPARACIONES DE MEDIAS DE TRATAMIENTOS POR TUKEY
+TukeyHSD(modelo.jabones,"jabon",conf.level = 0.95)
+
+#TESTE DE NORMALIDAD SOBRE RESIDUALES COMUNES
+shapiro.test(residuals(modelo.jabones))
+
+#TESTE DE LEVENE PARA VALIDAR SUPUESTO DE HOMOGENEIDAD DE VARIANZA
+library(car)
+leveneTest(perd.peso~jabon)
+
+#GRÁFICOS DE RESIDUALES ESTUDENTIZADOS Y DE PROBABILIDAD NORMAL CON RESIDUALES COMUNES
+layout(rbind(c(1,1,2,2),c(0,3,3,0)))
+plot(as.numeric(jabon),rstudent(modelo.jabones),main="Residuales estudentizados vs. Factor
+Jabón",cex=2,xaxt='n',xlab="jabón",ylim=c(-2.5,2.5))
+axis(1,at=1:3,c("regular","desodorante","hidratante"))
+abline(h=c(-2,0,2),col=2)
+plot(fitted(modelo.jabones),rstudent(modelo.jabones),main="Residuales estudentizados vs. valores
+ajustados",xlab="Pérdida peso ajustado",ylim=c(-2.5,2.5),cex=2)
+abline(h=c(-2,0,2),col=2)
+qqnorm(residuals(modelo.jabones),cex=2,main="Grafico Probabilidad normal residuales")
+qqline(residuals(modelo.jabones),col=2)
+detach(jabones)
+
+
+```
+
+2.(Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de  grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:
+
+|Edades|Extremadamente baja "Extbaja"|Medianamente baja "Medbaja"|Moderadamente baja "Modbaja"|
+|------|-----------------------------|---------------------------|----------------------------|
+|15-24 |0.73                         |0.67                       |0.15                        |
+|25-34 |0.86                         |0.75                       |0.21                        |
+|35-44 |0.94                         |0.81                       |0.26                        |
+|45-54 |1.4                          |1.32                       |0.75                        |
+|55-64 |1.62                         |1.41                       |0.78                        |
+
+
+a)Analice los datos experimentales
+b) Especifique cuál modelo aplica a este experimento
+c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes. Determine si fue útil el control por edad para reducir el error experimental.
+d) Valide supuestos. Analice puntos atípicos y su posible influencia
+e) Compare las medias de tratamiento mediante Tukey. También pruebe, mediante un contraste apropiado, si es mejor una dieta extremadamente baja en grasa vs. las otras dos, para reducir el nivel de lípidos en plasma, en promedio. Haga los cálculos manualmente.
+
+
+```{r eval=FALSE}
+
+dietas=data.frame(cont.grasa=factor(rep(c("ExtBaja","MedBaja","ModBaja"),5)),
+edad=factor(c(rep("15-24",3),rep("25-34",3),rep("35-44",3),rep("45-54",3),
+rep("55-64",3))),red.lipidos=scan())
+0.73 0.67 0.15
+0.86 0.75 0.21
+0.94 0.81 0.26
+1.40 1.32 0.75
+1.62 1.41 0.78
+Dietas
+attach(dietas)
+
+#GRÁFICOS PARA ANÁLISIS DESCRIPTIVO DE LOS DATOS
+layout(rbind(c(0,1,1,0),c(0,2,2,0)))
+plot(cont.grasa,red.lipidos)
+plot(edad,red.lipidos)
+#AJUSTE MODELO ANOVA
+modelo.dietas=aov(red.lipidos~cont.grasa+edad)
+anova(modelo.dietas)
+#COMPARACIONES DE TUKEY PARA MEDIAS DE TRATAMIENTOS
+TukeyHSD(modelo.dietas,"cont.grasa",conf.level = 0.95)
+#TEST DE NORMALIDAD CON RESIDUALES COMUNES
+shapiro.test(residuals(modelo.dietas))
+#GRÁFICOS DE RESIDUALES ESTUDENTIZADOS Y DE PROBABILIDAD NORMAL CON RESIDUALES COMUNES
+layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+plot(as.numeric(cont.grasa),rstudent(modelo.dietas),main="Residuos estudentizados vs. contenido de
+grasa",cex=2,xaxt='n',xlab="Cont. grasa en dieta")
+axis(1,at=1:3,c("ExtBaja","MedBaja","ModBaja"))
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(edad),rstudent(modelo.dietas),main="Residuos estudentizados vs.
+Edad",cex=2,xaxt='n',xlab="Grupo de edad")
+axis(1,at=1:5,c("15-24","25-34","35-44","45-54","55-64"))
+abline(h=c(-2,0,2),col=2)
+plot(fitted(modelo.dietas),rstudent(modelo.dietas),main="Residuos estudentizados vs. valores
+ajustados",xlab="Reducción de lípidos estimada",cex=2)
+abline(h=c(-2,0,2),col=2)
+qqnorm(residuals(modelo.dietas),main="Grafico Probabilidad normal residuos ordinarios",cex=2)
+qqline(residuals(modelo.dietas),col=2)
+detach(dietas)
+
+
+```
+
+
+
+3.  (valor 40%) Un embotellador de refrescos está interesado en obtener alturas de llenado más uniformes en las botellas producidas por su proceso de fabricación. En teoría, la máquina de llenado llena cada botella hasta la altura correcta del objetivo, pero en la práctica, existe una variación en torno a este objetivo, y el embotellador desearía comprender mejor las fuentes de esta variabilidad y, finalmente, reducirla. El ingeniero de procesos puede controlar tres variables durante el proceso de llenado: el porcentaje de carbonatación (A), la presión de operación en el relleno (B) y las botellas producidas por minuto o la velocidad de la línea (C). La presión y la velocidad son fáciles de controlar, pero el porcentaje de carbonatación es más difícil de controlar durante la fabricación real porque varía con la temperatura del producto. Sin embargo, para propósitos de un experimento, el ingeniero puede controlar la carbonatación en tres niveles: 10, 12 y 14 por ciento. Se elige dos niveles para la presión (25 y 30 psi) y dos niveles para la velocidad de la línea (200 y 250 bpm). Decide ejecutar dos réplicas de un diseño factorial en estos tres factores, con las 24 ejecuciones tomadas en orden aleatorio. La variable de respuesta observada es la desviación promedio de la altura de llenado objetivo observada en un ciclo de producción de botellas en cada conjunto de condiciones. Los datos que resultaron de este experimento se muestran en siguiente Tabla. 
+Las desviaciones positivas son alturas de llenado por encima del objetivo, mientras que las desviaciones negativas son alturas de llenado por debajo del objetivo. 
+
+|                           |presión 25 psi|presión 25 psi|presión 30 psi|presión 30 psi|
+|---------------------------|--------------|--------------|--------------|--------------|
+|Porcentaje de carbonatación|vel200        |vel250        |vel200        |vel250        | 
+|10                         |-3            |-1            |-1            |1            |
+|10                         |-1            |0             |0             |1 |
+|12                         |0             |2             |2             |6|
+|12                         |1             |1             |3             |5|
+|14                         |5             |7             |7             |10|
+|14                         |4             |6             |9             |11|
+
+
+a) Analice los datos experimentales
+
+b) Especifique cuál modelo aplica a este experimento
+
+c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes
+
+d) Valide supuestos sobre errores del modelo usando residuales estudentizados
+
+e) Realice pruebas de intervalo tukey para la diferencia de medias
+
+f) realice contraste entre medias para validar si el porcentaje de carbonatación 10 es similar al 12 y 14 
+
+
+
+##tema c
+1. (valor 30%) Un artículo en Nature describe un experimento para investigar el efecto del consumo de chocolate en la salud cardiovascular. El experimento consistió en utilizar tres tipos diferentes de chocolates: 100 g de chocolate negro, 100 g de chocolate negro con 200 ml de leche entera y 200 g de chocolate con leche. 
+
+Se utilizaron doce sujetos, 7 mujeres y 5 hombres, con un rango de edad promedio de 32.2 mas o  menos 1 año, un peso promedio de 65.8 mas o menos 3.1 kg con un índice de masa corporal de 21.9 mas o menos 0.4 kg m2. En diferentes días, un sujeto consumió uno de los niveles de factor de chocolate y, una hora después, se midió la capacidad antioxidante total de su plasma sanguíneo en un ensayo. Los datos similares a los que se resumen en el artículo se muestran en la siguiente tabla.
+
+|Factor           |s1   | s2  |s3   | s4  | s5  |s6   |s7   |s8   |s9   |s10  |s11  |s12  |
+|-----------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+|chocolate oscuro |118.8|122.6|115.6|113.6|119.5|115.9|115.8|115.1|116.9|115.4|115.6|107.9|
+|chocolate y leche|105.4|101.1|102.7|97.1 |101.9|98.9 |100  |99.8 |102.6|100.9|104.5|93.5 |
+|leche            |102.1|105.8|99.6 |102.7|98.8 |100.9|102.8|98.7 |94.7 |97.8 |99.7 |98.6 |
+
+a) Analice los datos experimentales
+
+b) Especifique el modelo para este experimento.
+
+c) Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.
+
+d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+
+e) Estime e interprete los efectos de cada tipo de chocolate sobre la capacidad antioxidante total de su plasma sanguíneo. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
+
+f) Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones
+atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
+
+g) realice la prueba de constraste para verificar las diferencias entre los efectos de los tipos de chocolate 
+
+
+2. (valor 30%) Un ingeniero está diseñando una batería para usar en un dispositivo que será sometido a variaciones extremas en temperatura. El único parámetro de diseño que puede ser seleccionado en este punto es el material de blindaje para la batería, y él tiene tres posibles opciones. Cuando el dispositivo es fabricado y es despachado para el campo, el ingeniero no tiene control sobre los extremos de temperatura que el dispositivo
+encontrará, y él sabe por experiencia que la temperatura probablemente afectará la vida efectiva de la batería.
+
+Sin embargo, la temperatura puede ser controlada en el laboratorio de desarrollo de producto para los propósitos de una prueba. El ingeniero decide probar todos los tres materiales de blindaje en tres niveles de temperatura: 15, 70, y 125°F, debido a que estos niveles de temperatura son consistentes con el ambiente de uso final del producto. Cuatro baterías son probadas en cada nivel combinación de material de blindaje y temperatura, y 36 pruebas en total son corridas en orden aleatorio. En este problema el ingeniero desea responder los siguientes interrogantes:
+1. ¿Qué efectos tienen el tipo de material y la temperatura sobre la vida de la batería?
+2. ¿Hay una elección de material que diera una vida uniformemente larga sin importar la temperatura?
+Los datos resultantes sobre la duración de las baterías se muestran a continuación:
+
+|Material| 15|15 |70 |70 |125|125|
+|--------|---|---|---|---|---|--|
+|1       |130|155|34 |40 |20 |70|
+|1       |74 |180|80 |75 |82 |58|
+|2       |150|188|136|122|25 |70|
+|2       |159|126|106|115|58 |45|
+|3       |138|110|174|120|96 |104|
+|3       |168|160|150|139|82 |60|
+
+
+El objetivo 2 es pues hallar aquél material que no sea afectado grandemente por la temperatura, es decir, hacer una batería robusta a la variación de la temperatura en el campo. Este es un ejemplo del uso de diseño experimental estadístico para diseño robusto de productos.
+
+a) Analice los datos experimentales
+
+b) Especifique cuál modelo aplica a este experimento
+
+c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes
+
+d) Valide supuestos sobre errores del modelo usando residuales estudentizados
+
+e) Analice la interacción evaluando las medias de cada factor fijando los niveles del otro y dé alguna recomendación teniendo presente que se pretende responder a los interrogantes 1 y 2.
+
+```{r  eval=FALSE}
+#PROBLEMA 3
+#Los factores de tratamientos son llamados material y temperatura
+#la respuesta es llamada duración
+#el modelo ANOVA es llamado modelo.baterías
+#la tabla ANOVA del modelo es llamada anova.baterías
+###########################################################################################
+#LECTURA DE DATOS COMO APARECEN EN TABLA DADA
+baterías=data.frame(material=factor(c(rep(1,12),rep(2,12),rep(3,12))),
+temperatura=factor(rep(c(15,15,70,70,125,125),6)),duración=scan())
+130 155 34 40 20 70
+74 180 80 75 82 58
+150 188 136 122 25 70
+159 126 106 115 58 45
+138 110 174 120 96 104
+168 160 150 139 82 60
+Baterías
+attach(baterías)
+#GRÁFICOS PARA ANALIZAR LOS DATOS EXPERIMENTALES
+layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+interaction.plot(material,temperatura,duración,type="b",pch=c(1,2,3),col=c("black","blue","red"),
+lwd=2)
+interaction.plot(temperatura,material,duración,type="b",pch=c(1,2,3),col=c("black","blue","red"),
+lwd=2)
+plot(duración~material+temperatura)
+#AJUSTE MODELO ANOVA
+modelo.baterías=aov(duración~material*temperatura) #Ajuste modelo ANOVA
+anova(modelo.baterías) #Calculando tabla ANOVA
+model.tables(modelo.baterías,type="means") #Calculando medias por factor y por tratamiento
+
+#CALCULANDO RESIDUALES ESTUDENTIZADOS Y VALORES AJUSTADOS DE LA RESPUESTA
+residuos.estudent=rstudent(modelo.baterías)
+ajustados=fitted(modelo.baterías)
+#TESTE SHAPIRO WILK CON RESIDUALES ESTUDENTIZADOS Y GRÁFICO DE PROBABILIDAD NORMAL
+shapiro.test(residuos.estudent)
+##GRÁFICOS DE RESIDUALES ESTUDENTIZADOS
+nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+plot(ajustados,residuos.estudent,main="Residuales estudentizados vs. valores ajustados",cex=2)
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(material),residuos.estudent,main="Residuales estudentizados vs.
+material",xlab="material",xaxt='n',cex=2)
+axis(1,1:3,1:3)
+abline(h=c(-2,0,2),col=2)
+plot(as.numeric(temperatura),residuos.estudent,main="Residuales estudentizados vs.
+temperatura",xlab="temperatura",,xaxt='n',cex=2)
+axis(1,1:3,c(15,70,125))
+abline(h=c(-2,0,2),col=2)
+qqnorm(residuos.estudent,pch=19)
+qqline(residuos.estudent,lty=2,col=2)
+#Extrayendo el MSE del anova del diseño factorial
+MSE=anova(modelo.baterías)[3][4,]
+#COMPARACIÓN DE MEDIAS DE MATERIAL EN CADA TEMPERATURA
+#Ajustando anova del factor material en cada nivel de temperatura
+materiales.temp15=anova(aov(duración~material,data=baterías[temperatura==15,]))
+materiales.temp70=anova(aov(duración~material,data=baterías[temperatura==70,]))
+materiales.temp125=anova(aov(duración~material,data=baterías[temperatura==125,]))
+#Separando de cada anova hallada la información de Df(material), SS(material) y MS(material)
+Comp_materiales_en_Temp=rbind("En 15 °F"=materiales.temp15[1:3][1,],
+"En 70°F"=materiales.temp70[1:3][1,],"En 125°F"=materiales.temp125[1:3][1,])
+#Calculando los F0=MS(material|Temperaturaj)/MSE
+F0_materiales=data.frame(Comp_materiales_en_Temp[3]/MSE)
+names(F0_materiales)[1]="F0"
+#Calculando los valores P para probar
+#H0:mu(material1,temperaturaj)=mu(material2,temperaturaj)=mu(material3,temperaturaj)
+#Tener en cuenta los grados de libertad de las F en cada caso.
+pv=data.frame("P.Value"=pf(F0_materiales[,1],2,27,lower.tail=F))
+#Formando tabla de resultados
+Slice_materiales_por_temperatura=cbind(Comp_materiales_en_Temp,F0_materiales,pv)
+cat("Efectos Material*Temperatura sobre respuesta Duración particionados por
+Temperatura","\n");Slice_materiales_por_temperatura
+#COMPARACIÓN DE MEDIAS DE TEMPERATURA EN CADA MATERIAL
+#Ajustando anova del factor temperatura en cada nivel de material
+temperaturas.mat1=anova(aov(duración~temperatura,data=baterías[material==1,]))
+temperaturas.mat2=anova(aov(duración~temperatura,data=baterías[material==2,]))
+temperaturas.mat3=anova(aov(duración~temperatura,data=baterías[material==3,]))
+#Separando de cada anova hallada la información de Df(temperatura), SS(temperatura) y
+#MS(temperatura)
+Comp_temperaturas_en_mat=rbind("En material 1"=temperaturas.mat1[1:3][1,],
+"En material 2"=temperaturas.mat2[1:3][1,],"En material 3"=temperaturas.mat3[1:3][1,])
+
+#Calculando los F0=MS(Temperatura|Materiali)/MSE
+F0_temperaturas=data.frame(Comp_temperaturas_en_mat[3]/MSE)
+names(F0_temperaturas)[1]="F0"
+#Calculando los valores P para probar
+#H0:mu(materiali,temperatura1)=mu(materiali,temperatura2)=mu(materiali,temperatura3)
+#Tener en cuenta los grados de libertad de las F en cada caso.
+pv=data.frame("P.Value"=pf(F0_temperaturas[,1],2,27,lower.tail=F))
+#Formando tabla de resultados
+Slice_temperaturas_por_material=cbind(Comp_temperaturas_en_mat,F0_temperaturas,pv)
+cat("Efectos Material*Temperatura sobre respuesta Duración particionados por
+Material","\n");Slice_temperaturas_por_material
+
+
+
+```
+
+
+
+
+3.  (valor 40%) Un embotellador de refrescos está interesado en obtener alturas de llenado más uniformes en las botellas producidas por su proceso de fabricación. En teoría, la máquina de llenado llena cada botella hasta la altura correcta del objetivo, pero en la práctica, existe una variación en torno a este objetivo, y el embotellador desearía comprender mejor las fuentes de esta variabilidad y, finalmente, reducirla. El ingeniero de procesos puede controlar tres variables durante el proceso de llenado: el porcentaje de carbonatación (A), la presión de operación en el relleno (B) y las botellas producidas por minuto o la velocidad de la línea (C). La presión y la velocidad son fáciles de controlar, pero el porcentaje de carbonatación es más difícil de controlar durante la fabricación real porque varía con la temperatura del producto. Sin embargo, para propósitos de un experimento, el ingeniero puede controlar la carbonatación en tres niveles: 10, 12 y 14 por ciento. Se elige dos niveles para la presión (25 y 30 psi) y dos niveles para la velocidad de la línea (200 y 250 bpm). Decide ejecutar dos réplicas de un diseño factorial en estos tres factores, con las 24 ejecuciones tomadas en orden aleatorio. La variable de respuesta observada es la desviación promedio de la altura de llenado objetivo observada en un ciclo de producción de botellas en cada conjunto de condiciones. Los datos que resultaron de este experimento se muestran en siguiente Tabla. 
+Las desviaciones positivas son alturas de llenado por encima del objetivo, mientras que las desviaciones negativas son alturas de llenado por debajo del objetivo. 
+
+|                           |presión 25 psi|presión 25 psi|presión 30 psi|presión 30 psi|
+|---------------------------|--------------|--------------|--------------|--------------|
+|Porcentaje de carbonatación|vel200        |vel250        |vel200        |vel250        | 
+|10                         |-3            |-1            |-1            |1            |
+|10                         |-1            |0             |0             |1 |
+|12                         |0             |2             |2             |6|
+|12                         |1             |1             |3             |5|
+|14                         |5             |7             |7             |10|
+|14                         |4             |6             |9             |11|
+
+
+a) Analice los datos experimentales
+
+b) Especifique cuál modelo aplica a este experimento
+
+c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes
+
+d) Valide supuestos sobre errores del modelo usando residuales estudentizados
+
+e) Realice pruebas de intervalo tukey para la diferencia de medias
+
+f) realice contraste entre medias para validar si el porcentaje de carbonatación 10 es similar al 12 y 14 
+
+
+
