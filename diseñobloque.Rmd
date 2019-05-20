@@ -8,13 +8,13 @@ title: "DISEÑO EN BLOQUE"
 
 - Las unidades experimentales son agrupadas en conjuntos de tal forma que dos unidades experimentales en el mismo grupo son similares y pueden ser medidas bajo condiciones experimentales similares.
 
-- Los grupos de unidades experimentales similares son llamados bloques
+- Los grupos de unidades experimentales similares son llamados bloques.
 
 - Las condiciones que varían de bloque a bloque forman los niveles del factor de bloqueo. 
 
 - El propósito de bloquear es prevenir que diferencias grandes en las unidades experimentales enmascaren las diferencias entre los niveles del factor de tratamiento.
 
-- Permita que los tratamientos sean examinados bajo diferentes condiciones experimentales.
+- Permite que los tratamientos sean examinados bajo diferentes condiciones experimentales.
 
 - Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.
 
@@ -84,6 +84,7 @@ $$\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$$
 
 
 Donde 
+
 - $\large Y_{ij}$ es la  Variable aleatoria que representala medición del bloque j, del tratamiento i.
 
 - $\large \mu$ denota la respuesta global promedio
@@ -93,10 +94,7 @@ Donde
 -$\large \beta_j$ es el efecto del j-ésimo bloque
 
 
-
-
-
-Esten modelo asume que no existe interacción entre el factor de interés y el factor de bloqueo; en muchas situaciones esta presunción será razonable, sin embargo, si se sospecha que hay interacción, el tamaño del bloque deberá ser incrementado para permitir estimar estos
+Este modelo asume que no existe interacción entre el factor de interés y el factor de bloqueo; en muchas situaciones esta presunción será razonable, sin embargo, si se sospecha que hay interacción, el tamaño del bloque deberá ser incrementado para permitir estimar estos
 efectos.
 
 Los niveles del factor de bloque representan agrupamientos intencionales de las unidades experimentales, mientras que los tratamientos son asignados de manera aleatoria a las unidades experimentales.
@@ -180,11 +178,41 @@ Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, 
 
 Se desea determinar si existen diferencias entre los cuatro métodos y cómo se diferencian, además elegir el mejor método, si lo hay.
 
+
+a) Analice los datos experimentales
+
+
+```{r echo=FALSE}
+
+método=factor(rep(c("A","B","C","D"),4))
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
+tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
+ensamble=data.frame(método,operador,tiempo)
+
+
+#Boxplot
+mediastrat=sapply(split(tiempo,método),mean)
+mediasbloque=sapply(split(tiempo,operador),mean)
+nf=layout(cbind(c(1,1),c(2,2)))
+plot(tiempo~método)
+lines(1:4,mediastrat,col=2,lty=2,type="b",pch=3)
+plot(tiempo~operador)
+lines(1:4,mediasbloque,col=2,lty=2,type="b",pch=3)
+
+
+```
+
+
+b) Especifique el modelo para este experimento.
+
 El modelo estadístico es:
+
 $$\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}$$      
+
 con i=1,2,3,4 para denotar los métodos A,B,C,D y j=1,2,3,4 para los operadores
 
 Donde 
+
 - $\large Y_{ij}$ es la  Variable aleatoria que representala medición del bloque j, del tratamiento i.
 
 - $\large \mu$ denota el tiempo promedio global
@@ -197,102 +225,161 @@ Donde
 Bajo los puestos de que 
 
 $$\large \sum_{i=1}^4\alpha_i=\sum_{j=1}^4\beta_j=0$$
-a) Analice los datos experimentales
-
-b) Especifique el modelo para este experimento.
+Además
+$$\Large \varepsilon_{ij} \sim N(0,\sigma^2)$$
 
 c) Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.
 
-d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey.De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+ANOVA:
 
-e) Estime e interprete los efectos de cada operario y metodo sobre lel tiempo de ensambe. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
-
-f) Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
-
-g) realice la prueba de constraste para verificar las diferencias entre los efectos en el tiempo de los operarios de los tipos de chocolate 
-
-```{r eval=FALSE}
-#creando función
-mismediastratamientosDBCA=function(respuesta,factor.trat,bloque,nivel=95){
-modeloanova=aov(respuesta~factor.trat+bloque)
-MSE=anova(modeloanova)["Mean Sq"][3,]
-df=anova(modeloanova)["Df"][3,]
-b=unlist(model.tables(modeloanova,type = "means",cterms="factor.trat")["n"])
-alfa=1-nivel/100
-alfa.med=(1-(nivel/100))/2
-t=qt(alfa.med,df=df,lower.tail=F)
-medias.tratam=unlist(model.tables(modeloanova,type =
-"means",cterms="factor.trat")["tables"])[-1]
-interval=cbind(ni=b,Medias=medias.tratam,LI=medias.tratamt*
-sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
-cat("Tabla de medias de tratamientos y sus I.C de",nivel,"%","\n")
-cat("alfa"," ",alfa,"\n")
-cat("grados de libertad ",df,"\n")
-cat("error cuadrático medio",MSE,"\n")
-cat("valor crítico t ",t,"\n","\n")
-interval
-}
-
-#lectura de datos
-ensamble=data.frame(método=factor(rep(c("A","B","C","D"),4)),
-operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4))),tiempo=scan())
-6 7 10 10
-9 10 16 13
-7 11 11 11
-8 8 14 9
-ensamble
-attach(ensamble)􀀃
+```{r}
 
 
-#Boxplot
-mediastrat=sapply(split(tiempo,método),mean)
-mediasbloque=sapply(split(tiempo,operador),mean)
-nf=layout(cbind(c(1,1),c(2,2)))
-plot(tiempo~método)
-lines(1:4,mediastrat,col=2,lty=2,type="b",pch=3)
-plot(tiempo~operador)
-lines(1:4,mediasbloque,col=2,lty=2,type="b",pch=3)
+library(gmodels)
+library(multcomp)
+
+método=factor(rep(c("A","B","C","D"),4))
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
+tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
+ensamble=data.frame(método,operador,tiempo)
+
+
 
 #Anova
 diseño=aov(tiempo~método+operador)
 anova(diseño)
 
+```
+
+
+
+$\Large H_0= \alpha_a=\alpha_b=\alpha_c=\alpha_D$
+
+
+$\Large H_1= Algun \quad par \quad  \alpha_i\not= \alpha_j$
+
+
+
+El test de hipótesis es rechazado con un valor p de 0.0029 a un nivel de significancia de 0.05, es decir, los tiempos medios de ensamble no son iguales para todos los métodos.
+
+Para evaluar la eficiencia del diseño tenemos que la seudo – prueba sobre los efectos de bloque (operador) tiene un $F_0=4.75$ y un valor p: $P(f_{3.9>4.75})=0.0298$, que nos indica el bloqueo por operario resultó útil o eficiente para reducir el error experimental y por tanto un ahorro en cuanto al número de réplicas necesarias para detección de diferencias entre los métodos.
+
+
+d) Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey. De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.
+
+
+```{r}
+
 library(gmodels)
 library(multcomp)
-efect.métodoA=fit.contrast(diseño,"método",rbind(":efecto método A"=c(3/4,-1/4,-1/4,-1/4)),conf=0.95)
-efect.métodoB=fit.contrast(diseño,"método",rbind(":efecto método B"=c(-1/4,3/4,-1/4,-1/4)),conf=0.95)
-efect.métodoC=fit.contrast(diseño,"método",rbind(":efecto método C"=c(-1/4,-1/4,3/4,-1/4)),conf=0.95)
-efect.métodoD=fit.contrast(diseño,"método",rbind(":efecto método D"=c(-1/4,-1/4,-1/4,3/4)),conf=0.95)
-rbind(efect.métodoA,efect.métodoB,efect.métodoC,efect.métodoD)
 
-#medias dE tratamientos con sus INTERVALOS
-mismediastratamientosDBCA(respuesta=tiempo,factor.trat=método,bloque=operador)
 
-#iNTERVALOS TUKEY
+
+
+método=factor(rep(c("A","B","C","D"),4))
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
+tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
+ensamble=data.frame(método,operador,tiempo)
+
 TukeyHSD(diseño,"método",conf.level=0.95)
 plot(TukeyHSD(diseño,"método",conf.level = 0.95),cex.lab=0.8,las=1)
 
-#vALIDACION DE LOS RESIDUALES
 
-nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
-plot(fitted(diseño),rstandard(diseño),ylim=c(-2.5,2.5),cex=2,
-main="Residuales estandarizados vs. valores ajustados")
-abline(h=c(-2,0,2),col=2)
-plot(as.numeric(método),rstandard(diseño),xlab="Método",ylim=c(-2.5,2.5),cex=2,xaxt="n",
-main="Residuales estandarizados vs. método")
-axis(1,at=1:4,labels=levels(método))
-abline(h=c(-2,0,2),col=2)
-plot(as.numeric(operador),rstandard(diseño),xlab="Operador",ylim=c(-2.5,2.5),cex=2,xaxt="n",
-main="Residuales estandarizados vs. operador")
-axis(1,at=1:4,labels=levels(operador))
-abline(h=c(-2,0,2),col=2)
-qqnorm(rstandard(diseño),cex=2)
-qqline(rstandard(diseño),col=2)
+
+```
+
+La prueba de hipótesis de interés es:
+
+$\Large H_o=\mu_i=\mu_j$
+
+$\Large H_1=\mu_i\not=\mu_j$
+
+Como vemos Tukey define tres grupos de medias que se traslapan: 
+
+grupo 1: métodos C y D 
+grupo 2: métodos D y B  
+grupo 3: métodos A y B. 
+
+Hay un problema de potencia del procedimiento debido a la gran dispersión en los datos en algunos operarios y métodos como veremos.
+
+
+e) Estime  los efectos de cada metodo sobre el tiempo de ensamble. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.
+
+
+```{r}
+
+library(gmodels)
+library(multcomp)
+
+método=factor(rep(c("A","B","C","D"),4))
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
+tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
+ensamble=data.frame(método,operador,tiempo)
+attach(ensamble)
+
+
+#medias dE tratamientos con sus INTERVALOS
+##divide el marco de datos por método
+met=split(ensamble,método)
+
+##Método A
+metA=met$A
+t.test(metA$tiempo,conf.level = 0.95)
+
+##Método B
+metB=met$B
+t.test(metB$tiempo,conf.level = 0.95)
+
+##Método C
+metC=met$C
+t.test(metC$tiempo,conf.level = 0.95)
+
+##Método D
+metD=met$D
+t.test(metD$tiempo,conf.level = 0.95)
 
 ```
 
 
 
 
+f) Valide supuestos. Use gráficos de residuales estudentizados y test de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?
+
+
+```{r}
+
+library(gmodels)
+library(multcomp)
+
+método=factor(rep(c("A","B","C","D"),4))
+operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
+tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
+ensamble=data.frame(método,operador,tiempo)
+diseño=aov(tiempo~método+operador)
+
+par(mfrow=c(2,2))
+
+plot(diseño)
+
+residuales=residuals(diseño)
+shapiro.test(residuales)
+
+
+bartlett.test(tiempo ~ método )
+```
+
+
+Validemos ahora los supuestos de normalidad y de varianza constante mediante gráficos de residuales: La normalidad parece un supuesto razonable para los errores en este experimento.
+Sin embargo, hay problemas con el supuesto de varianza constante. Con los métodos B y C la dispersión de los residuales es mayor comparativamente a la dispersión en los métodos A y D. Con el método A hay menos dispersión. A nivel del operador 3 la dispersión de los residuales es mayor aparentemente debido a una observación que es subestimada. A pesar de estos inconvenientes es posible llegar a una conclusión: “Elegir como mejor método el A, dado que tiene menor tiempo promedio observado y menor dispersión” (esto último indica que los operadores con este método son más consistentes)
+
+Prueba de normalidad
+$\Large H_o=$ Los residuos son normales
+$\Large H_o=$ Los residuos no son normales
+
+Prueba de barlett para homogeneidad de varianzas
+
+$\Large H_0=\sigma_A^2=\sigma_B^2=...=\sigma_D^2$
+
+$\Large H_1= \sigma_A^2\not=\sigma_B^2 \not =...\not =\sigma_D^2$
 
 

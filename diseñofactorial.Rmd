@@ -1,0 +1,149 @@
+---
+title: "DISEÑO FACTORIAL"
+---
+
+- Los experimentos factoriales son aquellos en los cuales el interés se centra en el estudio de los efectos de las combinaciones de dos o más factores sobre una variable respuesta. 
+
+- En la práctica cuando el número de factores a considerar es mayor que 3, se suelen utilizar
+experimentos 2k (k factores con dos niveles cada uno), experimentos 3k (k factores con tres niveles cada uno), experimentos factoriales fraccionados, etc.
+
+- En el curso se verá el caso de dos factores que denominaremos genéricamente como A y B. El número de niveles del factor A lo denotaremos por a y el número de niveles de B lo denotaremos por b. 
+
+- Las unidades experimentales se considerarán homogéneas respecto a las características individuales que pudieran afectar las respuestas a los tratamientos aplicados.
+
+**Definición** Llamaremos tratamiento a cada combinación posible entre los niveles de los factores. Así, para el caso de dos factores, se tendrá un total de ab posibles tratamientos. Por ejemplo, sea a=3 y b=2:
+
+
+|                |Niveles factor B|    |
+|----------------|----------------|----|
+|Niveles factor A|B1              |B2  |  
+|         A1     |A1B1            |A1B2|
+|         A2     |A2B1            |A2B2|
+|         A3     | A3B1           |A3B2| 
+
+Cada combinación AiBj con i=1,2,3 y j=1,2 define un tratamiento, entonces hay 6 posibles tratamientos correspondientes a las entradas de esta tabla.
+
+## Tipos de experimentos factoriales con dos factores:
+
+**1. De efectos fijos:** Los a niveles del factor A como los b niveles del factor B son definidos a propósito por el investigador.
+
+**2. De efectos aleatorios:** Los a niveles del factor A como los b niveles del factor B son elegidos aleatoriamente dentro de una población de posibles niveles, respectivamente.
+
+**3. De efectos mixtos:** Uno de los dos factores es de efectos fijos en tanto que el otro es de efectos aleatorios. Dos posibles modelos pueden postularse en este caso: modelo mixto restringido y modelo mixto no restringido.
+
+
+
+En cualquiera de los anteriores casos se debe considerar el fenómeno conocido como interacción de los factores, los modelos deben iniciarse considerando la existencia de interacción y luego a través de la evidencia muestral, determinar si dicha interacción es o no significativa. Sólo si en cada tratamiento se toman réplicas (n>1 observaciones por tratamiento), será posible estimar y evaluar la interacción entre los factores.
+
+
+
+
+
+## MODELO FACTORIAL DOS FACTORES EFECTOS FIJOS DISEÑO DCA
+
+A cada tratamiento se asignan en forma completamente aleatorizada, n unidades experimentales obteniéndose por tanto de cada tratamiento n observaciones de la variable respuesta. En total habrán N=abn observaciones de la variable respuesta. La tabla de entrada de datos del experimento será como se presenta en la siguiente figura 
+
+
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+
+library(png)
+library(grid)
+tab <- readPNG("tabla.png")
+grid.raster(tab)
+
+```
+
+
+
+Se postula el modelo con interacción, para la respuesta k-ésima en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación en la figura 1:
+
+
+Ecuación con modelo de interacción:
+
+
+
+$$\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}$$
+Donde:
+
+
+$\Large Y_{ijk}$ Variable respuesta 
+$\Large \mu$ Media global de la respuesta
+$\Large \alpha_i$ Efecto fijo del i-ésimo nivel del factor A sobre la respuesta promedio global.
+$\Large \beta_j$ Efecto fijo del j-ésimo niveles del factor B sobre la respuesta
+promedio global.
+$\Large \alpha_i \beta_j$ Efecto fijo de la interacción de los factores A y B en sus niveles i y j, respectivamente, sobre la respuesta promedio global.
+$\Large \varepsilon_{ijk}$ error aleatorio
+
+**Supuestos y restricciones**
+$$\Large \varepsilon_{ij} \sim N(0,\sigma^2)$$
+para todo i, j, k
+
+$$\Large \sum_{i=1}^a\alpha_i=0$$
+$$\Large \sum_{j=1}^b\beta_j=0$$
+
+$$\Large \sum_{i=1}^a(\alpha\beta)_{ij}=0$$
+
+$$\Large \sum_{j=1}^b(\alpha\beta)_{ij}=0$$
+
+**Parámetros del modelo**
+
+Efectos de tratamientos
+$$\Large \tau_{ij}=\alpha_i+\beta_j+(\alpha\beta)_{ij}$$
+Representa el efecto del tratamiento AiBj sobre la respuesta promedio global.
+
+Note que:
+
+$$\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0$$
+**Medias de tratamientos:** 
+$\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu$ 
+
+**Media del nivel i del factor A**
+
+$\Large \mu_{i\bullet}=\mu+\alpha_i$ de donde $\Large \alpha_{i}=\mu_{i\bullet}-\mu$ Note     que $\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}$
+
+
+**Media del nivel j del factor B**
+
+$\Large \mu_{\bullet j}=\mu+\beta_j$ de donde $\Large \beta_{j}=\mu_{\bullet j}-\mu$. Note     que $\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}$
+
+
+**Media global**
+$$\Large \mu_{\bullet j}=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}$$
+**Efectos de interacción**
+
+$$\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu $$
+
+
+**Gráficos de interacción**
+Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal. 
+
+**Diagnóstico de la presencia de interacción**
+
+Muestralmente podemos establecer la presencia de interacción mediante una de las
+siguientes formas equivalentes:
+
+- Si se observa que los gráficos de perfiles de medias muestrales de tratamientos no son paralelos.
+
+- Si la diferencia entre las respuestas medias para cualesquiera dos niveles del factor A no es la misma para todos los niveles de B.
+
+- Si la diferencia entre las respuestas medias para cualesquiera dos niveles del factor B no es la misma para todos los niveles de A.
+
+- Si las medias de tratamientos no son todas iguales a la suma de la media global más los respectivos efectos principales de los factores A y B
+
+
+
+**Encubrimiento o enmascaramiento de efectos principales:**
+Los efectos $\Large \alpha_i$ y $\Large \beta_j$ constituyen los efectos principales del
+modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se
+rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.
+
+
+Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque
+tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción semanifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de
+medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor
+eficiencia se sugieren diseños balanceados.
+
+
+## **Análisis de Varianza**
+Para el ANOVA tendremos en cuenta los siguientes estadísticos muestrales:
