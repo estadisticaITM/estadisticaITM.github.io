@@ -45,7 +45,7 @@ A cada tratamiento se asignan en forma completamente aleatorizada, n unidades ex
 
 
 
-```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
 
 library(png)
 library(grid)
@@ -56,10 +56,7 @@ grid.raster(tab)
 
 
 
-Se postula el modelo con interacción, para la respuesta k-ésima en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación en la figura 1:
-
-
-Ecuación con modelo de interacción:
+Se postula el modelo con interacción, para la  k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:
 
 
 
@@ -68,14 +65,19 @@ Donde:
 
 
 $\Large Y_{ijk}$ Variable respuesta 
+
 $\Large \mu$ Media global de la respuesta
+
 $\Large \alpha_i$ Efecto fijo del i-ésimo nivel del factor A sobre la respuesta promedio global.
-$\Large \beta_j$ Efecto fijo del j-ésimo niveles del factor B sobre la respuesta
-promedio global.
+
+$\Large \beta_j$ Efecto fijo del j-ésimo niveles del factor B sobre la respuesta promedio global.
+
 $\Large \alpha_i \beta_j$ Efecto fijo de la interacción de los factores A y B en sus niveles i y j, respectivamente, sobre la respuesta promedio global.
+
 $\Large \varepsilon_{ijk}$ error aleatorio
 
 **Supuestos y restricciones**
+
 $$\Large \varepsilon_{ij} \sim N(0,\sigma^2)$$
 para todo i, j, k
 
@@ -96,16 +98,19 @@ Note que:
 
 $$\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0$$
 **Medias de tratamientos:** 
-$\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu$ 
+
+$$\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu$$ 
 
 **Media del nivel i del factor A**
 
-$\Large \mu_{i\bullet}=\mu+\alpha_i$ de donde $\Large \alpha_{i}=\mu_{i\bullet}-\mu$ Note     que $\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}$
+$\Large \mu_{i\bullet}=\mu+\alpha_i$ de donde $\Large \alpha_{i}=\mu_{i\bullet}-\mu$.
+Note que $\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}$
 
 
 **Media del nivel j del factor B**
 
-$\Large \mu_{\bullet j}=\mu+\beta_j$ de donde $\Large \beta_{j}=\mu_{\bullet j}-\mu$. Note     que $\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}$
+$\Large \mu_{\bullet j}=\mu+\beta_j$ de donde $\Large \beta_{j}=\mu_{\bullet j}-\mu$. 
+Note que $\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}$
 
 
 **Media global**
@@ -114,9 +119,13 @@ $$\Large \mu_{\bullet j}=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}$$
 
 $$\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu $$
 
+##**Interacción**
 
-**Gráficos de interacción**
-Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal. 
+La interacción de dos factores significa que las diferencias entre las medias de tratamientos según los niveles de un factor varían (bien sea en dimensión y/o signo) de nivel a nivel del otro factor.
+
+Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias o **Gráficos de interacción** en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal. 
+
+
 
 **Diagnóstico de la presencia de interacción**
 
@@ -134,15 +143,117 @@ siguientes formas equivalentes:
 
 
 **Encubrimiento o enmascaramiento de efectos principales:**
-Los efectos $\Large \alpha_i$ y $\Large \beta_j$ constituyen los efectos principales del
-modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.
+
+Los efectos $\Large \alpha_i$ y $\Large \beta_j$ constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.
 
 
-Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque
-tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción semanifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de
-medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor
-eficiencia se sugieren diseños balanceados.
+Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción se manifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor eficiencia se sugieren diseños balanceados.
 
+
+##**EJEMPLO**
+
+La siguiente tabla muestra los resultados de un experimento factorial llevado a cabo por Derringer (1974) para determinar el efecto de los compuestos de elastómero sobre la viscosidad del sílice a 100 C. Los compuestos de elastómero estudiados fueron aceite de nafteno, en 4 niveles, y contenido de relleno (phr), en 6 niveles
+
+
+|Nafteno (phr)|0 |12|24|36|48|60|
+|-------------|--|--|--|--|--|--|
+|0            |25|30|35|40|50|60|
+|10           |18|21|24|28|33|41|
+|20           |13|15|17|20|24|29|
+|30           |11|14|15|17|18|25|
+
+
+```{r echo=FALSE}
+
+
+naft=rep(c(0,10,20,30),each=6)
+fill1=rep(c(0,12,24,36,48,60),times=4)
+resp=c(25,30,35,40,50,60,18,21,24,28,33,41,13,15,17,20,24,29,11,
+       14,15,17,18,25)
+
+d1=data.frame(naft,fill1,resp)
+attach(d1)
+
+
+with(d1, (interaction.plot(fill1, naft, resp, type = "b",
+pch=c(18,24,22,20), leg.bty = "o",
+main = "Gráfico de interacción de nafteno y relleno",
+xlab = "Relleno",ylab = "Viscosidad")))
+
+
+```
+
+De la figura anterior se observa que:
+
+
+- A medida que el relleno aumenta de 0 a 60, la viscosidad aumenta a lo largo de una tendencia bastante lineal.
+
+- Cuando no se agrega aceite de nafteno, aumentar el relleno de 0 a 60 hace que la viscosidad aumente rápidamente de 25 a 60.
+
+- la pendiente de la línea de tendencia depende del nivel de aceite de nafteno.
 
 ## **Análisis de Varianza**
+
 Para el ANOVA tendremos en cuenta los siguientes estadísticos muestrales:
+
+|Parámetro               |Estimador |Observación sobre el estimador|
+|------------------------|----------|------------------------------|
+|Media global $\Large \mu$|$\Large \bar Y_{\bullet \bullet \bullet}=\frac{1}{abn} \sum_{i=1}^a \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}$ | Promedio de todas las abn observaciones|
+|Media del tratamiento AiBj $\Large \mu_{ij}$|$\Large \bar Y_{ij \bullet}=\frac{1}{n} \sum_{k=1}^n Y_{ijk}$| Promedio de las observaciones en la celda i,j|
+|Media del nivel i del factor A  $\Large \mu_{i\bullet}$|$\Large \bar Y_{i \bullet \bullet}=\frac{1}{bn} \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}$|Promedio de las observaciones en la fila i|
+|Media del nivel j del factor B $\Large \mu_{\bullet j}$|$\Large \bar Y_{\bullet j \bullet}=\frac{1}{an} \sum_{i=1}^a \sum_{k=1}^n Y_{ijk}$| Media de las observaciones en la columna j|
+
+
+El ANOVA descompone la variabilidad total de la siguiente manera:
+
+SST = SSA+ SSB + SS (AB) + SSE
+
+
+
+|Fuente de variación |Grados de libertad|Suma de cuadrados|cuadrados medios |Valores esperados|F|
+|----------------|------------------|-----------------|-----------------|-----------------------|
+|Factor A      |a-1       |SSA     |$\Large MSA=SSA/(a-1)$|$\Large E(MSA)=\sigma^2+bn\frac{\sum_{i=1}^a\alpha_i^2}{a-1}$ | $MSA/MSE$|
+|Factor B      |b-1       |SSB     |$\Large MSB=SSB/(b-1)$|$\Large E(MSB)=\sigma^2+an\frac{\sum_{j=1}^b\beta_i^2}{a-1}$  |$MSB/MSE$       |
+|Interacción AB|(a-1)(b-1)|SS(AB)  |$\Large MS(AB)=SS(AB)/(a-1)(b-1)$|$\Large E(MS(AB))=\sigma^2+n\frac{\sum_{i=1}^a\sum_{j=1}^b(\alpha \beta)_{ij}^2}{(a-1)(b-1)}$        |$MS(AB)/MSE$                    |
+|Error         |ab(n-1)   |SSE     |$\Large MSE=SSE/ab(n-1)$    |   $E(MSE)=\sigma^2$          |                    |
+|Total         |abn-1     |SST     |                            |           |
+
+**Fórmulas**
+
+Las sumas de cuadrados del modelo ANOVA  SST=SSA+SSB+SSE
+
+
+
+$$\Large SST=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:
+
+$$\Large SSA=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a \bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+-La variabilidad en la respuesta explicada por el bloque B, con b-1 grados de libertad, está dada por:
+
+$$\Large SSB=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a \bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 $$
+
+- La variabilidad en la respuesta explicada por la aleatoriedad, con (a-1)(b-1) grados de libertad, está dada por
+
+$$\Large SSE=SST-SSA-SSB$$
+
+
+
+La media muestral en el nivel i del factor de tratamiento está dada por:
+$$\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}$$  
+
+La media muestral en el nivel j del bloque está dada por:
+
+$$\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}$$
+
+
+**Hipótesis de interés**
+
+La prueba de hipótesis asociada al ANOVA esta dado por:
+
+$\Large H_0=\mu_1=\mu_2=...=\mu_i$
+
+$\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
+
+

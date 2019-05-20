@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -298,25 +395,35 @@ $(document).ready(function () {
 <h2>MODELO FACTORIAL DOS FACTORES EFECTOS FIJOS DISEÑO DCA</h2>
 <p>A cada tratamiento se asignan en forma completamente aleatorizada, n unidades experimentales obteniéndose por tanto de cada tratamiento n observaciones de la variable respuesta. En total habrán N=abn observaciones de la variable respuesta. La tabla de entrada de datos del experimento será como se presenta en la siguiente figura</p>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Se postula el modelo con interacción, para la respuesta k-ésima en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación en la figura 1:</p>
-<p>Ecuación con modelo de interacción:</p>
+<p>Se postula el modelo con interacción, para la k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:</p>
 <p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span> Donde:</p>
-<p><span class="math inline">\(\Large Y_{ijk}\)</span> Variable respuesta <span class="math inline">\(\Large \mu\)</span> Media global de la respuesta <span class="math inline">\(\Large \alpha_i\)</span> Efecto fijo del i-ésimo nivel del factor A sobre la respuesta promedio global. <span class="math inline">\(\Large \beta_j\)</span> Efecto fijo del j-ésimo niveles del factor B sobre la respuesta promedio global. <span class="math inline">\(\Large \alpha_i \beta_j\)</span> Efecto fijo de la interacción de los factores A y B en sus niveles i y j, respectivamente, sobre la respuesta promedio global. <span class="math inline">\(\Large \varepsilon_{ijk}\)</span> error aleatorio</p>
-<p><strong>Supuestos y restricciones</strong> <span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> para todo i, j, k</p>
+<p><span class="math inline">\(\Large Y_{ijk}\)</span> Variable respuesta</p>
+<p><span class="math inline">\(\Large \mu\)</span> Media global de la respuesta</p>
+<p><span class="math inline">\(\Large \alpha_i\)</span> Efecto fijo del i-ésimo nivel del factor A sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \beta_j\)</span> Efecto fijo del j-ésimo niveles del factor B sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \alpha_i \beta_j\)</span> Efecto fijo de la interacción de los factores A y B en sus niveles i y j, respectivamente, sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \varepsilon_{ijk}\)</span> error aleatorio</p>
+<p><strong>Supuestos y restricciones</strong></p>
+<p><span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> para todo i, j, k</p>
 <p><span class="math display">\[\Large \sum_{i=1}^a\alpha_i=0\]</span> <span class="math display">\[\Large \sum_{j=1}^b\beta_j=0\]</span></p>
 <p><span class="math display">\[\Large \sum_{i=1}^a(\alpha\beta)_{ij}=0\]</span></p>
 <p><span class="math display">\[\Large \sum_{j=1}^b(\alpha\beta)_{ij}=0\]</span></p>
 <p><strong>Parámetros del modelo</strong></p>
 <p>Efectos de tratamientos <span class="math display">\[\Large \tau_{ij}=\alpha_i+\beta_j+(\alpha\beta)_{ij}\]</span> Representa el efecto del tratamiento AiBj sobre la respuesta promedio global.</p>
 <p>Note que:</p>
-<p><span class="math display">\[\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0\]</span> <strong>Medias de tratamientos:</strong> <span class="math inline">\(\Large \mu_{ij}=\mu+\tau_{ij}\)</span> de donde <span class="math inline">\(\Large \tau_{ij}=\mu_{ij}-\mu\)</span></p>
+<p><span class="math display">\[\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0\]</span> <strong>Medias de tratamientos:</strong></p>
+<p><span class="math display">\[\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu\]</span></p>
 <p><strong>Media del nivel i del factor A</strong></p>
-<p><span class="math inline">\(\Large \mu_{i\bullet}=\mu+\alpha_i\)</span> de donde <span class="math inline">\(\Large \alpha_{i}=\mu_{i\bullet}-\mu\)</span> Note que <span class="math inline">\(\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}\)</span></p>
+<p><span class="math inline">\(\Large \mu_{i\bullet}=\mu+\alpha_i\)</span> de donde <span class="math inline">\(\Large \alpha_{i}=\mu_{i\bullet}-\mu\)</span>. Note que <span class="math inline">\(\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}\)</span></p>
 <p><strong>Media del nivel j del factor B</strong></p>
 <p><span class="math inline">\(\Large \mu_{\bullet j}=\mu+\beta_j\)</span> de donde <span class="math inline">\(\Large \beta_{j}=\mu_{\bullet j}-\mu\)</span>. Note que <span class="math inline">\(\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}\)</span></p>
 <p><strong>Media global</strong> <span class="math display">\[\Large \mu_{\bullet j}=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}\]</span> <strong>Efectos de interacción</strong></p>
 <p><span class="math display">\[\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu \]</span></p>
-<p><strong>Gráficos de interacción</strong> Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal.</p>
+</div>
+<div id="interaccion" class="section level2">
+<h2><strong>Interacción</strong></h2>
+<p>La interacción de dos factores significa que las diferencias entre las medias de tratamientos según los niveles de un factor varían (bien sea en dimensión y/o signo) de nivel a nivel del otro factor.</p>
+<p>Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias o <strong>Gráficos de interacción</strong> en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal.</p>
 <p><strong>Diagnóstico de la presencia de interacción</strong></p>
 <p>Muestralmente podemos establecer la presencia de interacción mediante una de las siguientes formas equivalentes:</p>
 <ul>
@@ -325,12 +432,193 @@ $(document).ready(function () {
 <li><p>Si la diferencia entre las respuestas medias para cualesquiera dos niveles del factor B no es la misma para todos los niveles de A.</p></li>
 <li><p>Si las medias de tratamientos no son todas iguales a la suma de la media global más los respectivos efectos principales de los factores A y B</p></li>
 </ul>
-<p><strong>Encubrimiento o enmascaramiento de efectos principales:</strong> Los efectos <span class="math inline">\(\Large \alpha_i\)</span> y <span class="math inline">\(\Large \beta_j\)</span> constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.</p>
-<p>Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción semanifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor eficiencia se sugieren diseños balanceados.</p>
+<p><strong>Encubrimiento o enmascaramiento de efectos principales:</strong></p>
+<p>Los efectos <span class="math inline">\(\Large \alpha_i\)</span> y <span class="math inline">\(\Large \beta_j\)</span> constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.</p>
+<p>Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción se manifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor eficiencia se sugieren diseños balanceados.</p>
+</div>
+<div id="ejemplo" class="section level2">
+<h2><strong>EJEMPLO</strong></h2>
+<p>La siguiente tabla muestra los resultados de un experimento factorial llevado a cabo por Derringer (1974) para determinar el efecto de los compuestos de elastómero sobre la viscosidad del sílice a 100 C. Los compuestos de elastómero estudiados fueron aceite de nafteno, en 4 niveles, y contenido de relleno (phr), en 6 niveles</p>
+<table>
+<thead>
+<tr class="header">
+<th>Nafteno (phr)</th>
+<th>0</th>
+<th>12</th>
+<th>24</th>
+<th>36</th>
+<th>48</th>
+<th>60</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>25</td>
+<td>30</td>
+<td>35</td>
+<td>40</td>
+<td>50</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>18</td>
+<td>21</td>
+<td>24</td>
+<td>28</td>
+<td>33</td>
+<td>41</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>13</td>
+<td>15</td>
+<td>17</td>
+<td>20</td>
+<td>24</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>11</td>
+<td>14</td>
+<td>15</td>
+<td>17</td>
+<td>18</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## The following objects are masked _by_ .GlobalEnv:
+## 
+##     fill1, naft, resp</code></pre>
+<pre><code>## The following objects are masked from d1 (pos = 12):
+## 
+##     fill1, naft, resp</code></pre>
+<p><img src="diseñofactorial_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<p>De la figura anterior se observa que:</p>
+<ul>
+<li><p>A medida que el relleno aumenta de 0 a 60, la viscosidad aumenta a lo largo de una tendencia bastante lineal.</p></li>
+<li><p>Cuando no se agrega aceite de nafteno, aumentar el relleno de 0 a 60 hace que la viscosidad aumente rápidamente de 25 a 60.</p></li>
+<li><p>la pendiente de la línea de tendencia depende del nivel de aceite de nafteno.</p></li>
+</ul>
 </div>
 <div id="analisis-de-varianza" class="section level2">
 <h2><strong>Análisis de Varianza</strong></h2>
 <p>Para el ANOVA tendremos en cuenta los siguientes estadísticos muestrales:</p>
+<table style="width:93%;">
+<colgroup>
+<col width="34%" />
+<col width="15%" />
+<col width="43%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Estimador</th>
+<th>Observación sobre el estimador</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Media global <span class="math inline">\(\Large \mu\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{\bullet \bullet \bullet}=\frac{1}{abn} \sum_{i=1}^a \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Promedio de todas las abn observaciones</td>
+</tr>
+<tr class="even">
+<td>Media del tratamiento AiBj <span class="math inline">\(\Large \mu_{ij}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{ij \bullet}=\frac{1}{n} \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Promedio de las observaciones en la celda i,j</td>
+</tr>
+<tr class="odd">
+<td>Media del nivel i del factor A <span class="math inline">\(\Large \mu_{i\bullet}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{i \bullet \bullet}=\frac{1}{bn} \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Promedio de las observaciones en la fila i</td>
+</tr>
+<tr class="even">
+<td>Media del nivel j del factor B <span class="math inline">\(\Large \mu_{\bullet j}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{\bullet j \bullet}=\frac{1}{an} \sum_{i=1}^a \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Media de las observaciones en la columna j</td>
+</tr>
+</tbody>
+</table>
+<p>El ANOVA descompone la variabilidad total de la siguiente manera:</p>
+<p>SST = SSA+ SSB + SS (AB) + SSE</p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="19%" />
+<col width="18%" />
+<col width="18%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fuente de variación</th>
+<th>Grados de libertad</th>
+<th>Suma de cuadrados</th>
+<th>cuadrados medios</th>
+<th>Valores esperados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Factor A</td>
+<td>a-1</td>
+<td>SSA</td>
+<td><span class="math inline">\(\Large MSA=SSA/(a-1)\)</span></td>
+<td><span class="math inline">\(\Large E(MSA)=\sigma^2+bn\frac{\sum_{i=1}^a\alpha_i^2}{a-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Factor B</td>
+<td>b-1</td>
+<td>SSB</td>
+<td><span class="math inline">\(\Large MSB=SSB/(b-1)\)</span></td>
+<td><span class="math inline">\(\Large E(MSB)=\sigma^2+an\frac{\sum_{j=1}^b\beta_i^2}{a-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Interacción AB</td>
+<td>(a-1)(b-1)</td>
+<td>SS(AB)</td>
+<td><span class="math inline">\(\Large MS(AB)=SS(AB)/(a-1)(b-1)\)</span></td>
+<td><span class="math inline">\(\Large E(MS(AB))=\sigma^2+n\frac{\sum_{i=1}^a\sum_{j=1}^b(\alpha \beta)_{ij}^2}{(a-1)(b-1)}\)</span></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>ab(n-1)</td>
+<td>SSE</td>
+<td><span class="math inline">\(\Large MSE=SSE/ab(n-1)\)</span></td>
+<td><span class="math inline">\(E(MSE)=\sigma^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>abn-1</td>
+<td>SST</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fórmulas</strong></p>
+<p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSB+SSE</p>
+<p><span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSA=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a \bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el bloque B, con b-1 grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSB=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a \bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<ul>
+<li>La variabilidad en la respuesta explicada por la aleatoriedad, con (a-1)(b-1) grados de libertad, está dada por</li>
+</ul>
+<p><span class="math display">\[\Large SSE=SST-SSA-SSB\]</span></p>
+<p>La media muestral en el nivel i del factor de tratamiento está dada por: <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}\]</span></p>
+<p>La media muestral en el nivel j del bloque está dada por:</p>
+<p><span class="math display">\[\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}\]</span></p>
+<p><strong>Hipótesis de interés</strong></p>
+<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span></p>
+<p><span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
 </div>
 
 <br>

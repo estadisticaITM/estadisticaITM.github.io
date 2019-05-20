@@ -8,26 +8,26 @@ En este experimento hay igual número de réplicas por tratamiento, con una asig
 
 
 Se expresa de la forma:
-$$\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$      
+$$\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$      
 
 
 Donde 
-- $\large Y_{ij}$ es la  Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con  $i=1, 2,...,n$ y $j=1, 2, ..., ni$.
+- $\Large Y_{ij}$ es la  Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con  $i=1, 2,...,n$ y $j=1, 2, ..., ni$.
 
-- $\large \mu$ denota la respuesta global promedio
+- $\Large \mu$ denota la respuesta global promedio
 
-- $\large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
-
-
-Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante $\large  \sigma^2$, es decir:
-
-$$\large  \varepsilon_i \sim N(0,\sigma^2)$$
+- $\Large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
 
 
+Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante $\Large  \sigma^2$, es decir:
 
-Por tanto el examen de diferencias entre las medias de tratamiento $\large \mu_i$ , es equivalente a examinar las diferencias entre los efectos $\alpha_i$, bajo la restricción lineal
+$$\Large  \varepsilon_i \sim N(0,\sigma^2)$$
 
-$$\large \sum_{i=1}^n n_i \alpha_i=0$$
+
+
+Por tanto el examen de diferencias entre las medias de tratamiento $\Large \mu_i$ , es equivalente a examinar las diferencias entre los efectos $\alpha_i$, bajo la restricción lineal
+
+$$\Large \sum_{i=1}^n n_i \alpha_i=0$$
  para una solución única del sistema de ecuaciones de mínimos cuadrados.
  
  
@@ -222,13 +222,13 @@ Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario de
 - Comparaciones de tratamientos con un control
 
 ####**Comparación de medias por medio del intervalo tukey**
-método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia $\large \gamma$ con el valor crítico:
+método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia $\Large \gamma$ con el valor crítico:
 
 $$\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} $$
 
 Donde:
 
-$\large q_\gamma(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados
+$\Large q_\gamma(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados
 a son los niveles del factor 
 gl los grados de libertad del MSE. 
 Los pares de medias de tratamientos $\mu_i$ y $\mu_j$ difieren significativamente cuando:
