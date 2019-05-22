@@ -4,15 +4,16 @@ title: "DISEÑO FACTORIAL"
 
 - Los experimentos factoriales son aquellos en los cuales el interés se centra en el estudio de los efectos de las combinaciones de dos o más factores sobre una variable respuesta. 
 
-- En la práctica cuando el número de factores a considerar es mayor que 3, se suelen utilizar
-experimentos 2k (k factores con dos niveles cada uno), experimentos 3k (k factores con tres niveles cada uno), experimentos factoriales fraccionados, etc.
-
-- En el curso se verá el caso de dos factores que denominaremos genéricamente como A y B. El número de niveles del factor A lo denotaremos por a y el número de niveles de B lo denotaremos por b. 
+- En la práctica cuando el número de factores a considerar es mayor que 3, se suelen utilizar experimentos 2k (k factores con dos niveles cada uno), experimentos 3k (k factores con tres niveles cada uno), experimentos factoriales fraccionados, etc.
 
 - Las unidades experimentales se considerarán homogéneas respecto a las características individuales que pudieran afectar las respuestas a los tratamientos aplicados.
 
-**Definición** Llamaremos tratamiento a cada combinación posible entre los niveles de los factores. Así, para el caso de dos factores, se tendrá un total de ab posibles tratamientos. Por ejemplo, sea a=3 y b=2:
+##**Diseño con 2 factores** 
 
+En el caso de dos factores A y B, El número de niveles del factor A lo denotaremos por a y el número de niveles de B lo denotaremos por b. 
+
+**Definición** 
+Llamaremos tratamiento a cada combinación posible entre los niveles de los factores. Así, para el caso de dos factores, se tendrá un total de ab posibles tratamientos. Por ejemplo, sea a=3 y b=2:
 
 |                |Niveles factor B|    |
 |----------------|----------------|----|
@@ -29,17 +30,11 @@ Cada combinación AiBj con i=1,2,3 y j=1,2 define un tratamiento, entonces hay 6
 
 **2. De efectos aleatorios:** Los a niveles del factor A como los b niveles del factor B son elegidos aleatoriamente dentro de una población de posibles niveles, respectivamente.
 
-**3. De efectos mixtos:** Uno de los dos factores es de efectos fijos en tanto que el otro es de efectos aleatorios. Dos posibles modelos pueden postularse en este caso: modelo mixto restringido y modelo mixto no restringido.
-
+**3. De efectos mixtos:** Uno de los dos factores es de efectos fijos en tanto que el otro es de efectos aleatorios.
 
 
 En cualquiera de los anteriores casos se debe considerar el fenómeno conocido como interacción de los factores, los modelos deben iniciarse considerando la existencia de interacción y luego a través de la evidencia muestral, determinar si dicha interacción es o no significativa. Sólo si en cada tratamiento se toman réplicas (n>1 observaciones por tratamiento), será posible estimar y evaluar la interacción entre los factores.
 
-
-
-
-
-## MODELO FACTORIAL DOS FACTORES EFECTOS FIJOS DISEÑO DCA
 
 A cada tratamiento se asignan en forma completamente aleatorizada, n unidades experimentales obteniéndose por tanto de cada tratamiento n observaciones de la variable respuesta. En total habrán N=abn observaciones de la variable respuesta. La tabla de entrada de datos del experimento será como se presenta en la siguiente figura 
 
@@ -57,8 +52,6 @@ grid.raster(tab)
 
 
 Se postula el modelo con interacción, para la  k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:
-
-
 
 $$\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}$$
 Donde:
@@ -99,7 +92,7 @@ Note que:
 $$\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0$$
 **Medias de tratamientos:** 
 
-$$\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu$$ 
+$\Large \mu_{ij}=\mu+\tau_{ij}$ de donde $\Large \tau_{ij}=\mu_{ij}-\mu$$ 
 
 **Media del nivel i del factor A**
 
@@ -114,7 +107,7 @@ Note que $\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}$
 
 
 **Media global**
-$$\Large \mu_{\bullet j}=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}$$
+$$\Large \mu_{\bullet }=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}$$
 **Efectos de interacción**
 
 $$\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu $$
@@ -147,7 +140,7 @@ siguientes formas equivalentes:
 Los efectos $\Large \alpha_i$ y $\Large \beta_j$ constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.
 
 
-Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción. Este fenómeno suele suceder en casos donde la interacción se manifiesta invirtiendo en signo las diferencias en las medias de tratamientos de un factor en cada nivel del otro factor (los perfiles de medias se cruzan). Como previamente se dijo, para poder aislar o separar correctamente el error experimental del efecto de interacción es necesario una estimación independiente del primero, lo cual se logra mediante el uso de réplicas en cada tratamiento. Para mayor eficiencia se sugieren diseños balanceados.
+Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción. 
 
 
 ##**EJEMPLO**
@@ -250,10 +243,223 @@ $$\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}$$
 
 **Hipótesis de interés**
 
+##**Significancia de la interacción AB**
 La prueba de hipótesis asociada al ANOVA esta dado por:
 
-$\Large H_0=\mu_1=\mu_2=...=\mu_i$
+- **Juego de hipótesis**
 
-$\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
+$\Large H_0=(\alpha \beta)_{11}=(\alpha \beta)_{12}=...=(\alpha \beta)_{ab}=0$
+
+$\Large H_1=(\alpha \beta)_{11}\not =(\alpha \beta)_{12}\not =...=(\alpha \beta)_{ab}\not =0$
+
+Con i=1,2,...a, j=1,2,...b
+
+- **Estadístico de prueba**
+$$F_3=\frac{MS(AB)}{MSE}\sim f_{(a-1)(b-1),ab(n-1)}$$
+
+Si la interacción es significativa (es decir, se rechaza H0), proceder con precaución en la interpretación de los resultados de los tests de significancia sobre los efectos principales:
+
+
+
+##**Significancia del efecto A**
+La prueba de hipótesis asociada al ANOVA esta dado por:
+
+- **Juego de hipótesis**
+
+$\Large H_0=\alpha_{1}=\alpha_{2}=...=\alpha_{a}=0$
+
+$\Large H_1=\alpha_{1}\not =\alpha_{2}\not =...\not =\alpha_{a}\not =0$
+
+Con i=1,2,...a
+
+- **Estadístico de prueba**
+$$F_3=\frac{MSA}{MSE}\sim f_{(a-1),ab(n-1)}$$
+
+Si no se rechaza $H_o$ bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.
+
+
+
+##**Significancia del efecto B**
+La prueba de hipótesis asociada al ANOVA esta dado por:
+
+- **Juego de hipótesis**
+
+$\Large H_0=\beta_{1}=\beta_{2}=...=\beta_{a}=0$
+
+$\Large H_1=\beta_{1}\not =\beta_{2}\not =...\not =\beta_{a}\not =0$
+
+Con  j=1,2,...b
+
+- **Estadístico de prueba**
+$$F_3=\frac{MSA}{MSE}\sim f_{(b-1),ab(n-1)}$$
+
+Si no se rechaza $H_o$ bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.
+
+**Modelo sin interacción**
+En caso de que los datos obtenidos presenten evidencia respecto a la no significancia del término de interacción, el modelo factorial debe replantearse de la siguiente manera:
+
+$$\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}$$
+
+
+##**Diseños factoriales con tres factores**
+
+- El estudio factorial de tres factores A, B y C permite estudiar los efectos A, B, C (efectos principales), AB, AC, BC (efectos de las interacciones de a dos factores) y ABC (la triple interacción), donde el grado de detalle con el que se puede estudiar depende del número de niveles usados para cada factor. 
+
+Por ejemplo, para un factor con dos niveles no es posible descomponer su efecto individual; pero si se toman tres niveles el efecto individual de un factor puede descomponerse en una parte lineal y una cuadrática.
+
+Sean a, b, y c el número de niveles usados de los factores A, B y C respectivamente y n el número de réplicas en cada tratamiento (combinaciones de niveles de los tres factores). Se tendrá entonces la siguiente tabla ANOVA:
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+
+library(png)
+library(grid)
+tab <- readPNG("anova3.png")
+grid.raster(tab)
+
+```
+
+
+Se postula el modelo con interacción, para la  k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:
+
+
+$$\Large Y_{ijk}=\mu+\alpha_i+\beta_j+\lambda_k+(\alpha\beta)_{ij}+(\alpha\lambda)_{ik}+(\beta\lambda)_{jk}+(\alpha\beta\lambda)_{ijk}+\varepsilon_{ijk}$$
+
+$\Large \alpha_i, \beta_j, \lambda_k$ denotan los efectos sobre la respuesta promedio global de los factores A, B y C en sus niveles i, j k respectivamente.
+
+$\Large (\alpha\beta)_{ij},(\alpha\lambda)_{ik}$ y $ (\beta\lambda)_{jk}$ son los efectos de las interacciones de a dos factores
+
+$\Large (\alpha\beta \lambda)_{ijk}$ es la interacción triple,
+
+**Supuestos y restricciones**
+
+$$\Large \varepsilon_{ijkl} \sim N(0,\sigma^2)$$
+para todo i, j, k
+
+$$\Large \sum_{i=1}^a\alpha_i=\sum_{j=1}^b\beta_j=\sum_{k=1}^c
+\lambda_k=0$$
+
+
+$$\Large \sum_{i=1}^a\sum_{j=1}^b(\alpha\beta)_{ij}=0$$
+
+$$\Large \sum_{j=1}^b\sum_{k=1}^c(\alpha\lambda)_{ik}=0$$
+
+
+- El análisis de la significancia de los efectos de este modelo debe realizarse en forma jerárquica partiendo de los efectos de interacción de mayor orden. 
+
+- Ningún efecto principal o de interacción de dos factores
+puede eliminarse de un modelo mientras la triple interacción sea significativa. 
+
+- En general, ningún factor deberá descartarse del modelo mientras participe en efectos de interacción de cualquier orden que sean
+significativos.
+
+- En el caso que ni sus efectos de interacción ni sus efectos principales resulten significativos, se podrá concluir que tal factor no incide sobre el promedio de la respuesta.
+
+**Procedimiento**
+**Paso 1:**
+$H_0=(\alpha\beta\lambda)_{111}=...=(\alpha\beta\lambda)_{abc}$
+si no se rechaza $H_0$ relice la siguiente prueba
+
+**Paso 2:** evaluar la prueba de hipótesis de las interacciones
+
+**Paso 3:** Realizar las pruebas de cada factor sólo para los factores no involucrados en interacciones significativas de
+ningún orden (dobles o triple).
+
+
+
+##**Comparación de medias ante la presencia de interacción**
+
+La estimación de un efecto principal es una diferencia promediada o contraste entre todas las medias de los niveles del factor correspondiente, por ello al hacer inferencias sobre tales medias con base en las estimaciones de los efectos principales, en presencia de interacción, es realizar una generalización sobre los niveles del factor, y por tanto dichas inferencias estarán equivocadas.
+
+Una comparación generalizada entre las medias de un factor tiene sentido si las diferencias existentes entre dichas medias se sostienen de nivel a nivel del otro factor, es decir, cuando no hay interacción. De lo contrario, lo mejor es realizar comparaciones y contrastes de medias de tratamientos $\Large \mu_{ij}$ que ayuden a interpretar los efectos significativos de la interacción. Así ante interacción, sería más conveniente comparar las medias de dicho factor pero en cada uno de los niveles del otro factor. Por ejemplo, suponga un experimento con a=3 y b=2 en el cual los datos evidencian interacción significativa pero aparentemente el factor A no es significativo; en este caso sería conveniente realizar pruebas como las siguientes:
+
+|                |Niveles factor B|    |
+|----------------|----------------|----|
+|Niveles factor A|B1              |B2  |  
+|         A1     |A1B1            |A1B2|
+|         A2     |A2B1            |A2B2|
+|         A3     | A3B1           |A3B2| 
+
+
+a) Comparar medias de A en el nivel 1 de B
+
+
+$\Large H_0=\mu{11}=\mu_{21}=\mu_{31}$
+
+$\Large H_1=\mu{11}\not =\mu_{21}\not =\mu_{31}$
+
+
+
+b) Comparar medias de A en el nivel 2 de B
+
+
+$\Large H_0=\mu{12}=\mu_{22}=\mu_{32}$
+
+$\Large H_1=\mu{12}\not =\mu_{22}\not =\mu_{32}$
+
+
+c) Comparar medias de B en el nivel 1 de A
+
+
+$\Large H_0=\mu{11}=\mu_{12}$
+
+$\Large H_1=\mu{11}\not =\mu_{12}$
+
+d) Comparar medias de B en el nivel 2 de A
+
+
+$\Large H_0=\mu{21}=\mu_{22}$
+
+$\Large H_1=\mu{21}\not =\mu_{22}$
+
+
+e) Comparar medias de B en el nivel 1 de A
+
+
+$\Large H_0=\mu{31}=\mu_{32}$
+
+$\Large H_1=\mu{31}\not =\mu_{32}$
+
+
+Ante interacción no se recomienda realizar comparaciones de Tukey sobre las medias de cada factor. Tukey podría aplicarse más
+bien a las medias de un factor en cada nivel del otro. Por ejemplo para comparar todas las medias de A en el nivel Bj, es decir las medias $\Large \mu_{1j},\mu_{2j}...\mu_{aj}$.
+
+
+**Ejemplo de un diseño con dos factores de efectos fijos**
+El personal de un centro de servicio electrónico incluye tres técnicos especializados en reparar las tres marcas más usadas de unidades de disquetes para micro computadores. Se desea estudiar los efectos del factor TECNICO y del factor MARCA de la unidad de disquete, sobre el tiempo de servicio dado en minutos. A cada técnico se le asignaron aleatoriamente cinco trabajos de cada una de las marcas y se registro el número de minutos requerido para completar cada trabajo.
+
+% Table generated by Excel2LaTeX from sheet 'Hoja1'
+\begin{table}[htbp]
+  \centering
+  \caption{Add caption}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multirow{2}[4]{*}{TECNICO} & \multicolumn{3}{c|}{Marca} \bigstrut\\
+\cline{2-4}          & m1    & m2    & m3 \bigstrut\\
+    \hline
+    \multirow{5}[10]{*}{t1} & 62    & 57    & 59 \bigstrut\\
+\cline{2-4}          & 48    & 45    & 53 \bigstrut\\
+\cline{2-4}          & 63    & 39    & 67 \bigstrut\\
+\cline{2-4}          & 57    & 54    & 66 \bigstrut\\
+\cline{2-4}          & 69    & 44    & 47 \bigstrut\\
+    \hline
+    \multirow{5}[10]{*}{t2} & 51    & 61    & 55 \bigstrut\\
+\cline{2-4}          & 57    & 58    & 58 \bigstrut\\
+\cline{2-4}          & 45    & 70    & 50 \bigstrut\\
+\cline{2-4}          & 50    & 66    & 69 \bigstrut\\
+\cline{2-4}          & 39    & 51    & 49 \bigstrut\\
+    \hline
+    \multirow{4}[8]{*}{t3} & 59    & 58    & 47 \bigstrut\\
+\cline{2-4}          & 65    & 63    & 56 \bigstrut\\
+\cline{2-4}          & 55    & 70    & 51 \bigstrut\\
+\cline{2-4}          & 52    & 53    & 44 \bigstrut\\
+    \hline
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+
+
+**Ejemplo de un diseño con tres factores de efectos fijos **
+
 
 
