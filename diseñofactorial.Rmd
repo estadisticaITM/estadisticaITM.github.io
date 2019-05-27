@@ -480,7 +480,7 @@ $$\Large \sum_{i=1}^3\alpha_i=\sum_{j=1}^3\beta_j=\sum_{i=1}^3(\alpha\beta)_{ij}
 2. Haga un análisis descriptivo de los datos.
 
 
-```{r}
+```{r echo=FALSE}
 tecnico=factor(rep(c(1,2,3),each=5,times=3))
 marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
 tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,	53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
@@ -503,6 +503,8 @@ boxplot(tiempo~tecnico)
 boxplot(tiempo~marca)
 
 
+aggregate(tiempo ~ marca+tecnico, FUN = mean)
+
 ```
 
 
@@ -512,7 +514,7 @@ boxplot(tiempo~marca)
 
 
 
-```{r}
+```{r echo=FALSE}
 tecnico=factor(rep(c(1,2,3),each=5,times=3))
 marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
 tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
@@ -593,7 +595,7 @@ Se concluye que con una significancia de 0.05, ante interacción significativa, 
 
 Medias de tratamientos técnico*marca e I.C. del 95%.
 
-```{r}
+```{r echo=FALSE}
 tecnico=factor(rep(c(1,2,3),each=5,times=3))
 marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
 tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
@@ -601,7 +603,6 @@ tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66
 base=data.frame(marca,tecnico,tiempo)  
 attach(base)
 
-table(marca,tecnico)
 model=aov(tiempo~marca*tecnico)
 
 summary(model)
@@ -609,11 +610,6 @@ TukeyHSD(model,"marca:tecnico",conf.level=0.95)
 
 plot(TukeyHSD(model,conf.level = 0.95))
 
-aggregate(tiempo ~ marca+tecnico, FUN = mean)
-
-library(gmodels)
-#LA FUNCIÓN fit.contrast requiere la librería gmodels
-efect.p15=fit.contrast(model,"marca:tecnico",rbind(":p15"=c(4/4,-1/4,-1/4,-1/4,-1/4)),conf=0.95)
 
 ```
 
@@ -675,7 +671,321 @@ Luego $T_0=1.0852$ y $t_{0.025,36}=2.028$ por tanto se concluye que el tiempo pr
 
 7. Compare ahora las medias del factor TÉCNICO en cada nivel del factor MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca del problema en cuestión? Cuáles son las recomendaciones que usted haría si quiere disminuir el tiempo de servicio del centro de servicios electrónicos.
 
+En la siguiente tabla se aprecian los resultados de los testes sobre la igualdad de las medias del factor TÉCNICO en cada nivel del factor MARCA, veamos cada una:
+
+###**Comparación de las medias de los técnicos a nivel de la marca 1:**
+
+
+técnico,operario
+$\Large H_o: \mu_{11}=\mu_{21}=\mu_{31}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{A|B1}}{MSE}=4.32\sim f_{a-1,ab(n-1)}$$
+
+
+Donde 
+$$\Large MS_{A|B1}=n \frac {\sum_{i=1}^a(\bar y_{i1\bullet}-\bar y_{\bullet1\bullet})}{a-1}$$
+es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1. 
+$$\Large VP=P(f_{2,36}>4.32)=0.0209$$
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 1 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).
+
+
+
+
+
+###**Comparación de las medias de los técnicos a nivel de la marca 2:**
+
+
+técnico,operario
+$\Large H_o: \mu_{12}=\mu_{22}=\mu_{32}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{A|B2}}{MSE}=5.59\sim f_{a-1,ab(n-1)}$$
+
+
+Donde 
+$$\Large MS_{A|B2}=n \frac {\sum_{i=1}^a(\bar y_{i2\bullet}-\bar y_{\bullet2\bullet})}{a-1}$$
+es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1. 
+
+$$\Large VP=P(f_{2,36}>5.59)=0.077$$
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 2 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).
+
+
+
+
+###**Comparación de las medias de los técnicos a nivel de la marca 3:**
+
+
+técnico,operario
+$\Large H_o: \mu_{13}=\mu_{23}=\mu_{33}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{A|B3}}{MSE}=2.02\sim f_{a-1,ab(n-1)}$$
+
+
+Donde 
+$$\Large MS_{A|B3}=n \frac {\sum_{i=1}^a(\bar y_{i3\bullet}-\bar y_{\bullet 3 \bullet})}{a-1}$$
+es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1. 
+
+$$\Large VP=P(f_{2,36}>2.02)=0.1479$$
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 3 los técnicos tardan en promedio el mismo tiempo para reparar una unidad. Sin embargo mire en la figura 3 estas tres medias y en el numeral 5.3 los valores de las medias estimadas que corresponden a $\bar y_{13\bullet}=58.4, \bar y _{23\bullet}=56.2$ y  $\bar y_{33\bullet}=49.6$ , hay una diferencia de 8.8 y 6.6 minutos de las dos primeras medias respecto a la última; la pregunta es si en términos prácticos tales diferencias son o no significativas, a pesar que no se encuentra significancia estadística!!!
+
+
+
+
+**Comparación de las medias de las marcas a nivel de cada técnico**
+
+En la siguiente tabla precedente se aprecian los resultados de los pruebas sobre la igualdad de las medias del factor MARCA en cada nivel del factor TÉCNICO, veamos cada una:
+
+**Comparación de las medias de las marcas a nivel del técnico 1:**
+
+técnico,operario
+$\Large H_o: \mu_{11}=\mu_{12}=\mu_{13}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{B|A1}}{MSE}=4.14\sim f_{b-1,ab(n-1)}$$
+
+
+Donde 
+$$\Large MS_{B|A1}=n \frac {\sum_{i=1}^a(\bar y_{1j\bullet}-\bar y_{1\bullet\bullet})}{b-1}$$
+es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 1.
+
+$$\Large VP=P(f_{2,36}>4.14)=0.0241$$
+
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 1 los tiempos promedios de reparación por
+unidad de al menos dos de las tres marcas son diferentes.
+
+
+**Comparación de las medias de las marcas a nivel del técnico 2:**
+
+
+
+técnico,operario
+$\Large H_o: \mu_{21}=\mu_{22}=\mu_{23}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{B|A2}}{MSE}=4\sim f_{b-1,ab(n-1)}$$
+
+
+Donde 
+$$\Large MS_{B|A2}=n \frac {\sum_{i=1}^a(\bar y_{2j\bullet}-\bar y_{2\bullet\bullet})}{b-1}$$
+es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 2.
+
+$$\Large VP=P(f_{2,36}>4.14)=0.0241$$
+
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 2 los tiempos promedios de reparación por
+unidad de al menos dos de las tres marcas son diferentes.
+
+
+
+
+
+**Comparación de las medias de las marcas a nivel del técnico 3:**
+técnico,operario
+$\Large H_o: \mu_{31}=\mu_{32}=\mu_{33}$
+
+El estadístico para probar esta hipótesis corresponde a:
+$$\Large F_0=\frac{MS_{B|A3}}{MSE}=3.82\sim f_{b-1,ab(n-1)}$$
+
+
+Donde: 
+$$\Large MS_{B|A3}=n \frac {\sum_{i=1}^a(\bar y_{3j\bullet}-\bar y_{3\bullet\bullet})}{b-1}$$
+es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 3.
+
+$$\Large VP=P(f_{2,36}>3.82)=0.0314$$
+
+Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 3 los tiempos promedios de reparación por
+unidad de al menos dos de las tres marcas son diferentes.
+```{r echo=FALSE}
+
+
+tecnico=factor(rep(c(1,2,3),each=5,times=3))
+marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
+tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
+
+base=data.frame(marca,tecnico,tiempo)  
+attach(base)
+
+model=aov(tiempo~marca*tecnico)
+
+MSE=anova(model)[3][4,]
+dftecnico=length(levels(tecnico))-1
+dfmarca=length(levels(marca))-1
+dferror=anova(model)[1][4,]
+
+# Anova del factor técnico en cada nivel de marca
+Técnicos.marca1=anova(aov(tiempo~tecnico,data=base[marca==1,]))
+Técnicos.marca2=anova(aov(tiempo~tecnico,data=base[marca==2,]))
+Técnicos.marca3=anova(aov(tiempo~tecnico,data=base[marca==3,]))
+
+
+Comp_técnicos_en_marca=rbind("En Marca1"=Técnicos.marca1[1:3][1,],
+"En Marca2"=Técnicos.marca2[1:3][1,],"En Marca3"=Técnicos.marca3[1:3][1,])
+
+F0_técnicos=data.frame(Comp_técnicos_en_marca[3]/MSE)
+names(F0_técnicos)[1]="F0"
+
+pv=data.frame("P.Value"=pf(F0_técnicos[,1],dftecnico,dferror,lower.tail=F))
+
+Slice_técnicos_por_marca=cbind(Comp_técnicos_en_marca,F0_técnicos,pv)
+cat("Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+Marca","\n")
+
+Slice_técnicos_por_marca
+
+
+#Anova del factor marca en cada nivel de tecnico
+
+marcas.tec1=anova(aov(tiempo~marca,data=base[tecnico==1,]))
+marcas.tec2=anova(aov(tiempo~marca,data=base[tecnico==2,]))
+marcas.tec3=anova(aov(tiempo~marca,data=base[tecnico==3,]))
+
+
+Comp_marcas_en_Tec=rbind("En Técnico1"=marcas.tec1[1:3][1,],
+"En Técnico2"=marcas.tec2[1:3][1,],"En Técnico3"=marcas.tec3[1:3][1,])
+
+
+F0_marcas=data.frame(Comp_marcas_en_Tec[3]/MSE)
+names(F0_marcas)[1]="F0"
+
+pv=data.frame("P.Value"=pf(F0_marcas[,1],dfmarca,dferror,lower.tail=F))
+
+Slice_marcas_por_Técnico=cbind(Comp_marcas_en_Tec,F0_marcas,pv)
+cat("Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+Técnico","\n");Slice_marcas_por_Técnico
+
+
+Slice_marcas_por_Técnico
+
+```
+
 8. Valide supuestos sobre los errores del modelo (varianza cte. y normalidad)
+
+```{r}
+shapiro.test(residuals(model))
+nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+
+plot(fitted(model),rstudent(model),cex=2,main="Residuales estudentizados vs. valores ajustados",xlab="Valores ajustados")
+abline(h=c(-2,0,2),col=2)
+
+plot(as.numeric(marca),rstudent(model),main="Residuales estudentizados vs. marca",xlab="marca")
+abline(h=c(-2,0,2),col=2)
+
+plot(as.numeric(tecnico),rstudent(model),cex=2, main="Residuales estudentizados vs. técnico",xlab="técnico")
+abline(h=c(-2,0,2),col=2)
+
+qqnorm(residuals(model),cex=2)
+qqline(residuals(model),col=2)
+
+plot(model)
+```
+
+
+**Código gerneral**
+
+```{r eval=FALSE}
+##Análisis descriptivo de los datos
+tecnico=factor(rep(c(1,2,3),each=5,times=3))
+marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
+tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,	53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
+
+base=data.frame(marca,tecnico,tiempo)  
+attach(base)
+
+##Medias por tratamiento
+mediastécnico=sapply(split(tiempo,tecnico),mean)
+mediasmarca=sapply(split(tiempo,marca),mean)
+
+##graficos
+##Gráficos de interacción
+par(mfrow=c(1,2))
+interaction.plot(tecnico,marca,tiempo,type="b",pch=c(1,2,3),col=c("black","blue","red"),lwd=2)
+interaction.plot(marca,tecnico,tiempo,type="b",pch=c(1,2,3),col=c("black","blue","red"),lwd=2)
+
+##Gráficos boxplot
+boxplot(tiempo~tecnico)
+boxplot(tiempo~marca)
+
+##medias por combinación de tratamiento
+aggregate(tiempo ~ marca+tecnico, FUN = mean)
+
+
+#modelo de análisis de varianza 
+
+model=aov(tiempo~marca*tecnico)
+
+summary(model)
+
+
+#iNTERVALOS tukey de medias
+
+TukeyHSD(model,"marca:tecnico",conf.level=0.95)
+
+plot(TukeyHSD(model,conf.level = 0.95))
+
+##cOMPARACIÓN DE MEDIAS POR CADANIVELDE TRATAMIENTO
+
+
+tecnico=factor(rep(c(1,2,3),each=5,times=3))
+marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
+tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
+
+base=data.frame(marca,tecnico,tiempo)  
+attach(base)
+
+model=aov(tiempo~marca*tecnico)
+
+MSE=anova(model)[3][4,]
+dftecnico=length(levels(tecnico))-1
+dfmarca=length(levels(marca))-1
+dferror=anova(model)[1][4,]
+
+# Anova del factor técnico en cada nivel de marca
+Técnicos.marca1=anova(aov(tiempo~tecnico,data=base[marca==1,]))
+Técnicos.marca2=anova(aov(tiempo~tecnico,data=base[marca==2,]))
+Técnicos.marca3=anova(aov(tiempo~tecnico,data=base[marca==3,]))
+
+
+Comp_técnicos_en_marca=rbind("En Marca1"=Técnicos.marca1[1:3][1,],
+"En Marca2"=Técnicos.marca2[1:3][1,],"En Marca3"=Técnicos.marca3[1:3][1,])
+
+F0_técnicos=data.frame(Comp_técnicos_en_marca[3]/MSE)
+names(F0_técnicos)[1]="F0"
+
+pv=data.frame("P.Value"=pf(F0_técnicos[,1],dftecnico,dferror,lower.tail=F))
+
+Slice_técnicos_por_marca=cbind(Comp_técnicos_en_marca,F0_técnicos,pv)
+cat("Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+Marca","\n")
+
+Slice_técnicos_por_marca
+
+
+#Anova del factor marca en cada nivel de tecnico
+
+marcas.tec1=anova(aov(tiempo~marca,data=base[tecnico==1,]))
+marcas.tec2=anova(aov(tiempo~marca,data=base[tecnico==2,]))
+marcas.tec3=anova(aov(tiempo~marca,data=base[tecnico==3,]))
+
+
+Comp_marcas_en_Tec=rbind("En Técnico1"=marcas.tec1[1:3][1,],
+"En Técnico2"=marcas.tec2[1:3][1,],"En Técnico3"=marcas.tec3[1:3][1,])
+
+
+F0_marcas=data.frame(Comp_marcas_en_Tec[3]/MSE)
+names(F0_marcas)[1]="F0"
+
+pv=data.frame("P.Value"=pf(F0_marcas[,1],dfmarca,dferror,lower.tail=F))
+
+Slice_marcas_por_Técnico=cbind(Comp_marcas_en_Tec,F0_marcas,pv)
+cat("Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+Técnico","\n");Slice_marcas_por_Técnico
+
+
+Slice_marcas_por_Técnico
+
+
+```
 
 
 
