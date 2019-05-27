@@ -593,8 +593,6 @@ Se concluye que con una significancia de 0.05, ante interacción significativa, 
 
 Medias de tratamientos técnico*marca e I.C. del 95%.
 
-
-
 ```{r}
 tecnico=factor(rep(c(1,2,3),each=5,times=3))
 marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
@@ -610,6 +608,13 @@ summary(model)
 TukeyHSD(model,"marca:tecnico",conf.level=0.95)
 
 plot(TukeyHSD(model,conf.level = 0.95))
+
+aggregate(tiempo ~ marca+tecnico, FUN = mean)
+
+library(gmodels)
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.p15=fit.contrast(model,"marca:tecnico",rbind(":p15"=c(4/4,-1/4,-1/4,-1/4,-1/4)),conf=0.95)
+
 ```
 
 
@@ -617,7 +622,56 @@ note que en este caso no se obtienen diferencias significativas entre tratamient
 
 Aquí las medias de tratamiento $\Large \mu_{11},\mu_{13}, \mu_{21},\mu_{22},\mu_{23},\mu_{31},\mu_{32},\mu_{33}$ son etiquetadas, respectivamente, como $i:j$, así, por ejemplo, en la comparación 2:1 – 1:1 hace referencia a la diferencia de las medias $\Large \mu_{21}$ y $\Large \mu_{11}$
 
+La prueba de hipótesis corresponde a:
+
+$\Large H_0=$ Algún $\Large \mu_{ij}  = \mu_{ij} $
+$\Large H_1=$ Algún $\Large \mu_{ij} \not = \mu_{ij} $
+
+
 6. Plantee un contraste para probar si el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.
+
+
+Se pide comparar el promedio de las medias $\Large \mu_{22}$ y $\Large \mu_{23}$ es igual al promedio de las medias $\Large \mu_{32}$ y $\Large \mu_{33}$ 
+
+El contraste indicado es 
+$$\Large W=\frac{1}{2}(\mu_{22}+\mu_{23})-\frac{1}{2}(\mu_{32}+\mu_{33})$$
+El test de hipótesis corresponde a:
+
+$$\Large H_o= W=0$$
+$$\Large H_1=W \not=0$$
+Equivalentemente
+$$\Large H_0=\mu_{22}+\mu_{23}=\mu_{32}+\mu_{33}$$
+$$\Large H_1=\mu_{22}+\mu_{23}\not =\mu_{32}+\mu_{33}$$
+
+
+Como cada media $\Large \bar y_{ij\bullet}\sim N(\mu_{ij},\frac{\sigma^2}{n})$ y todas las medias muestrales de tratamiento son mutuamente independientes, entonces el estimador del contraste de medias es:
+$$\Large \hat W=\frac{1}{2}(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})\sim N (W,\sigma^2 [\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}])$$
+
+para esta prueba se puede construir un estadístico t dado por:
+
+
+
+$$\Large T_0=\frac{\frac{1}{2}*(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})}{\sqrt{ MSE*\frac{1}{n}}}\sim t_{ab(n-1)}$$
+y se rechazaría $H_0$ a un nivel de significancia de 0.05 si$|T_0|>t_{0.025,ab(n-1)}$ 
+
+Para la prueba en cuestión se tiene que:
+
+$\Large \bar y_{22\bullet}=61.2$
+
+$\large \bar y_{23\bullet}=56.2$
+
+$\Large \bar y_{32\bullet}=60.8$
+
+$\Large \bar y _{33\bullet}=49.6$
+
+$n=5$
+
+$MSE=52.01$
+
+
+Luego $T_0=1.0852$ y $t_{0.025,36}=2.028$ por tanto se concluye que el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.
+
+
 
 7. Compare ahora las medias del factor TÉCNICO en cada nivel del factor MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca del problema en cuestión? Cuáles son las recomendaciones que usted haría si quiere disminuir el tiempo de servicio del centro de servicios electrónicos.
 

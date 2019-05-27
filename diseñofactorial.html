@@ -781,9 +781,6 @@ attach(base)</code></pre>
 <pre><code>## The following object is masked from ensamble:
 ## 
 ##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 13):
-## 
-##     marca, tecnico, tiempo</code></pre>
 <pre class="r"><code>##Medias por tratamiento
 mediastécnico=sapply(split(tiempo,tecnico),mean)
 mediasmarca=sapply(split(tiempo,marca),mean)
@@ -816,9 +813,6 @@ attach(base)</code></pre>
 <pre><code>## The following object is masked from ensamble:
 ## 
 ##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 14):
-## 
-##     marca, tecnico, tiempo</code></pre>
 <pre class="r"><code>model=aov(tiempo~marca*tecnico)
 
 summary(model)</code></pre>
@@ -886,9 +880,6 @@ attach(base)</code></pre>
 <pre><code>## The following object is masked from ensamble:
 ## 
 ##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 15):
-## 
-##     marca, tecnico, tiempo</code></pre>
 <pre class="r"><code>table(marca,tecnico)</code></pre>
 <pre><code>##      tecnico
 ## marca 1 2 3
@@ -951,10 +942,44 @@ summary(model)</code></pre>
 ## 3:3-2:3 -11.2 -26.23865  3.83865 0.2867388</code></pre>
 <pre class="r"><code>plot(TukeyHSD(model,conf.level = 0.95))</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre class="r"><code>aggregate(tiempo ~ marca+tecnico, FUN = mean)</code></pre>
+<pre><code>##   marca tecnico tiempo
+## 1     1       1   59.8
+## 2     2       1   47.8
+## 3     3       1   58.4
+## 4     1       2   48.4
+## 5     2       2   61.2
+## 6     3       2   56.2
+## 7     1       3   60.2
+## 8     2       3   60.8
+## 9     3       3   49.6</code></pre>
+<pre class="r"><code>library(gmodels)
+#LA FUNCIÓN fit.contrast requiere la librería gmodels
+efect.p15=fit.contrast(model,&quot;marca:tecnico&quot;,rbind(&quot;:p15&quot;=c(4/4,-1/4,-1/4,-1/4,-1/4)),conf=0.95)</code></pre>
+<pre><code>## Warning in model.matrix.default(mt, mf, contrasts): variable
+## &#39;marca:tecnico&#39; is absent, its contrast will be ignored</code></pre>
 <p>note que en este caso no se obtienen diferencias significativas entre tratamientos, no porque no existan tales diferencias, sino porque se pierde potencia en este procedimiento con un número tan grande de comparaciones.</p>
 <p>Aquí las medias de tratamiento <span class="math inline">\(\Large \mu_{11},\mu_{13}, \mu_{21},\mu_{22},\mu_{23},\mu_{31},\mu_{32},\mu_{33}\)</span> son etiquetadas, respectivamente, como <span class="math inline">\(i:j\)</span>, así, por ejemplo, en la comparación 2:1 – 1:1 hace referencia a la diferencia de las medias <span class="math inline">\(\Large \mu_{21}\)</span> y <span class="math inline">\(\Large \mu_{11}\)</span></p>
+<p>La prueba de hipótesis corresponde a:</p>
+<p><span class="math inline">\(\Large H_0=\)</span> Algún $<em>{ij} = </em>{ij} $ <span class="math inline">\(\Large H_1=\)</span> Algún $<em>{ij} = </em>{ij} $</p>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Plantee un contraste para probar si el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.</p></li>
+<li>Plantee un contraste para probar si el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.</li>
+</ol>
+<p>Se pide comparar el promedio de las medias <span class="math inline">\(\Large \mu_{22}\)</span> y <span class="math inline">\(\Large \mu_{23}\)</span> es igual al promedio de las medias <span class="math inline">\(\Large \mu_{32}\)</span> y <span class="math inline">\(\Large \mu_{33}\)</span></p>
+<p>El contraste indicado es <span class="math display">\[\Large W=\frac{1}{2}(\mu_{22}+\mu_{23})-\frac{1}{2}(\mu_{32}+\mu_{33})\]</span> El test de hipótesis corresponde a:</p>
+<p><span class="math display">\[\Large H_o= W=0\]</span> <span class="math display">\[\Large H_1=W \not=0\]</span> Equivalentemente <span class="math display">\[\Large H_0=\mu_{22}+\mu_{23}=\mu_{32}+\mu_{33}\]</span> <span class="math display">\[\Large H_1=\mu_{22}+\mu_{23}\not =\mu_{32}+\mu_{33}\]</span></p>
+<p>Como cada media <span class="math inline">\(\Large \bar y_{ij\bullet}\sim N(\mu_{ij},\frac{\sigma^2}{n})\)</span> y todas las medias muestrales de tratamiento son mutuamente independientes, entonces el estimador del contraste de medias es: <span class="math display">\[\Large \hat W=\frac{1}{2}(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})\sim N (W,\sigma^2 [\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}])\]</span></p>
+<p>para esta prueba se puede construir un estadístico t dado por:</p>
+<p><span class="math display">\[\Large T_0=\frac{\frac{1}{2}*(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})}{\sqrt{ MSE*\frac{1}{n}}}\sim t_{ab(n-1)}\]</span> y se rechazaría <span class="math inline">\(H_0\)</span> a un nivel de significancia de 0.05 si<span class="math inline">\(|T_0|&gt;t_{0.025,ab(n-1)}\)</span></p>
+<p>Para la prueba en cuestión se tiene que:</p>
+<p><span class="math inline">\(\Large \bar y_{22\bullet}=61.2\)</span></p>
+<p><span class="math inline">\(\large \bar y_{23\bullet}=56.2\)</span></p>
+<p><span class="math inline">\(\Large \bar y_{32\bullet}=60.8\)</span></p>
+<p><span class="math inline">\(\Large \bar y _{33\bullet}=49.6\)</span></p>
+<p><span class="math inline">\(n=5\)</span></p>
+<p><span class="math inline">\(MSE=52.01\)</span></p>
+<p>Luego <span class="math inline">\(T_0=1.0852\)</span> y <span class="math inline">\(t_{0.025,36}=2.028\)</span> por tanto se concluye que el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.</p>
+<ol start="7" style="list-style-type: decimal">
 <li><p>Compare ahora las medias del factor TÉCNICO en cada nivel del factor MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca del problema en cuestión? Cuáles son las recomendaciones que usted haría si quiere disminuir el tiempo de servicio del centro de servicios electrónicos.</p></li>
 <li><p>Valide supuestos sobre los errores del modelo (varianza cte. y normalidad)</p></li>
 </ol>
