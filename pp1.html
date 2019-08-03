@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -278,6 +375,77 @@ $(document).ready(function () {
  \vdots&amp;\\
  x_{ik} &amp;
 \end{array} \right] \]</span></p>
+<p><strong>Matriz de datos:</strong></p>
+<p>Llamaremos matriz, A, de dimensiones (n × p) a un conjunto de n × p números reales, ordenados en n filas y p columnas.</p>
+<p>Contiene la información sobre n sujetos de la población tomados al azar y a los cuales se les han medido las variables <span class="math inline">\(x_1, x_2,..., x_k\)</span></p>
+<p><span class="math display">\[\Large 
+X=\left( \begin{array}{cccc}
+ x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}  \\ 
+ x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p}\\
+ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+ x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
+\end{array} \right) \]</span></p>
+<p><strong>Determinante de una matriz</strong></p>
+<p>Dada una matriz A cuadrada y diagonal con términos <span class="math inline">\(a_{ii}\)</span> se denomina determinante de la matriz, y lo representaremos por |A|, al escalar resultante de multiplicar todos los términos diagonales de la matriz. Supongamos una matriz de orden dos como</p>
+<p><span class="math display">\[\Large 
+X=\left( \begin{array}{cccc}
+ 2 &amp; 0 \\ 
+ 0 &amp; 4
+\end{array} \right) \]</span></p>
+<p>si consideramos las columnas de esta matriz como vectores, cada vector está situado en uno de los ejes coordenados. El determinante de esta matriz es 2×4=8, igual al área del rectángulo determinado por ambos vectores.</p>
+<p><strong>Transpuesta de una matriz</strong></p>
+<p>Sea A una matriz con n filas y p columnas. La matriz traspuesta, denotada con <span class="math inline">\({\displaystyle A^{t}}\)</span></p>
+<p>Está dada por:</p>
+<p><span class="math inline">\({\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m} {\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m}\)</span> En donde el elemento <span class="math inline">\({\displaystyle a_{ji}}\)</span> de la matriz original A se convertirá en el elemento <span class="math inline">\({\displaystyle a_{ij}}\)</span> de la matriz traspuesta <span class="math inline">\({\displaystyle A^{t}}\)</span></p>
+<p><strong>Inversa de una matriz</strong></p>
+<p><span class="math display">\[A^{-1}=\frac{1}{|A|}*(A^T)\]</span></p>
+<p><strong>Matriz de varianzas y covarianzas</strong></p>
+<p><span class="math display">\[
+\Large 
+S=\left( \begin{array}{cccc}
+ s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1p}  \\ 
+ s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2p}\\
+ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+ s_{n1} &amp; s_{n2} &amp; \cdots &amp; s_{np}
+\end{array} \right) 
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</li>
+</ul>
+<p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span></p>
+<ul>
+<li>la varianza indica la variabilidad de una variable continua.</li>
+</ul>
+<p><span class="math display">\[\Large S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar x_j)^2}{(n-1)}\]</span></p>
+</div>
+<div id="coeficiente-de-correlacion" class="section level2">
+<h2>Coeficiente de correlación</h2>
+<p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
+<p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
+<p>También es posible obtener la matriz de correlaciones</p>
+<p><span class="math display">\[
+\Large 
+R=\left( \begin{array}{cccc}
+ 1 &amp; r_{12} &amp; \cdots &amp; r_{1p}  \\ 
+ r_{21} &amp; 1 &amp; \cdots &amp; r_{2p}\\
+ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+ r_{n1} &amp; r_{n2} &amp; \cdots &amp; 1
+\end{array} \right) 
+\]</span></p>
+</div>
+<div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
+<h2>Características del coeficiente de correlación</h2>
+<ul>
+<li><p>Rango entre -1 y 1</p></li>
+<li><p>Valores cercanos a -1 la relación es fuertemente negativa.</p></li>
+<li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
+<li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
+</ul>
+<p><strong>Vector de medias muestrales</strong> vector de dimensión p cuyos componentes son las medias de cada una de las p variables.</p>
+<p>$$</p>
+<p>x=<em>{i=1}^nx_i=</em>{i=1}^n=$$</p>
 <p><strong>Tipos de variables</strong></p>
 <p><img src="pp1_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
@@ -286,66 +454,11 @@ $(document).ready(function () {
 <li><p>Si tenemos una variable categórica que indique un grupo podemos subdividir la base de acuerdo a esa variable y realizar los mismos análisis dentro de cada grupo: análisis segmentado.</p></li>
 </ul>
 <p>Asumiendo que todas las variables son continuas.</p>
-<p><strong>Matriz de datos:</strong> Contiene la información sobre n sujetos de la población tomados al azar y a los cuales se les han medido las variables <span class="math inline">\(x_1, x_2,..., x_k\)</span></p>
-$$X=(
-<span class="math display">\[\begin{array}{cccc}
- x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k}  \\ 
- x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k}\\
- \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
- x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}
- 
-\end{array}\]</span>
-<p>) $$</p>
-<p><strong>determinante de una matriz</strong></p>
 <p><strong>Ejemplo</strong></p>
 <p>La siguiente tabla presenta las mediciones realizadas a 10 estudiantes universitarios de sus pies.</p>
-<p>Medidas de Pies |x1 |x2 |x3 |x4 |x5 | |——-|—–|—–|—–|—–| |24.2 | 9.4 | 5.5| 3.0| 3.2| |21.7 | 8.5 | 6.1| 3.2| 2.6| |25.4 | 9.6 | 5.5| 4.0| 3.1| |25.0 | 10.1| 5.3| 3.5| 2.7| |22.0 | 8.5 | 5.7| 3.1| 2.7| |25.9 | 9.3 | 6.1| 4.3| 3.3| |22.2 | 8.6 | 5.2| 3.9| 2.9| |21.7 | 8.4 | 5.0| 3.2| 2.3| |25.5 | 9.2 | 6.1| 3.3| 3.2| |24.4 | 9.4 | 4.7| 3.6| 2.8|</p>
-<p>Donde</p>
-<p><span class="math inline">\(x_1:\)</span> Longitud máxima del pie</p>
-<p><span class="math inline">\(x_2\)</span>: Amplitud máxima del pie</p>
-<p><span class="math inline">\(x_3:\)</span> Amplitud máxima del talón</p>
-<p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo grande</p>
-<p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
-<p>Vector de medias muestrales</p>
-<p><span class="math display">\[\Large \bar x=\sum_{i=1}^n\frac{1}{n}x_i=\sum_{i=1}^n\frac{1}{n}\left[ \begin{array}{cc}
- x_{i1}\\
- x_{i2}\\
- \vdots\\
- x_{ik}
-\end{array} \right] =\left[ \begin{array}{cc}
-\bar x_{1} \\
-\bar x_{2}\\
- \vdots\\
-\bar x_{k}
-\end{array} \right] 
-\]</span></p>
-<p>Para los datos de los pies tenemos los siguientes resultados:</p>
-<p><span class="math display">\[\Large x_i= 
-\left[ \begin{array}{cc}
- 23.8 \\
- 9.1  \\
- 5.52 \\
- 3.51 \\
- 2.88
-\end{array} \right] \]</span></p>
-<p><strong>Matriz de varianzas y covarianzas</strong></p>
-$$S=(
-<span class="math display">\[\begin{array}{cccc}
- s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1k}  \\ 
- s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2k}\\
- \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
- s_{k1} &amp; s_{k2} &amp; \cdots &amp; s_{kk}
- 
-\end{array}\]</span>
-<p>) $$</p>
-<p>Donde:</p>
-<p><span class="math display">\[\Large S_{ij}=cov(x_i,x_j)=\sum_{k=1}^{n}\frac{(x_{ki}-\bar x_i)(x_{ki}-\bar x_j)}{(n-1)}\]</span></p>
-<p><span class="math display">\[\Large S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar x_j)^2}{(n-1)}\]</span></p>
-<p>La matriz de varianzas y covarianzas para los datos de los pies es:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Variable</th>
 <th>x1</th>
 <th>x2</th>
 <th>x3</th>
@@ -355,48 +468,154 @@ $$S=(
 </thead>
 <tbody>
 <tr class="odd">
-<td>x1</td>
-<td>2.94</td>
-<td>0.83</td>
-<td>0.16</td>
-<td>0.37</td>
-<td>0.42</td>
+<td>24.2</td>
+<td>9.4</td>
+<td>5.5</td>
+<td>3.0</td>
+<td>3.2</td>
 </tr>
 <tr class="even">
-<td>x2</td>
-<td>0.83</td>
-<td>0.33</td>
-<td>-0.03</td>
-<td>0.08</td>
-<td>0.09</td>
+<td>21.7</td>
+<td>8.5</td>
+<td>6.1</td>
+<td>3.2</td>
+<td>2.6</td>
 </tr>
 <tr class="odd">
-<td>x3</td>
-<td>0.16</td>
-<td>-.03</td>
-<td>0.24</td>
-<td>0.01</td>
-<td>0.07</td>
+<td>25.4</td>
+<td>9.6</td>
+<td>5.5</td>
+<td>4.0</td>
+<td>3.1</td>
 </tr>
 <tr class="even">
-<td>x4</td>
-<td>0.37</td>
-<td>0.08</td>
-<td>0.01</td>
-<td>0.19</td>
-<td>0.06</td>
+<td>25.0</td>
+<td>10.1</td>
+<td>5.3</td>
+<td>3.5</td>
+<td>2.7</td>
 </tr>
 <tr class="odd">
-<td>x5</td>
-<td>0.42</td>
-<td>0.09</td>
-<td>0.07</td>
-<td>0.06</td>
-<td>0.10</td>
+<td>22.0</td>
+<td>8.5</td>
+<td>5.7</td>
+<td>3.1</td>
+<td>2.7</td>
+</tr>
+<tr class="even">
+<td>25.9</td>
+<td>9.3</td>
+<td>6.1</td>
+<td>4.3</td>
+<td>3.3</td>
+</tr>
+<tr class="odd">
+<td>22.2</td>
+<td>8.6</td>
+<td>5.2</td>
+<td>3.9</td>
+<td>2.9</td>
+</tr>
+<tr class="even">
+<td>21.7</td>
+<td>8.4</td>
+<td>5.0</td>
+<td>3.2</td>
+<td>2.3</td>
+</tr>
+<tr class="odd">
+<td>25.5</td>
+<td>9.2</td>
+<td>6.1</td>
+<td>3.3</td>
+<td>3.2</td>
+</tr>
+<tr class="even">
+<td>24.4</td>
+<td>9.4</td>
+<td>4.7</td>
+<td>3.6</td>
+<td>2.8</td>
 </tr>
 </tbody>
 </table>
+<p>Donde</p>
+<p><span class="math inline">\(x_1:\)</span> Longitud máxima del pie</p>
+<p><span class="math inline">\(x_2\)</span>: Amplitud máxima del pie</p>
+<p><span class="math inline">\(x_3:\)</span> Amplitud máxima del talón</p>
+<p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo grande</p>
+<p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
+<p>En R</p>
+<pre class="r"><code>Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
+amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
+amp_talon=c(5.5,6.1,5.5,5.3,5.7,6.1,5.2,5,6.1,4.7)
+lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
+amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
+
+datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
+
+vectmed=apply(datos,2,mean)
+
+##Matriz de varianzas y covarianzas
+round(var(datos),2)</code></pre>
+<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
+## Long_pie        2.94    0.83      0.16        0.37       0.42
+## amp_pie         0.83    0.33     -0.03        0.08       0.09
+## amp_talon       0.16   -0.03      0.24        0.01       0.07
+## lon_dedgran     0.37    0.08      0.01        0.19       0.06
+## amp_degran      0.42    0.09      0.07        0.06       0.10</code></pre>
+<pre class="r"><code>###Matriz de correlaciones
+round(cor(datos),4)*100</code></pre>
+<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
+## Long_pie      100.00   85.07     19.56       49.98      76.00
+## amp_pie        85.07  100.00     -9.58       31.41      48.14
+## amp_talon      19.56   -9.58    100.00        2.53      44.61
+## lon_dedgran    49.98   31.41      2.53      100.00      44.38
+## amp_degran     76.00   48.14     44.61       44.38     100.00</code></pre>
+<pre class="r"><code>plot(datos)</code></pre>
+<p><img src="pp1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>summary(datos)</code></pre>
+<pre><code>##     Long_pie        amp_pie         amp_talon      lon_dedgran   
+##  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000  
+##  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225   1st Qu.:3.200  
+##  Median :24.30   Median : 9.250   Median :5.500   Median :3.400  
+##  Mean   :23.80   Mean   : 9.100   Mean   :5.520   Mean   :3.510  
+##  3rd Qu.:25.30   3rd Qu.: 9.400   3rd Qu.:6.000   3rd Qu.:3.825  
+##  Max.   :25.90   Max.   :10.100   Max.   :6.100   Max.   :4.300  
+##    amp_degran   
+##  Min.   :2.300  
+##  1st Qu.:2.700  
+##  Median :2.850  
+##  Mean   :2.880  
+##  3rd Qu.:3.175  
+##  Max.   :3.300</code></pre>
 </div>
+</div>
+<div id="analisis-exploratorio-de-datos-multivariables" class="section level1">
+<h1>Análisis Exploratorio de Datos Multivariables</h1>
+<p>Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables. El objetivo fundamental es <strong>entender</strong> la información que se dispone.</p>
+<p>Podemos decir que el análisis exploratorio de una variable continua se realiza mediante:</p>
+<ol style="list-style-type: decimal">
+<li>Medidas de resumen</li>
+<li>Gráficos</li>
+<li>Detección de cosas <strong>raras</strong>: multimodalidades, outliers, huecos.</li>
+</ol>
+<p>En una base de datos multivariable se puede realizar una exploración a varios niveles:</p>
+<ol style="list-style-type: decimal">
+<li>A nivel de variables individules:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Variables continuas: Forma habitual</li>
+<li>Variables cualitativas: Porcentajes y tablas de frecuencias. Chequear desbalances.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>A nivel de pares de variables:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Si ambas variables son continuas: Gráficos de dispersión</li>
+<li>Si ambas variables son categóricas: Tablas de frecuencia y porcentajes</li>
+<li>Si una es categórica y la otra continua: Análisis segmentado.</li>
+</ol>
 </div>
 
 <br>

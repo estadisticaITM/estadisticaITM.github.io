@@ -38,10 +38,136 @@ $$\Large x_i=
  x_{ik} &
 \end{array} \right] $$
 
+
+
+
+**Matriz de datos:** 
+
+Llamaremos matriz, A, de dimensiones (n × p) a un conjunto de n × p números reales, ordenados en n filas y p columnas.
+
+Contiene la información sobre n sujetos de la población tomados al azar y a los cuales se les han medido las variables $x_1, x_2,..., x_k$
+
+
+$$\Large 
+X=\left( \begin{array}{cccc}
+ x_{11} & x_{12} & \cdots & x_{1p}  \\ 
+ x_{21} & x_{22} & \cdots & x_{2p}\\
+ \vdots & \vdots & \ddots & \vdots \\
+ x_{n1} & x_{n2} & \cdots & x_{np}
+\end{array} \right) $$
+
+
+**Determinante de una matriz**
+
+Dada una matriz A cuadrada y diagonal con términos $a_{ii}$ se denomina determinante de la matriz, y lo representaremos por |A|, al escalar resultante de multiplicar todos los términos diagonales de la matriz. Supongamos una matriz de orden dos como
+
+
+$$\Large 
+X=\left( \begin{array}{cccc}
+ 2 & 0 \\ 
+ 0 & 4
+\end{array} \right) $$
+
+si consideramos las columnas de esta matriz como vectores, cada vector está situado en uno de los ejes coordenados. El determinante de esta matriz es 2×4=8, igual al área del rectángulo determinado por ambos vectores.
+
+
+
+**Transpuesta de una matriz**
+
+Sea A una matriz con n filas y p columnas. La matriz traspuesta, denotada con ${\displaystyle A^{t}}$ 
+
+Está dada por:
+
+${\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m} {\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m}$
+En donde el elemento ${\displaystyle a_{ji}}$ de la matriz original A se convertirá en el elemento ${\displaystyle a_{ij}}$  de la matriz traspuesta ${\displaystyle A^{t}}$
+
+
+**Inversa de una matriz**
+
+
+$$A^{-1}=\frac{1}{|A|}*(A^T)$$
+
+**Matriz de varianzas y covarianzas**
+
+
+
+$$
+\Large 
+S=\left( \begin{array}{cccc}
+ s_{11} & s_{12} & \cdots & s_{1p}  \\ 
+ s_{21} & s_{22} & \cdots & s_{2p}\\
+ \vdots & \vdots & \ddots & \vdots \\
+ s_{n1} & s_{n2} & \cdots & s_{np}
+\end{array} \right) 
+$$
+
+
+
+Donde:
+
+
+- La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
+
+$$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
+
+
+- la varianza indica la variabilidad de una variable continua.
+
+
+$$\Large S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar x_j)^2}{(n-1)}$$
+
+
+##Coeficiente de correlación
+
+Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
+
+
+$$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$
+
+También es posible obtener la matriz de correlaciones
+
+
+$$
+\Large 
+R=\left( \begin{array}{cccc}
+ 1 & r_{12} & \cdots & r_{1p}  \\ 
+ r_{21} & 1 & \cdots & r_{2p}\\
+ \vdots & \vdots & \ddots & \vdots \\
+ r_{n1} & r_{n2} & \cdots & 1
+\end{array} \right) 
+$$
+
+## Características del coeficiente de correlación
+
+- Rango entre -1 y 1
+
+- Valores cercanos a -1 la relación es fuertemente negativa.
+
+- Valores cercanos a 1 la relación es fuertemente positiva.
+
+- Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal
+
+
+**Vector de medias muestrales**
+vector de dimensión p cuyos componentes son las medias de cada una de las p variables.
+
+$$\Large 
+
+\bar x=\sum_{i=1}^n\frac{1}{n}x_i=\sum_{i=1}^n\frac{1}{n}\left[ \begin{array}{cc}
+ x_{i1}\\
+ x_{i2}\\
+ \vdots\\
+ x_{ik}
+\end{array} \right] =\left[ \begin{array}{cc}
+\bar x_{1} \\
+\bar x_{2}\\
+ \vdots\\
+\bar x_{k}
+\end{array} \right] $$
+
+
 **Tipos de variables**
-
-
-
 
 ```{r fig.asp=0.6, fig.align='center', echo=FALSE}
 
@@ -52,9 +178,6 @@ grid.raster(imgm1)
 
 ```
 
-
-
-
 - Usualmente una base de datos es una combinación de diferentes tipos de variables: Sexo, Edad, Número de hijos, Estado civil, Fecha de nacimiento, etc.
 
 - Para muchos análisis solo trabajamos con un solo tipo de variables, por ejemplo, en el análisis clásico multivariable se asume que se tienen solo variables continuas.
@@ -62,29 +185,7 @@ grid.raster(imgm1)
 - Si tenemos una variable categórica que indique un grupo podemos subdividir la base de acuerdo a esa variable y realizar los mismos análisis dentro de cada grupo: análisis segmentado.
 
 
-
 Asumiendo que todas las variables son continuas.
-
-**Matriz de datos:** Contiene la información sobre n sujetos de la población tomados al azar y a los cuales se les han medido las variables $x_1, x_2,..., x_k$
-
-
-
-
-$$\Large X=\left( \begin{array}{cccc}
- x_{11} & x_{12} & \cdots & x_{1k}  \\ 
- x_{21} & x_{22} & \cdots & x_{2k}\\
- \vdots & \vdots & \ddots & \vdots \\
- x_{n1} & x_{n2} & \cdots & x_{nk}
- 
-\end{array} \right) $$
-
-
-**determinante de una matriz**
-
-
-
-
-
 
 
 
@@ -93,7 +194,7 @@ $$\Large X=\left( \begin{array}{cccc}
 
 La siguiente tabla presenta las mediciones realizadas a 10 estudiantes universitarios de sus pies.
 
-Medidas de Pies
+
 |x1     |x2   |x3   |x4   |x5   |
 |-------|-----|-----|-----|-----|
 |24.2   | 9.4 | 5.5| 3.0| 3.2|
@@ -120,76 +221,59 @@ $x_4:$ Longitud máxima del dedo grande
 $x_5:$ Amplitud máxima del dedo grande
 
 
-Vector de medias muestrales
+
+En  R
+
+```{r}
+Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
+amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
+amp_talon=c(5.5,6.1,5.5,5.3,5.7,6.1,5.2,5,6.1,4.7)
+lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
+amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
+
+datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
+
+vectmed=apply(datos,2,mean)
+
+##Matriz de varianzas y covarianzas
+round(var(datos),2)
+
+###Matriz de correlaciones
+round(cor(datos),4)*100
+
+plot(datos)
+summary(datos)
+```
 
 
 
 
 
+#Análisis Exploratorio de Datos Multivariables
 
-$$\Large \bar x=\sum_{i=1}^n\frac{1}{n}x_i=\sum_{i=1}^n\frac{1}{n}\left[ \begin{array}{cc}
- x_{i1}\\
- x_{i2}\\
- \vdots\\
- x_{ik}
-\end{array} \right] =\left[ \begin{array}{cc}
-\bar x_{1} \\
-\bar x_{2}\\
- \vdots\\
-\bar x_{k}
-\end{array} \right] 
-$$
+Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables. 
+El objetivo fundamental es **entender** la información que se dispone. 
+
+Podemos decir que el análisis exploratorio de una variable continua se realiza mediante:
+
+1. Medidas de resumen
+2. Gráficos
+3. Detección de cosas **raras**: multimodalidades, outliers, huecos.
 
 
-Para los datos de los pies tenemos los siguientes resultados:
+En una base de datos multivariable se puede realizar una exploración a varios niveles:
+
+1. A nivel de variables individules:
+a) Variables continuas: Forma habitual
+b) Variables cualitativas: Porcentajes y tablas de frecuencias. Chequear desbalances.
 
 
-$$\Large x_i= 
-\left[ \begin{array}{cc}
- 23.8 \\
- 9.1  \\
- 5.52 \\
- 3.51 \\
- 2.88
-\end{array} \right] $$
+2. A nivel de pares de variables:
+a) Si ambas variables son continuas: Gráficos de dispersión
+b) Si ambas variables son categóricas: Tablas de frecuencia y porcentajes
+c) Si una es categórica y la otra continua: Análisis segmentado.
 
 
 
-
-**Matriz de varianzas y covarianzas**
-
-
-
-$$\Large S=\left( \begin{array}{cccc}
- s_{11} & s_{12} & \cdots & s_{1k}  \\ 
- s_{21} & s_{22} & \cdots & s_{2k}\\
- \vdots & \vdots & \ddots & \vdots \\
- s_{k1} & s_{k2} & \cdots & s_{kk}
- 
-\end{array} \right) $$
-
-
-
-Donde:
-
-
-$$\Large S_{ij}=cov(x_i,x_j)=\sum_{k=1}^{n}\frac{(x_{ki}-\bar x_i)(x_{ki}-\bar x_j)}{(n-1)}$$
-
-
-
-
-$$\Large S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar x_j)^2}{(n-1)}$$
-
-
-La matriz de varianzas y covarianzas para los datos de los pies es:
-
-
-|Variable  |x1    | x2  |    x3| x4  | x5|
-|--|------|-----|------|-----|----|
-|x1| 2.94 | 0.83| 0.16 |0.37 |0.42|
-|x2| 0.83 |0.33 |-0.03 | 0.08| 0.09|
-|x3| 0.16 |-.03 | 0.24 | 0.01| 0.07|
-|x4| 0.37 |0.08 |0.01  |0.19 |0.06|
-|x5| 0.42 |0.09 |0.07  |0.06 |0.10|
 
 
