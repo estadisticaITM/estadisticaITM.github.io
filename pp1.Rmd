@@ -15,8 +15,8 @@ Usualmente se limita al análisis de variables continuas bajo el supuesto de que
 **Vector aleatorio:** Contiene la información sobre k variables medidas en un sujeto sacado al azar de una población particular.
 
 
-$$X= 
-\left[ \begin{array}{cc}
+$$\Large
+X= \left[ \begin{array}{cc}
  x_1 & \\
  x_2&\\
  .&\\
@@ -232,6 +232,7 @@ lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
 amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
 
 datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
+boxplot(datos)
 
 vectmed=apply(datos,2,mean)
 
@@ -246,8 +247,26 @@ summary(datos)
 ```
 
 
+### Actividad en R
+
+Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
 
 
+HT = altura en pies
+
+DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+
+D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+
+VOL = volumen de madera obtenida (en pies cúbicos).
+
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas, estime:
+
+- El vector de medias
+
+- Matriz de varianzas y covariazas
+
+- Matriz de correlaciones
 
 #Análisis Exploratorio de Datos Multivariables
 
@@ -275,5 +294,16 @@ c) Si una es categórica y la otra continua: Análisis segmentado.
 
 
 
+## Hay dos tipos fundamentales de datos
 
+-Datos experimentales (Datos fuertes): 
+
+El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.
+
+- Datos observacionales (Datos débiles): 
+Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones
+de las variables.
+
+Hay unos datos llamados cuasi-experimentales, en los cuales el investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no
+puede decidir sobre quien será el paciente.
 

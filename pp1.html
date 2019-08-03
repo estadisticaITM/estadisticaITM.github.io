@@ -358,8 +358,8 @@ $(document).ready(function () {
 <div id="definiciones-basicas" class="section level2">
 <h2>Definiciones Básicas</h2>
 <p><strong>Vector aleatorio:</strong> Contiene la información sobre k variables medidas en un sujeto sacado al azar de una población particular.</p>
-<p><span class="math display">\[X= 
-\left[ \begin{array}{cc}
+<p><span class="math display">\[\Large
+X= \left[ \begin{array}{cc}
  x_1 &amp; \\
  x_2&amp;\\
  .&amp;\\
@@ -553,8 +553,9 @@ lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
 amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
 
 datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
-
-vectmed=apply(datos,2,mean)
+boxplot(datos)</code></pre>
+<p><img src="pp1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>vectmed=apply(datos,2,mean)
 
 ##Matriz de varianzas y covarianzas
 round(var(datos),2)</code></pre>
@@ -573,7 +574,7 @@ round(cor(datos),4)*100</code></pre>
 ## lon_dedgran    49.98   31.41      2.53      100.00      44.38
 ## amp_degran     76.00   48.14     44.61       44.38     100.00</code></pre>
 <pre class="r"><code>plot(datos)</code></pre>
-<p><img src="pp1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="pp1_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <pre class="r"><code>summary(datos)</code></pre>
 <pre><code>##     Long_pie        amp_pie         amp_talon      lon_dedgran   
 ##  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000  
@@ -589,6 +590,20 @@ round(cor(datos),4)*100</code></pre>
 ##  Mean   :2.880  
 ##  3rd Qu.:3.175  
 ##  Max.   :3.300</code></pre>
+<div id="actividad-en-r" class="section level3">
+<h3>Actividad en R</h3>
+<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
+<p>HT = altura en pies</p>
+<p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>
+<p>D16 = diámetro del tronco a 16 pies de altura (en pulgadas)</p>
+<p>VOL = volumen de madera obtenida (en pies cúbicos).</p>
+<p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas, estime:</p>
+<ul>
+<li><p>El vector de medias</p></li>
+<li><p>Matriz de varianzas y covariazas</p></li>
+<li><p>Matriz de correlaciones</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div id="analisis-exploratorio-de-datos-multivariables" class="section level1">
@@ -616,6 +631,15 @@ round(cor(datos),4)*100</code></pre>
 <li>Si ambas variables son categóricas: Tablas de frecuencia y porcentajes</li>
 <li>Si una es categórica y la otra continua: Análisis segmentado.</li>
 </ol>
+<div id="hay-dos-tipos-fundamentales-de-datos" class="section level2">
+<h2>Hay dos tipos fundamentales de datos</h2>
+<p>-Datos experimentales (Datos fuertes):</p>
+<p>El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.</p>
+<ul>
+<li>Datos observacionales (Datos débiles): Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones de las variables.</li>
+</ul>
+<p>Hay unos datos llamados cuasi-experimentales, en los cuales el investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no puede decidir sobre quien será el paciente.</p>
+</div>
 </div>
 
 <br>
