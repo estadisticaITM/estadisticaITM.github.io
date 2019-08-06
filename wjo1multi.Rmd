@@ -1,0 +1,47 @@
+---
+title: "Trabajo"
+---
+
+
+**datos infra rojo**
+
+Se cuenta con un conjunto de datos que contiene espectros de infrarrojo medio (FTIR) de trece tipos de almidón con 7469 observaciones de 14 variables,esta base de datos fue tomada de la librería spftir, donde:
+
+• Wavenumber. Número de onda de espectros infrarrojos medios.
+• A-M. Absorción de un espectro de infrarrojo medio de trece tipos de almidón (A.U.).
+
+# Primera parte
+1. Realice el grafico de perfiles 
+2. Realice un resumen descriptivo de los datos
+3. Estime la correlación de los datos sin incluir el número de onda
+4. Realice el boxplot de cada tipo de almidón
+
+
+
+Los datos el código corresponde a:
+
+```{r eval=FALSE}
+library(spftir)
+data(spData)
+
+##Gáfico de perfiles
+
+plot(spData$Wavenumber,spData$A,lwd=1,ylim=c(0,2.3))
+lines(spData$Wavenumber,spData$B,lwd=1,col=3)
+lines(spData$Wavenumber,spData$C,lwd=1,col=2)
+lines(spData$Wavenumber,spData$D,lwd=1,col=4)
+lines(spData$Wavenumber,spData$E,lwd=1,col=5)
+lines(spData$Wavenumber,spData$F,lwd=1,col=6)
+
+#resumen de datos
+summary(spData)
+
+#matriz de correlaciones
+cor(spData[-1])
+
+#Boxplot del tipo de almidón
+boxplot(spData[-1])
+
+
+```
+

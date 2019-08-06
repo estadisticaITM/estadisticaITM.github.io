@@ -11,7 +11,7 @@
 
 
 
-<title>Untitled</title>
+<title>Trabajo</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -347,97 +347,43 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Untitled</h1>
+<h1 class="title toc-ignore">Trabajo</h1>
 
 </div>
 
 
-<div id="comparacion-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad" class="section level3">
-<h3><strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></h3>
-<p>Considere el MRLM</p>
-<p><span class="math display">\[Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
-<p>Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
-<p>Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.</p>
-<p><strong>Escalonamiento normal unitario</strong></p>
-<p>Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:</p>
-<p><span class="math display">\[Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
-<p><span class="math display">\[X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
-<p>Ajustamos el modelo de regresión sin intercepto <span class="math display">\[ Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i \]</span> Los coeficientes de regresión estandarizados <span class="math inline">\(\beta_j^*\)</span> pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de <span class="math inline">\(X_J\)</span> dado que las demás variables explicatorias están en el modelo, además, los <span class="math inline">\(\beta_j\)</span> pueden servir para determinar la importancia relativa de <span class="math inline">\(X_j\)</span> en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.</p>
-<p>NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.</p>
-<p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.</p>
-<p>Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.</p>
-</div>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
-<p>Retomando el ejemplo de los arboles</p>
-<pre class="r"><code>library(car)</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre><code>## 
-## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:pracma&#39;:
-## 
-##     logit</code></pre>
-<pre class="r"><code>library(rgl)
-library(perturb)</code></pre>
-<pre><code>## Warning: package &#39;perturb&#39; was built under R version 3.5.3</code></pre>
-<pre class="r"><code>library(leaps)</code></pre>
-<pre><code>## Warning: package &#39;leaps&#39; was built under R version 3.5.3</code></pre>
-<pre class="r"><code>library(scatterplot3d)
+<p><strong>datos infra rojo</strong></p>
+<p>Se cuenta con un conjunto de datos que contiene espectros de infrarrojo medio (FTIR) de trece tipos de almidón con 7469 observaciones de 14 variables,esta base de datos fue tomada de la librería spftir, donde:</p>
+<p>• Wavenumber. Número de onda de espectros infrarrojos medios. • A-M. Absorción de un espectro de infrarrojo medio de trece tipos de almidón (A.U.).</p>
+<div id="primera-parte" class="section level1">
+<h1>Primera parte</h1>
+<ol style="list-style-type: decimal">
+<li>Realice el grafico de perfiles</li>
+<li>Realice un resumen descriptivo de los datos</li>
+<li>Estime la correlación de los datos sin incluir el número de onda</li>
+<li>Realice el boxplot de cada tipo de almidón</li>
+</ol>
+<p>Los datos el código corresponde a:</p>
+<pre class="r"><code>library(spftir)
+data(spData)
 
+##Gáfico de perfiles
 
-DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+plot(spData$Wavenumber,spData$A,lwd=1,ylim=c(0,2.3))
+lines(spData$Wavenumber,spData$B,lwd=1,col=3)
+lines(spData$Wavenumber,spData$C,lwd=1,col=2)
+lines(spData$Wavenumber,spData$D,lwd=1,col=4)
+lines(spData$Wavenumber,spData$E,lwd=1,col=5)
+lines(spData$Wavenumber,spData$F,lwd=1,col=6)
 
-D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+#resumen de datos
+summary(spData)
 
-HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+#matriz de correlaciones
+cor(spData[-1])
 
-VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
-
-bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
-
-##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
-miscoeficientes=function(modeloreg,datosreg){
-  coefi=coef(modeloreg)
-  datos2=as.data.frame(scale(datosreg))
-  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
-  limites=confint(modeloreg,level=0.95)
-  vifs=c(0,vif(modeloreg))
-  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
-  cat(&quot;Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados&quot;,&quot;\n&quot;)
-  resul
-}
-
-
-m1=lm(VOL~D16+HT+DBH)
-
-summary(m1)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = VOL ~ D16 + HT + DBH)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -5.2548 -1.6765 -0.1277  1.5232  4.9990 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
-## D16            5.6714     1.2023   4.717 0.000232 ***
-## HT             0.6938     0.1631   4.254 0.000606 ***
-## DBH            1.6258     1.0259   1.585 0.132611    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.095 on 16 degrees of freedom
-## Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
-## F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11</code></pre>
-<pre class="r"><code>miscoeficientes(m1,bosque)</code></pre>
-<pre><code>## Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados</code></pre>
-<pre><code>##                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
-## (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
-## D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
-## HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
-## DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
+#Boxplot del tipo de almidón
+boxplot(spData[-1])</code></pre>
 </div>
 
 <br>
