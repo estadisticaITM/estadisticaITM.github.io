@@ -1,0 +1,88 @@
+---
+title: "Datos faltantes"
+---
+
+## **Tipos de datos**
+
+- **Datos experimentales (Datos fuertes): **
+El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.
+
+- **Datos observacionales (Datos débiles): **
+Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones
+de las variables.
+
+- **Datos cuasi-experimentales:**
+El investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no puede decidir sobre quien será el paciente.
+
+
+##**Qué Hacer Cuando Tenemos Datos faltantes?**
+
+- En muchas ocasiones cuando estamos analizando una base de datos nos enfrentamos con la falta de datos. 
+
+- Esta pérdida de información puede generar problemas, a veces grandes, en especial cuando no tenemos claridad sobre las razones sobre el porqué se perdieron estos datos.
+
+- Dependiendo del tipo de análisis que pretendamos realizar, la importancia de los valores perdidos puede variar desde extrema hasta ninguna.
+
+- Cabe anotar la diferencia entre una unidad muestral con no respuesta y una unidad con no respuesta parcial. 
+
+- El primer paso en nuestro análisis es determinar el origen del dato faltante. La falta de un dato puede deberse a múltiples razones, por ejemplo, una no respuesta a una pregunta
+delicada en un cuestionario, a un mal registro por parte del encuestador, una pérdida aleatoria de información, etc.
+
+
+
+##**Tipos de datos perdidos**
+
+
+- Datos Perdidos Completamente y al Azar (MCAR):
+
+- Datos Faltantes al Azar (MAR Missing at Random)
+
+- Datos Faltantes NO al Azar (NMAR)
+
+Su ausencia no se debe a la presencia de las variables en el estudio. 
+ejm: la tendencia que tienen ciertos segmentos poblacionales a no dar respuesta a encuestas.
+
+
+
+## Muestra Univariable con Datos Faltantes
+Las causas de la pérdida de información se debe principalmente al azar y a la censura algunas formas de trabajar con datos faltantes son las siguientes
+
+- **Ignorar los Datos faltantes**
+
+- **Eliminar un sujeto con una o más variables no observadas**
+Es la estrategia más popular. Es recomendable cuando la fracción de datos faltantes es muy pequeña, los estadísticos son obtenidos a partir de la misma matriz de datos. 
+
+- **Imputación de datos**
+La imputación es la sustitución de valores no informados en una observación por otros,
+Existen diversas técnicas de imputación.
+
+
+Algunas ventajas de la imputación son:
+
+- Se resuelve desde el comienzo el problema 
+
+- No se descarta información
+
+- Permite utilizar procedimientos y software para datos completos.
+
+
+
+
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+
+library(png)
+library(grid)
+imgm <- readPNG("miss.png")
+grid.raster(imgm)
+
+```
+
+
+## EJEMPLO
+Los siguientes datos son los resultados de la calificación de 9 jurados a las reinas de un concurso de belleza
+
+[Datos reinas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx)
+
+- Realice un análisis descriptivo de estos datos, tenga en cuenta la presencia de datos faltantes y su tratamiento
+

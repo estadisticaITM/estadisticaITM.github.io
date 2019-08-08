@@ -268,11 +268,19 @@ El objetivo del análisis es determinar cuál es la relación entre dichas medid
 
 - Matriz de correlaciones
 
+- Resumen de las medidas
+
+- Grafico de dispersión
+
 
 ```{r}
+
 DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+
 D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+
 HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+
 VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
 
 
@@ -280,10 +288,11 @@ VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62
 ```
 
 
-#Análisis Exploratorio de Datos Multivariables
 
-Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables. 
-El objetivo fundamental es **entender** la información que se dispone. 
+
+# Análisis Exploratorio de Datos Multivariables
+
+Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables.  El objetivo fundamental es **entender** la información que se dispone. 
 
 Podemos decir que el análisis exploratorio de una variable continua se realiza mediante:
 
@@ -306,40 +315,3 @@ c) Si una es categórica y la otra continua: Análisis segmentado.
 
 
 
-## **Tipos de datos**
-
-- **Datos experimentales (Datos fuertes): **
-
-El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.
-
-- **Datos observacionales (Datos débiles): **
-Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones
-de las variables.
-
-- **Datos cuasi-experimentales:**
-
-El investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no puede decidir sobre quien será el paciente.
-
-
-##**Qué Hacer Cuando Tenemos Datos faltantes?**
-
-- En muchas ocasiones cuando estamos analizando una base de datos nos enfrentamos con la falta de datos. 
-
-- Esta pérdida de información puede generar problemas, a veces grandes, en especial cuando no tenemos claridad sobre las razones sobre el porqué se perdieron estos datos.
-
-- Dependiendo del tipo de análisis que pretendamos realizar, la importancia de los valores perdidos puede variar desde extrema hasta ninguna.
-
-- Cabe anotar la diferencia entre una unidad muestral con no respuesta y una unidad con no respuesta parcial. 
-
-- El primer paso en nuestro análisis es determinar el origen del dato faltante. La falta de un dato puede deberse a múltiples razones, por ejemplo, una no respuesta a una pregunta
-delicada en un cuestionario, a un mal registro por parte del encuestador, una pérdida aleatoria de información, etc.
-
-- El éxito de la imputación se basa en el conocimiento del mecanismo que generó los valores perdidos.
-
-- Datos Perdidos Completamente y al Azar (MCAR) Su ausencia no se debe a la presencia de las variables en el estudio. Un caso que muestra que esto puede no ser así es la tendencia que tienen ciertos segmentos poblacionales a no dar respuesta a encuestas.
-Datos Faltantes al Azar (MAR)
-Datos Faltantes NO al Azar (NMAR)
-
-
-
-[Datos reinas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx)

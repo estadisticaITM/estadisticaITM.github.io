@@ -602,10 +602,15 @@ round(cor(datos),4)*100</code></pre>
 <li><p>El vector de medias y de la desv estándar</p></li>
 <li><p>Matriz de varianzas y covariazas</p></li>
 <li><p>Matriz de correlaciones</p></li>
+<li><p>Resumen de las medidas</p></li>
+<li><p>Grafico de dispersión</p></li>
 </ul>
 <pre class="r"><code>DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+
 D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+
 HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+
 VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)</code></pre>
 </div>
 </div>
@@ -635,31 +640,6 @@ VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16
 <li>Si ambas variables son categóricas: Tablas de frecuencia y porcentajes</li>
 <li>Si una es categórica y la otra continua: Análisis segmentado.</li>
 </ol>
-<div id="tipos-de-datos" class="section level2">
-<h2><strong>Tipos de datos</strong></h2>
-<ul>
-<li><strong>Datos experimentales (Datos fuertes): </strong></li>
-</ul>
-<p>El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.</p>
-<ul>
-<li><p><strong>Datos observacionales (Datos débiles): </strong> Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones de las variables.</p></li>
-<li><p><strong>Datos cuasi-experimentales:</strong></p></li>
-</ul>
-<p>El investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no puede decidir sobre quien será el paciente.</p>
-</div>
-<div id="que-hacer-cuando-tenemos-datos-faltantes" class="section level2">
-<h2><strong>Qué Hacer Cuando Tenemos Datos faltantes?</strong></h2>
-<ul>
-<li><p>En muchas ocasiones cuando estamos analizando una base de datos nos enfrentamos con la falta de datos.</p></li>
-<li><p>Esta pérdida de información puede generar problemas, a veces grandes, en especial cuando no tenemos claridad sobre las razones sobre el porqué se perdieron estos datos.</p></li>
-<li><p>Dependiendo del tipo de análisis que pretendamos realizar, la importancia de los valores perdidos puede variar desde extrema hasta ninguna.</p></li>
-<li><p>Cabe anotar la diferencia entre una unidad muestral con no respuesta y una unidad con no respuesta parcial.</p></li>
-<li><p>El primer paso en nuestro análisis es determinar el origen del dato faltante. La falta de un dato puede deberse a múltiples razones, por ejemplo, una no respuesta a una pregunta delicada en un cuestionario, a un mal registro por parte del encuestador, una pérdida aleatoria de información, etc.</p></li>
-<li><p>El éxito de la imputación se basa en el conocimiento del mecanismo que generó los valores perdidos.</p></li>
-<li><p>Datos Perdidos Completamente y al Azar (MCAR) Su ausencia no se debe a la presencia de las variables en el estudio. Un caso que muestra que esto puede no ser así es la tendencia que tienen ciertos segmentos poblacionales a no dar respuesta a encuestas. Datos Faltantes al Azar (MAR) Datos Faltantes NO al Azar (NMAR)</p></li>
-</ul>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx">Datos reinas</a></p>
-</div>
 </div>
 
 <br>
