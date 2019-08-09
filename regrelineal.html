@@ -728,6 +728,7 @@ plot(bosque)</code></pre>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -894,6 +895,7 @@ plot(m1)</code></pre>
 <h2>Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:</h2>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)
+#&gt; Grouped Data: circumference ~ age | Tree
 #&gt;   Tree  age circumference
 #&gt; 1    1  118            30
 #&gt; 2    1  484            58
@@ -1005,9 +1007,6 @@ datos=data.frame(Seccion,Publicidad,Ventas)
 ###GRAFICANDO VENTAS VS. PUBLICIDAD SEG´UN SECCION###
 attach(datos)
 #&gt; The following objects are masked _by_ .GlobalEnv:
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 9):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)

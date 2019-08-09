@@ -33,11 +33,11 @@ delicada en un cuestionario, a un mal registro por parte del encuestador, una p�
 ##**Tipos de datos perdidos**
 
 
-- Datos Perdidos Completamente y al Azar (MCAR):
+- Datos Perdidos Completamente y al Azar (MCAR missing completely at random):
 
 - Datos Faltantes al Azar (MAR Missing at Random)
 
-- Datos Faltantes NO al Azar (NMAR)
+- Datos Faltantes NO al Azar (NMAR missing not at random)
 
 Su ausencia no se debe a la presencia de las variables en el estudio. 
 ejm: la tendencia que tienen ciertos segmentos poblacionales a no dar respuesta a encuestas.
@@ -69,7 +69,7 @@ Algunas ventajas de la imputación son:
 
 
 
-```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+```{r fig.asp=1, fig.align='center', echo=FALSE}
 
 library(png)
 library(grid)
@@ -84,5 +84,14 @@ Los siguientes datos son los resultados de la calificación de 9 jurados a las r
 
 [Datos reinas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx)
 
-- Realice un análisis descriptivo de estos datos, tenga en cuenta la presencia de datos faltantes y su tratamiento
+Realice un análisis descriptivo de estos datos, tenga en cuenta la presencia de datos faltantes y su tratamiento, tenga en cuenta los siguientes aspectos
+
+- Qué metodo propone para los datos faltantes
+
+- Realice un boxplot para cada reina, quien obtuvo mejor calificación
+
+- Realice un boxplot para cada jurado, quien dio mejores calificaciones
+
+- Encuentre el vector de medias y de la desviación estándar 
+
 
