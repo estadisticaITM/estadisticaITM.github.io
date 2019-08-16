@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Distancias</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-fa-database"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Distancias</h1>
+
+</div>
+
+
+<div id="variabilidad-y-distancias" class="section level2">
+<h2>VARIABILIDAD Y DISTANCIAS</h2>
+<p>Un procedimiento para estudiar la variabilidad de las observaciones es utilizar el concepto de distancias entre puntos.</p>
+<p>En el caso escalar, la distancia entre el valor de una variable x en un punto, <span class="math inline">\(\Large x_i\)</span>, y la media de la variable, <span class="math inline">\(\Large\bar x\)</span>, se mide de manera natural mediante <span class="math inline">\(\Large \sqrt {(x_i-\bar x)^2}\)</span>, equivalentemente <span class="math inline">\(\Large |xi − x|\)</span> .</p>
+<p>La desviación es un promedio de las distancias entre los puntos y su media.</p>
+</div>
+<div id="el-concepto-de-distancia" class="section level2">
+<h2><strong>El concepto de distancia</strong></h2>
+<p>Dados dos puntos <span class="math inline">\(\Large x_i, x_j\)</span> pertenecientes a <span class="math inline">\(\Large \mathbb{R}^p\)</span>, se establece una distancia, mediante la función d con las propiedades siguientes:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\Large d : \mathbb{R}^p×\mathbb{R}^p \longrightarrow \mathbb{R}^+\)</span></li>
+</ol>
+<p>Dados dos puntos en el espacio de dimensión p, la distancia es un número no negativo, <span class="math inline">\(\Large d(xi, xj) ≥ 0\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><span class="math inline">\(\Large d(x_i, x_i) = 0 ,\)</span> la distancia entre un elemento y sí mismo es cero.</p></li>
+<li><p><span class="math inline">\(\Large d(x_i, x_j) = d(x_j , x_i)\)</span>, la distancia es una función simétrica en sus argumentos.</p></li>
+<li><p><strong>Propiedad triángular</strong> <span class="math inline">\(d(x_i, x_j) ≤ d(x_i, x_p) +d(x_p, x_j)\)</span></p></li>
+</ol>
+<p>La distancia debe verificar que si tenemos tres puntos, la suma de las longitudes de dos lados cualesquiera del triángulo formado por los tres puntos debe siempre ser mayor que el tercer lado.</p>
+</div>
+<div id="distancias-de-minkowski" class="section level2">
+<h2><strong>Distancias de Minkowski</strong></h2>
+<p>La norma p, la raíz p-ésima de la suma de las p-ésimas potencias de las diferencias de los componentes.</p>
+<p><span class="math display">\[\Large\bigtriangleup_k(x,y)= \bigg\{\sum_{i=1}^{p}|x_j-y_j|^k\bigg\}^{1/k} \]</span></p>
+</div>
+<div id="distancia-euclidea" class="section level2">
+<h2><strong>Distancia euclídea</strong></h2>
+<ul>
+<li><p>Es la distancia más popular.</p></li>
+<li><p>Depende de las unidades de medida de las variables.</p></li>
+<li><p>La distancia entre los dos puntos <span class="math inline">\(\large x_r\)</span> y <span class="math inline">\(x_s\)</span> está definida como:</p></li>
+</ul>
+<p><span class="math display">\[\Large\bigtriangleup_2(x,y)= \bigg\{\sum_{i=1}^{p}|x_j-y_j|^2\bigg\}^{1/2} \]</span></p>
+</div>
+<div id="metrica-cuadra-de-ciudad-o-manhattan" class="section level2">
+<h2><strong>Métrica cuadra de ciudad o manhattan</strong></h2>
+<p><span class="math display">\[\Large\bigtriangleup_1(x,y)= \sum_{i=1}^{p}|x_j-y_j| \]</span> ##<strong>Métrica cuadra de ciudad estandarizada</strong></p>
+<p><span class="math display">\[\Large d_{rs}=\frac{1}{p} \sum_{i=1}^{p} \frac{|x_{rj}-x_{sj}|}{R_j} \]</span> Donde <span class="math inline">\(R_j\)</span> es el rango de la variable j</p>
+</div>
+<div id="metrica-de-bray-curtis" class="section level2">
+<h2><strong>Métrica de Bray curtis</strong></h2>
+<p><span class="math display">\[\Large d_{rs}=  \frac{\sum_{j=1}^{p}|x_{rj}-x_{sj}|}{\sum_{j=1}^{p}x_{rj}+\sum_{j=1}^{p}x_{sj}} \]</span> ##<strong>Métrica de Canberra</strong></p>
+<p><span class="math display">\[\Large d_{rs}= \frac{1}{p}\sum_{j=1}^{p} \frac{|x_{rj}-x_{sj}|}{x_{rj}+x_{sj}} \]</span> Esta medida sirve solo para variables positivas</p>
+</div>
+<div id="metrica-norma-sup" class="section level2">
+<h2><strong>Métrica norma sup</strong></h2>
+<p><span class="math display">\[\Large\bigtriangleup_\infty (x,y)= \sup|x_j-y_j| \]</span> ##<strong>Distancia de mahalanobis</strong> Es una medida muy razonable de distancia entre variables correlacionadas.</p>
+<p>Se define la distancia de Mahalanobis entre un punto y su vector de medias por</p>
+<p><span class="math display">\[\Large\bigtriangleup(x_r,x_s)= \sqrt{(x_r-\bar x_s)^{&#39;}S^{-1}(x_r-\bar x_s)}  \]</span></p>
+<p>Donde S es la desviación estándar</p>
+</div>
+<div id="algoritmos-de-agrupamiento" class="section level1">
+<h1>Algoritmos de Agrupamiento</h1>
+<div id="procedimientos-jerarquicos" class="section level2">
+<h2>Procedimientos Jerárquicos</h2>
+<p>Los clusters se van agrupando en clusters mayores, el proceso es repetido a diferentes niveles para formar lo que se conoce técnicamente como un árbol de clusters.</p>
+</div>
+<div id="encadenamiento-simple-vecino-mas-cercano" class="section level2">
+<h2>Encadenamiento Simple (Vecino más cercano)</h2>
+<p>La distancia entre dos clusters, digamos <span class="math inline">\(C_1\)</span> y <span class="math inline">\(C_2\)</span>, se define como la menor disimilaridad entre un miembro de <span class="math inline">\(C_1\)</span> y un miembro de <span class="math inline">\(C_2\)</span>, digamos:</p>
+<p><span class="math display">\[\Large d_{(C1)(C2)} = mín \quad \{\  d_{rs}|r \quad  \varepsilon \quad C_1, \quad S \quad \varepsilon \quad C_2 \}\]</span></p>
+<p>En cada etapa fusionamos los dos clusters que se encuentren más cercanos.</p>
+<p><strong>Ejemplo:</strong></p>
+<p>La siguiente tabla presenta las mediciones realizadas a 10 estudiantes universitarios de sus pies.</p>
+<table>
+<thead>
+<tr class="header">
+<th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>24.2</td>
+<td>9.4</td>
+<td>5.5</td>
+<td>3.0</td>
+<td>3.2</td>
+</tr>
+<tr class="even">
+<td>21.7</td>
+<td>8.5</td>
+<td>6.1</td>
+<td>3.2</td>
+<td>2.6</td>
+</tr>
+<tr class="odd">
+<td>25.4</td>
+<td>9.6</td>
+<td>5.5</td>
+<td>4.0</td>
+<td>3.1</td>
+</tr>
+<tr class="even">
+<td>25.0</td>
+<td>10.1</td>
+<td>5.3</td>
+<td>3.5</td>
+<td>2.7</td>
+</tr>
+<tr class="odd">
+<td>22.0</td>
+<td>8.5</td>
+<td>5.7</td>
+<td>3.1</td>
+<td>2.7</td>
+</tr>
+<tr class="even">
+<td>25.9</td>
+<td>9.3</td>
+<td>6.1</td>
+<td>4.3</td>
+<td>3.3</td>
+</tr>
+<tr class="odd">
+<td>22.2</td>
+<td>8.6</td>
+<td>5.2</td>
+<td>3.9</td>
+<td>2.9</td>
+</tr>
+<tr class="even">
+<td>21.7</td>
+<td>8.4</td>
+<td>5.0</td>
+<td>3.2</td>
+<td>2.3</td>
+</tr>
+<tr class="odd">
+<td>25.5</td>
+<td>9.2</td>
+<td>6.1</td>
+<td>3.3</td>
+<td>3.2</td>
+</tr>
+<tr class="even">
+<td>24.4</td>
+<td>9.4</td>
+<td>4.7</td>
+<td>3.6</td>
+<td>2.8</td>
+</tr>
+</tbody>
+</table>
+<p>Donde</p>
+<p><span class="math inline">\(x_1:\)</span> Longitud máxima del pie</p>
+<p><span class="math inline">\(x_2\)</span>: Amplitud máxima del pie</p>
+<p><span class="math inline">\(x_3:\)</span> Amplitud máxima del talón</p>
+<p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo grande</p>
+<p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
+<p>Calcule la matriz de las distancias</p>
+<p>En R la función dist() es la que estima las distancias entre las filas de una matriz.</p>
+<pre class="r"><code>Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
+amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
+amp_talon=c(5.5,6.1,5.5,5.3,5.7,6.1,5.2,5,6.1,4.7)
+lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
+amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
+
+datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
+
+#matriz de dist
+dist(datos,method = &quot;euclidean&quot;)</code></pre>
+<pre><code>##            1         2         3         4         5         6         7
+## 2  2.7964263                                                            
+## 3  1.5779734 4.0187063                                                  
+## 4  1.2922848 3.7669616 0.9273618                                        
+## 5  2.4392622 0.5196152 3.7121422 3.4467376                              
+## 6  2.2271057 4.4698993 0.9110434 1.7578396 4.2201896                    
+## 7  2.3727621 1.2845233 3.3734256 3.2093613 0.9899495 3.9127995          
+## 8  2.8896367 1.1445523 4.0816663 3.7576588 0.8717798 4.6765372 1.0862780
+## 9  1.4764823 3.9115214 1.0148892 1.4106736 3.6318040 1.0862780 3.5369478
+## 10 1.0954451 3.2031235 1.3892444 1.1090537 2.7982137 2.2271057 2.4145393
+##            8         9
+## 2                     
+## 3                     
+## 4                     
+## 5                     
+## 6                     
+## 7                     
+## 8                     
+## 9  4.1364236          
+## 10 2.9647934 1.8601075</code></pre>
+<pre class="r"><code>hc &lt;- hclust(dist(datos), &quot;ave&quot;)
+
+dend1 &lt;- as.dendrogram(hc)
+
+op &lt;- par(mfrow= c(2,2), mar = c(3,3,1,1))
+
+plot(dend1)
+
+plot(dend1, nodePar=list(pch = c(1,NA),cex=0.8),type = &quot;t&quot;, center=TRUE)
+
+plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
+
+plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></pre>
+<p><img src="distancias_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>cutree(hc,k=2)</code></pre>
+<pre><code>##  [1] 1 2 1 1 2 1 2 2 1 1</code></pre>
+<pre class="r"><code>cutree(hc,k=3)</code></pre>
+<pre><code>##  [1] 1 2 3 1 2 3 2 2 3 1</code></pre>
+<pre class="r"><code>by(datos,cutree(hc,k=2),colMeans)</code></pre>
+<pre><code>## cutree(hc, k = 2): 1
+##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
+##   25.066667    9.500000    5.533333    3.616667    3.050000 
+## -------------------------------------------------------- 
+## cutree(hc, k = 2): 2
+##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
+##      21.900       8.500       5.500       3.350       2.625</code></pre>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

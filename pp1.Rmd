@@ -6,8 +6,7 @@ title: "Analisis multivariante"
 
 # ¿Qué es el análisis multivariado?
 
-Es un conjunto de técnicas para analizar simultáneamente más de una variable.
-Usualmente se limita al análisis de variables continuas bajo el supuesto de que provienen de una distribución normal multivariable. (Aproximación clásica al análisis multivariable).
+Es un conjunto de técnicas para analizar simultáneamente más de una variable. Usualmente se limita al análisis de variables continuas bajo el supuesto de que provienen de una distribución normal multivariable. (Aproximación clásica al análisis multivariable).
 
 
 ## Definiciones Básicas
@@ -314,19 +313,3 @@ b) Si ambas variables son categóricas: Tablas de frecuencia y porcentajes
 c) Si una es categórica y la otra continua: Análisis segmentado.
 
 
-## VARIABILIDAD Y DISTANCIAS
-
--  Un procedimiento para estudiar la variabilidad de las observaciones es utilizar el concepto de distancias entre puntos.
-
-En el caso escalar, la distancia entre el valor de una variable x en un punto, $\Large x_i$, y la media de la variable, $\Large\bar x$, se mide de manera natural mediante $\Large \sqrt {(x_i-\bar x)^2}$, equivalentemente $\Large |xi − x|$ . 
-
-La desviación típica es un promedio de estas distancias entre los puntos y su media. 
-
-## **El concepto de distancia**
-
-Dados dos puntos $\Large x_i, x_j$ pertenecientes a $\Large \mathbb{R}^p$, se establece una distancia, mediante la función d con las propiedades siguientes:
-
-1. $\Large d : \mathbb{R}^p×\mathbb{R}^p \seq \mathbb{R}^+$ → <+, es decir, dados dos puntos en el espacio de dimensión p su distancia
-con esta función es un número no negativo, d(xi, xj) ≥ 0;
-2. d(xi, xi) = 0 ∀i, la distancia entre un elemento y sí mismo es cero.
-3. d(xi, xj) = d(xj , xi), la distancia es una función simétrica en sus argumentos.
