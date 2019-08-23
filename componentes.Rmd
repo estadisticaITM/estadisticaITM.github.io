@@ -1,0 +1,28 @@
+---
+title: "COMPONENTES PRINCIPALES"
+---
+
+
+Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad: si es posible describir con precisión los valores de p variables por un pequeño subconjunto r < p de ellas, se habrá reducido la dimensión del problema a costa de una pequeña pérdida de información.
+
+El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. Por ejemplo,
+con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.
+
+Su utilidad es doble:
+
+1. Permite representar óptimamente en un espacio de dimensión pequeña, observaciones de un espacio general p-dimensional. Es el primer paso para identificar posibles variables **latentes** o no observadas, que están generando la variabilidad de los datos.
+
+2. Permite transformar las variables originales correlacionadas, en nuevas variables incorrelacionadas, facilitando la interpretación de los datos.
+
+3. La primera componente tiene la mayor varianza posible para una combinación lineal de las variables originales, la segunda componente tiene la segunda mayor varianza posible para una combinación lineal pero ortogonal a la primera componente, etc.
+
+
+Antes de realizar un ACP se debe tomar la desición si trabajar con los datos originales o se se debe estandarizar cada variable a una media de cero y varianza unidad. Si las variables no se estandarizan y una variable tiene una varianza mas grande, entonces esta variable controlará la primera componente principal. la estandarización hace que todas las variables tengan el mismo peso. La fórmula para realizar la estandarización es
+
+$$\Large X_i=\frac{x_i-\bar x}{\sigma}$$
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 ---
-title: "Datos faltantes"
+title: "Datos faltantes y datos atípicos"
 ---
 
 ## **Tipos de datos**
@@ -94,4 +94,32 @@ Realice un análisis descriptivo de estos datos, tenga en cuenta la presencia de
 
 - Encuentre el vector de medias y de la desviación estándar 
 
+
+## **Datos atípicos**
+
+Son aquellas observaciones que parecen haberse generado de forma distinta al resto de los datos. Pueden ser causadas por errores de medición o transcripción, cambios en el instrumento de medición o a heterogeneidad intrínseca de los elementos observados.
+
+**Ejemplo**
+Supongamos que estamos estudiando las características de las viviendas en una zona urbana donde la gran mayoría son pisos, pero se ha incluido en la muestra una gran vivienda unifamiliar con jardín. Esta observación será atípica y corresponde a una heterogeneidad real de los datos. 
+
+Las observaciones atípicas se deben detectar ya que obtendremos una mejor descripción de los datos separandolos del resto de los datos,ya que pueden distorsionar las medias y desviaciones típicas de las variables y destruir las relaciones existentes entre ellas.
+
+Cuando existe más de un atípico en los datos, puede producirse el efecto conocido como **enmascaramiento**, que consiste en que observaciones atípicas similares se ocultan entre sí.
+
+**¿Cómo tratar a los puntos atípicos?**
+
+- Utilizar estimadores robustos, diseñados para verse poco afectados por la contaminación de atípicos. 
+
+- La detección de puntos atípicos para eliminarlos y trabajar con las muestras limpias de atípicos. 
+
+
+El procedimiento para detectar grupos de atípicos es eliminar de la muestra todos los
+puntos sospechosos, de manera que evitemos el enmascaramiento y podamos calcular el vector de medias y la matriz de covarianzas sin distorsiones. 
+
+El primer paso para identificar las observaciones sospechosas es detectar aquellas que lo sean claramente respecto a una variable. Para ello podemos utilizar el histograma o los diagramas de caja. Una regla simple y automática es considerar sospechosas aquellas observaciones tales que:
+
+$$\frac{x_i-med(x)}{meda(x)}>4.5$$
+Donde med(x) es la mediana de las observaciones, que es un estimador robusto del centro de los datos, y Meda(x) es la mediana de las desviaciones absolutas |xi − med(x)|, que es una medida robusta de la dispersión. Este método puede verse como una estandarización robusta de los datos.
+
+Si el número de variables no es muy grande, los diagramas de dispersión pueden ayudar visualmente a determinar datos atípicos en dos dimensiones. .
 
