@@ -5,8 +5,10 @@ title: "COMPONENTES PRINCIPALES"
 
 Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad: si es posible describir con precisión los valores de p variables por un pequeño subconjunto r < p de ellas, se habrá reducido la dimensión del problema a costa de una pequeña pérdida de información.
 
-El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. Por ejemplo,
-con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.
+El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. 
+
+
+Por ejemplo, con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.
 
 Su utilidad es doble:
 
@@ -14,13 +16,185 @@ Su utilidad es doble:
 
 2. Permite transformar las variables originales correlacionadas, en nuevas variables incorrelacionadas, facilitando la interpretación de los datos.
 
-3. La primera componente tiene la mayor varianza posible para una combinación lineal de las variables originales, la segunda componente tiene la segunda mayor varianza posible para una combinación lineal pero ortogonal a la primera componente, etc.
+La primera componente tiene la mayor varianza posible para una combinación lineal de las variables originales, la segunda componente tiene la segunda mayor varianza posible para una combinación lineal pero ortogonal a la primera componente, etc.
 
 
 Antes de realizar un ACP se debe tomar la desición si trabajar con los datos originales o se se debe estandarizar cada variable a una media de cero y varianza unidad. Si las variables no se estandarizan y una variable tiene una varianza mas grande, entonces esta variable controlará la primera componente principal. la estandarización hace que todas las variables tengan el mismo peso. La fórmula para realizar la estandarización es
 
 $$\Large X_i=\frac{x_i-\bar x}{\sigma}$$
 
+
+
+Donde:
+
+- $\large X_i$ es cada observación
+
+- $\Large \bar x$ es la media del vector
+
+- $\Large \sigma$ es la desviación estándar del conjunto de datos
+
+
+
+
+sea x un vector aleatorio con k componentes $\Large E(x)=\mu$ y $\large var-cov(x)=D(x)=\sum _x>0$.
+
+Hay un famoso teorema en álgebra lineal que nos permite factorizar matrices simétricas, digamos $\sum$como:
+
+$$\large \sum=\Gamma \Lambda \Gamma'  $$
+
+Donde $\Large \Lambda$ es una matriz diagonal con las raíces propias de $\Large \sum$ y $\Large  \Gamma=[\gamma_1,\gamma_2,...,\gamma_k]$ que contiene los vectores propios de $\Large \sum$
+
+
+
+$$\large \Lambda=
+\left[ \begin{array}{cccc}
+\lambda_1 & 0  & \cdots & 0\\ 
+0 & \lambda_2  & \cdots & 0 \\
+\vdots & \vdots& \ddots & \vdots \\
+0 & 0 & \cdots & \lambda_k
+\end{array}\right]$$
+
+Donde $\Large \lambda_1\geq \lambda_2 \geq\cdots \geq \lambda_k$
+
+Consideremos la transformación lineal:
+
+$$\Large y=\Gamma (x-\mu)$$
+La idea es encontrar $\Large y_k$ componentes principales  que sean combinaciones lineales de las $\Large x_i$ variables originales que describen cada muestra, es decir:
+
+$$\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k$$
+
+$$\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k$$
+
+$$\Large y_2=\gamma_{21}x_1+\gamma_{22}x_2+\cdots+\gamma_{2k}x_k$$
+$$\Large y_k=\gamma_{k1}x_1+\gamma_{k2}x_2+\cdots+\gamma_{kk}x_k$$
+
+
+
+Se define 
+
+$$ \Large y=\left
+[\begin{array}{l}
+y_1 \\ 
+y_2\\
+\vdots\\
+y_k
+\end{array}\right]=A'(x-\mu)$$
+
+$$\Large z_i=\frac{y_i}{\sqrt \lambda_i}$$
+con $i=1,...k$ estas variables serán llamadas las componentes principales es-
+tandarizadas de x. La varianza de $y_i$ sería
+
+$$\large var(y_i)=\gamma_i'\sum \gamma_i=\lambda_i$$
+La covarianza de las variables sería:
+
+$$\large cov(y_i,y_j)=\gamma_i'\sum \gamma_j=0$$
+
+##**¿Cuántas componentes conservamos?**
+
+Se recomienda tomar varios aspectos en cuenta:
+
+- Objetivo de la reducción de dimensionalidad. 
+
+- Si por ejemplo, pretendemos construir un indicador, obviamente el número a retener es solo de una componente.
+
+- Si no es claro, entonces consideramos las primera j componentes que posean el 80% de la variabilidad total.
+
+**EJEMPLO**
+
+La siguiente base de datos proporciona las intensidades relativas de emisiónde fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos
+
+
+
+```{r}
+
+
+
+compuesto=as.factor(letters[1:12])
+tress=c(16,15,14,15,14,14,17,16,15,17,18,18)
+tress50=c(62,60,59,61,60,59,63,62,60,63,62,64)
+cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
+cuat50=c(27,31,31,31,30,30,29,28,30,27,28,29)
+
+y=data.frame(tress,tress50,cuat,cuat50)
+cor(y)
+plot(y)
+
+##conglomerados
+
+y=data.frame(compuesto,tress,tress50,cuat,cuat50)
+#matriz de dist
+dist(y,method = "euclidean")
+
+hc <- hclust(dist(y), "ave")
+
+dend1 <- as.dendrogram(hc)
+
+op <- par(mfrow= c(2,2), mar = c(3,3,1,1))
+
+plot(dend1)
+
+plot(dend1, nodePar=list(pch = c(1,NA),cex=0.8),type = "t", center=TRUE)
+
+plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
+
+plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)
+
+
+##Componentes principales
+
+y=data.frame(scale(tress),scale(tress50),scale(cuat),scale(cuat50))
+modelo<-princomp(y)
+summary(modelo)
+modelo
+modelo$loadings
+modelo$scores
+
+screeplot(modelo)
+plot(modelo)
+plot(modelo$scores[,1],modelo$scores[,2])
+abline(h=0)
+abline(v=0)
+##
+
+biplot(modelo,col=c(2,4))
+
+```
+##**Otro ejemplo**
+Vamos a realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.
+- 100 m vallas (hurdles)
+- Salto de altura (highjump)
+- Lanzamiento de peso (shot)
+- 200 m lisos (run200m)
+- Salto de longitud (longjump)
+- Lanzamiento de javalina (javelin)
+- 800m (run800m)
+- puntaje (score)
+
+1. Instalar el paquete HSAUR2
+
+2. Obtener los datos
+```{r}
+library("HSAUR2")
+"heptathlon"
+```
+
+3. recodificamos las pruebas relativas a las 3 carreras, valllas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas
+
+```{r}
+heptathlon$hurdles=max(heptathlon$hurdles)-heptathlon$hurdles
+heptathlon$run200m=max(heptathlon$run200m)-heptathlon$run200m
+heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m
+
+
+```
+
+
+4. realizar un diagrama de dispersión y calcular la matriz de correlaciones ( observe en que prueba no hay una correlación alta)
+
+```{r}
+plot(heptathlon[,-9])
+round(cor(heptathlon[,-9]),2)
+```
 
 
 

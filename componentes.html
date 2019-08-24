@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -353,15 +256,203 @@ $(document).ready(function () {
 
 
 <p>Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad: si es posible describir con precisión los valores de p variables por un pequeño subconjunto r &lt; p de ellas, se habrá reducido la dimensión del problema a costa de una pequeña pérdida de información.</p>
-<p>El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. Por ejemplo, con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.</p>
+<p>El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales.</p>
+<p>Por ejemplo, con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.</p>
 <p>Su utilidad es doble:</p>
 <ol style="list-style-type: decimal">
 <li><p>Permite representar óptimamente en un espacio de dimensión pequeña, observaciones de un espacio general p-dimensional. Es el primer paso para identificar posibles variables <strong>latentes</strong> o no observadas, que están generando la variabilidad de los datos.</p></li>
 <li><p>Permite transformar las variables originales correlacionadas, en nuevas variables incorrelacionadas, facilitando la interpretación de los datos.</p></li>
-<li><p>La primera componente tiene la mayor varianza posible para una combinación lineal de las variables originales, la segunda componente tiene la segunda mayor varianza posible para una combinación lineal pero ortogonal a la primera componente, etc.</p></li>
 </ol>
+<p>La primera componente tiene la mayor varianza posible para una combinación lineal de las variables originales, la segunda componente tiene la segunda mayor varianza posible para una combinación lineal pero ortogonal a la primera componente, etc.</p>
 <p>Antes de realizar un ACP se debe tomar la desición si trabajar con los datos originales o se se debe estandarizar cada variable a una media de cero y varianza unidad. Si las variables no se estandarizan y una variable tiene una varianza mas grande, entonces esta variable controlará la primera componente principal. la estandarización hace que todas las variables tengan el mismo peso. La fórmula para realizar la estandarización es</p>
 <p><span class="math display">\[\Large X_i=\frac{x_i-\bar x}{\sigma}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(\large X_i\)</span> es cada observación</p></li>
+<li><p><span class="math inline">\(\Large \bar x\)</span> es la media del vector</p></li>
+<li><p><span class="math inline">\(\Large \sigma\)</span> es la desviación estándar del conjunto de datos</p></li>
+</ul>
+<p>sea x un vector aleatorio con k componentes <span class="math inline">\(\Large E(x)=\mu\)</span> y <span class="math inline">\(\large var-cov(x)=D(x)=\sum _x&gt;0\)</span>.</p>
+<p>Hay un famoso teorema en álgebra lineal que nos permite factorizar matrices simétricas, digamos <span class="math inline">\(\sum\)</span>como:</p>
+<p><span class="math display">\[\large \sum=\Gamma \Lambda \Gamma&#39;  \]</span></p>
+<p>Donde <span class="math inline">\(\Large \Lambda\)</span> es una matriz diagonal con las raíces propias de <span class="math inline">\(\Large \sum\)</span> y <span class="math inline">\(\Large \Gamma=[\gamma_1,\gamma_2,...,\gamma_k]\)</span> que contiene los vectores propios de <span class="math inline">\(\Large \sum\)</span></p>
+<p><span class="math display">\[\large \Lambda=
+\left[ \begin{array}{cccc}
+\lambda_1 &amp; 0  &amp; \cdots &amp; 0\\ 
+0 &amp; \lambda_2  &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots&amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \lambda_k
+\end{array}\right]\]</span></p>
+<p>Donde <span class="math inline">\(\Large \lambda_1\geq \lambda_2 \geq\cdots \geq \lambda_k\)</span></p>
+<p>Consideremos la transformación lineal:</p>
+<p><span class="math display">\[\Large y=\Gamma (x-\mu)\]</span> La idea es encontrar <span class="math inline">\(\Large y_k\)</span> componentes principales que sean combinaciones lineales de las <span class="math inline">\(\Large x_i\)</span> variables originales que describen cada muestra, es decir:</p>
+<p><span class="math display">\[\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k\]</span></p>
+<p><span class="math display">\[\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k\]</span></p>
+<p><span class="math display">\[\Large y_2=\gamma_{21}x_1+\gamma_{22}x_2+\cdots+\gamma_{2k}x_k\]</span> <span class="math display">\[\Large y_k=\gamma_{k1}x_1+\gamma_{k2}x_2+\cdots+\gamma_{kk}x_k\]</span></p>
+<p>Se define</p>
+<p><span class="math display">\[ \Large y=\left
+[\begin{array}{l}
+y_1 \\ 
+y_2\\
+\vdots\\
+y_k
+\end{array}\right]=A&#39;(x-\mu)\]</span></p>
+<p><span class="math display">\[\Large z_i=\frac{y_i}{\sqrt \lambda_i}\]</span> con <span class="math inline">\(i=1,...k\)</span> estas variables serán llamadas las componentes principales es- tandarizadas de x. La varianza de <span class="math inline">\(y_i\)</span> sería</p>
+<p><span class="math display">\[\large var(y_i)=\gamma_i&#39;\sum \gamma_i=\lambda_i\]</span> La covarianza de las variables sería:</p>
+<p><span class="math display">\[\large cov(y_i,y_j)=\gamma_i&#39;\sum \gamma_j=0\]</span></p>
+<div id="cuantas-componentes-conservamos" class="section level2">
+<h2><strong>¿Cuántas componentes conservamos?</strong></h2>
+<p>Se recomienda tomar varios aspectos en cuenta:</p>
+<ul>
+<li><p>Objetivo de la reducción de dimensionalidad.</p></li>
+<li><p>Si por ejemplo, pretendemos construir un indicador, obviamente el número a retener es solo de una componente.</p></li>
+<li><p>Si no es claro, entonces consideramos las primera j componentes que posean el 80% de la variabilidad total.</p></li>
+</ul>
+<p><strong>EJEMPLO</strong></p>
+<p>La siguiente base de datos proporciona las intensidades relativas de emisiónde fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos</p>
+<pre class="r"><code>compuesto=as.factor(letters[1:12])
+tress=c(16,15,14,15,14,14,17,16,15,17,18,18)
+tress50=c(62,60,59,61,60,59,63,62,60,63,62,64)
+cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
+cuat50=c(27,31,31,31,30,30,29,28,30,27,28,29)
+
+y=data.frame(tress,tress50,cuat,cuat50)
+cor(y)</code></pre>
+<pre><code>##              tress    tress50       cuat     cuat50
+## tress    1.0000000  0.9138115 -0.4983509 -0.6701031
+## tress50  0.9138115  1.0000000 -0.4644110 -0.6922815
+## cuat    -0.4983509 -0.4644110  1.0000000  0.4576692
+## cuat50  -0.6701031 -0.6922815  0.4576692  1.0000000</code></pre>
+<pre class="r"><code>plot(y)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>##conglomerados
+
+y=data.frame(compuesto,tress,tress50,cuat,cuat50)
+#matriz de dist
+dist(y,method = &quot;euclidean&quot;)</code></pre>
+<pre><code>## Warning in dist(y, method = &quot;euclidean&quot;): NAs introduced by coercion</code></pre>
+<pre><code>##           1        2        3        4        5        6        7        8
+## 2  5.590170                                                               
+## 3  6.123724 1.936492                                                      
+## 4  6.519202 2.500000 4.183300                                             
+## 5  5.700877 1.936492 2.738613 2.236068                                    
+## 6  5.700877 1.936492 1.581139 3.535534 1.581139                           
+## 7  2.958040 4.743416 6.020797 5.123475 5.361903 5.809475                  
+## 8  2.500000 4.183300 5.361903 4.330127 4.031129 4.609772 2.236068         
+## 9  6.982120 3.535534 4.873397 1.936492 2.500000 3.708099 6.123724 4.743416
+## 10 2.738613 6.020797 7.245688 5.916080 5.916080 6.519202 2.500000 1.936492
+## 11 2.738613 5.361903 6.519202 5.916080 5.916080 6.123724 1.936492 2.500000
+## 12 3.872983 6.422616 7.582875 6.892024 7.245688 7.582875 1.936492 4.031129
+##           9       10       11
+## 2                            
+## 3                            
+## 4                            
+## 5                            
+## 6                            
+## 7                            
+## 8                            
+## 9                            
+## 10 6.224950                  
+## 11 6.422616 2.236068         
+## 12 7.984360 3.535534 2.738613</code></pre>
+<pre class="r"><code>hc &lt;- hclust(dist(y), &quot;ave&quot;)</code></pre>
+<pre><code>## Warning in dist(y): NAs introduced by coercion</code></pre>
+<pre class="r"><code>dend1 &lt;- as.dendrogram(hc)
+
+op &lt;- par(mfrow= c(2,2), mar = c(3,3,1,1))
+
+plot(dend1)
+
+plot(dend1, nodePar=list(pch = c(1,NA),cex=0.8),type = &quot;t&quot;, center=TRUE)
+
+plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
+
+plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre class="r"><code>##Componentes principales
+
+y=data.frame(scale(tress),scale(tress50),scale(cuat),scale(cuat50))
+modelo&lt;-princomp(y)
+summary(modelo)</code></pre>
+<pre><code>## Importance of components:
+##                           Comp.1    Comp.2     Comp.3     Comp.4
+## Standard deviation     1.6250008 0.7690778 0.59767468 0.27810657
+## Proportion of Variance 0.7201712 0.1613129 0.09742228 0.02109362
+## Cumulative Proportion  0.7201712 0.8814841 0.97890638 1.00000000</code></pre>
+<pre class="r"><code>modelo</code></pre>
+<pre><code>## Call:
+## princomp(x = y)
+## 
+## Standard deviations:
+##    Comp.1    Comp.2    Comp.3    Comp.4 
+## 1.6250008 0.7690778 0.5976747 0.2781066 
+## 
+##  4  variables and  12 observations.</code></pre>
+<pre class="r"><code>modelo$loadings</code></pre>
+<pre><code>## 
+## Loadings:
+##                Comp.1 Comp.2 Comp.3 Comp.4
+## scale.tress.    0.547  0.238  0.395  0.699
+## scale.tress50.  0.546  0.299  0.324 -0.712
+## scale.cuat.    -0.400  0.913              
+## scale.cuat50.  -0.493 -0.145  0.856       
+## 
+##                Comp.1 Comp.2 Comp.3 Comp.4
+## SS loadings      1.00   1.00   1.00   1.00
+## Proportion Var   0.25   0.25   0.25   0.25
+## Cumulative Var   0.25   0.50   0.75   1.00</code></pre>
+<pre class="r"><code>modelo$scores</code></pre>
+<pre><code>##           Comp.1      Comp.2     Comp.3      Comp.4
+##  [1,]  1.5952249 -0.76674361 -0.9919303 -0.18579179
+##  [2,] -1.2910394 -0.46621077  0.5611308  0.12874234
+##  [3,] -1.7229810 -1.41291035  0.1476040  0.05875581
+##  [4,] -1.4929986  0.92687704  0.6602714 -0.24302724
+##  [5,] -1.5928482  0.07815250 -0.3300050 -0.28009161
+##  [6,] -1.6564717 -0.70849123 -0.4773996  0.12056591
+##  [7,]  1.3629824 -0.01599411  0.5750957 -0.18164957
+##  [8,]  0.7319674  0.34816951 -0.5116887 -0.16093806
+##  [9,] -1.7556955  1.45109652 -0.1603809  0.24832833
+## [10,]  1.7615838  0.78640005 -0.6266575 -0.08691731
+## [11,]  1.7341863  0.06183714  0.0688296  0.75146211
+## [12,]  2.3260895 -0.28218269  1.0851305 -0.16943893</code></pre>
+<pre class="r"><code>screeplot(modelo)
+plot(modelo)
+plot(modelo$scores[,1],modelo$scores[,2])
+abline(h=0)
+abline(v=0)
+##
+
+biplot(modelo,col=c(2,4))</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-1-3.png" width="672" /> ##<strong>Otro ejemplo</strong> Vamos a realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables. - 100 m vallas (hurdles) - Salto de altura (highjump) - Lanzamiento de peso (shot) - 200 m lisos (run200m) - Salto de longitud (longjump) - Lanzamiento de javalina (javelin) - 800m (run800m) - puntaje (score)</p>
+<ol style="list-style-type: decimal">
+<li><p>Instalar el paquete HSAUR2</p></li>
+<li><p>Obtener los datos</p></li>
+</ol>
+<pre class="r"><code>library(&quot;HSAUR2&quot;)
+&quot;heptathlon&quot;</code></pre>
+<pre><code>## [1] &quot;heptathlon&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>recodificamos las pruebas relativas a las 3 carreras, valllas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas</li>
+</ol>
+<pre class="r"><code>heptathlon$hurdles=max(heptathlon$hurdles)-heptathlon$hurdles
+heptathlon$run200m=max(heptathlon$run200m)-heptathlon$run200m
+heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>realizar un diagrama de dispersión y calcular la matriz de correlaciones ( observe en que prueba no hay una correlación alta)</li>
+</ol>
+<pre class="r"><code>plot(heptathlon[,-9])</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>round(cor(heptathlon[,-9]),2)</code></pre>
+<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m score
+## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78 -0.92
+## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59  0.77
+## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42  0.80
+## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62 -0.86
+## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70  0.95
+## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02  0.25
+## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00 -0.77
+## score      -0.92     0.77  0.80   -0.86     0.95    0.25   -0.77  1.00</code></pre>
+</div>
 
 <br>
 <hr>
