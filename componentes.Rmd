@@ -3,9 +3,11 @@ title: "COMPONENTES PRINCIPALES"
 ---
 
 
-Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad: si es posible describir con precisión los valores de p variables por un pequeño subconjunto r < p de ellas, se habrá reducido la dimensión del problema a costa de una pequeña pérdida de información.
+- Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad
 
-El análisis de componentes principales tiene este objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. 
+- Es posible describir con precisión los valores de p variables por un pequeño subconjunto r < p de ellas, reduciendo la dimensión del problema a costa de una pequeña pérdida de información.
+
+- Objetivo: dadas n observaciones de p variables, se analiza si es posible representar adecuadamente esta información con un número menor de variables construidas como combinaciones lineales de las originales. 
 
 
 Por ejemplo, con variables con alta dependencia es frecuente que un pequeño número de nuevas variables (menos del 20% de las originales ) expliquen la mayor parte (más del 80%) de la variabilidad original.
@@ -63,7 +65,7 @@ La idea es encontrar $\Large y_k$ componentes principales  que sean combinacione
 
 $$\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k$$
 
-$$\Large y_1=\gamma_{11}x_1+\gamma_{12}x_2+\cdots+\gamma_{1k}x_k$$
+
 
 $$\Large y_2=\gamma_{21}x_1+\gamma_{22}x_2+\cdots+\gamma_{2k}x_k$$
 $$\Large y_k=\gamma_{k1}x_1+\gamma_{k2}x_2+\cdots+\gamma_{kk}x_k$$
@@ -81,8 +83,7 @@ y_k
 \end{array}\right]=A'(x-\mu)$$
 
 $$\Large z_i=\frac{y_i}{\sqrt \lambda_i}$$
-con $i=1,...k$ estas variables serán llamadas las componentes principales es-
-tandarizadas de x. La varianza de $y_i$ sería
+con $i=1,...k$ estas variables serán llamadas las componentes principales estandarizadas de x. La varianza de $y_i$ sería
 
 $$\large var(y_i)=\gamma_i'\sum \gamma_i=\lambda_i$$
 La covarianza de las variables sería:
@@ -101,12 +102,11 @@ Se recomienda tomar varios aspectos en cuenta:
 
 **EJEMPLO**
 
-La siguiente base de datos proporciona las intensidades relativas de emisiónde fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos
+La siguiente base de datos proporciona las intensidades relativas de emisión de fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos.
 
-
+1. Realizar un análisis descriptivo y de conglomerados para detectar posibles correlaciones.
 
 ```{r}
-
 
 
 compuesto=as.factor(letters[1:12])
@@ -116,6 +116,8 @@ cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
 cuat50=c(27,31,31,31,30,30,29,28,30,27,28,29)
 
 y=data.frame(tress,tress50,cuat,cuat50)
+
+y
 cor(y)
 plot(y)
 
@@ -140,6 +142,37 @@ plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
 plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)
 
 
+
+```
+
+
+
+2. **Modelo de componentes principales**
+
+- Para este ejemplo habrá cuatro componentes principales  $Z_1, Z_2, Z_3, Z_4$, cada una de las cuales será una combinación lineal de $X_1,X_2,X_3, X_4$ las intensidades de fluorescencia a las longitudes de onda proporcionadas.
+
+- Los coeficientes de las ecuaciones de componentes principales están determinadas de manera que las nuevas variables, a diferencia de las variables originales no se encuentren correlacionadas unas con otras.
+
+- La generación de un nuevo conjunto de variables parece tener poco sentido porque se generan otras 4 variables nuevas, en lugar de las 4 variables originales.
+
+- Las componentes principales también se eligen de manera que la primera componente principal $Z_1$recoge la mayor parte de variación que hay en el conjunto de datos, la segunda recoje la siguiente mayor parte de la variación y así sucesivamente.
+
+- Por consiguiente, cuando haya correlación significativa el numero de componentes útiles será mucho menor que el número de variables originales
+
+
+
+```{r}
+
+
+
+compuesto=as.factor(letters[1:12])
+tress=c(16,15,14,15,14,14,17,16,15,17,18,18)
+tress50=c(62,60,59,61,60,59,63,62,60,63,62,64)
+cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
+cuat50=c(27,31,31,31,30,30,29,28,30,27,28,29)
+
+y=data.frame(tress,tress50,cuat,cuat50)
+
 ##Componentes principales
 
 y=data.frame(scale(tress),scale(tress50),scale(cuat),scale(cuat50))
@@ -159,7 +192,22 @@ abline(v=0)
 biplot(modelo,col=c(2,4))
 
 ```
-##**Otro ejemplo**
+
+Siendo así las cuatro componentes principales corresponden a:
+
+$\Large Z_1=0.547X_1+0.546X_2-0.4X_3-0.493X_4$ explicando el 72.01% de la varianza
+
+$\Large Z_2=0.238X_1+0.3X_2-0.913X_3-0.145X_4$ explicando el 16.13% de la varianza
+
+
+$\Large Z_3=0.395X_1+0.324X_2+0.856X_4$ explicando el 9.74% de la varianza
+
+$\Large Z_4=0.7X_1-0.712X_2$ explicando el 2.1% de la varianza
+
+## **Otro ejemplo**
+
+
+
 Vamos a realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.
 - 100 m vallas (hurdles)
 - Salto de altura (highjump)
