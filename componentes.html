@@ -399,15 +399,14 @@ y_k
 <p><span class="math display">\[\Large z_i=\frac{y_i}{\sqrt \lambda_i}\]</span> con <span class="math inline">\(i=1,...k\)</span> estas variables serán llamadas las componentes principales estandarizadas de x. La varianza de <span class="math inline">\(y_i\)</span> sería</p>
 <p><span class="math display">\[\large var(y_i)=\gamma_i&#39;\sum \gamma_i=\lambda_i\]</span> La covarianza de las variables sería:</p>
 <p><span class="math display">\[\large cov(y_i,y_j)=\gamma_i&#39;\sum \gamma_j=0\]</span></p>
-<div id="cuantas-componentes-conservamos" class="section level2">
-<h2><strong>¿Cuántas componentes conservamos?</strong></h2>
+<p>##<strong>¿Cuántas componentes conservamos?</strong></p>
 <p>Se recomienda tomar varios aspectos en cuenta:</p>
 <ul>
 <li><p>Objetivo de la reducción de dimensionalidad.</p></li>
 <li><p>Si por ejemplo, pretendemos construir un indicador, obviamente el número a retener es solo de una componente.</p></li>
 <li><p>Si no es claro, entonces consideramos las primera j componentes que posean el 80% de la variabilidad total.</p></li>
 </ul>
-<p><strong>EJEMPLO</strong></p>
+<p>##<strong>EJEMPLO</strong></p>
 <p>La siguiente base de datos proporciona las intensidades relativas de emisión de fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos.</p>
 <ol style="list-style-type: decimal">
 <li>Realizar un análisis descriptivo y de conglomerados para detectar posibles correlaciones.</li>
@@ -558,7 +557,7 @@ abline(h=0)
 abline(v=0)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <pre class="r"><code>##
-
+par(mfrow=c(1,1))
 biplot(modelo,col=c(2,4))</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
 <p>Siendo así las cuatro componentes principales corresponden a:</p>
@@ -566,10 +565,20 @@ biplot(modelo,col=c(2,4))</code></pre>
 <p><span class="math inline">\(\Large Z_2=0.238X_1+0.3X_2-0.913X_3-0.145X_4\)</span> explicando el 16.13% de la varianza</p>
 <p><span class="math inline">\(\Large Z_3=0.395X_1+0.324X_2+0.856X_4\)</span> explicando el 9.74% de la varianza</p>
 <p><span class="math inline">\(\Large Z_4=0.7X_1-0.712X_2\)</span> explicando el 2.1% de la varianza</p>
-</div>
+<p>Donde <span class="math inline">\(X_1, X_2, X_3, X_4\)</span> corresponden a las intensidades relativas estandarizadas a 300,350, 400 y 450 nm</p>
 <div id="otro-ejemplo" class="section level2">
 <h2><strong>Otro ejemplo</strong></h2>
-<p>Vamos a realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables. - 100 m vallas (hurdles) - Salto de altura (highjump) - Lanzamiento de peso (shot) - 200 m lisos (run200m) - Salto de longitud (longjump) - Lanzamiento de javalina (javelin) - 800m (run800m) - puntaje (score)</p>
+<p>Se realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.</p>
+<ul>
+<li>100 m vallas (hurdles)</li>
+<li>Salto de altura (highjump)</li>
+<li>Lanzamiento de peso (shot)</li>
+<li>200 m lisos (run200m)</li>
+<li>Salto de longitud (longjump)</li>
+<li>Lanzamiento de javalina (javelin)</li>
+<li>800m (run800m)</li>
+<li>puntaje (score)</li>
+</ul>
 <ol style="list-style-type: decimal">
 <li><p>Instalar el paquete HSAUR2</p></li>
 <li><p>Obtener los datos</p></li>
@@ -577,29 +586,123 @@ biplot(modelo,col=c(2,4))</code></pre>
 <pre class="r"><code>library(&quot;HSAUR2&quot;)</code></pre>
 <pre><code>## Warning: package &#39;HSAUR2&#39; was built under R version 3.5.3</code></pre>
 <pre><code>## Loading required package: tools</code></pre>
+<pre><code>## 
+## Attaching package: &#39;HSAUR2&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     heptathlon</code></pre>
 <pre class="r"><code>&quot;heptathlon&quot;</code></pre>
 <pre><code>## [1] &quot;heptathlon&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>recodificamos las pruebas relativas a las 3 carreras, valllas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas</li>
+<li>recodificamos las pruebas relativas a las 3 carreras, vallas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas</li>
 </ol>
 <pre class="r"><code>heptathlon$hurdles=max(heptathlon$hurdles)-heptathlon$hurdles
 heptathlon$run200m=max(heptathlon$run200m)-heptathlon$run200m
 heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>realizar un diagrama de dispersión y calcular la matriz de correlaciones ( observe en que prueba no hay una correlación alta)</li>
+<li>Realizar un diagrama de dispersión y calcular la matriz de correlaciones (Observe en que prueba no hay una correlación alta)</li>
 </ol>
-<pre class="r"><code>plot(heptathlon[,-9])</code></pre>
+<pre class="r"><code>plot(heptathlon[,-8])</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>round(cor(heptathlon[,-9]),2)</code></pre>
-<pre><code>##          hurdles highjump shot run200m longjump javelin run800m score
-## hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78  0.92
-## highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59  0.77
-## shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42  0.80
-## run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62  0.86
-## longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70  0.95
-## javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02  0.25
-## run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00  0.77
-## score       0.92     0.77 0.80    0.86     0.95    0.25    0.77  1.00</code></pre>
+<pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
+<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
+## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
+## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
+## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
+## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
+## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
+## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
+## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
+<ul>
+<li>¿Qué observa?</li>
+<li>¿Entre que variables existe una correlación alta?</li>
+<li>¿Entre que variables existe una corelación débil?</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Realicemos un análisis boxplot</li>
+</ol>
+<pre class="r"><code>par(mfrow=c(2,1))
+boxplot(heptathlon[,-8])
+
+boxplot(heptathlon$score)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ul>
+<li>¿Observa la existencia de puntos atípicos?</li>
+<li>De encontrar puntos atípicos que propone para solucionarlo?</li>
+<li>A que participante pertenece la observación atípica, porque tiene ese valor tan pequeño?</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Vuelva a estimar la matriz de correlaciones, sin el punto atípico</li>
+</ol>
+<pre class="r"><code>hep=heptathlon[-grep(&quot;PNG&quot;,rownames(heptathlon)),]
+hep</code></pre>
+<pre><code>##                     hurdles highjump  shot run200m longjump javelin
+## Joyner-Kersee (USA)    0.00     1.86 15.80    0.00     7.27   45.66
+## John (GDR)             0.16     1.80 16.23    1.09     6.71   42.56
+## Behmer (GDR)           0.51     1.83 14.20    0.54     6.68   44.54
+## Sablovskaite (URS)     0.92     1.80 15.23    1.36     6.25   42.78
+## Choubenkova (URS)      0.82     1.74 14.76    1.37     6.32   47.46
+## Schulz (GDR)           1.06     1.83 13.50    2.09     6.33   42.82
+## Fleming (AUS)          0.69     1.80 12.88    1.03     6.37   40.28
+## Greiner (USA)          0.86     1.80 14.13    1.92     6.47   38.00
+## Lajbnerova (CZE)       0.94     1.83 14.28    2.30     6.11   42.20
+## Bouraga (URS)          0.56     1.77 12.62    1.03     6.28   39.06
+## Wijnsma (HOL)          1.06     1.86 13.01    2.47     6.34   37.86
+## Dimitrova (BUL)        0.55     1.80 12.88    1.03     6.37   40.28
+## Scheider (SWI)         1.16     1.86 11.58    2.31     6.05   47.50
+## Braun (FRG)            1.02     1.83 13.16    2.22     6.12   44.58
+## Ruotsalainen (FIN)     1.10     1.80 12.32    2.05     6.08   45.44
+## Yuping (CHN)           1.24     1.86 14.21    2.44     6.40   38.60
+## Hagger (GB)            0.78     1.80 12.75    2.91     6.34   35.76
+## Brown (USA)            1.38     1.83 12.69    2.27     6.13   44.34
+## Mulliner (GB)          1.70     1.71 12.68    2.36     6.10   37.76
+## Hautenauve (BEL)       1.35     1.77 11.81    3.05     5.99   35.68
+## Kytola (FIN)           1.62     1.77 11.66    3.13     5.75   39.48
+## Geremias (BRA)         1.54     1.71 12.95    2.94     5.50   39.64
+## Hui-Ing (TAI)          2.16     1.68 10.00    2.67     5.47   39.14
+## Jeong-Mi (KOR)         1.84     1.71 10.83    4.05     5.50   39.26
+##                     run800m score
+## Joyner-Kersee (USA)    4.31  7291
+## John (GDR)             1.92  6897
+## Behmer (GDR)           0.00  6858
+## Sablovskaite (URS)     8.04  6540
+## Choubenkova (URS)      3.70  6540
+## Schulz (GDR)           1.59  6411
+## Fleming (AUS)          8.34  6351
+## Greiner (USA)          9.45  6297
+## Lajbnerova (CZE)      11.85  6252
+## Bouraga (URS)         10.54  6252
+## Wijnsma (HOL)          7.29  6205
+## Dimitrova (BUL)        8.34  6171
+## Scheider (SWI)        10.73  6137
+## Braun (FRG)           18.62  6109
+## Ruotsalainen (FIN)    12.86  6101
+## Yuping (CHN)          22.47  6087
+## Hagger (GB)           14.28  5975
+## Brown (USA)           22.23  5972
+## Mulliner (GB)         13.82  5746
+## Hautenauve (BEL)       9.70  5734
+## Kytola (FIN)           9.15  5686
+## Geremias (BRA)        19.82  5508
+## Hui-Ing (TAI)         13.10  5290
+## Jeong-Mi (KOR)        14.97  5289</code></pre>
+<pre class="r"><code>plot(hep)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
+<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
+## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
+## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
+## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
+## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
+## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
+## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
+## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
+<ul>
+<li>¿Qué observa en cuanto a los valores de las correlaciones?</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Al estar los resultados de las 7 pruebas en diversas escalas(metros,segundos), se deben normalizar las variables, la función prcomp, trae esta opción</li>
+</ol>
 </div>
 
 <br>

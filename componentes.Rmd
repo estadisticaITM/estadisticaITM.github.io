@@ -100,7 +100,7 @@ Se recomienda tomar varios aspectos en cuenta:
 
 - Si no es claro, entonces consideramos las primera j componentes que posean el 80% de la variabilidad total.
 
-**EJEMPLO**
+##**EJEMPLO**
 
 La siguiente base de datos proporciona las intensidades relativas de emisión de fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos.
 
@@ -188,7 +188,7 @@ plot(modelo$scores[,1],modelo$scores[,2])
 abline(h=0)
 abline(v=0)
 ##
-
+par(mfrow=c(1,1))
 biplot(modelo,col=c(2,4))
 
 ```
@@ -204,11 +204,17 @@ $\Large Z_3=0.395X_1+0.324X_2+0.856X_4$ explicando el 9.74% de la varianza
 
 $\Large Z_4=0.7X_1-0.712X_2$ explicando el 2.1% de la varianza
 
+Donde $X_1, X_2, X_3, X_4$ corresponden a las intensidades relativas estandarizadas a 300,350, 400 y 450 nm
+
+
+
+
 ## **Otro ejemplo**
 
 
 
-Vamos a realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.
+Se realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.
+
 - 100 m vallas (hurdles)
 - Salto de altura (highjump)
 - Lanzamiento de peso (shot)
@@ -220,13 +226,15 @@ Vamos a realizar un análisis de componentes principales sobre los resultados ob
 
 1. Instalar el paquete HSAUR2
 
+
 2. Obtener los datos
+
 ```{r}
 library("HSAUR2")
 "heptathlon"
 ```
 
-3. recodificamos las pruebas relativas a las 3 carreras, valllas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas
+3. recodificamos las pruebas relativas a las 3 carreras, vallas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas
 
 ```{r}
 heptathlon$hurdles=max(heptathlon$hurdles)-heptathlon$hurdles
@@ -237,12 +245,54 @@ heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m
 ```
 
 
-4. realizar un diagrama de dispersión y calcular la matriz de correlaciones ( observe en que prueba no hay una correlación alta)
+4. Realizar un diagrama de dispersión y calcular la matriz de correlaciones (Observe en que prueba no hay una correlación alta)
 
 ```{r}
-plot(heptathlon[,-9])
-round(cor(heptathlon[,-9]),2)
+
+plot(heptathlon[,-8])
+round(cor(heptathlon[,-8]),2)
 ```
+
+- ¿Qué observa? 
+- ¿Entre que variables existe una correlación alta? 
+- ¿Entre que variables existe una corelación débil?
+
+
+5. Realicemos un análisis boxplot 
+
+
+```{r}
+
+par(mfrow=c(2,1))
+boxplot(heptathlon[,-8])
+
+boxplot(heptathlon$score)
+
+
+
+```
+
+
+
+- ¿Observa la existencia de puntos atípicos?
+- De encontrar puntos atípicos que propone para solucionarlo?
+- A que participante pertenece la observación atípica, porque tiene ese valor tan pequeño?
+
+6. Vuelva a estimar la matriz de correlaciones, sin el punto atípico
+
+
+```{r}
+hep=heptathlon[-grep("PNG",rownames(heptathlon)),]
+hep
+
+plot(hep)
+round(cor(heptathlon[,-8]),2)
+
+```
+
+- ¿Qué observa en cuanto a los valores de las correlaciones?
+
+7. Al estar los resultados de las 7 pruebas en diversas escalas(metros,segundos), se deben normalizar las variables, la función prcomp, trae esta opción
 
 
 

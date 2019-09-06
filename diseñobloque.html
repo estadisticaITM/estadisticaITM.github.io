@@ -362,16 +362,13 @@ $(document).ready(function () {
 <li><p>Permite que los tratamientos sean examinados bajo diferentes condiciones experimentales.</p></li>
 <li><p>Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.</p></li>
 </ul>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
+<p>##Ejemplo</p>
 <ul>
 <li><p>Los experimentadores agrícolas pueden saber que parcelas cercanas en un campo son similares, en tanto que las parcelas lejanas no lo son.</p></li>
 <li><p>Los experimentadores industriales pueden saber que dos unidades producidas por una misma máquina tienen características similares, mientras que aquellas producidas por dos máquinas distintas son algo diferentes.</p></li>
 <li><p>Los experimentadores clínicos pueden saber que las mediciones tomadas sobre el mismo sujeto serán similares, mientras que aquellas tomadas sobre sujetos distintos no lo serán.</p></li>
 </ul>
-</div>
-<div id="aspectos-del-diseno-en-bloque" class="section level2">
-<h2><strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></h2>
+<p>##<strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></p>
 <ul>
 <li><p>Considere b bloques, de tamaño k</p></li>
 <li><p>a niveles del factor de estudio</p></li>
@@ -380,8 +377,7 @@ $(document).ready(function () {
 <li><p>Si el tamaño del bloque k es múltiplo del número de niveles o tratamientos del factor, el diseño recibe el nombre de ** bloques completos**</p></li>
 <li><p>Si el tamaño de bloque no es múltiplo de a, entonces el diseño es conocido como un diseño de <strong>bloques incompletos</strong></p></li>
 </ul>
-</div>
-<div id="ejemplo-1" class="section level2">
+<div id="ejemplo" class="section level2">
 <h2>Ejemplo</h2>
 <p>Se realiza un estudio para comprobar la efectividad en el retraso del crecimiento de bacterias utilizando cuatro soluciones diferentes para lavar los envases de la leche. El análisis se realiza en el laboratorio y sólo se pueden realizar seis pruebas en un mismo día. Como los días son una fuente de variabilidad potencial, el investigador decide utilizar un diseño aleatorizado por bloques, pero al recopilar las observaciones durante seis días no ha sido posible aplicar todos los tratamientos en cada día, sino que sólo se han podido aplicar dos de las cuatro soluciones cada día. Se decide utilizar un diseño en bloques incompletos balanceado.</p>
 <table>
@@ -445,9 +441,7 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p>En este experimento se tienen b=6 bloques que son los dias, de tamaño k=2, mientras que los tratamientos a=4, corresponden a las 4 soluciones</p>
-</div>
-<div id="diseno-en-bloques-completos-al-azar" class="section level2">
-<h2><strong>Diseño en bloques completos al azar</strong></h2>
+<p>##<strong>Diseño en bloques completos al azar</strong></p>
 <ul>
 <li><p>Este diseño con a tratamientos y con N=ab unidades experimentales agrupadas en b bloques.</p></li>
 <li><p>las unidades dentro de un bloque son similares y unidades en bloques diferentes son sustancialmente distintas.</p></li>
@@ -459,11 +453,11 @@ $(document).ready(function () {
 <col width="18%" />
 <col width="16%" />
 <col width="16%" />
-<col width="4%" />
-<col width="9%" />
-<col width="4%" />
-<col width="9%" />
-<col width="23%" />
+<col width="3%" />
+<col width="8%" />
+<col width="3%" />
+<col width="8%" />
+<col width="24%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -560,9 +554,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-</div>
-<div id="modelo-anova" class="section level2">
-<h2><strong>Modelo ANOVA</strong></h2>
+<p>##<strong>Modelo ANOVA</strong></p>
 <p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\]</span></p>
 <p>Donde</p>
 <ul>
@@ -648,7 +640,7 @@ $(document).ready(function () {
 <li><p>se verifica independencia, normalidad y varianza constante en los residuales</p></li>
 </ul>
 </div>
-<div id="ejemplo-2" class="section level2">
+<div id="ejemplo-1" class="section level2">
 <h2><strong>Ejemplo</strong></h2>
 <p>Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:</p>
 <table>

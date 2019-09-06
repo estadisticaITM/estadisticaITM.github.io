@@ -371,33 +371,21 @@ $(document).ready(function () {
 <li><p><strong>Propiedad triángular</strong> <span class="math inline">\(d(x_i, x_j) ≤ d(x_i, x_p) +d(x_p, x_j)\)</span></p></li>
 </ol>
 <p>La distancia debe verificar que si tenemos tres puntos, la suma de las longitudes de dos lados cualesquiera del triángulo formado por los tres puntos debe siempre ser mayor que el tercer lado.</p>
-</div>
-<div id="distancias-de-minkowski" class="section level2">
-<h2><strong>Distancias de Minkowski</strong></h2>
-<p>La norma p, la raíz p-ésima de la suma de las p-ésimas potencias de las diferencias de los componentes.</p>
+<p>##<strong>Distancias de Minkowski</strong> La norma p, la raíz p-ésima de la suma de las p-ésimas potencias de las diferencias de los componentes.</p>
 <p><span class="math display">\[\Large\bigtriangleup_k(x,y)= \bigg\{\sum_{i=1}^{p}|x_j-y_j|^k\bigg\}^{1/k} \]</span></p>
-</div>
-<div id="distancia-euclidea" class="section level2">
-<h2><strong>Distancia euclídea</strong></h2>
+<p>##<strong>Distancia euclídea</strong> - Es la distancia más popular.</p>
 <ul>
-<li><p>Es la distancia más popular.</p></li>
 <li><p>Depende de las unidades de medida de las variables.</p></li>
 <li><p>La distancia entre los dos puntos <span class="math inline">\(\large x_r\)</span> y <span class="math inline">\(x_s\)</span> está definida como:</p></li>
 </ul>
 <p><span class="math display">\[\Large\bigtriangleup_2(x,y)= \bigg\{\sum_{i=1}^{p}|x_j-y_j|^2\bigg\}^{1/2} \]</span></p>
-</div>
-<div id="metrica-cuadra-de-ciudad-o-manhattan" class="section level2">
-<h2><strong>Métrica cuadra de ciudad o manhattan</strong></h2>
+<p>##<strong>Métrica cuadra de ciudad o manhattan</strong></p>
 <p><span class="math display">\[\Large\bigtriangleup_1(x,y)= \sum_{i=1}^{p}|x_j-y_j| \]</span> ##<strong>Métrica cuadra de ciudad estandarizada</strong></p>
 <p><span class="math display">\[\Large d_{rs}=\frac{1}{p} \sum_{i=1}^{p} \frac{|x_{rj}-x_{sj}|}{R_j} \]</span> Donde <span class="math inline">\(R_j\)</span> es el rango de la variable j</p>
-</div>
-<div id="metrica-de-bray-curtis" class="section level2">
-<h2><strong>Métrica de Bray curtis</strong></h2>
+<p>##<strong>Métrica de Bray curtis</strong></p>
 <p><span class="math display">\[\Large d_{rs}=  \frac{\sum_{j=1}^{p}|x_{rj}-x_{sj}|}{\sum_{j=1}^{p}x_{rj}+\sum_{j=1}^{p}x_{sj}} \]</span> ##<strong>Métrica de Canberra</strong></p>
 <p><span class="math display">\[\Large d_{rs}= \frac{1}{p}\sum_{j=1}^{p} \frac{|x_{rj}-x_{sj}|}{x_{rj}+x_{sj}} \]</span> Esta medida sirve solo para variables positivas</p>
-</div>
-<div id="metrica-norma-sup" class="section level2">
-<h2><strong>Métrica norma sup</strong></h2>
+<p>##<strong>Métrica norma sup</strong></p>
 <p><span class="math display">\[\Large\bigtriangleup_\infty (x,y)= \sup|x_j-y_j| \]</span> ##<strong>Distancia de mahalanobis</strong> Es una medida muy razonable de distancia entre variables correlacionadas.</p>
 <p>Se define la distancia de Mahalanobis entre un punto y su vector de medias por</p>
 <p><span class="math display">\[\Large\bigtriangleup(x_r,x_s)= \sqrt{(x_r-\bar x_s)^{&#39;}S^{-1}(x_r-\bar x_s)}  \]</span></p>
@@ -405,13 +393,9 @@ $(document).ready(function () {
 </div>
 <div id="algoritmos-de-agrupamiento" class="section level1">
 <h1>Algoritmos de Agrupamiento</h1>
-<div id="procedimientos-jerarquicos" class="section level2">
-<h2>Procedimientos Jerárquicos</h2>
+<p>##Procedimientos Jerárquicos</p>
 <p>Los clusters se van agrupando en clusters mayores, el proceso es repetido a diferentes niveles para formar lo que se conoce técnicamente como un árbol de clusters.</p>
-</div>
-<div id="encadenamiento-simple-vecino-mas-cercano" class="section level2">
-<h2>Encadenamiento Simple (Vecino más cercano)</h2>
-<p>La distancia entre dos clusters, digamos <span class="math inline">\(C_1\)</span> y <span class="math inline">\(C_2\)</span>, se define como la menor disimilaridad entre un miembro de <span class="math inline">\(C_1\)</span> y un miembro de <span class="math inline">\(C_2\)</span>, digamos:</p>
+<p>##Encadenamiento Simple (Vecino más cercano) La distancia entre dos clusters, digamos <span class="math inline">\(C_1\)</span> y <span class="math inline">\(C_2\)</span>, se define como la menor disimilaridad entre un miembro de <span class="math inline">\(C_1\)</span> y un miembro de <span class="math inline">\(C_2\)</span>, digamos:</p>
 <p><span class="math display">\[\Large d_{(C1)(C2)} = mín \quad \{\  d_{rs}|r \quad  \varepsilon \quad C_1, \quad S \quad \varepsilon \quad C_2 \}\]</span></p>
 <p>En cada etapa fusionamos los dos clusters que se encuentren más cercanos.</p>
 <p><strong>Ejemplo:</strong></p>
@@ -563,7 +547,6 @@ plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></
 ## cutree(hc, k = 2): 2
 ##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
 ##      21.900       8.500       5.500       3.350       2.625</code></pre>
-</div>
 </div>
 
 <br>

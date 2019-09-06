@@ -352,8 +352,7 @@ $(document).ready(function () {
 </div>
 
 
-<div id="comparacion-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad" class="section level3">
-<h3><strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></h3>
+<p>###<strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></p>
 <p>Considere el MRLM</p>
 <p><span class="math display">\[Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
 <p>Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
@@ -366,9 +365,7 @@ $(document).ready(function () {
 <p>NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.</p>
 <p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.</p>
 <p>Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.</p>
-</div>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
+<p>##Ejemplo</p>
 <p>Retomando el ejemplo de los arboles</p>
 <pre class="r"><code>library(car)</code></pre>
 <pre><code>## Loading required package: carData</code></pre>
@@ -433,7 +430,6 @@ summary(m1)</code></pre>
 ## D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
 ## HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
 ## DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
-</div>
 
 <br>
 <hr>

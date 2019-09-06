@@ -357,8 +357,7 @@ $(document).ready(function () {
 <li><p>En la práctica cuando el número de factores a considerar es mayor que 3, se suelen utilizar experimentos 2k (k factores con dos niveles cada uno), experimentos 3k (k factores con tres niveles cada uno), experimentos factoriales fraccionados, etc.</p></li>
 <li><p>Las unidades experimentales se considerarán homogéneas respecto a las características individuales que pudieran afectar las respuestas a los tratamientos aplicados.</p></li>
 </ul>
-<div id="diseno-con-2-factores" class="section level2">
-<h2><strong>Diseño con 2 factores</strong></h2>
+<p>##<strong>Diseño con 2 factores</strong></p>
 <p>En el caso de dos factores A y B, El número de niveles del factor A lo denotaremos por a y el número de niveles de B lo denotaremos por b.</p>
 <p><strong>Definición</strong> Llamaremos tratamiento a cada combinación posible entre los niveles de los factores. Así, para el caso de dos factores, se tendrá un total de ab posibles tratamientos. Por ejemplo, sea a=3 y b=2:</p>
 <table>
@@ -393,7 +392,6 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p>Cada combinación AiBj con i=1,2,3 y j=1,2 define un tratamiento, entonces hay 6 posibles tratamientos correspondientes a las entradas de esta tabla.</p>
-</div>
 <div id="tipos-de-experimentos-factoriales-con-dos-factores" class="section level2">
 <h2>Tipos de experimentos factoriales con dos factores:</h2>
 <p><strong>1. De efectos fijos:</strong> Los a niveles del factor A como los b niveles del factor B son definidos a propósito por el investigador.</p>
@@ -426,9 +424,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(\Large \mu_{\bullet j}=\mu+\beta_j\)</span> de donde <span class="math inline">\(\Large \beta_{j}=\mu_{\bullet j}-\mu\)</span>. Note que <span class="math inline">\(\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}\)</span></p>
 <p><strong>Media global</strong> <span class="math display">\[\Large \mu_{\bullet }=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}\]</span> <strong>Efectos de interacción</strong></p>
 <p><span class="math display">\[\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu \]</span></p>
-</div>
-<div id="interaccion" class="section level2">
-<h2><strong>Interacción</strong></h2>
+<p>##<strong>Interacción</strong></p>
 <p>La interacción de dos factores significa que las diferencias entre las medias de tratamientos según los niveles de un factor varían (bien sea en dimensión y/o signo) de nivel a nivel del otro factor.</p>
 <p>Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias o <strong>Gráficos de interacción</strong> en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal.</p>
 <p><strong>Diagnóstico de la presencia de interacción</strong></p>
@@ -442,9 +438,7 @@ $(document).ready(function () {
 <p><strong>Encubrimiento o enmascaramiento de efectos principales:</strong></p>
 <p>Los efectos <span class="math inline">\(\Large \alpha_i\)</span> y <span class="math inline">\(\Large \beta_j\)</span> constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.</p>
 <p>Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción.</p>
-</div>
-<div id="ejemplo" class="section level2">
-<h2><strong>EJEMPLO</strong></h2>
+<p>##<strong>EJEMPLO</strong></p>
 <p>La siguiente tabla muestra los resultados de un experimento factorial llevado a cabo por Derringer (1974) para determinar el efecto de los compuestos de elastómero sobre la viscosidad del sílice a 100 C. Los compuestos de elastómero estudiados fueron aceite de nafteno, en 4 niveles, y contenido de relleno (phr), en 6 niveles</p>
 <table>
 <thead>
@@ -512,11 +506,11 @@ $(document).ready(function () {
 <div id="analisis-de-varianza" class="section level2">
 <h2><strong>Análisis de Varianza</strong></h2>
 <p>Para el ANOVA tendremos en cuenta los siguientes estadísticos muestrales:</p>
-<table style="width:93%;">
+<table>
 <colgroup>
-<col width="34%" />
+<col width="37%" />
 <col width="15%" />
-<col width="43%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -620,10 +614,7 @@ $(document).ready(function () {
 <p>La media muestral en el nivel j del bloque está dada por:</p>
 <p><span class="math display">\[\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}\]</span></p>
 <p><strong>Hipótesis de interés</strong></p>
-</div>
-<div id="significancia-de-la-interaccion-ab" class="section level2">
-<h2><strong>Significancia de la interacción AB</strong></h2>
-<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia de la interacción AB</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
@@ -634,10 +625,7 @@ $(document).ready(function () {
 <li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MS(AB)}{MSE}\sim f_{(a-1)(b-1),ab(n-1)}\]</span></li>
 </ul>
 <p>Si la interacción es significativa (es decir, se rechaza H0), proceder con precaución en la interpretación de los resultados de los tests de significancia sobre los efectos principales:</p>
-</div>
-<div id="significancia-del-efecto-a" class="section level2">
-<h2><strong>Significancia del efecto A</strong></h2>
-<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia del efecto A</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
@@ -648,10 +636,7 @@ $(document).ready(function () {
 <li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MSA}{MSE}\sim f_{(a-1),ab(n-1)}\]</span></li>
 </ul>
 <p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.</p>
-</div>
-<div id="significancia-del-efecto-b" class="section level2">
-<h2><strong>Significancia del efecto B</strong></h2>
-<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia del efecto B</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
@@ -664,9 +649,7 @@ $(document).ready(function () {
 <p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.</p>
 <p><strong>Modelo sin interacción</strong> En caso de que los datos obtenidos presenten evidencia respecto a la no significancia del término de interacción, el modelo factorial debe replantearse de la siguiente manera:</p>
 <p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span></p>
-</div>
-<div id="disenos-factoriales-con-tres-factores" class="section level2">
-<h2><strong>Diseños factoriales con tres factores</strong></h2>
+<p>##<strong>Diseños factoriales con tres factores</strong></p>
 <ul>
 <li>El estudio factorial de tres factores A, B y C permite estudiar los efectos A, B, C (efectos principales), AB, AC, BC (efectos de las interacciones de a dos factores) y ABC (la triple interacción), donde el grado de detalle con el que se puede estudiar depende del número de niveles usados para cada factor.</li>
 </ul>
@@ -693,9 +676,7 @@ $(document).ready(function () {
 <p><strong>Procedimiento</strong> <strong>Paso 1:</strong> <span class="math inline">\(H_0=(\alpha\beta\lambda)_{111}=...=(\alpha\beta\lambda)_{abc}\)</span> si no se rechaza <span class="math inline">\(H_0\)</span> relice la siguiente prueba</p>
 <p><strong>Paso 2:</strong> evaluar la prueba de hipótesis de las interacciones</p>
 <p><strong>Paso 3:</strong> Realizar las pruebas de cada factor sólo para los factores no involucrados en interacciones significativas de ningún orden (dobles o triple).</p>
-</div>
-<div id="comparacion-de-medias-ante-la-presencia-de-interaccion" class="section level2">
-<h2><strong>Comparación de medias ante la presencia de interacción</strong></h2>
+<p>##<strong>Comparación de medias ante la presencia de interacción</strong></p>
 <p>La estimación de un efecto principal es una diferencia promediada o contraste entre todas las medias de los niveles del factor correspondiente, por ello al hacer inferencias sobre tales medias con base en las estimaciones de los efectos principales, en presencia de interacción, es realizar una generalización sobre los niveles del factor, y por tanto dichas inferencias estarán equivocadas.</p>
 <p>Una comparación generalizada entre las medias de un factor tiene sentido si las diferencias existentes entre dichas medias se sostienen de nivel a nivel del otro factor, es decir, cuando no hay interacción. De lo contrario, lo mejor es realizar comparaciones y contrastes de medias de tratamientos <span class="math inline">\(\Large \mu_{ij}\)</span> que ayuden a interpretar los efectos significativos de la interacción. Así ante interacción, sería más conveniente comparar las medias de dicho factor pero en cada uno de los niveles del otro factor. Por ejemplo, suponga un experimento con a=3 y b=2 en el cual los datos evidencian interacción significativa pero aparentemente el factor A no es significativo; en este caso sería conveniente realizar pruebas como las siguientes:</p>
 <table>
@@ -909,10 +890,7 @@ $(document).ready(function () {
 ## Residuals     36 1872.4   52.01                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="significancia-de-la-interaccion-ab-1" class="section level2">
-<h2><strong>Significancia de la interacción AB</strong></h2>
-<p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia de la interacción AB</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong> La interacción entre técnico y marca no es significativa:</li>
 </ul>
@@ -1036,21 +1014,16 @@ $(document).ready(function () {
 <li>Compare ahora las medias del factor TÉCNICO en cada nivel del factor MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca del problema en cuestión? Cuáles son las recomendaciones que usted haría si quiere disminuir el tiempo de servicio del centro de servicios electrónicos.</li>
 </ol>
 <p>En la siguiente tabla se aprecian los resultados de los testes sobre la igualdad de las medias del factor TÉCNICO en cada nivel del factor MARCA, veamos cada una:</p>
-<div id="comparacion-de-las-medias-de-los-tecnicos-a-nivel-de-la-marca-1" class="section level3">
-<h3><strong>Comparación de las medias de los técnicos a nivel de la marca 1:</strong></h3>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 1:</strong></p>
 <p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{11}=\mu_{21}=\mu_{31}\)</span></p>
 <p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B1}}{MSE}=4.32\sim f_{a-1,ab(n-1)}\]</span></p>
 <p>Donde <span class="math display">\[\Large MS_{A|B1}=n \frac {\sum_{i=1}^a(\bar y_{i1\bullet}-\bar y_{\bullet1\bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1. <span class="math display">\[\Large VP=P(f_{2,36}&gt;4.32)=0.0209\]</span> Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 1 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).</p>
-</div>
-<div id="comparacion-de-las-medias-de-los-tecnicos-a-nivel-de-la-marca-2" class="section level3">
-<h3><strong>Comparación de las medias de los técnicos a nivel de la marca 2:</strong></h3>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 2:</strong></p>
 <p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{12}=\mu_{22}=\mu_{32}\)</span></p>
 <p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B2}}{MSE}=5.59\sim f_{a-1,ab(n-1)}\]</span></p>
 <p>Donde <span class="math display">\[\Large MS_{A|B2}=n \frac {\sum_{i=1}^a(\bar y_{i2\bullet}-\bar y_{\bullet2\bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1.</p>
 <p><span class="math display">\[\Large VP=P(f_{2,36}&gt;5.59)=0.077\]</span> Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 2 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).</p>
-</div>
-<div id="comparacion-de-las-medias-de-los-tecnicos-a-nivel-de-la-marca-3" class="section level3">
-<h3><strong>Comparación de las medias de los técnicos a nivel de la marca 3:</strong></h3>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 3:</strong></p>
 <p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{13}=\mu_{23}=\mu_{33}\)</span></p>
 <p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B3}}{MSE}=2.02\sim f_{a-1,ab(n-1)}\]</span></p>
 <p>Donde <span class="math display">\[\Large MS_{A|B3}=n \frac {\sum_{i=1}^a(\bar y_{i3\bullet}-\bar y_{\bullet 3 \bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1.</p>
@@ -1231,7 +1204,6 @@ Técnico&quot;,&quot;\n&quot;);Slice_marcas_por_Técnico
 
 Slice_marcas_por_Técnico</code></pre>
 <p><strong>Ejemplo de un diseño con tres factores de efectos fijos </strong></p>
-</div>
 </div>
 
 <br>
