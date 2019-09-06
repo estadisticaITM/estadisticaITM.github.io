@@ -2,7 +2,6 @@
 title: "COMPONENTES PRINCIPALES"
 ---
 
-
 - Un problema central en el análisis de datos multivariantes es la reducción de la dimensionalidad
 
 - Es posible describir con precisión los valores de p variables por un pequeño subconjunto r < p de ellas, reduciendo la dimensión del problema a costa de una pequeña pérdida de información.
@@ -90,7 +89,7 @@ La covarianza de las variables sería:
 
 $$\large cov(y_i,y_j)=\gamma_i'\sum \gamma_j=0$$
 
-##**¿Cuántas componentes conservamos?**
+## **¿Cuántas componentes conservamos?**
 
 Se recomienda tomar varios aspectos en cuenta:
 
@@ -100,7 +99,21 @@ Se recomienda tomar varios aspectos en cuenta:
 
 - Si no es claro, entonces consideramos las primera j componentes que posean el 80% de la variabilidad total.
 
-##**EJEMPLO**
+## Videos
+
+
+
+### Explicación de componentes principales en 5 minutos
+
+<iframe width="1175" height="661" src="https://www.youtube.com/embed/HMOI_lkzW08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+### Video completo de componentes principales
+
+<iframe width="1175" height="661" src="https://www.youtube.com/embed/FgakZw6K1QQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## **EJEMPLO**
 
 La siguiente base de datos proporciona las intensidades relativas de emisión de fluoresencia a cuatro longitudes de ondas diferentes (300,350,400,450) para 12 compuestos.
 
@@ -232,6 +245,7 @@ Se realizar un análisis de componentes principales sobre los resultados obtenid
 ```{r}
 library("HSAUR2")
 "heptathlon"
+
 ```
 
 3. recodificamos las pruebas relativas a las 3 carreras, vallas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas
@@ -292,7 +306,27 @@ round(cor(heptathlon[,-8]),2)
 
 - ¿Qué observa en cuanto a los valores de las correlaciones?
 
-7. Al estar los resultados de las 7 pruebas en diversas escalas(metros,segundos), se deben normalizar las variables, la función prcomp, trae esta opción
+7. Al estar los resultados de las 7 pruebas en diversas escalas(metros,segundos), se deben normalizar las variables.
+
+```{r}
+hep1=scale(hep)
+
+hep1
+```
+
+8. Con los datos normalizados podemos realizar un análisis cluster
+
+```{r}
+hc <- hclust(dist(hep1), "ave")
+
+dend1 <- as.dendrogram(hc)
+
+op <- par(mfrow= c(2,2), mar = c(3,3,1,1))
+
+plot(dend1)
+
+
+```
 
 
 
