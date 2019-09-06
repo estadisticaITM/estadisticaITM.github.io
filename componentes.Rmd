@@ -105,12 +105,12 @@ Se recomienda tomar varios aspectos en cuenta:
 
 ### Explicación de componentes principales en 5 minutos
 
-<iframe width="1175" height="661" src="https://www.youtube.com/embed/HMOI_lkzW08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="280" height="158" src="https://www.youtube.com/embed/HMOI_lkzW08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### Video completo de componentes principales
 
-<iframe width="1175" height="661" src="https://www.youtube.com/embed/FgakZw6K1QQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="280" height="158" src="https://www.youtube.com/embed/FgakZw6K1QQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## **EJEMPLO**
@@ -317,7 +317,8 @@ hep1
 8. Con los datos normalizados podemos realizar un análisis cluster
 
 ```{r}
-hc <- hclust(dist(hep1), "ave")
+hep1=scale(hep)
+hc <- hclust(dist(hep1[,-8]), "ave")
 
 dend1 <- as.dendrogram(hc)
 
@@ -329,6 +330,36 @@ plot(dend1)
 ```
 
 
+9. Análisis de componentes principales
 
+
+```{r}
+library("HSAUR2")
+
+
+hep=heptathlon[-grep("PNG",rownames(heptathlon)),]
+hep
+hep1=scale(hep)
+
+
+modelo<-princomp(hep1)
+summary(modelo)
+modelo
+modelo$loadings
+modelo$scores
+
+screeplot(modelo)
+plot(modelo)
+plot(modelo$scores[,1],modelo$scores[,2])
+abline(h=0)
+abline(v=0)
+##
+par(mfrow=c(1,1))
+biplot(modelo,col=c(2,4))
+
+
+```
+
+10. Compare los resultados obtenidos
 
 
