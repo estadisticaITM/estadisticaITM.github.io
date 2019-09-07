@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -352,7 +255,8 @@ $(document).ready(function () {
 </div>
 
 
-<p>##Tema A</p>
+<div id="tema-a" class="section level2">
+<h2>Tema A</h2>
 <ol style="list-style-type: decimal">
 <li>(Valor 30%) Se llevó a cabo un experimento para probar los efectos de un fertilizante nitrogenado en la producción de lechuga. Se aplicaron cinco dosis diferentes de nitrato de amonio a cuatro parcelas (las réplicas) en un diseño totalmente aleatorizado. Los datos son el número de lechugas cosechadas de las parcelas.</li>
 </ol>
@@ -361,8 +265,6 @@ $(document).ready(function () {
 <tr class="header">
 <th>Tratamiento</th>
 <th>Lechuga parcelas</th>
-<th></th>
-<th></th>
 <th></th>
 </tr>
 </thead>
@@ -523,12 +425,12 @@ leveneTest (nlechug~nitrato)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>(Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:</li>
 </ol>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="6%" />
-<col width="32%" />
-<col width="30%" />
+<col width="7%" />
 <col width="31%" />
+<col width="29%" />
+<col width="30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -672,7 +574,9 @@ detach(dietas)
 <li><p>Valide supuestos. Use gráficos de residuales estudentizados y teste de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?</p></li>
 <li><p>realice la prueba de constraste para verificar las diferencias entre los niveles de presión y los lotes de resina</p></li>
 </ol>
-<p>##Tema B</p>
+</div>
+<div id="tema-b" class="section level2">
+<h2>Tema B</h2>
 <ol style="list-style-type: decimal">
 <li>(valor 30%) Considere el experimento del jabón realizado con el fin de comparar la extensión a la cual tres tipos particulares de jabón se disuelven en agua. Se espera que el experimento responda a las siguientes preguntas:</li>
 </ol>
@@ -683,8 +587,6 @@ detach(dietas)
 <tr class="header">
 <th>Jabón</th>
 <th>Pérdida de peso (grs)</th>
-<th></th>
-<th></th>
 <th></th>
 </tr>
 </thead>
@@ -771,12 +673,12 @@ qqnorm(residuals(modelo.jabones),cex=2,main=&quot;Grafico Probabilidad normal re
 qqline(residuals(modelo.jabones),col=2)
 detach(jabones)</code></pre>
 <p>2.(Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:</p>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="6%" />
-<col width="32%" />
-<col width="30%" />
+<col width="7%" />
 <col width="31%" />
+<col width="29%" />
+<col width="30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -931,11 +833,16 @@ detach(dietas)</code></pre>
 <li><p>Realice pruebas de intervalo tukey para la diferencia de medias</p></li>
 <li><p>realice contraste entre medias para validar si el porcentaje de carbonatación 10 es similar al 12 y 14</p></li>
 </ol>
-<p>##tema c 1. (valor 30%) Un artículo en Nature describe un experimento para investigar el efecto del consumo de chocolate en la salud cardiovascular. El experimento consistió en utilizar tres tipos diferentes de chocolates: 100 g de chocolate negro, 100 g de chocolate negro con 200 ml de leche entera y 200 g de chocolate con leche.</p>
+</div>
+<div id="tema-c" class="section level2">
+<h2>tema c</h2>
+<ol style="list-style-type: decimal">
+<li>(valor 30%) Un artículo en Nature describe un experimento para investigar el efecto del consumo de chocolate en la salud cardiovascular. El experimento consistió en utilizar tres tipos diferentes de chocolates: 100 g de chocolate negro, 100 g de chocolate negro con 200 ml de leche entera y 200 g de chocolate con leche.</li>
+</ol>
 <p>Se utilizaron doce sujetos, 7 mujeres y 5 hombres, con un rango de edad promedio de 32.2 mas o menos 1 año, un peso promedio de 65.8 mas o menos 3.1 kg con un índice de masa corporal de 21.9 mas o menos 0.4 kg m2. En diferentes días, un sujeto consumió uno de los niveles de factor de chocolate y, una hora después, se midió la capacidad antioxidante total de su plasma sanguíneo en un ensayo. Los datos similares a los que se resumen en el artículo se muestran en la siguiente tabla.</p>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="22%" />
+<col width="20%" />
 <col width="6%" />
 <col width="6%" />
 <col width="6%" />
@@ -1267,6 +1174,7 @@ Material&quot;,&quot;\n&quot;);Slice_temperaturas_por_material</code></pre>
 <li><p>Realice pruebas de intervalo tukey para la diferencia de medias</p></li>
 <li><p>realice contraste entre medias para validar si el porcentaje de carbonatación 10 es similar al 12 y 14</p></li>
 </ol>
+</div>
 
 <br>
 <hr>

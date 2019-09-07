@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -352,24 +255,33 @@ $(document).ready(function () {
 </div>
 
 
-<p>#R R es una herramienta de análisis estadístico que permite el desarrollo de multiples aplicaciones a traves R studio y su librería shiny</p>
-<p><img src="about_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<div id="r" class="section level1">
+<h1>R</h1>
+<p>R es una herramienta de análisis estadístico que permite el desarrollo de multiples aplicaciones a traves R studio y su librería shiny</p>
+<p><img src="about_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>¿Cómo descargar R y Rstudio?</p>
 <iframe width="562" height="273" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>#Aplicaciones desarrolladas en Shiny</p>
-<p><img src="about_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<div id="aplicaciones-desarrolladas-en-shiny" class="section level1">
+<h1>Aplicaciones desarrolladas en Shiny</h1>
+<p><img src="about_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>En esta sección se muestran algunos de los múltiples usos y aplicaciones que se pueden realizar:</p>
-<p>##Una encuesta</p>
+<div id="una-encuesta" class="section level2">
+<h2>Una encuesta</h2>
 <iframe src="https://trochez.shinyapps.io/ENCUESTADOR/?showcase=0" width="672" height="800px">
 </iframe>
-<p>##Un análisis descriptivo</p>
+</div>
+<div id="un-analisis-descriptivo" class="section level2">
+<h2>Un análisis descriptivo</h2>
 <iframe src="https://trochez.shinyapps.io/APPJOA/?showcase=0" width="672" height="800px">
 </iframe>
+</div>
 <div id="ajuste-de-modelo-lineal-mixto" class="section level2">
 <h2>Ajuste de modelo lineal mixto</h2>
 <iframe src="https://jtrochezg.shinyapps.io/linear_mixed_model/?showcase=0" width="672" height="800px">
 </iframe>
+</div>
 </div>
 
 <br>

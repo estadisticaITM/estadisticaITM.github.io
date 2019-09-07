@@ -219,8 +219,22 @@ $\Large Z_4=0.7X_1-0.712X_2$ explicando el 2.1% de la varianza
 
 Donde $X_1, X_2, X_3, X_4$ corresponden a las intensidades relativas estandarizadas a 300,350, 400 y 450 nm
 
+## **INTERPRETACIÓN DE LOS COMPONENTES**
+
+### Componentes de tamaño y forma
+
+- Cuando existe una alta correlación positiva entre todas las variables, el primer componente principal tiene todas sus coordenadas del mismo signo y puede interpretarse como un promedio ponderado de todas las variables, interpretadóse como un **factor global de tamaño**. 
+
+- Los restantes componentes se interpretan como **factores de forma** y con coordenadas positivas y negativas, que implica que contraponen unos grupos de variables frente a otros. 
 
 
+- Se debe observar en cada componente cual tiene mayor valor
+
+- Las coordenadas de una componente principal pueden agruparse según el signo, pueden omitirse aquellas que presentan valores por debajo de 0.1
+
+- ** ¿Cuántas componentes elegir?** Seleccionar componentes hasta cubrir una proporción determinada de varianza, como el 80% o el 90%. Esta regla es arbitraria y debe aplicarse con cierto cuidado. Es posible que un único componente de tamaño recoja el 90% de la variabilidad y sin embargo pueden existir otros componentes que sean muy adecuados para explicar la forma de las variables.
+
+- Es importante recordar que las covarianzas (o correlaciones) miden únicamente las relaciones lineales entre las variables. Cuando entre ellas existan relaciones fuertes no lineales el análisis de componentes principales puede dar una información muy parcial de las variables.
 
 ## **Otro ejemplo**
 
@@ -244,7 +258,7 @@ Se realizar un análisis de componentes principales sobre los resultados obtenid
 
 ```{r}
 library("HSAUR2")
-"heptathlon"
+data.frame= heptathlon
 
 ```
 
@@ -259,7 +273,8 @@ heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m
 ```
 
 
-4. Realizar un diagrama de dispersión y calcular la matriz de correlaciones (Observe en que prueba no hay una correlación alta)
+4. Realizar un diagrama de dispersión y calcular la matriz de correlaciones 
+
 
 ```{r}
 
@@ -277,7 +292,7 @@ round(cor(heptathlon[,-8]),2)
 
 ```{r}
 
-par(mfrow=c(2,1))
+
 boxplot(heptathlon[,-8])
 
 boxplot(heptathlon$score)
@@ -322,8 +337,6 @@ hc <- hclust(dist(hep1[,-8]), "ave")
 
 dend1 <- as.dendrogram(hc)
 
-op <- par(mfrow= c(2,2), mar = c(3,3,1,1))
-
 plot(dend1)
 
 
@@ -342,11 +355,82 @@ hep
 hep1=scale(hep)
 
 
-modelo<-princomp(hep1)
+modelo<-princomp(hep1[,-8])
 summary(modelo)
 modelo
 modelo$loadings
-modelo$scores
+
+
+# modelo$scores PUNTAJES OBTENIDOS POR LAS VARIABLES EN CADA UNO DE LAS COMPOMPONENTES
+
+```
+
+Para efectos de escritura las variables fueron bautizadas así
+
+
+|Variable|Traducción|Representación|
+|--------|---------------|------------|
+|hurdles |Barreras       |$\Large X_1$|
+|highjump|Salto de altura|$\Large X_2$|
+|shot    |           Tiro|$\Large X_3$|
+|run200m |Corrida 200 m  |$\Large X_4$|
+|longjump|Salto largo    |$\Large X_5$|
+|Javelin |Javalina       |$\Large X_6$|
+|run800m |Corrida 800m   |$\Large X_7$|
+|Score   |Puntaje        |$\Large X_8$|
+
+
+
+
+
+Las componentes principales estimadas corresponden a:
+
+Componente 1:
+
+$\large Z_1=0.45X_1+0.315X_2+0.4X_3+0.43X_4+0.45X_5+0.24X_6+0.3X_7$ explicando el 61.76% de la varianza
+Esta componente es una media de todas las medidas obtenidas en heptátlon.
+
+```{r}
+barplot(modelo$loadings[1:7,1])
+
+```
+
+Componente 2:
+$\large Z_2=-0.65X_2-0.18X_4-0.32X_6+0.657X_7$ explicando el 12.84% de la varianza
+Esta componente contrapone el valor de la corrida de 800m con el salto de altura, la corrida de 200m y la javalina.
+```{r}
+barplot(modelo$loadings[1:7,2])
+```
+
+
+
+Componente 3:
+$\large Z_3=0.174X_1+0.21X_2+0.153X_3-0.13X_4+0.27X_5-.881X_6-0.193X_7$ explicando el 11.85% de la varianza
+Esta componente contrapone la javalina y la corrida de 800m con el resto de las variables
+
+
+Componente 4:
+$\large Z_4=-0.55X_2+0.548X_3+0.231X_4-0.574X_7$ explicando el 6.67% de la varianza
+
+Componente 5:
+$\large Z_5=0.2X_1-0.67X_3+0.62X_4+0.122X_5-0.32X_7$ explicando el 4.26% de la varianza
+
+Componente 6:
+$\large Z_6=0.847X_1-0.333X_4-0.383X_5$ explicando el 1.62% de la varianza
+
+Componente 7:
+$\large Z_7=-0.33X_2-0.23X_3-0.47X_4+0.75X_5+0.211X_7$ explicando el 0.9% de la varianza
+
+
+
+
+10.Los gráficos resultantes corresponden a:
+
+
+```{r }
+
+
+modelo<-princomp(hep1)
 
 screeplot(modelo)
 plot(modelo)
@@ -355,10 +439,12 @@ abline(h=0)
 abline(v=0)
 ##
 par(mfrow=c(1,1))
-biplot(modelo,col=c(2,4))
+biplot(modelo,col=c(2,4),cex=0.7)
 
 
 ```
+
+
 
 10. Compare los resultados obtenidos
 

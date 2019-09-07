@@ -11,7 +11,7 @@
 
 
 
-<title>diseñoazar.utf8.md</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -351,7 +254,8 @@ $(document).ready(function () {
 </div>
 
 
-<p>#<strong>Diseño Completamente al Azar (DCA)</strong></p>
+<div id="diseno-completamente-al-azar-dca" class="section level1">
+<h1><strong>Diseño Completamente al Azar (DCA)</strong></h1>
 <p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
 <ul>
 <li><p>En total se tienen N unidades experimentales (UE) homogéneas (N=tr)</p></li>
@@ -489,9 +393,9 @@ $(document).ready(function () {
 <table>
 <colgroup>
 <col width="21%" />
+<col width="19%" />
 <col width="18%" />
-<col width="17%" />
-<col width="17%" />
+<col width="18%" />
 <col width="24%" />
 </colgroup>
 <thead>
@@ -527,7 +431,8 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>###Validación de supuestos del modelo ANOVA</p>
+<div id="validacion-de-supuestos-del-modelo-anova" class="section level3">
+<h3>Validación de supuestos del modelo ANOVA</h3>
 <ul>
 <li>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot</li>
 </ul>
@@ -553,7 +458,9 @@ $(document).ready(function () {
 <li><p>Las medias de los tratamientos se estiman a partir de las medias muéstrales o medias de grupos para el tratamiento j−ésimo.</p></li>
 <li><p>Los efectos de los tratamientos del factor A son las diferencias entre la media general y la media del tratamiento</p></li>
 </ol>
-<p>##Ejemplo de un modelo balanceado</p>
+</div>
+<div id="ejemplo-de-un-modelo-balanceado" class="section level2">
+<h2>Ejemplo de un modelo balanceado</h2>
 <p>Se tienen 4 tratamientos médicos T1, T2, T3, y T4, aplicables a la misma enfermedad, y se desea comparar la efectividad de cada uno de ellos, en el peso.</p>
 <table>
 <thead>
@@ -624,7 +531,10 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>##Ejemplo de un modelo desbalanceado Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió aleatoriamente una de las dietas.</p>
+</div>
+<div id="ejemplo-de-un-modelo-desbalanceado" class="section level2">
+<h2>Ejemplo de un modelo desbalanceado</h2>
+<p>Para comparar 4 dietas D1, D2, D3, y D4, respecto a su influencia en el tiempo de coagulación de la sangre, se seleccionaron 24 animales y cada uno recibió aleatoriamente una de las dietas.</p>
 <table>
 <thead>
 <tr class="header">
@@ -724,14 +634,22 @@ $(document).ready(function () {
 <li>Comparaciones por contrastes</li>
 <li>Comparaciones de tratamientos con un control</li>
 </ul>
-<p>####<strong>Comparación de medias por medio del intervalo tukey</strong> método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\Large \gamma\)</span> con el valor crítico:</p>
+<div id="comparacion-de-medias-por-medio-del-intervalo-tukey" class="section level4">
+<h4><strong>Comparación de medias por medio del intervalo tukey</strong></h4>
+<p>método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\Large \gamma\)</span> con el valor crítico:</p>
 <p><span class="math display">\[\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} \]</span></p>
 <p>Donde:</p>
 <p>$q_(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados a son los niveles del factor gl los grados de libertad del MSE. Los pares de medias de tratamientos <span class="math inline">\(\mu_i\)</span> y <span class="math inline">\(\mu_j\)</span> difieren significativamente cuando:</p>
 <p><span class="math display">\[\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|&gt;T_\gamma\]</span></p>
 <p>También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por</p>
 <p><span class="math display">\[\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}\]</span></p>
-<p>#<strong>Ejemplo</strong> Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
+</div>
+</div>
+</div>
+</div>
+<div id="ejemplo" class="section level1">
+<h1><strong>Ejemplo</strong></h1>
+<p>Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
 <table>
 <thead>
 <tr class="header">
@@ -759,11 +677,6 @@ $(document).ready(function () {
 <td>7.8</td>
 <td>9.6</td>
 <td>9.5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -928,7 +841,8 @@ contraste
 
 contraste=rbind(&quot;alto vs. demás &quot;=c(1,-1/2,-1/2))
 confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
-<p>##<strong>Contrastes</strong></p>
+<div id="contrastes" class="section level2">
+<h2><strong>Contrastes</strong></h2>
 <p>Un contraste es toda combinación lineal de medias de tratamiento, donde la suma algebraica de sus coeficientes es igual a cero. En general una combinación lineal o contraste es de la forma:</p>
 <p><span class="math display">\[ \Large \Gamma =c_1\mu_1+c_2\mu_2+...+c_t\mu_t=\sum_{i=1}^tc_i\mu_i\]</span> Donde se comple que</p>
 <p><span class="math display">\[\Large \sum_{i=1}^tc_i=0\]</span></p>
@@ -1135,6 +1049,7 @@ comp2=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p20 c
 comp3=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p30 con p35&quot;=c(0,0,0,1,-1)),conf=0.95)
 
 rbind(comp1,comp2,comp3)</code></pre>
+</div>
 </div>
 
 <br>

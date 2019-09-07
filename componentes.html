@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -583,6 +486,20 @@ biplot(modelo,col=c(2,4))</code></pre>
 <p><span class="math inline">\(\Large Z_4=0.7X_1-0.712X_2\)</span> explicando el 2.1% de la varianza</p>
 <p>Donde <span class="math inline">\(X_1, X_2, X_3, X_4\)</span> corresponden a las intensidades relativas estandarizadas a 300,350, 400 y 450 nm</p>
 </div>
+<div id="interpretacion-de-los-componentes" class="section level2">
+<h2><strong>INTERPRETACIÓN DE LOS COMPONENTES</strong></h2>
+<div id="componentes-de-tamano-y-forma" class="section level3">
+<h3>Componentes de tamaño y forma</h3>
+<ul>
+<li><p>Cuando existe una alta correlación positiva entre todas las variables, el primer componente principal tiene todas sus coordenadas del mismo signo y puede interpretarse como un promedio ponderado de todas las variables, interpretadóse como un <strong>factor global de tamaño</strong>.</p></li>
+<li><p>Los restantes componentes se interpretan como <strong>factores de forma</strong> y con coordenadas positivas y negativas, que implica que contraponen unos grupos de variables frente a otros.</p></li>
+<li><p>Se debe observar en cada componente cual tiene mayor valor</p></li>
+<li><p>Las coordenadas de una componente principal pueden agruparse según el signo, pueden omitirse aquellas que presentan valores por debajo de 0.1</p></li>
+<li><p>** ¿Cuántas componentes elegir?** Seleccionar componentes hasta cubrir una proporción determinada de varianza, como el 80% o el 90%. Esta regla es arbitraria y debe aplicarse con cierto cuidado. Es posible que un único componente de tamaño recoja el 90% de la variabilidad y sin embargo pueden existir otros componentes que sean muy adecuados para explicar la forma de las variables.</p></li>
+<li><p>Es importante recordar que las covarianzas (o correlaciones) miden únicamente las relaciones lineales entre las variables. Cuando entre ellas existan relaciones fuertes no lineales el análisis de componentes principales puede dar una información muy parcial de las variables.</p></li>
+</ul>
+</div>
+</div>
 <div id="otro-ejemplo" class="section level2">
 <h2><strong>Otro ejemplo</strong></h2>
 <p>Se realizar un análisis de componentes principales sobre los resultados obtenidos en la competición de heptatlon femenino en los juegos de seul 1988, estos datos se encuentran en el paquete HSAUR2, y corresponden a los datos de 25 atletas sobre 8 variables.</p>
@@ -601,8 +518,7 @@ biplot(modelo,col=c(2,4))</code></pre>
 <li><p>Obtener los datos</p></li>
 </ol>
 <pre class="r"><code>library(&quot;HSAUR2&quot;)
-&quot;heptathlon&quot;</code></pre>
-<pre><code>## [1] &quot;heptathlon&quot;</code></pre>
+data.frame= heptathlon</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>recodificamos las pruebas relativas a las 3 carreras, vallas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas</li>
 </ol>
@@ -610,19 +526,19 @@ biplot(modelo,col=c(2,4))</code></pre>
 heptathlon$run200m=max(heptathlon$run200m)-heptathlon$run200m
 heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Realizar un diagrama de dispersión y calcular la matriz de correlaciones (Observe en que prueba no hay una correlación alta)</li>
+<li>Realizar un diagrama de dispersión y calcular la matriz de correlaciones</li>
 </ol>
 <pre class="r"><code>plot(heptathlon[,-8])</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
-<pre><code>##          hurdles highjump shot run200m longjump javelin run800m
-## hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78
-## highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59
-## shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42
-## run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62
-## longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70
-## javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02
-## run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00</code></pre>
+<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
+## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
+## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
+## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
+## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
+## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
+## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
+## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
 <ul>
 <li>¿Qué observa?</li>
 <li>¿Entre que variables existe una correlación alta?</li>
@@ -631,11 +547,10 @@ heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Realicemos un análisis boxplot</li>
 </ol>
-<pre class="r"><code>par(mfrow=c(2,1))
-boxplot(heptathlon[,-8])
-
-boxplot(heptathlon$score)</code></pre>
+<pre class="r"><code>boxplot(heptathlon[,-8])</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>boxplot(heptathlon$score)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <ul>
 <li>¿Observa la existencia de puntos atípicos?</li>
 <li>De encontrar puntos atípicos que propone para solucionarlo?</li>
@@ -647,66 +562,66 @@ boxplot(heptathlon$score)</code></pre>
 <pre class="r"><code>hep=heptathlon[-grep(&quot;PNG&quot;,rownames(heptathlon)),]
 hep</code></pre>
 <pre><code>##                     hurdles highjump  shot run200m longjump javelin
-## Joyner-Kersee (USA)    3.73     1.86 15.80    4.05     7.27   45.66
-## John (GDR)             3.57     1.80 16.23    2.96     6.71   42.56
-## Behmer (GDR)           3.22     1.83 14.20    3.51     6.68   44.54
-## Sablovskaite (URS)     2.81     1.80 15.23    2.69     6.25   42.78
-## Choubenkova (URS)      2.91     1.74 14.76    2.68     6.32   47.46
-## Schulz (GDR)           2.67     1.83 13.50    1.96     6.33   42.82
-## Fleming (AUS)          3.04     1.80 12.88    3.02     6.37   40.28
-## Greiner (USA)          2.87     1.80 14.13    2.13     6.47   38.00
-## Lajbnerova (CZE)       2.79     1.83 14.28    1.75     6.11   42.20
-## Bouraga (URS)          3.17     1.77 12.62    3.02     6.28   39.06
-## Wijnsma (HOL)          2.67     1.86 13.01    1.58     6.34   37.86
-## Dimitrova (BUL)        3.18     1.80 12.88    3.02     6.37   40.28
-## Scheider (SWI)         2.57     1.86 11.58    1.74     6.05   47.50
-## Braun (FRG)            2.71     1.83 13.16    1.83     6.12   44.58
-## Ruotsalainen (FIN)     2.63     1.80 12.32    2.00     6.08   45.44
-## Yuping (CHN)           2.49     1.86 14.21    1.61     6.40   38.60
-## Hagger (GB)            2.95     1.80 12.75    1.14     6.34   35.76
-## Brown (USA)            2.35     1.83 12.69    1.78     6.13   44.34
-## Mulliner (GB)          2.03     1.71 12.68    1.69     6.10   37.76
-## Hautenauve (BEL)       2.38     1.77 11.81    1.00     5.99   35.68
-## Kytola (FIN)           2.11     1.77 11.66    0.92     5.75   39.48
-## Geremias (BRA)         2.19     1.71 12.95    1.11     5.50   39.64
-## Hui-Ing (TAI)          1.57     1.68 10.00    1.38     5.47   39.14
-## Jeong-Mi (KOR)         1.89     1.71 10.83    0.00     5.50   39.26
+## Joyner-Kersee (USA)    0.00     1.86 15.80    0.00     7.27   45.66
+## John (GDR)             0.16     1.80 16.23    1.09     6.71   42.56
+## Behmer (GDR)           0.51     1.83 14.20    0.54     6.68   44.54
+## Sablovskaite (URS)     0.92     1.80 15.23    1.36     6.25   42.78
+## Choubenkova (URS)      0.82     1.74 14.76    1.37     6.32   47.46
+## Schulz (GDR)           1.06     1.83 13.50    2.09     6.33   42.82
+## Fleming (AUS)          0.69     1.80 12.88    1.03     6.37   40.28
+## Greiner (USA)          0.86     1.80 14.13    1.92     6.47   38.00
+## Lajbnerova (CZE)       0.94     1.83 14.28    2.30     6.11   42.20
+## Bouraga (URS)          0.56     1.77 12.62    1.03     6.28   39.06
+## Wijnsma (HOL)          1.06     1.86 13.01    2.47     6.34   37.86
+## Dimitrova (BUL)        0.55     1.80 12.88    1.03     6.37   40.28
+## Scheider (SWI)         1.16     1.86 11.58    2.31     6.05   47.50
+## Braun (FRG)            1.02     1.83 13.16    2.22     6.12   44.58
+## Ruotsalainen (FIN)     1.10     1.80 12.32    2.05     6.08   45.44
+## Yuping (CHN)           1.24     1.86 14.21    2.44     6.40   38.60
+## Hagger (GB)            0.78     1.80 12.75    2.91     6.34   35.76
+## Brown (USA)            1.38     1.83 12.69    2.27     6.13   44.34
+## Mulliner (GB)          1.70     1.71 12.68    2.36     6.10   37.76
+## Hautenauve (BEL)       1.35     1.77 11.81    3.05     5.99   35.68
+## Kytola (FIN)           1.62     1.77 11.66    3.13     5.75   39.48
+## Geremias (BRA)         1.54     1.71 12.95    2.94     5.50   39.64
+## Hui-Ing (TAI)          2.16     1.68 10.00    2.67     5.47   39.14
+## Jeong-Mi (KOR)         1.84     1.71 10.83    4.05     5.50   39.26
 ##                     run800m score
-## Joyner-Kersee (USA)   34.92  7291
-## John (GDR)            37.31  6897
-## Behmer (GDR)          39.23  6858
-## Sablovskaite (URS)    31.19  6540
-## Choubenkova (URS)     35.53  6540
-## Schulz (GDR)          37.64  6411
-## Fleming (AUS)         30.89  6351
-## Greiner (USA)         29.78  6297
-## Lajbnerova (CZE)      27.38  6252
-## Bouraga (URS)         28.69  6252
-## Wijnsma (HOL)         31.94  6205
-## Dimitrova (BUL)       30.89  6171
-## Scheider (SWI)        28.50  6137
-## Braun (FRG)           20.61  6109
-## Ruotsalainen (FIN)    26.37  6101
-## Yuping (CHN)          16.76  6087
-## Hagger (GB)           24.95  5975
-## Brown (USA)           17.00  5972
-## Mulliner (GB)         25.41  5746
-## Hautenauve (BEL)      29.53  5734
-## Kytola (FIN)          30.08  5686
-## Geremias (BRA)        19.41  5508
-## Hui-Ing (TAI)         26.13  5290
-## Jeong-Mi (KOR)        24.26  5289</code></pre>
+## Joyner-Kersee (USA)    4.31  7291
+## John (GDR)             1.92  6897
+## Behmer (GDR)           0.00  6858
+## Sablovskaite (URS)     8.04  6540
+## Choubenkova (URS)      3.70  6540
+## Schulz (GDR)           1.59  6411
+## Fleming (AUS)          8.34  6351
+## Greiner (USA)          9.45  6297
+## Lajbnerova (CZE)      11.85  6252
+## Bouraga (URS)         10.54  6252
+## Wijnsma (HOL)          7.29  6205
+## Dimitrova (BUL)        8.34  6171
+## Scheider (SWI)        10.73  6137
+## Braun (FRG)           18.62  6109
+## Ruotsalainen (FIN)    12.86  6101
+## Yuping (CHN)          22.47  6087
+## Hagger (GB)           14.28  5975
+## Brown (USA)           22.23  5972
+## Mulliner (GB)         13.82  5746
+## Hautenauve (BEL)       9.70  5734
+## Kytola (FIN)           9.15  5686
+## Geremias (BRA)        19.82  5508
+## Hui-Ing (TAI)         13.10  5290
+## Jeong-Mi (KOR)        14.97  5289</code></pre>
 <pre class="r"><code>plot(hep)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
-<pre><code>##          hurdles highjump shot run200m longjump javelin run800m
-## hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78
-## highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59
-## shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42
-## run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62
-## longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70
-## javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02
-## run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00</code></pre>
+<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
+## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
+## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
+## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
+## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
+## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
+## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
+## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
 <ul>
 <li>¿Qué observa en cuanto a los valores de las correlaciones?</li>
 </ul>
@@ -717,60 +632,60 @@ hep</code></pre>
 
 hep1</code></pre>
 <pre><code>##                         hurdles   highjump        shot     run200m
-## Joyner-Kersee (USA)  2.02598714  1.2662190  1.75444462  2.16301826
-## John (GDR)           1.71504427  0.1194546  2.04165699  0.99944520
-## Behmer (GDR)         1.03485674  0.6928368  0.68574739  1.58656922
-## Sablovskaite (URS)   0.23806563  0.1194546  1.37372123  0.71122069
-## Choubenkova (URS)    0.43240493 -1.0273097  1.05979142  0.70054570
-## Schulz (GDR)        -0.03400938  0.6928368  0.21819235 -0.06805301
-## Fleming (AUS)        0.68504601  0.1194546 -0.19592783  1.06349510
-## Greiner (USA)        0.35466921  0.1194546  0.63899188  0.11342169
-## Lajbnerova (CZE)     0.19919778  0.6928368  0.73918225 -0.29222764
-## Bouraga (URS)        0.93768709 -0.4539276 -0.36959112  1.06349510
-## Wijnsma (HOL)       -0.03400938  1.2662190 -0.10909618 -0.47370233
-## Dimitrova (BUL)      0.95712102  0.1194546 -0.19592783  1.06349510
-## Scheider (SWI)      -0.22834867  1.2662190 -1.06424432 -0.30290262
-## Braun (FRG)          0.04372634  0.6928368 -0.00890581 -0.20682778
-## Ruotsalainen (FIN)  -0.11174509  0.1194546 -0.56997185 -0.02535308
-## Yuping (CHN)        -0.38382011  1.2662190  0.69242675 -0.44167739
-## Hagger (GB)          0.51014065  0.1194546 -0.28275947 -0.94340155
-## Brown (USA)         -0.65589512  0.6928368 -0.32283562 -0.26020269
-## Mulliner (GB)       -1.27778086 -1.6006919 -0.32951498 -0.35627753
-## Hautenauve (BEL)    -0.59759333 -0.4539276 -0.91061910 -1.09285130
-## Kytola (FIN)        -1.12230942 -0.4539276 -1.01080946 -1.17825116
-## Geremias (BRA)      -0.96683799 -1.6006919 -0.14917232 -0.97542649
-## Hui-Ing (TAI)       -2.17174161 -2.1740741 -2.11958283 -0.68720198
-## Jeong-Mi (KOR)      -1.54985587 -1.6006919 -1.56519615 -2.16034951
+## Joyner-Kersee (USA) -2.02598714  1.2662190  1.75444462 -2.16301826
+## John (GDR)          -1.71504427  0.1194546  2.04165699 -0.99944520
+## Behmer (GDR)        -1.03485674  0.6928368  0.68574739 -1.58656922
+## Sablovskaite (URS)  -0.23806563  0.1194546  1.37372123 -0.71122069
+## Choubenkova (URS)   -0.43240493 -1.0273097  1.05979142 -0.70054570
+## Schulz (GDR)         0.03400938  0.6928368  0.21819235  0.06805301
+## Fleming (AUS)       -0.68504601  0.1194546 -0.19592783 -1.06349510
+## Greiner (USA)       -0.35466921  0.1194546  0.63899188 -0.11342169
+## Lajbnerova (CZE)    -0.19919778  0.6928368  0.73918225  0.29222764
+## Bouraga (URS)       -0.93768709 -0.4539276 -0.36959112 -1.06349510
+## Wijnsma (HOL)        0.03400938  1.2662190 -0.10909618  0.47370233
+## Dimitrova (BUL)     -0.95712102  0.1194546 -0.19592783 -1.06349510
+## Scheider (SWI)       0.22834867  1.2662190 -1.06424432  0.30290262
+## Braun (FRG)         -0.04372634  0.6928368 -0.00890581  0.20682778
+## Ruotsalainen (FIN)   0.11174509  0.1194546 -0.56997185  0.02535308
+## Yuping (CHN)         0.38382011  1.2662190  0.69242675  0.44167739
+## Hagger (GB)         -0.51014065  0.1194546 -0.28275947  0.94340155
+## Brown (USA)          0.65589512  0.6928368 -0.32283562  0.26020269
+## Mulliner (GB)        1.27778086 -1.6006919 -0.32951498  0.35627753
+## Hautenauve (BEL)     0.59759333 -0.4539276 -0.91061910  1.09285130
+## Kytola (FIN)         1.12230942 -0.4539276 -1.01080946  1.17825116
+## Geremias (BRA)       0.96683799 -1.6006919 -0.14917232  0.97542649
+## Hui-Ing (TAI)        2.17174161 -2.1740741 -2.11958283  0.68720198
+## Jeong-Mi (KOR)       1.54985587 -1.6006919 -1.56519615  2.16034951
 ##                       longjump    javelin     run800m       score
-## Joyner-Kersee (USA)  2.6504631  1.2631989  1.04165853  2.36063285
-## John (GDR)           1.2562469  0.3694941  1.43045040  1.54252238
-## Behmer (GDR)         1.1815567  0.9403120  1.74278528  1.46154190
-## Sablovskaite (URS)   0.1109979  0.4329183  0.43488295  0.80123954
-## Choubenkova (URS)    0.2852749  1.7821242  1.14088993  0.80123954
-## Schulz (GDR)         0.3101716  0.4444500  1.48413295  0.53338103
-## Fleming (AUS)        0.4097585 -0.2878114  0.38608062  0.40879568
-## Greiner (USA)        0.6587257 -0.9451168  0.20551202  0.29666887
-## Lajbnerova (CZE)    -0.2375562  0.2657090 -0.18490659  0.20322985
-## Bouraga (URS)        0.1856880 -0.6395275  0.02819690  0.20322985
-## Wijnsma (HOL)        0.3350683 -0.9854777  0.55688876  0.10563800
-## Dimitrova (BUL)      0.4097585 -0.2878114  0.38608062  0.03503963
-## Scheider (SWI)      -0.3869365  1.7936559 -0.00271124 -0.03555874
-## Braun (FRG)         -0.2126595  0.9518437 -1.28621241 -0.09369857
-## Ruotsalainen (FIN)  -0.3122463  1.1997747 -0.34920775 -0.11030995
-## Yuping (CHN)         0.4844486 -0.7721417 -1.91250893 -0.13937986
-## Hagger (GB)          0.3350683 -1.5908906 -0.58020543 -0.37193918
-## Brown (USA)         -0.1877627  0.8826536 -1.87346706 -0.37816845
-## Mulliner (GB)       -0.2624529 -1.0143069 -0.50537520 -0.84743994
-## Hautenauve (BEL)    -0.5363168 -1.6139540  0.16484341 -0.87235701
-## Kytola (FIN)        -1.1338380 -0.5184449  0.25431434 -0.97202529
-## Geremias (BRA)      -1.7562559 -0.4723182 -1.48142171 -1.34162850
-## Hui-Ing (TAI)       -1.8309461 -0.6164641 -0.38824961 -1.79428861
-## Jeong-Mi (KOR)      -1.7562559 -0.5818691 -0.69245078 -1.79636503
+## Joyner-Kersee (USA)  2.6504631  1.2631989 -1.04165853  2.36063285
+## John (GDR)           1.2562469  0.3694941 -1.43045040  1.54252238
+## Behmer (GDR)         1.1815567  0.9403120 -1.74278528  1.46154190
+## Sablovskaite (URS)   0.1109979  0.4329183 -0.43488295  0.80123954
+## Choubenkova (URS)    0.2852749  1.7821242 -1.14088993  0.80123954
+## Schulz (GDR)         0.3101716  0.4444500 -1.48413295  0.53338103
+## Fleming (AUS)        0.4097585 -0.2878114 -0.38608062  0.40879568
+## Greiner (USA)        0.6587257 -0.9451168 -0.20551202  0.29666887
+## Lajbnerova (CZE)    -0.2375562  0.2657090  0.18490659  0.20322985
+## Bouraga (URS)        0.1856880 -0.6395275 -0.02819690  0.20322985
+## Wijnsma (HOL)        0.3350683 -0.9854777 -0.55688876  0.10563800
+## Dimitrova (BUL)      0.4097585 -0.2878114 -0.38608062  0.03503963
+## Scheider (SWI)      -0.3869365  1.7936559  0.00271124 -0.03555874
+## Braun (FRG)         -0.2126595  0.9518437  1.28621241 -0.09369857
+## Ruotsalainen (FIN)  -0.3122463  1.1997747  0.34920775 -0.11030995
+## Yuping (CHN)         0.4844486 -0.7721417  1.91250893 -0.13937986
+## Hagger (GB)          0.3350683 -1.5908906  0.58020543 -0.37193918
+## Brown (USA)         -0.1877627  0.8826536  1.87346706 -0.37816845
+## Mulliner (GB)       -0.2624529 -1.0143069  0.50537520 -0.84743994
+## Hautenauve (BEL)    -0.5363168 -1.6139540 -0.16484341 -0.87235701
+## Kytola (FIN)        -1.1338380 -0.5184449 -0.25431434 -0.97202529
+## Geremias (BRA)      -1.7562559 -0.4723182  1.48142171 -1.34162850
+## Hui-Ing (TAI)       -1.8309461 -0.6164641  0.38824961 -1.79428861
+## Jeong-Mi (KOR)      -1.7562559 -0.5818691  0.69245078 -1.79636503
 ## attr(,&quot;scaled:center&quot;)
 ##     hurdles    highjump        shot     run200m    longjump     javelin 
-##    2.687500    1.793750   13.173333    2.023750    6.205417   41.278333 
+##    1.042500    1.793750   13.173333    2.026250    6.205417   41.278333 
 ##     run800m       score 
-##   28.516667 6154.125000 
+##   10.713333 6154.125000 
 ## attr(,&quot;scaled:scale&quot;)
 ##      hurdles     highjump         shot      run200m     longjump 
 ##   0.51456398   0.05232112   1.49714995   0.93676972   0.40165938 
@@ -784,8 +699,6 @@ hc &lt;- hclust(dist(hep1[,-8]), &quot;ave&quot;)
 
 dend1 &lt;- as.dendrogram(hc)
 
-op &lt;- par(mfrow= c(2,2), mar = c(3,3,1,1))
-
 plot(dend1)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <ol start="9" style="list-style-type: decimal">
@@ -797,159 +710,174 @@ plot(dend1)</code></pre>
 hep=heptathlon[-grep(&quot;PNG&quot;,rownames(heptathlon)),]
 hep</code></pre>
 <pre><code>##                     hurdles highjump  shot run200m longjump javelin
-## Joyner-Kersee (USA)    3.73     1.86 15.80    4.05     7.27   45.66
-## John (GDR)             3.57     1.80 16.23    2.96     6.71   42.56
-## Behmer (GDR)           3.22     1.83 14.20    3.51     6.68   44.54
-## Sablovskaite (URS)     2.81     1.80 15.23    2.69     6.25   42.78
-## Choubenkova (URS)      2.91     1.74 14.76    2.68     6.32   47.46
-## Schulz (GDR)           2.67     1.83 13.50    1.96     6.33   42.82
-## Fleming (AUS)          3.04     1.80 12.88    3.02     6.37   40.28
-## Greiner (USA)          2.87     1.80 14.13    2.13     6.47   38.00
-## Lajbnerova (CZE)       2.79     1.83 14.28    1.75     6.11   42.20
-## Bouraga (URS)          3.17     1.77 12.62    3.02     6.28   39.06
-## Wijnsma (HOL)          2.67     1.86 13.01    1.58     6.34   37.86
-## Dimitrova (BUL)        3.18     1.80 12.88    3.02     6.37   40.28
-## Scheider (SWI)         2.57     1.86 11.58    1.74     6.05   47.50
-## Braun (FRG)            2.71     1.83 13.16    1.83     6.12   44.58
-## Ruotsalainen (FIN)     2.63     1.80 12.32    2.00     6.08   45.44
-## Yuping (CHN)           2.49     1.86 14.21    1.61     6.40   38.60
-## Hagger (GB)            2.95     1.80 12.75    1.14     6.34   35.76
-## Brown (USA)            2.35     1.83 12.69    1.78     6.13   44.34
-## Mulliner (GB)          2.03     1.71 12.68    1.69     6.10   37.76
-## Hautenauve (BEL)       2.38     1.77 11.81    1.00     5.99   35.68
-## Kytola (FIN)           2.11     1.77 11.66    0.92     5.75   39.48
-## Geremias (BRA)         2.19     1.71 12.95    1.11     5.50   39.64
-## Hui-Ing (TAI)          1.57     1.68 10.00    1.38     5.47   39.14
-## Jeong-Mi (KOR)         1.89     1.71 10.83    0.00     5.50   39.26
+## Joyner-Kersee (USA)    0.00     1.86 15.80    0.00     7.27   45.66
+## John (GDR)             0.16     1.80 16.23    1.09     6.71   42.56
+## Behmer (GDR)           0.51     1.83 14.20    0.54     6.68   44.54
+## Sablovskaite (URS)     0.92     1.80 15.23    1.36     6.25   42.78
+## Choubenkova (URS)      0.82     1.74 14.76    1.37     6.32   47.46
+## Schulz (GDR)           1.06     1.83 13.50    2.09     6.33   42.82
+## Fleming (AUS)          0.69     1.80 12.88    1.03     6.37   40.28
+## Greiner (USA)          0.86     1.80 14.13    1.92     6.47   38.00
+## Lajbnerova (CZE)       0.94     1.83 14.28    2.30     6.11   42.20
+## Bouraga (URS)          0.56     1.77 12.62    1.03     6.28   39.06
+## Wijnsma (HOL)          1.06     1.86 13.01    2.47     6.34   37.86
+## Dimitrova (BUL)        0.55     1.80 12.88    1.03     6.37   40.28
+## Scheider (SWI)         1.16     1.86 11.58    2.31     6.05   47.50
+## Braun (FRG)            1.02     1.83 13.16    2.22     6.12   44.58
+## Ruotsalainen (FIN)     1.10     1.80 12.32    2.05     6.08   45.44
+## Yuping (CHN)           1.24     1.86 14.21    2.44     6.40   38.60
+## Hagger (GB)            0.78     1.80 12.75    2.91     6.34   35.76
+## Brown (USA)            1.38     1.83 12.69    2.27     6.13   44.34
+## Mulliner (GB)          1.70     1.71 12.68    2.36     6.10   37.76
+## Hautenauve (BEL)       1.35     1.77 11.81    3.05     5.99   35.68
+## Kytola (FIN)           1.62     1.77 11.66    3.13     5.75   39.48
+## Geremias (BRA)         1.54     1.71 12.95    2.94     5.50   39.64
+## Hui-Ing (TAI)          2.16     1.68 10.00    2.67     5.47   39.14
+## Jeong-Mi (KOR)         1.84     1.71 10.83    4.05     5.50   39.26
 ##                     run800m score
-## Joyner-Kersee (USA)   34.92  7291
-## John (GDR)            37.31  6897
-## Behmer (GDR)          39.23  6858
-## Sablovskaite (URS)    31.19  6540
-## Choubenkova (URS)     35.53  6540
-## Schulz (GDR)          37.64  6411
-## Fleming (AUS)         30.89  6351
-## Greiner (USA)         29.78  6297
-## Lajbnerova (CZE)      27.38  6252
-## Bouraga (URS)         28.69  6252
-## Wijnsma (HOL)         31.94  6205
-## Dimitrova (BUL)       30.89  6171
-## Scheider (SWI)        28.50  6137
-## Braun (FRG)           20.61  6109
-## Ruotsalainen (FIN)    26.37  6101
-## Yuping (CHN)          16.76  6087
-## Hagger (GB)           24.95  5975
-## Brown (USA)           17.00  5972
-## Mulliner (GB)         25.41  5746
-## Hautenauve (BEL)      29.53  5734
-## Kytola (FIN)          30.08  5686
-## Geremias (BRA)        19.41  5508
-## Hui-Ing (TAI)         26.13  5290
-## Jeong-Mi (KOR)        24.26  5289</code></pre>
+## Joyner-Kersee (USA)    4.31  7291
+## John (GDR)             1.92  6897
+## Behmer (GDR)           0.00  6858
+## Sablovskaite (URS)     8.04  6540
+## Choubenkova (URS)      3.70  6540
+## Schulz (GDR)           1.59  6411
+## Fleming (AUS)          8.34  6351
+## Greiner (USA)          9.45  6297
+## Lajbnerova (CZE)      11.85  6252
+## Bouraga (URS)         10.54  6252
+## Wijnsma (HOL)          7.29  6205
+## Dimitrova (BUL)        8.34  6171
+## Scheider (SWI)        10.73  6137
+## Braun (FRG)           18.62  6109
+## Ruotsalainen (FIN)    12.86  6101
+## Yuping (CHN)          22.47  6087
+## Hagger (GB)           14.28  5975
+## Brown (USA)           22.23  5972
+## Mulliner (GB)         13.82  5746
+## Hautenauve (BEL)       9.70  5734
+## Kytola (FIN)           9.15  5686
+## Geremias (BRA)        19.82  5508
+## Hui-Ing (TAI)         13.10  5290
+## Jeong-Mi (KOR)        14.97  5289</code></pre>
 <pre class="r"><code>hep1=scale(hep)
 
 
-modelo&lt;-princomp(hep1)
+modelo&lt;-princomp(hep1[,-8])
 summary(modelo)</code></pre>
 <pre><code>## Importance of components:
 ##                           Comp.1    Comp.2    Comp.3     Comp.4     Comp.5
-## Standard deviation     2.2563690 0.9282543 0.8920384 0.66886744 0.53738422
-## Proportion of Variance 0.6640697 0.1123899 0.1037912 0.05835439 0.03766719
-## Cumulative Proportion  0.6640697 0.7764596 0.8802508 0.93860522 0.97627241
-##                            Comp.6      Comp.7       Comp.8
-## Standard deviation     0.33229114 0.256807846 0.0744570513
-## Proportion of Variance 0.01440227 0.008602209 0.0007231112
-## Cumulative Proportion  0.99067468 0.999276889 1.0000000000</code></pre>
+## Standard deviation     2.0355565 0.9281898 0.8917226 0.66881197 0.53468878
+## Proportion of Variance 0.6176632 0.1284278 0.1185345 0.06667967 0.04261745
+## Cumulative Proportion  0.6176632 0.7460909 0.8646255 0.93130515 0.97392260
+##                            Comp.6      Comp.7
+## Standard deviation     0.33034975 0.256524732
+## Proportion of Variance 0.01626797 0.009809432
+## Cumulative Proportion  0.99019057 1.000000000</code></pre>
 <pre class="r"><code>modelo</code></pre>
 <pre><code>## Call:
-## princomp(x = hep1)
+## princomp(x = hep1[, -8])
 ## 
 ## Standard deviations:
-##     Comp.1     Comp.2     Comp.3     Comp.4     Comp.5     Comp.6 
-## 2.25636902 0.92825429 0.89203839 0.66886744 0.53738422 0.33229114 
-##     Comp.7     Comp.8 
-## 0.25680785 0.07445705 
+##    Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
+## 2.0355565 0.9281898 0.8917226 0.6688120 0.5346888 0.3303497 0.2565247 
 ## 
-##  8  variables and  24 observations.</code></pre>
+##  7  variables and  24 observations.</code></pre>
 <pre class="r"><code>modelo$loadings</code></pre>
 <pre><code>## 
 ## Loadings:
-##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8
-## hurdles   0.404         0.181         0.224  0.859              
-## highjump  0.282 -0.654  0.211 -0.558               -0.338  0.114
-## shot      0.365         0.158  0.547 -0.648        -0.243  0.241
-## run200m   0.384  0.183 -0.123  0.227  0.635 -0.316 -0.479  0.142
-## longjump  0.406         0.276         0.137 -0.367  0.735  0.252
-## javelin   0.221 -0.324 -0.878                       0.205  0.134
-## run800m   0.275  0.655 -0.186 -0.576 -0.303                0.169
-## score     0.432                                           -0.890
+##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
+## hurdles   0.450         0.174         0.199  0.847       
+## highjump -0.315  0.651 -0.209  0.557                0.332
+## shot     -0.402        -0.153 -0.548  0.672         0.229
+## run200m   0.427  0.185 -0.130  0.231  0.618 -0.333 -0.470
+## longjump -0.451        -0.270        -0.122  0.383 -0.749
+## javelin  -0.242  0.326  0.881                      -0.211
+## run800m   0.303  0.657 -0.193 -0.574 -0.319              
 ## 
-##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8
-## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000
-## Proportion Var  0.125  0.125  0.125  0.125  0.125  0.125  0.125  0.125
-## Cumulative Var  0.125  0.250  0.375  0.500  0.625  0.750  0.875  1.000</code></pre>
-<pre class="r"><code>modelo$scores</code></pre>
-<pre><code>##                          Comp.1      Comp.2      Comp.3       Comp.4
-## Joyner-Kersee (USA)  5.30983895 -0.14529921  0.01637862  0.290600273
-## John (GDR)           3.50796618  0.94431865  0.25405737  0.548904851
-## Behmer (GDR)         3.27208909  0.69428700 -0.61244579 -0.556976842
-## Sablovskaite (URS)   1.51083433  0.18065820 -0.25194199  0.639585204
-## Choubenkova (URS)    1.70955913  0.96774893 -1.77509155  0.783532807
-## Schulz (GDR)         1.09786998  0.35255041 -0.41138143 -1.111906465
-## Fleming (AUS)        1.03377394  0.49650393  0.27211419 -0.143349315
-## Greiner (USA)        0.69781894  0.37088773  1.14283637  0.143388181
-## Lajbnerova (CZE)     0.43252337 -0.71227081  0.06509714  0.088879025
-## Bouraga (URS)        0.55489850  0.77312203  0.48838436  0.280043489
-## Wijnsma (HOL)        0.23943636 -0.23824389  1.15328384 -1.258212151
-## Dimitrova (BUL)      0.98236925  0.50726050  0.33020764 -0.135503873
-## Scheider (SWI)      -0.01748346 -1.44152221 -1.58633925 -1.256043044
-## Braun (FRG)         -0.14021678 -1.63442151 -0.47523368  0.361834206
-## Ruotsalainen (FIN)  -0.23519593 -0.68433566 -1.15424863 -0.114376186
-## Yuping (CHN)        -0.27447403 -1.96533628  1.53191865  0.600578081
-## Hagger (GB)         -0.76060996 -0.09437317  1.79537929 -0.181427963
-## Brown (USA)         -0.84771915 -2.04032551 -0.46111329  0.476751091
-## Mulliner (GB)       -2.06105397  0.91712160  0.35606712  0.801604093
-## Hautenauve (BEL)    -2.02736062  0.72466660  1.04640651 -0.709580020
-## Kytola (FIN)        -2.32860319  0.40321582 -0.19534842 -0.785800306
-## Geremias (BRA)      -3.07683038  0.03903206 -0.17788098  1.387394534
-## Hui-Ing (TAI)       -4.29115069  1.21076629 -0.94972927 -0.001441396
-## Jeong-Mi (KOR)      -4.28827986  0.37398850 -0.40137681 -0.148478274
-##                          Comp.5      Comp.6      Comp.7        Comp.8
-## Joyner-Kersee (USA)  0.36573256 -0.28107981  0.47614521 -0.0567917829
-## John (GDR)          -0.73793539  0.39021963  0.05185288  0.0152026466
-## Behmer (GDR)         0.19341106 -0.25914904 -0.11168193 -0.0334278984
-## Sablovskaite (URS)  -0.61011949 -0.21408679 -0.52994314 -0.0895312738
-## Choubenkova (URS)   -0.57696238  0.09068116  0.29722422  0.0613977669
-## Schulz (GDR)        -0.71808943 -0.24608714 -0.04312991  0.0324694771
-## Fleming (AUS)        0.86840372  0.02835649 -0.22606904 -0.0635637945
-## Greiner (USA)       -0.20908608 -0.13992897  0.06134314  0.0210594781
-## Lajbnerova (CZE)    -0.67352312  0.26059311 -0.35483414 -0.0049288549
-## Bouraga (URS)        1.19074447  0.38185041 -0.18650110 -0.1321406518
-## Wijnsma (HOL)       -0.38346103 -0.19996303 -0.17665103  0.0003019639
-## Dimitrova (BUL)      0.96322026  0.29897233 -0.22251749  0.2903968417
-## Scheider (SWI)       0.20794510  0.17521569  0.04075246  0.0014184304
-## Braun (FRG)          0.15182033  0.26077697  0.01595294 -0.0083700420
-## Ruotsalainen (FIN)   0.31828654  0.17917126  0.14392925 -0.0144876619
-## Yuping (CHN)        -0.18293147 -0.49974142 -0.05569443  0.0389073585
-## Hagger (GB)          0.04826740  0.54088150  0.47122065 -0.0445539741
-## Brown (USA)          0.37667554 -0.27198403  0.10960454  0.0051035144
-## Mulliner (GB)        0.05615306 -0.73740034  0.30557146  0.0549192316
-## Hautenauve (BEL)    -0.15159629  0.06456291  0.07759918 -0.0201948602
-## Kytola (FIN)        -0.42781923 -0.03193474 -0.12184350  0.0030008025
-## Geremias (BRA)      -0.28246256  0.38756562 -0.34328579  0.0067093998
-## Hui-Ing (TAI)        0.65122775 -0.54234887 -0.09468998 -0.0376247753
-## Jeong-Mi (KOR)      -0.43790132  0.36485711  0.41564554 -0.0252713415</code></pre>
-<pre class="r"><code>screeplot(modelo)
+##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
+## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000
+## Proportion Var  0.143  0.143  0.143  0.143  0.143  0.143  0.143
+## Cumulative Var  0.143  0.286  0.429  0.571  0.714  0.857  1.000</code></pre>
+<pre class="r"><code># modelo$scores PUNTAJES OBTENIDOS POR LAS VARIABLES EN CADA UNO DE LAS COMPOMPONENTES</code></pre>
+<p>Para efectos de escritura las variables fueron bautizadas así</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Traducción</th>
+<th>Representación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>hurdles</td>
+<td>Barreras</td>
+<td><span class="math inline">\(\Large X_1\)</span></td>
+</tr>
+<tr class="even">
+<td>highjump</td>
+<td>Salto de altura</td>
+<td><span class="math inline">\(\Large X_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>shot</td>
+<td>Tiro</td>
+<td><span class="math inline">\(\Large X_3\)</span></td>
+</tr>
+<tr class="even">
+<td>run200m</td>
+<td>Corrida 200 m</td>
+<td><span class="math inline">\(\Large X_4\)</span></td>
+</tr>
+<tr class="odd">
+<td>longjump</td>
+<td>Salto largo</td>
+<td><span class="math inline">\(\Large X_5\)</span></td>
+</tr>
+<tr class="even">
+<td>Javelin</td>
+<td>Javalina</td>
+<td><span class="math inline">\(\Large X_6\)</span></td>
+</tr>
+<tr class="odd">
+<td>run800m</td>
+<td>Corrida 800m</td>
+<td><span class="math inline">\(\Large X_7\)</span></td>
+</tr>
+<tr class="even">
+<td>Score</td>
+<td>Puntaje</td>
+<td><span class="math inline">\(\Large X_8\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Las componentes principales estimadas corresponden a:</p>
+<p>Componente 1:</p>
+<p><span class="math inline">\(\large Z_1=0.45X_1+0.315X_2+0.4X_3+0.43X_4+0.45X_5+0.24X_6+0.3X_7\)</span> explicando el 61.76% de la varianza Esta componente es una media de todas las medidas obtenidas en heptátlon.</p>
+<pre class="r"><code>barplot(modelo$loadings[1:7,1])</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Componente 2: <span class="math inline">\(\large Z_2=-0.65X_2-0.18X_4-0.32X_6+0.657X_7\)</span> explicando el 12.84% de la varianza Esta componente contrapone el valor de la corrida de 800m con el salto de altura, la corrida de 200m y la javalina.</p>
+<pre class="r"><code>barplot(modelo$loadings[1:7,2])</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Componente 3: <span class="math inline">\(\large Z_3=0.174X_1+0.21X_2+0.153X_3-0.13X_4+0.27X_5-.881X_6-0.193X_7\)</span> explicando el 11.85% de la varianza Esta componente contrapone la javalina y la corrida de 800m con el resto de las variables</p>
+<p>Componente 4: <span class="math inline">\(\large Z_4=-0.55X_2+0.548X_3+0.231X_4-0.574X_7\)</span> explicando el 6.67% de la varianza</p>
+<p>Componente 5: <span class="math inline">\(\large Z_5=0.2X_1-0.67X_3+0.62X_4+0.122X_5-0.32X_7\)</span> explicando el 4.26% de la varianza</p>
+<p>Componente 6: <span class="math inline">\(\large Z_6=0.847X_1-0.333X_4-0.383X_5\)</span> explicando el 1.62% de la varianza</p>
+<p>Componente 7: <span class="math inline">\(\large Z_7=-0.33X_2-0.23X_3-0.47X_4+0.75X_5+0.211X_7\)</span> explicando el 0.9% de la varianza</p>
+<p>10.Los gráficos resultantes corresponden a:</p>
+<pre class="r"><code>modelo&lt;-princomp(hep1)
+
+screeplot(modelo)
 plot(modelo)</code></pre>
-<p><img src="componentes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="componentes_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>plot(modelo$scores[,1],modelo$scores[,2])
 abline(h=0)
 abline(v=0)</code></pre>
-<p><img src="componentes_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p><img src="componentes_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 <pre class="r"><code>##
 par(mfrow=c(1,1))
-biplot(modelo,col=c(2,4))</code></pre>
-<p><img src="componentes_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+biplot(modelo,col=c(2,4),cex=0.7)</code></pre>
+<p><img src="componentes_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
 <ol start="10" style="list-style-type: decimal">
 <li>Compare los resultados obtenidos</li>
 </ol>

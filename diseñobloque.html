@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -113,9 +114,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -130,6 +128,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -149,43 +148,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,77 +169,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -362,13 +265,16 @@ $(document).ready(function () {
 <li><p>Permite que los tratamientos sean examinados bajo diferentes condiciones experimentales.</p></li>
 <li><p>Los niveles de un factor de bloqueo son agrupamientos de características que no pueden ser medidas convenientemente.</p></li>
 </ul>
-<p>##Ejemplo</p>
+<div id="ejemplo" class="section level2">
+<h2>Ejemplo</h2>
 <ul>
 <li><p>Los experimentadores agrícolas pueden saber que parcelas cercanas en un campo son similares, en tanto que las parcelas lejanas no lo son.</p></li>
 <li><p>Los experimentadores industriales pueden saber que dos unidades producidas por una misma máquina tienen características similares, mientras que aquellas producidas por dos máquinas distintas son algo diferentes.</p></li>
 <li><p>Los experimentadores clínicos pueden saber que las mediciones tomadas sobre el mismo sujeto serán similares, mientras que aquellas tomadas sobre sujetos distintos no lo serán.</p></li>
 </ul>
-<p>##<strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></p>
+</div>
+<div id="aspectos-del-diseno-en-bloque" class="section level2">
+<h2><strong>ASPECTOS DEL DISEÑO EN BLOQUE</strong></h2>
 <ul>
 <li><p>Considere b bloques, de tamaño k</p></li>
 <li><p>a niveles del factor de estudio</p></li>
@@ -377,7 +283,8 @@ $(document).ready(function () {
 <li><p>Si el tamaño del bloque k es múltiplo del número de niveles o tratamientos del factor, el diseño recibe el nombre de ** bloques completos**</p></li>
 <li><p>Si el tamaño de bloque no es múltiplo de a, entonces el diseño es conocido como un diseño de <strong>bloques incompletos</strong></p></li>
 </ul>
-<div id="ejemplo" class="section level2">
+</div>
+<div id="ejemplo-1" class="section level2">
 <h2>Ejemplo</h2>
 <p>Se realiza un estudio para comprobar la efectividad en el retraso del crecimiento de bacterias utilizando cuatro soluciones diferentes para lavar los envases de la leche. El análisis se realiza en el laboratorio y sólo se pueden realizar seis pruebas en un mismo día. Como los días son una fuente de variabilidad potencial, el investigador decide utilizar un diseño aleatorizado por bloques, pero al recopilar las observaciones durante seis días no ha sido posible aplicar todos los tratamientos en cada día, sino que sólo se han podido aplicar dos de las cuatro soluciones cada día. Se decide utilizar un diseño en bloques incompletos balanceado.</p>
 <table>
@@ -441,7 +348,9 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p>En este experimento se tienen b=6 bloques que son los dias, de tamaño k=2, mientras que los tratamientos a=4, corresponden a las 4 soluciones</p>
-<p>##<strong>Diseño en bloques completos al azar</strong></p>
+</div>
+<div id="diseno-en-bloques-completos-al-azar" class="section level2">
+<h2><strong>Diseño en bloques completos al azar</strong></h2>
 <ul>
 <li><p>Este diseño con a tratamientos y con N=ab unidades experimentales agrupadas en b bloques.</p></li>
 <li><p>las unidades dentro de un bloque son similares y unidades en bloques diferentes son sustancialmente distintas.</p></li>
@@ -453,11 +362,11 @@ $(document).ready(function () {
 <col width="18%" />
 <col width="16%" />
 <col width="16%" />
-<col width="3%" />
-<col width="8%" />
-<col width="3%" />
-<col width="8%" />
-<col width="24%" />
+<col width="4%" />
+<col width="9%" />
+<col width="4%" />
+<col width="9%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -554,7 +463,9 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>##<strong>Modelo ANOVA</strong></p>
+</div>
+<div id="modelo-anova" class="section level2">
+<h2><strong>Modelo ANOVA</strong></h2>
 <p><span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\]</span></p>
 <p>Donde</p>
 <ul>
@@ -640,7 +551,7 @@ $(document).ready(function () {
 <li><p>se verifica independencia, normalidad y varianza constante en los residuales</p></li>
 </ul>
 </div>
-<div id="ejemplo-1" class="section level2">
+<div id="ejemplo-2" class="section level2">
 <h2><strong>Ejemplo</strong></h2>
 <p>Un equipo de mejora investiga el efecto de cuatro métodos de ensamble A, B, C, y D, sobre el tiempo de ensamble en minutos. En primera instancia la estrategia experimental fue aplicar cuatro veces los cuatro métodos de ensamble en orden aleatorio en un diseño completamente aleatorizado. Sin embargo, los experimentadores se dan cuenta que hay cuatro operadores con distintas destrezas y consideran que esto puede afectar de manera significativa los tiempos de ensamble, y por ende la comparación de los métodos, entonces debe utilizarse un diseño de bloques completos aleatorizados para controlar activamente en el experimento a los operadores que realizarán el ensamble. Los datos recolectados en este diseño fueron los siguientes:</p>
 <table>
@@ -716,19 +627,9 @@ $(document).ready(function () {
 </ol>
 <p>ANOVA:</p>
 <pre class="r"><code>library(gmodels)
-library(multcomp)</code></pre>
-<pre><code>## Warning: package &#39;multcomp&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: mvtnorm</code></pre>
-<pre><code>## Loading required package: survival</code></pre>
-<pre><code>## Loading required package: TH.data</code></pre>
-<pre><code>## Warning: package &#39;TH.data&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: MASS</code></pre>
-<pre><code>## 
-## Attaching package: &#39;TH.data&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:MASS&#39;:
-## 
-##     geyser</code></pre>
-<pre class="r"><code>método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
+library(multcomp)
+
+método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
 operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
 tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
@@ -800,6 +701,51 @@ tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
 attach(ensamble)</code></pre>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
+## 
+##     método, operador, tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 6):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 7):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 8):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 9):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from ensamble (pos = 11):
+## 
+##     método, operador, tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 13):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 14):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 15):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 16):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from ensamble (pos = 18):
+## 
+##     método, operador, tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 27):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 28):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 29):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following object is masked from base (pos = 30):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from ensamble (pos = 32):
 ## 
 ##     método, operador, tiempo</code></pre>
 <pre class="r"><code>#medias dE tratamientos con sus INTERVALOS
