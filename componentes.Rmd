@@ -430,10 +430,9 @@ $\large Z_7=-0.33X_2-0.23X_3-0.47X_4+0.75X_5+0.211X_7$ explicando el 0.9% de la 
 ```{r }
 
 
-modelo<-princomp(hep1)
 
 screeplot(modelo)
-plot(modelo)
+
 plot(modelo$scores[,1],modelo$scores[,2])
 abline(h=0)
 abline(v=0)
