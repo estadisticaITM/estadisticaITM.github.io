@@ -4,7 +4,10 @@
 
 - Es útil cuando los predictores están altamente correlacionados
 
-- Se utiliza principalmente en la industria química, de medicamentos, de alimentos y de plásticos. Una aplicación común consiste en modelar la relación entre mediciones espectrales (NIR, IR, UV) que incluye muchas variables que suelen estar correlacionadas entre sí, y la composición química u otras propiedades fisioquímicas. 
+- Se utiliza principalmente en la industria química, de medicamentos, de alimentos y de plásticos. Una aplicación común consiste en modelar la relación entre mediciones espectrales (NIR, IR, UV) que incluye muchas variables que suelen estar correlacionadas entre sí, y la composición química u otras propiedades fisioquímicas.
+
+- **La diferencia principal entre PCA y PLSR** es que PCA usualmente necesita más componentes que PLSR, para lograr la misma predicción del error.
+
 
 - En la regresión PLS, el énfasis está en el desarrollo de modelos predictivos. Por lo tanto, no suele utilizarse para descartar variables que no son útiles para explicar la respuesta. 
 
@@ -13,12 +16,32 @@
 - La regresión PLS modela las variables de respuesta de una forma multivariada, los resultados podrían diferir significativamente de los calculados para las variables de respuesta de manera individual. 
 
 
+## Teoría
+
+En la regresión lineal la solución de mínimos cuadrados para:
+
+$$\Large Y=XB+\varepsilon$$
+esá dada por:
+$$\Large B=(X^TX)^{-1}X^TY$$
+Usualmente $\Large X^TX$ es singular, es decir el determinante es igual a cero, ya sea porque el número de variables (columnas) en $\Large X$ excede el número de objetos (filas), o por la colinealidad, es decir alta correlación.
+
+Tanto PCR como PLSR eluden este inconveniente descomponiendo $\Large X$ en puntajes ortogonales $\Large T$ y cargas $\Large P$
+
+$$\Large X=TP$$
+
+En PCR, las puntuaciones están dadas por los vectores singulares izquierdos de X, multiplicados por los valores singulares correspondientes, y las cargas son los vectores singulares correctos de X. Sin embargo, esto solo tiene en cuenta la información sobre $\Large X y y$, por lo tanto, puede ser subóptimo para fines de predicción.
+
+PLSR tiene como objetivo incorporar información sobre $\Large X $ y $\Large Y$ en la definición de los puntajes y las cargas.
+
+
+
 ## ¿Qué es validación cruzada?
-- PLS puede calcular tantos componentes como número de predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva. 
+
+- PLS puede calcular tantos componentes como predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva. 
 
 - Si usted calcula todos los componentes posibles, el modelo resultante es equivalente al modelo que obtendría utilizando la regresión de mínimos cuadrados. 
 
-La validación cruzada calcula la capacidad predictiva de los posibles modelos para ayudar a determinar el número adecuado de componentes que se deben conservar en el modelo, uno de los criterios más usados es el 
+La validación cruzada calcula la capacidad predictiva de los posibles modelos para ayudar a determinar el número adecuado de componentes que se deben conservar en el modelo, uno de los criterios más usados es: 
 
 **Raíz del error cuadrático medio de predicción (RMSEP)** Medida de uso frecuente de las diferencias entre los valores predichos por un modelo o un estimador y los valores observados. 
 
@@ -27,11 +50,29 @@ Donde $\Large\hat {y_t}$ Es la respuesta estimada a partir del modelo.
 $\Large {y_t}$ Es la respuesta observada
 $\Large T$ es el numero de observaciones
 
+Este método es aplicado mediante "Dejar uno fuera", calcula los posibles modelos dejando fuera una observación a la vez, esta característica se especifica en el modelo como **LOO**
+
+- El objetivo es predecir o analizar un conjunto de variables dependientes a partir de un conjunto de variables independientes o predictoras. La predicción se lleva a cabo extrayendo a partir de dichas variables predictoras un conjunto de factores ortogonales llamadas variables latentes (LV), de manera que se construye un modelo de calibración para que tenga la mejor capacidad predictiva al aplicarlo al análisis de muestras diferentes de las utilizadas para la construcción del modelo PLS.
+
+
+## Predicción en regresión PLS
+
+
+Usted puede usar la predicción en PLS con dos fines principales.
+
+**Probar la calidad de las predicciones**
+
+Aplique el modelo PLS a un conjunto de datos de prueba que incluya respuestas para cada observación, que sea independiente del conjunto utilizado para estimar el modelo PLS. 
+
+**Predecir nuevas respuestas**
+El modelo estima nuevos valores de respuesta para un conjunto de predictores para los cuales usted no tiene datos de respuesta.
+
+
 ## **Ejemplo**
 
 La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:
 
-Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina , fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.
+Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina, fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.
 
 Es decir cada muestra contine 401 medidas 
 
@@ -67,6 +108,7 @@ Para ajustar el modelo de regresión de mínimos cuadrados parciales
 gas1 <- plsr(octane ~ NIR, ncomp = 10, data = gasTrain, validation = "LOO")
 
 summary(gas1)
+
 ```
 
 
@@ -78,10 +120,10 @@ plot(RMSEP(gas1), legendpos = "topright")
 
 ```
 
-Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales.
+Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales, para el valor del octanaje
 
 ```{r}
-plot(gas1, ncomp = 2, asp = 1, line = TRUE)
+plot(gas1, ncomp = 3, asp = 1, line = TRUE)
 ```
 
 Los puntajes de las tres primeras componentes, sirven para detectar patrones, anomalias y puntos atípios que influyen en las estimaciones.
@@ -104,7 +146,7 @@ explvar(gas1)
 La grafica de las dos primeras componente estimadas es
 
 ```{r}
-plot(gas1, "loadings", comps = 1:2, legendpos = "topleft",
+plot(gas1, "loadings", comps = 1:3, legendpos = "topleft",
  labels = "numbers", xlab = "nm")
  abline(h = 0)
 ```
@@ -122,14 +164,12 @@ RMSEP(gas1, newdata = gasTest)
 
 
 
-## Comparación entre PCA Y PLSR
-
-La diferencia principal entre PCA y PLSR es que PCA usualmente necesita más componentes que PLSR, para lograr la misma predicción del error.
 
 
 
 
 ## Bibliografía
 
-https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf
+- https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf
 
+- https://support.minitab.com/es-mx/minitab/18/help-and-how-to/modeling-statistics/regression/supporting-topics/partial-least-squares-regression/pls-regression-graphs/

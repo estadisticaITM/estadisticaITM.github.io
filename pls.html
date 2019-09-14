@@ -357,33 +357,49 @@ $(document).ready(function () {
 <li><p>La regresión de mínimos cuadrados parciales (PLS) es una técnica que reduce los predictores a un conjunto más pequeño de componentes no correlacionados y realiza una regresión de mínimos cuadrados sobre estos componentes, en lugar de hacerlo sobre los datos originales.</p></li>
 <li><p>Es útil cuando los predictores están altamente correlacionados</p></li>
 <li><p>Se utiliza principalmente en la industria química, de medicamentos, de alimentos y de plásticos. Una aplicación común consiste en modelar la relación entre mediciones espectrales (NIR, IR, UV) que incluye muchas variables que suelen estar correlacionadas entre sí, y la composición química u otras propiedades fisioquímicas.</p></li>
+<li><p><strong>La diferencia principal entre PCA y PLSR</strong> es que PCA usualmente necesita más componentes que PLSR, para lograr la misma predicción del error.</p></li>
 <li><p>En la regresión PLS, el énfasis está en el desarrollo de modelos predictivos. Por lo tanto, no suele utilizarse para descartar variables que no son útiles para explicar la respuesta.</p></li>
 <li><p>En PLS, los componentes se seleccionan de acuerdo con la cantidad de varianza que explican en los predictores.</p></li>
 <li><p>La regresión PLS modela las variables de respuesta de una forma multivariada, los resultados podrían diferir significativamente de los calculados para las variables de respuesta de manera individual.</p></li>
 </ul>
+<div id="teoria" class="section level2">
+<h2>Teoría</h2>
+<p>En la regresión lineal la solución de mínimos cuadrados para:</p>
+<p><span class="math display">\[\Large Y=XB+\varepsilon\]</span> esá dada por: <span class="math display">\[\Large B=(X^TX)^{-1}X^TY\]</span> Usualmente <span class="math inline">\(\Large X^TX\)</span> es singular, es decir el determinante es igual a cero, ya sea porque el número de variables (columnas) en <span class="math inline">\(\Large X\)</span> excede el número de objetos (filas), o por la colinealidad, es decir alta correlación.</p>
+<p>Tanto PCR como PLSR eluden este inconveniente descomponiendo <span class="math inline">\(\Large X\)</span> en puntajes ortogonales <span class="math inline">\(\Large T\)</span> y cargas <span class="math inline">\(\Large P\)</span></p>
+<p><span class="math display">\[\Large X=TP\]</span></p>
+<p>En PCR, las puntuaciones están dadas por los vectores singulares izquierdos de X, multiplicados por los valores singulares correspondientes, y las cargas son los vectores singulares correctos de X. Sin embargo, esto solo tiene en cuenta la información sobre <span class="math inline">\(\Large X y y\)</span>, por lo tanto, puede ser subóptimo para fines de predicción.</p>
+<p>PLSR tiene como objetivo incorporar información sobre $X $ y <span class="math inline">\(\Large Y\)</span> en la definición de los puntajes y las cargas.</p>
+</div>
 <div id="que-es-validacion-cruzada" class="section level2">
 <h2>¿Qué es validación cruzada?</h2>
 <ul>
-<li><p>PLS puede calcular tantos componentes como número de predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva.</p></li>
+<li><p>PLS puede calcular tantos componentes como predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva.</p></li>
 <li><p>Si usted calcula todos los componentes posibles, el modelo resultante es equivalente al modelo que obtendría utilizando la regresión de mínimos cuadrados.</p></li>
 </ul>
-<p>La validación cruzada calcula la capacidad predictiva de los posibles modelos para ayudar a determinar el número adecuado de componentes que se deben conservar en el modelo, uno de los criterios más usados es el</p>
+<p>La validación cruzada calcula la capacidad predictiva de los posibles modelos para ayudar a determinar el número adecuado de componentes que se deben conservar en el modelo, uno de los criterios más usados es:</p>
 <p><strong>Raíz del error cuadrático medio de predicción (RMSEP)</strong> Medida de uso frecuente de las diferencias entre los valores predichos por un modelo o un estimador y los valores observados.</p>
 <p><span class="math display">\[\Large RMSEP=\sqrt{\frac{\sum_{t=1}^{T}(\hat y_t-y_t)^2}{T}}\]</span> Donde <span class="math inline">\(\Large\hat {y_t}\)</span> Es la respuesta estimada a partir del modelo. <span class="math inline">\(\Large {y_t}\)</span> Es la respuesta observada <span class="math inline">\(\Large T\)</span> es el numero de observaciones</p>
+<p>Este método es aplicado mediante “Dejar uno fuera”, calcula los posibles modelos dejando fuera una observación a la vez, esta característica se especifica en el modelo como <strong>LOO</strong></p>
+<ul>
+<li>El objetivo es predecir o analizar un conjunto de variables dependientes a partir de un conjunto de variables independientes o predictoras. La predicción se lleva a cabo extrayendo a partir de dichas variables predictoras un conjunto de factores ortogonales llamadas variables latentes (LV), de manera que se construye un modelo de calibración para que tenga la mejor capacidad predictiva al aplicarlo al análisis de muestras diferentes de las utilizadas para la construcción del modelo PLS.</li>
+</ul>
+</div>
+<div id="prediccion-en-regresion-pls" class="section level2">
+<h2>Predicción en regresión PLS</h2>
+<p>Usted puede usar la predicción en PLS con dos fines principales.</p>
+<p><strong>Probar la calidad de las predicciones</strong></p>
+<p>Aplique el modelo PLS a un conjunto de datos de prueba que incluya respuestas para cada observación, que sea independiente del conjunto utilizado para estimar el modelo PLS.</p>
+<p><strong>Predecir nuevas respuestas</strong> El modelo estima nuevos valores de respuesta para un conjunto de predictores para los cuales usted no tiene datos de respuesta.</p>
 </div>
 <div id="ejemplo" class="section level2">
 <h2><strong>Ejemplo</strong></h2>
 <p>La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:</p>
-<p>Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina , fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.</p>
+<p>Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina, fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.</p>
 <p>Es decir cada muestra contine 401 medidas</p>
-<pre class="r"><code>library(pls) </code></pre>
-<pre><code>## Warning: package &#39;pls&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;pls&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     loadings</code></pre>
-<pre class="r"><code>new=data.frame(t(gasoline))
+<pre class="r"><code>library(pls) 
+
+new=data.frame(t(gasoline))
 new</code></pre>
 <pre><code>##                   X1        X2        X3        X4        X5        X6
 ## octane     85.300000 85.250000 88.450000 83.400000 87.900000 85.500000
@@ -597,8 +613,8 @@ summary(gas1)</code></pre>
 <p>La validación cruzada del error se hace a través de la siguiente función, donde se relaciona el error con el número de componentes principales, donde se evidencia que es suficiente con dos componentes principales, para reducir el error</p>
 <pre class="r"><code>plot(RMSEP(gas1), legendpos = &quot;topright&quot;)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales.</p>
-<pre class="r"><code>plot(gas1, ncomp = 2, asp = 1, line = TRUE)</code></pre>
+<p>Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales, para el valor del octanaje</p>
+<pre class="r"><code>plot(gas1, ncomp = 3, asp = 1, line = TRUE)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Los puntajes de las tres primeras componentes, sirven para detectar patrones, anomalias y puntos atípios que influyen en las estimaciones.</p>
 <pre class="r"><code> plot(gas1, plottype = &quot;scores&quot;, comps = 1:3)</code></pre>
@@ -610,7 +626,7 @@ summary(gas1)</code></pre>
 ##     Comp 7     Comp 8     Comp 9    Comp 10 
 ##  0.4921537  0.4723207  0.1688272  0.1693770</code></pre>
 <p>La grafica de las dos primeras componente estimadas es</p>
-<pre class="r"><code>plot(gas1, &quot;loadings&quot;, comps = 1:2, legendpos = &quot;topleft&quot;,
+<pre class="r"><code>plot(gas1, &quot;loadings&quot;, comps = 1:3, legendpos = &quot;topleft&quot;,
  labels = &quot;numbers&quot;, xlab = &quot;nm&quot;)
  abline(h = 0)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
@@ -637,13 +653,12 @@ summary(gas1)</code></pre>
 ##    10 comps  
 ##      0.6116</code></pre>
 </div>
-<div id="comparacion-entre-pca-y-plsr" class="section level2">
-<h2>Comparación entre PCA Y PLSR</h2>
-<p>La diferencia principal entre PCA y PLSR es que PCA usualmente necesita más componentes que PLSR, para lograr la misma predicción del error.</p>
-</div>
 <div id="bibliografia" class="section level2">
 <h2>Bibliografía</h2>
-<p><a href="https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf" class="uri">https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf</a></p>
+<ul>
+<li><p><a href="https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf" class="uri">https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf</a></p></li>
+<li><p><a href="https://support.minitab.com/es-mx/minitab/18/help-and-how-to/modeling-statistics/regression/supporting-topics/partial-least-squares-regression/pls-regression-graphs/" class="uri">https://support.minitab.com/es-mx/minitab/18/help-and-how-to/modeling-statistics/regression/supporting-topics/partial-least-squares-regression/pls-regression-graphs/</a></p></li>
+</ul>
 </div>
 </div>
 
