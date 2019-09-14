@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -288,17 +385,12 @@ $(document).ready(function () {
 <li><p>Estimar el precio de una vivienda en función de su área.</p></li>
 <li><p>Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal.</p></li>
 </ul>
-</div>
-<div id="diagrama-de-dispersion" class="section level2">
-<h2>Diagrama de dispersión</h2>
+<p>##Diagrama de dispersión</p>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
 <pre class="r"><code>plot(pressure)</code></pre>
 <p><img src="regrelineal_files/figure-html/pressure-1.png" width="672" /></p>
-</div>
-<div id="medidas-de-dependencia-lineal" class="section level1">
-<h1><strong>Medidas de dependencia lineal</strong></h1>
-<div id="covarianza" class="section level2">
-<h2><strong>Covarianza</strong></h2>
+<p>#<strong>Medidas de dependencia lineal</strong></p>
+<p>##<strong>Covarianza</strong></p>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
 <p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
@@ -312,9 +404,7 @@ $(document).ready(function () {
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
 <p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
-</div>
-<div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
-<h2>Características del coeficiente de correlación</h2>
+<p>##Características del coeficiente de correlación</p>
 <ul>
 <li><p>Rango entre -1 y 1</p></li>
 <li><p>Valores cercanos a -1 la relación es fuertemente negativa.</p></li>
@@ -322,9 +412,7 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="prueba-de-significancia-de-la-correlacion" class="section level2">
-<h2>Prueba de significancia de la correlación</h2>
+<p>##Prueba de significancia de la correlación</p>
 <p>Podemos chequear la significancia de la correlación a través del siguiente juego de hipótesis.</p>
 <p><span class="math display">\[\Large H_0:  r=0\]</span> <span class="math display">\[\Large H_1:  r\not=0\]</span></p>
 <p>En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.</p>
@@ -339,10 +427,7 @@ $(document).ready(function () {
 <h2><strong>Error de pronóstico medio MAPE</strong></h2>
 <p>Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:</p>
 <p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
-</div>
-<div id="estimador-de-minimos-cuadrados" class="section level2">
-<h2><strong>Estimador de mínimos cuadrados</strong></h2>
-<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
+<p>##<strong>Estimador de mínimos cuadrados</strong> Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
 <p><span class="math display">\[\Large \sum_{i=1}^n(y_i-\hat{y_i})^2=
@@ -351,9 +436,7 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
 <p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="residuales" class="section level2">
-<h2><strong>Residuales</strong></h2>
+<p>##<strong>Residuales</strong></p>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
@@ -364,10 +447,8 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}\]</span></p>
 <p>Se puede demostrar que MSE, es un estimador insesgado de <span class="math inline">\(\Large \sigma^2\)</span> para el modelo de RLS, es decir que:</p>
 <p><span class="math display">\[\Large \sigma^2=MSE\]</span> Además <span class="math display">\[\Large E(MSE)=\sigma\]</span></p>
-<div id="suma-total-de-cuadrados" class="section level3">
-<h3>Suma total de cuadrados</h3>
+<p>###Suma total de cuadrados</p>
 <p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span></p>
-</div>
 </div>
 <div id="suma-cuadratica-de-regresion" class="section level2">
 <h2>Suma cuadrática de regresión</h2>
@@ -386,9 +467,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(\Large MST=\frac{SST}{n-1}\)</span>: Cuadrado medio total</p>
 <p><span class="math inline">\(\Large MSR=\frac{SSR}{1}\)</span>:Cuadrado medio de la regresión</p>
 <p><span class="math inline">\(\Large MSE=\frac{SSE}{n-2}\)</span>: Cuadrado medio del error</p>
-</div>
-<div id="tabla-de-resumen-del-analisis-de-varianza" class="section level2">
-<h2>Tabla de resumen del análisis de varianza</h2>
+<p>##Tabla de resumen del análisis de varianza</p>
 <table>
 <thead>
 <tr class="header">
@@ -423,9 +502,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-</div>
-<div id="prueba-de-significancia-de-la-regresion" class="section level2">
-<h2>Prueba de significancia de la regresión</h2>
+<p>##Prueba de significancia de la regresión</p>
 <p>Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:</p>
 <p>Hipótesis nula: <span class="math inline">\(\Large H_0: \beta_i=0\)</span> el parámetro no es significativo</p>
 <p>Hipótesis alternativa: <span class="math inline">\(\Large H_1: \beta_i \not= 0\)</span>: el parámeto es significativo</p>
@@ -438,10 +515,7 @@ $(document).ready(function () {
 <li><p><span class="math inline">\(\Large \beta_0\)</span> es el intercepto</p></li>
 <li><p><span class="math inline">\(\Large \beta_1\)</span> es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta <span class="math inline">\(\beta_1\)</span> unidades</p></li>
 </ul>
-</div>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
-<p>Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros</p>
+<p>##Ejemplo Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros</p>
 <pre class="r"><code>head(cars)
 #&gt;   speed dist
 #&gt; 1     4    2
@@ -452,7 +526,7 @@ $(document).ready(function () {
 #&gt; 6     9   10</code></pre>
 <p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
 </div>
-<div id="diagrama-de-dispersion-1" class="section level2">
+<div id="diagrama-de-dispersion" class="section level2">
 <h2>Diagrama de dispersión</h2>
 <pre class="r"><code>plot(cars$speed,cars$dist)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
@@ -506,8 +580,7 @@ summary(md)
 j=fitted(md)
 lines(cars$speed,j, col=2, lwd=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div id="anova-del-modelo" class="section level3">
-<h3>anova del modelo</h3>
+<p>###anova del modelo</p>
 <pre class="r"><code>md=lm(cars$dist~cars$speed)
 anova(md)
 #&gt; Analysis of Variance Table
@@ -518,7 +591,6 @@ anova(md)
 #&gt; Residuals  48  11354   236.5                     
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
 </div>
 <div id="modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
 <h2>Modelo de regresión lineal simple en la calculadora</h2>
@@ -531,18 +603,11 @@ anova(md)
 <div id="analisis-de-residuales-para-la-validacion-de-los-supuestos" class="section level2">
 <h2><strong>Análisis de residuales para la validación de los supuestos</strong></h2>
 <p>A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.</p>
-<div id="normalidad-en-los-residuales" class="section level3">
-<h3>Normalidad en los residuales</h3>
-<p>Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:</p>
+<p>###Normalidad en los residuales Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:</p>
 <p><span class="math inline">\(H_o:\)</span>Los residuos son normales</p>
 <p><span class="math inline">\(H_1:\)</span>Los residuos no son normales</p>
-</div>
-<div id="varianza-constante" class="section level3">
-<h3>Varianza constante</h3>
-<p>Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
-</div>
-<div id="otros-diagnosticos" class="section level3">
-<h3>Otros diagnósticos</h3>
+<p>###Varianza constante Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.</p>
+<p>###Otros diagnósticos</p>
 <p>Además de la validación de supuestos debemos chequear la presencia de:</p>
 <ul>
 <li>Observaciones atípicas</li>
@@ -552,12 +617,9 @@ anova(md)
 <p>Para detectar observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.</p>
 <div id="tipos-de-residuales-escalados" class="section level4">
 <h4>Tipos de residuales escalados</h4>
-<div id="residuales-estandarizados-d_i" class="section level5">
-<h5>Residuales estandarizados <span class="math inline">\(d_i\)</span></h5>
-<p>El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen media cero y varianza aproximada de 1:</p>
+<p>#####Residuales estandarizados <span class="math inline">\(d_i\)</span> El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen media cero y varianza aproximada de 1:</p>
 <p><span class="math display">\[\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}\]</span></p>
 <p>Un <span class="math inline">\(d_i\)</span> grande <span class="math inline">\((|di| &gt; 3)\)</span> es indicio de una observación atípica potencial.</p>
-</div>
 <div id="residuales-estudentizados-r_i" class="section level5">
 <h5>Residuales estudentizados <span class="math inline">\(r_i\)</span></h5>
 <p>Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado</p>
@@ -576,20 +638,15 @@ plot(md)</code></pre>
 #&gt; W = 0.94509, p-value = 0.02152</code></pre>
 </div>
 </div>
-</div>
 <div id="transformaciones" class="section level3">
 <h3><strong>Transformaciones</strong></h3>
 <p>En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras.</p>
 <p>Se debe tener cuidado cuando se transforma la variable respuesta,ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.</p>
 <p>Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna transformación resulta útil y/o interpretable, existe otra alternativa, los llamados modelos lineales generalizados con los cuales se pueden modelar respuestas que no se distribuyen normales; sin embargo, tales modelos están más allá del alcance de este curso.</p>
-</div>
-</div>
-<div id="regresion-lineal-multiple" class="section level2">
-<h2>Regresión lineal múltiple</h2>
+<p>##Regresión lineal múltiple</p>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
-<div id="regresion-lineal-con-efectos-de-interaccion" class="section level3">
-<h3><strong>Regresión lineal con efectos de interacción</strong></h3>
+<p>###<strong>Regresión lineal con efectos de interacción</strong></p>
 <p>Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo.</p>
 <p>Por ejemplo, suponga un modelo de regresión con las variables predictoras<span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo corresponde a:</p>
 <p><span class="math display">\[\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i\]</span></p>
@@ -611,8 +668,7 @@ plot(md)</code></pre>
 <li><p><strong>Backward o selección hacia atrás</strong> El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.</p></li>
 <li><p><strong>Stepwise, una combinación de los dos anteriores</strong> La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.</p></li>
 </ul>
-<div id="regresion-lineal-con-variables-continuas" class="section level3">
-<h3><strong>Regresión lineal con variables continuas</strong></h3>
+<p>###<strong>Regresión lineal con variables continuas</strong></p>
 <div id="ejemplo-en-r" class="section level4">
 <h4>Ejemplo en R</h4>
 <p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
@@ -631,6 +687,7 @@ plot(bosque)</code></pre>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
+#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -732,11 +789,7 @@ plot(m1)</code></pre>
 #&gt; Residuals 17  177.4    10.4                      
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-</div>
-<div id="regresion-lineal-con-variables-indicadoras" class="section level3">
-<h3><strong>Regresión lineal con variables indicadoras</strong></h3>
-<p>Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
+<p>###<strong>Regresión lineal con variables indicadoras</strong> Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:</p>
 <p>Estrato 1: <span class="math display">\[ \Large  I_1 =\left\lbrace \begin{array}{rcl}
             {1\quad familia \quad estrato \quad 1}
          \\
@@ -764,26 +817,19 @@ plot(m1)</code></pre>
 <p>En general, una variable cualitativa con c clases se representa mediante c -1 variables indicadoras, puesto que cuando en una observación dada, todas las c -1 primeras indicadoras son iguales a cero, entonces la variable cualitativa se haya en su última clase. En el ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-</div>
-</div>
-<div id="casos-de-regresion-lineal-con-variables-indicadoras" class="section level2">
-<h2><strong>Casos de regresión lineal con variables indicadoras</strong></h2>
-<p>Se desea modelar por regresión lineal la relación de una variable respuesta cuantitativa <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span>, siendo <span class="math inline">\(X_1\)</span> cuantitativa, en presencia de una variable categórica <span class="math inline">\(X_2\)</span>. Es decir, se quiere determinar si la relación lineal entre <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span> depende de la variable categórica <span class="math inline">\(X_2\)</span>. Asumiendo que <span class="math inline">\(X_2\)</span> es observada en c categorías.</p>
+<p>##<strong>Casos de regresión lineal con variables indicadoras</strong></p>
+<p>Se desea modelar por regresión lineal la relación de una variable respuesta cuantitativa <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span>, siendo <span class="math inline">\(X_1\)</span> cuantitativa, en presencia de una variable categórica <span class="math inline">\(X_2\)</span>. Es decir, se quiere determinar si la relación lineal entre <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X_1\)</span> depende de la variable categórica <span class="math inline">\(X_2\)</span>. Asumiendo que <span class="math inline">\(X_2\)</span> es observada en c categorías.</p>
 <p>Podemos considerar las dos siguientes situaciones:</p>
-<div id="caso-1-intercepto-y-pendiente-diferente" class="section level3">
-<h3>Caso 1 Intercepto y pendiente diferente</h3>
+<p>###Caso 1 Intercepto y pendiente diferente</p>
 <p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta <span class="math inline">\(Y\)</span> cambia según la categoría en que <span class="math inline">\(X_2\)</span> sea observada, para lo cual es necesario considerar la interacción entre <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> en el modelo de regresión, y sólo utilizamos c−1 de las posibles variables indicadoras de las categorías de la variable <span class="math inline">\(X_2\)</span>, quedando el modelo:</p>
 <p><span class="math display">\[\large y=\beta_0+ \beta_1X_1+ \overbrace{\beta_2I_1+\beta_3I_2+...\beta_cI_{c-1}}^{Aporte\ variable\ cualitativa\ con\ c-1\ niveles}+\underbrace{\beta_{1,1}X_1I_1+\beta_{1,2}X_1I_2+...+\beta_{1,c-1}X_1I_{c-1}}_{Efecto\ interacción}+\varepsilon_i\]</span></p>
 <p>Observe que la ecuación anterior define c rectas de regresión simple de Y vs <span class="math inline">\(X_1\)</span>, una en cada categoría de la variable cualitativa X2, así:</p>
 <ul>
 <li>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon\]</span></li>
 <li>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon\]</span></li>
-<li>Finalmente, si <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, necesariamente, la indicadora <span class="math inline">\(I_c\)</span> no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente cero, obtenemos la recta de regresión de Y vs. <span class="math inline">\(X_1\)</span>, en la categoría c de la variable categórica X2, de la forma: <span class="math display">\[\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i\]</span></li>
+<li>Finalmente, si <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, necesariamente, la indicadora <span class="math inline">\(I_c\)</span> no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente cero, obtenemos la recta de regresión de Y vs. <span class="math inline">\(X_1\)</span>, en la categoría c de la variable categórica X2, de la forma: <span class="math display">\[\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i\]</span></li>
 </ul>
-</div>
-<div id="caso-2-intercepto-aleatorio" class="section level3">
-<h3>caso 2 Intercepto aleatorio</h3>
-<p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta Y es el mismo en todas las categorías de <span class="math inline">\(X_2\)</span> pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:</p>
+<p>###caso 2 Intercepto aleatorio El efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta Y es el mismo en todas las categorías de <span class="math inline">\(X_2\)</span> pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:</p>
 <p><span class="math display">\[\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ...\beta_cI_{c−1}+\varepsilon_i\]</span> donde el efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta es el mismo sin importar la categoría en que sea observada <span class="math inline">\(X_2\)</span>, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,</p>
 <ul>
 <li><p>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon_i\]</span></p></li>
@@ -791,10 +837,7 @@ plot(m1)</code></pre>
 <li><p>Cuando <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, es decir, <span class="math inline">\(I_c\)</span> = 1, tenemos</p></li>
 </ul>
 <p><span class="math display">\[\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i\]</span></p>
-</div>
-</div>
-<div id="ejemplo-modelo-de-regresion-de-intercepto-aleatorio-conservando-la-misma-pendiente" class="section level2">
-<h2>Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:</h2>
+<p>##Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:</p>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)
 #&gt;   Tree  age circumference
@@ -837,6 +880,7 @@ yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
 </div>
 <div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
 <h2>Significado de la pendiente y el intercepto</h2>
@@ -910,18 +954,6 @@ attach(datos)
 #&gt; The following objects are masked _by_ .GlobalEnv:
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 9):
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 18):
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 25):
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 32):
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)
 #USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
@@ -977,9 +1009,7 @@ abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 #Recta para la sección c
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-</div>
-<div id="modelo-con-rectas-diferentes-solo-en-el-intercepto" class="section level3">
-<h3>MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO</h3>
+<p>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO</p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
 summary(modelo2)
@@ -1022,9 +1052,7 @@ confint(modelo2)
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-</div>
-<div id="comparacion-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad" class="section level3">
-<h3><strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></h3>
+<p>###<strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD</strong></p>
 <p>Considere el MRLM</p>
 <p><span class="math display">\[\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
 <p>Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
@@ -1037,10 +1065,7 @@ legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),p
 <p>NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.</p>
 <p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.</p>
 <p>Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.</p>
-</div>
-</div>
-<div id="ejemplo-retomando-el-ejemplo-de-los-arboles" class="section level2">
-<h2>Ejemplo retomando el ejemplo de los arboles</h2>
+<p>##Ejemplo retomando el ejemplo de los arboles</p>
 <p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
 <p>HT = altura en pies</p>
 <p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>

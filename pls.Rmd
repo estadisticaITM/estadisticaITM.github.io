@@ -1,0 +1,135 @@
+# Regresión de mínimos cuadrados parciales
+
+- La regresión de mínimos cuadrados parciales (PLS) es una técnica que reduce los predictores a un conjunto más pequeño de componentes no correlacionados y realiza una regresión de mínimos cuadrados sobre estos componentes, en lugar de hacerlo sobre los datos originales. 
+
+- Es útil cuando los predictores están altamente correlacionados
+
+- Se utiliza principalmente en la industria química, de medicamentos, de alimentos y de plásticos. Una aplicación común consiste en modelar la relación entre mediciones espectrales (NIR, IR, UV) que incluye muchas variables que suelen estar correlacionadas entre sí, y la composición química u otras propiedades fisioquímicas. 
+
+- En la regresión PLS, el énfasis está en el desarrollo de modelos predictivos. Por lo tanto, no suele utilizarse para descartar variables que no son útiles para explicar la respuesta. 
+
+- En PLS, los componentes se seleccionan de acuerdo con la cantidad de varianza que explican en los predictores. 
+
+- La regresión PLS modela las variables de respuesta de una forma multivariada, los resultados podrían diferir significativamente de los calculados para las variables de respuesta de manera individual. 
+
+
+## ¿Qué es validación cruzada?
+- PLS puede calcular tantos componentes como número de predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva. 
+
+- Si usted calcula todos los componentes posibles, el modelo resultante es equivalente al modelo que obtendría utilizando la regresión de mínimos cuadrados. 
+
+La validación cruzada calcula la capacidad predictiva de los posibles modelos para ayudar a determinar el número adecuado de componentes que se deben conservar en el modelo, uno de los criterios más usados es el 
+
+**Raíz del error cuadrático medio de predicción (RMSEP)** Medida de uso frecuente de las diferencias entre los valores predichos por un modelo o un estimador y los valores observados. 
+
+$$\Large RMSEP=\sqrt{\frac{\sum_{t=1}^{T}(\hat y_t-y_t)^2}{T}}$$
+Donde $\Large\hat {y_t}$ Es la respuesta estimada a partir del modelo.
+$\Large {y_t}$ Es la respuesta observada
+$\Large T$ es el numero de observaciones
+
+## **Ejemplo**
+
+La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:
+
+Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina , fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.
+
+Es decir cada muestra contine 401 medidas 
+
+```{r}
+
+library(pls) 
+
+new=data.frame(t(gasoline))
+new
+
+vec=seq(900,1700,by=2)
+plot(vec,new$X2[-1],type='l')
+lines(vec,new$X1[-1],col=2)
+lines(vec,new$X3[-1],col=3)
+lines(vec,new$X4[-1],col=4)
+lines(vec,new$X5[-1],col=5)
+lines(vec,new$X6[-1],col=6)
+lines(vec,new$X7[-1],col=7)
+lines(vec,new$X8[-1],col=8)
+
+```
+
+
+Para realizar la validación cruzada de este conjunto de datos, se divide la serie en dos subconjuntos, una parte de entrenamiento y otra parte de prueba.
+```{r}
+gasTrain <- gasoline[1:50,]
+gasTest <- gasoline[51:60,]
+```
+
+Para ajustar el modelo de regresión de mínimos cuadrados parciales
+
+```{r}
+gas1 <- plsr(octane ~ NIR, ncomp = 10, data = gasTrain, validation = "LOO")
+
+summary(gas1)
+```
+
+
+
+La validación cruzada del error se hace a través de la siguiente función, donde se relaciona el error con el número de componentes principales, donde se evidencia que es suficiente con dos componentes principales, para reducir el error 
+
+```{r}
+plot(RMSEP(gas1), legendpos = "topright")
+
+```
+
+Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales.
+
+```{r}
+plot(gas1, ncomp = 2, asp = 1, line = TRUE)
+```
+
+Los puntajes de las tres primeras componentes, sirven para detectar patrones, anomalias y puntos atípios que influyen en las estimaciones.
+
+```{r}
+ plot(gas1, plottype = "scores", comps = 1:3)
+```
+
+
+
+
+
+
+La varianza eplicada por cada una de las componentes puede ser extraida mediante:
+
+```{r}
+explvar(gas1)
+```
+
+La grafica de las dos primeras componente estimadas es
+
+```{r}
+plot(gas1, "loadings", comps = 1:2, legendpos = "topleft",
+ labels = "numbers", xlab = "nm")
+ abline(h = 0)
+```
+
+El valor estimado para el vector de prueba, con su respectivo error es:
+
+```{r}
+predict(gas1, ncomp = 2, newdata = gasTest)
+RMSEP(gas1, newdata = gasTest)
+```
+
+
+
+
+
+
+
+## Comparación entre PCA Y PLSR
+
+La diferencia principal entre PCA y PLSR es que PCA usualmente necesita más componentes que PLSR, para lograr la misma predicción del error.
+
+
+
+
+## Bibliografía
+
+https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf
+

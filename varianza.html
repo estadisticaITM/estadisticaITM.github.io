@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -255,15 +352,13 @@ $(document).ready(function () {
 </div>
 
 
-<div id="objetivos-del-diseno-experimental" class="section level2">
-<h2>Objetivos del diseño experimental</h2>
+<p>##Objetivos del diseño experimental</p>
 <ul>
 <li><p>Planear pruebas experimentales, de forma que los datos generados se analicen estadísticamente para obtener conclusiones válidas y objetivas sobre un proceso.</p></li>
 <li><p>Utilizar técnicas estadísticas para manipular un proceso con el fin de obtener la mayor información posible.</p></li>
 <li><p>Determinar qué pruebas y cómo realizarlas, para extraer conclusiones y tomar decisiones sobre un proceso.</p></li>
 </ul>
-<div id="aplicaciones-del-diseno-experimental" class="section level3">
-<h3>Aplicaciones del diseño experimental</h3>
+<p>###Aplicaciones del diseño experimental</p>
 <p><strong>En la industria</strong></p>
 <ul>
 <li><p>Comparar proveedores del mismo material para elegir el que mejor cumple especificaciones.</p></li>
@@ -284,10 +379,7 @@ $(document).ready(function () {
 <li><p>Evaluación de materiales alternativos.</p></li>
 <li><p>Selección de parámetros del diseño para que el producto tenga un buen funcionamiento en una amplia variedad de condiciones de campo.</p></li>
 </ul>
-</div>
-</div>
-<div id="introduccion-al-analisis-de-varianza" class="section level2">
-<h2>Introducción al análisis de varianza</h2>
+<p>##Introducción al análisis de varianza</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:</p>
 <ul>
@@ -316,8 +408,7 @@ $(document).ready(function () {
 <li><p>Reconocer la diferencia entre significancia estadística e importancia práctica: diferencias estadísticas no siempre corresponden a diferencias prácticas de importancia.</p></li>
 <li><p>Preferir la experimentación secuencial que un experimento único y definitivo: La experimentación secuencial alcanza paulatinamente mayor precisión en los conocimientos y soluciones. Seguir una estrategia bien definida y pensada.</p></li>
 </ul>
-<div id="definiciones-del-diseno-experimental" class="section level3">
-<h3>Definiciones del diseño experimental</h3>
+<p>###Definiciones del diseño experimental</p>
 <p><strong>Experimento</strong></p>
 <p>Cambio deliberado en las condiciones de operación de un proceso, con el fin de medir el efecto sobre una o varias propiedades del producto.</p>
 <p><strong>Tratamiento</strong></p>
@@ -421,8 +512,6 @@ $(document).ready(function () {
 <li>Selección del diseño experimental.</li>
 <li>Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).</li>
 </ul>
-</div>
-</div>
 <div id="etapas-del-diseno-experimental" class="section level1">
 <h1>Etapas del diseño experimental</h1>
 <p>Varias preguntas deben resolverse antes de la experimentación:</p>
@@ -434,9 +523,7 @@ $(document).ready(function () {
 <li><p>¿Puede el diseño resultante ser analizado o se pueden hacer las comparaciones deseadas?</p></li>
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="principios-del-diseno" class="section level1">
-<h1><strong>Principios del diseño</strong></h1>
+<p>#<strong>Principios del diseño</strong></p>
 <div id="aleatorizar-para-tener-inferencias-validas" class="section level2">
 <h2><strong>1. Aleatorizar para tener inferencias válidas</strong></h2>
 <p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
@@ -446,9 +533,7 @@ $(document).ready(function () {
 <li><p>Garantiza la independencia de los errores.</p></li>
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="bloqueo" class="section level2">
-<h2><strong>2. Bloqueo</strong></h2>
+<p>##<strong>2. Bloqueo</strong></p>
 <ul>
 <li><p>Mientras más parecidas sean las unidades experimentales, mejor serán las comparaciones entre los tratamientos.</p></li>
 <li><p>En la mayoría de los experimentos es imposible seleccionar todas las unidades experimentales idénticas.</p></li>
@@ -475,15 +560,13 @@ $(document).ready(function () {
 <li>A mayor número de repeticiones mayor precisión</li>
 <li>Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)</li>
 </ul>
-</div>
-</div>
-<div id="analisis-de-varianza-anova" class="section level1">
-<h1><strong>ANALISIS DE VARIANZA ANOVA</strong></h1>
+<p>#<strong>ANALISIS DE VARIANZA ANOVA</strong></p>
 <ul>
 <li><p>Herramienta estadística para estudiar la relación entre una variable respuesta y una o más variables explicatorias.</p></li>
 <li><p>No requiere ningún supuesto acerca de la relación estadística entre la variable respuesta y las predictoras.</p></li>
 <li><p>No requiere que las variables predictoras sean cuantitativas.</p></li>
 </ul>
+</div>
 </div>
 <div id="estructura-de-un-diseno-experimental" class="section level1">
 <h1>Estructura de un diseño experimental</h1>
@@ -500,9 +583,7 @@ $(document).ready(function () {
 <li>Estructura de tratamientos factoriales (dos o más factores)</li>
 <li>Estructura de tratamientos <span class="math inline">\(2^k\)</span> y estructura de tratamientos factoriales fraccionados</li>
 </ul>
-</div>
-<div id="estructura-de-diseno" class="section level2">
-<h2>ESTRUCTURA DE DISEÑO</h2>
+<p>##ESTRUCTURA DE DISEÑO</p>
 <p>Agrupamiento de las unidades experimentales dentro de grupos homogéneos o bloques:</p>
 <ul>
 <li>Diseño completamente aleatorizado</li>
@@ -512,7 +593,7 @@ $(document).ready(function () {
 <table>
 <colgroup>
 <col width="21%" />
-<col width="13%" />
+<col width="12%" />
 <col width="27%" />
 <col width="37%" />
 </colgroup>

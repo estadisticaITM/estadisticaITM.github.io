@@ -22,9 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -114,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -128,7 +130,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -148,6 +149,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -169,18 +207,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -259,10 +356,7 @@ $(document).ready(function () {
 <h2>Regresión lineal</h2>
 <p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.</p>
 <p>El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
-</div>
-<div id="antes-de-hacer-un-modelo-de-regresion-lineal" class="section level2">
-<h2>Antes de hacer un modelo de regresión lineal</h2>
-<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.</p>
+<p>##Antes de hacer un modelo de regresión lineal Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.</p>
 </div>
 <div id="modelo-de-regresion-lineal-basico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
@@ -295,17 +389,12 @@ $(document).ready(function () {
 <li><p>Estimar el precio de una vivienda en función de su área.</p></li>
 <li><p>Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal.</p></li>
 </ul>
-</div>
-<div id="diagrama-de-dispersion" class="section level2">
-<h2>Diagrama de dispersión</h2>
+<p>##Diagrama de dispersión</p>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
 <pre class="r"><code>plot(pressure)</code></pre>
 <p><img src="resión_lineal_básica_files/figure-html/pressure-1.png" width="672" /></p>
-</div>
-<div id="medidas-de-dependencia-lineal" class="section level1">
-<h1>Medidas de dependencia lineal</h1>
-<div id="covarianza" class="section level2">
-<h2>Covarianza</h2>
+<p>#Medidas de dependencia lineal</p>
+<p>##Covarianza</p>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
 <p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span> - Si hay relación lineal positiva, la covarianza será positiva y grande.</p>
 <ul>
@@ -313,15 +402,11 @@ $(document).ready(function () {
 <li><p>Si no hay relación entre las variables la covarianza será próxima a cero.</p></li>
 <li><p>La covarianza depende de las unidades de medida de las variables.</p></li>
 </ul>
-</div>
-<div id="coeficiente-de-correlacion" class="section level2">
-<h2>Coeficiente de correlación</h2>
+<p>##Coeficiente de correlación</p>
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
 <p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
-</div>
-<div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
-<h2>Características del coeficiente de correlación</h2>
+<p>##Características del coeficiente de correlación</p>
 <ul>
 <li><p>Rango entre -1 y 1</p></li>
 <li><p>Valores cercanos a -1 la relación es fuertemente negativa.</p></li>
@@ -340,10 +425,7 @@ $(document).ready(function () {
 <h2>Error de pronóstico medio MAPE</h2>
 <p>Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:</p>
 <p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
-</div>
-<div id="estimador-de-minimos-cuadrados" class="section level2">
-<h2>Estimador de mínimos cuadrados</h2>
-<p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
+<p>##Estimador de mínimos cuadrados Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
 <p><span class="math display">\[\sum_{i=1}^n(y_i-\hat{y_i})^2=
@@ -352,9 +434,7 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
 <p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente <span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
 <p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="residuales" class="section level2">
-<h2>Residuales</h2>
+<p>##Residuales</p>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large \varepsilon_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="resión_lineal_básica_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
@@ -365,9 +445,7 @@ $(document).ready(function () {
 </ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-</div>
-<div id="regresion-lineal-multiple" class="section level2">
-<h2>Regresión lineal múltiple</h2>
+<p>##Regresión lineal múltiple</p>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
 </div>
@@ -489,7 +567,6 @@ summary(model)</code></pre>
 <p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span></p>
 <p>Arbol 2: <span class="math display">\[\Large \hat y_i=57.33+0.1x_{i}\]</span> Arbol 3: <span class="math display">\[\Large \hat y_i=19.92+0.1x_{i}\]</span></p>
 <p>Arbol 4: <span class="math display">\[\Large \hat y_i=9.14+0.1x_{i}\]</span> Arbol 5: <span class="math display">\[\Large \hat y_i=12.71+0.1x_{i}\]</span></p>
-</div>
 </div>
 
 <br>
