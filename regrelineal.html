@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,9 +87,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -102,7 +101,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -207,8 +205,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,20 +261,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -353,7 +346,7 @@ $(document).ready(function () {
 
 
 <p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto. El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
-<div id="modelo-de-regresion-lineal-basico" class="section level2">
+<div id="modelo-de-regresión-lineal-básico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
 <p>El modelo más simple de regresión corresponde a: <span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span></p>
 <p>Donde:</p>
@@ -369,7 +362,7 @@ $(document).ready(function () {
 </p>
 <p><span class="math display">\[\Large \varepsilon_i \sim N (0,\sigma^2)\]</span></p>
 </div>
-<div id="objetivos-de-la-regresion-lineal" class="section level2">
+<div id="objetivos-de-la-regresión-lineal" class="section level2">
 <h2>Objetivos de la regresión lineal</h2>
 <ul>
 <li><p>Construir un modelo que describa el efecto o relación entre una variable X sobre otra variable Y.</p></li>
@@ -399,7 +392,7 @@ $(document).ready(function () {
 <li><p>La covarianza depende de las unidades de medida de las variables.</p></li>
 </ul>
 </div>
-<div id="coeficiente-de-correlacion" class="section level2">
+<div id="coeficiente-de-correlación" class="section level2">
 <h2><strong>Coeficiente de correlación</strong></h2>
 <p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
 <p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
@@ -423,7 +416,7 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}\]</span> Donde</p>
 <p>SSE: es la suma de cuadrados del error SST: suma de cuadrados totales</p>
 </div>
-<div id="error-de-pronostico-medio-mape" class="section level2">
+<div id="error-de-pronóstico-medio-mape" class="section level2">
 <h2><strong>Error de pronóstico medio MAPE</strong></h2>
 <p>Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:</p>
 <p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
@@ -450,7 +443,7 @@ $(document).ready(function () {
 <p>###Suma total de cuadrados</p>
 <p>La medida de variación de y alrededor de la la media muestral <span class="math inline">\(\bar{y}\)</span> es: <span class="math display">\[\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2\]</span></p>
 </div>
-<div id="suma-cuadratica-de-regresion" class="section level2">
+<div id="suma-cuadrática-de-regresión" class="section level2">
 <h2>Suma cuadrática de regresión</h2>
 <p>La diferencia entre la SST y la SSE se denota por:</p>
 <p><span class="math display">\[\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2\]</span></p>
@@ -461,7 +454,7 @@ $(document).ready(function () {
 <p>SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.</p>
 <p>SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.</p>
 </div>
-<div id="medias-cuadraticas" class="section level2">
+<div id="medias-cuadráticas" class="section level2">
 <h2>Medias cuadráticas</h2>
 <p>Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:</p>
 <p><span class="math inline">\(\Large MST=\frac{SST}{n-1}\)</span>: Cuadrado medio total</p>
@@ -526,12 +519,12 @@ $(document).ready(function () {
 #&gt; 6     9   10</code></pre>
 <p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
 </div>
-<div id="diagrama-de-dispersion" class="section level2">
+<div id="diagrama-de-dispersión" class="section level2">
 <h2>Diagrama de dispersión</h2>
 <pre class="r"><code>plot(cars$speed,cars$dist)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="modelo-de-regresion-lineal" class="section level2">
+<div id="modelo-de-regresión-lineal" class="section level2">
 <h2>Modelo de regresión lineal</h2>
 <p>Para este modelo el modelo de regresión lineal es</p>
 <p><span class="math display">\[\Large \hat{y}=-17.57+3.93x\]</span></p>
@@ -592,15 +585,15 @@ anova(md)
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div id="modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
+<div id="modelo-de-regresión-lineal-simple-en-la-calculadora" class="section level2">
 <h2>Modelo de regresión lineal simple en la calculadora</h2>
 </div>
-<div id="como-obtener-un-modelo-de-regresion-lineal-simple-en-la-calculadora" class="section level2">
+<div id="cómo-obtener-un-modelo-de-regresión-lineal-simple-en-la-calculadora" class="section level2">
 <h2>Cómo obtener un modelo de regresión lineal simple en la calculadora</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="analisis-de-residuales-para-la-validacion-de-los-supuestos" class="section level2">
+<div id="análisis-de-residuales-para-la-validación-de-los-supuestos" class="section level2">
 <h2><strong>Análisis de residuales para la validación de los supuestos</strong></h2>
 <p>A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.</p>
 <p>###Normalidad en los residuales Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:</p>
@@ -660,7 +653,7 @@ plot(md)</code></pre>
 <p> Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).</p>
 <p> Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables indicadoras, las cuales toman valores de 0 ó 1.</p>
 </div>
-<div id="procedimientos-de-reduccion-de-variables-mediante-seleccion-automatica" class="section level2">
+<div id="procedimientos-de-reducción-de-variables-mediante-selección-automática" class="section level2">
 <h2><strong>Procedimientos de reducción de variables mediante selección automática</strong></h2>
 <p>Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:</p>
 <ul>
@@ -687,7 +680,6 @@ plot(bosque)</code></pre>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
-#&gt; Warning: package &#39;ppcor&#39; was built under R version 3.5.3
 pcor(bosque)
 #&gt; $estimate
 #&gt;           VOL        DBH        D16         HT
@@ -833,7 +825,7 @@ plot(m1)</code></pre>
 <p><span class="math display">\[\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ...\beta_cI_{c−1}+\varepsilon_i\]</span> donde el efecto promedio de <span class="math inline">\(X_1\)</span> sobre la respuesta es el mismo sin importar la categoría en que sea observada <span class="math inline">\(X_2\)</span>, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,</p>
 <ul>
 <li><p>Si <span class="math inline">\(I_1=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon_i\]</span></p></li>
-<li>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon\]</span></li>
+<li><p>Si <span class="math inline">\(I_2=1\)</span>, entonces el resto de indicadoras son iguales a cero y obtenemos, <span class="math display">\[\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon\]</span></p></li>
 <li><p>Cuando <span class="math inline">\(I_1 = I_2 = · · · I_{c−1} = 0\)</span>, es decir, <span class="math inline">\(I_c\)</span> = 1, tenemos</p></li>
 </ul>
 <p><span class="math display">\[\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i\]</span></p>
@@ -1158,6 +1150,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

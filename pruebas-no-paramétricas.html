@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Pruebas no paramétricas</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-fa-database"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Pruebas no paramétricas</h1>
+
+</div>
+
+
+<p>Gran parte de los procedimientos descritos anteriormente de test de hipótesis, consideran que las observaciones provienen de poblaciones normales. En muchas situaciones este supuesto no se cumple. Una alternativa a la no normalidad de los datos, es proceder a implementar test no paramétricos.</p>
+<div id="pruebas-de-normalidad" class="section level1">
+<h1>Pruebas de normalidad</h1>
+<div id="test-de-kolmogorov-smirnov" class="section level2">
+<h2>Test de Kolmogorov-Smirnov</h2>
+<p>Este test nos permite contrastar si un conjunto de datos muestrales proviene de una población normal. El contraste es el siguiente.</p>
+<p><span class="math display">\[H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad se\quad distribuyen \quad normal\]</span></p>
+<div id="ejemplo-en-r" class="section level3">
+<h3>Ejemplo en R</h3>
+<p>Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.</p>
+<pre class="r"><code>x=rnorm(100,170,8)
+plot(density(x))</code></pre>
+<p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>ks.test(x, &quot;pnorm&quot;,170,8)</code></pre>
+<p>¿Según los criterios vistos en clase cuál es la desición apropiada?</p>
+</div>
+</div>
+<div id="test-de-shapiro-wilk" class="section level2">
+<h2>Test de Shapiro-Wilk</h2>
+<p>También se usa para contrastar normalidad de un conjunto de datos. Ésta es una alternativa más potente que la prueba de Kolmogorov-Smirnov.</p>
+<div id="ejemplo-en-r-1" class="section level3">
+<h3>Ejemplo en R</h3>
+<p>Se mide las concentraciones de cortisol en dos grupos de mujeres antes de dar a luz. Al grupo 1 se le practicó una cesárea de urgencias después de inducido el parto. Las del grupo 2, dieron a luz mediante operación cesárea o vía vaginal después de presentarse el trabajo de parto expontáneamente.</p>
+<ol style="list-style-type: decimal">
+<li>Verifique normalidad en los conjuntos de datos usando α = 0.05.</li>
+<li>Verifique la igualdad de varianzas entre los grupos de datos</li>
+<li>Según la prueba de varianzas, que prueba recomienda para comparar las medias entre los grupos de madres</li>
+</ol>
+<pre class="r"><code>###Ingresamos los datos como vectores de los dos grupos de madres
+
+grupo1=c(411,466,432,409,381,363,449,483,438,381)
+grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)         
+
+
+## Prueba de normalidad
+shapiro.test(grupo1)
+shapiro.test(grupo2)
+
+## Prueba de igualdad entre varinzas
+var.test(grupo1,grupo2)
+
+## prueba de diferencias entre medias
+t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
+</div>
+</div>
+<div id="test-de-mann-whitney-o-prueba-de-wilcoxon" class="section level2">
+<h2>Test de Mann-Whitney o prueba de wilcoxon</h2>
+<p>Es una prueba no paramétrica con la cual se identifican <strong>diferencias entre dos poblaciones</strong> basadas en el análisis de dos muestras independientes. Es la versión no paramétrica del test t-Student de diferencias de medias.</p>
+</div>
+<div id="prueba-de-wilcoxon-en-r" class="section level2">
+<h2>Prueba de wilcoxon en R</h2>
+<p>Los datos siguientes datos corresponden a constantes de permeabilidad de la membrana chorioamnion en humanos (una membrana placentaria) medida a las 12 y 26 semanas de edad gestacional.</p>
+<ol style="list-style-type: decimal">
+<li><p>realice una prueba de normalidad para verificar la normalidad en los conjuntos de datos</p></li>
+<li><p>Asumiendo que los datos no son normales, pruebe aun nivel de significancia de α = 0.05 para chequear la alternativa, mayor permeabilidad de la membrana chorioamnion para el inicio del embarazo.</p></li>
+</ol>
+<pre class="r"><code>x=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+y=c(1.15, 0.88, 0.90, 0.74, 1.21)
+
+# prueba no parametrica dewilcoxon
+wilcox.test(x,y, alternative = &quot;g&quot;)
+
+##PRUEBA DE NORMALIDAD
+shapiro.test(x)
+shapiro.test(y)</code></pre>
+<div id="prueba-t-student-en-r" class="section level3">
+<h3>Prueba t-Student en R</h3>
+<p>Los siguientes datos corresponden al rendimiento por hectárea de cierta nueva variedad de trigo, medido en 9 lotes experimentales:</p>
+<p>3,35; 3,92; 4,26; 3,36; 3,72; 4,19, 3,42; 4,38; 4,5.3</p>
+<ol style="list-style-type: decimal">
+<li><p>Realice una prueba de normalidad sobre el vector de datos</p></li>
+<li><p>Construya un intervalo de confianza al 90% de confianza para el rendimiento promedio de la nueva variedad de trigo si suponemos que el rendimiento por hectárea se distribuye aproximadamente normal.</p></li>
+<li><p>Para la salida de R construya una prueba de hipótesis</p></li>
+<li><p>Verifique la hipótesis que el rendimiento medio es mayor que 4</p></li>
+</ol>
+<pre class="r"><code>#vector de datos
+T&lt;-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
+
+#Prueba de normalidad sobre el vector T
+shapiro.test(T)
+
+#Tabulación de datos
+table(T)
+
+#histograma de los datos
+hist(T,breaks=3,col=4)</code></pre>
+<p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>#gráfico de densidad de dtos
+plot(density(T))</code></pre>
+<p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>##prueba t de dos colas
+t.test(T,conf.level=0.90)
+
+##prueba t de cola superior
+t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
+</div>
+</div>
+<div id="test-de-independencia" class="section level2">
+<h2>Test de independencia</h2>
+<p>Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra. Asuma que <span class="math inline">\(Oij\)</span> es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.</p>
+<p><strong>Prueba de hipótesis</strong> <span class="math display">\[H_0:  \quad Los\quad datos\quad son \quad independientes\]</span> <span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad son \quad independientes\]</span></p>
+<p><strong>Estadístico:</strong></p>
+<p><span class="math display">\[ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}\]</span></p>
+</div>
+<div id="ejemplo-en-r-2" class="section level2">
+<h2>Ejemplo en R:</h2>
+<p>Se usan los datos de la base survey de la librería MASS de R, que corresponden a 237 observaciones provenientes de una encuesta a estudiantes de estadística de una Universidad en Australia.</p>
+<ol style="list-style-type: decimal">
+<li>Valide la hipótesis de si el hábito de fumar es independiente del nivel de ejercicios de los estudiantes usando un nivel de significancia del 0.05.</li>
+</ol>
+<pre class="r"><code>## Para inst lar librerías use
+
+# install.packages(&quot;MASS&quot;)
+
+## Para llamar la librería
+library(MASS)
+
+##la base de datos total corresponde a 
+survey
+
+##Para ver el encabezado de los datos
+head(survey)
+
+
+##Para ver la ultima parte de los datos
+tail(survey)
+
+## Para obtener un resumen de los datos
+summary(survey)
+
+
+## se usan las variables
+## FUMA (Smoke) con los niveles: Heavy, Regul, Occas y Never 
+## EJERCICIO (Exer) con los niveles: Freq, Some, y None
+##se tabulan
+
+tbl=table(survey$Smoke,survey$Exer)
+tbl
+
+chisq.test(tbl)</code></pre>
+<pre><code>## Warning in chisq.test(tbl): Chi-squared approximation may be incorrect</code></pre>
+<pre class="r"><code>#Note que aparece un mensaje de alerta. Esto es debido a que en algunas celdas las
+#frecuencias son muy pequeñas. Podemos solucionar esto agrupando algunas columnas.
+
+ctbl = cbind(tbl[,&quot;Freq&quot;], tbl[,&quot;None&quot;] + tbl[,&quot;Some&quot;])
+ctbl
+
+chisq.test(ctbl)</code></pre>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

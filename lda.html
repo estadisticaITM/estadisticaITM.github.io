@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>lda.utf8.md</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-fa-database"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="análisis-discriminante-lineal" class="section level1">
+<h1>Análisis discriminante lineal</h1>
+<p>El Análisis Discriminante Lineal es un método de clasificación supervisado de variables cualitativas en el que dos o más grupos son conocidos a priori y nuevas observaciones se clasifican en uno de ellos en función de sus características. Es una alternativa a la regresión logística cuando la variable cualitativa tiene más de dos niveles, por ejemplo:</p>
+<ul>
+<li><p>Los sistemas automáticos de concesión de créditos (credit scoring) implantados en instituciones financieras tienen que utilizar variables medibles hoy (ingresos, antigüedad en el trabajo, patrimonio, etc) para prever el comportamiento futuro.</p></li>
+<li><p>La clasificación de estudiantes en desertores en función de sus características, como estrato, carrera, edad.</p></li>
+</ul>
+<div id="el-proceso-de-un-análisis-discriminante-puede-resumirse-en-6-pasos" class="section level2">
+<h2>El proceso de un análisis discriminante puede resumirse en 6 pasos:</h2>
+<ol style="list-style-type: decimal">
+<li><p>Disponer de un conjunto de datos de entrenamiento (training data) en el que se conoce a que grupo pertenece cada observación.</p></li>
+<li><p>Calcular las probabilidades previas (prior probabilities): la proporción esperada de observaciones que pertenecen a cada grupo.</p></li>
+<li><p>Determinar si la varianza o matriz de covarianzas es homogénea en todos los grupos.</p></li>
+<li><p>Estimar los parámetros necesarios para las funciones de probabilidad condicional, verificando que se cumplen las condiciones para hacerlo.</p></li>
+<li><p>Calcular el resultado de la función discriminante. El resultado de esta determina a qué grupo se asigna cada observación.</p></li>
+<li><p>Utilizar validación cruzada (cross-validation) para estimar las probabilidades de clasificaciones erróneas.</p></li>
+</ol>
+</div>
+<div id="teorema-de-bayes-para-clasificación" class="section level2">
+<h2><strong>Teorema de Bayes para clasificación</strong></h2>
+<p>Haciendo uso del teorema de Bayes, Considérese dos eventos A y B, el teorema de Bayes establece:</p>
+<p><span class="math display">\[\Large P(B|A)=\frac{P(A\cap B)}{P(A)}\]</span> LDA estima la probabilidad de que una observación, dado un determinado valor de predictores, pertenezca a cada una de las clases de la variable cualitativa,<span class="math inline">\(\Large P(Y=k|X=x)\)</span>.Finalmente se asigna la observación a la clase k para la que la probabilidad predicha sea mayor.</p>
+<p>Supóngase que se desea clasificar una nueva observación en una de las K clases de una variable cualitativa Y, siendo <span class="math inline">\(\Large K≥2\)</span>, a partir de un solo predictor X. Se dispone de las siguientes definiciones:</p>
+<ul>
+<li>Se define como overall, prior probability o probabilidad previa <span class="math inline">\(\Large(\pi k)\)</span> la probabilidad de que una observación aleatoria pertenezca a la clase k.</li>
+</ul>
+</div>
+<div id="condiciones-de-lda" class="section level2">
+<h2><strong>Condiciones de LDA</strong></h2>
+<p>Las condiciones que se deben cumplir para que un Análisis Discriminante Lineal sea válido son:</p>
+<ul>
+<li><p>Cada predictor que forma parte del modelo se distribuye de forma normal en cada una de las clases de la variable respuesta. En el caso de múltiples predictores, las observaciones siguen una distribución normal multivariante en todas las clases.</p></li>
+<li><p>La varianza del predictor es igual en todas las clases de la variable respuesta. En el caso de múltiples predictores, la matriz de covarianza es igual en todas las clases</p></li>
+<li><p>Cuando la condición de normalidad no se cumple, el LDA pierde precisión pero aun así puede llegar a clasificaciones relativamente buenas.</p></li>
+</ul>
+<p>##<strong>Precisión del LDA</strong></p>
+<p>Se evalua la clasificación resultante, es decir se calcula el porcentaje de aciertos en las clasificaciones. Las matrices de confusión son una de las mejores formas de evaluar la capacidad de acierto que tiene un modelo LDA. Muestran el número de verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos.</p>
+<ul>
+<li><p>Cuando para evaluar el error de clasificación se emplean las mismas observaciones con las que se ha creado el modelo, se obtiene lo que se denomina el training error. Si bien esta es una forma sencilla de estimar la precisión en la clasificación, tiende a ser excesivamente optimista.</p></li>
+<li><p>Es más adecuado evaluar el modelo empleando observaciones nuevas que el modelo no ha visto, obteniendo así el test error.</p></li>
+</ul>
+<p>##<strong>EJEMPLO</strong></p>
+<p>Un equipo de biólogos quiere generar un modelo estadístico que permita identificar a que especie (a o b) pertenece un determinado insecto. Para ello se han medido tres variables (longitud de las patas, diámetro del abdomen y diámetro del órgano sexual) en 10 individuos de cada una de las dos especies.</p>
+<pre class="r"><code>input &lt;- (&quot;
+especie pata abdomen organo_sexual 
+a 191 131 53
+a 185 134 50
+a 200 137 52
+a 173 127 50
+a 171 128 49
+a 160 118 47
+a 188 134 54
+a 186 129 51
+a 174 131 52
+a 163 115 47
+b 186 107 49
+b 211 122 49
+b 201 144 47
+b 242 131 54
+b 184 108 43
+b 211 118 51
+b 217 122 49
+b 223 127 51
+b 208 125 50
+b 199 124 46
+&quot;)
+datos &lt;- read.table(textConnection(input), header = TRUE)</code></pre>
+<p><strong>GRAFICAMENTE</strong></p>
+<pre class="r"><code>par(mfrow=c(1,3))
+
+boxplot(datos$pata~datos$especie)
+boxplot(datos$abdomen~datos$especie)
+boxplot(datos$organo_sexual~datos$especie)</code></pre>
+<p><img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" /> Las patas tienen claramente un comportamiento diferente entre especies</p>
+<pre class="r"><code>plot(datos[-1],col = c(&quot;firebrick&quot;, &quot;green3&quot;)[datos$especie], pch = 19)</code></pre>
+<p><img src="lda_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>El par de variables abdomen-pata y el par pata-organo_sexual parecen separar bien las dos especies.</p>
+</div>
+<div id="prior-probabilities" class="section level2">
+<h2><strong>Prior probabilities</strong></h2>
+<p>Como no se dispone de información sobre la abundancia relativa de las especies a nivel poblacional, se considera como probabilidad previa de cada especie el número de observaciones de la especie entre el número de observaciones totales.</p>
+<p><span class="math display">\[\Large \hat \pi_a=\hat \pi_b=0.5\]</span></p>
+<p>##<strong>Homogeneidad de varianza</strong></p>
+<pre class="r"><code># Representación mediante Histograma de cada variable para cada especie 
+par(mfcol = c(2, 3))
+for (k in 2:4) {
+  j0 &lt;- names(datos)[k]
+  #br0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 11)
+  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
+  for (i in 1:2) {
+    i0 &lt;- levels(datos$especie)[i]
+    x &lt;- datos[datos$especie == i0, j0]
+    hist(x, proba = T, col = grey(0.8), main = paste(&quot;especie&quot;, i0),
+    xlab = j0)
+    lines(x0, dnorm(x0, mean(x), sd(x)), col = &quot;red&quot;, lwd = 2)
+  }
+}</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
+## and only the first element will be used</code></pre>
+<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
+## &gt; 1 and only the first element will be used</code></pre>
+<p><img src="lda_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>##<strong>Prueba de normalidad</strong></p>
+<pre class="r"><code>for (k in 2:4) {
+  j0 &lt;- names(datos)[k]
+  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
+  for (i in 1:2) {
+    i0 &lt;- levels(datos$especie)[i]
+    x &lt;- datos[datos$especie == i0, j0]
+    qqnorm(x, main = paste(&quot;especie&quot;, i0, j0), pch = 19, col = i + 1)
+    qqline(x)
+  }
+}</code></pre>
+<p><img src="lda_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-4.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-5.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-6.png" width="672" /></p>
+<pre class="r"><code># Contraste de normalidad Shapiro-Wilk para cada variable en cada especie
+library(reshape2)
+library(knitr)
+library(dplyr)
+datos_tidy &lt;- melt(datos, value.name = &quot;valor&quot;)</code></pre>
+<pre><code>## Using especie as id variables</code></pre>
+<pre class="r"><code>kable(datos_tidy %&gt;% group_by(especie, variable) %&gt;% summarise(p_value_Shapiro.test = shapiro.test(valor)$p.value))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">especie</th>
+<th align="left">variable</th>
+<th align="right">p_value_Shapiro.test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">pata</td>
+<td align="right">0.7763034</td>
+</tr>
+<tr class="even">
+<td align="left">a</td>
+<td align="left">abdomen</td>
+<td align="right">0.1845349</td>
+</tr>
+<tr class="odd">
+<td align="left">a</td>
+<td align="left">organo_sexual</td>
+<td align="right">0.6430844</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">pata</td>
+<td align="right">0.7985711</td>
+</tr>
+<tr class="odd">
+<td align="left">b</td>
+<td align="left">abdomen</td>
+<td align="right">0.5538213</td>
+</tr>
+<tr class="even">
+<td align="left">b</td>
+<td align="left">organo_sexual</td>
+<td align="right">0.8217855</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>modelo_lda &lt;- lda(formula = especie ~ pata + abdomen + organo_sexual,
+                  data = datos)
+
+summary(modelo_lda)</code></pre>
+<pre><code>##         Length Class  Mode     
+## prior   2      -none- numeric  
+## counts  2      -none- numeric  
+## means   6      -none- numeric  
+## scaling 3      -none- numeric  
+## lev     2      -none- character
+## svd     1      -none- numeric  
+## N       1      -none- numeric  
+## call    3      -none- call     
+## terms   3      terms  call     
+## xlevels 0      -none- list</code></pre>
+<p>Una vez obtenidas las funciones discriminantes, se puede clasificar un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual = 49.</p>
+<pre class="r"><code>nuevas_observaciones &lt;- data.frame(pata = 194, abdomen = 124,
+                                   organo_sexual = 49)
+predict(object = modelo_lda, newdata = nuevas_observaciones)</code></pre>
+<pre><code>## $class
+## [1] b
+## Levels: a b
+## 
+## $posterior
+##            a         b
+## 1 0.05823333 0.9417667
+## 
+## $x
+##         LD1
+## 1 0.5419421</code></pre>
+</div>
+<div id="bibliografia" class="section level2">
+<h2><strong>BIBLIOGRAFIA</strong></h2>
+<ul>
+<li><a href="https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#</a></li>
+</ul>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

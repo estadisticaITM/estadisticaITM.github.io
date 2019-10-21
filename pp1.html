@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,9 +87,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -102,7 +101,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -207,8 +205,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,20 +261,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -352,10 +345,10 @@ $(document).ready(function () {
 </div>
 
 
-<div id="que-es-el-analisis-multivariado" class="section level1">
+<div id="qué-es-el-análisis-multivariado" class="section level1">
 <h1>¿Qué es el análisis multivariado?</h1>
 <p>Es un conjunto de técnicas para analizar simultáneamente más de una variable. Usualmente se limita al análisis de variables continuas bajo el supuesto de que provienen de una distribución normal multivariable. (Aproximación clásica al análisis multivariable).</p>
-<div id="definiciones-basicas" class="section level2">
+<div id="definiciones-básicas" class="section level2">
 <h2>Definiciones Básicas</h2>
 <p><strong>Vector aleatorio:</strong> Contiene la información sobre k variables medidas en un sujeto sacado al azar de una población particular.</p>
 <p><span class="math display">\[\Large
@@ -433,7 +426,7 @@ R=\left( \begin{array}{cccc}
 \end{array} \right) 
 \]</span></p>
 </div>
-<div id="caracteristicas-del-coeficiente-de-correlacion" class="section level2">
+<div id="características-del-coeficiente-de-correlación" class="section level2">
 <h2>Características del coeficiente de correlación</h2>
 <ul>
 <li><p>Rango entre -1 y 1</p></li>
@@ -613,7 +606,7 @@ VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16
 </div>
 </div>
 </div>
-<div id="analisis-exploratorio-de-datos-multivariables" class="section level1">
+<div id="análisis-exploratorio-de-datos-multivariables" class="section level1">
 <h1>Análisis Exploratorio de Datos Multivariables</h1>
 <p>Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables. El objetivo fundamental es <strong>entender</strong> la información que se dispone.</p>
 <p>Podemos decir que el análisis exploratorio de una variable continua se realiza mediante:</p>
@@ -661,6 +654,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

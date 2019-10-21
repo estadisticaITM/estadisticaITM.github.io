@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,9 +87,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -102,7 +101,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -207,8 +205,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,20 +261,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -399,7 +392,7 @@ y_k
 <p><span class="math display">\[\Large z_i=\frac{y_i}{\sqrt \lambda_i}\]</span> con <span class="math inline">\(i=1,...k\)</span> estas variables serán llamadas las componentes principales estandarizadas de x. La varianza de <span class="math inline">\(y_i\)</span> sería</p>
 <p><span class="math display">\[\large var(y_i)=\gamma_i&#39;\sum \gamma_i=\lambda_i\]</span> La covarianza de las variables sería:</p>
 <p><span class="math display">\[\large cov(y_i,y_j)=\gamma_i&#39;\sum \gamma_j=0\]</span></p>
-<div id="cuantas-componentes-conservamos" class="section level2">
+<div id="cuántas-componentes-conservamos" class="section level2">
 <h2><strong>¿Cuántas componentes conservamos?</strong></h2>
 <p>Se recomienda tomar varios aspectos en cuenta:</p>
 <ul>
@@ -410,7 +403,7 @@ y_k
 </div>
 <div id="videos" class="section level2">
 <h2>Videos</h2>
-<div id="explicacion-de-componentes-principales-en-5-minutos" class="section level3">
+<div id="explicación-de-componentes-principales-en-5-minutos" class="section level3">
 <h3>Explicación de componentes principales en 5 minutos</h3>
 <iframe width="280" height="158" src="https://www.youtube.com/embed/HMOI_lkzW08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -583,9 +576,9 @@ biplot(modelo,col=c(2,4))</code></pre>
 <p><span class="math inline">\(\Large Z_4=0.7X_1-0.712X_2\)</span> explicando el 2.1% de la varianza</p>
 <p>Donde <span class="math inline">\(X_1, X_2, X_3, X_4\)</span> corresponden a las intensidades relativas estandarizadas a 300,350, 400 y 450 nm</p>
 </div>
-<div id="interpretacion-de-los-componentes" class="section level2">
+<div id="interpretación-de-los-componentes" class="section level2">
 <h2><strong>INTERPRETACIÓN DE LOS COMPONENTES</strong></h2>
-<div id="componentes-de-tamano-y-forma" class="section level3">
+<div id="componentes-de-tamaño-y-forma" class="section level3">
 <h3>Componentes de tamaño y forma</h3>
 <ul>
 <li><p>Cuando existe una alta correlación positiva entre todas las variables, el primer componente principal tiene todas sus coordenadas del mismo signo y puede interpretarse como un promedio ponderado de todas las variables, interpretadóse como un <strong>factor global de tamaño</strong>.</p></li>
@@ -614,10 +607,8 @@ biplot(modelo,col=c(2,4))</code></pre>
 <li><p>Instalar el paquete HSAUR2</p></li>
 <li><p>Obtener los datos</p></li>
 </ol>
-<pre class="r"><code>library(&quot;HSAUR2&quot;)</code></pre>
-<pre><code>## Warning: package &#39;HSAUR2&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## Loading required package: tools</code></pre>
-<pre class="r"><code>data.frame= heptathlon</code></pre>
+<pre class="r"><code>library(&quot;HSAUR2&quot;)
+data.frame= heptathlon</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>recodificamos las pruebas relativas a las 3 carreras, vallas, 200m y 800m, restando el mayor valor en cada carrera, cada uno de los tiempos de los 35 atletas</li>
 </ol>
@@ -1000,6 +991,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,9 +87,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -102,7 +101,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -207,8 +205,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,20 +261,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -512,7 +505,7 @@ $(document).ready(function () {
 <li>Selección del diseño experimental.</li>
 <li>Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).</li>
 </ul>
-<div id="etapas-del-diseno-experimental" class="section level1">
+<div id="etapas-del-diseño-experimental" class="section level1">
 <h1>Etapas del diseño experimental</h1>
 <p>Varias preguntas deben resolverse antes de la experimentación:</p>
 <ul>
@@ -524,7 +517,7 @@ $(document).ready(function () {
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>#<strong>Principios del diseño</strong></p>
-<div id="aleatorizar-para-tener-inferencias-validas" class="section level2">
+<div id="aleatorizar-para-tener-inferencias-válidas" class="section level2">
 <h2><strong>1. Aleatorizar para tener inferencias válidas</strong></h2>
 <p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
 <ul>
@@ -550,7 +543,7 @@ $(document).ready(function () {
 <li><p>Aplicar aleatorización para nulificar efecto indeseable de factores de ruido: Posible efecto es repartido “equitativamente” en todos los tratamientos, y no se puede medir tal efecto posible. E.j. Variables ambientales, cansancio operadores, calentamiento equipo, variables que en general se mueven solas con el tiempo.</p></li>
 </ul>
 </div>
-<div id="replicar-para-obtener-experimentos-validos" class="section level2">
+<div id="replicar-para-obtener-experimentos-válidos" class="section level2">
 <h2><strong>3. Replicar para obtener experimentos válidos</strong></h2>
 <p>La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:</p>
 <ul>
@@ -568,7 +561,7 @@ $(document).ready(function () {
 </ul>
 </div>
 </div>
-<div id="estructura-de-un-diseno-experimental" class="section level1">
+<div id="estructura-de-un-diseño-experimental" class="section level1">
 <h1>Estructura de un diseño experimental</h1>
 <p>El diseño experimental comprende:</p>
 <ul>
@@ -662,6 +655,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

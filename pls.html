@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,9 +87,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -102,7 +101,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -207,8 +205,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -265,20 +261,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -351,7 +344,7 @@ $(document).ready(function () {
 </div>
 
 
-<div id="regresion-de-minimos-cuadrados-parciales" class="section level1">
+<div id="regresión-de-mínimos-cuadrados-parciales" class="section level1">
 <h1>Regresión de mínimos cuadrados parciales</h1>
 <ul>
 <li><p>La regresión de mínimos cuadrados parciales (PLS) es una técnica que reduce los predictores a un conjunto más pequeño de componentes no correlacionados y realiza una regresión de mínimos cuadrados sobre estos componentes, en lugar de hacerlo sobre los datos originales.</p></li>
@@ -362,7 +355,7 @@ $(document).ready(function () {
 <li><p>En PLS, los componentes se seleccionan de acuerdo con la cantidad de varianza que explican en los predictores.</p></li>
 <li><p>La regresión PLS modela las variables de respuesta de una forma multivariada, los resultados podrían diferir significativamente de los calculados para las variables de respuesta de manera individual.</p></li>
 </ul>
-<div id="teoria" class="section level2">
+<div id="teoría" class="section level2">
 <h2>Teoría</h2>
 <p>En la regresión lineal la solución de mínimos cuadrados para:</p>
 <p><span class="math display">\[\Large Y=XB+\varepsilon\]</span> esá dada por: <span class="math display">\[\Large B=(X^TX)^{-1}X^TY\]</span> Usualmente <span class="math inline">\(\Large X^TX\)</span> es singular, es decir el determinante es igual a cero, ya sea porque el número de variables (columnas) en <span class="math inline">\(\Large X\)</span> excede el número de objetos (filas), o por la colinealidad, es decir alta correlación.</p>
@@ -371,7 +364,7 @@ $(document).ready(function () {
 <p>En PCR, las puntuaciones están dadas por los vectores singulares izquierdos de X, multiplicados por los valores singulares correspondientes, y las cargas son los vectores singulares correctos de X. Sin embargo, esto solo tiene en cuenta la información sobre <span class="math inline">\(\Large X y y\)</span>, por lo tanto, puede ser subóptimo para fines de predicción.</p>
 <p>PLSR tiene como objetivo incorporar información sobre $X $ y <span class="math inline">\(\Large Y\)</span> en la definición de los puntajes y las cargas.</p>
 </div>
-<div id="que-es-validacion-cruzada" class="section level2">
+<div id="qué-es-validación-cruzada" class="section level2">
 <h2>¿Qué es validación cruzada?</h2>
 <ul>
 <li><p>PLS puede calcular tantos componentes como predictores; con frecuencia se utiliza la validación cruzada para identificar el conjunto más pequeño de componentes que provee la mayor capacidad predictiva.</p></li>
@@ -385,7 +378,7 @@ $(document).ready(function () {
 <li>El objetivo es predecir o analizar un conjunto de variables dependientes a partir de un conjunto de variables independientes o predictoras. La predicción se lleva a cabo extrayendo a partir de dichas variables predictoras un conjunto de factores ortogonales llamadas variables latentes (LV), de manera que se construye un modelo de calibración para que tenga la mejor capacidad predictiva al aplicarlo al análisis de muestras diferentes de las utilizadas para la construcción del modelo PLS.</li>
 </ul>
 </div>
-<div id="prediccion-en-regresion-pls" class="section level2">
+<div id="predicción-en-regresión-pls" class="section level2">
 <h2>Predicción en regresión PLS</h2>
 <p>Usted puede usar la predicción en PLS con dos fines principales.</p>
 <p><strong>Probar la calidad de las predicciones</strong></p>
@@ -397,14 +390,9 @@ $(document).ready(function () {
 <p>La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:</p>
 <p>Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina, fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.</p>
 <p>Es decir cada muestra contine 401 medidas</p>
-<pre class="r"><code>library(pls) </code></pre>
-<pre><code>## Warning: package &#39;pls&#39; was built under R version 3.5.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;pls&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     loadings</code></pre>
-<pre class="r"><code>new=data.frame(t(gasoline))
+<pre class="r"><code>library(pls) 
+
+new=data.frame(t(gasoline))
 new</code></pre>
 <pre><code>##                   X1        X2        X3        X4        X5        X6
 ## octane     85.300000 85.250000 88.450000 83.400000 87.900000 85.500000
@@ -658,7 +646,7 @@ summary(gas1)</code></pre>
 ##    10 comps  
 ##      0.6116</code></pre>
 </div>
-<div id="bibliografia" class="section level2">
+<div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>
 <ul>
 <li><p><a href="https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf" class="uri">https://cran.r-project.org/web/packages/pls/vignettes/pls-manual.pdf</a></p></li>
@@ -688,6 +676,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
