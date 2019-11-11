@@ -307,7 +307,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fa fa-fa-database"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
@@ -441,30 +441,6 @@ for (k in 2:4) {
     lines(x0, dnorm(x0, mean(x), sd(x)), col = &quot;red&quot;, lwd = 2)
   }
 }</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
 <p><img src="lda_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>##<strong>Prueba de normalidad</strong></p>
 <pre class="r"><code>for (k in 2:4) {
@@ -481,8 +457,19 @@ for (k in 2:4) {
 <pre class="r"><code># Contraste de normalidad Shapiro-Wilk para cada variable en cada especie
 library(reshape2)
 library(knitr)
-library(dplyr)
-datos_tidy &lt;- melt(datos, value.name = &quot;valor&quot;)</code></pre>
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>datos_tidy &lt;- melt(datos, value.name = &quot;valor&quot;)</code></pre>
 <pre><code>## Using especie as id variables</code></pre>
 <pre class="r"><code>kable(datos_tidy %&gt;% group_by(especie, variable) %&gt;% summarise(p_value_Shapiro.test = shapiro.test(valor)$p.value))</code></pre>
 <table>

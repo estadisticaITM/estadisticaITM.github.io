@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Distribuciones multivariantes</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-pie-chart"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Distribuciones multivariantes</h1>
+
+</div>
+
+
+<div id="distribución-normal-escalar" class="section level2">
+<h2><strong>Distribución normal escalar</strong></h2>
+<p>Distribución continua ampliamente usada, permite modelar numerosos fenómenos naturales, sociales y psicológicos,</p>
+<p><img src="normmulti_files/figure-html/unnamed-chunk-1-1.png" width="768" /></p>
+</div>
+<div id="parámetros-de-la-distribución" class="section level2">
+<h2>Parámetros de la distribución</h2>
+<p>Esta distribución depende de los parámetros de localización y escala, determinados por la media <span class="math inline">\(\mu\)</span> y la desviación estándar <span class="math inline">\(\sigma\)</span>.</p>
+<p><img src="normmulti_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+</div>
+<div id="distribución-de-probabilidad-normal" class="section level2">
+<h2>Distribución de probabilidad normal</h2>
+<p>Una variable aleatoria x se distribuye normal con media <span class="math inline">\(\Large \mu\)</span> y varianza <span class="math inline">\(\Large \sigma^2\)</span>, se denota de la forma</p>
+<p><span class="math display">\[
+\Large X \sim N(\mu,\sigma^2) 
+\]</span></p>
+<p>Con valor esperado y varianza</p>
+<p><span class="math display">\[\Large E(X)=\mu, \quad \sigma^2=var, \quad \sigma=sd\]</span></p>
+</div>
+<div id="función-de-distribución-de-probabilidad-normal" class="section level2">
+<h2>Función de distribución de probabilidad normal</h2>
+<p>La función de distribución de probabilidad está dada por:</p>
+<p><span class="math display">\[
+\Large f(x)=\frac{1}{ \sigma \sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2 \sigma^2} }
+\]</span></p>
+</div>
+<div id="distribución-normal-bivariada" class="section level2">
+<h2><strong>Distribución normal bivariada</strong></h2>
+<p>Sean dos variables aleatorias:</p>
+<p><span class="math inline">\(\Large Y_1\sim N(\mu_1,\sigma_1^2)\)</span></p>
+<p><span class="math inline">\(\Large Y_2\sim N(\mu_2,\sigma_2^2)\)</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(\mu_i\)</span> Corresponde al valor de las medias <span class="math inline">\(\Large \varepsilon\)</span> <span class="math inline">\(\Large \mathbb R^2\)</span></p>
+<p><span class="math inline">\(\sigma_i\)</span> corresponde a las desviaciones estándar con <span class="math inline">\(\sigma_1&gt;0, \sigma_2&gt;0\)</span></p>
+<p><span class="math inline">\(\rho\)</span> corresponde a la correlación entre las variables aleatorias.</p>
+<p><strong>Definición</strong> se dice que el vector continuo <span class="math inline">\((y_1,y_2)\)</span> tiene distribución normal de parámetros <span class="math inline">\(\Large (\mu_1,\sigma_1^2;\mu_2,\sigma_2^2;\rho)\)</span>, con función de densidad:</p>
+<p><span class="math display">\[\Large f(y_1,y_2)=\frac{1}{2\pi\sigma_1 \sigma_2\sqrt {1-\rho^2}}e^{-\frac{1}{1-\rho^2}[\frac{(y_1-\mu_1)^2}{\sigma_1^2}-2\rho\frac{(y_1-\mu_1)(y_2-\mu_2)}{\sigma_1 \sigma_2}+\frac{(y_2-\mu_2)^2}{\sigma-2^2}]}\]</span> Donde la matriz de varianzas y covarianzas está definda como <span class="math inline">\(\Sigma\)</span></p>
+<p><span class="math display">\[\Large \Sigma=var(x,y)=\begin{pmatrix} Var(x) &amp; cov(x,y)  \\ cov(y,x) &amp; var(y) \end{pmatrix}=\begin{pmatrix} \sigma_2^2 &amp; \rho \sigma_1\sigma_2 \\ \rho \sigma_1\sigma_2 &amp; \sigma_1^2 \end{pmatrix}\]</span></p>
+<p>Esta distribución cumple:</p>
+<ol style="list-style-type: decimal">
+<li><p>La matriz <span class="math inline">\(\Large \Sigma\)</span> es simétrica y definida positiva</p></li>
+<li><p><span class="math inline">\(det \Sigma=(1-\rho^2) \sigma_1^2 \sigma_2^2\)</span></p></li>
+<li><p><span class="math display">\[\Sigma^{-1}=\frac{1}{(1-\rho^2) \sigma_1^2 \sigma_2^2}\begin{pmatrix} \sigma_2^2 &amp; -\rho \sigma_1\sigma_2 \\ -\rho \sigma_1\sigma_2 &amp; \sigma_1^2 \end{pmatrix}\]</span></p></li>
+<li><p><span class="math inline">\(\Large Cov(Y_1, Y_2)=\rho \sigma_1 \sigma_2\)</span></p></li>
+<li><p><span class="math inline">\(E(x,y)=(\mu_1,\mu_2)\)</span></p></li>
+</ol>
+<p><img src="normmulti_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>En este gráfico se puede observar que la distribucíon normal bivariada cuando la correlación entre las variables x y Y es cero (ρ=0), la superficie dibuja la clásica campana de gauss, en la posición marcada por el vector de medias de la distribución.</p>
+<p>Distribución Normal Bivariada <span class="math inline">\(\mu=(0,0)\)</span>, <span class="math inline">\(\sigma=(5,5)\)</span>, <span class="math inline">\(cov=12.5\)</span> <span class="math inline">\(\rho=0.5\)</span></p>
+<p><span class="math display">\[\begin{pmatrix}
+ X_1 \\
+ X_2
+\end{pmatrix}  \sim \mathcal{N} \left( \begin{pmatrix}
+ \mu_1 \\
+ \mu_2
+\end{pmatrix} , \begin{pmatrix}
+ \sigma^2_1 &amp;  \rho \sigma_1 \sigma_2 \\
+ \rho \sigma_1 \sigma_2 &amp;  \sigma^2_2
+\end{pmatrix} \right)\]</span></p>
+</div>
+<div id="distribución-normal-multivariada" class="section level1">
+<h1>Distribución normal multivariada</h1>
+<p>La función de densidad normal multivariante se define para k variables aleatorias continuas, <span class="math inline">\(Y_1, Y_2, . . . , Y_k\)</span>.</p>
+<p>Se dice que el vector <span class="math inline">\((X_1,...,X_n)\)</span> tiene una distribución normal multivariada si su función de densidad es:</p>
+<p><span class="math display">\[\large f(\bar x)=\frac{1}{2\pi^{n/2}\sqrt{det \Sigma}}exp(-\frac{1}{2}(\bar x-\bar \mu)\Sigma^{-1}(\bar x-\bar \mu)^t)\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(\bar x = (x_1,...,x_n)\)</span> y <span class="math inline">\(\bar µ = (µ_1,...,µ_n)\)</span> son dos vectores de números reales.</p></li>
+<li><p><span class="math inline">\(\Sigma\)</span> es una matriz de dimensión n×n positiva definida, es decir, <span class="math inline">\(\bar x \Sigma \bar x^t&gt;0\)</span> para cualquier vector <span class="math inline">\(x = (x_1,...,x_n)\)</span> de <span class="math inline">\(\Large \mathbb R^n\)</span>,</p></li>
+<li><p><span class="math inline">\(\Sigma^-1\)</span> es la matriz inversa de <span class="math inline">\(\Sigma\)</span></p></li>
+<li><p>El exponente tiene una distribución muestral conocida <span class="math display">\[(\bar x-\bar \mu)\Sigma^{-1}(\bar x-\bar \mu)^t)\sim \chi^2_k\]</span></p></li>
+</ul>
+<p><strong>Algunas propiedades</strong></p>
+<ul>
+<li><p>Cualquier subconjunto de un vector multinormal tiene una distribución multinormal, si en particular los elementos individuales tienen distribuciones normales univariables.</p></li>
+<li><p>Si C es una matriz de constantes de dimensión <span class="math inline">\(p Xk\)</span>, entonces <span class="math inline">\(C_x \sim N(C\mu;C\Sigma C^t)\)</span></p></li>
+<li><p>Si a es un vector de constantes de dimensión <span class="math inline">\(1xk\)</span>, entonces <span class="math inline">\(a^tx \sim N(a^t\mu; a^t\Sigma a)\)</span></p></li>
+</ul>
+</div>
+<div id="teorema-central-del-límite" class="section level1">
+<h1><strong>Teorema central del límite</strong></h1>
+<p><strong>Versión univariable</strong></p>
+<p>Sea una muestra aleatoria <span class="math inline">\(x_1,...,x_n\)</span> de tamaño n, de variables aleatorias independientes e idénticamente distribuidas, tomada de una distribució con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span>, el media muestral de estas variables aleatorias está dado por:</p>
+<p><span class="math display">\[S_n=\frac{x_1+...+x_n}{n}\]</span> Se establece que en la medida de que n tiende a infinito, la distribución de la diferencia entre la media muestral y su límite cuando se múltiplica por el factor<span class="math inline">\(\sqrt n\)</span>, que es <span class="math inline">\(\sqrt n(S_n-\mu)\)</span> aproxim a la distribución normal con media cero y varianza <span class="math inline">\(\sigma/n\)</span>, es decir</p>
+<p><span class="math display">\[\sqrt n (S_n-\mu)\sim N(0,\sigma^2)\]</span></p>
+<div id="teórema-central-del-límite-multivariable" class="section level2">
+<h2><strong>Teórema central del límite multivariable</strong></h2>
+<p>Sea el vector aleatorio: <span class="math display">\[\bf X_i=\begin{pmatrix} X_{i(1)} \\ 
+\vdots\\
+X_{i(k)} \end{pmatrix}\]</span></p>
+<p>La suma de los vectores aleatorios es:</p>
+<p><span class="math display">\[\begin{pmatrix} X_{1(1)} \\ 
+\vdots\\
+X_{1(k)} \end{pmatrix}+\begin{pmatrix} X_{2(1)} \\ 
+\vdots\\
+X_{2(k)} \end{pmatrix}+\cdots+\begin{pmatrix} X_{n(1)} \\ 
+\vdots\\
+X_{n(k)} \end{pmatrix}=\begin{pmatrix} \sum_{i=1} ^n X_{i(1)} \\ 
+\vdots\\
+\sum_{i=1} ^n X_{i(k)} \end{pmatrix}=\sum_{i=1} ^n X_i\]</span> el promedio es:</p>
+<p><span class="math display">\[\frac{1}{n}\sum_{i=1} ^n \bf X_i=\frac{1}{n}\begin{pmatrix} \sum_{i=1} ^n X_{i(1)} \\ 
+\vdots\\
+\sum_{i=1} ^n X_{i(k)} \end{pmatrix}=\begin{pmatrix} \bar X_{i(1)} \\ 
+\vdots\\
+\bar X_{i(k)} \end{pmatrix}=\bar x_n\]</span></p>
+<p>Por lo tanto</p>
+<p><span class="math display">\[\frac{1}{\sqrt n} \sum_{i=1}^n [X_i-\mu]=\sqrt n(\bar X_i-\mu)\]</span></p>
+<p>El teorema central del límite establece que</p>
+<p><span class="math display">\[\sqrt n(\bar X_n-\mu)\longrightarrow N_k(0,\Sigma)\]</span></p>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
