@@ -1,17 +1,19 @@
-#**Diseño Completamente al Azar (DCA)**
+# **Diseño Completamente al Azar (DCA)**
 
 En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):
 
-- En total se tienen N unidades experimentales (UE) homogéneas (N=tr)
+- En total se tienen N unidades experimentales (UE) homogéneas
 
 - con r Unidades experimentales por cada tratamiento t, distribuidas al azar.
 
+-  En total hay N unidades (N=tr)
 
 Se expresa de la forma:
 $$\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}$$      
 
 
 Donde 
+
 - $\Large Y_{ij}$ es la  Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con  $i=1, 2,...,n$ y $j=1, 2, ..., ni$.
 
 - $\Large \mu$ denota la respuesta global promedio
@@ -19,7 +21,7 @@ Donde
 - $\Large \alpha$ es el efecto del i-ésimo tratamiento sobre el promedio global
 
 
-Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante $\Large  \sigma^2$, es decir:
+Este modelo es conocido como **modelo de efectos de tratamientos**, bajo los supuestos de que el error es una variable aleatoria que se distribuye: Normal, independiente, de media cero y Varianza Constante $\Large  \sigma^2$, es decir:
 
 $$\Large  \varepsilon_i \sim N(0,\sigma^2)$$
 
@@ -28,7 +30,7 @@ $$\Large  \varepsilon_i \sim N(0,\sigma^2)$$
 Por tanto el examen de diferencias entre las medias de tratamiento $\Large \mu_i$ , es equivalente a examinar las diferencias entre los efectos $\alpha_i$, bajo la restricción lineal
 
 $$\Large \sum_{i=1}^n n_i \alpha_i=0$$
- para una solución única del sistema de ecuaciones de mínimos cuadrados.
+para una solución única del sistema de ecuaciones de mínimos cuadrados.
  
  
 **Ventajas**
@@ -54,9 +56,9 @@ $$\Large \sum_{i=1}^n n_i \alpha_i=0$$
  
 - El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.
 
--◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales
+- Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales
 
--◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes. 
+- Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes. 
  
 ```{r fig.asp=0.2, fig.align='center', echo=FALSE}
 library(png)
@@ -102,7 +104,9 @@ Los residuales del modelo corresponden a
 $$\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}$$
 
 
-Las sumas de cuadrados del modelo ANOVA  SST=SSA+SSE
+Las sumas de cuadrados del modelo ANOVA 
+
+$$SST=SSA+SSE$$
 
 - La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por:
 $$\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 $$
@@ -121,6 +125,8 @@ $$\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA
 La prueba de hipótesis asociada al ANOVA esta dado por:
 
 $\Large H_0=\mu_1=\mu_2=...=\mu_i$
+
+
 $\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i$
 
 La tabla anova está definida de la forma
@@ -134,7 +140,7 @@ La tabla anova está definida de la forma
 
 
 
-###Validación de supuestos del modelo ANOVA
+### **Validación de supuestos del modelo ANOVA**
 
 - Normalidad en los errores, el cual se se chequea con la prueba de shapiro  y con el gráfico qq plot
 

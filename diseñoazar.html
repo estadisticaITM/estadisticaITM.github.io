@@ -344,19 +344,22 @@ $(document).ready(function () {
 </div>
 
 
-<p>#<strong>Diseño Completamente al Azar (DCA)</strong></p>
+<div id="diseño-completamente-al-azar-dca" class="section level1">
+<h1><strong>Diseño Completamente al Azar (DCA)</strong></h1>
 <p>En este experimento hay igual número de réplicas por tratamiento, con una asignación aleatoria de los tratamientos a las unidades experimentales. El protocolo descrito por Hinkelman y Kempthorne (1994):</p>
 <ul>
-<li><p>En total se tienen N unidades experimentales (UE) homogéneas (N=tr)</p></li>
+<li><p>En total se tienen N unidades experimentales (UE) homogéneas</p></li>
 <li><p>con r Unidades experimentales por cada tratamiento t, distribuidas al azar.</p></li>
+<li><p>En total hay N unidades (N=tr)</p></li>
 </ul>
 <p>Se expresa de la forma: <span class="math display">\[\Large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\]</span></p>
-<p>Donde - <span class="math inline">\(\Large Y_{ij}\)</span> es la Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con <span class="math inline">\(i=1, 2,...,n\)</span> y <span class="math inline">\(j=1, 2, ..., ni\)</span>.</p>
+<p>Donde</p>
 <ul>
+<li><p><span class="math inline">\(\Large Y_{ij}\)</span> es la Variable aleatoria que representa la respuesta de la j-ésima unidad experimental asignada al i-ésimo tratamiento, con <span class="math inline">\(i=1, 2,...,n\)</span> y <span class="math inline">\(j=1, 2, ..., ni\)</span>.</p></li>
 <li><p><span class="math inline">\(\Large \mu\)</span> denota la respuesta global promedio</p></li>
 <li><p><span class="math inline">\(\Large \alpha\)</span> es el efecto del i-ésimo tratamiento sobre el promedio global</p></li>
 </ul>
-<p>Este modelo es conocido como <strong>modelo de efectos de tratamientos</strong>, bajo los supuestos de que el error es una variable aleatorias que se distribuye: Normal, Independiente, de media cero y Varianza Constante <span class="math inline">\(\Large \sigma^2\)</span>, es decir:</p>
+<p>Este modelo es conocido como <strong>modelo de efectos de tratamientos</strong>, bajo los supuestos de que el error es una variable aleatoria que se distribuye: Normal, independiente, de media cero y Varianza Constante <span class="math inline">\(\Large \sigma^2\)</span>, es decir:</p>
 <p><span class="math display">\[\Large  \varepsilon_i \sim N(0,\sigma^2)\]</span></p>
 <p>Por tanto el examen de diferencias entre las medias de tratamiento <span class="math inline">\(\Large \mu_i\)</span> , es equivalente a examinar las diferencias entre los efectos <span class="math inline">\(\alpha_i\)</span>, bajo la restricción lineal</p>
 <p><span class="math display">\[\Large \sum_{i=1}^n n_i \alpha_i=0\]</span> para una solución única del sistema de ecuaciones de mínimos cuadrados.</p>
@@ -375,10 +378,10 @@ $(document).ready(function () {
 </ul>
 <p><strong>ANOVA PARA EL DISEÑO COMPLETAMENTE ALEATORIZADO (DCA)</strong></p>
 <ul>
-<li>El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.</li>
+<li><p>El objetivo es separar la variación total, es decir la variabilidad debida a los tratamientos y al error.</p></li>
+<li><p>Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales</p></li>
+<li><p>Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes.</p></li>
 </ul>
-<p>-◼ Cuando los tratamientos no dominan contribuyen igual o menos que el error, se concluye que las medias son iguales</p>
-<p>-◼ Cuando los tratamientos predominan “claramente” sobre el error, es cuando se concluye que los tratamientos tienen efecto y las medias son diferentes.</p>
 <p><img src="diseñoazar_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Tabla de entrada de datos</p>
 <table>
@@ -466,7 +469,8 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large \hat {\mu}=\bar{Y}_{\bullet \bullet}=\frac{1}{N}\sum_{i=1}^{a}Y_{i \bullet}\]</span> <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{Y_{i \bullet}}{n_i}\]</span> <span class="math display">\[\Large \hat{\alpha_i}=\bar{Y}_{i \bullet}-\bar{Y}_{\bullet \bullet}\]</span> Las respuestas ajustadas para el tratamiento i es:</p>
 <p><span class="math display">\[\Large \hat{Y}_{ij}= \bar{Y}_{i \bullet}\]</span> Los residuales del modelo corresponden a</p>
 <p><span class="math display">\[\Large \hat \varepsilon_{ij}= Y_{ij}- \bar{Y}_{i \bullet}\]</span></p>
-<p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSE</p>
+<p>Las sumas de cuadrados del modelo ANOVA</p>
+<p><span class="math display">\[SST=SSA+SSE\]</span></p>
 <ul>
 <li>La variabilidad total observada en la respuesta con N-1 grados de libertad está dada por: <span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-N\bar{Y}_{i \bullet}^2 \]</span></li>
 </ul>
@@ -477,7 +481,8 @@ $(document).ready(function () {
 </ul>
 <p><span class="math display">\[\Large SSE=\sum_{i=1}^a \sum_{j=1}^{n_i}(Y_{ij}-\bar{Y}_{i \bullet})^2=SST-SSA\]</span></p>
 <p>La prueba de hipótesis asociada al ANOVA esta dado por:</p>
-<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span> <span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
+<p><span class="math inline">\(\Large H_0=\mu_1=\mu_2=...=\mu_i\)</span></p>
+<p><span class="math inline">\(\Large H_1= \mu_1\not=\mu_2 \not =...\not =\mu_i\)</span></p>
 <p>La tabla anova está definida de la forma</p>
 <table>
 <colgroup>
@@ -520,7 +525,8 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>###Validación de supuestos del modelo ANOVA</p>
+<div id="validación-de-supuestos-del-modelo-anova" class="section level3">
+<h3><strong>Validación de supuestos del modelo ANOVA</strong></h3>
 <ul>
 <li>Normalidad en los errores, el cual se se chequea con la prueba de shapiro y con el gráfico qq plot</li>
 </ul>
@@ -708,6 +714,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+</div>
 <div id="inferencias-para-medias-de-tratamientos-anova-un-factor-dca" class="section level3">
 <h3>INFERENCIAS PARA MEDIAS DE TRATAMIENTOS ANOVA UN FACTOR, DCA</h3>
 <p>Luego de un ANOVA donde se rechazó la hipótesis nula asociada, es necesario determinar cuáles tratamientos son estadísticamente distintos. Para ello, se recurre a diferentes técnicas de comparación de medias de tratamiento:</p>
@@ -1128,6 +1135,7 @@ comp2=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p20 c
 comp3=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p30 con p35&quot;=c(0,0,0,1,-1)),conf=0.95)
 
 rbind(comp1,comp2,comp3)</code></pre>
+</div>
 </div>
 
 <br>
