@@ -12,7 +12,7 @@
 
 
 
-<title>Distribuciones multivariantes</title>
+<title>Distribución normal</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -340,7 +340,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Distribuciones multivariantes</h1>
+<h1 class="title toc-ignore">Distribución normal</h1>
 
 </div>
 
@@ -392,7 +392,7 @@ $(document).ready(function () {
 <li><p><span class="math inline">\(E(x,y)=(\mu_1,\mu_2)\)</span></p></li>
 </ol>
 <p><img src="normmulti_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>En este gráfico se puede observar que la distribucíon normal bivariada cuando la correlación entre las variables x y Y es cero (ρ=0), la superficie dibuja la clásica campana de gauss, en la posición marcada por el vector de medias de la distribución.</p>
+<p>En este gráfico se puede observar que la distribución normal bivariada cuando la correlación entre las variables x y Y es cero (ρ=0), la superficie dibuja la clásica campana de gauss, en la posición marcada por el vector de medias de la distribución.</p>
 <p>Distribución Normal Bivariada <span class="math inline">\(\mu=(0,0)\)</span>, <span class="math inline">\(\sigma=(5,5)\)</span>, <span class="math inline">\(cov=12.5\)</span> <span class="math inline">\(\rho=0.5\)</span></p>
 <p><span class="math display">\[\begin{pmatrix}
  X_1 \\
@@ -427,7 +427,7 @@ $(document).ready(function () {
 <div id="teorema-central-del-límite" class="section level1">
 <h1><strong>Teorema central del límite</strong></h1>
 <p><strong>Versión univariable</strong></p>
-<p>Sea una muestra aleatoria <span class="math inline">\(x_1,...,x_n\)</span> de tamaño n, de variables aleatorias independientes e idénticamente distribuidas, tomada de una distribució con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span>, el media muestral de estas variables aleatorias está dado por:</p>
+<p>Sea una muestra aleatoria <span class="math inline">\(x_1,...,x_n\)</span> de tamaño n, de variables aleatorias independientes e idénticamente distribuidas, tomada de una distribución con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span>, el media muestral de estas variables aleatorias está dado por:</p>
 <p><span class="math display">\[S_n=\frac{x_1+...+x_n}{n}\]</span> Se establece que en la medida de que n tiende a infinito, la distribución de la diferencia entre la media muestral y su límite cuando se múltiplica por el factor<span class="math inline">\(\sqrt n\)</span>, que es <span class="math inline">\(\sqrt n(S_n-\mu)\)</span> aproxim a la distribución normal con media cero y varianza <span class="math inline">\(\sigma/n\)</span>, es decir</p>
 <p><span class="math display">\[\sqrt n (S_n-\mu)\sim N(0,\sigma^2)\]</span></p>
 <div id="teórema-central-del-límite-multivariable" class="section level2">
@@ -450,8 +450,9 @@ X_{n(k)} \end{pmatrix}=\begin{pmatrix} \sum_{i=1} ^n X_{i(1)} \\
 \sum_{i=1} ^n X_{i(k)} \end{pmatrix}=\begin{pmatrix} \bar X_{i(1)} \\ 
 \vdots\\
 \bar X_{i(k)} \end{pmatrix}=\bar x_n\]</span></p>
-<p>Por lo tanto</p>
-<p><span class="math display">\[\frac{1}{\sqrt n} \sum_{i=1}^n [X_i-\mu]=\sqrt n(\bar X_i-\mu)\]</span></p>
+<p>Para estandarizar la variable se hace uso de <span class="math display">\[\Large Z=\frac{X_i-\mu}{\sigma/ \sqrt{n}}\]</span></p>
+<p>lo cual es equivalente a:</p>
+<p><span class="math display">\[\frac{\sqrt n \sum_{i=1}^n [X_i-\mu]}{\sigma}\sim N(0,1)\]</span></p>
 <p>El teorema central del límite establece que</p>
 <p><span class="math display">\[\sqrt n(\bar X_n-\mu)\longrightarrow N_k(0,\Sigma)\]</span></p>
 </div>

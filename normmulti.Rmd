@@ -1,5 +1,5 @@
 ---
-title: "Distribuciones multivariantes"
+title: "Distribución normal"
 output: html_document
 ---
 
@@ -140,7 +140,7 @@ mtext(expression(list(mu[x]==0,mu[y]==0,sigma[x]==5,sigma[y]==5,
                       sigma[xy]==0,rho==0)), side=3)
 ```
 
-En este gráfico se puede observar que la distribucíon normal bivariada cuando la correlación entre las variables x y Y es cero (ρ=0), la superficie dibuja la clásica campana de gauss, en la posición marcada por el vector de medias de la distribución.
+En este gráfico se puede observar que la distribución normal bivariada cuando la correlación entre las variables x y Y es cero (ρ=0), la superficie dibuja la clásica campana de gauss, en la posición marcada por el vector de medias de la distribución.
 
 Distribución Normal Bivariada
 $\mu=(0,0)$, $\sigma=(5,5)$, $cov=12.5$ $\rho=0.5$
@@ -193,7 +193,7 @@ $$(\bar x-\bar \mu)\Sigma^{-1}(\bar x-\bar \mu)^t)\sim \chi^2_k$$
 
 **Versión univariable**
 
-Sea una muestra aleatoria $x_1,...,x_n$ de tamaño n, de variables aleatorias independientes e idénticamente distribuidas, tomada de una distribució con media $\mu$ y varianza $\sigma^2$, el media muestral de estas variables aleatorias está dado por:
+Sea una muestra aleatoria $x_1,...,x_n$ de tamaño n, de variables aleatorias independientes e idénticamente distribuidas, tomada de una distribución con media $\mu$ y varianza $\sigma^2$, el media muestral de estas variables aleatorias está dado por:
 
 $$S_n=\frac{x_1+...+x_n}{n}$$
 Se establece que en la medida de que n tiende a infinito, la distribución de la diferencia entre la media muestral y su límite cuando se múltiplica por el factor$\sqrt n$, que es $\sqrt n(S_n-\mu)$ aproxim a la distribución normal con media cero y varianza $\sigma/n$, es decir
@@ -226,9 +226,13 @@ $$\frac{1}{n}\sum_{i=1} ^n \bf X_i=\frac{1}{n}\begin{pmatrix} \sum_{i=1} ^n X_{i
 \vdots\\
 \bar X_{i(k)} \end{pmatrix}=\bar x_n$$
 
-Por lo tanto
+Para estandarizar la variable se hace uso de 
+$$\Large Z=\frac{X_i-\mu}{\sigma/ \sqrt{n}}$$
 
-$$\frac{1}{\sqrt n} \sum_{i=1}^n [X_i-\mu]=\sqrt n(\bar X_i-\mu)$$
+lo cual es equivalente a:
+
+
+$$\frac{\sqrt n \sum_{i=1}^n [X_i-\mu]}{\sigma}\sim N(0,1)$$
 
 El teorema central del límite establece que
 
