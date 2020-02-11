@@ -9,17 +9,14 @@ title: "Regresión lineal"
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-##Gráfico de densidad 
+## Gráfico de densidad 
 
-Un gráfico de densidad visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un Histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1, como en el histograma.
+Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.
 
 Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.
 
 **Ejemplo**
 comparar la densidad de las alturas de hombres y mujeres.
-
-
-
 
 
 ```{r}
@@ -36,10 +33,24 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 
 
 
-##Gráfico de dipersión
+## Gráfico de dipersión
+
 Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa.
 Sirve para la detección de puntos atípicos.
 
+
+
+
+En el siguiente diagrama se ilustra la presión atmosférica en relación a latemperatura
+```{r pressure, echo = TRUE}
+plot(pressure)
+
+```
+
+
+
+
+En el siguiente diagrama se ilustra el ancho y el largo de la hoja en relación al tipo de planta.
 
 ```{r}
 library(ggplot2)
@@ -52,6 +63,7 @@ p
 ```
 
 ###Actividad
+
 Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes  el tipo de tapa.
 
 |Hojas  |Peso|Tipo de tapa|
@@ -80,8 +92,9 @@ Permite establecer asociaciones entre variables de interés, entre las cuáles l
 
 El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
 
-##Antes de hacer un modelo de regresión lineal
-Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.
+## Antes de hacer un modelo de regresión lineal
+
+ Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión.
 
 ## Modelo de regresión lineal básico
 
@@ -124,17 +137,6 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 - Estimar el precio de una vivienda en función de su área.
 
 - Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
-
-##Diagrama de dispersión
-
-Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.
-
-
-```{r pressure, echo = TRUE}
-plot(pressure)
-
-```
-
 
 
 #Medidas de dependencia lineal

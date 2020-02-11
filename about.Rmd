@@ -34,10 +34,7 @@ En esta sección se muestran algunos de los múltiples usos y aplicaciones que s
 
 
 
-##Una encuesta
-
-
-
+## Encuestador con google 
 
 ```{r echo=FALSE}
 knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
@@ -45,15 +42,33 @@ knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
 ```
 
 
-##Un análisis descriptivo
+## Análisis descriptivo:
 
+Aplicación que estima tamaños de muestra estratificado y realiza análisis descriptivo.
 
 
 ```{r echo=FALSE}
-knitr::include_app("https://trochez.shinyapps.io/APPJOA/",
+knitr::include_app("https://jtrochezg.shinyapps.io/appitmdese/",
                    height = "800px")
 ```
 
+## Análisis de asesorias de SIGA
+
+Aplicación que analiza asesorias de SIGA y realiza análisis descriptivo.
+
+```{r echo=FALSE}
+knitr::include_app("https://jtrochezg.shinyapps.io/ASESORIAS/",
+                   height = "800px")
+```
+
+## Análisis de notas 
+
+Aplicación que estima estadísticas descriptivas de las notas .
+
+```{r echo=FALSE}
+knitr::include_app("https://jtrochezg.shinyapps.io/notasapp/",
+                   height = "800px")
+```
 
 
 ## Ajuste de modelo lineal mixto

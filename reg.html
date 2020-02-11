@@ -345,14 +345,23 @@ $(document).ready(function () {
 </div>
 
 
-<p>##Gráfico de densidad</p>
-<p>Un gráfico de densidad visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un Histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1, como en el histograma.</p>
+<div id="gráfico-de-densidad" class="section level2">
+<h2>Gráfico de densidad</h2>
+<p>Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.</p>
 <p>Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.</p>
 <p><strong>Ejemplo</strong> comparar la densidad de las alturas de hombres y mujeres.</p>
 <p><img src="reg_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>##Gráfico de dipersión Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.</p>
+</div>
+<div id="gráfico-de-dipersión" class="section level2">
+<h2>Gráfico de dipersión</h2>
+<p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.</p>
+<p>En el siguiente diagrama se ilustra la presión atmosférica en relación a latemperatura</p>
+<pre class="r"><code>plot(pressure)</code></pre>
+<p><img src="reg_files/figure-html/pressure-1.png" width="672" /></p>
+<p>En el siguiente diagrama se ilustra el ancho y el largo de la hoja en relación al tipo de planta.</p>
 <p><img src="reg_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>###Actividad Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes el tipo de tapa.</p>
+<p>###Actividad</p>
+<p>Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes el tipo de tapa.</p>
 <table>
 <thead>
 <tr class="header">
@@ -439,11 +448,15 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+</div>
 <div id="regresión-lineal" class="section level2">
 <h2>Regresión lineal</h2>
 <p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.</p>
 <p>El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
-<p>##Antes de hacer un modelo de regresión lineal Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión. Para ello se recurre a un análisis descriptivo a través de boxplots ó diagramas de puntos.</p>
+</div>
+<div id="antes-de-hacer-un-modelo-de-regresión-lineal" class="section level2">
+<h2>Antes de hacer un modelo de regresión lineal</h2>
+<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión.</p>
 </div>
 <div id="modelo-de-regresión-lineal-básico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
@@ -476,10 +489,6 @@ $(document).ready(function () {
 <li><p>Estimar el precio de una vivienda en función de su área.</p></li>
 <li><p>Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal.</p></li>
 </ul>
-<p>##Diagrama de dispersión</p>
-<p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.</p>
-<pre class="r"><code>plot(pressure)</code></pre>
-<p><img src="reg_files/figure-html/pressure-1.png" width="672" /></p>
 <p>#Medidas de dependencia lineal</p>
 <p>##Covarianza</p>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
@@ -571,7 +580,8 @@ $(document).ready(function () {
 <h2>Ejemplo:</h2>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)</code></pre>
-<pre><code>##   Tree  age circumference
+<pre><code>## Grouped Data: circumference ~ age | Tree
+##   Tree  age circumference
 ## 1    1  118            30
 ## 2    1  484            58
 ## 3    1  664            87

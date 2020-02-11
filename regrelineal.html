@@ -805,6 +805,7 @@ lines(cars$speed,j, col=2, lwd=2)</code></pre>
 <p>##Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:</p>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)
+#&gt; Grouped Data: circumference ~ age | Tree
 #&gt;   Tree  age circumference
 #&gt; 1    1  118            30
 #&gt; 2    1  484            58
@@ -911,16 +912,19 @@ summary(model)
 <pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 9):
+#&gt; The following objects are masked from datos (pos = 31):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 16):
+#&gt; The following objects are masked from datos (pos = 38):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 23):
+#&gt; The following objects are masked from datos (pos = 45):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
-#&gt; The following objects are masked from datos (pos = 30):
+#&gt; The following objects are masked from datos (pos = 52):
+#&gt; 
+#&gt;     Publicidad, Seccion, Ventas
+#&gt; The following objects are masked from datos (pos = 59):
 #&gt; 
 #&gt;     Publicidad, Seccion, Ventas
 #&gt; 
