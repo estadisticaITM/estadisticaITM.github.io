@@ -1,5 +1,4 @@
 
-
 ---
 title: "Regresión lineal"
 ---
@@ -9,6 +8,71 @@ title: "Regresión lineal"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+##Gráfico de densidad 
+
+Un gráfico de densidad visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un Histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1, como en el histograma.
+
+Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.
+
+**Ejemplo**
+comparar la densidad de las alturas de hombres y mujeres.
+
+
+
+
+
+```{r}
+library(ggplot2)
+# datos (simulados)
+a <- rbeta(1000, 2, 2)
+b <- rbeta(2000, 2, 5)
+
+tmp <- rbind(data.frame(origen = "a", dato = a), 
+             data.frame(origen = "b", dato = b))
+ggplot(tmp, aes(x = dato, fill = origen)) +
+  geom_density(alpha = 0.3)
+```
+
+
+
+##Gráfico de dipersión
+Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa.
+Sirve para la detección de puntos atípicos.
+
+
+```{r}
+library(ggplot2)
+p <- ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species))
+
+p <- p + geom_point()
+p
+
+
+```
+
+###Actividad
+Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes  el tipo de tapa.
+
+|Hojas  |Peso|Tipo de tapa|
+|-------|----|------------|
+|885 |800 | dura |
+|1016|950 | dura |
+|1125|1050| dura |
+|239 |350 |dura  |
+|701 |750 |dura  |
+|641 |600 |dura  |
+|1228|1075|dura  |
+|412 |250 |blanda|
+|953 |700 |blanda|
+|929 |650 |blanda|
+|1492|975 |blanda|
+|419 |350 |blanda|
+|1010|950 |blanda|
+|595 |425 |blanda|
+|1034|725 |blanda|
+
+
 
 ## Regresión lineal 
 

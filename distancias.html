@@ -484,16 +484,6 @@ $(document).ready(function () {
 <p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
 <p>Calcule la matriz de las distancias</p>
 <p>En R la función dist() es la que estima las distancias entre las filas de una matriz.</p>
-<pre class="r"><code>Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
-amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
-amp_talon=c(5.5,6.1,5.5,5.3,5.7,6.1,5.2,5,6.1,4.7)
-lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
-amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
-
-datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
-
-#matriz de dist
-dist(datos,method = &quot;euclidean&quot;)</code></pre>
 <pre><code>##            1         2         3         4         5         6         7
 ## 2  2.7964263                                                            
 ## 3  1.5779734 4.0187063                                                  
@@ -514,25 +504,9 @@ dist(datos,method = &quot;euclidean&quot;)</code></pre>
 ## 8                     
 ## 9  4.1364236          
 ## 10 2.9647934 1.8601075</code></pre>
-<pre class="r"><code>hc &lt;- hclust(dist(datos), &quot;ave&quot;)
-
-dend1 &lt;- as.dendrogram(hc)
-
-op &lt;- par(mfrow= c(2,2), mar = c(3,3,1,1))
-
-plot(dend1)
-
-plot(dend1, nodePar=list(pch = c(1,NA),cex=0.8),type = &quot;t&quot;, center=TRUE)
-
-plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
-
-plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></pre>
 <p><img src="distancias_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>cutree(hc,k=2)</code></pre>
 <pre><code>##  [1] 1 2 1 1 2 1 2 2 1 1</code></pre>
-<pre class="r"><code>cutree(hc,k=3)</code></pre>
 <pre><code>##  [1] 1 2 3 1 2 3 2 2 3 1</code></pre>
-<pre class="r"><code>by(datos,cutree(hc,k=2),colMeans)</code></pre>
 <pre><code>## cutree(hc, k = 2): 1
 ##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
 ##   25.066667    9.500000    5.533333    3.616667    3.050000 

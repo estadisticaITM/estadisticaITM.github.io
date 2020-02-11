@@ -362,26 +362,6 @@ $(document).ready(function () {
 </ol>
 <p>En cada uno de los ítem analice lo observado.</p>
 <p>Los datos el código corresponde a:</p>
-<pre class="r"><code>library(spftir)
-data(spData)
-
-##Gáfico de perfiles
-
-plot(spData$Wavenumber,spData$A,lwd=1,ylim=c(0,2.3))
-lines(spData$Wavenumber,spData$B,lwd=1,col=3)
-lines(spData$Wavenumber,spData$C,lwd=1,col=2)
-lines(spData$Wavenumber,spData$D,lwd=1,col=4)
-lines(spData$Wavenumber,spData$E,lwd=1,col=5)
-lines(spData$Wavenumber,spData$F,lwd=1,col=6)
-
-#resumen de datos
-summary(spData)
-
-#matriz de correlaciones
-cor(spData[-1])
-
-#Boxplot del tipo de almidón
-boxplot(spData[-1])</code></pre>
 </div>
 <div id="segunda-parte" class="section level1">
 <h1>2. segunda parte</h1>

@@ -708,8 +708,6 @@ $(document).ready(function () {
 <li>Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.</li>
 </ol>
 <p>ANOVA:</p>
-<pre class="r"><code>library(gmodels)
-library(multcomp)</code></pre>
 <pre><code>## Loading required package: mvtnorm</code></pre>
 <pre><code>## Loading required package: survival</code></pre>
 <pre><code>## Loading required package: TH.data</code></pre>
@@ -719,16 +717,6 @@ library(multcomp)</code></pre>
 <pre><code>## The following object is masked from &#39;package:MASS&#39;:
 ## 
 ##     geyser</code></pre>
-<pre class="r"><code>método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
-operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
-tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
-ensamble=data.frame(método,operador,tiempo)
-
-
-
-#Anova
-diseño=aov(tiempo~método+operador)
-anova(diseño)</code></pre>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: tiempo
@@ -745,18 +733,6 @@ anova(diseño)</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey. De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.</li>
 </ol>
-<pre class="r"><code>library(gmodels)
-library(multcomp)
-
-
-
-
-método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
-operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
-tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
-ensamble=data.frame(método,operador,tiempo)
-
-TukeyHSD(diseño,&quot;método&quot;,conf.level=0.95)</code></pre>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -770,7 +746,6 @@ TukeyHSD(diseño,&quot;método&quot;,conf.level=0.95)</code></pre>
 ## C-B  3.75  0.6282013 6.871799 0.0195634
 ## D-B  1.75 -1.3717987 4.871799 0.3548246
 ## D-C -2.00 -5.1217987 1.121799 0.2566550</code></pre>
-<pre class="r"><code>plot(TukeyHSD(diseño,&quot;método&quot;,conf.level = 0.95),cex.lab=0.8,las=1)</code></pre>
 <p><img src="diseñobloque_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>La prueba de hipótesis de interés es:</p>
 <p><span class="math inline">\(\Large H_o=\mu_i=\mu_j\)</span></p>
@@ -782,24 +757,9 @@ grupo 3: métodos A y B.</p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Estime los efectos de cada metodo sobre el tiempo de ensamble. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.</li>
 </ol>
-<pre class="r"><code>library(gmodels)
-library(multcomp)
-
-método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
-operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
-tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
-ensamble=data.frame(método,operador,tiempo)
-attach(ensamble)</code></pre>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
 ## 
 ##     método, operador, tiempo</code></pre>
-<pre class="r"><code>#medias dE tratamientos con sus INTERVALOS
-##divide el marco de datos por método
-met=split(ensamble,método)
-
-##Método A
-metA=met$A
-t.test(metA$tiempo,conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -811,9 +771,6 @@ t.test(metA$tiempo,conf.level = 0.95)</code></pre>
 ## sample estimates:
 ## mean of x 
 ##       7.5</code></pre>
-<pre class="r"><code>##Método B
-metB=met$B
-t.test(metB$tiempo,conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -825,9 +782,6 @@ t.test(metB$tiempo,conf.level = 0.95)</code></pre>
 ## sample estimates:
 ## mean of x 
 ##         9</code></pre>
-<pre class="r"><code>##Método C
-metC=met$C
-t.test(metC$tiempo,conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -839,9 +793,6 @@ t.test(metC$tiempo,conf.level = 0.95)</code></pre>
 ## sample estimates:
 ## mean of x 
 ##     12.75</code></pre>
-<pre class="r"><code>##Método D
-metD=met$D
-t.test(metD$tiempo,conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -856,27 +807,12 @@ t.test(metD$tiempo,conf.level = 0.95)</code></pre>
 <ol start="6" style="list-style-type: lower-alpha">
 <li>Valide supuestos. Use gráficos de residuales estudentizados y test de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?</li>
 </ol>
-<pre class="r"><code>library(gmodels)
-library(multcomp)
-
-método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
-operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
-tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
-ensamble=data.frame(método,operador,tiempo)
-diseño=aov(tiempo~método+operador)
-
-par(mfrow=c(2,2))
-
-plot(diseño)</code></pre>
 <p><img src="diseñobloque_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>residuales=residuals(diseño)
-shapiro.test(residuales)</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuales
 ## W = 0.97299, p-value = 0.8844</code></pre>
-<pre class="r"><code>bartlett.test(tiempo ~ método )</code></pre>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 

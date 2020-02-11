@@ -724,14 +724,21 @@ $(document).ready(function () {
 <li>Comparaciones por contrastes</li>
 <li>Comparaciones de tratamientos con un control</li>
 </ul>
-<p>####<strong>Comparación de medias por medio del intervalo tukey</strong> método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\Large \gamma\)</span> con el valor crítico:</p>
+<div id="comparación-de-medias-por-medio-del-intervalo-tukey" class="section level4">
+<h4><strong>Comparación de medias por medio del intervalo tukey</strong></h4>
+<p>método de comparación de pares de medias que controla la tasa de error experimental, proporciona intervalos de confianza para las diferencias por pares. Este método puede usarse en diseños de bloques completos aleatorizados y diseños de bloques incompletos balanceados. Para un diseño DCA de un solo factor efectos fijos las diferencias absolutas de pares de medias se comparan a un nivel de significancia <span class="math inline">\(\Large \gamma\)</span> con el valor crítico:</p>
 <p><span class="math display">\[\Large T_\gamma=\frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})} \]</span></p>
 <p>Donde:</p>
 <p>$q_(a,gl) $ es el valor crítico del rango estudentizado los cuales se hayan tabulados a son los niveles del factor gl los grados de libertad del MSE. Los pares de medias de tratamientos <span class="math inline">\(\mu_i\)</span> y <span class="math inline">\(\mu_j\)</span> difieren significativamente cuando:</p>
 <p><span class="math display">\[\Large D=|\bar y_{i\bullet}-\bar y_{\bullet j}|&gt;T_\gamma\]</span></p>
 <p>También pueden construirse los I.C de Tukey para las diferencias de medias. Si el cero no pertenece a tal intervalo entonces las dos medias correspondientes son estadísticamente distintas, el intervalo está dado por</p>
 <p><span class="math display">\[\Large \mu_i-\mu_j\quad \epsilon \quad   (\bar y_{i\bullet}-\bar y_{\bullet j})\pm \frac{1}{\sqrt 2} q_\gamma (a,gl)\sqrt{MSE  (\frac{1}{n_i}+\frac{1}{n_j})}\]</span></p>
-<p>#<strong>Ejemplo</strong> Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
+</div>
+</div>
+</div>
+<div id="ejemplo" class="section level1">
+<h1><strong>Ejemplo</strong></h1>
+<p>Un administrador compiló datos sobre mejoramientos de la productividad en los últimos tres años para una muestra de firmas productoras de equipos de computación. Las firmas fueron clasificadas de acuerdo a nivel de sus gastos en investigación y desarrollo en los pasados tres años, en bajo, moderado y alto. Los resultados del estudio sobre la mejora de la productividad (mprod, medida en una escala de 0 a 100) se presentan en la tabla anexa. Asumiendo que un modelo de efectos fijos es apropiado:</p>
 <table>
 <thead>
 <tr class="header">
@@ -821,113 +828,6 @@ $(document).ready(function () {
 <li>Significativamente diferente a los otros dos niveles</li>
 </ol>
 <p>NOTA: En los casos donde aplique exprese apropiadamente la prueba de hipótesis, el estadístico de prueba, el criterio de rechazo.</p>
-<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
-library(gmodels)
-library(multcomp)
-library(car)
-
-diseño=data.frame(ID=factor(c(rep(&quot;alto&quot;,6),rep(&quot;bajo&quot;,9),rep(&quot;medio&quot;,12))),mprod=scan())
-8.5 9.7 10.1 7.8 9.6 9.5
-7.6 8.2 6.8 5.8 6.9 6.6 6.3 7.7 6.0
-6.7 8.1 9.4 8.6 7.8 7.7 8.9 7.9 8.3 8.7 7.1 8.4
-
-
-diseño
-attach(diseño)
-
-
-#CALCULANDO MEDIAS DE TRATAMIENTO PARA LUEGO USAR EN GRÁFICA
-mediasy=sapply(split(mprod,ID),mean)
-
-#BOXPLOTS COMPARATIVOS
-boxplot(mprod~ID,col=c(&quot;gray90&quot;,&quot;orange&quot;,&quot;cyan&quot;))
-lines(1:3,mediasy,col=2,lty=2,type=&quot;b&quot;,pch=3)
-
-#AJUSTE MODELO ANOVA UN FACTOR
-modelo=aov(mprod~ID)
-
-#OBTENIENDO TABLA ANOVA
-anova(modelo) #o bien summary(modelo)
-
-#distribución de los gráficos
-layout(rbind(c(1,1,2,2),c(0,3,3,0)))
-
-
-#OBTENIENDO GRÁFICOS DE RESIDUOS ESTUDENTIZADOS,
-plot(fitted(modelo),rstudent(modelo),cex=2,ylim=c(-2.5,2.5))
-abline(h=c(-2,0,2),col=2)
-plot(as.numeric(ID),rstudent(modelo),ylim=c(-2.5,2.5),pch=1,cex=2,xaxt=&quot;n&quot;)
-axis(1,at=c(1,2,3),labels=levels(ID))
-abline(h=c(-2,0,2),col=2)
-
-
-#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
-test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
-qqnorm(rstudent(modelo),cex=2)
-qqline(rstudent(modelo),col=2)
-legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
-
-#INVOCANDO LA PRUEBA DE BARTLETT
-bartlett.test(mprod~ID)
-
-##de otra forma
-plot(modelo)
-
-#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
-model.tables(modelo,type = &quot;means&quot;,se=TRUE)
-
-
-#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
-model.tables(modelo,type = &quot;effects&quot;,se=TRUE)
-
-mean(mprod)
-
-
-#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
-#CREANDO FUNCIÓN USUARIO mismediastratamientos()
-
-mismediastratamientos=function(modeloanova,nivel=95){
-MSE=anova(modeloanova)[&quot;Mean Sq&quot;][2,]
-df=anova(modeloanova)[&quot;Df&quot;][2,]
-ni=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;n&quot;])
-alfa=1-nivel/100
-alfa.med=(1-(nivel/100))/2
-t=qt(alfa.med,df=df,lower.tail=F)
-medias.tratam=unlist(model.tables(modeloanova,type = &quot;means&quot;)[&quot;tables&quot;])[-1]
-interval=cbind(ni=ni,Medias=medias.tratam,LI=medias.tratam*
-sqrt(MSE/ni),LS=medias.tratam+t*sqrt(MSE/ni))
-cat(&quot;Tabla de medias de tratamientos y sus I.C de&quot;,nivel,&quot;%&quot;,&quot;\n&quot;)
-cat(&quot;alfa&quot;,&quot; &quot;,alfa,&quot;\n&quot;)
-cat(&quot;grados de libertad &quot;,df,&quot;\n&quot;)
-cat(&quot;error cuadrático medio&quot;,MSE,&quot;\n&quot;)
-cat(&quot;valor crítico t &quot;,t,&quot;\n&quot;,&quot;\n&quot;)
-interval
-}
-
-mismediastratamientos(modelo)
-
-#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
-#LA FUNCIÓN fit.contrast requiere la librería gmodels
-efect.alto=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto alto&quot;=c(2/3,-1/3,-1/3)),conf=0.95)
-efect.bajo=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto bajo&quot;=c(-1/3,2/3,-1/3)),conf=0.95)
-efect.medio=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:efecto medio&quot;=c(-1/3,-1/3,2/3)),conf=0.95)
-rbind(efect.alto,efect.bajo,efect.medio)
-
-#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
-TukeyHSD(modelo,conf.level = 0.95)
-plot(TukeyHSD(modelo,conf.level = 0.95))
-
-
-#CÁLCULO DEL CONTRASTE ID: ALTO VS. DEMÁS, TEST T Y I.C DEL 95%:
-#LA FUNCIÓN fit.contrast requiere la librería gmodels
-contraste=fit.contrast(modelo,&quot;ID&quot;,rbind(&quot;:ALTO VS. DEMAS&quot;=c(1,-1/2,-1/2)),conf=0.95)
-contraste
-
-#OTRA FORMA PARA CÁLCULO DEL CONTRASTE ID. ALTO VS. DEMÁS, Y SU I.C DEL 95%
-#LA FUNCIÓN glht REQUIERE LA LIBRERÍA multcomp
-
-contraste=rbind(&quot;alto vs. demás &quot;=c(1,-1/2,-1/2))
-confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
 <p>##<strong>Contrastes</strong></p>
 <p>Un contraste es toda combinación lineal de medias de tratamiento, donde la suma algebraica de sus coeficientes es igual a cero. En general una combinación lineal o contraste es de la forma:</p>
 <p><span class="math display">\[ \Large \Gamma =c_1\mu_1+c_2\mu_2+...+c_t\mu_t=\sum_{i=1}^tc_i\mu_i\]</span> Donde se comple que</p>
@@ -1062,80 +962,6 @@ confint(glht(modelo,linfct=mcp(ID=contrasteb)))</code></pre>
 <ol start="12" style="list-style-type: lower-alpha">
 <li>Diferencias entrelos tratamientos 4 y 5 <span class="math inline">\(\Large H_0= \mu_4-\mu_5=0\)</span> <span class="math inline">\(\Large H_1= \mu_4-\mu_5 \not =0\)</span></li>
 </ol>
-<pre class="r"><code>library(gmodels)
-
-p15=c(7,7,15,11,9)
-p20=c(12,17,12,18,18)
-p25=c(14,18,18,19,19)
-p30=c(19,25,22,19,23)
-p35=c(7,10,11,15,11)
-porcentaje=gl(5,5,labels=c(&quot;p15&quot;,&quot;p20&quot;,&quot;p25&quot;,&quot;p30&quot;,&quot;p35&quot;))
-resistencia=c(p15,p20,p25,p30,p35)
-
-##boxplot
-boxplot(resistencia~porcentaje)
-
-
-##Anova
-anv1=lm(resistencia~porcentaje)
-summary(anv1)
-modelo=aov(resistencia~porcentaje)
-
-##Gráfico de residuales
-par(mfrow=c(2,2))
-plot(modelo)
-
-#TEST DE NORMALIDAD JUNTO CON GRÁFICO DE NORMALIDAD, CON RESIDUOS ESTUDENTIZADOS
-par(mfrow=c(1,1))
-test=shapiro.test(rstudent(modelo)) #Test de normalidad sobre residuales estudentizados
-test
-qqnorm(rstudent(modelo),cex=2)
-qqline(rstudent(modelo),col=2)
-legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
-
-#INVOCANDO LA PRUEBA DE BARTLETT para la homogeneidad de varianza
-bartlett.test(resistencia~porcentaje)
-
-#OBTENIENDO MEDIAS ESTIMADAS POR NIVEL DEL FACTOR
-model.tables(modelo,type = &quot;means&quot;,se=TRUE)
-
-
-#OBTENCIÓN DE MEDIAS DE TRATAMIENTO CON SUS I.C DEL 95%
-#CREANDO FUNCIÓN USUARIO mismediastratamientos()
-t.test(p15,conf.level=0.95)
-t.test(p20,conf.level=0.95)
-t.test(p25,conf.level=0.95)
-t.test(p30,conf.level=0.95)
-t.test(p35,conf.level=0.95)
-
-###Prueba de intervalos tukey 
-#TEST DE TUKEY PARA COMPARACIÓN DE MEDIAS DE TRATAMIENTO
-TukeyHSD(modelo,conf.level = 0.95)
-plot(TukeyHSD(modelo,conf.level = 0.95))
-
-#ESTIMACIÓN DE LOS EFECTOS PRINCIPALES:
-model.tables(modelo,type = &quot;effects&quot;,se=TRUE)
-
-#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
-#LA FUNCIÓN fit.contrast requiere la librería gmodels
-efect.p15=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:p15&quot;=c(4/4,-1/4,-1/4,-1/4,-1/4)),conf=0.95)
-efect.p20=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:p20&quot;=c(-1/4,4/4,-1/4,-1/4,-1/4)),conf=0.95)
-efect.p25=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:p25&quot;=c(-1/4,-1/4,4/4,-1/4,-1/4)),conf=0.95)
-efect.p30=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:p30&quot;=c(-1/4,-1/4,-1/4,4/4,-1/4)),conf=0.95)
-efect.p35=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:p35&quot;=c(-1/4,-1/4,-1/4,-1/4,4/4)),conf=0.95)
-
-rbind(efect.p15,efect.p20,efect.p25,efect.p30,efect.p35)
-
-#CÁLCULO DE LOS EFECTOS, SUS TESTES T Y I.C DEL 95%:
-#LA FUNCIÓN fit.contrast requiere la librería gmodels
-
-
-comp1=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p15 con p20 y p30 con p35&quot;=c(1/2,1/2,0,-1/2,-1/2)),conf=0.95)
-comp2=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p20 con p25&quot;=c(0,-1/2,1/2,0,0)),conf=0.95)
-comp3=fit.contrast(modelo,&quot;porcentaje&quot;,rbind(&quot;:comparación p30 con p35&quot;=c(0,0,0,1,-1)),conf=0.95)
-
-rbind(comp1,comp2,comp3)</code></pre>
-</div>
 </div>
 
 <br>

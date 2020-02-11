@@ -1074,128 +1074,13 @@ $(document).ready(function () {
 <ol start="8" style="list-style-type: decimal">
 <li>Valide supuestos sobre los errores del modelo (varianza cte. y normalidad)</li>
 </ol>
-<pre class="r"><code>shapiro.test(residuals(model))</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model)
 ## W = 0.96922, p-value = 0.2712</code></pre>
-<pre class="r"><code>nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
-
-plot(fitted(model),rstudent(model),cex=2,main=&quot;Residuales estudentizados vs. valores ajustados&quot;,xlab=&quot;Valores ajustados&quot;)
-abline(h=c(-2,0,2),col=2)
-
-plot(as.numeric(marca),rstudent(model),main=&quot;Residuales estudentizados vs. marca&quot;,xlab=&quot;marca&quot;)
-abline(h=c(-2,0,2),col=2)
-
-plot(as.numeric(tecnico),rstudent(model),cex=2, main=&quot;Residuales estudentizados vs. técnico&quot;,xlab=&quot;técnico&quot;)
-abline(h=c(-2,0,2),col=2)
-
-qqnorm(residuals(model),cex=2)
-qqline(residuals(model),col=2)</code></pre>
-<p><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre class="r"><code>plot(model)</code></pre>
-<p><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p><strong>Código gerneral</strong></p>
-<pre class="r"><code>##Análisis descriptivo de los datos
-tecnico=factor(rep(c(1,2,3),each=5,times=3))
-marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
-tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,   53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
-
-base=data.frame(marca,tecnico,tiempo)  
-attach(base)
-
-##Medias por tratamiento
-mediastécnico=sapply(split(tiempo,tecnico),mean)
-mediasmarca=sapply(split(tiempo,marca),mean)
-
-##graficos
-##Gráficos de interacción
-par(mfrow=c(1,2))
-interaction.plot(tecnico,marca,tiempo,type=&quot;b&quot;,pch=c(1,2,3),col=c(&quot;black&quot;,&quot;blue&quot;,&quot;red&quot;),lwd=2)
-interaction.plot(marca,tecnico,tiempo,type=&quot;b&quot;,pch=c(1,2,3),col=c(&quot;black&quot;,&quot;blue&quot;,&quot;red&quot;),lwd=2)
-
-##Gráficos boxplot
-boxplot(tiempo~tecnico)
-boxplot(tiempo~marca)
-
-##medias por combinación de tratamiento
-aggregate(tiempo ~ marca+tecnico, FUN = mean)
-
-
-#modelo de análisis de varianza 
-
-model=aov(tiempo~marca*tecnico)
-
-summary(model)
-
-
-#iNTERVALOS tukey de medias
-
-TukeyHSD(model,&quot;marca:tecnico&quot;,conf.level=0.95)
-
-plot(TukeyHSD(model,conf.level = 0.95))
-
-##cOMPARACIÓN DE MEDIAS POR CADANIVELDE TRATAMIENTO
-
-
-tecnico=factor(rep(c(1,2,3),each=5,times=3))
-marca=factor(c(rep(1,15),rep(2,15),rep(3,15)))
-tiempo=c(62,48,63,57,69,51,57,45,50,39,59,65,55,52,70,57,45,39,54,44,61,58,70,66,51,58,63,70,53,60,59,53,67,66,47,55,58,50,69,49,47,56,51,44,50)
-
-base=data.frame(marca,tecnico,tiempo)  
-attach(base)
-
-model=aov(tiempo~marca*tecnico)
-
-MSE=anova(model)[3][4,]
-dftecnico=length(levels(tecnico))-1
-dfmarca=length(levels(marca))-1
-dferror=anova(model)[1][4,]
-
-# Anova del factor técnico en cada nivel de marca
-Técnicos.marca1=anova(aov(tiempo~tecnico,data=base[marca==1,]))
-Técnicos.marca2=anova(aov(tiempo~tecnico,data=base[marca==2,]))
-Técnicos.marca3=anova(aov(tiempo~tecnico,data=base[marca==3,]))
-
-
-Comp_técnicos_en_marca=rbind(&quot;En Marca1&quot;=Técnicos.marca1[1:3][1,],
-&quot;En Marca2&quot;=Técnicos.marca2[1:3][1,],&quot;En Marca3&quot;=Técnicos.marca3[1:3][1,])
-
-F0_técnicos=data.frame(Comp_técnicos_en_marca[3]/MSE)
-names(F0_técnicos)[1]=&quot;F0&quot;
-
-pv=data.frame(&quot;P.Value&quot;=pf(F0_técnicos[,1],dftecnico,dferror,lower.tail=F))
-
-Slice_técnicos_por_marca=cbind(Comp_técnicos_en_marca,F0_técnicos,pv)
-cat(&quot;Efectos Técnico*Marca sobre respuesta Tiempo particionados por
-Marca&quot;,&quot;\n&quot;)
-
-Slice_técnicos_por_marca
-
-
-#Anova del factor marca en cada nivel de tecnico
-
-marcas.tec1=anova(aov(tiempo~marca,data=base[tecnico==1,]))
-marcas.tec2=anova(aov(tiempo~marca,data=base[tecnico==2,]))
-marcas.tec3=anova(aov(tiempo~marca,data=base[tecnico==3,]))
-
-
-Comp_marcas_en_Tec=rbind(&quot;En Técnico1&quot;=marcas.tec1[1:3][1,],
-&quot;En Técnico2&quot;=marcas.tec2[1:3][1,],&quot;En Técnico3&quot;=marcas.tec3[1:3][1,])
-
-
-F0_marcas=data.frame(Comp_marcas_en_Tec[3]/MSE)
-names(F0_marcas)[1]=&quot;F0&quot;
-
-pv=data.frame(&quot;P.Value&quot;=pf(F0_marcas[,1],dfmarca,dferror,lower.tail=F))
-
-Slice_marcas_por_Técnico=cbind(Comp_marcas_en_Tec,F0_marcas,pv)
-cat(&quot;Efectos Técnico*Marca sobre respuesta Tiempo particionados por
-Técnico&quot;,&quot;\n&quot;);Slice_marcas_por_Técnico
-
-
-Slice_marcas_por_Técnico</code></pre>
 <p><strong>Ejemplo de un diseño con tres factores de efectos fijos </strong></p>
 </div>
 

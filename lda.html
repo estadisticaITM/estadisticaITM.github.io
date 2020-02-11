@@ -387,38 +387,7 @@ $(document).ready(function () {
 </ul>
 <p>##<strong>EJEMPLO</strong></p>
 <p>Un equipo de biólogos quiere generar un modelo estadístico que permita identificar a que especie (a o b) pertenece un determinado insecto. Para ello se han medido tres variables (longitud de las patas, diámetro del abdomen y diámetro del órgano sexual) en 10 individuos de cada una de las dos especies.</p>
-<pre class="r"><code>input &lt;- (&quot;
-especie pata abdomen organo_sexual 
-a 191 131 53
-a 185 134 50
-a 200 137 52
-a 173 127 50
-a 171 128 49
-a 160 118 47
-a 188 134 54
-a 186 129 51
-a 174 131 52
-a 163 115 47
-b 186 107 49
-b 211 122 49
-b 201 144 47
-b 242 131 54
-b 184 108 43
-b 211 118 51
-b 217 122 49
-b 223 127 51
-b 208 125 50
-b 199 124 46
-&quot;)
-datos &lt;- read.table(textConnection(input), header = TRUE)</code></pre>
-<p><strong>GRAFICAMENTE</strong></p>
-<pre class="r"><code>par(mfrow=c(1,3))
-
-boxplot(datos$pata~datos$especie)
-boxplot(datos$abdomen~datos$especie)
-boxplot(datos$organo_sexual~datos$especie)</code></pre>
-<p><img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" /> Las patas tienen claramente un comportamiento diferente entre especies</p>
-<pre class="r"><code>plot(datos[-1],col = c(&quot;firebrick&quot;, &quot;green3&quot;)[datos$especie], pch = 19)</code></pre>
+<p><strong>GRAFICAMENTE</strong> <img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" /> Las patas tienen claramente un comportamiento diferente entre especies</p>
 <p><img src="lda_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>El par de variables abdomen-pata y el par pata-organo_sexual parecen separar bien las dos especies.</p>
 </div>
@@ -427,37 +396,9 @@ boxplot(datos$organo_sexual~datos$especie)</code></pre>
 <p>Como no se dispone de información sobre la abundancia relativa de las especies a nivel poblacional, se considera como probabilidad previa de cada especie el número de observaciones de la especie entre el número de observaciones totales.</p>
 <p><span class="math display">\[\Large \hat \pi_a=\hat \pi_b=0.5\]</span></p>
 <p>##<strong>Homogeneidad de varianza</strong></p>
-<pre class="r"><code># Representación mediante Histograma de cada variable para cada especie 
-par(mfcol = c(2, 3))
-for (k in 2:4) {
-  j0 &lt;- names(datos)[k]
-  #br0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 11)
-  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 &lt;- levels(datos$especie)[i]
-    x &lt;- datos[datos$especie == i0, j0]
-    hist(x, proba = T, col = grey(0.8), main = paste(&quot;especie&quot;, i0),
-    xlab = j0)
-    lines(x0, dnorm(x0, mean(x), sd(x)), col = &quot;red&quot;, lwd = 2)
-  }
-}</code></pre>
 <p><img src="lda_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>##<strong>Prueba de normalidad</strong></p>
-<pre class="r"><code>for (k in 2:4) {
-  j0 &lt;- names(datos)[k]
-  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 &lt;- levels(datos$especie)[i]
-    x &lt;- datos[datos$especie == i0, j0]
-    qqnorm(x, main = paste(&quot;especie&quot;, i0, j0), pch = 19, col = i + 1)
-    qqline(x)
-  }
-}</code></pre>
 <p><img src="lda_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-4.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-5.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-6.png" width="672" /></p>
-<pre class="r"><code># Contraste de normalidad Shapiro-Wilk para cada variable en cada especie
-library(reshape2)
-library(knitr)
-library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:MASS&#39;:
@@ -469,9 +410,7 @@ library(dplyr)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>datos_tidy &lt;- melt(datos, value.name = &quot;valor&quot;)</code></pre>
 <pre><code>## Using especie as id variables</code></pre>
-<pre class="r"><code>kable(datos_tidy %&gt;% group_by(especie, variable) %&gt;% summarise(p_value_Shapiro.test = shapiro.test(valor)$p.value))</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -513,10 +452,6 @@ library(dplyr)</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>modelo_lda &lt;- lda(formula = especie ~ pata + abdomen + organo_sexual,
-                  data = datos)
-
-summary(modelo_lda)</code></pre>
 <pre><code>##         Length Class  Mode     
 ## prior   2      -none- numeric  
 ## counts  2      -none- numeric  
@@ -529,9 +464,6 @@ summary(modelo_lda)</code></pre>
 ## terms   3      terms  call     
 ## xlevels 0      -none- list</code></pre>
 <p>Una vez obtenidas las funciones discriminantes, se puede clasificar un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual = 49.</p>
-<pre class="r"><code>nuevas_observaciones &lt;- data.frame(pata = 194, abdomen = 124,
-                                   organo_sexual = 49)
-predict(object = modelo_lda, newdata = nuevas_observaciones)</code></pre>
 <pre><code>## $class
 ## [1] b
 ## Levels: a b

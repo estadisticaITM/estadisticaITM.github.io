@@ -537,36 +537,20 @@ R=\left( \begin{array}{cccc}
 <p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo grande</p>
 <p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
 <p>En R</p>
-<pre class="r"><code>Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
-amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
-amp_talon=c(5.5,6.1,5.5,5.3,5.7,6.1,5.2,5,6.1,4.7)
-lon_dedgran=c(3,3.2,4,3.5,3.1,4.3,3.9,3.2,3.3,3.6)
-amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
-
-datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
-boxplot(datos)</code></pre>
 <p><img src="pp1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>vectmed=apply(datos,2,mean)
-
-##Matriz de varianzas y covarianzas
-round(var(datos),2)</code></pre>
 <pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
 ## Long_pie        2.94    0.83      0.16        0.37       0.42
 ## amp_pie         0.83    0.33     -0.03        0.08       0.09
 ## amp_talon       0.16   -0.03      0.24        0.01       0.07
 ## lon_dedgran     0.37    0.08      0.01        0.19       0.06
 ## amp_degran      0.42    0.09      0.07        0.06       0.10</code></pre>
-<pre class="r"><code>###Matriz de correlaciones
-round(cor(datos),4)*100</code></pre>
 <pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
 ## Long_pie      100.00   85.07     19.56       49.98      76.00
 ## amp_pie        85.07  100.00     -9.58       31.41      48.14
 ## amp_talon      19.56   -9.58    100.00        2.53      44.61
 ## lon_dedgran    49.98   31.41      2.53      100.00      44.38
 ## amp_degran     76.00   48.14     44.61       44.38     100.00</code></pre>
-<pre class="r"><code>plot(datos)</code></pre>
 <p><img src="pp1_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<pre class="r"><code>summary(datos)</code></pre>
 <pre><code>##     Long_pie        amp_pie         amp_talon      lon_dedgran   
 ##  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000  
 ##  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225   1st Qu.:3.200  
@@ -596,13 +580,6 @@ round(cor(datos),4)*100</code></pre>
 <li><p>Resumen de las medidas</p></li>
 <li><p>Grafico de dispersión</p></li>
 </ul>
-<pre class="r"><code>DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
-
-D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
-
-HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
-
-VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)</code></pre>
 </div>
 </div>
 </div>

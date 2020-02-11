@@ -456,36 +456,6 @@ $(document).ready(function () {
 <li><p>Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RINF). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.</p></li>
 </ol>
 <p><strong>Ayuda R para la Parte II </strong> (complete la programación, donde sea necesario).</p>
-<pre class="r"><code>library(car)
-library(perturb)
-library(leaps)
-
-
-
-#LEER DATOS EN APC1modif.TXT
-#datos=read.table(file.choose(),header=T)
-#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
-names(datos)
-#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
-datos3=datos[-c(47,112),]
-attach(datos3)
-
-###REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
-#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
-#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
-REGION=as.factor(REGION)
-REGION=relevel(REGION,ref=&quot;4&quot;)
-#AJUSTANDO MODELO GENERAL
-modeloRINF=lm(DPERM~RINF*REGION)
-summary(modeloRINF)
-
-#REALIZACI´ON DEL TEST LINEAL GENERAL PEDIDO EN 7.
-library(car)
-names(coef(modeloRINF)) 
-
-#Observe nombre de los términos en modeloRINF a ser
-#usados en la especificación del test lineal
-linearHypothesis(modeloRINF,c(&quot;REGION2=REGION3&quot;,&quot;RINF:REGION2=RINF:REGION3&quot;))</code></pre>
 </div>
 <div id="parte-ii-tema-b" class="section level1">
 <h1>Parte II (TEMA B)</h1>
@@ -496,20 +466,6 @@ linearHypothesis(modeloRINF,c(&quot;REGION2=REGION3&quot;,&quot;RINF:REGION2=RIN
 <li><p>Realice el grafico de dispersión con las líneas rectas estimadas</p></li>
 <li><p>Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RINF). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.</p></li>
 </ol>
-<pre class="r"><code>#LEER DATOS EN APC1modif.TXT
-datos=read.table(file.choose(),header=T)
-#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
-names(datos)
-#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
-datos3=datos[-c(47,112),]
-attach(datos3)
-#REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
-#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
-#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
-REGION=as.factor(REGION)
-REGION=relevel(REGION,ref=&quot;4&quot;)
-modeloPDP=lm(DPERM~PDP*REGION)
-summary(modeloPDP)</code></pre>
 </div>
 <div id="parte-ii-tema-c" class="section level1">
 <h1>Parte II (TEMA C)</h1>
@@ -520,24 +476,6 @@ summary(modeloPDP)</code></pre>
 <li><p>Realice el grafico de dispersión con las líneas rectas estimadas</p></li>
 <li><p>Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RRX). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.</p></li>
 </ol>
-<pre class="r"><code>library(car)
-library(perturb)
-library(leaps)
-
-#LEER DATOS EN APC1modif.TXT
-datos=read.table(file.choose(),header=T)
-#CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
-names(datos)
-#CREANDO UN MARCO DE DATOS EXCLUYENDO LAS OBSERVACIONES 47 Y 112
-datos3=datos[-c(47,112),]
-attach(datos3)
-#REGRESION LINEAL CON VARIABLES INDICADORAS (DE LA VARIABLE REGION)
-#DEFINIENDO COMO FACTOR A LA VARIABLE REGION
-#Y SELECCIONANDO SU NIVEL 4 COMO EL NIVEL DE REFERENCIA
-REGION=as.factor(REGION)
-REGION=relevel(REGION,ref=&quot;4&quot;)
-modeloRRX=lm(DPERM~RRX*REGION)
-summary(modeloRRX)</code></pre>
 </div>
 
 <br>
