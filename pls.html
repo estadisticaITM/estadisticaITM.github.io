@@ -16,7 +16,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -120,33 +120,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .dropdown-submenu {
   position: relative;
@@ -390,6 +390,10 @@ $(document).ready(function () {
 <p>La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:</p>
 <p>Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina, fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.</p>
 <p>Es decir cada muestra contine 401 medidas</p>
+<pre class="r"><code>library(pls) 
+
+new=data.frame(t(gasoline))
+new</code></pre>
 <pre><code>##                   X1        X2        X3        X4        X5        X6
 ## octane     85.300000 85.250000 88.450000 83.400000 87.900000 85.500000
 ## NIR.900 nm -0.050193 -0.044227 -0.046867 -0.046705 -0.050859 -0.048094
@@ -561,9 +565,23 @@ $(document).ready(function () {
 ## NIR.926 nm -0.047554 -0.045830 -0.055280 -0.053010 -0.057032 -0.058258
 ## NIR.928 nm -0.050767 -0.048799 -0.057617 -0.055236 -0.059608 -0.060359
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 386 rows ]</code></pre>
+<pre class="r"><code>vec=seq(900,1700,by=2)
+plot(vec,new$X2[-1],type=&#39;l&#39;)
+lines(vec,new$X1[-1],col=2)
+lines(vec,new$X3[-1],col=3)
+lines(vec,new$X4[-1],col=4)
+lines(vec,new$X5[-1],col=5)
+lines(vec,new$X6[-1],col=6)
+lines(vec,new$X7[-1],col=7)
+lines(vec,new$X8[-1],col=8)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Para realizar la validación cruzada de este conjunto de datos, se divide la serie en dos subconjuntos, una parte de entrenamiento y otra parte de prueba.</p>
+<pre class="r"><code>gasTrain &lt;- gasoline[1:50,]
+gasTest &lt;- gasoline[51:60,]</code></pre>
 <p>Para ajustar el modelo de regresión de mínimos cuadrados parciales</p>
+<pre class="r"><code>gas1 &lt;- plsr(octane ~ NIR, ncomp = 10, data = gasTrain, validation = &quot;LOO&quot;)
+
+summary(gas1)</code></pre>
 <pre><code>## Data:    X dimension: 50 401 
 ##  Y dimension: 50 1
 ## Fit method: kernelpls
@@ -586,19 +604,27 @@ $(document).ready(function () {
 ## X         98.85    99.02     99.19
 ## octane    99.16    99.28     99.39</code></pre>
 <p>La validación cruzada del error se hace a través de la siguiente función, donde se relaciona el error con el número de componentes principales, donde se evidencia que es suficiente con dos componentes principales, para reducir el error</p>
+<pre class="r"><code>plot(RMSEP(gas1), legendpos = &quot;topright&quot;)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Una vez el número de componentes ha sido escogido, se pueden inspeccionar diferentes aspectos, como la relación entre los valores estimados y los valores ajustados, con 2 componentes principales, para el valor del octanaje</p>
+<pre class="r"><code>plot(gas1, ncomp = 3, asp = 1, line = TRUE)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Los puntajes de las tres primeras componentes, sirven para detectar patrones, anomalias y puntos atípios que influyen en las estimaciones.</p>
+<pre class="r"><code> plot(gas1, plottype = &quot;scores&quot;, comps = 1:3)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>La varianza eplicada por cada una de las componentes puede ser extraida mediante:</p>
+<pre class="r"><code>explvar(gas1)</code></pre>
 <pre><code>##     Comp 1     Comp 2     Comp 3     Comp 4     Comp 5     Comp 6 
 ## 78.1707683  7.4122245  7.8241556  2.6577773  0.8768214  0.9466384 
 ##     Comp 7     Comp 8     Comp 9    Comp 10 
 ##  0.4921537  0.4723207  0.1688272  0.1693770</code></pre>
 <p>La grafica de las dos primeras componente estimadas es</p>
+<pre class="r"><code>plot(gas1, &quot;loadings&quot;, comps = 1:3, legendpos = &quot;topleft&quot;,
+ labels = &quot;numbers&quot;, xlab = &quot;nm&quot;)
+ abline(h = 0)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>El valor estimado para el vector de prueba, con su respectivo error es:</p>
+<pre class="r"><code>predict(gas1, ncomp = 2, newdata = gasTest)</code></pre>
 <pre><code>## , , 2 comps
 ## 
 ##      octane
@@ -612,6 +638,7 @@ $(document).ready(function () {
 ## 58 86.84622
 ## 59 89.18925
 ## 60 87.09116</code></pre>
+<pre class="r"><code>RMSEP(gas1, newdata = gasTest)</code></pre>
 <pre><code>## (Intercept)      1 comps      2 comps      3 comps      4 comps  
 ##      1.5369       1.1696       0.2445       0.2341       0.3287  
 ##     5 comps      6 comps      7 comps      8 comps      9 comps  

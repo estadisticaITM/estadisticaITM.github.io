@@ -16,7 +16,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -120,33 +120,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .dropdown-submenu {
   position: relative;
@@ -362,6 +362,26 @@ $(document).ready(function () {
 </ol>
 <p>En cada uno de los ítem analice lo observado.</p>
 <p>Los datos el código corresponde a:</p>
+<pre class="r"><code>library(spftir)
+data(spData)
+
+##Gáfico de perfiles
+
+plot(spData$Wavenumber,spData$A,lwd=1,ylim=c(0,2.3))
+lines(spData$Wavenumber,spData$B,lwd=1,col=3)
+lines(spData$Wavenumber,spData$C,lwd=1,col=2)
+lines(spData$Wavenumber,spData$D,lwd=1,col=4)
+lines(spData$Wavenumber,spData$E,lwd=1,col=5)
+lines(spData$Wavenumber,spData$F,lwd=1,col=6)
+
+#resumen de datos
+summary(spData)
+
+#matriz de correlaciones
+cor(spData[-1])
+
+#Boxplot del tipo de almidón
+boxplot(spData[-1])</code></pre>
 </div>
 <div id="segunda-parte" class="section level1">
 <h1>2. segunda parte</h1>
