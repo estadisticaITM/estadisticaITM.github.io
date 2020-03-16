@@ -390,13 +390,9 @@ $(document).ready(function () {
 <p>La librería que trabaja este tipo de modelos es pls, la cual proporciona la siguiente base de datos:</p>
 <p>Un conjunto de datos con espectro NIR y número de octanaje de 60 muestras de gasolina, fueron medidas usando reflactancia difusa, como log(1/R), desde 900 nm hasta 1700 nm en intervalos de 2 nm, dando 401 longitudes de onda.</p>
 <p>Es decir cada muestra contine 401 medidas</p>
-<pre class="r"><code>library(pls) </code></pre>
-<pre><code>## 
-## Attaching package: &#39;pls&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     loadings</code></pre>
-<pre class="r"><code>new=data.frame(t(gasoline))
+<pre class="r"><code>library(pls) 
+
+new=data.frame(t(gasoline))
 new</code></pre>
 <pre><code>##                   X1        X2        X3        X4        X5        X6
 ## octane     85.300000 85.250000 88.450000 83.400000 87.900000 85.500000

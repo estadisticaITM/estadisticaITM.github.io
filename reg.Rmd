@@ -64,7 +64,7 @@ p
 
 ```
 
-###Actividad
+### Actividad
 
 Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes  el tipo de tapa.
 
@@ -145,9 +145,9 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 - Predecir futuros de la variable respuesta Y
 
 
-#Medidas de dependencia lineal
+# Medidas de dependencia lineal
 
-##Covarianza
+## Covarianza
 
 La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
 
@@ -160,7 +160,7 @@ $$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
 
 - La covarianza depende de las unidades de medida de las variables.
 
-##Coeficiente de correlación
+## Coeficiente de correlación
 
 Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas, la fórmula es:
 
@@ -170,7 +170,7 @@ $$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 
 
 
-##Características del coeficiente de correlación
+## Características del coeficiente de correlación
 
 - Rango entre -1 y 1
 
@@ -190,29 +190,26 @@ grid.raster(IM)
 
 
 ## Medida de bondad de ajuste R^2
+
 El coeficiente determina la calidad del modelo para replicar los resultados. Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
 En regresión lineal el R cuadrado es simplemente el cuadrado del coeficiente de correlación de Pearson, Por ser una proporción, esta cantidad varía entre 0 y 1, mientras más cercano sea a uno mejor.
 
-##Estimador de mínimos cuadrados
+## Estimador de mínimos cuadrados
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
 $$\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i$$
 
 El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:
 
-
-
 $$\sum_{i=1}^n(y_i-\hat{y_i})^2=
 \sum_{i=1}^n (y_i-(\hat{\beta_0}+ \hat{\beta_1}x_i))^2$$
 
-
-
-
-el resultado que se obtiene es:
+El resultado que se obtiene es:
 
 $$\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}$$
 
 A las cantidades $\Large S_{xx}$ y $\Large S_{xy}$ se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente
+
 $$\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}$$
 
 ```{r fig.asp=0.5, fig.align='right', echo=FALSE}
@@ -224,7 +221,7 @@ grid.raster(IM3)
 
 
 
-##Residuales
+## Residuales
 
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
 $$\Large \varepsilon_i= y_i- \hat{y_i}$$
@@ -248,11 +245,12 @@ grid.raster(IM4)
 
 - Cómo estimar un modelo de regresión lineal en Excel
 
-<iframe width="1109" height="568" src="https://www.youtube.com/embed/O7iPNwfZFcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O7iPNwfZFcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
-##Regresión lineal múltiple
+
+## Regresión lineal múltiple
 
 Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
 
