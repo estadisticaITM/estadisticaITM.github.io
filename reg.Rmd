@@ -16,7 +16,8 @@ Visualiza la distribución de datos en un intervalo o período de tiempo continu
 Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.
 
 **Ejemplo**
-comparar la densidad de las alturas de hombres y mujeres.
+
+Comparar la densidad de las alturas de hombres y mujeres.
 
 
 ```{r}
@@ -33,7 +34,7 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 
 
 
-## Gráfico de dipersión
+## Gráfico de dispersión
 
 Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa.
 Sirve para la detección de puntos atípicos.
@@ -41,7 +42,8 @@ Sirve para la detección de puntos atípicos.
 
 
 
-En el siguiente diagrama se ilustra la presión atmosférica en relación a latemperatura
+En el siguiente diagrama se ilustra la presión atmosférica en relación a la temperatura
+
 ```{r pressure, echo = TRUE}
 plot(pressure)
 
@@ -92,13 +94,25 @@ Permite establecer asociaciones entre variables de interés, entre las cuáles l
 
 El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
 
+
+
+## Algunos ejemplos
+
+- Estudiar cómo influye la estatura del padre sobre la estatura del hijo. 
+
+- Estimar el precio de una vivienda en función de su área.
+
+- Estudiar la relación entre el estrato de la vivienda y el pago del impuesto predial 
+
+
 ## Antes de hacer un modelo de regresión lineal
 
- Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión.
+Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar en la estimación de los parámetros del ajuste de regresión.
 
 ## Modelo de regresión lineal básico
 
 El modelo más simple de regresión corresponde a: 
+
 $$\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$
 Donde:
 
@@ -130,14 +144,6 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 
 - Predecir futuros de la variable respuesta Y
 
-## Algunos ejemplos
-
-- Estudiar cómo influye la estatura del padre sobre la estatura del hijo. 
-
-- Estimar el precio de una vivienda en función de su área.
-
-- Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
-
 
 #Medidas de dependencia lineal
 
@@ -156,7 +162,7 @@ $$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
 
 ##Coeficiente de correlación
 
-Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
+Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas, la fórmula es:
 
 
 $$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
@@ -184,24 +190,8 @@ grid.raster(IM)
 
 
 ## Medida de bondad de ajuste R^2
-
-Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
-Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:
-
-
-$$\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}$$
-Donde
-
-SSE: es la suma de cuadrados del error
-SST: suma de cuadrados totales
-
-## Error de pronóstico medio MAPE
-Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:
-
-$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
-
-
-
+El coeficiente determina la calidad del modelo para replicar los resultados. Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
+En regresión lineal el R cuadrado es simplemente el cuadrado del coeficiente de correlación de Pearson, Por ser una proporción, esta cantidad varía entre 0 y 1, mientras más cercano sea a uno mejor.
 
 ##Estimador de mínimos cuadrados
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
@@ -252,11 +242,13 @@ grid.raster(IM4)
 ## Cómo obtener un modelo de regresión lineal simple en la calculadora
 
 
-- Cómo estimar un modelo de regresión lineal
+- Cómo estimar un modelo de regresión lineal en la calculadora
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+- Cómo estimar un modelo de regresión lineal en Excel
 
+<iframe width="1109" height="568" src="https://www.youtube.com/embed/O7iPNwfZFcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 

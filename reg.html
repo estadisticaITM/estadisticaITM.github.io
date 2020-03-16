@@ -349,13 +349,14 @@ $(document).ready(function () {
 <h2>Gráfico de densidad</h2>
 <p>Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.</p>
 <p>Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.</p>
-<p><strong>Ejemplo</strong> comparar la densidad de las alturas de hombres y mujeres.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Comparar la densidad de las alturas de hombres y mujeres.</p>
 <p><img src="reg_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
-<div id="gráfico-de-dipersión" class="section level2">
-<h2>Gráfico de dipersión</h2>
+<div id="gráfico-de-dispersión" class="section level2">
+<h2>Gráfico de dispersión</h2>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.</p>
-<p>En el siguiente diagrama se ilustra la presión atmosférica en relación a latemperatura</p>
+<p>En el siguiente diagrama se ilustra la presión atmosférica en relación a la temperatura</p>
 <pre class="r"><code>plot(pressure)</code></pre>
 <p><img src="reg_files/figure-html/pressure-1.png" width="672" /></p>
 <p>En el siguiente diagrama se ilustra el ancho y el largo de la hoja en relación al tipo de planta.</p>
@@ -454,13 +455,22 @@ $(document).ready(function () {
 <p>Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto.</p>
 <p>El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).</p>
 </div>
+<div id="algunos-ejemplos" class="section level2">
+<h2>Algunos ejemplos</h2>
+<ul>
+<li><p>Estudiar cómo influye la estatura del padre sobre la estatura del hijo.</p></li>
+<li><p>Estimar el precio de una vivienda en función de su área.</p></li>
+<li><p>Estudiar la relación entre el estrato de la vivienda y el pago del impuesto predial</p></li>
+</ul>
+</div>
 <div id="antes-de-hacer-un-modelo-de-regresión-lineal" class="section level2">
 <h2>Antes de hacer un modelo de regresión lineal</h2>
-<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar el ajuste de regresión.</p>
+<p>Se deben identificar observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores, que puedan influenciar en la estimación de los parámetros del ajuste de regresión.</p>
 </div>
 <div id="modelo-de-regresión-lineal-básico" class="section level2">
 <h2>Modelo de regresión lineal básico</h2>
-<p>El modelo más simple de regresión corresponde a: <span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span> Donde:</p>
+<p>El modelo más simple de regresión corresponde a:</p>
+<p><span class="math display">\[\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i\]</span> Donde:</p>
 <p><span class="math inline">\(\Large y_i\)</span>Es la variable respuesta o dependiente para la i-ésima observación<br />
 </p>
 <p><span class="math inline">\(\Large \beta_0\)</span> Intercepto<br />
@@ -481,14 +491,6 @@ $(document).ready(function () {
 <li><p>Estimar el valor promedio de Y para un valor de X</p></li>
 <li><p>Predecir futuros de la variable respuesta Y</p></li>
 </ul>
-</div>
-<div id="algunos-ejemplos" class="section level2">
-<h2>Algunos ejemplos</h2>
-<ul>
-<li><p>Estudiar cómo influye la estatura del padre sobre la estatura del hijo.</p></li>
-<li><p>Estimar el precio de una vivienda en función de su área.</p></li>
-<li><p>Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal.</p></li>
-</ul>
 <p>#Medidas de dependencia lineal</p>
 <p>##Covarianza</p>
 <p>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</p>
@@ -499,7 +501,7 @@ $(document).ready(function () {
 <li><p>La covarianza depende de las unidades de medida de las variables.</p></li>
 </ul>
 <p>##Coeficiente de correlación</p>
-<p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
+<p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas, la fórmula es:</p>
 <p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 {\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
 <p>##Características del coeficiente de correlación</p>
@@ -513,14 +515,7 @@ $(document).ready(function () {
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level2">
 <h2>Medida de bondad de ajuste R^2</h2>
-<p>Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal. Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:</p>
-<p><span class="math display">\[\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}\]</span> Donde</p>
-<p>SSE: es la suma de cuadrados del error SST: suma de cuadrados totales</p>
-</div>
-<div id="error-de-pronóstico-medio-mape" class="section level2">
-<h2>Error de pronóstico medio MAPE</h2>
-<p>Es importante evaluar la capacidad predictiva del modelo. En el trabajo aplicado, comparando los valores observados con los pronosticados, para lo cual se cuenta con el promedio del error porcentual aboluto. Dado por la fórmula:</p>
-<p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
+<p>El coeficiente determina la calidad del modelo para replicar los resultados. Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal. En regresión lineal el R cuadrado es simplemente el cuadrado del coeficiente de correlación de Pearson, Por ser una proporción, esta cantidad varía entre 0 y 1, mientras más cercano sea a uno mejor.</p>
 <p>##Estimador de mínimos cuadrados Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores <span class="math inline">\(\hat{\beta_0}, \hat {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
 <p><span class="math display">\[\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i\]</span></p>
 <p>El método consiste en minimizar la suma de los cuadrados de las distancias verticales entre los datos y las estimaciones, es decir, minimizar la suma de los residuos al cuadrado:</p>
@@ -537,9 +532,14 @@ $(document).ready(function () {
 <div id="cómo-obtener-un-modelo-de-regresión-lineal-simple-en-la-calculadora" class="section level2">
 <h2>Cómo obtener un modelo de regresión lineal simple en la calculadora</h2>
 <ul>
-<li>Cómo estimar un modelo de regresión lineal</li>
+<li>Cómo estimar un modelo de regresión lineal en la calculadora</li>
 </ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<ul>
+<li>Cómo estimar un modelo de regresión lineal en Excel</li>
+</ul>
+<iframe width="1109" height="568" src="https://www.youtube.com/embed/O7iPNwfZFcE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>##Regresión lineal múltiple</p>
 <p>Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:</p>
