@@ -1,0 +1,99 @@
+
+---
+title: "Taller de probabilidad"
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+#Tecnicas de conteo y probabilidades
+
+1. Un furgón de ferrocarril contiene seis sistemas electrónicos complejos. Dos de los seis se han de seleccionar al azar para hacerles pruebas completas y luego clasificarlos como defectuosos o no defectuosos.
+a. Si dos de los seis sistemas en realidad están defectuosos, encuentre la probabilidad de que al menos uno de los dos sistemas probados sea defectuoso. Encuentre la probabilidad de que ambos sean defectuosos.
+
+b. Si cuatro de los seis sistemas están defectuosos en realidad, encuentre las probabilidades indicadas en el inciso a.
+
+2. Con fecha de abril de 2006, aproximadamente 50 millones de nombres de dominio web.com fueron registrados (p. ej., yahoo.com).
+
+a. ¿Cuántos nombres de dominio compuestos de exactamente dos letras pueden ser formados?
+b. ¿Cuántos nombres de dominio de dos letras existen si como caracteres se permiten dígitos y números? 
+*[Nota: Una longitud de carácter de tres o más ahora es obligatoria.] *
+
+*Rta/ 676; 1296*
+c. ¿Cuántos nombres de dominio existen compuestos de tres letras en secuencia? ¿Cuántos de esta longitud existen si se permiten letras o dígitos? *[Nota: En la actualidad todos están utilizados.]*
+*Rta(17576; 46 656)*
+d. Responda las preguntas hechas en b) para secuencias de cuatro caracteres. *Rta(456976;1679616)*
+
+e. Con fecha de abril de 2006, 97786 de las secuencias de cuatro caracteres utilizando letras o dígitos aún no habían sido reclamadas. Si se elige un nombre de cuatro caracteres al azar, ¿cuál es la probabilidad de que ya tenga dueño? Rta(0.942)
+
+
+3. Una marca de automóvil viene en cinco estilos diferentes, con cuatro tipos de motor, con dos tipos de transmisiones y en ocho colores.
+
+a.¿Cuántos autos tendría que tener en existencia un distribuidor si incluyera uno por cada combinación de estilo, motor y transmisión?
+
+b.¿Cuántos tendría que tener en existencia un centro de distribución si todos los colores de autos se tuvieran para cada combinación del inciso a?
+
+4. a. Beethoven escribió 9 sinfonías y Mozart 27 conciertos para piano. Si el locutor de una estación de radio de una universidad desea tocar primero una sinfonía de Beethoven y luego un concierto de Mozart, ¿de cuántas maneras puede hacerlo? *Rta (243)*
+
+b. El gerente de la estación decide que en cada noche sucesiva (7 días a la semana), se tocará una sinfonía de Beethoven, seguida por un concierto para piano de Mozart, seguido por un cuarteto de cuerdas de Schubert (de los cuales existen 15). ¿Durante aproximadamente cuántos años se podría
+continuar con esta política antes de que exactamente el mismo programa se repitiera? *Rta(364 dias)*
+
+5. Una fraternidad local está realizando una rifa en la que se han de vender 50 boletos, uno por cliente. Hay tres premios para ser concedidos. Si los cuatro organizadores de la rifa compran un boleto cada uno, 
+a. ¿cuál es la probabilidad de que los cuatro organizadores ganen a todos los premios?,
+b exactamente dos de los premios?,
+c exactamente uno de los premios?,
+d ninguno de los premios?
+
+
+6. Una caja en un almacén contiene cuatro focos de 40 W, cinco de 60 W y seis de 75 W. Suponga que se eligen al azar tres focos.
+a. ¿Cuál es la probabilidad de que exactamente dos de los focos seleccionados sean de 75 W?
+b. ¿Cuál es la probabilidad de que los tres focos seleccionados sean de los mismos watts?
+c. ¿Cuál es la probabilidad de que se seleccione un foco de cada tipo?
+
+7. Una flota de nueve taxis se ha de despachar a tres aeropuertos en forma tal que tres vayan al aeropuerto A, cinco al aeropuerto B y uno al aeropuerto C. 
+A. ¿En cuántas formas distintas se puede lograr esto?
+Suponga que los taxis son asignados a aeropuertos al azar.
+a Si exactamente uno de los taxis necesita reparación, ¿cuál es la probabilidad de que sea despachado al aeropuerto C?
+b Si exactamente tres de los taxis necesitan reparación, ¿cuál es la probabilidad de que cada aeropuerto reciba uno de los taxis que necesita reparación?
+
+# Diagrama de venn y probabilidad
+
+
+# Probabilidad condicional 
+
+1. En un experimento para estudiar la relación entre la Diabetes y el consumo de licor, se reunieron los siguientes datos en 180 individuos: Un total de 87 son diabéticos, 69 consumen licor en forma moderada; 21 son diabéticos y consumen licor en forma moderada; 49 toman licor en forma exagerada; 26 no consumen licor y son no diabéticos.
+
+a. Con la información anterior construya una tabla de doble entrada 
+
+b. Si se selecciona aleatoriamente a uno de estos individuos y los eventos son DEPENDIENTES, encuentre la probabilidad de que la persona experimente diabetes, y consuma licor moderadamente.
+
+c. Halle la probabilidad de que sea diabético dado que consume licor
+
+
+2. Considere seleccionar al azar un estudiante en cierta universidad y que A denote el evento en que el individuo seleccionado tenga una tarjeta de crédito Visa y que B sea el evento análogo para la tarjeta MasterCard. Suponga que P(A) = 0.6, P(B)=0.3 y P(A ∩ B)= 0.25. 
+
+a. Grafique el diagrama de venn
+
+b. Calcule la probabilidad de que el individuo seleccionado tenga por lo menos uno de los dos tipos de tarjetas 
+
+c. Dado que el individuo seleccionado tiene por lo menos una tarjeta, ¿cuál es la probabilidad de que el estudiante tenga una tarjeta master card? 
+
+d. Calcule  $P(B'|A)$ y $P(A|B)$
+
+3. Cien adultos fueron entrevistados con respecto a las cargas que implican los préstamos para estudiantes universitarios y si quienes respondieron tenían un hijo actualmente en la universidad. Sus respuestas se resumen en la tabla siguiente:
+
+
+
+|HIJO EN UNIVERSIDAD|CP	ALTO|CP	RAZONABLE	|CP BAJA|
+|-------------------|-------|-------------|-------|
+|SI                 |	   0.2|     	0.09	|0.01   |
+|NO                 |   0.41|	      0.21	|0.08   |
+
+carga de prestamo=CP
+
+a. Cuál es la probabilidad de que la carga de préstamo sea razonable
+b. Cuál es la probabilidad de que la carga de préstamo sea alta y se tenga un hijo en la universidad
+c. Dado que una persona tiene un hijo en la universidad, ¿Cuál es la probabilidad de que la carga de prestamo sea razonable
