@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -265,6 +268,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -272,6 +338,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -345,96 +421,111 @@ $(document).ready(function () {
 </div>
 
 
-<p><strong>Objetivo:</strong></p>
+<div id="objetivo-general" class="section level2">
+<h2><strong>Objetivo general:</strong></h2>
 <p>Poner en práctica los conceptos aprendidos en el curso de estadística descriptiva través de la realización de un poster o cartelera del tema de preferencia.</p>
-<p><strong>Objetivos específicos:</strong></p>
+</div>
+<div id="objetivos-específicos" class="section level2">
+<h2><strong>Objetivos específicos:</strong></h2>
 <ul>
 <li><p>Repasar conceptos de estadística descriptiva</p></li>
 <li><p>Usar las diferentes funciones del software excel</p></li>
 <li><p>Número de integrantes: Máximo 2 personas</p></li>
 <li><p>Fechas de exposición del poster: Según lo acordado en el compromiso académico</p></li>
 </ul>
-<p>Pasos a realizar:</p>
+</div>
+<div id="pasos-a-realizar" class="section level2">
+<h2><strong>Pasos a realizar:</strong></h2>
 <ol style="list-style-type: decimal">
-<li><p>Escoger una base de datos de su preferencia que contenga 2 variables cuantitativas y dos variables cualitativas, (por favor ponerse de acuerdo con el docente), mínimo 500 datos, algunos temas a escoger son:</p></li>
-<li><p>Calificación</p></li>
+<li>Escoger una base de datos de su preferencia que contenga 2 variables cuantitativas y dos variables cualitativas, (por favor ponerse de acuerdo con el docente), mínimo 500 datos, algunos de las bases de datos de donde se pueden obtener datos son:</li>
 </ol>
-<p>El poster debe contener:</p>
+<ul>
+<li><p><a href="https://www.dane.gov.co/index.php/estadisticas-por-tema">DANE</a></p></li>
+<li><p><a href="https://datos.bancomundial.org/indicador/SH.HIV.0014">BANCO MUNDIAL</a></p></li>
+<li><p><a href="https://www.agronet.gov.co/estadistica/Paginas/home.aspx">Agronet</a></p></li>
+</ul>
+</div>
+<div id="calificación" class="section level2">
+<h2><strong>Calificación</strong></h2>
+<p>La calificación de esta actividad se realizará con la siguiente rúbrica:</p>
 <table>
 <colgroup>
-<col width="45%" />
-<col width="54%" />
+<col width="24%" />
+<col width="30%" />
+<col width="18%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Ítem</th>
-<th>puntos</th>
+<th>Excelente (7-10)</th>
+<th>Bueno(4-6)</th>
+<th>Regular (0-3)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Titulo con nombres de los integrantes</td>
-<td>5</td>
+<td>Presentación</td>
+<td>Contiene título, nombres de los integrantes está bien organizado y ordenado, no hay sobrecarga de texto, ni espacios en blanco, buena ortografía, Bibliografía</td>
+<td>Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, buena ortografía, Bibliografía.</td>
+<td>Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, más de 3 errores de ortografía, sin Bibliografía</td>
 </tr>
 <tr class="even">
-<td>Resumen con descripción de los datos</td>
-<td>5</td>
+<td>Regresión lineal</td>
+<td>Contiene el diagrama de dispersión discriminando con colores los niveles de una variable cualitativa, además tiene la línea recta superpuesta y la ecuación de la línea recta estimada con su respectivo análisis, para cada uno de los niveles del factor</td>
+<td>Contiene el diagrama de dispersión sin discriminar los niveles de una variable cualitativa, además tiene la línea recta superpuesta, la ecuación de la línea recta estimada y el análisis del mismo.</td>
+<td>Contiene el diagrama de dispersión con la línea recta superpuesta y la ecuación de la recta</td>
 </tr>
 <tr class="odd">
+<td>Medidas de tendencia central y de variabilidad</td>
 <td>Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas según los niveles del factor</td>
-<td>5</td>
+<td>Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas</td>
+<td>Solo una de las medidas</td>
 </tr>
 <tr class="even">
-<td>Modelo de regresión entre las dos variables cuantitativas</td>
-<td>5</td>
+<td>Vídeo con la exposición</td>
+<td>El vídeo se escucha y se visualiza correctamente, dura los 5 minutos. Se enfoca tanto en la presentación como en el locutor</td>
+<td>El vídeo se escucha y se visualiza correctamente, solo se enfoca en la presentación o en el locutor, dura más o menos de 5 minutos</td>
+<td>El video no está bien elaborado, no entrega video</td>
 </tr>
 <tr class="odd">
-<td>Boxplot comparando los niveles de factor de una variable cualitativa con una cuantitativa</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Gráfico de tortas y de barras</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Histograma</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Presentación q sea agradable a la vista sin sobrecargar el texto</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Bibliografía</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Gráfico de perfiles</td>
-<td>5</td>
+<td>Métodos gráficos</td>
+<td>Utiliza gráficos para el análisis descriptivo de las variables. Boxplot comparativo de los niveles de factor de una variable cualitativa con una cuantitativa, Histograma, grafico de perfiles, de tortas, de barras, (5 tipos de gráfico) cada gráfico debe estar bien presentado con títulos de ejes y su análisis</td>
+<td>Utiliza 4 tipos de gráficos para el análisis descriptivo de las variables, los gráficos no tiene los títulos de ejes, y el análisis.</td>
+<td>Utiliza tres tipos de gráficos</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="entregables" class="section level2">
+<h2><strong>Entregables</strong></h2>
+<ul>
+<li><p>Video de 5 minutos con la exposición del poster</p></li>
+<li><p>Pdf con el póster de solo 1 página</p></li>
+</ul>
 <p><strong>Observaciones</strong></p>
 <ul>
 <li><p>Los gráficos deben tener títulos de ejes</p></li>
 <li><p>Cada gráfico debe tener su respectivo análisis.</p></li>
 <li><p>Por cada tilde a corregir se baja la nota 0.1</p></li>
 </ul>
-<p><strong>Bases de datos</strong></p>
-<ul>
-<li><p><a href="https://www.dane.gov.co/index.php/estadisticas-por-tema">DANE</a></p></li>
-<li><p><a href="https://datos.bancomundial.org/indicador/SH.HIV.0014">BANCO MUNDIAL</a></p></li>
-<li><p><a href="https://www.agronet.gov.co/estadistica/Paginas/home.aspx">Agronet</a></p></li>
-</ul>
-<p><strong>Ejemplo</strong> Se puede apoyar en el siguiente ejemplo: <a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/PRACTICA.xlsx">Ejercicio en excel</a></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se puede apoyar en el siguiente ejemplo: <a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/PRACTICA.xlsx">Ejercicio en excel</a></p>
+<p><strong>Videos de interés para la construcción del poster</strong></p>
 <p><em>Video de regresión lineal en excel</em></p>
+<div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/nEAvKHStLyU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
 <p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/missdata_files">Video de tablas dinámicas en excel</a></p>
 <p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/pagin2_files">Video de gráficos en excel</a></p>
-<p><strong>Plantillas</strong> Algunas de las plantillas para realizar el poster son las siguientes</p>
+</div>
+<div id="plantillas" class="section level2">
+<h2><strong>Plantillas</strong></h2>
+<p>Algunas de las plantillas para realizar el poster son las siguientes</p>
 <p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/plantilla%20poster.pptx">Plantilla1</a></p>
 <p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/posterzul.pptx">plantilla2</a></p>
+</div>
 
 <br>
 <hr>
@@ -442,6 +533,8 @@ $(document).ready(function () {
 <hr>
 
 
+</div>
+</div>
 
 </div>
 
@@ -474,6 +567,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
