@@ -68,13 +68,10 @@ Son observaciones extremas, alejadas hacia valores muy grandes o pequeños compa
 Se pueden detectar con un análisis descriptivo, mediante
 diagramas de dispersión, boxplot o histograma. 
 
-```{r fig.asp=0.3, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("manzana.png")
-grid.raster(IM)
-```
 
+```{r, echo=F, fig.cap='Puntos atípicos', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/manzana.png")
+```
 
 
 ## Tipos de variables
@@ -97,7 +94,7 @@ Característica o condición que puede tomar diferentes valores en una muestra. 
 Clasifique las siguiente variables según sea el caso
 
 |variable|tipo de variable|clasificación|niveles|
-|--------|----------------|-------------|-------|
+|--------|:----------------:|:----------:|:-------:|
 |Color de ojos|Cualitativa|Nominal      |verde, azul,cafe|
 |Edad |                   |             |       | 
 | velocidad|              |             |       | 
@@ -115,34 +112,73 @@ Clasifique las siguiente variables según sea el caso
 
 La frecuencia es el número de veces en que un evento se repite durante un experimento, comúnmente, la distribución de la frecuencia suele visualizarse con el uso de histogramas.
 
-*Tablas de frecuencia*
+**Frecuencia absoluta**
 
-Se pueden construir tablas de frecuencia para variables culitativas y cuantitativas, con la frecuencia absoluta y la frecuencia relativa
-
-*Frecuencia absoluta: *
 Es el conteo o número de veces que sucede un evento en un experimento
 
-*Frecuencia relativa*
+**Frecuencia relativa**
+
 Es el porcentaje o proporción de veces que sucede un evento en un experimento, se calcula así:
 
-$$X_i=\frac{xi}{N}=\frac{veces\quad que \quad se \quad observa}{Total \quad de \quad veces}$$
+$$X_i=\frac{xi}{N}=\frac{veces\quad que \quad se \quad observa \quad un \quad evento }{Total \quad de \quad veces}$$
 
+## Tablas de frecuencia
+
+Se pueden construir tablas de frecuencia para variables cualitativas y cuantitativas, con la frecuencia absoluta y la frecuencia relativa.
+
+
+*Ejemplo:*
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/ZcxjURk69IA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-Además de las tablas de frecuencia también podemos enontrar tablas de doble entrada o tablas de contingencia, donde se pueden relacionar dos variables cualitativas, con sus diferentes niveles.
+**Tablas de frecuencia en R**
+
+Se pregunto a los estudiantes sobre el hábito de fumar  y el género, los resultados encontrados se ilustran a continuación
+
+```{r}
+library(knitr)
+
+fuma <- c('NUNCA','1 ó 2 VECES','NUNCA','NUNCA','CADA MES','NUNCA','NUNCA','NUNCA','A DIARIO','NUNCA','NUNCA','A DIARIO','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','A DIARIO','NUNCA','A DIARIO','NUNCA','NUNCA','NUNCA','NUNCA','CADA SEMANA','NUNCA','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','NUNCA','NUNCA','A DIARIO','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','A DIARIO','NUNCA','CADA SEMANA','NUNCA','NUNCA', 'NUNCA','1 ó 2 VECES','A DIARIO','CADA MES','A DIARIO','NUNCA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','A DIARIO','CADA MES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','A DIARIO','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','A DIARIO','NUNCA','A DIARIO','A DIARIO','CADA MES','1 ó 2 VECES','NUNCA','CADA MES','NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES')
+
+# Tabla de resumen
+table(fuma)
+
+kable(table(fuma))
+# Tabla de proporciones o porcentajes
+
+prop.table(table(fuma))
+
+kable(prop.table(table(fuma))*100)
+```
+
+```{r}
+gen=c('Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Mujer','Mujer','Hombre','Hombre','Mujer','Mujer','Hombre','Mujer','Mujer','Hombre','Mujer','Hombre','Mujer','Hombre','Mujer','Mujer','Hombre','Hombre','Mujer','Mujer','Mujer','Mujer','Mujer','Mujer','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Hombre','Mujer','Hombre','Mujer','Hombre','Mujer','Hombre','Mujer','Mujer','Mujer','Mujer','Hombre','Mujer','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Hombre','Mujer','Hombre','Mujer','Mujer','Hombre','Hombre','Hombre','Mujer','Mujer','Mujer','Mujer','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Mujer','Mujer','Mujer','Hombre','Mujer','Hombre','Mujer','Hombre','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Hombre','Hombre','Mujer','Hombre','Hombre','Mujer','Mujer','Hombre','Mujer','Hombre','Mujer','Mujer','Hombre','Mujer','Hombre','Hombre','Hombre','Mujer','Mujer','Hombre','Hombre','Hombre','Hombre')
+# Tabla de resumen
+table(gen)
+
+kable(table(gen))
+# Tabla de proporciones o porcentajes
+
+prop.table(table(gen))
+
+kable(prop.table(table(gen))*100)
+```
+
+**Pregunta**
+¿Quién fuma con más frecuencia? Hombres o mujeres
 
 
-**Ejemplo **
+### Tablas de contingencia 
+
+Además de las tablas de frecuencia también podemos encontrar tablas de doble entrada o tablas de contingencia, donde se pueden relacionar dos variables cualitativas, con sus diferentes niveles.
+Además de usar la frecuencia absoluta, la frecuencia relativa puede usarse de diferentes maneras
+
+**Ejemplo 1**
 
 Se analiza el hobbie (Bailar, Ver TV, Deporte) y el género (Femenino y masculino) y se realiza una tabla de doble entrada:
 
-
-```{r fig.asp=0.7, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("conti.png")
-grid.raster(IM)
+```{r fig.asp=0.7,fig.cap='Tabla de contingencia', fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/conti.png")
 ```
 
 Esta tabla tiene varias formas posibles de ser analizada
@@ -151,45 +187,78 @@ Esta tabla tiene varias formas posibles de ser analizada
 
 Cada observación se divide por el número total. 
 
-```{r fig.asp=0.4, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("conti1.png")
-grid.raster(IM)
+```{r fig.asp=0.4,fig.cap='Tabla de contingencia relativa', fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/conti1.png")
 ```
 
 **Tabla de frecuencia relativa por filas**
 
 Cada observación se divide por el total de la fila, esta forma sirve para comparar, en este caso, cuál es el deporte favorito de cada genero. 
 
-```{r fig.asp=0.5, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("conti2.png")
-grid.raster(IM)
+```{r fig.asp=0.5,fig.cap='Tabla de contingencia relativa por filas', fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/conti2.png")
 ```
+
 
 **Tabla de frecuencia relativa por columnas**
 
 Cada observación se divide por el total de la columna, esta forma sirve para comparar, en este caso, cuál género prefiere cada uno de los deportes. 
 
-```{r fig.asp=0.5, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("conti3.png")
-grid.raster(IM)
+
+```{r fig.asp=0.5,fig.cap='Tabla de contingencia relativa por columnas', fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/conti3.png")
 ```
+
+
+
+**Ejemplo 2**
+La respuesta a la pregunta anterior la podemos encontrar realizando una tabla de contingencia o tabla de doble entrada
+```{r}
+#tabla de frecuencia absoluta
+marco=table(fuma,gen)
+marco
+##para añadir los totales de filas y columnas
+addmargins(marco)
+```
+
+
+Sin embargo con las frecuencias absolutas es difícil visualizar cual de los dos generos fuma con más frecuencia para ello hacemos uso de la frecuencia relativa
+
+```{r}
+## Frecuencia relativa total
+marco=table(fuma,gen)
+marco2=prop.table(marco)
+marco2
+
+##para añadir los totales de filas y columnas
+addmargins(marco2)
+
+##Frecuencia relativa por filas
+tabla3=prop.table(table(fuma,gen),margin=1)
+addmargins(tabla3, margin=2)
+
+##Frecuencia relativa por COLUMNAS
+tabla4=prop.table(table(fuma,gen),margin=2)
+tabla4
+addmargins(tabla4, margin=1)
+
+```
+
 
 **Video**
 (ver hasta el minuto 9:20, lo siguiente es de probabilidades)
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/xWQun-Lyk7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
+**Ejemplo en R**
+
+
+
 ## Gráficos
 
 Existen diferentes tipos de gráficos, los cuales ilustran la información contenida en tablas, dentro de los gráficos más usados se encuentran:
 
-**Gráfico de barras:**
+### Gráfico de barras
 
 Forma de resumir un conjunto de datos por categorías. Muestra los datos usando varias barras de la misma anchura, cada una representa una categoría concreta. La altura de cada barra es proporcional a la suma de los valores de la categoría que representa.
 
@@ -200,13 +269,67 @@ Forma de resumir un conjunto de datos por categorías. Muestra los datos usando 
 
 En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.
 
-<div style="text-align: center;"><iframe width="738" height="415" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-**Ejemplo 3**
-<div style="text-align: center;"><iframe width="738" height="415" src="https://www.youtube.com/embed/VGrQRIKBOcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-**Gráfico de líneas**
+
+### Gráfico de tortas
+Representación gráfica de una serie de cantidades, consiste en un círculo dividido en varios sectores, cuyo tamaño corresponde con las proporciones de las cantidades. Básicamente, este tipo de gráfico muestra la relación porcentual entre las partes con relación a su conjunto. El área proporcional en grados de la circunferencia se cacula así:
+
+$$Grados=360° * frecuencia\quad  relativa=360°* \frac{veces \quad que \quad se \quad repite \quad un \quad evento}{total\quad de \quad veces}$$ 
+
+**Ejemplo**
+
+
+La siguiente información fue reportada en la revista Motor Trend de EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos del diseño y rendimiento para 32 automóviles (modelos 1973–74). 
+
+A continuación se ilustra un resumen del número de cilindros que cada uno de los automoviles mostró
+
+```{r}
+library(knitr)
+library(ggplot2)
+
+#Base de datos
+head(mtcars)
+
+#Creación de tabla de frcuencia absoluta
+j=(table(mtcars$cyl))
+
+#creación de porcentajes
+x=data.frame(prop.table(j))
+porcentajes=x[,2]
+
+#grados proporcionales
+grad=porcentajes*360 
+
+m=data.frame(table(mtcars$cyl),x[,2]*100,porcentajes)
+colnames(m)=c("cilindros","frecuencia absoluta","Porcentaje","grad°")
+
+kable(m,caption = "Frecuencia del número de cilindros")
+
+barplot(j,col = '#4168c3')
+box()
+
+#Gráfico de tortas
+
+bar <- ggplot(data=m, aes(x=1,y= porcentajes,
+              fill=m$cilindros))+ 
+       geom_bar(stat='identity', colour='white') +
+                 coord_polar(theta='y')+
+       scale_fill_manual(values=c("salmon","steelblue","gray"))+theme_void()+  labs(title="Gráfico de Pie")+
+  geom_text(aes(label=porcentajes*100),
+            position=position_stack(vjust=0.5),color="white",size=5)
+bar
+```
+
+**Algunos videos**
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/VGrQRIKBOcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
+### Gráfico de líneas
 Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.Por ejemplo el número de asesorías brindadas en siga para los estudiantes.
+
+
 
 *Medidas de tendencia central*
 
