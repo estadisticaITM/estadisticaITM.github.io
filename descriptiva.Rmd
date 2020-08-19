@@ -133,22 +133,34 @@ Se pueden construir tablas de frecuencia para variables cualitativas y cuantitat
 
 **Tablas de frecuencia en R**
 
-Se pregunto a los estudiantes sobre el hábito de fumar  y el género, los resultados encontrados se ilustran a continuación
+Se preguntó a los estudiantes sobre el hábito de fumar  y el género, los resultados encontrados se ilustran a continuación
 
 ```{r}
+#Para instalar librerías se hace uso de la siguiente #instrucción, sin el #
+#El # sirve para marcar comentarios en códigos de R 
+
+#install.packages("knitr")
 library(knitr)
 
-fuma <- c('NUNCA','1 ó 2 VECES','NUNCA','NUNCA','CADA MES','NUNCA','NUNCA','NUNCA','A DIARIO','NUNCA','NUNCA','A DIARIO','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','A DIARIO','NUNCA','A DIARIO','NUNCA','NUNCA','NUNCA','NUNCA','CADA SEMANA','NUNCA','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','NUNCA','NUNCA','A DIARIO','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','A DIARIO','NUNCA','CADA SEMANA','NUNCA','NUNCA', 'NUNCA','1 ó 2 VECES','A DIARIO','CADA MES','A DIARIO','NUNCA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','A DIARIO','CADA MES','1 ó 2 VECES','CADA SEMANA','NUNCA','NUNCA','A DIARIO','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','A DIARIO','NUNCA','A DIARIO','A DIARIO','CADA MES','1 ó 2 VECES','NUNCA','CADA MES','NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES')
+fuma <- c('NUNCA','1 ó 2 VECES','NUNCA','NUNCA','CADA MES','NUNCA','NUNCA','NUNCA','A DIARIO', 'NUNCA', 'NUNCA','A DIARIO','1 ó 2 VECES', 'NUNCA', 'NUNCA', 'NUNCA','CADA MES','A DIARIO', 'NUNCA','A DIARIO', 'NUNCA','NUNCA', 'NUNCA','NUNCA', 'CADA SEMANA', 'NUNCA','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES', 'CADA SEMANA', 'NUNCA','NUNCA','NUNCA', 'NUNCA','A DIARIO', 'NUNCA', 'NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','A DIARIO','NUNCA','CADA SEMANA', 'NUNCA','NUNCA', 'NUNCA','1 ó 2 VECES','A DIARIO', 'CADA MES','A DIARIO','NUNCA','NUNCA','1 ó 2 VECES', '1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','CADA SEMANA', 'NUNCA','NUNCA','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES', 'NUNCA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','NUNCA', 'NUNCA', 'NUNCA','1 ó 2 VECES','NUNCA','CADA SEMANA','1 ó 2 VECES','1 ó 2 VECES','1 ó 2 VECES','A DIARIO','CADA MES','1 ó 2 VECES','CADA SEMANA', 'NUNCA', 'NUNCA','A DIARIO','1 ó 2 VECES','CADA SEMANA','NUNCA','1 ó 2 VECES','NUNCA','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','NUNCA','CADA MES','CADA SEMANA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','1 ó 2 VECES', 'NUNCA','NUNCA','A DIARIO','NUNCA','A DIARIO','A DIARIO','CADA MES','1 ó 2 VECES','NUNCA','CADA MES', 'NUNCA','NUNCA','NUNCA','NUNCA','1 ó 2 VECES','1 ó 2 VECES','NUNCA','NUNCA','NUNCA','CADA MES','1 ó 2 VECES')
 
 # Tabla de resumen
-table(fuma)
+tabla=table(fuma)
+tabla
+#Añadir totales
+Tab=addmargins(tabla)
+Tab
+kable(Tab)
 
-kable(table(fuma))
 # Tabla de proporciones o porcentajes
 
-prop.table(table(fuma))
+Tab1=prop.table(table(fuma))
+Tab1
 
-kable(prop.table(table(fuma))*100)
+#Añador totales
+Tab2=addmargins(Tab1)
+Tab2
+kable(addmargins(prop.table(table(fuma))*100))
 ```
 
 ```{r}
@@ -156,12 +168,16 @@ gen=c('Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','H
 # Tabla de resumen
 table(gen)
 
-kable(table(gen))
+#añadir totales
+addmargins(table(gen))
+
+kable(addmargins(table(gen)))
 # Tabla de proporciones o porcentajes
 
-prop.table(table(gen))
+addmargins(prop.table(table(gen)))
 
 kable(prop.table(table(gen))*100)
+
 ```
 
 **Pregunta**
@@ -250,9 +266,6 @@ addmargins(tabla4, margin=1)
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/xWQun-Lyk7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-**Ejemplo en R**
-
-
 
 ## Gráficos
 
@@ -302,12 +315,13 @@ porcentajes=x[,2]
 #grados proporcionales
 grad=porcentajes*360 
 
-m=data.frame(table(mtcars$cyl),x[,2]*100,porcentajes)
+m=data.frame(table(mtcars$cyl),porcentajes*100,grad)
+
 colnames(m)=c("cilindros","frecuencia absoluta","Porcentaje","grad°")
 
 kable(m,caption = "Frecuencia del número de cilindros")
 
-barplot(j,col = '#4168c3')
+barplot(j,col='#4168c3',ylab="Frecuencia absoluta", xlab="Número de cilindros")
 box()
 
 #Gráfico de tortas
@@ -316,10 +330,21 @@ bar <- ggplot(data=m, aes(x=1,y= porcentajes,
               fill=m$cilindros))+ 
        geom_bar(stat='identity', colour='white') +
                  coord_polar(theta='y')+
-       scale_fill_manual(values=c("salmon","steelblue","gray"))+theme_void()+  labs(title="Gráfico de Pie")+
+       scale_fill_manual(values=c("salmon","steelblue","gray"))+theme_void()+  labs(title="Gráfico de torta")+
   geom_text(aes(label=porcentajes*100),
             position=position_stack(vjust=0.5),color="white",size=5)
 bar
+
+#Gráfico de donas
+
+bar1 <- ggplot(data=m, aes(x=2,y= porcentajes,
+              fill=m$cilindros))+ 
+       geom_bar(stat='identity', colour='white') +
+                 coord_polar(theta='y')+
+       scale_fill_manual(values=c("salmon","steelblue","gray"))+theme_void()+  labs(title="Gráfico de donas")+xlim(0.5,2.5)+
+  geom_text(aes(label=porcentajes*100),
+            position=position_stack(vjust=0.5),color="white",size=5)
+bar1
 ```
 
 **Algunos videos**
@@ -327,13 +352,45 @@ bar
 
 
 ### Gráfico de líneas
-Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.Por ejemplo el número de asesorías brindadas en siga para los estudiantes.
+Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.Por ejemplo el número de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas
+
+**Ejemplo**
+Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.
+
+```{r}
+library(plotly)
+
+datn <- read.table(header=TRUE, text='
+supp dose length
+  OJ  0.5  13.23
+  OJ  1.0  22.70
+  OJ  2.0  26.06
+  VC  0.5   7.98
+  VC  1.0  16.77
+  VC  2.0  26.14
+')
+
+datn2 <- datn
+datn2$dose <- factor(datn2$dose)
+p <- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
+    geom_line() +
+    geom_point()
+
+fig <- ggplotly(p)
+
+fig
+```
 
 
+
+## Medidas de tendencia central 
 
 *Medidas de tendencia central*
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/0DA7Wtz1ddg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
+## Medidas de variabilidad
 
 *Medidas de variabilidad*
 
@@ -348,6 +405,168 @@ Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/6jqoucoas8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
+
 *Medidas de tendencia central en tablas de frecuencia*
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+## Tabla de datos agrupados
+
+**Tablas de frecuencia para variables cuantitativas**
+Se tiene la edad de 96 estudiantes nuevos del itm
+
+|18|26|19|19|21|33|18|18|18|37|18|33|
+|21|34|19|18|18|21|27|20|21|18|29|17|
+|28|26|25|28|29|23|27|18|17|42|20|18|
+|24|18|24|19|26|25|24|19|22|21|26|18|
+|19|21|25|21|26|17|17|21|20|27|16|18|
+|21|23|41|23|43|26|49|19|21|18|34|23|
+|17|17|23|18|26|24|23|21|30|18|18|20|
+|21|31|20|33|21|20|18|17|27|23|27|28|
+
+**Ejemplo en R**
+El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.
+
+```{r}
+#install.packages("janitor")
+library(dplyr)
+
+iris
+```
+
+
+## # A tibble: 35 x 2
+##    sepal_length frequency
+##           <dbl>     <int>
+##  1          4.3         1
+##  2          4.4         3
+##  3          4.5         1
+##  4          4.6         4
+##  5          4.7         2
+##  6          4.8         5
+##  7          4.9         6
+##  8          5          10
+##  9          5.1         9
+## 10          5.2         4
+## # … with 25 more rows
+Dos observaciones con respecto a este resultado:
+
+Hay 35 valores distintos para esta variable y leer una tabla tan larga no es práctico. dplyr de hecho corta el resultado. Tendrías que usar alguna otra función como View() para ver toda la tabla.
+Puede ser más interesante agrupar valores cercanos, como 4.3 y 4.4; esta agrupación resuelve el punto 1 también.
+Especificando el número de intervalos
+Para agrupar valores de una variable cuantitativa en intervalos utilizamos la función cut. El procedimiento entonces queda como:
+
+iris %>% 
+  mutate(sepal_length_group = cut(sepal_length, breaks = 5)) %>% 
+  group_by(sepal_length_group) %>% 
+  summarise(frequency = n())
+## # A tibble: 5 x 2
+##   sepal_length_group frequency
+##   <fct>                  <int>
+## 1 (4.3,5.02]                32
+## 2 (5.02,5.74]               41
+## 3 (5.74,6.46]               42
+## 4 (6.46,7.18]               24
+## 5 (7.18,7.9]                11
+¡El resultado es que tenemos 5 categorías en una tabla más legible!
+
+Especificando los cortes o límites de los intervalos
+Aunque el resultado anterior no tiene nada incorrecto, podríamos hacer que los intervalos sean más legibles. El truco es que el argumento breaks no sólo acepta el número de intervalos que queremos, sino que también podemos indicar los puntos en los que queremos hacer los cortes. Por ejemplo, vamos a hacer intervalos de longitud 1, desde el 4 hasta el 8. Esto lo podemos hacer con la función seq.
+
+seq(from = 4, to = 8, by = 1)
+## [1] 4 5 6 7 8
+breaks <- seq(from = 4, to = 8, by = 1)
+
+iris %>% 
+  mutate(
+    sepal_length_group = cut(sepal_length, breaks = breaks)
+  ) %>% 
+  group_by(sepal_length_group) %>% 
+  summarise(frequency = n())
+## # A tibble: 4 x 2
+##   sepal_length_group frequency
+##   <fct>                  <int>
+## 1 (4,5]                     32
+## 2 (5,6]                     57
+## 3 (6,7]                     49
+## 4 (7,8]                     12
+¡Mira qué linda tabla! A primera vista lo que se aprecia es que hay más valores bajos (entre 4 y 6) que altos (entre 6 y 8), y también que están más concentrados en el medio, (entre 5 y 6).
+
+Los intervalos son abiertos a la izquierda y cerrados a la derecha. Esto implica que el 5 está incluído en el primer intervalo y no en el segundo
+
+Frecuencias acumuladas
+Podemos agregar una columna más a la tabla de frecuencias, acumulando las frecuencias para cada clase, utilizando la función cumsum.
+
+breaks <- seq(from = 4, to = 8, by = 1)
+
+iris %>% 
+  mutate(
+    sepal_length_group = cut(sepal_length, breaks = breaks)
+  ) %>% 
+  group_by(sepal_length_group) %>% 
+  summarise(frequency = n()) %>% 
+  mutate(cum_frequency = cumsum(frequency))
+## # A tibble: 4 x 3
+##   sepal_length_group frequency cum_frequency
+##   <fct>                  <int>         <int>
+## 1 (4,5]                     32            32
+## 2 (5,6]                     57            89
+## 3 (6,7]                     49           138
+## 4 (7,8]                     12           150
+Pregunta
+
+Si tenemos la siguiente tabla de frecuencias
+Categoria	Frecuencia	Frecuencia acumulada
+(0 - 10]	-	20
+(10 - 20]	-	50
+(X - 30]	-	80
+(30 - 40]	-	100
+¿Cuál es el tamaño de la muestra?
+¿Cuál es la frecuencia del intervalo (10 - 20]?
+¿Cuánto vale X?
+Mostrar respuesta
+Graficar una tabla de frecuencias de una variable cuantitativa
+Podríamos seguir los mismo pasos que para una variable cualitativa y utilizar geom_bar
+
+breaks <- seq(from = 4, to = 8, by = 1)
+
+iris %>% 
+  mutate(sepal_length_group = cut(sepal_length, breaks = breaks)) %>% 
+  group_by(sepal_length_group) %>% 
+  summarise(frequency = n()) %>% 
+  ggplot() +
+  geom_bar(aes(x = sepal_length_group, y = frequency), stat = 'identity')
+
+
+Sin embargo, un histograma es más apropiado. Un histograma es un tipo particular de gráfico de barras. Las principales diferencias son:
+
+Las etiquetas en el eje de las x se colocan los límites de los intervalos
+Si hay algún intervalo cuya frecuencia sea 0, este intervalo sigue mostrándose en el eje x, mientras que en un gráfico de barras no necesariamente
+Como el límite superior de un intervalo es el límite inferior del siguiente, no hay espacio entre las barras
+Las barras podrían tener anchos distintos, aunque esto no es muy común
+En el eje de las y siempre van las frecuencias. Si no, no es un histograma
+Como los histogramas son gráficos muy comunes, existe la función geom_histogram para ahorrarnos algunas líneas de código.
+
+breaks <- seq(from = 4, to = 8, by = 1)
+
+iris %>% 
+  ggplot() +
+  geom_histogram(aes(x = sepal_length), binwidth = 1, boundary = 4, colour = 'lightgrey')
+
+
+Para tener el mismo gráfico que antes, especifiqué que el ancho de los intervalos sea bidwidth = 1 y que uno de los límites sea boundary = 4. También agregué colour = 'lightgrey' para que los bordes fuesen gris claro; no es necesario, pero me gusta más cómo se ve así que sin separación entre las barras.
+
+Ya que estamos viendo todo en un gráfico y no hay que leer, nos podemos dar el lujo de tener intervalos más cortos y por lo tanto más intervalos y más detalle.
+
+breaks <- seq(from = 4, to = 8, by = 0.5)
+
+iris %>% 
+  ggplot() +
+  geom_histogram(aes(x = sepal_length), breaks = breaks, colour = 'lightgrey') +
+  ggtitle('Frequency distribution of Sepal Length', subtitle = 'Histogram') +
+  labs(x = 'Sepal length', y = 'Frequency')
+
+
+Conclusión
+Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.
+
