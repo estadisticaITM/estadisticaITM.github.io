@@ -284,7 +284,8 @@ En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-
+### Histograma
+Es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados, sirven para obtener una "primera vista" general de la distribución de la muestra, respecto a una característica
 
 ### Gráfico de tortas
 Representación gráfica de una serie de cantidades, consiste en un círculo dividido en varios sectores, cuyo tamaño corresponde con las proporciones de las cantidades. Básicamente, este tipo de gráfico muestra la relación porcentual entre las partes con relación a su conjunto. El área proporcional en grados de la circunferencia se cacula así:
@@ -350,11 +351,67 @@ bar1
 **Algunos videos**
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/VGrQRIKBOcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
+### Gráfico de series de tiempo
+
+Una serie de tiempo es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespacios). Las series pueden tener periodicidad anual, semestral, trimestral, mensual,diaria etc., según los periodos de tiempo en los que están recogidos los datos que la componen.
+
+**Aparecen en numerosos campos**
+
+*Economía y Marketing*
+
+- Precio del alquiler de apartamentos durante varios meses.
+
+— Precio promedio del trigo mensual.
+
+— Índices del precio del petróleo por semana.
+
+*Demografía*
+
+— Número de habitantes en cierto país por año.
+
+— Tasa de mortalidad infantil por año.
+
+- Infectados por día de COVID19
+
+
+*Medioambiente*
+
+— Lluvia recogida diariamente en una localidad.
+
+— Temperatura media diaria.
+
+— Medición diaria del contenido en residuos tóxicos en 
+Las series de tiempo tienen una tendencia y una  variación estacional además de un error que oscila alrededor de 0.
+
+*Tendencia*
+
+Cambio a largo plazo que se produce en relación al
+nivel medio, se identifica con un movimiento suave de la serie a largo plazo
+
+*Efecto estacional* 
+Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.
+
+**Ejemplo en R**
+
+La siguiente base de datos representa los precios de cierre diarios del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998, los datos se muestrean en horario comercial, es decir, se omiten los fines de semana y feriados. para un total de 1860 observaciones. Los datos fueron proporcionados por Erste Bank AG, Viena, Austria.
+
+La serie de tiempo con su respectiva descomposición se enlistan a continuación.
+
+```{r}
+tsData <- EuStockMarkets[,1] # ts data
+plot(tsData,col=4)
+decomposedRes <- decompose(tsData, type="mult") # use type = "additive" for additive components
+plot (decomposedRes,col=4) # see plot below
+
+```
+
 
 ### Gráfico de líneas
-Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.Por ejemplo el número de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas
+
+Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones. Por ejemplo el número total de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas
 
 **Ejemplo**
+
 Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.
 
 ```{r}
@@ -380,8 +437,6 @@ fig <- ggplotly(p)
 
 fig
 ```
-
-
 
 ## Medidas de tendencia central 
 
@@ -415,6 +470,7 @@ fig
 **Tablas de frecuencia para variables cuantitativas**
 Se tiene la edad de 96 estudiantes nuevos del itm
 
+|--|--|--|--|--|--|--|--|--|--|--|--|
 |18|26|19|19|21|33|18|18|18|37|18|33|
 |21|34|19|18|18|21|27|20|21|18|29|17|
 |28|26|25|28|29|23|27|18|17|42|20|18|
@@ -431,43 +487,10 @@ El siguiente conjunto de datos da las medidas en centimetros de las variables la
 #install.packages("janitor")
 library(dplyr)
 
-iris
+head(iris)
 ```
 
 
-## # A tibble: 35 x 2
-##    sepal_length frequency
-##           <dbl>     <int>
-##  1          4.3         1
-##  2          4.4         3
-##  3          4.5         1
-##  4          4.6         4
-##  5          4.7         2
-##  6          4.8         5
-##  7          4.9         6
-##  8          5          10
-##  9          5.1         9
-## 10          5.2         4
-## # … with 25 more rows
-Dos observaciones con respecto a este resultado:
-
-Hay 35 valores distintos para esta variable y leer una tabla tan larga no es práctico. dplyr de hecho corta el resultado. Tendrías que usar alguna otra función como View() para ver toda la tabla.
-Puede ser más interesante agrupar valores cercanos, como 4.3 y 4.4; esta agrupación resuelve el punto 1 también.
-Especificando el número de intervalos
-Para agrupar valores de una variable cuantitativa en intervalos utilizamos la función cut. El procedimiento entonces queda como:
-
-iris %>% 
-  mutate(sepal_length_group = cut(sepal_length, breaks = 5)) %>% 
-  group_by(sepal_length_group) %>% 
-  summarise(frequency = n())
-## # A tibble: 5 x 2
-##   sepal_length_group frequency
-##   <fct>                  <int>
-## 1 (4.3,5.02]                32
-## 2 (5.02,5.74]               41
-## 3 (5.74,6.46]               42
-## 4 (6.46,7.18]               24
-## 5 (7.18,7.9]                11
 ¡El resultado es que tenemos 5 categorías en una tabla más legible!
 
 Especificando los cortes o límites de los intervalos
@@ -483,13 +506,7 @@ iris %>%
   ) %>% 
   group_by(sepal_length_group) %>% 
   summarise(frequency = n())
-## # A tibble: 4 x 2
-##   sepal_length_group frequency
-##   <fct>                  <int>
-## 1 (4,5]                     32
-## 2 (5,6]                     57
-## 3 (6,7]                     49
-## 4 (7,8]                     12
+  
 ¡Mira qué linda tabla! A primera vista lo que se aprecia es que hay más valores bajos (entre 4 y 6) que altos (entre 6 y 8), y también que están más concentrados en el medio, (entre 5 y 6).
 
 Los intervalos son abiertos a la izquierda y cerrados a la derecha. Esto implica que el 5 está incluído en el primer intervalo y no en el segundo
@@ -506,13 +523,7 @@ iris %>%
   group_by(sepal_length_group) %>% 
   summarise(frequency = n()) %>% 
   mutate(cum_frequency = cumsum(frequency))
-## # A tibble: 4 x 3
-##   sepal_length_group frequency cum_frequency
-##   <fct>                  <int>         <int>
-## 1 (4,5]                     32            32
-## 2 (5,6]                     57            89
-## 3 (6,7]                     49           138
-## 4 (7,8]                     12           150
+  
 Pregunta
 
 Si tenemos la siguiente tabla de frecuencias
@@ -570,3 +581,4 @@ iris %>%
 Conclusión
 Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.
 
+## Analisis de datos agrupados

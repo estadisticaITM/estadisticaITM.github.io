@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -265,6 +268,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -272,6 +338,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -345,41 +421,80 @@ $(document).ready(function () {
 </div>
 
 
-<p>#R R es una herramienta de análisis estadístico que permite el desarrollo de multiples aplicaciones a traves R studio y su librería shiny</p>
-<p><img src="about_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-<p>¿Cómo descargar R y Rstudio?</p>
-<iframe width="562" height="273" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>#Aplicaciones desarrolladas en Shiny</p>
-<p><img src="about_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-<p>En esta sección se muestran algunos de los múltiples usos y aplicaciones que se pueden realizar:</p>
-<div id="encuestador-con-google" class="section level2">
-<h2>Encuestador con google</h2>
-<iframe src="https://trochez.shinyapps.io/ENCUESTADOR/?showcase=0" width="672" height="800px">
+<div id="qué-es-r" class="section level2">
+<h2>¿Qué es R?</h2>
+<p>R es un lenguaje de programación, de libre acceso para computación estadística, proporciona una amplia variedad de técnicas estadísticas y gráficas: modelado lineal y no lineal, pruebas estadísticas, análisis de series de tiempo, clasificación, agrupamiento, etc..</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/rlogo.png" alt="Logo de R" width="94" />
+<p class="caption">
+Logo de R
+</p>
+</div>
+<p><a href="https://cran.r-project.org/">cran de R</a></p>
+</div>
+<div id="qué-es-rstudio" class="section level2">
+<h2>¿Qué es Rstudio?</h2>
+<p>RStudio es un entorno de desarrollo integrado para R, un lenguaje de programación para gráficos y computación estadística. Está disponible en dos formatos: RStudio Desktop es una aplicación de escritorio normal, mientras que RStudio Server se ejecuta en un servidor remoto y permite acceder a RStudio mediante un navegador web.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/rstudio.png" alt="Logo de RStudio" width="310" />
+<p class="caption">
+Logo de RStudio
+</p>
+</div>
+<p><a href="https://rstudio.com/">RStudio</a></p>
+</div>
+<div id="historía-de-r-y-rstudio" class="section level2">
+<h2>Historía de R y RStudio</h2>
+<p><a href="https://d3c33hcgiwev3.cloudfront.net/WXE20tXKEeWjTxJlqDdk5Q.processed/full/360p/index.webm?Expires=1597968000&amp;Signature=IRb8ROuFchPY0bfiamsRdVnQT-hAL3xp2voRx8YHcKQDLj9nSBaT0JoZo4dytufV0Wq-BRKYelYMfCSVBA6MoI8QAWG68ycz4sfj7c7AH4ceaxIQ-O-94VP8WjiaGCiYh9Sj4x~dLVcKxbF6RP-cpAlEpeB4KB8IxRX9hOj0CzY_&amp;Key-Pair-Id=APKAJLTNE6QMUY6HBC5A">Historia de R</a></p>
+</div>
+<div id="cómo-descargar-r-y-rstudio" class="section level2">
+<h2>¿Cómo descargar R y Rstudio?</h2>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="análisis-descriptivo" class="section level2">
-<h2>Análisis descriptivo:</h2>
+</div>
+<div id="librería-shiny" class="section level2">
+<h2>Librería Shiny</h2>
+<p>Hace que sea increíblemente fácil construir aplicaciones web interactivas con R. La vinculación “reactiva” automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/semi.png" alt="Aplicaciones" width="126" />
+<p class="caption">
+Aplicaciones
+</p>
+</div>
+<p>En esta página encuentras diferentes aplicaciones elaboradas por diferentes autores.</p>
+<p><a href="https://shiny.rstudio.com/gallery/">Aplicaciones de Shiny y RStudio</a></p>
+<p>En esta sección se muestran algunos de los múltiples usos y aplicaciones que se pueden realizar:</p>
+<p><strong>Encuestador con google </strong></p>
+<iframe src="https://trochez.shinyapps.io/ENCUESTADOR/?showcase=0" width="672" height="800px">
+</iframe>
+<p><strong>Análisis descriptivo</strong></p>
 <p>Aplicación que estima tamaños de muestra estratificado y realiza análisis descriptivo.</p>
 <iframe src="https://jtrochezg.shinyapps.io/appitmdese/?showcase=0" width="672" height="800px">
 </iframe>
-</div>
-<div id="análisis-de-asesorias-de-siga" class="section level2">
-<h2>Análisis de asesorias de SIGA</h2>
+<p><strong>Análisis de asesorias de SIGA</strong></p>
 <p>Aplicación que analiza asesorias de SIGA y realiza análisis descriptivo.</p>
 <iframe src="https://jtrochezg.shinyapps.io/ASESORIAS/?showcase=0" width="672" height="800px">
 </iframe>
-</div>
-<div id="análisis-de-notas" class="section level2">
-<h2>Análisis de notas</h2>
+<p><strong>Análisis de notas </strong></p>
 <p>Aplicación que estima estadísticas descriptivas de las notas .</p>
 <iframe src="https://jtrochezg.shinyapps.io/notasapp/?showcase=0" width="672" height="800px">
 </iframe>
-</div>
-<div id="ajuste-de-modelo-lineal-mixto" class="section level2">
-<h2>Ajuste de modelo lineal mixto</h2>
+<p><strong>Ajuste de modelo lineal mixto</strong></p>
 <iframe src="https://jtrochezg.shinyapps.io/linear_mixed_model/?showcase=0" width="672" height="800px">
 </iframe>
+</div>
+<div id="lectura-de-datos-en-r" class="section level2">
+<h2>Lectura de datos en R</h2>
+<p>Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:</p>
+<ul>
+<li><p>plano con extensión .txt o,</p></li>
+<li><p>Excel con extensión .csv.</p></li>
+</ul>
+<p>En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.</p>
+<p>Table 7.1: Ejemplo de una base de datos simple. |Edad|Fuma|Pais| |—-|—-|—-| |35 |TRUE|Colombia| |46 |TRUE|Francia | |23 |FALSE| Malta|</p>
+<p>7.1.1 Almacenamiento de información en Excel Para almacenar la información del Cuadro 7.1 en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información tal como se muestra en la Figura 7.1. Se debe iniciar en la parte superior izquierda, no se deben dejar filas vacías, no se debe colorear, no se deben colocar bordes ni nada, se ingresa la información sin embellecer el contenido. Por último se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).</p>
 </div>
 
 <br>
@@ -388,6 +503,8 @@ $(document).ready(function () {
 <hr>
 
 
+</div>
+</div>
 
 </div>
 
@@ -420,6 +537,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

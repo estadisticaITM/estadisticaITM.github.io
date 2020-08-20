@@ -889,6 +889,10 @@ tabla4</code></pre>
 </iframe>
 </div>
 </div>
+<div id="histograma" class="section level3">
+<h3>Histograma</h3>
+<p>Es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados, sirven para obtener una “primera vista” general de la distribución de la muestra, respecto a una característica</p>
+</div>
 <div id="gráfico-de-tortas" class="section level3">
 <h3>Gráfico de tortas</h3>
 <p>Representación gráfica de una serie de cantidades, consiste en un círculo dividido en varios sectores, cuyo tamaño corresponde con las proporciones de las cantidades. Básicamente, este tipo de gráfico muestra la relación porcentual entre las partes con relación a su conjunto. El área proporcional en grados de la circunferencia se cacula así:</p>
@@ -985,10 +989,44 @@ bar1</code></pre>
 </iframe>
 </div>
 </div>
+<div id="gráfico-de-series-de-tiempo" class="section level3">
+<h3>Gráfico de series de tiempo</h3>
+<p>Una serie de tiempo es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespacios). Las series pueden tener periodicidad anual, semestral, trimestral, mensual,diaria etc., según los periodos de tiempo en los que están recogidos los datos que la componen.</p>
+<p><strong>Aparecen en numerosos campos</strong></p>
+<p><em>Economía y Marketing</em></p>
+<ul>
+<li>Precio del alquiler de apartamentos durante varios meses.</li>
+</ul>
+<p>— Precio promedio del trigo mensual.</p>
+<p>— Índices del precio del petróleo por semana.</p>
+<p><em>Demografía</em></p>
+<p>— Número de habitantes en cierto país por año.</p>
+<p>— Tasa de mortalidad infantil por año.</p>
+<ul>
+<li>Infectados por día de COVID19</li>
+</ul>
+<p><em>Medioambiente</em></p>
+<p>— Lluvia recogida diariamente en una localidad.</p>
+<p>— Temperatura media diaria.</p>
+<p>— Medición diaria del contenido en residuos tóxicos en Las series de tiempo tienen una tendencia y una variación estacional además de un error que oscila alrededor de 0.</p>
+<p><em>Tendencia</em></p>
+<p>Cambio a largo plazo que se produce en relación al nivel medio, se identifica con un movimiento suave de la serie a largo plazo</p>
+<p><em>Efecto estacional</em> Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.</p>
+<p><strong>Ejemplo en R</strong></p>
+<p>La siguiente base de datos representa los precios de cierre diarios del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998, los datos se muestrean en horario comercial, es decir, se omiten los fines de semana y feriados. para un total de 1860 observaciones. Los datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
+<p>La serie de tiempo con su respectiva descomposición se enlistan a continuación.</p>
+<pre class="r"><code>tsData &lt;- EuStockMarkets[,1] # ts data
+plot(tsData,col=4)</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>decomposedRes &lt;- decompose(tsData, type=&quot;mult&quot;) # use type = &quot;additive&quot; for additive components
+plot (decomposedRes,col=4) # see plot below</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+</div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
-<p>Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.Por ejemplo el número de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas</p>
-<p><strong>Ejemplo</strong> Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
+<p>Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones. Por ejemplo el número total de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas</p>
+<p><strong>Ejemplo</strong></p>
+<p>Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
 <pre class="r"><code>library(plotly)
 
 datn &lt;- read.table(header=TRUE, text=&#39;
@@ -1010,8 +1048,8 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-77f0e990742cc3c556b9" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77f0e990742cc3c556b9">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"2428445d6092":{"x":{},"y":{},"colour":{},"type":"scatter"},"24285d1435c8":{"x":{},"y":{},"colour":{}}},"cur_data":"2428445d6092","visdat":{"2428445d6092":["function (y) ","x"],"24285d1435c8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e32ad51537b97fa8320a" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e32ad51537b97fa8320a">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"24283e6c36d6":{"x":{},"y":{},"colour":{},"type":"scatter"},"2428281d11d0":{"x":{},"y":{},"colour":{}}},"cur_data":"24283e6c36d6","visdat":{"24283e6c36d6":["function (y) ","x"],"2428281d11d0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="medidas-de-tendencia-central" class="section level2">
@@ -1047,215 +1085,29 @@ fig</code></pre>
 <div id="tabla-de-datos-agrupados" class="section level2">
 <h2>Tabla de datos agrupados</h2>
 <p><strong>Tablas de frecuencia para variables cuantitativas</strong> Se tiene la edad de 96 estudiantes nuevos del itm</p>
-<p>|18|26|19|19|21|33|18|18|18|37|18|33| |21|34|19|18|18|21|27|20|21|18|29|17| |28|26|25|28|29|23|27|18|17|42|20|18| |24|18|24|19|26|25|24|19|22|21|26|18| |19|21|25|21|26|17|17|21|20|27|16|18| |21|23|41|23|43|26|49|19|21|18|34|23| |17|17|23|18|26|24|23|21|30|18|18|20| |21|31|20|33|21|20|18|17|27|23|27|28|</p>
+<p>|–|–|–|–|–|–|–|–|–|–|–|–| |18|26|19|19|21|33|18|18|18|37|18|33| |21|34|19|18|18|21|27|20|21|18|29|17| |28|26|25|28|29|23|27|18|17|42|20|18| |24|18|24|19|26|25|24|19|22|21|26|18| |19|21|25|21|26|17|17|21|20|27|16|18| |21|23|41|23|43|26|49|19|21|18|34|23| |17|17|23|18|26|24|23|21|30|18|18|20| |21|31|20|33|21|20|18|17|27|23|27|28|</p>
 <p><strong>Ejemplo en R</strong> El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.</p>
 <pre class="r"><code>#install.packages(&quot;janitor&quot;)
 library(dplyr)
 
-iris</code></pre>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 1            5.1         3.5          1.4         0.2     setosa
-## 2            4.9         3.0          1.4         0.2     setosa
-## 3            4.7         3.2          1.3         0.2     setosa
-## 4            4.6         3.1          1.5         0.2     setosa
-## 5            5.0         3.6          1.4         0.2     setosa
-## 6            5.4         3.9          1.7         0.4     setosa
-## 7            4.6         3.4          1.4         0.3     setosa
-## 8            5.0         3.4          1.5         0.2     setosa
-## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9         3.1          1.5         0.1     setosa
-## 11           5.4         3.7          1.5         0.2     setosa
-## 12           4.8         3.4          1.6         0.2     setosa
-## 13           4.8         3.0          1.4         0.1     setosa
-## 14           4.3         3.0          1.1         0.1     setosa
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 17           5.4         3.9          1.3         0.4     setosa
-## 18           5.1         3.5          1.4         0.3     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 20           5.1         3.8          1.5         0.3     setosa
-## 21           5.4         3.4          1.7         0.2     setosa
-## 22           5.1         3.7          1.5         0.4     setosa
-## 23           4.6         3.6          1.0         0.2     setosa
-## 24           5.1         3.3          1.7         0.5     setosa
-## 25           4.8         3.4          1.9         0.2     setosa
-## 26           5.0         3.0          1.6         0.2     setosa
-## 27           5.0         3.4          1.6         0.4     setosa
-## 28           5.2         3.5          1.5         0.2     setosa
-## 29           5.2         3.4          1.4         0.2     setosa
-## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8         3.1          1.6         0.2     setosa
-## 32           5.4         3.4          1.5         0.4     setosa
-## 33           5.2         4.1          1.5         0.1     setosa
-## 34           5.5         4.2          1.4         0.2     setosa
-## 35           4.9         3.1          1.5         0.2     setosa
-## 36           5.0         3.2          1.2         0.2     setosa
-## 37           5.5         3.5          1.3         0.2     setosa
-## 38           4.9         3.6          1.4         0.1     setosa
-## 39           4.4         3.0          1.3         0.2     setosa
-## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
-## 42           4.5         2.3          1.3         0.3     setosa
-## 43           4.4         3.2          1.3         0.2     setosa
-## 44           5.0         3.5          1.6         0.6     setosa
-## 45           5.1         3.8          1.9         0.4     setosa
-## 46           4.8         3.0          1.4         0.3     setosa
-## 47           5.1         3.8          1.6         0.2     setosa
-## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
-## 50           5.0         3.3          1.4         0.2     setosa
-## 51           7.0         3.2          4.7         1.4 versicolor
-## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
-## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
-## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9         2.4          3.3         1.0 versicolor
-## 59           6.6         2.9          4.6         1.3 versicolor
-## 60           5.2         2.7          3.9         1.4 versicolor
-## 61           5.0         2.0          3.5         1.0 versicolor
-## 62           5.9         3.0          4.2         1.5 versicolor
-## 63           6.0         2.2          4.0         1.0 versicolor
-## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
-## 66           6.7         3.1          4.4         1.4 versicolor
-## 67           5.6         3.0          4.5         1.5 versicolor
-## 68           5.8         2.7          4.1         1.0 versicolor
-## 69           6.2         2.2          4.5         1.5 versicolor
-## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
-## 73           6.3         2.5          4.9         1.5 versicolor
-## 74           6.1         2.8          4.7         1.2 versicolor
-## 75           6.4         2.9          4.3         1.3 versicolor
-## 76           6.6         3.0          4.4         1.4 versicolor
-## 77           6.8         2.8          4.8         1.4 versicolor
-## 78           6.7         3.0          5.0         1.7 versicolor
-## 79           6.0         2.9          4.5         1.5 versicolor
-## 80           5.7         2.6          3.5         1.0 versicolor
-## 81           5.5         2.4          3.8         1.1 versicolor
-## 82           5.5         2.4          3.7         1.0 versicolor
-## 83           5.8         2.7          3.9         1.2 versicolor
-## 84           6.0         2.7          5.1         1.6 versicolor
-## 85           5.4         3.0          4.5         1.5 versicolor
-## 86           6.0         3.4          4.5         1.6 versicolor
-## 87           6.7         3.1          4.7         1.5 versicolor
-## 88           6.3         2.3          4.4         1.3 versicolor
-## 89           5.6         3.0          4.1         1.3 versicolor
-## 90           5.5         2.5          4.0         1.3 versicolor
-## 91           5.5         2.6          4.4         1.2 versicolor
-## 92           6.1         3.0          4.6         1.4 versicolor
-## 93           5.8         2.6          4.0         1.2 versicolor
-## 94           5.0         2.3          3.3         1.0 versicolor
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
-## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1         2.5          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor
-## 101          6.3         3.3          6.0         2.5  virginica
-## 102          5.8         2.7          5.1         1.9  virginica
-## 103          7.1         3.0          5.9         2.1  virginica
-## 104          6.3         2.9          5.6         1.8  virginica
-## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6         3.0          6.6         2.1  virginica
-## 107          4.9         2.5          4.5         1.7  virginica
-## 108          7.3         2.9          6.3         1.8  virginica
-## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
-## 111          6.5         3.2          5.1         2.0  virginica
-## 112          6.4         2.7          5.3         1.9  virginica
-## 113          6.8         3.0          5.5         2.1  virginica
-## 114          5.7         2.5          5.0         2.0  virginica
-## 115          5.8         2.8          5.1         2.4  virginica
-## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5         3.0          5.5         1.8  virginica
-## 118          7.7         3.8          6.7         2.2  virginica
-## 119          7.7         2.6          6.9         2.3  virginica
-## 120          6.0         2.2          5.0         1.5  virginica
-## 121          6.9         3.2          5.7         2.3  virginica
-## 122          5.6         2.8          4.9         2.0  virginica
-## 123          7.7         2.8          6.7         2.0  virginica
-## 124          6.3         2.7          4.9         1.8  virginica
-## 125          6.7         3.3          5.7         2.1  virginica
-## 126          7.2         3.2          6.0         1.8  virginica
-## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1         3.0          4.9         1.8  virginica
-## 129          6.4         2.8          5.6         2.1  virginica
-## 130          7.2         3.0          5.8         1.6  virginica
-## 131          7.4         2.8          6.1         1.9  virginica
-## 132          7.9         3.8          6.4         2.0  virginica
-## 133          6.4         2.8          5.6         2.2  virginica
-## 134          6.3         2.8          5.1         1.5  virginica
-## 135          6.1         2.6          5.6         1.4  virginica
-## 136          7.7         3.0          6.1         2.3  virginica
-## 137          6.3         3.4          5.6         2.4  virginica
-## 138          6.4         3.1          5.5         1.8  virginica
-## 139          6.0         3.0          4.8         1.8  virginica
-## 140          6.9         3.1          5.4         2.1  virginica
-## 141          6.7         3.1          5.6         2.4  virginica
-## 142          6.9         3.1          5.1         2.3  virginica
-## 143          5.8         2.7          5.1         1.9  virginica
-## 144          6.8         3.2          5.9         2.3  virginica
-## 145          6.7         3.3          5.7         2.5  virginica
-## 146          6.7         3.0          5.2         2.3  virginica
-## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
-## 149          6.2         3.4          5.4         2.3  virginica
-## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
-</div>
-<div id="a-tibble-35-x-2" class="section level2">
-<h2># A tibble: 35 x 2</h2>
-</div>
-<div id="sepal_length-frequency" class="section level2">
-<h2>sepal_length frequency</h2>
-</div>
-<div id="section" class="section level2">
-<h2><dbl> <int></h2>
-</div>
-<div id="section-1" class="section level2">
-<h2>1 4.3 1</h2>
-</div>
-<div id="section-2" class="section level2">
-<h2>2 4.4 3</h2>
-</div>
-<div id="section-3" class="section level2">
-<h2>3 4.5 1</h2>
-</div>
-<div id="section-4" class="section level2">
-<h2>4 4.6 4</h2>
-</div>
-<div id="section-5" class="section level2">
-<h2>5 4.7 2</h2>
-</div>
-<div id="section-6" class="section level2">
-<h2>6 4.8 5</h2>
-</div>
-<div id="section-7" class="section level2">
-<h2>7 4.9 6</h2>
-</div>
-<div id="section-8" class="section level2">
-<h2>8 5 10</h2>
-</div>
-<div id="section-9" class="section level2">
-<h2>9 5.1 9</h2>
-</div>
-<div id="section-10" class="section level2">
-<h2>10 5.2 4</h2>
-</div>
-<div id="with-25-more-rows" class="section level2">
-<h2># … with 25 more rows</h2>
-<p>Dos observaciones con respecto a este resultado:</p>
-<p>Hay 35 valores distintos para esta variable y leer una tabla tan larga no es práctico. dplyr de hecho corta el resultado. Tendrías que usar alguna otra función como View() para ver toda la tabla. Puede ser más interesante agrupar valores cercanos, como 4.3 y 4.4; esta agrupación resuelve el punto 1 también. Especificando el número de intervalos Para agrupar valores de una variable cuantitativa en intervalos utilizamos la función cut. El procedimiento entonces queda como:</p>
-<p>iris %&gt;% mutate(sepal_length_group = cut(sepal_length, breaks = 5)) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n()) ## # A tibble: 5 x 2 ## sepal_length_group frequency ## <fct> <int> ## 1 (4.3,5.02] 32 ## 2 (5.02,5.74] 41 ## 3 (5.74,6.46] 42 ## 4 (6.46,7.18] 24 ## 5 (7.18,7.9] 11 ¡El resultado es que tenemos 5 categorías en una tabla más legible!</p>
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>¡El resultado es que tenemos 5 categorías en una tabla más legible!</p>
 <p>Especificando los cortes o límites de los intervalos Aunque el resultado anterior no tiene nada incorrecto, podríamos hacer que los intervalos sean más legibles. El truco es que el argumento breaks no sólo acepta el número de intervalos que queremos, sino que también podemos indicar los puntos en los que queremos hacer los cortes. Por ejemplo, vamos a hacer intervalos de longitud 1, desde el 4 hasta el 8. Esto lo podemos hacer con la función seq.</p>
 <p>seq(from = 4, to = 8, by = 1) ## [1] 4 5 6 7 8 breaks &lt;- seq(from = 4, to = 8, by = 1)</p>
-<p>iris %&gt;% mutate( sepal_length_group = cut(sepal_length, breaks = breaks) ) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n()) ## # A tibble: 4 x 2 ## sepal_length_group frequency ## <fct> <int> ## 1 (4,5] 32 ## 2 (5,6] 57 ## 3 (6,7] 49 ## 4 (7,8] 12 ¡Mira qué linda tabla! A primera vista lo que se aprecia es que hay más valores bajos (entre 4 y 6) que altos (entre 6 y 8), y también que están más concentrados en el medio, (entre 5 y 6).</p>
+<p>iris %&gt;% mutate( sepal_length_group = cut(sepal_length, breaks = breaks) ) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n())</p>
+<p>¡Mira qué linda tabla! A primera vista lo que se aprecia es que hay más valores bajos (entre 4 y 6) que altos (entre 6 y 8), y también que están más concentrados en el medio, (entre 5 y 6).</p>
 <p>Los intervalos son abiertos a la izquierda y cerrados a la derecha. Esto implica que el 5 está incluído en el primer intervalo y no en el segundo</p>
 <p>Frecuencias acumuladas Podemos agregar una columna más a la tabla de frecuencias, acumulando las frecuencias para cada clase, utilizando la función cumsum.</p>
 <p>breaks &lt;- seq(from = 4, to = 8, by = 1)</p>
-<p>iris %&gt;% mutate( sepal_length_group = cut(sepal_length, breaks = breaks) ) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n()) %&gt;% mutate(cum_frequency = cumsum(frequency)) ## # A tibble: 4 x 3 ## sepal_length_group frequency cum_frequency ## <fct> <int> <int> ## 1 (4,5] 32 32 ## 2 (5,6] 57 89 ## 3 (6,7] 49 138 ## 4 (7,8] 12 150 Pregunta</p>
+<p>iris %&gt;% mutate( sepal_length_group = cut(sepal_length, breaks = breaks) ) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n()) %&gt;% mutate(cum_frequency = cumsum(frequency))</p>
+<p>Pregunta</p>
 <p>Si tenemos la siguiente tabla de frecuencias Categoria Frecuencia Frecuencia acumulada (0 - 10] - 20 (10 - 20] - 50 (X - 30] - 80 (30 - 40] - 100 ¿Cuál es el tamaño de la muestra? ¿Cuál es la frecuencia del intervalo (10 - 20]? ¿Cuánto vale X? Mostrar respuesta Graficar una tabla de frecuencias de una variable cuantitativa Podríamos seguir los mismo pasos que para una variable cualitativa y utilizar geom_bar</p>
 <p>breaks &lt;- seq(from = 4, to = 8, by = 1)</p>
 <p>iris %&gt;% mutate(sepal_length_group = cut(sepal_length, breaks = breaks)) %&gt;% group_by(sepal_length_group) %&gt;% summarise(frequency = n()) %&gt;% ggplot() + geom_bar(aes(x = sepal_length_group, y = frequency), stat = ‘identity’)</p>
@@ -1268,6 +1120,9 @@ iris</code></pre>
 <p>breaks &lt;- seq(from = 4, to = 8, by = 0.5)</p>
 <p>iris %&gt;% ggplot() + geom_histogram(aes(x = sepal_length), breaks = breaks, colour = ‘lightgrey’) + ggtitle(‘Frequency distribution of Sepal Length’, subtitle = ‘Histogram’) + labs(x = ‘Sepal length’, y = ‘Frequency’)</p>
 <p>Conclusión Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.</p>
+</div>
+<div id="analisis-de-datos-agrupados" class="section level2">
+<h2>Analisis de datos agrupados</h2>
 </div>
 
 <br>

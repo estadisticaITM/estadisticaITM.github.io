@@ -1,40 +1,57 @@
 ---
 title: "Semillero de R"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
 ---
 
-#R
-R es una herramienta de análisis estadístico que permite el desarrollo de multiples aplicaciones a traves R studio y su librería shiny
+## ¿Qué es R?
 
-```{r fig.asp=0.3, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM2 <- readPNG("rlogo.png")
-grid.raster(IM2)
+R es un lenguaje de programación, de libre acceso para computación estadística, proporciona una amplia variedad de técnicas estadísticas y gráficas: modelado lineal y no lineal, pruebas estadísticas, análisis de series de tiempo, clasificación, agrupamiento, etc..
+
+```{r, echo=F, fig.cap='Logo de R', fig.asp=0.5, fig.align='center'}
+knitr::include_graphics("imagen/rlogo.png")
 ```
 
-¿Cómo descargar R y Rstudio?
-
-<iframe width="562" height="273" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[cran de R](https://cran.r-project.org/)
 
 
-#Aplicaciones desarrolladas en Shiny
+## ¿Qué es Rstudio?
 
+RStudio es un entorno de desarrollo integrado para R, un lenguaje de programación para gráficos y computación estadística. Está disponible en dos formatos: RStudio Desktop es una aplicación de escritorio normal, mientras que RStudio Server se ejecuta en un servidor remoto y permite acceder a RStudio mediante un navegador web.
 
-```{r fig.asp=0.3, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("semi.png")
-grid.raster(IM)
+```{r, echo=F, fig.cap='Logo de RStudio', fig.asp=0.1, fig.align='center'}
+knitr::include_graphics("imagen/rstudio.png")
 ```
 
+[RStudio](https://rstudio.com/)
 
+## Historía de R y RStudio
+
+[Historia de R]( https://d3c33hcgiwev3.cloudfront.net/WXE20tXKEeWjTxJlqDdk5Q.processed/full/360p/index.webm?Expires=1597968000&Signature=IRb8ROuFchPY0bfiamsRdVnQT-hAL3xp2voRx8YHcKQDLj9nSBaT0JoZo4dytufV0Wq-BRKYelYMfCSVBA6MoI8QAWG68ycz4sfj7c7AH4ceaxIQ-O-94VP8WjiaGCiYh9Sj4x~dLVcKxbF6RP-cpAlEpeB4KB8IxRX9hOj0CzY_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A)
+
+## ¿Cómo descargar R y Rstudio?
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+## Librería Shiny
+Hace que sea increíblemente fácil construir aplicaciones web interactivas con R. La vinculación "reactiva" automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.
+
+```{r, echo=F, fig.cap='Aplicaciones', fig.asp=0.6, fig.align='center'}
+knitr::include_graphics("imagen/semi.png")
+
+```
+
+En esta página encuentras diferentes aplicaciones elaboradas por diferentes autores.
+
+[Aplicaciones de Shiny y RStudio](https://shiny.rstudio.com/gallery/)
 
 
 En esta sección se muestran algunos de los múltiples usos y aplicaciones que se pueden realizar:
 
 
-
-## Encuestador con google 
+**Encuestador con google **
 
 ```{r echo=FALSE}
 knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
@@ -42,7 +59,7 @@ knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
 ```
 
 
-## Análisis descriptivo:
+**Análisis descriptivo**
 
 Aplicación que estima tamaños de muestra estratificado y realiza análisis descriptivo.
 
@@ -52,7 +69,7 @@ knitr::include_app("https://jtrochezg.shinyapps.io/appitmdese/",
                    height = "800px")
 ```
 
-## Análisis de asesorias de SIGA
+**Análisis de asesorias de SIGA**
 
 Aplicación que analiza asesorias de SIGA y realiza análisis descriptivo.
 
@@ -61,19 +78,44 @@ knitr::include_app("https://jtrochezg.shinyapps.io/ASESORIAS/",
                    height = "800px")
 ```
 
-## Análisis de notas 
+**Análisis de notas **
 
 Aplicación que estima estadísticas descriptivas de las notas .
 
 ```{r echo=FALSE}
-knitr::include_app("https://jtrochezg.shinyapps.io/notasapp/",
-                   height = "800px")
+knitr::include_app("https://jtrochezg.shinyapps.io/notasapp/",height = "800px")
+
 ```
 
-
-## Ajuste de modelo lineal mixto
+**Ajuste de modelo lineal mixto**
 
 ```{r echo=FALSE}
 knitr::include_app("https://jtrochezg.shinyapps.io/linear_mixed_model/",
                    height = "800px")
 ```
+
+
+
+## Lectura de datos en R
+
+Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:
+
+- plano con extensión .txt o,
+
+- Excel con extensión .csv.
+
+En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.
+
+Table 7.1: Ejemplo de una base de datos simple.
+|Edad|Fuma|Pais|
+|----|----|----|
+|35  |TRUE|Colombia|
+|46	 |TRUE|Francia | 
+|23	 |FALSE|	Malta|
+
+
+
+7.1.1 Almacenamiento de información en Excel
+Para almacenar la información del Cuadro 7.1 en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información tal como se muestra en la Figura 7.1. Se debe iniciar en la parte superior izquierda, no se deben dejar filas vacías, no se debe colorear, no se deben colocar bordes ni nada, se ingresa la información sin embellecer el contenido. Por último se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).
+
+
