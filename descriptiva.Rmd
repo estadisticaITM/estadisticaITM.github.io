@@ -150,7 +150,7 @@ tabla
 #Añadir totales
 Tab=addmargins(tabla)
 Tab
-kable(Tab)
+kable(Tab,booktabs = TRUE)
 
 # Tabla de proporciones o porcentajes
 
@@ -160,7 +160,7 @@ Tab1
 #Añador totales
 Tab2=addmargins(Tab1)
 Tab2
-kable(addmargins(prop.table(table(fuma))*100))
+kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)
 ```
 
 ```{r}
@@ -171,12 +171,12 @@ table(gen)
 #añadir totales
 addmargins(table(gen))
 
-kable(addmargins(table(gen)))
+kable(addmargins(table(gen)),booktabs = TRUE)
 # Tabla de proporciones o porcentajes
 
 addmargins(prop.table(table(gen)))
 
-kable(prop.table(table(gen))*100)
+kable(prop.table(table(gen))*100,booktabs = TRUE)
 
 ```
 
@@ -275,15 +275,6 @@ Existen diferentes tipos de gráficos, los cuales ilustran la información conte
 
 Forma de resumir un conjunto de datos por categorías. Muestra los datos usando varias barras de la misma anchura, cada una representa una categoría concreta. La altura de cada barra es proporcional a la suma de los valores de la categoría que representa.
 
-**Ejemplo 1**
-<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/OzS7xkOUaE0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
-**Ejemplo 2**
-
-En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.
-
-<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
 ### Histograma
 Es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados, sirven para obtener una "primera vista" general de la distribución de la muestra, respecto a una característica
 
@@ -320,7 +311,7 @@ m=data.frame(table(mtcars$cyl),porcentajes*100,grad)
 
 colnames(m)=c("cilindros","frecuencia absoluta","Porcentaje","grad°")
 
-kable(m,caption = "Frecuencia del número de cilindros")
+kable(m,caption = "Frecuencia del número de cilindros",booktabs = TRUE)
 
 barplot(j,col='#4168c3',ylab="Frecuencia absoluta", xlab="Número de cilindros")
 box()
@@ -348,8 +339,23 @@ bar1 <- ggplot(data=m, aes(x=2,y= porcentajes,
 bar1
 ```
 
-**Algunos videos**
+**Algunos videos que sirven de ejemplo**
+
+**Ejemplo 1**
+
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/VGrQRIKBOcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
+**Ejemplo 2**
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/OzS7xkOUaE0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+**Ejemplo 3**
+
+En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
 
 ### Gráfico de series de tiempo
 
@@ -389,6 +395,7 @@ Cambio a largo plazo que se produce en relación al
 nivel medio, se identifica con un movimiento suave de la serie a largo plazo
 
 *Efecto estacional* 
+
 Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.
 
 **Ejemplo en R**
@@ -398,6 +405,7 @@ La siguiente base de datos representa los precios de cierre diarios del índice 
 La serie de tiempo con su respectiva descomposición se enlistan a continuación.
 
 ```{r}
+
 tsData <- EuStockMarkets[,1] # ts data
 plot(tsData,col=4)
 decomposedRes <- decompose(tsData, type="mult") # use type = "additive" for additive components
@@ -470,6 +478,7 @@ fig
 **Tablas de frecuencia para variables cuantitativas**
 Se tiene la edad de 96 estudiantes nuevos del itm
 
+|v1|v2|v3|v4|v5|v6|v7|v8|v9|v10|v11|v12|
 |--|--|--|--|--|--|--|--|--|--|--|--|
 |18|26|19|19|21|33|18|18|18|37|18|33|
 |21|34|19|18|18|21|27|20|21|18|29|17|
@@ -481,6 +490,7 @@ Se tiene la edad de 96 estudiantes nuevos del itm
 |21|31|20|33|21|20|18|17|27|23|27|28|
 
 **Ejemplo en R**
+
 El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.
 
 ```{r}

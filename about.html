@@ -454,9 +454,201 @@ Logo de RStudio
 </iframe>
 </div>
 </div>
+<div id="lectura-de-datos-en-r" class="section level2">
+<h2>Lectura de datos en R</h2>
+<p>Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:</p>
+<ul>
+<li><p>plano con extensión .txt o,</p></li>
+<li><p>Excel con extensión .csv.</p></li>
+</ul>
+<p>En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.</p>
+<p>Ejemplo de una base de datos simple.</p>
+<table>
+<caption>Ejemplo de una base de datos simple.</caption>
+<thead>
+<tr class="header">
+<th align="right">Edad</th>
+<th align="left">Fuma</th>
+<th align="left">sex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">esporádicamente</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">23</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">CADA MES</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="left">A DIARIO</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">19</td>
+<td align="left">A DIARIO</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="left">esporádicamente</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="even">
+<td align="right">21</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">18</td>
+<td align="left">CADA MES</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">A DIARIO</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">21</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="left">A DIARIO</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">24</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">28</td>
+<td align="left">CADA SEMANA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">29</td>
+<td align="left">NUNCA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">24</td>
+<td align="left">NUNCA</td>
+<td align="left">Hombre</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">CADA SEMANA</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="odd">
+<td align="right">23</td>
+<td align="left">esporádicamente</td>
+<td align="left">Mujer</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="left">esporádicamente</td>
+<td align="left">Hombre</td>
+</tr>
+</tbody>
+</table>
+<p>Para almacenar la información del Cuadro en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información.</p>
+<p><strong>OBSERVACIONES</strong></p>
+<ul>
+<li><p>Se debe iniciar en la parte superior izquierda.</p></li>
+<li><p>No dejar filas vacías</p></li>
+<li><p>No colorear ni colocar bordes</p></li>
+<li><p>Se ingresa la información sin embellecer el contenido.</p></li>
+<li><p>Se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).</p></li>
+</ul>
+
+<div class="rmdwarning">
+Advertencia: Recuerde que el archivo de Excel se debe guardar con extensión .csv.
+</div>
+
+<p>en R se debe correr la siguiente instrucción</p>
+<pre class="r"><code>#forma original
+read.table(file, header, sep, dec)
+
+#forma sugerida
+datos &lt;- read.table(file.choose(), header=TRUE, sep=&#39;,&#39;)</code></pre>
+</div>
 <div id="librería-shiny" class="section level2">
 <h2>Librería Shiny</h2>
-<p>Hace que sea increíblemente fácil construir aplicaciones web interactivas con R. La vinculación “reactiva” automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.</p>
+<p>Sirve para construir aplicaciones web interactivas con R. La vinculación “reactiva” automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/semi.png" alt="Aplicaciones" width="126" />
 <p class="caption">
@@ -484,17 +676,6 @@ Aplicaciones
 <p><strong>Ajuste de modelo lineal mixto</strong></p>
 <iframe src="https://jtrochezg.shinyapps.io/linear_mixed_model/?showcase=0" width="672" height="800px">
 </iframe>
-</div>
-<div id="lectura-de-datos-en-r" class="section level2">
-<h2>Lectura de datos en R</h2>
-<p>Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:</p>
-<ul>
-<li><p>plano con extensión .txt o,</p></li>
-<li><p>Excel con extensión .csv.</p></li>
-</ul>
-<p>En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.</p>
-<p>Table 7.1: Ejemplo de una base de datos simple. |Edad|Fuma|Pais| |—-|—-|—-| |35 |TRUE|Colombia| |46 |TRUE|Francia | |23 |FALSE| Malta|</p>
-<p>7.1.1 Almacenamiento de información en Excel Para almacenar la información del Cuadro 7.1 en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información tal como se muestra en la Figura 7.1. Se debe iniciar en la parte superior izquierda, no se deben dejar filas vacías, no se debe colorear, no se deben colocar bordes ni nada, se ingresa la información sin embellecer el contenido. Por último se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).</p>
 </div>
 
 <br>

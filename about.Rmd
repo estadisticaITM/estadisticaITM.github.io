@@ -21,7 +21,7 @@ knitr::include_graphics("imagen/rlogo.png")
 
 RStudio es un entorno de desarrollo integrado para R, un lenguaje de programación para gráficos y computación estadística. Está disponible en dos formatos: RStudio Desktop es una aplicación de escritorio normal, mientras que RStudio Server se ejecuta en un servidor remoto y permite acceder a RStudio mediante un navegador web.
 
-```{r, echo=F, fig.cap='Logo de RStudio', fig.asp=0.1, fig.align='center'}
+```{r, echo=F, fig.cap='Logo de RStudio', fig.asp=0.4, fig.align='center'}
 knitr::include_graphics("imagen/rstudio.png")
 ```
 
@@ -35,10 +35,70 @@ knitr::include_graphics("imagen/rstudio.png")
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/1WXgaa2Spp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-## Librería Shiny
-Hace que sea increíblemente fácil construir aplicaciones web interactivas con R. La vinculación "reactiva" automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.
+## Lectura de datos en R
 
-```{r, echo=F, fig.cap='Aplicaciones', fig.asp=0.6, fig.align='center'}
+Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:
+
+- plano con extensión .txt o,
+
+- Excel con extensión .csv.
+
+En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.
+
+Ejemplo de una base de datos simple.
+
+```{r echo=F}
+
+Edad <- c(17,18,17,23,17,20,27,20,20,20,17,19,20,21,19,18,18,18,21,22,20,22,24,24,28,29,24,18,23,24)
+
+Fuma <- c('NUNCA','esporádicamente','NUNCA','NUNCA', 'CADA MES','NUNCA','NUNCA','NUNCA','A DIARIO', 'NUNCA','NUNCA','A DIARIO','esporádicamente', 'NUNCA','NUNCA','NUNCA','CADA MES','A DIARIO','NUNCA','A DIARIO', 'NUNCA','NUNCA', 'NUNCA','NUNCA','CADA SEMANA','NUNCA','NUNCA','CADA SEMANA','esporádicamente','esporádicamente')
+
+  
+sex <- c('Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Mujer','Mujer','Hombre','Hombre','Mujer','Mujer','Hombre','Mujer','Mujer','Hombre','Mujer','Hombre','Mujer','Hombre','Mujer','Mujer','Hombre'
+)
+dt <- data.frame(Edad, Fuma, sex)
+knitr::kable(dt, booktabs = TRUE,
+caption = 'Ejemplo de una base de datos simple.'
+)
+```
+
+
+Para almacenar la información del Cuadro  en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información.
+
+**OBSERVACIONES**
+
+- Se debe iniciar en la parte superior izquierda. 
+
+- No dejar filas vacías
+
+- No colorear ni colocar bordes 
+
+- Se ingresa la información sin embellecer el contenido. 
+
+- Se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).
+
+
+```{block2, type='rmdwarning'}
+Advertencia: Recuerde que el archivo de Excel se debe guardar con extensión .csv.
+```
+
+en R se debe correr la siguiente instrucción
+```{r eval=F}
+#forma original
+read.table(file, header, sep, dec)
+
+#forma sugerida
+datos <- read.table(file.choose(), header=TRUE, sep=',')
+
+```
+
+
+## Librería Shiny
+
+Sirve para construir aplicaciones web interactivas con R. La vinculación "reactiva" automática entre entradas y salidas y extensos widgets prediseñados hacen posible crear aplicaciones hermosas, receptivas y poderosas con un mínimo esfuerzo.
+
+```{r, echo=F, fig.cap='Aplicaciones', fig.asp=0.1, fig.align='center'}
+
 knitr::include_graphics("imagen/semi.png")
 
 ```
@@ -54,8 +114,7 @@ En esta sección se muestran algunos de los múltiples usos y aplicaciones que s
 **Encuestador con google **
 
 ```{r echo=FALSE}
-knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",
-                   height = "800px")
+knitr::include_app("https://trochez.shinyapps.io/ENCUESTADOR/",height = "800px")
 ```
 
 
@@ -65,8 +124,7 @@ Aplicación que estima tamaños de muestra estratificado y realiza análisis des
 
 
 ```{r echo=FALSE}
-knitr::include_app("https://jtrochezg.shinyapps.io/appitmdese/",
-                   height = "800px")
+knitr::include_app("https://jtrochezg.shinyapps.io/appitmdese/",height = "800px")
 ```
 
 **Análisis de asesorias de SIGA**
@@ -94,28 +152,5 @@ knitr::include_app("https://jtrochezg.shinyapps.io/linear_mixed_model/",
                    height = "800px")
 ```
 
-
-
-## Lectura de datos en R
-
-Usualmente los archivos con la información para ser leídos por R se pueden almacenar en formato:
-
-- plano con extensión .txt o,
-
-- Excel con extensión .csv.
-
-En el siguiente Cuadro 7.1 se presenta una base de datos pequeña, tres observaciones y tres variables, que nos servirá como ejemplo para mostrar cómo se debe almacenar la información.
-
-Table 7.1: Ejemplo de una base de datos simple.
-|Edad|Fuma|Pais|
-|----|----|----|
-|35  |TRUE|Colombia|
-|46	 |TRUE|Francia | 
-|23	 |FALSE|	Malta|
-
-
-
-7.1.1 Almacenamiento de información en Excel
-Para almacenar la información del Cuadro 7.1 en Excel, abrimos un archivo nuevo archivo de Excel y copiamos la información tal como se muestra en la Figura 7.1. Se debe iniciar en la parte superior izquierda, no se deben dejar filas vacías, no se debe colorear, no se deben colocar bordes ni nada, se ingresa la información sin embellecer el contenido. Por último se guarda el archivo en la carpeta deseada y al momento de nombrar el archivo se debe modificar la opción tipo de archivo a csv (delimitado por comas).
 
 

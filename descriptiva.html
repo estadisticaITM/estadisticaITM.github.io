@@ -613,7 +613,7 @@ Tab</code></pre>
 <pre><code>## fuma
 ## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
 ##          35          13          10          10          78         146</code></pre>
-<pre class="r"><code>kable(Tab)</code></pre>
+<pre class="r"><code>kable(Tab,booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -661,7 +661,7 @@ Tab2</code></pre>
 <pre><code>## fuma
 ## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
 ##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000</code></pre>
-<pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100))</code></pre>
+<pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -707,7 +707,7 @@ addmargins(table(gen))</code></pre>
 <pre><code>## gen
 ## Hombre  Mujer    Sum 
 ##     93     53    146</code></pre>
-<pre class="r"><code>kable(addmargins(table(gen)))</code></pre>
+<pre class="r"><code>kable(addmargins(table(gen)),booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -736,7 +736,7 @@ addmargins(prop.table(table(gen)))</code></pre>
 <pre><code>## gen
 ##    Hombre     Mujer       Sum 
 ## 0.6369863 0.3630137 1.0000000</code></pre>
-<pre class="r"><code>kable(prop.table(table(gen))*100)</code></pre>
+<pre class="r"><code>kable(prop.table(table(gen))*100,booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -877,17 +877,6 @@ tabla4</code></pre>
 <div id="gráfico-de-barras" class="section level3">
 <h3>Gráfico de barras</h3>
 <p>Forma de resumir un conjunto de datos por categorías. Muestra los datos usando varias barras de la misma anchura, cada una representa una categoría concreta. La altura de cada barra es proporcional a la suma de los valores de la categoría que representa.</p>
-<strong>Ejemplo 1</strong>
-<div style="text-align: center;">
-<iframe width="280" height="160" src="https://www.youtube.com/embed/OzS7xkOUaE0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<p><strong>Ejemplo 2</strong></p>
-<p>En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.</p>
-<div style="text-align: center;">
-<iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
 </div>
 <div id="histograma" class="section level3">
 <h3>Histograma</h3>
@@ -926,7 +915,7 @@ m=data.frame(table(mtcars$cyl),porcentajes*100,grad)
 
 colnames(m)=c(&quot;cilindros&quot;,&quot;frecuencia absoluta&quot;,&quot;Porcentaje&quot;,&quot;grad°&quot;)
 
-kable(m,caption = &quot;Frecuencia del número de cilindros&quot;)</code></pre>
+kable(m,caption = &quot;Frecuencia del número de cilindros&quot;,booktabs = TRUE)</code></pre>
 <table>
 <caption>Frecuencia del número de cilindros</caption>
 <thead>
@@ -983,9 +972,21 @@ bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar1</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
-<strong>Algunos videos</strong>
+<p><strong>Algunos videos que sirven de ejemplo</strong></p>
+<p><strong>Ejemplo 1</strong></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/VGrQRIKBOcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Ejemplo 2</strong></p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/OzS7xkOUaE0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Ejemplo 3</strong></p>
+<p>En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.</p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
 </div>
@@ -1011,7 +1012,8 @@ bar1</code></pre>
 <p>— Medición diaria del contenido en residuos tóxicos en Las series de tiempo tienen una tendencia y una variación estacional además de un error que oscila alrededor de 0.</p>
 <p><em>Tendencia</em></p>
 <p>Cambio a largo plazo que se produce en relación al nivel medio, se identifica con un movimiento suave de la serie a largo plazo</p>
-<p><em>Efecto estacional</em> Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.</p>
+<p><em>Efecto estacional</em></p>
+<p>Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.</p>
 <p><strong>Ejemplo en R</strong></p>
 <p>La siguiente base de datos representa los precios de cierre diarios del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998, los datos se muestrean en horario comercial, es decir, se omiten los fines de semana y feriados. para un total de 1860 observaciones. Los datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
 <p>La serie de tiempo con su respectiva descomposición se enlistan a continuación.</p>
@@ -1048,8 +1050,8 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-e32ad51537b97fa8320a" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e32ad51537b97fa8320a">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"24283e6c36d6":{"x":{},"y":{},"colour":{},"type":"scatter"},"2428281d11d0":{"x":{},"y":{},"colour":{}}},"cur_data":"24283e6c36d6","visdat":{"24283e6c36d6":["function (y) ","x"],"2428281d11d0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-77f0e990742cc3c556b9" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-77f0e990742cc3c556b9">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"c20402c2dc0":{"x":{},"y":{},"colour":{},"type":"scatter"},"c203b0f4945":{"x":{},"y":{},"colour":{}}},"cur_data":"c20402c2dc0","visdat":{"c20402c2dc0":["function (y) ","x"],"c203b0f4945":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="medidas-de-tendencia-central" class="section level2">
@@ -1085,8 +1087,140 @@ fig</code></pre>
 <div id="tabla-de-datos-agrupados" class="section level2">
 <h2>Tabla de datos agrupados</h2>
 <p><strong>Tablas de frecuencia para variables cuantitativas</strong> Se tiene la edad de 96 estudiantes nuevos del itm</p>
-<p>|–|–|–|–|–|–|–|–|–|–|–|–| |18|26|19|19|21|33|18|18|18|37|18|33| |21|34|19|18|18|21|27|20|21|18|29|17| |28|26|25|28|29|23|27|18|17|42|20|18| |24|18|24|19|26|25|24|19|22|21|26|18| |19|21|25|21|26|17|17|21|20|27|16|18| |21|23|41|23|43|26|49|19|21|18|34|23| |17|17|23|18|26|24|23|21|30|18|18|20| |21|31|20|33|21|20|18|17|27|23|27|28|</p>
-<p><strong>Ejemplo en R</strong> El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.</p>
+<table>
+<thead>
+<tr class="header">
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+<th>v4</th>
+<th>v5</th>
+<th>v6</th>
+<th>v7</th>
+<th>v8</th>
+<th>v9</th>
+<th>v10</th>
+<th>v11</th>
+<th>v12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>18</td>
+<td>26</td>
+<td>19</td>
+<td>19</td>
+<td>21</td>
+<td>33</td>
+<td>18</td>
+<td>18</td>
+<td>18</td>
+<td>37</td>
+<td>18</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>34</td>
+<td>19</td>
+<td>18</td>
+<td>18</td>
+<td>21</td>
+<td>27</td>
+<td>20</td>
+<td>21</td>
+<td>18</td>
+<td>29</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>28</td>
+<td>26</td>
+<td>25</td>
+<td>28</td>
+<td>29</td>
+<td>23</td>
+<td>27</td>
+<td>18</td>
+<td>17</td>
+<td>42</td>
+<td>20</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>18</td>
+<td>24</td>
+<td>19</td>
+<td>26</td>
+<td>25</td>
+<td>24</td>
+<td>19</td>
+<td>22</td>
+<td>21</td>
+<td>26</td>
+<td>18</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>21</td>
+<td>25</td>
+<td>21</td>
+<td>26</td>
+<td>17</td>
+<td>17</td>
+<td>21</td>
+<td>20</td>
+<td>27</td>
+<td>16</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>23</td>
+<td>41</td>
+<td>23</td>
+<td>43</td>
+<td>26</td>
+<td>49</td>
+<td>19</td>
+<td>21</td>
+<td>18</td>
+<td>34</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>17</td>
+<td>23</td>
+<td>18</td>
+<td>26</td>
+<td>24</td>
+<td>23</td>
+<td>21</td>
+<td>30</td>
+<td>18</td>
+<td>18</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>31</td>
+<td>20</td>
+<td>33</td>
+<td>21</td>
+<td>20</td>
+<td>18</td>
+<td>17</td>
+<td>27</td>
+<td>23</td>
+<td>27</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo en R</strong></p>
+<p>El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.</p>
 <pre class="r"><code>#install.packages(&quot;janitor&quot;)
 library(dplyr)
 
