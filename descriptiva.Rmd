@@ -447,18 +447,141 @@ fig
 ```
 
 ## Medidas de tendencia central 
+Son 3 valores que resumen y representan la información contenida en un conjunto de datos.
+Las tres medidas son la media, la mediana y la
+moda.
 
-*Medidas de tendencia central*
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/central.png")
+```
+
+
+### Moda
+
+Es el valor que más se repite, si no hay datos que se repiten se dice que no hay moda.
+Si dos datos se repiten con la misma frecuencia se dice que los datos son bimodales.
+
+
+### Media
+
+Valor promedio de un conjunto de datos numéricos, calculada como la suma del conjunto de valores dividida entre el número total de valores, la fórmula con la que se estima es:
+
+**Media Muestral**
+
+$$\bar x_i=\frac{\sum_{i=1}^{n}x_i}{n}$$
+
+**Media poblacional**
+
+$$\hat \mu =\frac{\sum_{i=1}^{n}x_i}{N}$$
+
+Donde
+$x_i$ corresponde a cada observación
+
+N es el tamaño poblacional
+
+n es el tamaño muestral
+
+Según el teorema de límite central cuando n>30 se considera poblacional
+
+### Mediana
+
+Es un valor que se encuentra en la mitad de los datos, cuando estos están ordenados
+
+a. si los datos son pares, la mediana es la suma de los dos valores centrales dividida por dos
+
+$$M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}$$
+
+b. si los datos son impares la mediana es el valor que se encuentra en la posición $\frac{n+1}{2}$
+
+$$M_e=\frac{X_{n+1}}{2}$$
+
+**Ejemplo**
+
+Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres
+
+|Hombre|20|22|26|20|26|19|20|21|26|  |  |  |  |
+|:----:|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|Mujer |20|20|31|26|23|42|23|20|24|25|24|27|22|
+
+Estime la media por género, la moda y la mediana.
+
+*Video medidas de tendencia central*
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/A_u9fS2r-Eg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/0DA7Wtz1ddg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-
 ## Medidas de variabilidad
+
+La media es un buen indicador de tendencia central, pero no da una evidencia real acerca de los datos.
+
+Las medidas de variabilidad determinan el grado de acercamiento o distanciamiento de los valores de una distribución frente a su promedio de localización.
+
+- Entre más grande sea el grado de variación, menor uniformidad tendrán los datos (sinónimo de heterogeneidad) y por lo tanto menor confiabilidad del promedio de tendencia central o localización por haber sido obtenido de datos dispersos (Mendoza et al, 2002). 
+
+- Si este valor es pequeño (respecto a la unidad de medida) entonces hay una gran uniformidad entre los datos(Mendoza et al, 2002). 
+
+- Cuando es cero quiere decir que todos los datos son iguales.
+
+### Rango
+Es la diferencia entre el valor máximo y el valor mínimo
+
+Rango= valor max - valor mínimo
+
+Esta medida ignora la manera en que los datos están distribuidos
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/rango.png")
+```
+
+### Varianza y Desviación estándar
+
+```{r fig.asp=0.7, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/sd.png")
+
+```
+
+**Caso poblacional**
+
+**Varianza**
+
+$$\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}$$
+**Desviación estándar**
+$$\sigma^2=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}$$
+**Caso muestral**
+
+**Varianza**
+$$S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}$$
+**Desviación estándar**
+$$S^2=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}$$
+**Pasos para estimar la desviación estándar**
+1. Encuentre la media
+2. Encuentre la desviación de cada uno de los valores con respecto a la media
+3. Eleve cada valor obtenido al cuadrado
+4. Halle la suma de cada uno de los cuadrados
+5. Divida la suma de los cuadrados por el número de ítems
+6. Encuentre la raíz cuadrada de la varianza
 
 *Medidas de variabilidad*
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/cg4kUsbjQms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
+**Diferencia en medidas entre la población y la muestra**
+
+|Medida|Población|Muestra|
+|:----:|:-------:|:-----:|
+|Tamaño|N        |n      |
+|Media |$\mu$   |$\bar x$|
+|Varianza|$\sigma^2$|$S^2$|
+|Desviación estándar|$\sigma$|S|
+
+**Comparemos**
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/bolas.png")
+
+```
 
 *Cómo estimar la media, la desviación estandar en la calculadora*
 
@@ -467,6 +590,17 @@ fig
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/6jqoucoas8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
+
+
+
+### Media ponderada
+
+Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene una importancia relativa (o peso) respecto de los demás datos. Se obtiene multiplicando cada uno de los datos por su ponderación (peso) para luego sumarlos
+
+
+$$\bar X=\sum_{i=1}^{n}x_i*w_i$$
+
+Donde $X_i$ es cada una de las observaciones, $W_i$ es la ponderación de cada uno de ellos,$\sum_{i=1}^n w_i=1$
 
 
 *Medidas de tendencia central en tablas de frecuencia*
@@ -592,3 +726,11 @@ Conclusión
 Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.
 
 ## Analisis de datos agrupados
+
+
+medidas de tendencia central en datos agrupados
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+## Bibliografía
+Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística. Universidad Nacional de Colombia, http://www.virtual.unal.edu.co/cursos/ciencias/2001065/. Licencia: Creative Commons BY-NC-ND.
