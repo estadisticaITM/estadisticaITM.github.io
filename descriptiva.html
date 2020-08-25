@@ -992,11 +992,11 @@ bar1</code></pre>
 </div>
 <div id="gráfico-de-series-de-tiempo" class="section level3">
 <h3>Gráfico de series de tiempo</h3>
-<p>Una serie de tiempo es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespacios). Las series pueden tener periodicidad anual, semestral, trimestral, mensual,diaria etc., según los periodos de tiempo en los que están recogidos los datos que la componen.</p>
+<p>Una serie de tiempo es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespacios). Las series pueden tener periodicidad anual, semestral, trimestral, mensual,diaria etc.</p>
 <p><strong>Aparecen en numerosos campos</strong></p>
 <p><em>Economía y Marketing</em></p>
 <ul>
-<li>Precio del alquiler de apartamentos durante varios meses.</li>
+<li>Precio del alquiler de un apartamento durante varios meses.</li>
 </ul>
 <p>— Precio promedio del trigo mensual.</p>
 <p>— Índices del precio del petróleo por semana.</p>
@@ -1009,9 +1009,9 @@ bar1</code></pre>
 <p><em>Medioambiente</em></p>
 <p>— Lluvia recogida diariamente en una localidad.</p>
 <p>— Temperatura media diaria.</p>
-<p>— Medición diaria del contenido en residuos tóxicos en Las series de tiempo tienen una tendencia y una variación estacional además de un error que oscila alrededor de 0.</p>
+<p>— Medición diaria de materal particulado en el área metropolitana.</p>
 <p><em>Tendencia</em></p>
-<p>Cambio a largo plazo que se produce en relación al nivel medio, se identifica con un movimiento suave de la serie a largo plazo</p>
+<p>Cambio a largo plazo que se produce en relación al nivel medio, se identifica con un movimiento suave de la serie a largo plazo, puede ser ascendente ó descendente.</p>
 <p><em>Efecto estacional</em></p>
 <p>Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.</p>
 <p><strong>Ejemplo en R</strong></p>
@@ -1026,7 +1026,7 @@ plot (decomposedRes,col=4) # see plot below</code></pre>
 </div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
-<p>Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones. Por ejemplo el número total de asesorías brindadas en siga para los estudiantes, en las diferentes asignaturas</p>
+<p>Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.</p>
 <p><strong>Ejemplo</strong></p>
 <p>Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
 <pre class="r"><code>library(plotly)
@@ -1050,8 +1050,179 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-477398128207bb378e2d" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-477398128207bb378e2d">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"34b4bcd5e29":{"x":{},"y":{},"colour":{},"type":"scatter"},"34b430966488":{"x":{},"y":{},"colour":{}}},"cur_data":"34b4bcd5e29","visdat":{"34b4bcd5e29":["function (y) ","x"],"34b430966488":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-1.png" width="672" /><div id="htmlwidget-3baadf5350feb2a6e087" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3baadf5350feb2a6e087">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"37786a8521d1":{"x":{},"y":{},"colour":{},"type":"scatter"},"3778d6e3a35":{"x":{},"y":{},"colour":{}}},"cur_data":"37786a8521d1","visdat":{"37786a8521d1":["function (y) ","x"],"3778d6e3a35":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script></p>
+<p><strong>Ejemplo en excel</strong></p>
+<p>Se tienen los precios de la zanahoria en las plazas de mercado de 3 ciudades diferentes</p>
+<table>
+<caption>Precios de la zanahoria</caption>
+<thead>
+<tr class="header">
+<th align="left">fecha</th>
+<th align="right">Bogota</th>
+<th align="right">Arauca</th>
+<th align="right">Armenia</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">4-ene</td>
+<td align="right">1700</td>
+<td align="right">1317</td>
+<td align="right">1556</td>
+</tr>
+<tr class="even">
+<td align="left">11-ene</td>
+<td align="right">1472</td>
+<td align="right">1235</td>
+<td align="right">1389</td>
+</tr>
+<tr class="odd">
+<td align="left">18-ene</td>
+<td align="right">1288</td>
+<td align="right">1227</td>
+<td align="right">1400</td>
+</tr>
+<tr class="even">
+<td align="left">25-ene</td>
+<td align="right">1321</td>
+<td align="right">1214</td>
+<td align="right">1365</td>
+</tr>
+<tr class="odd">
+<td align="left">1-feb</td>
+<td align="right">1492</td>
+<td align="right">1233</td>
+<td align="right">1211</td>
+</tr>
+<tr class="even">
+<td align="left">8-feb</td>
+<td align="right">1392</td>
+<td align="right">1306</td>
+<td align="right">1211</td>
+</tr>
+<tr class="odd">
+<td align="left">15-feb</td>
+<td align="right">1544</td>
+<td align="right">1302</td>
+<td align="right">1211</td>
+</tr>
+<tr class="even">
+<td align="left">22-feb</td>
+<td align="right">1389</td>
+<td align="right">1312</td>
+<td align="right">1294</td>
+</tr>
+<tr class="odd">
+<td align="left">29-feb</td>
+<td align="right">1296</td>
+<td align="right">1358</td>
+<td align="right">1294</td>
+</tr>
+<tr class="even">
+<td align="left">7-mar</td>
+<td align="right">1229</td>
+<td align="right">1385</td>
+<td align="right">1206</td>
+</tr>
+<tr class="odd">
+<td align="left">14-mar</td>
+<td align="right">1867</td>
+<td align="right">1377</td>
+<td align="right">1122</td>
+</tr>
+<tr class="even">
+<td align="left">21-mar</td>
+<td align="right">1973</td>
+<td align="right">1712</td>
+<td align="right">1639</td>
+</tr>
+<tr class="odd">
+<td align="left">28-mar</td>
+<td align="right">1158</td>
+<td align="right">1485</td>
+<td align="right">1324</td>
+</tr>
+<tr class="even">
+<td align="left">4-abr</td>
+<td align="right">1313</td>
+<td align="right">1364</td>
+<td align="right">1194</td>
+</tr>
+<tr class="odd">
+<td align="left">11-abr</td>
+<td align="right">1398</td>
+<td align="right">1379</td>
+<td align="right">1144</td>
+</tr>
+<tr class="even">
+<td align="left">18-abr</td>
+<td align="right">1658</td>
+<td align="right">1230</td>
+<td align="right">1128</td>
+</tr>
+<tr class="odd">
+<td align="left">25-abr</td>
+<td align="right">1708</td>
+<td align="right">1364</td>
+<td align="right">1406</td>
+</tr>
+<tr class="even">
+<td align="left">2-may</td>
+<td align="right">2826</td>
+<td align="right">1811</td>
+<td align="right">1374</td>
+</tr>
+<tr class="odd">
+<td align="left">9-may</td>
+<td align="right">2081</td>
+<td align="right">2521</td>
+<td align="right">1524</td>
+</tr>
+<tr class="even">
+<td align="left">16-may</td>
+<td align="right">2105</td>
+<td align="right">2264</td>
+<td align="right">1561</td>
+</tr>
+<tr class="odd">
+<td align="left">23-may</td>
+<td align="right">2208</td>
+<td align="right">2121</td>
+<td align="right">2037</td>
+</tr>
+<tr class="even">
+<td align="left">30-may</td>
+<td align="right">2474</td>
+<td align="right">2230</td>
+<td align="right">2111</td>
+</tr>
+<tr class="odd">
+<td align="left">6-jun</td>
+<td align="right">2243</td>
+<td align="right">2424</td>
+<td align="right">1824</td>
+</tr>
+<tr class="even">
+<td align="left">13-jun</td>
+<td align="right">1884</td>
+<td align="right">1794</td>
+<td align="right">1861</td>
+</tr>
+<tr class="odd">
+<td align="left">20-jun</td>
+<td align="right">1775</td>
+<td align="right">1800</td>
+<td align="right">1620</td>
+</tr>
+<tr class="even">
+<td align="left">27-jun</td>
+<td align="right">2021</td>
+<td align="right">1448</td>
+<td align="right">1750</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="medidas-de-tendencia-central" class="section level2">
@@ -1066,7 +1237,7 @@ fig</code></pre>
 <h3>Media</h3>
 <p>Valor promedio de un conjunto de datos numéricos, calculada como la suma del conjunto de valores dividida entre el número total de valores, la fórmula con la que se estima es:</p>
 <p><strong>Media Muestral</strong></p>
-<p><span class="math display">\[\bar x_i=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
+<p><span class="math display">\[\bar x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
 <p><strong>Media poblacional</strong></p>
 <p><span class="math display">\[\hat \mu =\frac{\sum_{i=1}^{n}x_i}{N}\]</span></p>
 <p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada observación</p>
@@ -1084,7 +1255,7 @@ fig</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>si los datos son impares la mediana es el valor que se encuentra en la posición <span class="math inline">\(\frac{n+1}{2}\)</span></li>
 </ol>
-<p><span class="math display">\[M_e=\frac{X_{n+1}}{2}\]</span></p>
+<p><span class="math display">\[M_e=X_\frac{_{n+1}}{2}\]</span></p>
 <p><strong>Ejemplo</strong></p>
 <p>Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres</p>
 <table>
@@ -1155,11 +1326,21 @@ fig</code></pre>
 </div>
 <div id="varianza-y-desviación-estándar" class="section level3">
 <h3>Varianza y Desviación estándar</h3>
+<p>indica qué tan dispersos están los datos con respecto a la media</p>
 <p><img src="imagen/sd.png" width="414" style="display: block; margin: auto;" /></p>
 <p><strong>Caso poblacional</strong></p>
 <p><strong>Varianza</strong></p>
-<p><span class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span> <strong>Desviación estándar</strong> <span class="math display">\[\sigma^2=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span> <strong>Caso muestral</strong></p>
-<p><strong>Varianza</strong> <span class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span class="math display">\[S^2=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación estándar</strong> 1. Encuentre la media 2. Encuentre la desviación de cada uno de los valores con respecto a la media 3. Eleve cada valor obtenido al cuadrado 4. Halle la suma de cada uno de los cuadrados 5. Divida la suma de los cuadrados por el número de ítems 6. Encuentre la raíz cuadrada de la varianza</p>
+<p><span class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span> <strong>Desviación estándar</strong></p>
+<p><span class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span> <strong>Caso muestral</strong></p>
+<p><strong>Varianza</strong> <span class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación estándar</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Encuentre la media</p></li>
+<li><p>Encuentre la desviación de cada uno de los valores con respecto a la media.</p></li>
+<li><p>Eleve cada valor obtenido al cuadrado</p></li>
+<li><p>Halle la suma de cada uno de los cuadrados</p></li>
+<li><p>Divida la suma de los cuadrados por el número de ítems</p></li>
+<li><p>Encuentre la raíz cuadrada de la varianza</p></li>
+</ol>
 <p><em>Medidas de variabilidad</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/cg4kUsbjQms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1197,7 +1378,8 @@ fig</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>Comparemos</strong> <img src="imagen/bolas.png" width="489" style="display: block; margin: auto;" /></p>
+<p><strong>Comparemos</strong></p>
+<p><img src="imagen/bolas.png" width="489" style="display: block; margin: auto;" /></p>
 <p><em>Cómo estimar la media, la desviación estandar en la calculadora</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/4eXrcn6QLgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1208,16 +1390,194 @@ fig</code></pre>
 </iframe>
 </div>
 </div>
+<div id="coeficiente-de-variación" class="section level3">
+<h3>Coeficiente de variación</h3>
+<p>Es una medida de la dispersión relativa de un conjunto de datos, la cual relaciona la desviación típica de una muestra y su media.</p>
+<p>Se expresa en términos porcentuales, la fórmula con la que se estima es: <span class="math display">\[CV=\frac{\bar x}{S}*100\]</span></p>
+<p>No depende de las unidades de medición, por lo que sirve para comparar la variabilidad de dos conjuntos de datos, siempre que sus medias sean positivas.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Hombre</th>
+<th>20</th>
+<th>22</th>
+<th>26</th>
+<th>20</th>
+<th>26</th>
+<th>19</th>
+<th>20</th>
+<th>21</th>
+<th>26</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mujer</td>
+<td>20</td>
+<td>20</td>
+<td>31</td>
+<td>26</td>
+<td>23</td>
+<td>42</td>
+<td>23</td>
+<td>20</td>
+<td>24</td>
+<td>25</td>
+<td>24</td>
+<td>27</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<p>Estime las medidas de variación y el coeficiente de variación.</p>
+</div>
 <div id="media-ponderada" class="section level3">
 <h3>Media ponderada</h3>
 <p>Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene una importancia relativa (o peso) respecto de los demás datos. Se obtiene multiplicando cada uno de los datos por su ponderación (peso) para luego sumarlos</p>
 <p><span class="math display">\[\bar X=\sum_{i=1}^{n}x_i*w_i\]</span></p>
 <p>Donde <span class="math inline">\(X_i\)</span> es cada una de las observaciones, <span class="math inline">\(W_i\)</span> es la ponderación de cada uno de ellos,<span class="math inline">\(\sum_{i=1}^n w_i=1\)</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen las siguientes notas de un estudiante</p>
+<ul>
+<li><p>cual es la nota total obtenida en la materia</p></li>
+<li><p>Si faltara la última nota cuanto tendría que sacar para ganar la asignatura.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Peso(%)</th>
+<th>25</th>
+<th>15</th>
+<th>35</th>
+<th>10</th>
+<th>15</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Nota</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Ponderación</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="medidas-de-posición" class="section level2">
+<h2>Medidas de posición</h2>
+<p>son valores que permiten dividir el conjunto de datos en partes porcentuales iguales y se usan para clasificar una observación dentro de una población o muestra. Las medidas de posición más usuales son los cuartiles, los deciles y los percentiles.</p>
+<div id="cuartiles" class="section level3">
+<h3>Cuartiles</h3>
+<p>Son tres valores que distribuyen la serie de datos ordenada, en cuatro tramos iguales, en los que cada uno de ellos se concentra el 25% de los resultados.</p>
+<p><img src="imagen/cuartiles.png" width="528" style="display: block; margin: auto;" /></p>
+<p>La fórmula con la que se estima está dada por:</p>
+<p><span class="math display">\[Q_k=X_{(k \frac{n+1}{4})}\]</span> con k=1,2,3</p>
+</div>
+<div id="deciles" class="section level3">
+<h3>Deciles</h3>
+<p>Son 9 valores que distribuyen la serie de datos ordenada, en diez tramos iguales, en los que cada uno de ellos concentra el 10% de los resultados.</p>
+<p>La fórmula con la que se estima está dada por:</p>
+<p><span class="math display">\[D_k=X_{(k \frac{n+1}{10})}\]</span> con k=1,2,3…9</p>
+</div>
+<div id="percentiles" class="section level3">
+<h3>Percentiles</h3>
+<p>Divide un conjunto de datos ordenados en 100 partes iguales, es decir hay 99 percentiles.</p>
+<p><span class="math display">\[P_k=X_{(k \frac{n+1}{100})}\]</span> con k=1,2,3…99</p>
+</div>
+</div>
+<div id="boxplot" class="section level2">
+<h2>Boxplot</h2>
+<p>El boxplot es una herramienta de análisis que resalta las principales características de un conjunto de datos, los números usados para construirlo son:</p>
+<ul>
+<li>Valor mínimo</li>
+<li>Los cuartiles</li>
+<li>Valor máximo</li>
+</ul>
+<p><strong>Ejemplo en R</strong></p>
+<p>La siguiente información fue reportada en la revista Motor Trend de EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
+<p>A continuación se ilustra un resumen del número de cilindros que cada uno de los automoviles mostró</p>
+<pre class="r"><code>library(knitr)
+library(ggplot2)
+
+#Base de datos
+head(mtcars)</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<pre class="r"><code>#resumen de todas las variables de la base de datos
+summary(mtcars)</code></pre>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<pre class="r"><code>#millas por galón
+mpg=mtcars[,1]
+
+#media de las millas por galón
+mean(mpg)</code></pre>
+<pre><code>## [1] 20.09062</code></pre>
+<pre class="r"><code>#desviación estándar
+sd(mpg)</code></pre>
+<pre><code>## [1] 6.026948</code></pre>
+<pre class="r"><code>##Media de mpg según elnúmero de cilindros
+# Usually, you&#39;ll want to group first
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarise(mean = mean(disp), n = n())</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##     cyl  mean     n
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1     4  105.    11
+## 2     6  183.     7
+## 3     8  353.    14</code></pre>
+<pre class="r"><code>#boxplot
+boxplot(mtcars[,1]~mtcars[,2])</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p><em>Medidas de tendencia central en tablas de frecuencia</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-</div>
 </div>
 </div>
 <div id="tabla-de-datos-agrupados" class="section level2">
@@ -1390,13 +1750,22 @@ head(iris)</code></pre>
 <p>breaks &lt;- seq(from = 4, to = 8, by = 0.5)</p>
 <p>iris %&gt;% ggplot() + geom_histogram(aes(x = sepal_length), breaks = breaks, colour = ‘lightgrey’) + ggtitle(‘Frequency distribution of Sepal Length’, subtitle = ‘Histogram’) + labs(x = ‘Sepal length’, y = ‘Frequency’)</p>
 <p>Conclusión Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.</p>
-</div>
-<div id="analisis-de-datos-agrupados" class="section level2">
-<h2>Analisis de datos agrupados</h2>
+<p><strong>Analisis de datos agrupados</strong></p>
 <p>medidas de tendencia central en datos agrupados</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
+</div>
+<div id="medidas-de-forma" class="section level2">
+<h2>Medidas de forma</h2>
+<p>Permiten identificar si una distribución de frecuencia presenta uniformidad. Son necesarias para determinar el comportamiento de los datos. Se clasifican en Medidas de asimetría y medidas de curtosis</p>
+<div id="medidas-de-asimetría" class="section level3">
+<h3>Medidas de asimetría</h3>
+<p>Permite establecer el grado de simetría que tiene una distribución Coeficiente de asimetría de Pearson relaciona la media y la moda de un conjunto de datos</p>
+</div>
+<div id="medidas-de-curtosis" class="section level3">
+<h3>Medidas de curtosis</h3>
 </div>
 </div>
 <div id="bibliografía" class="section level2">
