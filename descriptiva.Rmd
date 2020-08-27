@@ -656,14 +656,16 @@ Estime las medidas de variación y el coeficiente de variación.
 
 
 
-### Media ponderada
+## Media ponderada
 
 Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene una importancia relativa (o peso) respecto de los demás datos. Se obtiene multiplicando cada uno de los datos por su ponderación (peso) para luego sumarlos
 
 
 $$\bar X=\sum_{i=1}^{n}x_i*w_i$$
 
-Donde $X_i$ es cada una de las observaciones, $W_i$ es la ponderación de cada uno de ellos,$\sum_{i=1}^n w_i=1$
+Donde $X_i$ es cada una de las observaciones, $W_i$ es la ponderación de cada uno de ellos.
+
+$$\sum_{i=1}^n w_i=1$$
 
 **Ejemplo**
 
@@ -680,7 +682,7 @@ Se tienen las siguientes notas de un estudiante
 |Ponderación |1| | | | |     |
 
 ## Medidas de posición
-son valores que permiten dividir el conjunto de datos en partes porcentuales iguales y se usan para clasificar una observación dentro de una población o muestra. Las medidas de posición más usuales son los cuartiles, los deciles y los percentiles.
+Son valores que permiten dividir el conjunto de datos en partes porcentuales iguales y se usan para clasificar una observación dentro de una población o muestra. Las medidas de posición más usuales son los cuartiles, los deciles y los percentiles.
 
 ### Cuartiles
 
@@ -748,7 +750,7 @@ sd(mpg)
 # Usually, you'll want to group first
 mtcars %>%
   group_by(cyl) %>%
-  summarise(mean = mean(disp), n = n())
+  summarise(mean = mean(mpg), n = n())
 
 #boxplot
 boxplot(mtcars[,1]~mtcars[,2])
@@ -763,6 +765,57 @@ boxplot(mtcars[,1]~mtcars[,2])
 
 
 ## Tabla de datos agrupados
+
+Cuando los valores de la variable (continuas o discretas) son muchos, conviene agrupar los datos en intervalos o clases para así realizar un mejor análisis e interpretación de ellos.
+
+**Proceso para la construcción de la tabla de frecuencia para datos agrupados**
+
+1. Se elige ó se calcula el número de intervalos de clase representado por la variable m se puede usar la fórmula
+ 
+2. Calcule el rango R
+
+3. Calcule la amplitud de los intervalos, el cual se denota por la letra a:
+
+$$a=\frac{R}{m}$$
+4. Calcule los intervalos de clase: son dos columnas que delimitan el límite superior e inferior del intervalo (LI y LS)
+
+El intervalo es cerrado a la izquierda y abierto a la
+derecha $[x_1,x_2)$
+
+El último intervalo es cerrado a ambos lados, para no dejar información fuera del rango
+
+5. Se busca la marca de clase que se denota por 𝑋𝑖 dada por
+
+$$X_i=\frac{L_{infi}+L_{supi}}{2}$$
+
+6. La segunda columna de la tabla, para datos agrupados es la frecuencia absoluta(𝑓𝑖):
+
+Es el número de observaciones que caen en un intervalo sin incluir el limite superior, es decir número de datos mayores o iguales al límite inferior pero menores que el límite superior
+
+Es decir el intervalo es cerrado a la izquierda y abierto a la derecha.
+El último intervalo es cerrado a ambos lados, para no dejar información fuera del rango
+
+7. Se busca las otras columnas que corresponden a la Frecuencia absoluta acumulada, frecuencia relativa y frecuencia relativa acumulada
+
+|intervalo|Límite inferior|Límite superior        |$x_i$|$f_i$|$F_i$|
+|:-------:|:-------------:|:---------------------:|:------:|:-:|:--:|
+|1        |  $[X_{min}$    |$L_{s1}=L_{inf1}+a)$  |$x_1$|$f_1$|$F_1=f1$|
+|2    |[$L_{inf2}=L_{sup1}$|$L_{sup2}=L_{inf2}+a)$|$x_2$|$f_2$|$F_2=f_1+f_2$|
+|$\vdots$ |$\vdots$        |$\vdots$          |$\vdots$|$\vdots$|$\vdots$|
+|m        |[$L_{infm}$     | max]                 |$x_m$|$f_m$|n|
+
+### Media de datos agrupados
+
+$$\bar x=\frac{\sum_{i=1}^n X_if_i}{n}$$
+Donde:
+$X_i$ es la marca de clase
+
+$f_i$ es la frecuencia relativa
+
+n tamaño de la muestra
+
+También es posible encontrar el intervalo modal y el intervalo de la mediana
+
 
 **Tablas de frecuencia para variables cuantitativas**
 Se tiene la edad de 96 estudiantes nuevos del itm
@@ -780,105 +833,64 @@ Se tiene la edad de 96 estudiantes nuevos del itm
 
 **Ejemplo en R**
 
-El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 50 flores de 3 especies de flores, iris setosa, versicolor y virginica.
+El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 3 especies de flores, iris setosa, versicolor y virginica.
 
 ```{r}
 #install.packages("janitor")
 library(dplyr)
 
 head(iris)
-```
-
-
-¡El resultado es que tenemos 5 categorías en una tabla más legible!
-
-Especificando los cortes o límites de los intervalos
-Aunque el resultado anterior no tiene nada incorrecto, podríamos hacer que los intervalos sean más legibles. El truco es que el argumento breaks no sólo acepta el número de intervalos que queremos, sino que también podemos indicar los puntos en los que queremos hacer los cortes. Por ejemplo, vamos a hacer intervalos de longitud 1, desde el 4 hasta el 8. Esto lo podemos hacer con la función seq.
-
-seq(from = 4, to = 8, by = 1)
-## [1] 4 5 6 7 8
-breaks <- seq(from = 4, to = 8, by = 1)
+#SE ESCOGE LA VARIABLE LARGO DE SEPALO
 
 iris %>% 
-  mutate(
-    sepal_length_group = cut(sepal_length, breaks = breaks)
-  ) %>% 
+  group_by(iris$Sepal.Length) %>% 
+  summarise(frequency = n())
+
+```
+La salida de R no muestra todas las entradas, porque son 35 valores diferentes,
+conviene agruparlos, por intervalos de frecuencias.
+
+```{r}
+iris %>% 
+  mutate(sepal_length_group = cut(iris$Sepal.Length, breaks = 5)) %>% 
   group_by(sepal_length_group) %>% 
   summarise(frequency = n())
-  
-¡Mira qué linda tabla! A primera vista lo que se aprecia es que hay más valores bajos (entre 4 y 6) que altos (entre 6 y 8), y también que están más concentrados en el medio, (entre 5 y 6).
 
-Los intervalos son abiertos a la izquierda y cerrados a la derecha. Esto implica que el 5 está incluído en el primer intervalo y no en el segundo
+```
 
-Frecuencias acumuladas
 Podemos agregar una columna más a la tabla de frecuencias, acumulando las frecuencias para cada clase, utilizando la función cumsum.
+
+
+```{r}
 
 breaks <- seq(from = 4, to = 8, by = 1)
 
 iris %>% 
   mutate(
-    sepal_length_group = cut(sepal_length, breaks = breaks)
+    sepal_length_group = cut(iris$Sepal.Length, breaks = breaks)
   ) %>% 
   group_by(sepal_length_group) %>% 
   summarise(frequency = n()) %>% 
   mutate(cum_frequency = cumsum(frequency))
-  
-Pregunta
 
-Si tenemos la siguiente tabla de frecuencias
-Categoria	Frecuencia	Frecuencia acumulada
-(0 - 10]	-	20
-(10 - 20]	-	50
-(X - 30]	-	80
-(30 - 40]	-	100
-¿Cuál es el tamaño de la muestra?
-¿Cuál es la frecuencia del intervalo (10 - 20]?
-¿Cuánto vale X?
-Mostrar respuesta
-Graficar una tabla de frecuencias de una variable cuantitativa
-Podríamos seguir los mismo pasos que para una variable cualitativa y utilizar geom_bar
 
+
+```
+
+```{r}
+#"install.packages(ggplot2)
+library(ggplot2)
 breaks <- seq(from = 4, to = 8, by = 1)
 
 iris %>% 
-  mutate(sepal_length_group = cut(sepal_length, breaks = breaks)) %>% 
+  mutate(sepal_length_group = cut(iris$Sepal.Length, breaks = breaks)) %>% 
   group_by(sepal_length_group) %>% 
   summarise(frequency = n()) %>% 
   ggplot() +
-  geom_bar(aes(x = sepal_length_group, y = frequency), stat = 'identity')
+  geom_bar(aes(x = sepal_length_group, y = frequency), stat = 'identity',col=3)
+```
 
 
-Sin embargo, un histograma es más apropiado. Un histograma es un tipo particular de gráfico de barras. Las principales diferencias son:
-
-Las etiquetas en el eje de las x se colocan los límites de los intervalos
-Si hay algún intervalo cuya frecuencia sea 0, este intervalo sigue mostrándose en el eje x, mientras que en un gráfico de barras no necesariamente
-Como el límite superior de un intervalo es el límite inferior del siguiente, no hay espacio entre las barras
-Las barras podrían tener anchos distintos, aunque esto no es muy común
-En el eje de las y siempre van las frecuencias. Si no, no es un histograma
-Como los histogramas son gráficos muy comunes, existe la función geom_histogram para ahorrarnos algunas líneas de código.
-
-breaks <- seq(from = 4, to = 8, by = 1)
-
-iris %>% 
-  ggplot() +
-  geom_histogram(aes(x = sepal_length), binwidth = 1, boundary = 4, colour = 'lightgrey')
-
-
-Para tener el mismo gráfico que antes, especifiqué que el ancho de los intervalos sea bidwidth = 1 y que uno de los límites sea boundary = 4. También agregué colour = 'lightgrey' para que los bordes fuesen gris claro; no es necesario, pero me gusta más cómo se ve así que sin separación entre las barras.
-
-Ya que estamos viendo todo en un gráfico y no hay que leer, nos podemos dar el lujo de tener intervalos más cortos y por lo tanto más intervalos y más detalle.
-
-breaks <- seq(from = 4, to = 8, by = 0.5)
-
-iris %>% 
-  ggplot() +
-  geom_histogram(aes(x = sepal_length), breaks = breaks, colour = 'lightgrey') +
-  ggtitle('Frequency distribution of Sepal Length', subtitle = 'Histogram') +
-  labs(x = 'Sepal length', y = 'Frequency')
-
-
-Conclusión
-Las tablas de frecuencia son una herramienta bastante útil para saber de qué va una variable, y además se contruyen súper fácil en R. También vimos lo fácil que es visualizar las tablas con un gráfico de barras en el caso de una variable cualitativa y con un histograma en el caso de una variable cuantitativa.
 
 **Analisis de datos agrupados**
 
@@ -891,9 +903,32 @@ medidas de tendencia central en datos agrupados
 Permiten identificar si una distribución de frecuencia presenta uniformidad. Son necesarias para determinar el comportamiento de los datos. Se clasifican en Medidas de asimetría y medidas de curtosis
 
 ### Medidas de asimetría
-Permite establecer el grado de simetría que tiene una distribución Coeficiente de asimetría de Pearson relaciona la media y la moda de un conjunto de datos
+Permite establecer el grado de simetría que tiene una distribución 
+
+**Coeficiente de asimetría de Pearson**
+
+Relaciona la media y la moda de un conjunto de datos
+
+$$A_s=\frac{\bar x-M_o}{S}$$
+
+**Distribución Simétrica**
+
+$$\bar X=M_o=M_e$$
+-  Cuando $\bar X<M_e$ decimos que la distribución es Asimétrica a la izquierda, Asimétrica de cola izquierda o que tiene Asimetría negativa
+
+-  Cuando $\bar X>M_e$ decimos que la distribución es Asimétrica a la derecha, Asimétrica de cola derecha o que tiene Asimetría positiva
 
 ### Medidas de curtosis
+Medida que sirve para analizar el grado de concentración que presentan los valores de una variable analizada alrededor de la zona central de la distribución de frecuencias, la kurtósis se conoce como una medida del apuntalamiento de la distribución.
+Se definen tres tipos de distribuciones según su grado de curtosis, mesocurtica, platicurtica, leptocurtica.
+
+**Comparemos**
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/curtosis.png")
+```
 
 ## Bibliografía
-Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística. Universidad Nacional de Colombia, http://www.virtual.unal.edu.co/cursos/ciencias/2001065/. Licencia: Creative Commons BY-NC-ND.
+-  Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística. Universidad Nacional de Colombia, http://www.virtual.unal.edu.co/cursos/ciencias/2001065/. Licencia: Creative Commons BY-NC-ND.
+
+-  R Core Team (2019). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
