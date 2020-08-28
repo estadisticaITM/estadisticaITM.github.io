@@ -639,7 +639,7 @@ knitr::include_graphics("imagen/bolas.png")
 Es una medida de la dispersión relativa de un conjunto de datos, la cual relaciona la desviación típica de una muestra y su media.
 
 Se expresa en términos porcentuales, la fórmula con la que se estima es:
-$$CV=\frac{\bar x}{S}*100$$
+$$CV=\frac{S}{\bar x}*100$$
 
 
 No depende de las unidades de medición, por lo que sirve para comparar la variabilidad de dos conjuntos de datos, siempre que sus medias sean positivas.
@@ -671,17 +671,18 @@ $$\sum_{i=1}^n w_i=1$$
 
 Se tienen las siguientes notas de un estudiante
 
-- cual es la nota total obtenida en la materia
-
-- Si faltara la última nota cuanto tendría que sacar para ganar la asignatura.
-
 
 |Peso(%)|25|15|35|10|15|total|
 |:-----:|--|--|--|--|--|:---:|
 |Nota   | 4|3 |2 |1 |4 |     |
 |Ponderación |1| | | | |     |
 
+- ¿Cuál es la nota total obtenida en la materia?
+
+- Si faltara la última nota,¿Cuanto tendría que sacar para ganar la asignatura?
+
 ## Medidas de posición
+
 Son valores que permiten dividir el conjunto de datos en partes porcentuales iguales y se usan para clasificar una observación dentro de una población o muestra. Las medidas de posición más usuales son los cuartiles, los deciles y los percentiles.
 
 ### Cuartiles
@@ -697,6 +698,16 @@ La fórmula con la que se estima está dada por:
 
 $$Q_k=X_{(k \frac{n+1}{4})}$$
 con k=1,2,3
+
+**Rango intercuartilico IQR**
+Se define como la diferencia entre el tercer cuartil y el primer cuartil, es decir: 
+
+$$IRQ=Q_3-Q_1$$
+
+
+The Interquartile Range (or IQR)
+
+
 
 ### Deciles
 
@@ -715,11 +726,26 @@ $$P_k=X_{(k \frac{n+1}{100})}$$
 con k=1,2,3...99
 
 ## Boxplot
+
 El boxplot es una herramienta de análisis que resalta las principales características de un conjunto de datos, los números usados para construirlo son:
 
 - Valor mínimo
-- Los cuartiles 
+- Los cuartiles $Q_1,Q_2,Q_3$
 - Valor máximo
+
+
+```{r fig.asp=0.9, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/boxplot.png")
+```
+
+Cada sección contiene el 25% de los datos. La caja muestra la mitad de los datos, es decir el 50% de ellos, contiene la información entre el 3 cuartil y el primer cuartil.
+
+- Sirve para realizar comparaciones de una variable cuantitativa, en relación a los niveles de una variable cualitativa.
+
+- Es posible observar la dispersión de cada caja, mientras mas larga, más dispersión.
+
+- Permite observar puntos atípicos,los cuales no están contenidos dentro de la caja, ni en sus bigotes.
+
 
 **Ejemplo en R**
 
@@ -753,10 +779,47 @@ mtcars %>%
   summarise(mean = mean(mpg), n = n())
 
 #boxplot
-boxplot(mtcars[,1]~mtcars[,2])
-
+boxplot(mtcars[,1]~mtcars[,2],xlab="cilindros",ylab="mpg",col ="pink")
 ```
 
+
+## Medidas de forma
+Permiten identificar si una distribución de frecuencia presenta uniformidad. Son necesarias para determinar el comportamiento de los datos. Se clasifican en Medidas de asimetría y medidas de curtosis
+
+### Medidas de asimetría
+Permite establecer el grado de simetría que tiene una distribución 
+
+**Coeficiente de asimetría de Pearson**
+
+Relaciona la media y la moda de un conjunto de datos
+
+$$A_s=\frac{\bar x-M_o}{S}$$
+
+**Distribución Simétrica**
+
+$$\bar X=M_o=M_e$$
+-  Cuando $\bar X<M_e$ decimos que la distribución es Asimétrica a la izquierda, Asimétrica de cola izquierda o que tiene Asimetría negativa
+
+-  Cuando $\bar X>M_e$ decimos que la distribución es Asimétrica a la derecha, Asimétrica de cola derecha o que tiene Asimetría positiva
+
+**Comparemos**
+
+```{r fig.asp=1.9, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/simetria.png")
+```
+
+
+
+### Medidas de curtosis
+
+Medida que sirve para analizar el grado de concentración que presentan los valores de una variable analizada alrededor de la zona central de la distribución de frecuencias, la kurtósis se conoce como una medida del apuntalamiento de la distribución.
+Se definen tres tipos de distribuciones según su grado de curtosis, mesocurtica, platicurtica, leptocurtica.
+
+**Comparemos**
+
+```{r fig.asp=0.6, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/curtosis.png")
+```
 
 *Medidas de tendencia central en tablas de frecuencia*
 
@@ -898,35 +961,6 @@ iris %>%
 medidas de tendencia central en datos agrupados
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-
-## Medidas de forma
-Permiten identificar si una distribución de frecuencia presenta uniformidad. Son necesarias para determinar el comportamiento de los datos. Se clasifican en Medidas de asimetría y medidas de curtosis
-
-### Medidas de asimetría
-Permite establecer el grado de simetría que tiene una distribución 
-
-**Coeficiente de asimetría de Pearson**
-
-Relaciona la media y la moda de un conjunto de datos
-
-$$A_s=\frac{\bar x-M_o}{S}$$
-
-**Distribución Simétrica**
-
-$$\bar X=M_o=M_e$$
--  Cuando $\bar X<M_e$ decimos que la distribución es Asimétrica a la izquierda, Asimétrica de cola izquierda o que tiene Asimetría negativa
-
--  Cuando $\bar X>M_e$ decimos que la distribución es Asimétrica a la derecha, Asimétrica de cola derecha o que tiene Asimetría positiva
-
-### Medidas de curtosis
-Medida que sirve para analizar el grado de concentración que presentan los valores de una variable analizada alrededor de la zona central de la distribución de frecuencias, la kurtósis se conoce como una medida del apuntalamiento de la distribución.
-Se definen tres tipos de distribuciones según su grado de curtosis, mesocurtica, platicurtica, leptocurtica.
-
-**Comparemos**
-
-```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/curtosis.png")
-```
 
 ## Bibliografía
 -  Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística. Universidad Nacional de Colombia, http://www.virtual.unal.edu.co/cursos/ciencias/2001065/. Licencia: Creative Commons BY-NC-ND.
