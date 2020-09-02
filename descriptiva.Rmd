@@ -834,7 +834,8 @@ Cuando los valores de la variable (continuas o discretas) son muchos, conviene a
 **Proceso para la construcción de la tabla de frecuencia para datos agrupados**
 
 1. Se elige ó se calcula el número de intervalos de clase representado por la variable m se puede usar la fórmula
- 
+
+ $$m=\sqrt n$$
 2. Calcule el rango R
 
 3. Calcule la amplitud de los intervalos, el cual se denota por la letra a:
@@ -851,21 +852,21 @@ El último intervalo es cerrado a ambos lados, para no dejar información fuera 
 
 $$X_i=\frac{L_{infi}+L_{supi}}{2}$$
 
-6. La segunda columna de la tabla, para datos agrupados es la frecuencia absoluta(𝑓𝑖):
+6. Otra columna de la tabla para datos agrupados es la frecuencia absoluta(𝑓𝑖):
 
 Es el número de observaciones que caen en un intervalo sin incluir el limite superior, es decir número de datos mayores o iguales al límite inferior pero menores que el límite superior
 
 Es decir el intervalo es cerrado a la izquierda y abierto a la derecha.
 El último intervalo es cerrado a ambos lados, para no dejar información fuera del rango
 
-7. Se busca las otras columnas que corresponden a la Frecuencia absoluta acumulada, frecuencia relativa y frecuencia relativa acumulada
+7. Se busca las otras columnas que corresponden a la Frecuencia absoluta acumulada $F_i$, frecuencia relativa $h_i$ y frecuencia relativa acumulada $H_i$
 
-|intervalo|Límite inferior|Límite superior        |$x_i$|$f_i$|$F_i$|
-|:-------:|:-------------:|:---------------------:|:------:|:-:|:--:|
-|1        |  $[X_{min}$    |$L_{s1}=L_{inf1}+a)$  |$x_1$|$f_1$|$F_1=f1$|
-|2    |[$L_{inf2}=L_{sup1}$|$L_{sup2}=L_{inf2}+a)$|$x_2$|$f_2$|$F_2=f_1+f_2$|
-|$\vdots$ |$\vdots$        |$\vdots$          |$\vdots$|$\vdots$|$\vdots$|
-|m        |[$L_{infm}$     | max]                 |$x_m$|$f_m$|n|
+|intervalo|Límite inferior|Límite superior        |$x_i$|$f_i$|$F_i$|$h_i$|$H_i$|
+|:-------:|:-------------:|:---------------------:|:------:|:-:|:--:|:-:|:--:|
+|1        |  $[X_{min}$    |$L_{s1}=L_{inf1}+a)$  |$x_1$|$f_1$|$F_1=f_1$| $h_1$|$H_1=h_1$|
+|2    |[$L_{inf2}=L_{sup1}$|$L_{sup2}=L_{inf2}+a)$|$x_2$|$f_2$|$F_2=f_1+f_2$|$h_2$|$H_2=h_1$|
+|$\vdots$ |$\vdots$        |$\vdots$          |$\vdots$|$\vdots$|$\vdots$||$\vdots$        |$\vdots$
+|m        |[$L_{infm}$     | max]                 |$x_m$|$f_m$|n| | |
 
 ### Media de datos agrupados
 
