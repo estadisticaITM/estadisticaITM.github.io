@@ -6,15 +6,19 @@ output:
     toc_float: false
    
 ---
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FW9MX8HJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-```{r fig.asp=0.6, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IMG3 <- readPNG("IMG3.png")
-grid.raster(IMG3)
+  gtag('config', 'G-6FW9MX8HJM');
+</script>
+
+```{r fig.asp=0.9, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/itm.png")
 ```
-
-
 
 
 ## **Encuesta**
