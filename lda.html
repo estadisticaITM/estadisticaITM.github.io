@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>lda.utf8.md</title>
+<title>lda.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,6 +39,15 @@
   ga('create', 'UA-88209726-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -85,6 +93,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -249,6 +258,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -293,28 +303,28 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fa fa-line-chart"></span>
+    <span class="fas fa-line-chart"></span>
      
     Estadística Básica
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
+    <span class="fas fa-bar-chart-o"></span>
      
     Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
+    <span class="fas fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-puzzle-piece"></span>
+    <span class="fas fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -327,7 +337,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -427,135 +437,8 @@ boxplot(datos$organo_sexual~datos$especie)</code></pre>
 <p>Como no se dispone de información sobre la abundancia relativa de las especies a nivel poblacional, se considera como probabilidad previa de cada especie el número de observaciones de la especie entre el número de observaciones totales.</p>
 <p><span class="math display">\[\Large \hat \pi_a=\hat \pi_b=0.5\]</span></p>
 <p>##<strong>Homogeneidad de varianza</strong></p>
-<pre class="r"><code># Representación mediante Histograma de cada variable para cada especie 
-par(mfcol = c(2, 3))
-for (k in 2:4) {
-  j0 &lt;- names(datos)[k]
-  #br0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 11)
-  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 &lt;- levels(datos$especie)[i]
-    x &lt;- datos[datos$especie == i0, j0]
-    hist(x, proba = T, col = grey(0.8), main = paste(&quot;especie&quot;, i0),
-    xlab = j0)
-    lines(x0, dnorm(x0, mean(x), sd(x)), col = &quot;red&quot;, lwd = 2)
-  }
-}</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<pre><code>## Warning in if (freq) x$counts else x$density: the condition has length &gt; 1
-## and only the first element will be used</code></pre>
-<pre><code>## Warning in if (!freq) &quot;Density&quot; else &quot;Frequency&quot;: the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
-<p><img src="lda_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>##<strong>Prueba de normalidad</strong></p>
-<pre class="r"><code>for (k in 2:4) {
-  j0 &lt;- names(datos)[k]
-  x0 &lt;- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 &lt;- levels(datos$especie)[i]
-    x &lt;- datos[datos$especie == i0, j0]
-    qqnorm(x, main = paste(&quot;especie&quot;, i0, j0), pch = 19, col = i + 1)
-    qqline(x)
-  }
-}</code></pre>
-<p><img src="lda_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-4.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-5.png" width="672" /><img src="lda_files/figure-html/unnamed-chunk-5-6.png" width="672" /></p>
-<pre class="r"><code># Contraste de normalidad Shapiro-Wilk para cada variable en cada especie
-library(reshape2)
-library(knitr)
-library(dplyr)
-datos_tidy &lt;- melt(datos, value.name = &quot;valor&quot;)</code></pre>
-<pre><code>## Using especie as id variables</code></pre>
-<pre class="r"><code>kable(datos_tidy %&gt;% group_by(especie, variable) %&gt;% summarise(p_value_Shapiro.test = shapiro.test(valor)$p.value))</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">especie</th>
-<th align="left">variable</th>
-<th align="right">p_value_Shapiro.test</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">a</td>
-<td align="left">pata</td>
-<td align="right">0.7763034</td>
-</tr>
-<tr class="even">
-<td align="left">a</td>
-<td align="left">abdomen</td>
-<td align="right">0.1845349</td>
-</tr>
-<tr class="odd">
-<td align="left">a</td>
-<td align="left">organo_sexual</td>
-<td align="right">0.6430844</td>
-</tr>
-<tr class="even">
-<td align="left">b</td>
-<td align="left">pata</td>
-<td align="right">0.7985711</td>
-</tr>
-<tr class="odd">
-<td align="left">b</td>
-<td align="left">abdomen</td>
-<td align="right">0.5538213</td>
-</tr>
-<tr class="even">
-<td align="left">b</td>
-<td align="left">organo_sexual</td>
-<td align="right">0.8217855</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>modelo_lda &lt;- lda(formula = especie ~ pata + abdomen + organo_sexual,
-                  data = datos)
-
-summary(modelo_lda)</code></pre>
-<pre><code>##         Length Class  Mode     
-## prior   2      -none- numeric  
-## counts  2      -none- numeric  
-## means   6      -none- numeric  
-## scaling 3      -none- numeric  
-## lev     2      -none- character
-## svd     1      -none- numeric  
-## N       1      -none- numeric  
-## call    3      -none- call     
-## terms   3      terms  call     
-## xlevels 0      -none- list</code></pre>
 <p>Una vez obtenidas las funciones discriminantes, se puede clasificar un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual = 49.</p>
-<pre class="r"><code>nuevas_observaciones &lt;- data.frame(pata = 194, abdomen = 124,
-                                   organo_sexual = 49)
-predict(object = modelo_lda, newdata = nuevas_observaciones)</code></pre>
-<pre><code>## $class
-## [1] b
-## Levels: a b
-## 
-## $posterior
-##            a         b
-## 1 0.05823333 0.9417667
-## 
-## $x
-##         LD1
-## 1 0.5419421</code></pre>
 </div>
 <div id="bibliografia" class="section level2">
 <h2><strong>BIBLIOGRAFIA</strong></h2>
@@ -578,7 +461,7 @@ predict(object = modelo_lda, newdata = nuevas_observaciones)</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

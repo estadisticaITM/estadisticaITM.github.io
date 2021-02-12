@@ -123,64 +123,15 @@ $$\Large \hat \pi_a=\hat \pi_b=0.5$$
 
 ##**Homogeneidad de varianza**
 
-```{r}
-# Representación mediante Histograma de cada variable para cada especie 
-par(mfcol = c(2, 3))
-for (k in 2:4) {
-  j0 <- names(datos)[k]
-  #br0 <- seq(min(datos[, k]), max(datos[, k]), le = 11)
-  x0 <- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 <- levels(datos$especie)[i]
-    x <- datos[datos$especie == i0, j0]
-    hist(x, proba = T, col = grey(0.8), main = paste("especie", i0),
-    xlab = j0)
-    lines(x0, dnorm(x0, mean(x), sd(x)), col = "red", lwd = 2)
-  }
-}
-```
 
 
 
 ##**Prueba de normalidad**
 
 
-```{r}
-for (k in 2:4) {
-  j0 <- names(datos)[k]
-  x0 <- seq(min(datos[, k]), max(datos[, k]), le = 50)
-  for (i in 1:2) {
-    i0 <- levels(datos$especie)[i]
-    x <- datos[datos$especie == i0, j0]
-    qqnorm(x, main = paste("especie", i0, j0), pch = 19, col = i + 1)
-    qqline(x)
-  }
-}
-
-
-
-# Contraste de normalidad Shapiro-Wilk para cada variable en cada especie
-library(reshape2)
-library(knitr)
-library(dplyr)
-datos_tidy <- melt(datos, value.name = "valor")
-kable(datos_tidy %>% group_by(especie, variable) %>% summarise(p_value_Shapiro.test = shapiro.test(valor)$p.value))
-
-modelo_lda <- lda(formula = especie ~ pata + abdomen + organo_sexual,
-                  data = datos)
-
-summary(modelo_lda)
-```
-
 Una vez obtenidas las funciones discriminantes, se puede clasificar un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual = 49.
 
 
-
-```{r}
-nuevas_observaciones <- data.frame(pata = 194, abdomen = 124,
-                                   organo_sexual = 49)
-predict(object = modelo_lda, newdata = nuevas_observaciones)
-```
 
 
 ## **BIBLIOGRAFIA**

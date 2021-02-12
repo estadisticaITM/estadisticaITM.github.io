@@ -776,7 +776,7 @@ sd(mpg)
 # Usually, you'll want to group first
 mtcars %>%
   group_by(cyl) %>%
-  summarise(mean = mean(mpg), n = n())
+  summarise(mean = mean(mpg))
 
 #boxplot
 boxplot(mtcars[,1]~mtcars[,2],xlab="cilindros",ylab="mpg",col ="pink")

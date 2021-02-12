@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -40,6 +39,15 @@
   ga('create', 'UA-88209726-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -85,6 +93,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -249,6 +258,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -293,28 +303,28 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fa fa-line-chart"></span>
+    <span class="fas fa-line-chart"></span>
      
     Estadística Básica
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
+    <span class="fas fa-bar-chart-o"></span>
      
     Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
+    <span class="fas fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fa fa-puzzle-piece"></span>
+    <span class="fas fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -327,7 +337,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -355,21 +365,22 @@ $(document).ready(function () {
   gtag('config', 'G-6FW9MX8HJM');
 </script>
 <p><img src="imagen/itm.png" width="256" style="display: block; margin: auto;" /></p>
-<div id="encuesta" class="section level2">
-<h2><strong>Encuesta</strong></h2>
-<p>Por favor conteste la siguiente <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-lyIiDmro19r9E5ubNdNJNc9J4k_XLTJOaY8dAjCo1P6khg/viewform?vc=0&amp;c=0&amp;w=1">encuesta</a></p>
 <center>
 <h1>
 <p><em>El ÉXITO es la suma de pequeños esfuerzos que se repiten cada día</em></p>
 </h1>
 </center>
-</div>
 <div id="amazon-jeff-bezos-y-la-colección-de-datos-dw-documental" class="section level2">
-<h2><strong>Amazon, Jeff Bezos y la colección de datos | DW Documental</strong></h2>
+<h2>Amazon, Jeff Bezos y la colección de datos | DW Documental</h2>
 <div style="text-align: center;">
-<iframe width="280" height="158" src="https://www.youtube.com/embed/UzGemfwaTT8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="200" height="100" src="https://www.youtube.com/embed/UzGemfwaTT8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+</div>
+<div id="sobre-mi" class="section level2">
+<h2>Sobre mi</h2>
+<p><img src="imagen/fotojoa.png" width="308" style="display: block; margin: auto;" /></p>
+<p>Mi nombre es Johanna Trochez gonzalez, soy docente de estadística del ITM (Instituto tecnológico metropolitano) en el departamento de ciencias básicas, una de mis pasiones es la estadística, aprender todo lo que ella me puede enseñar, me gusta crear aplicativos de Rshiny, que ayuden al procesamiento de datos, para obtener información valiosa. Mi formación es ingeniero industrial y magister en Ciencias estadística</p>
 <div id="contador-de-visitas" class="section level3">
 <h3><strong>Contador de visitas</strong></h3>
 <br/>
@@ -392,7 +403,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -427,6 +438,7 @@ $(document).ready(function () {
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
+
 
 </body>
 </html>
