@@ -312,7 +312,7 @@ $(document).ready(function () {
   <a href="pagin2.html">
     <span class="fas fa-bar-chart-o"></span>
      
-    Diseño de experimentos
+    Estadística inferencial
   </a>
 </li>
 <li>
@@ -898,8 +898,7 @@ shapiro.test(residuales)</code></pre>
 ##  Bartlett test of homogeneity of variances
 ## 
 ## data:  tiempo by método
-## Bartlett&#39;s K-squared = 1.5989, df = 3, p-value =
-## 0.6596</code></pre>
+## Bartlett&#39;s K-squared = 1.5989, df = 3, p-value = 0.6596</code></pre>
 <p>Validemos ahora los supuestos de normalidad y de varianza constante mediante gráficos de residuales: La normalidad parece un supuesto razonable para los errores en este experimento. Sin embargo, hay problemas con el supuesto de varianza constante. Con los métodos B y C la dispersión de los residuales es mayor comparativamente a la dispersión en los métodos A y D. Con el método A hay menos dispersión. A nivel del operador 3 la dispersión de los residuales es mayor aparentemente debido a una observación que es subestimada. A pesar de estos inconvenientes es posible llegar a una conclusión: “Elegir como mejor método el A, dado que tiene menor tiempo promedio observado y menor dispersión” (esto último indica que los operadores con este método son más consistentes)</p>
 <p>Prueba de normalidad <span class="math inline">\(\Large H_o=\)</span> Los residuos son normales <span class="math inline">\(\Large H_o=\)</span> Los residuos no son normales</p>
 <p>Prueba de barlett para homogeneidad de varianzas</p>
