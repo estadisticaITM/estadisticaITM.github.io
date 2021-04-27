@@ -1,0 +1,120 @@
+---
+title: "Taller distribuciones discretas"
+output: html_document
+---
+
+
+1. 1.	Una empresa de ventas en línea dispone de seis líneas telefónicas. Sea X el número de líneas en uso en un tiempo especificado. Suponga que la función masa de probabilidad de X es la que se da en la tabla adjunta.
+
+ |x   |0   |  1|  2|   3|   4|   5|   6|
+ |----|----|---|---|----|----|----|----|
+ |f(x)|0.1|0.15|0.2|0.25|0.2 |0.06|0.04|
+
+Calcule la probabilidad de cada uno de los siguientes eventos.
+a. {cuando mucho tres líneas están en uso}
+b. {menos de tres líneas están en uso}
+c. {por lo menos tres líneas están en uso}
+d. {entre dos y cinco líneas, inclusive, están en uso}
+e. {entre dos y cuatro líneas, inclusive, no están en uso
+f. {por lo menos cuatro líneas no están en uso}
+
+**Sugerencia: **
+Sea x la variable aleatoria que representa las lineas ocupadas
+Sea y la variable aleatoria que representa las lineas desocupadas
+
+
+2. Muchos fabricantes cuentan con programas de control de calidad que incluyen la inspección de los materiales recibidos en busca de defectos. Suponga que un fabricante de computadoras recibe tarjetas madre en lotes de cinco. Se seleccionan dos tarjetas de cada lote para inspeccionarlas. Se pueden representar los posibles resultados del proceso de selección por pares. Por ejemplo, el par (1, 2) representa la selección de las tarjetas 1 y 2 para inspección.
+
+a. Mencione los diez posibles resultados diferentes.
+
+|(1,2)|(1,3)|(1,4)|(1,5)|
+|-----|-----|-----|-----|
+|     |(2,3)|(2,4)|(2,5)|
+
+b. Suponga que las tarjetas 1 y 2 son las únicas tarjetas defectuosas en un lote de cinco. Dos tarjetas tienen que ser seleccionadas al azar. Defina X como el número de tarjetas defectuosas observadas entre las inspeccionadas. Encuentre la distribución de probabilidad de X.
+
+Rta/ p(0)=0.3   p(1)=0.3  p(2)=0.1
+
+3. El voltaje de una batería nueva puede ser aceptable (A) o inaceptable (U). Una linterna requiere dos baterías, así que las baterías serán independientemente seleccionadas y probadas hasta encontrar dos aceptables. Suponga que 90% de todas las baterías tienen voltajes aceptables. Sea Y el número de baterías que deben ser probadas.
+a. ¿Cuál es p(2), es decir P(Y = 2)? 
+b. ¿Cuál es p(3)? [Sugerencia: Existen dos resultados diferentes que producen Y=3.]
+c. Para tener Y=5, ¿qué debe ser cierto de la quinta batería seleccionada? Mencione los cuatro resultados con los cuales Y=5 y luego determine p(5).
+d. Use el patrón de sus respuestas en los incisos a)–c) para obtener una fórmula general para p(y).
+
+Rta/ a.0.81  b.0.162 
+
+4. Una biblioteca se suscribe a dos revistas de noticias semanales, cada una de las cuales se supone que llega en el correo de los miércoles. En realidad, cada una puede llegar el miércoles, jueves, viernes o sábado. 
+
+Suponga que las dos llegan independientemente una de otra y para cada una P(mié)=0.3, P(jue)=0.4, P(vie) = 0.2 y P(sáb)=0.1. 
+
+Sea Y=el número de días después del miércoles que pasan para que ambas revistas lleguen (por lo tanto, los posibles valores de Y son 0, 1, 2 o 3). Calcule la función masa de probabilidad de Y=[Sugerencia: Hay 16 posibles resultados: Y(M, M)=0, Y(V, J)=2, y así sucesivamente.]
+
+|Rev 1|Rev 2|Días(y)|Prob|
+|-----|-----|-------|----|
+|m    |m    | 0     |0.09|
+|m    |j    |1      |0.12|
+|m    |v    |2      |0.06|
+|m    |s    |3      |0.03|
+|$\vdots$|$\vdots$|$\vdots$|$\vdots$|
+|s    |m    |3      |0.03|
+|s    |j    |3      |0.04|
+|s    |v    |3      |0.02|
+|s    |s    |3      |0.01|
+
+Rta/ p(0)=0.09  p(1)=0.4  p(2)=0.32 p(3)=0.19
+
+5. Una organización de protección al consumidor que habitualmente evalúa automóviles nuevos reporta el número de defectos importantes encontrados en cada carro examinado. Sea X el número de defectos importantes en un carro seleccionado al azar de cierto tipo. La función de distribución acumulativa de X es la siguiente:
+
+$$
+F(x)= \left\{ \begin{array}{lcc}
+            \\ 0 &   si  & x < 0 \\
+             \\ 0.06 &  si & 0 \leq x < 1 \\
+             \\ 0.19 &  si & 1 \leq x < 2 \\
+             \\ 0.39 &  si & 2 \leq x < 3 \\
+             \\ 0.67 &  si & 3 \leq x < 4 \\
+             \\ 0.92 &  si & 4 \leq x < 5 \\
+             \\ 0.97 &  si & 5 \leq x < 6 \\
+             \\ 1 &  si  & x \geq 6
+             \end{array}
+   \right.
+$$
+Calcule las siguientes probabilidades
+
+a. P(2), es decir P(x=2)
+b. P(x>3)
+c. $P(2\leq x \leq 5)$
+d. P(2<x<5)
+
+Rta/ a.0.2   b. 0.33   c.0.78   d. 0.53
+
+6. Después de que todos los estudiantes salieron del salón de clases, un profesor nota que tres ejemplares del texto se quedaron debajo de los escritorios. Al principio de la siguiente clase, el profesor distribuye los tres libros al azar a cada uno de los cuatro estudiantes (1, 2 y 3 ) que dicen haber dejado los libros. Un posible resultado es que 1 reciba el libro de 2, que 2 reciba el libro de 3 y que 3 reciba el libro de 1.
+
+Este resultado puede ser abreviado como (2, 3, 1).
+
+a. Mencione los otros 5 posibles resultados.
+b. Si X es el número de estudiantes que reciben su propio libro, determine la función masa de probabilidad de X.
+
+Sugerencia: ayudese de la siguiente tabla
+
+|Est 1|Est 2|Est 3|x|
+|-----|-----|-----|-|
+|1    |2    |3    |3|
+|3    |1    |2    |0|
+|$\vdots$|$\vdots$|$\vdots$|$\vdots$|
+|1    |3    |2    |1|
+
+
+7. La función masa de probabilidad de X= el número de defectos importantes en un aparato eléctrico de un tipo seleccionado al azar es
+
+|x   |   0|   1|   2|   3|4   |total|
+|----|----|----|----|----|----|-----|
+|f(x)|0.08|0.15|0.45|0.27|0.05|     |
+ 
+
+Calcule lo siguiente:
+a. E(X).
+b. V(X) directamente a partir de la definición.
+c. La desviación estándar de X.
+
+Rta/a.2.06   b.0.9364   c.0.9677 
+
