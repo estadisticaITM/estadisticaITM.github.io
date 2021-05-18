@@ -49,12 +49,6 @@ $$var(x)=\lambda$$
 $$sd=\sqrt{\lambda}$$
 
 
-```{r echo=FALSE}
-
-knitr::include_app("  https://jtrochezg.shinyapps.io/apppoison/",height = "800px")
-
-```
-
 
 ### Proceso poisson
 
@@ -70,7 +64,15 @@ así que el número esperado durante un intervalo de tiempo unitario es $\alph
 $$P(x\leq x)=F(x)=\sum_{i=1}^n \frac{e^{-\lambda}\lambda ^x}{x!}$$
 
 
-##Ejemplo
+```{r echo=FALSE}
+
+knitr::include_app("  https://jtrochezg.shinyapps.io/apppoison/",height = "800px")
+
+```
+
+##  Ejemplo
+
+
 El número de solicitudes de ayuda recibidas por un servicio de grúas es un proceso Poisson con razón 4 solicitudes por hora. 
 
 Calcule la probabilidad de que exactamente diez solicitudes sean recibidas durante un periodo particular de 2 horas. 
