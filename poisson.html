@@ -11,7 +11,7 @@
 
 
 
-<title>Trabajo</title>
+<title>Distribución Poisson</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +28,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -234,6 +237,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -241,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -309,54 +391,59 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Trabajo</h1>
+<h1 class="title toc-ignore">Distribución Poisson</h1>
 
 </div>
 
 
-<p><strong>datos infra rojo</strong></p>
-<p>Se cuenta con un conjunto de datos que contiene espectros de infrarrojo medio (FTIR) de trece tipos de almidón con 7469 observaciones de 14 variables,esta base de datos fue tomada de la librería spftir, donde:</p>
+<p>Describe el numero de eventos por intervalo de tiempo o distancia, tiene una tasa de ocurrencia que se denota por la letra <span class="math inline">\(\lambda\)</span>.</p>
+<p>Por ejemplo:</p>
 <ul>
-<li><p>Wavenumber. Número de onda de espectros infrarrojos medios.</p></li>
-<li><p>A-M. Absorción de un espectro de infrarrojo medio de trece tipos de almidón (A.U.).</p></li>
+<li><p>Clientes por hora</p></li>
+<li><p>Fallas por metros en rollos de tela</p></li>
+<li><p>Llamadas por hora</p></li>
+<li><p>Carros que pasan por un peaje</p></li>
 </ul>
-<div id="primera-parte" class="section level1">
-<h1>1. Primera parte</h1>
-<ol style="list-style-type: decimal">
-<li><p>Realice el grafico de perfiles</p></li>
-<li><p>Realice un resumen descriptivo de los datos</p></li>
-<li><p>Estime la correlación de los datos sin incluir el número de onda</p></li>
-<li><p>Realice el boxplot de cada tipo de almidón</p></li>
-<li><p>Cálcule las distancias para cada tipo de algodón</p></li>
-</ol>
-<p>En cada uno de los ítem analice lo observado.</p>
-<p>Los datos el código corresponde a:</p>
-<pre class="r"><code>library(spftir)
-data(spData)
-
-##Gáfico de perfiles
-
-plot(spData$Wavenumber,spData$A,lwd=1,ylim=c(0,2.3))
-lines(spData$Wavenumber,spData$B,lwd=1,col=3)
-lines(spData$Wavenumber,spData$C,lwd=1,col=2)
-lines(spData$Wavenumber,spData$D,lwd=1,col=4)
-lines(spData$Wavenumber,spData$E,lwd=1,col=5)
-lines(spData$Wavenumber,spData$F,lwd=1,col=6)
-
-#resumen de datos
-summary(spData)
-
-#matriz de correlaciones
-cor(spData[-1])
-
-#Boxplot del tipo de almidón
-boxplot(spData[-1])</code></pre>
+<div id="función-de-distribución-de-probabilidad" class="section level3">
+<h3>Función de distribución de probabilidad</h3>
+<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> Donde <span class="math inline">\(\lambda\)</span> representa la tasa de ocurrencia de los eventos, es mayor que cero y puede tomar diferentes valores bien sea enteros o con decimales X es el número de ocurrencias del evento con x= 0,1,2,3,…</p>
+<p><strong>Poisson requiere unidades consistentes</strong></p>
+<ul>
+<li><p>Numero promedio de clientes por minuto</p></li>
+<li><p>Numero promedio de clientes por hora</p></li>
+<li><p>Numero promedio de clientes por día</p></li>
+<li><p>Si x se distribuye poisson se denota:</p></li>
+</ul>
+<p><span class="math display">\[X\sim poisson(\lambda)\]</span></p>
+<p><span class="math display">\[E(X)=\lambda\]</span></p>
+<p><span class="math display">\[var(x)=\lambda\]</span></p>
+<p><span class="math display">\[sd=\sqrt{\lambda}\]</span></p>
+<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
+</iframe>
 </div>
-<div id="segunda-parte" class="section level1">
-<h1>2. segunda parte</h1>
-<ul>
-<li>Realizar dos fichas técnicas del muestreo para los dos tipos de plástico.</li>
-</ul>
+<div id="proceso-poisson" class="section level3">
+<h3>Proceso poisson</h3>
+<p>El número de eventos durante un intervalo de tiempo de duración t es una variable de poisson con parámetro <span class="math inline">\(\alpha t\)</span></p>
+<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\alpha t}{(\alpha t)} ^x}{x!}\]</span></p>
+<p>así que el número esperado durante un intervalo de tiempo unitario es <span class="math inline">\(\alpha\)</span>. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.</p>
+</div>
+<div id="función-de-distribución-acumulada" class="section level3">
+<h3>Función de distribución acumulada</h3>
+<p><span class="math display">\[P(x\leq x)=F(x)=\sum_{i=1}^n \frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
+<p>##Ejemplo El número de solicitudes de ayuda recibidas por un servicio de grúas es un proceso Poisson con razón 4 solicitudes por hora.</p>
+<p>Calcule la probabilidad de que exactamente diez solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
+<p>La tasa de ocurrencia del evento es:</p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}\]</span></p>
+<p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}\]</span> La probabilidad pedida es:</p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> La probabilidad pedida es:</p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}\]</span> Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
+<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{i=0}^4 \frac{e^{-8}8 ^x}{x!} \]</span> Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</p>
+<p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* \frac{1 hora}{60 minutos}*30 min= \frac{2 llamadas}{30 min}\]</span> la probabilidad pedida se traduce en</p>
+<p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%\]</span></p>
+<p>¿Cuántas llamadas esperaría durante la pausa de 30 minutos?</p>
+<p>el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia <span class="math inline">\(\lambda=2\)</span>, se esperaría 2 llamadas.</p>
 </div>
 
 <br>
@@ -365,6 +452,8 @@ boxplot(spData[-1])</code></pre>
 <hr>
 
 
+</div>
+</div>
 
 </div>
 
@@ -397,6 +486,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
