@@ -57,11 +57,11 @@ El número de eventos durante un intervalo de tiempo de duración t es una varia
 
 $$P(x=x)=f(x)=\frac{e^{-\alpha t}{(\alpha t)} ^x}{x!}$$
 
-así que el número esperado durante un intervalo de tiempo unitario es $\alpha$. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.
+así que el número esperado durante un intervalo de tiempo unitario es $\alpha$. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.
 
 ### Función de distribución acumulada
 
-$$P(x\leq x)=F(x)=\sum_{i=1}^n \frac{e^{-\lambda}\lambda ^x}{x!}$$
+$$P(x\leq x)=F(x)=\sum_{x=0}^n \frac{e^{-\lambda}\lambda ^x}{x!}$$
 
 
 ```{r echo=FALSE}
@@ -90,10 +90,10 @@ La probabilidad pedida es:
 $$P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}$$
 La probabilidad pedida es:
 
-$$P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}$$
+$$P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%$$
 Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas. 
 
-$$P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{i=0}^4 \frac{e^{-8}8 ^x}{x!} $$
+$$P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% $$
 Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda? 
 
 La tasa se debe modificar a la unidad del tiempo de la pregunta 
@@ -107,6 +107,108 @@ $$p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%$$
 
 el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia $\lambda=2$, se esperaría 2 llamadas. 
 
+
+¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?
+
+la probabilida que se da es
+$$P(x=0)=0.4$$
+con una tasa de ocurrencia 
+
+$$\lambda= 4 llamadas/ hora$$
+reemplazando en la fórmula
+
+
+$$P(x=0)=\frac{e^{-4 t}{(4 t)} ^0}{0!}=0.4$$
+al resolver para despejar t se obtiene:
+
+$$e^{-4t}=0.4$$
+
+$$Ln (e^{-4t})=Ln(0.4)$$
+
+
+$$-4t * Ln (e)=Ln(0.4)$$
+$$-4t=Ln(0.4)$$
+
+$$t=Ln(0.4)/-4=0.23$$
+
+La duración de la llamada debe ser de 0.23 horas.
+
 *Distribución poisson*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/lD7RPownwBg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+###  Ejercicios propuestos
+
+1. Suponga que hay árboles distribuidos en un bosque de acuerdo con un proceso de Poisson bidimensional con parámetro $\alpha$, el número esperado de árboles por acre es de 80. 
+
+a. ¿Cuál es la probabilidad de que en un terreno de un cuarto de acre, haya cuando mucho 16 árboles? 
+
+b. Si el bosque abarca 85 000 acres, ¿cuál es el número esperado de árboles en el bosque? 
+
+c. Suponga que selecciona un punto en el bosque y construye un círculo de 0.1 milla de radio. Sea X = el número de árboles dentro de esa región circular. ¿Cuál es la función masa de probabilidad de X? [Sugerencia: 1 milla cuadrada = 640 acres.]
+
+2. Sea X el número de imperfecciones superficiales de una caldera seleccionada al azar de un tipo que tiene una distribución de Poisson con parámetro $\lambda=5$. Use la tabla para calcular las siguientes probabilidades: 
+
+a. $P(X \leq 8)$
+
+b. $P(x=8)$
+
+c. $P(9 ≤ X)$
+
+d. $P(5 ≤ X ≤ 8)$
+
+e. $P(5 <X < 8)$ 
+
+3. Suponga que el número de conductores que viajan entre un origen y destino particulares durante un periodo designado tiene una distribución de Poisson con parámetro $\lambda=20$ ¿Cuál es la probabilida d de que el número de conductores 
+
+a. sea cuando mucho de 10? 
+
+b. sea de más de 20? 
+
+c. sea de entre 10 y 20, inclusive? 
+
+d. esté dentro de dos desviaciones estándar del valor medio? 
+
+4. Considere escribir en un disco de computadora y luego enviarlo a través de un certificador que cuenta el número de pulsos faltantes. Suponga que este número X tiene una distribución de Poisson con parámetro $\lambda=0.20$ 
+a. ¿Cuál es la probabilidad de que un disco tenga exactamente un pulso faltante? 
+b. ¿Cuál es la probabilidad de que un disco tenga por lo menos dos pulsos faltantes? 
+c. Si seleccionan dos discos independientemente, ¿cuál es la probabilidad de que ninguno contenga un pulso faltante? 
+
+5. Suponga que una pequeña aeronave aterriza en un aeropuerto de acuerdo con un proceso de Poisson con razón $\lambda=8$ por hora de modo que el número de aterrizajes durante un periodo de t horas es una variable aleatoria de Poisson con parámetro $\lambda=8t$. 
+
+a. ¿Cuál es la probabilidad de que exactamente seis aeronaves pequeñas aterricen durante un intervalo de una hora? ¿Por lo menos seis? ¿Por lo menos 10? 
+
+b. ¿Cuáles son el valor esperado y la desviación estándar del número de aeronaves pequeñas que aterrizan durante un lapso de 90 min? 
+
+c. ¿Cuál es la probabilidad de que por lo menos 20 aeronaves pequeñas aterricen durante un lapso de 2 horas y media? ¿De qué cuando mucho aterricen 10 durante este periodo? 
+
+6. El artículo “Reliability-Based Service-Life Assessment of Aging Concrete Structures”. (J. Structural Engr., 1993: 1600–1621) sugiere que un proceso de Poisson puede ser utilizado para representar la ocurrencia de cargas estructurales en el transcurso del tiempo. Suponga que el tiempo medio entre ocurrencias de cargas es de 0.5 al año. 
+
+a. ¿Cuántas cargas se espera que ocurran durante un periodo de 2 años? 
+
+b. ¿Cuál es la probabilidad de que ocurran más de cinco cargas durante un periodo de 2 años? 
+
+c. ¿Qué tan largo debe ser un periodo de modo que la probabilidad de que no ocurran cargas durante dicho periodo sea cuando mucho de 0.1? 
+
+7. Llegan clientes a un mostrador de una tienda con un promedio de siete por hora. Durante una hora determinada, cuales son las probabilidades de que
+a.	(10 puntos) no lleguen más de tres clientes?,
+b.	(10 puntos) lleguen al menos dos clientes?,
+c.	 (10 puntos) lleguen exactamente cinco clientes?
+
+8. El número de errores mecanográficos hechos por una secretaria tiene una distribución de Poisson con un promedio de cuatro errores por página. Si en una página se dan más de cuatro errores, la secretaria debe volver a escribir toda la página. ¿Cuál es la probabilidad de que una página seleccionada al azar no tenga que volver a ser escrita?
+
+9.Llegan autos a una caseta de pago de peaje de acuerdo con una media de 80 autos por hora. Si el empleado hace una llamada telefónica de 1 minuto:
+
+a¿cuál es la probabilidad de que al menos 1 auto llegue durante la llamada? 
+
+¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?
+
+10. La probabilidad de que un ratón inoculado con un suero contraiga cierta enfermedad es 0.2. Encuentre la probabilidad de que al menos 3 de entre 30 ratones inoculados contraigan la enfermedad.
+
+11. Un lote de estacionamiento tiene dos entradas. Llegan autos a la entrada I de acuerdo con una distribución de Poisson a un promedio de tres por hora y a la entrada II de acuerdo con una distribución de Poisson a un promedio de cuatro por hora. ¿Cuál es la probabilidad de que un total de tres autos lleguen al lote de estacionamiento en una hora determinada? (Suponga que los números de autos que llega a las dos entradas son independientes.)
+
+
+
+
+
+

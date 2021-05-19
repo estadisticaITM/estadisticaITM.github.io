@@ -423,11 +423,11 @@ div.tocify {
 <h3>Proceso poisson</h3>
 <p>El número de eventos durante un intervalo de tiempo de duración t es una variable de poisson con parámetro <span class="math inline">\(\alpha t\)</span></p>
 <p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\alpha t}{(\alpha t)} ^x}{x!}\]</span></p>
-<p>así que el número esperado durante un intervalo de tiempo unitario es <span class="math inline">\(\alpha\)</span>. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.</p>
+<p>así que el número esperado durante un intervalo de tiempo unitario es <span class="math inline">\(\alpha\)</span>. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.</p>
 </div>
 <div id="función-de-distribución-acumulada" class="section level3">
 <h3>Función de distribución acumulada</h3>
-<p><span class="math display">\[P(x\leq x)=F(x)=\sum_{i=1}^n \frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
+<p><span class="math display">\[P(x\leq x)=F(x)=\sum_{x=0}^n \frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
 <iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
 </iframe>
 </div>
@@ -440,16 +440,97 @@ div.tocify {
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
 <p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}\]</span> La probabilidad pedida es:</p>
 <p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> La probabilidad pedida es:</p>
-<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}\]</span> Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
-<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{i=0}^4 \frac{e^{-8}8 ^x}{x!} \]</span> Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%\]</span> Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
+<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% \]</span> Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</p>
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
 <p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* \frac{1 hora}{60 minutos}*30 min= \frac{2 llamadas}{30 min}\]</span> la probabilidad pedida se traduce en</p>
 <p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%\]</span></p>
 <p>¿Cuántas llamadas esperaría durante la pausa de 30 minutos?</p>
 <p>el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia <span class="math inline">\(\lambda=2\)</span>, se esperaría 2 llamadas.</p>
+<p>¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
+<p>la probabilida que se da es <span class="math display">\[P(x=0)=0.4\]</span> con una tasa de ocurrencia</p>
+<p><span class="math display">\[\lambda= 4 llamadas/ hora\]</span> reemplazando en la fórmula</p>
+<p><span class="math display">\[P(x=0)=\frac{e^{-4 t}{(4 t)} ^0}{0!}=0.4\]</span> al resolver para despejar t se obtiene:</p>
+<p><span class="math display">\[e^{-4t}=0.4\]</span></p>
+<p><span class="math display">\[Ln (e^{-4t})=Ln(0.4)\]</span></p>
+<p><span class="math display">\[-4t * Ln (e)=Ln(0.4)\]</span> <span class="math display">\[-4t=Ln(0.4)\]</span></p>
+<p><span class="math display">\[t=Ln(0.4)/-4=0.23\]</span></p>
+<p>La duración de la llamada debe ser de 0.23 horas.</p>
 <p><em>Distribución poisson</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/lD7RPownwBg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
+<div id="ejercicios-propuestos" class="section level3">
+<h3>Ejercicios propuestos</h3>
+<ol style="list-style-type: decimal">
+<li>Suponga que hay árboles distribuidos en un bosque de acuerdo con un proceso de Poisson bidimensional con parámetro <span class="math inline">\(\alpha\)</span>, el número esperado de árboles por acre es de 80.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la probabilidad de que en un terreno de un cuarto de acre, haya cuando mucho 16 árboles?</p></li>
+<li><p>Si el bosque abarca 85 000 acres, ¿cuál es el número esperado de árboles en el bosque?</p></li>
+<li><p>Suponga que selecciona un punto en el bosque y construye un círculo de 0.1 milla de radio. Sea X = el número de árboles dentro de esa región circular. ¿Cuál es la función masa de probabilidad de X? [Sugerencia: 1 milla cuadrada = 640 acres.]</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Sea X el número de imperfecciones superficiales de una caldera seleccionada al azar de un tipo que tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=5\)</span>. Use la tabla para calcular las siguientes probabilidades:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X \leq 8)\)</span></p></li>
+<li><p><span class="math inline">\(P(x=8)\)</span></p></li>
+<li><p><span class="math inline">\(P(9 ≤ X)\)</span></p></li>
+<li><p><span class="math inline">\(P(5 ≤ X ≤ 8)\)</span></p></li>
+<li><p><span class="math inline">\(P(5 &lt;X &lt; 8)\)</span></p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Suponga que el número de conductores que viajan entre un origen y destino particulares durante un periodo designado tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=20\)</span> ¿Cuál es la probabilida d de que el número de conductores</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>sea cuando mucho de 10?</p></li>
+<li><p>sea de más de 20?</p></li>
+<li><p>sea de entre 10 y 20, inclusive?</p></li>
+<li><p>esté dentro de dos desviaciones estándar del valor medio?</p></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>Considere escribir en un disco de computadora y luego enviarlo a través de un certificador que cuenta el número de pulsos faltantes. Suponga que este número X tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=0.20\)</span></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad de que un disco tenga exactamente un pulso faltante?</li>
+<li>¿Cuál es la probabilidad de que un disco tenga por lo menos dos pulsos faltantes?</li>
+<li>Si seleccionan dos discos independientemente, ¿cuál es la probabilidad de que ninguno contenga un pulso faltante?</li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>Suponga que una pequeña aeronave aterriza en un aeropuerto de acuerdo con un proceso de Poisson con razón <span class="math inline">\(\lambda=8\)</span> por hora de modo que el número de aterrizajes durante un periodo de t horas es una variable aleatoria de Poisson con parámetro <span class="math inline">\(\lambda=8t\)</span>.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la probabilidad de que exactamente seis aeronaves pequeñas aterricen durante un intervalo de una hora? ¿Por lo menos seis? ¿Por lo menos 10?</p></li>
+<li><p>¿Cuáles son el valor esperado y la desviación estándar del número de aeronaves pequeñas que aterrizan durante un lapso de 90 min?</p></li>
+<li><p>¿Cuál es la probabilidad de que por lo menos 20 aeronaves pequeñas aterricen durante un lapso de 2 horas y media? ¿De qué cuando mucho aterricen 10 durante este periodo?</p></li>
+</ol>
+<ol start="6" style="list-style-type: decimal">
+<li>El artículo “Reliability-Based Service-Life Assessment of Aging Concrete Structures”. (J. Structural Engr., 1993: 1600–1621) sugiere que un proceso de Poisson puede ser utilizado para representar la ocurrencia de cargas estructurales en el transcurso del tiempo. Suponga que el tiempo medio entre ocurrencias de cargas es de 0.5 al año.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuántas cargas se espera que ocurran durante un periodo de 2 años?</p></li>
+<li><p>¿Cuál es la probabilidad de que ocurran más de cinco cargas durante un periodo de 2 años?</p></li>
+<li><p>¿Qué tan largo debe ser un periodo de modo que la probabilidad de que no ocurran cargas durante dicho periodo sea cuando mucho de 0.1?</p></li>
+</ol>
+<ol start="7" style="list-style-type: decimal">
+<li>Llegan clientes a un mostrador de una tienda con un promedio de siete por hora. Durante una hora determinada, cuales son las probabilidades de que</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>(10 puntos) no lleguen más de tres clientes?,</li>
+<li>(10 puntos) lleguen al menos dos clientes?,</li>
+<li>(10 puntos) lleguen exactamente cinco clientes?</li>
+</ol>
+<ol start="8" style="list-style-type: decimal">
+<li>El número de errores mecanográficos hechos por una secretaria tiene una distribución de Poisson con un promedio de cuatro errores por página. Si en una página se dan más de cuatro errores, la secretaria debe volver a escribir toda la página. ¿Cuál es la probabilidad de que una página seleccionada al azar no tenga que volver a ser escrita?</li>
+</ol>
+<p>9.Llegan autos a una caseta de pago de peaje de acuerdo con una media de 80 autos por hora. Si el empleado hace una llamada telefónica de 1 minuto:</p>
+<p>a¿cuál es la probabilidad de que al menos 1 auto llegue durante la llamada?</p>
+<p>¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
+<ol start="10" style="list-style-type: decimal">
+<li><p>La probabilidad de que un ratón inoculado con un suero contraiga cierta enfermedad es 0.2. Encuentre la probabilidad de que al menos 3 de entre 30 ratones inoculados contraigan la enfermedad.</p></li>
+<li><p>Un lote de estacionamiento tiene dos entradas. Llegan autos a la entrada I de acuerdo con una distribución de Poisson a un promedio de tres por hora y a la entrada II de acuerdo con una distribución de Poisson a un promedio de cuatro por hora. ¿Cuál es la probabilidad de que un total de tres autos lleguen al lote de estacionamiento en una hora determinada? (Suponga que los números de autos que llega a las dos entradas son independientes.)</p></li>
+</ol>
 </div>
 
 <br>
