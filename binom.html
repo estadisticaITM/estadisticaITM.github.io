@@ -398,48 +398,71 @@ div.tocify {
 
 <div id="experimentos-bernoulli" class="section level3">
 <h3>Experimentos bernoulli</h3>
-<p>Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama variable aleatoria de Bernoulli.</p>
+<p>Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama variable aleatoria de Bernoulli, se utilizan para modelar fenómenos aleatorios que sólo tienen dos resultados posibles.</p>
 <ul>
 <li><p>Bueno o malo</p></li>
 <li><p>Hombre o Mujer</p></li>
 <li><p>Éxito o fracaso</p></li>
-</ul>
-<p><img src="imagen/bernoulli.png" width="502" style="display: block; margin: auto;" /></p>
-<p><strong>Ejemplos</strong></p>
-<p>En la práctica, los ensayos de Bernoulli se utilizan para modelar fenómenos aleatorios que sólo tienen dos resultados posibles, como por ejemplo:</p>
-<ul>
 <li><p>Al lanzar una moneda, comprobar si sale cara (éxito) o cruz (fracaso). Se suele suponer que una moneda tiene una probabilidad de éxito de 0,5.</p></li>
 <li><p>Al lanzar un dado, ver si se obtiene un seis (éxito) o cualquier otro valor (fracaso).</p></li>
-<li><p>Al realizar una encuesta política, tras escoger un votante al azar, ver si este votará “sí” en un referéndum próximo.</p></li>
-<li><p>¿Era el recién nacido niña?</p></li>
+<li><p>Escoger un votante al azar, ver si este votará “sí” en un referéndum próximo.</p></li>
 <li><p>¿Son verdes los ojos de una persona?</p></li>
 <li><p>¿Decidió un cliente potencial comprar determinado producto?</p></li>
 </ul>
+<p><img src="imagen/bernoulli.png" width="502" style="display: block; margin: auto;" /></p>
 </div>
-<div id="experimentos-binomial" class="section level3">
-<h3>Experimentos binomial</h3>
+<div id="experimento-binomial" class="section level3">
+<h3>Experimento binomial</h3>
 <ul>
-<li><p>Consiste en una secuencia de n experimentos llamados ensayos (n), donde n se fija antes del experimento.</p></li>
+<li><p>Consiste en una secuencia de n experimentos llamados ensayos, donde n se fija antes del experimento.</p></li>
 <li><p>Las salidas de cada ensayo son independientes</p></li>
-<li><p>Cada ensayo puede dar por resultado un éxito (E) y falla (F).</p></li>
-<li><p>Cada ensayo es determinado por el éxito o fracaso, X es el numero de éxitos</p></li>
-<li><p>La probabilidad de éxito en cada ensayo es constante (p)</p></li>
-<li><p>La probabilidad de fracaso está dada por (q)</p></li>
+<li><p>Cada ensayo puede dar por resultado un éxito (E) o falla (F).</p></li>
+<li><p>Cada ensayo es determinado por el éxito o fracaso,</p></li>
+<li><p>X es el numero de éxitos esperados Con <span class="math inline">\(x=0,1,2...,n\)</span>,</p></li>
+<li><p>La probabilidad de éxito en cada ensayo es constante (p), <span class="math inline">\(0 \leq p \leq 1\)</span></p></li>
+<li><p>La probabilidad de fracaso está dada por (q), <span class="math inline">\(0 \leq q \leq 1\)</span></p></li>
+<li><p>El exito y fracaso son dos eventos complementarios</p></li>
 </ul>
 <p><span class="math display">\[p+q=1\]</span> ### Función de distribución de probabilidad</p>
-<p><span class="math display">\[p(x=x)=f(x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> Con <span class="math inline">\(x=0,1,2...,n\)</span>, <span class="math inline">\(0 \leq p \leq 1\)</span>, <span class="math inline">\(0 \leq q \leq 1\)</span></p>
-<p>p es la probabilidad de éxito en un enasayo individual</p>
-<p>q es la probabilidad de fracaso en un ensayo individual <span class="math inline">\(q=1-p\)</span></p>
-<p>Si una variable aleatoria sigue una distribución binomial con parámetros n y p luego:</p>
-<p><span class="math display">\[x\sim Bin(n,p)\]</span> Media o valor esperado <span class="math display">\[E(X)=np\]</span> <span class="math display">\[V(X)=npq\]</span> <span class="math display">\[sd=\sqrt{npq}\]</span></p>
+<p><span class="math display">\[p(x=x)=f(x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> Si una variable aleatoria sigue una distribución binomial con parámetros n y p luego:</p>
+<p><span class="math display">\[x\sim Bin(n,p)\]</span> <strong>Media o valor esperado:</strong> <span class="math display">\[E(X)=np\]</span></p>
+<p><strong>Varianza</strong> <span class="math display">\[V(X)=npq\]</span> <strong>Desviación estándar:</strong> <span class="math display">\[sd=\sqrt{npq}\]</span></p>
 </div>
 <div id="función-de-distribución-de-probabilidad-acumulada" class="section level3">
 <h3>Función de distribución de probabilidad acumulada</h3>
-<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> <strong>Graficos de la función de distribución binomial</strong></p>
+<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span></p>
+<p><strong>Graficos de la función de distribución binomial</strong></p>
 <iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
 </iframe>
 <p>Las probabilidades se pueden encontrar mediante tres formas diferentes por calculadora, por tabla, o por las funciones de R:</p>
 <p><img src="imagen/CALCBINO.png" width="986" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ejemplo" class="section level3">
+<h3>Ejemplo</h3>
+<p>Una concentración particular de un producto químico detectado en agua contaminada se encuentra que es letal para 20% de los peces que queden expuestos a la concentración durante 24 horas. Veinte peces se colocan en un tanque que contiene esta concentración del producto químico en agua.</p>
+<p>Los datos que suministra el enunciado son los siguientes:</p>
+<ul>
+<li><p>Sea x la variable aleatoria que representa los peces que sobreviven</p></li>
+<li><p>siendo asi la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2</p></li>
+<li><p>El numero de ensayos es n=20</p></li>
+</ul>
+<p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14 sobrevivan.</p>
+<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta es:</strong></p>
+<pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
+<pre><code>## [1] 0.1090997</code></pre>
+<p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
+<p>Recordemos la forma de la función acumulada</p>
+<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=1-\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.999436\]</span> <strong>En R la respuesta es:</strong></p>
+<p><strong>Nota: </strong></p>
+<p>El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
+<pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
+<pre><code>## [1] 0.9994366</code></pre>
+<p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
+<p>La probabilidad pedida es <span class="math display">\[P(x \leq 16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
+<pre class="r"><code>pbinom(16,20, prob = 0.8)</code></pre>
+<pre><code>## [1] 0.5885511</code></pre>
+<p>d Encuentre la media y la varianza del número que sobrevive. Media <span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span class="math display">\[Var=npq=20*0.8*0.2=0.32\]</span> Desviación estándar</p>
+<p><span class="math display">\[sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt {3.2}=1.8\]</span></p>
 </div>
 <div id="videos-de-interés" class="section level3">
 <h3>Videos de interés</h3>
@@ -450,30 +473,8 @@ div.tocify {
 <iframe width="280" height="160" src="https://www.youtube.com/embed/G1w5gZZaAOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="ejemplo" class="section level3">
-<h3>Ejemplo</h3>
-<p>Una concentración particular de un producto químico detectado en agua contaminada se encuentra que es letal para 20% de los peces que queden expuestos a la concentración durante 24 horas. Veinte peces se colocan en un tanque que contiene esta concentración del producto químico en agua.</p>
-<p>Los datos que suministra el enunciado son los siguientes:</p>
-<ul>
-<li><p>Sea x la variable aleatoria que representa los peces que sobreviven</p></li>
-<li><p>siendo asi la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2</p></li>
-</ul>
-<p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14 sobrevivan.</p>
-<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta es:</strong></p>
-<pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
-<pre><code>## [1] 0.1090997</code></pre>
-<p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
-<p>Recordemos la forma de la función acumulada</p>
-<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}\]</span> <strong>En R la respuesta es:</strong></p>
-<p><strong>Nota: </strong></p>
-<p>El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
-<pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
-<pre><code>## [1] 0.9994366</code></pre>
-<p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
-<p>La probabilidad pedida es <span class="math display">\[P(x \leq 16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
-<pre class="r"><code>pbinom(16,20, prob = 0.8)</code></pre>
-<pre><code>## [1] 0.5885511</code></pre>
-<p>d Encuentre la media y la varianza del número que sobrevive. Media <span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span class="math display">\[Var=npq=20*0.8*0.2=0.32\]</span> Desviación estándar Varianza <span class="math display">\[sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt {3.2}=1.8\]</span> ### Ejercicios propuestos</p>
+<div id="ejercicios-propuestos" class="section level3">
+<h3>Ejercicios propuestos</h3>
 <ol style="list-style-type: decimal">
 <li>El voltaje de una batería nueva puede ser aceptable (A) o inaceptable (U). Una linterna requiere dos baterías, así que las baterías serán independientemente seleccionadas y probadas hasta encontrar dos aceptables. Suponga que 90% de todas las baterías tienen voltajes aceptables. Sea Y el número de baterías que deben ser probadas.</li>
 </ol>

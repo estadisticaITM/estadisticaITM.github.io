@@ -8,9 +8,11 @@ output:
      # collapsed: falsed
       #smooth_scroll: true
 ---
+
+
 ### Experimentos bernoulli
 
-Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama variable aleatoria de Bernoulli.
+Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama variable aleatoria de Bernoulli, se utilizan para modelar fenómenos aleatorios que sólo tienen dos resultados posibles.
 
 - Bueno o malo
 
@@ -18,68 +20,62 @@ Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama v
 
 - Éxito o fracaso
 
-
-```{r echo=F, fig.asp=0.7, fig.align='center'}
-knitr::include_graphics("imagen/bernoulli.png")
-```
-
-
-**Ejemplos**
-
-En la práctica, los ensayos de Bernoulli se utilizan para modelar fenómenos aleatorios que sólo tienen dos resultados posibles, como por ejemplo:
-
 - Al lanzar una moneda, comprobar si sale cara (éxito) o cruz (fracaso). Se suele suponer que una moneda tiene una probabilidad de éxito de 0,5.
 
 - Al lanzar un dado, ver si se obtiene un seis (éxito) o cualquier otro valor (fracaso).
 
-- Al realizar una encuesta política, tras escoger un votante al azar, ver si este votará "sí" en un referéndum próximo.
-
-- ¿Era el recién nacido niña?
+- Escoger un votante al azar, ver si este votará "sí" en un referéndum próximo.
 
 - ¿Son verdes los ojos de una persona?
 
 - ¿Decidió un cliente potencial comprar determinado producto?
 
 
-### Experimentos binomial
+```{r echo=F, fig.asp=0.7, fig.align='center'}
+knitr::include_graphics("imagen/bernoulli.png")
+```
 
-- Consiste en una secuencia de n experimentos llamados ensayos (n), donde n se fija antes del experimento. 
+
+
+
+### Experimento binomial
+
+- Consiste en una secuencia de n experimentos llamados ensayos, donde n se fija antes del experimento. 
 
 - Las salidas de cada ensayo son independientes
 
-- Cada ensayo puede dar por resultado un éxito (E) y falla (F).
+- Cada ensayo puede dar por resultado un éxito (E) o falla (F).
 
 - Cada ensayo es determinado por el éxito o fracaso, 
-X es el numero de éxitos
 
-- La probabilidad de éxito en cada ensayo es constante (p)
+- X es el numero de éxitos esperados Con $x=0,1,2...,n$, 
 
-- La probabilidad de fracaso está dada por (q)
+- La probabilidad de éxito en cada ensayo es constante (p), $0 \leq p \leq 1$
+
+- La probabilidad de fracaso está dada por (q), $0 \leq q \leq 1$  
+
+- El exito y fracaso son dos eventos complementarios
 
 $$p+q=1$$
 ###    Función de distribución de probabilidad
 
  $$p(x=x)=f(x)=\displaystyle{n \choose x}p^x q^{n-x}$$
-Con $x=0,1,2...,n$, 
-$0 \leq p \leq 1$,
-$0 \leq q \leq 1$ 
-
-p es la probabilidad de éxito en un enasayo individual
-
-q es la probabilidad de fracaso en un ensayo individual $q=1-p$
-
-
 Si una variable aleatoria sigue una distribución binomial con parámetros n y p luego:
 
 $$x\sim Bin(n,p)$$
-Media o valor esperado
+**Media o valor esperado:**
 $$E(X)=np$$
+
+**Varianza**
 $$V(X)=npq$$
+**Desviación estándar:**
 $$sd=\sqrt{npq}$$
 
 ### Función de distribución de probabilidad acumulada
 
  $$p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}$$
+ 
+ 
 **Graficos de la función de distribución binomial**
 
 ```{r echo=FALSE}
@@ -95,27 +91,19 @@ Las probabilidades se pueden encontrar mediante tres formas diferentes por calcu
 knitr::include_graphics("imagen/CALCBINO.png")
 ```
 
-### Videos de interés
 
-
-*Distribución de bernoulli*
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/TX2ga6fZxxM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-*Distribución binomial*
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/G1w5gZZaAOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ###   Ejemplo
 
-Una concentración particular de un producto químico detectado en agua contaminada se encuentra que
-es letal para 20% de los peces que queden expuestos a la concentración durante 24 horas. Veinte peces se colocan en un tanque que contiene esta concentración del producto químico en agua.
+Una concentración particular de un producto químico detectado en agua contaminada se encuentra que es letal para 20% de los peces que queden expuestos a la concentración durante 24 horas. Veinte peces se colocan en un tanque que contiene esta concentración del producto químico en agua.
 
 Los datos que suministra el enunciado son los siguientes:
 
 - Sea x la variable aleatoria que representa los peces que sobreviven 
 
 - siendo asi la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2
+
+- El numero de ensayos es n=20
 
 $$p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}$$
 a Encuentre la probabilidad de que exactamente 14 sobrevivan.
@@ -136,7 +124,7 @@ Recordemos la forma de la función acumulada
 
  $$p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}$$
  La probabilidad pedida es 
-$$P(x \geq 10)=1-p(x\leq 9)=\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}$$
+$$P(x \geq 10)=1-p(x\leq 9)=1-\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.999436$$
 **En R la respuesta es:**
 
 
@@ -165,8 +153,21 @@ $$\mu=np=20*0.8=16$$
 Varianza
 $$Var=npq=20*0.8*0.2=0.32$$
 Desviación estándar
-Varianza
+
 $$sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt {3.2}=1.8$$
+
+### Videos de interés
+
+
+*Distribución de bernoulli*
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/TX2ga6fZxxM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+*Distribución binomial*
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/G1w5gZZaAOg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ### Ejercicios propuestos
 
 1. El voltaje de una batería nueva puede ser aceptable (A) o inaceptable (U). 
