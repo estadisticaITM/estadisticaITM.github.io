@@ -44,6 +44,12 @@ knitr::include_graphics("imagen/bernoulli.png")
 
 - Las salidas de cada ensayo son independientes
 
+
+```{r echo=F, fig.asp=0.7, fig.align='center'}
+knitr::include_graphics("imagen/ESAY.png")
+```
+
+
 - Cada ensayo puede dar por resultado un éxito (E) o falla (F).
 
 - Cada ensayo es determinado por el éxito o fracaso, 
@@ -57,7 +63,14 @@ knitr::include_graphics("imagen/bernoulli.png")
 - El exito y fracaso son dos eventos complementarios
 
 $$p+q=1$$
+
+
+
 ###    Función de distribución de probabilidad
+
+
+
+
 
  $$p(x=x)=f(x)=\displaystyle{n \choose x}p^x q^{n-x}$$
 Si una variable aleatoria sigue una distribución binomial con parámetros n y p luego:
@@ -101,7 +114,7 @@ Los datos que suministra el enunciado son los siguientes:
 
 - Sea x la variable aleatoria que representa los peces que sobreviven 
 
-- siendo asi la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2
+- Siendo así, la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2
 
 - El numero de ensayos es n=20
 
