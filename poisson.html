@@ -432,7 +432,7 @@ div.tocify {
 <p><span class="math display">\[P(x\leq x)=F(x)=\sum_{x=0}^n \frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
 <iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px">
 </iframe>
-<p>Las probabilidades se pueden encontrar mediante dos formas por calculadora o por tabla:</p>
+<p>Las probabilidades se pueden encontrar mediante tres formas por calculadora, por tabla o por las funciones de R:</p>
 <p><img src="imagen/calc.png" width="629" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ejemplo" class="section level3">
@@ -442,17 +442,29 @@ div.tocify {
 <p>La tasa de ocurrencia del evento es:</p>
 <p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}\]</span></p>
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
-<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}\]</span> La probabilidad pedida es:</p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}\]</span></p>
+<p>La probabilidad pedida es:</p>
 <p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> La probabilidad pedida es:</p>
-<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%\]</span> Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
-<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% \]</span> Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%\]</span> <strong>En R</strong></p>
+<pre class="r"><code>dpois(x=10,lambda=8)</code></pre>
+<pre><code>## [1] 0.09926153</code></pre>
+<p>b.Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
+<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% \]</span> <strong>En R la respuesta es:</strong></p>
+<p><strong>Nota: </strong> El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
+<pre class="r"><code>ppois(4,lambda=8,lower.tail = FALSE)</code></pre>
+<pre><code>## [1] 0.9003676</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</li>
+</ol>
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
 <p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* \frac{1 hora}{60 minutos}*30 min= \frac{2 llamadas}{30 min}\]</span> la probabilidad pedida se traduce en</p>
-<p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%\]</span></p>
+<p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%\]</span> <strong>En R</strong></p>
+<pre class="r"><code>dpois(x=0,lambda=2)</code></pre>
+<pre><code>## [1] 0.1353353</code></pre>
 <p>¿Cuántas llamadas esperaría durante la pausa de 30 minutos?</p>
 <p>el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia <span class="math inline">\(\lambda=2\)</span>, se esperaría 2 llamadas.</p>
 <p>¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
-<p>la probabilida que se da es <span class="math display">\[P(x=0)=0.4\]</span> con una tasa de ocurrencia</p>
+<p>la probabilidad que se da es <span class="math display">\[P(x=0)=0.4\]</span> con una tasa de ocurrencia</p>
 <p><span class="math display">\[\lambda= 4 llamadas/ hora\]</span> reemplazando en la fórmula</p>
 <p><span class="math display">\[P(x=0)=\frac{e^{-4 t}{(4 t)} ^0}{0!}=0.4\]</span> al resolver para despejar t se obtiene:</p>
 <p><span class="math display">\[e^{-4t}=0.4\]</span></p>

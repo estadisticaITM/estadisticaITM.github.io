@@ -74,7 +74,7 @@ knitr::include_app("  https://jtrochezg.shinyapps.io/apppoison/",height = "1000p
 
 ```
 
-Las probabilidades se pueden encontrar mediante dos formas por calculadora o por tabla:
+Las probabilidades se pueden encontrar mediante tres formas por calculadora, por tabla o por las funciones de R:
 
 ```{r echo=F, fig.asp=0.8, fig.align='center'}
 knitr::include_graphics("imagen/calc.png")
@@ -94,6 +94,7 @@ $$\lambda= \frac {4 llamadas}{hora}$$
 La tasa se debe modificar a la unidad del tiempo de la pregunta 
 
 $$\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}$$
+
 La probabilidad pedida es:
 
 
@@ -101,10 +102,27 @@ $$P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}$$
 La probabilidad pedida es:
 
 $$P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%$$
-Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas. 
+**En R**
+```{r}
+dpois(x=10,lambda=8)
+```
+
+
+b.Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas. 
 
 $$P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% $$
-Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda? 
+**En R la respuesta es:**
+
+**Nota: **
+El argumento lower tail si es falso, es equivalente a $P(X>x)$, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.
+
+```{r}
+ppois(4,lambda=8,lower.tail = FALSE)
+```
+
+
+
+c. Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda? 
 
 La tasa se debe modificar a la unidad del tiempo de la pregunta 
 
@@ -112,7 +130,10 @@ $$\lambda= \frac {4 llamadas}{hora}* \frac{1 hora}{60 minutos}*30 min= \frac{2 l
 la probabilidad pedida se traduce en 
 
 $$p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%$$
-
+**En R**
+```{r}
+dpois(x=0,lambda=2)
+```
 ¿Cuántas llamadas esperaría durante la pausa de 30 minutos? 
 
 el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia $\lambda=2$, se esperaría 2 llamadas. 
@@ -120,7 +141,7 @@ el valor esperado de una distribución poisson esta dado por la tasa de ocurrenc
 
 ¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?
 
-la probabilida que se da es
+la probabilidad que se da es
 $$P(x=0)=0.4$$
 con una tasa de ocurrencia 
 

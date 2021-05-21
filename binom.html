@@ -438,8 +438,8 @@ div.tocify {
 <p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> <strong>Graficos de la función de distribución binomial</strong></p>
 <iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
 </iframe>
-<p>Las probabilidades se pueden encontrar mediante dos formas por calculadora o por tabla:</p>
-<p><img src="imagen/calc.png" width="629" style="display: block; margin: auto;" /></p>
+<p>Las probabilidades se pueden encontrar mediante tres formas diferentes por calculadora, por tabla, o por las funciones de R:</p>
+<p><img src="imagen/CALCBINO.png" width="986" style="display: block; margin: auto;" /></p>
 </div>
 <div id="videos-de-interés" class="section level3">
 <h3>Videos de interés</h3>
@@ -459,12 +459,14 @@ div.tocify {
 <li><p>siendo asi la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2</p></li>
 </ul>
 <p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14 sobrevivan.</p>
-<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span></p>
+<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta es:</strong></p>
 <pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
 <pre><code>## [1] 0.1090997</code></pre>
 <p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
 <p>Recordemos la forma de la función acumulada</p>
-<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}\]</span> En R la respuesta es: Nota: El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
+<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}\]</span> <strong>En R la respuesta es:</strong></p>
+<p><strong>Nota: </strong></p>
+<p>El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
 <pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
 <pre><code>## [1] 0.9994366</code></pre>
 <p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
