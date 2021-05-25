@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Distribución Hipergeométrica</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fas fa-line-chart"></span>
+     
+    Estadística Básica
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fas fa-bar-chart-o"></span>
+     
+    Estadística inferencial
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fas fa-pie-chart"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fas fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fas fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Distribución Hipergeométrica</h1>
+
+</div>
+
+
+<div id="experimento-hipergeométrico" class="section level3">
+<h3>Experimento Hipergeométrico</h3>
+<p>Los experimentos que tienen este tipo de distribución tienen las siguientes características:</p>
+<ul>
+<li><p>Al realizar un experimento con este tipo de distribución, se esperan dos tipos de resultados, exito y un fracaso</p></li>
+<li><p>Las probabilidades asociadas a cada uno de los resultados no son constantes.</p></li>
+<li><p>Cada ensayo o repetición del experimento es dependiente de los demás.</p></li>
+<li><p>El número de repeticiones del experimento (n) es constante.</p></li>
+</ul>
+<p><img src="imagen/hiper.png" width="412" style="display: block; margin: auto;" /></p>
+</div>
+<div id="usos-de-la-distribución-hipergeométrica" class="section level3">
+<h3>Usos de la distribución hipergeométrica</h3>
+<ul>
+<li><p>Pruebas electrónicas</p></li>
+<li><p>Control de calidad</p></li>
+<li><p>Fabricación de piezas</p></li>
+<li><p>Juegos de azar</p></li>
+</ul>
+</div>
+<div id="función-de-distribución-hipergeométrica" class="section level3">
+<h3>Función de distribución hipergeométrica</h3>
+<p>Si X es el número de éxitos (E) en una muestra completamente aleatoria de tamaño n extraída de la población compuesta de K éxitos y (N-K) fallas, entonces la pdf es:</p>
+<p><span class="math display">\[ f(x) \;=\; P(X=x)\;= \;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N \]</span></p>
+<p>Si X sigue una distribución hipergeométrica con parámetros n, K y N, se denota:</p>
+<p><span class="math display">\[X\sim h(n,K,N)\]</span></p>
+<p>Valor esperado: <span class="math display">\[E(x)=np \qquad p=\frac{k}{N}\]</span></p>
+<p>Varianza <span class="math display">\[V(x)=npq\frac{N-n}{N-1} \qquad p=\frac{k}{N}\]</span></p>
+</div>
+<div id="función-acumulada" class="section level3">
+<h3>Función acumulada</h3>
+<p><span class="math display">\[ F(x) \;=\; P(X\leq x)\;= \sum_{x=0}^x\;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N \]</span></p>
+<p><strong>Gráficos de la función de distribución binomial</strong></p>
+<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
+</iframe>
+</div>
+<div id="ejemplo" class="section level3">
+<h3>Ejemplo</h3>
+<ol style="list-style-type: decimal">
+<li>las semillas son tratadas frecuentemente con fungicidas para protegerlas en ambientes húmedos.Un intento a pequeña escala, que comprende 5 semillas tratadas y 8 no tratadas, fue realizado antes de un experimento a gran escala. Las semillas se plantaron en un suelo húmedo y se contó el número de plantas que brotaron. Si brotaron cuatro plantas.</li>
+</ol>
+<ul>
+<li><p>Sea x la variable aleatoria que representa las plantas tratadas</p></li>
+<li><p>k semillas tratadas=5</p></li>
+<li><p>N-k semillas no tratadas 8</p></li>
+<li><p>El tamaño de la población es:</p></li>
+</ul>
+<p>semillas tratadas + semillas no tratadas= 5+8 =13</p>
+<ul>
+<li>El tamaño de la muestra n es:4 plantas que brotaron</li>
+</ul>
+<p>Recordemos la pdf:</p>
+<p><span class="math display">\[ f(x) \;=\; P(X=x)\;= \;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N \]</span></p>
+<p>¿cuál es la probabilidad de que</p>
+<ol style="list-style-type: lower-alpha">
+<li>las cuatro plantas brotaran de semillas tratadas?</li>
+</ol>
+<p><span class="math display">\[ P(X=4)\;= \;  \frac{{5\choose 4}\,{8\choose 0}}{{13 \choose 4}}=0.7\%\]</span> El resultado en R sería</p>
+<pre class="r"><code>dhyper(x=4, m=5, n=8, k=4)</code></pre>
+<pre><code>## [1] 0.006993007</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Tres o menos brotaran de semillas tratadas?</li>
+</ol>
+<p><span class="math display">\[ P(X\leq 3)\;= p(x=0)+p(x=1)+p(x=2)+p(x=3)=\]</span></p>
+<p><span class="math display">\[ \frac{{5\choose 0}\,{8\choose 4}}{{13 \choose 4}}+ \frac{{5\choose 1}\,{8\choose 3}}{{13 \choose 4}}+ \frac{{5\choose 2}\,{8\choose 2}}{{13 \choose 4}}+ \frac{{5\choose 3}\,{8\choose 1}}{{13 \choose 4}}\]</span> Para resumir, la probabilidad pedida es: <span class="math display">\[\sum_{x=0}^3\;  \frac{{5\choose x}\,{8\choose 4-x}}{{13\choose 4}}=99.3\]</span> En R sería:</p>
+<pre class="r"><code>phyper(q=3, m=5, n=8, k=4)</code></pre>
+<pre><code>## [1] 0.993007</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Encuentre la función de dsitribución de probabilididad</li>
+</ol>
+<p><span class="math display">\[p(X=x)= \frac{{5\choose x}\,{8\choose 4-x}}{{13\choose 4}}\qquad \text{para} \quad x=0,1,2,3,4\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una lista de clientes de una empresa contiene 1000 cuentas. De estos, 700 han comprado al menos una vez en la empresa en los últimos 3 meses. Para evaluar la frecuencia, se encuestan 50 clientes ¿Cuál es la probabilidad de que más de 45 de los clientes encuestados hayan comprado en la empresa en los últimos 3 meses?</li>
+</ol>
+<p>Sea x la variable aleatoria que representa el número de clientes que han comprado en los ultimos tres meses</p>
+<p>Identificar los parámetros:</p>
+<p>N=1000 k=700 n=50</p>
+<p><span class="math display">\[P(x&gt;45)=P(x=46)+p(x=47)+p(x=48)+p(x=49)+p(x=50)\]</span> En la calculadora: <span class="math display">\[P(x&gt;45)=
+\frac{{700\choose 46}\,{300\choose 4}}{{1000\choose 50}}+
+\frac{{700\choose 47}\,{300\choose 3}}{{1000\choose 50}}+
+\frac{{700\choose 48}\,{300\choose 2}}{{1000\choose 50}}+
+\frac{{700\choose 49}\,{300\choose 1}}{{1000\choose 50}}+
+\frac{{700\choose 50}\,{300\choose 0}}{{1000\choose 50}}\]</span></p>
+<p><span class="math display">\[P(x&gt;45)=\sum_{x=46}^{50}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}!!!!!\]</span> En R lo realizaremos por el complemento</p>
+<p><span class="math display">\[P(x&gt;45)=1-p(x\leq 45)\]</span> <span class="math display">\[=1-\sum_{x=45}^{0}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}\]</span></p>
+<pre class="r"><code>1-phyper(q=45, m=700, n=300, k=50)</code></pre>
+<pre><code>## [1] 0.0001275857</code></pre>
+</div>
+<div id="aproximación-de-la-distribución-hipergeométrica-a-la-binomial" class="section level3">
+<h3>Aproximación de la distribución Hipergeométrica a la Binomial</h3>
+<p>Una distribución hipergeométrica se aproxima a una binomial con p=K/N, cuando N se aproxima a infinito, en general es buena aproximación cuando <span class="math inline">\(n&lt;\frac{N}{10}\)</span></p>
+<p>Para resolver el ejercicio anterior el planteamiento es:</p>
+<p><span class="math display">\[n&lt;\frac{N}{10}, \qquad 50&lt;\frac{1000}{10}, \qquad 50&lt;100\]</span> Luego la probabilidad corresponde a</p>
+<p><span class="math display">\[p=\frac{K}{N}=\frac{700}{1000}=0.7\]</span> Recordemos la forma acumulada de la distribución binomial</p>
+<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> Entonces p=0.7, n=50 <span class="math display">\[P(x&gt;45)=P(x\geq 46)=\sum_{x=46}^{50}{50 \choose x}0.7^x 0.3^{50-x}=0.017\%\]</span></p>
+<p>Comparando los resultados</p>
+<p>En R la respuesta fue 0.000127 mientras que la respuesta por aproximación fue 0.000172 la diferencia absoluta entre resultados es de 0.000045 y el error relativo es</p>
+<pre class="r"><code>(abs(0.000127-0.000172)/0.000127)*100</code></pre>
+<pre><code>## [1] 35.43307</code></pre>
+</div>
+<div id="ejercicios-propuestos" class="section level3">
+<h3>Ejercicios propuestos</h3>
+<ol style="list-style-type: decimal">
+<li>Cada uno de 12 refrigeradores de un tipo ha sido regresado a un distribuidor debido a un ruido agudo audible producido por oscilación cuando el refrigerador está funcionando. Suponga que 7 de estos refrigeradores tienen un compresor defectuoso y que los otros 5 tienen problemas menos serios. Si los refrigeradores se examinan en orden aleatorio, sea X el número entre los primeros 6 examinados que tienen un compresor defectuoso.</li>
+</ol>
+<p>Calcule lo siguiente:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>P(X=5)</p></li>
+<li><p>P(X&lt;4)</p></li>
+<li><p>La probabilidad de que X exceda su valor medio por más de una desviación estándar</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Un geólogo recolectó 10 especímenes de roca basáltica y 10 especímenes de granito. Él le pide a su ayudante de laboratorio que seleccione al azar 15 de los especímenes para analizarlos.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la función masa de probabilidad del número de especímenes de granito seleccionados para su análisis?</p></li>
+<li><p>¿Cuál es la probabilidad de que todos los especímenes de uno de los dos tipos de roca sean seleccionados para su análisis?</p></li>
+<li><p>¿Cuál es la probabilidad de que el número de especímenes de granito seleccionados para analizarlos esté dentro de una desviación estándar de su valor medio?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Un tipo de cámara digital viene en una versión de 3 megapixeles o una versión de 4 megapixeles. Una tienda de cámaras recibió un envío de 15 de estas cámaras, de las cuales 6 tienen una resolución de 3 megapixeles. Suponga que se seleccionan al azar 5 de estas cámaras para guardarlas detrás del mostrador; las otras 10 se colocan en una bodega. Sea X = el número de cámaras de 3 megapixeles entre las 5 seleccionadas para guardarlas detrás del mostrador.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Qué distribución tiene X (nombre y valores de todos los parámetros)?</p></li>
+<li><p>Calcule P(X = 2)</p></li>
+<li><p>P(X ≤ 2)</p></li>
+<li><p>P(X ≥ 2)</p></li>
+<li><p>Calcule el valor medio y la desviación estándar de X.</p></li>
+</ol>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

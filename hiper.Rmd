@@ -1,0 +1,227 @@
+---
+title: "Distribución Hipergeométrica"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
+---
+
+### Experimento Hipergeométrico
+
+
+
+Los experimentos que tienen este tipo de distribución tienen las siguientes características:
+
+- Al realizar un experimento con este tipo de distribución, se esperan dos tipos de resultados, exito y un fracaso
+
+- Las probabilidades asociadas a cada uno de los resultados no son constantes.
+
+- Cada ensayo o repetición del experimento  es dependiente de los demás.
+
+-  El número de repeticiones del experimento (n) es constante.
+
+```{r echo=F, fig.asp=1, fig.align='center'}
+knitr::include_graphics("imagen/hiper.png")
+```
+
+### Usos de la distribución hipergeométrica
+
+- Pruebas electrónicas
+
+- Control de calidad
+
+- Fabricación de piezas 
+
+- Juegos de azar
+
+
+### Función de distribución hipergeométrica
+
+Si X es el número de éxitos (E) en una muestra completamente aleatoria de tamaño n extraída de la población compuesta de K éxitos y (N-K) fallas, entonces la pdf es:
+
+
+$$ f(x) \;=\; P(X=x)\;= \;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N $$
+
+
+Si X sigue una distribución hipergeométrica con parámetros n, K y N, se denota:
+
+$$X\sim h(n,K,N)$$
+
+Valor esperado:
+$$E(x)=np \qquad p=\frac{k}{N}$$
+
+Varianza
+$$V(x)=npq\frac{N-n}{N-1} \qquad p=\frac{k}{N}$$
+
+### Función acumulada
+
+$$ F(x) \;=\; P(X\leq x)\;= \sum_{x=0}^x\;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N $$
+
+
+
+
+
+
+**Gráficos de la función de distribución binomial**
+
+```{r echo=FALSE}
+
+knitr::include_app("  https://jtrochezg.shinyapps.io/apppoison/",height = "800px")
+
+```
+
+
+
+
+###   Ejemplo
+
+
+1. las semillas son tratadas frecuentemente con fungicidas para protegerlas en ambientes húmedos.Un intento a pequeña escala, que comprende 5 semillas tratadas y 8 no tratadas, fue realizado antes de un experimento a gran escala. Las semillas se plantaron en un suelo húmedo y se contó el número de plantas que brotaron. Si brotaron cuatro plantas.
+
+- Sea x la variable aleatoria que representa las plantas tratadas
+
+- k semillas  tratadas=5
+
+-  N-k semillas no tratadas 8
+ 
+- El tamaño de la población es: 
+ 
+ semillas tratadas + semillas no tratadas=   5+8  =13
+ 
+ - El tamaño de la muestra n es:4 plantas que brotaron
+
+Recordemos la pdf:
+
+$$ f(x) \;=\; P(X=x)\;= \;  \frac{{k\choose x}\,{N-k\choose n-x}}{{N\choose n}}, \qquad  \text{donde}\quad x=0,1,2, \ldots, n \quad \text{y}\quad n\leq N $$
+
+
+¿cuál es la probabilidad de que
+
+a. las cuatro plantas brotaran de semillas tratadas?
+
+
+$$ P(X=4)\;= \;  \frac{{5\choose 4}\,{8\choose 0}}{{13 \choose 4}}=0.7\%$$
+El resultado en R sería
+
+```{r}
+dhyper(x=4, m=5, n=8, k=4)
+```
+
+
+b. Tres o menos brotaran de semillas tratadas?
+
+
+
+
+$$ P(X\leq 3)\;= p(x=0)+p(x=1)+p(x=2)+p(x=3)=$$
+
+$$ \frac{{5\choose 0}\,{8\choose 4}}{{13 \choose 4}}+ \frac{{5\choose 1}\,{8\choose 3}}{{13 \choose 4}}+ \frac{{5\choose 2}\,{8\choose 2}}{{13 \choose 4}}+ \frac{{5\choose 3}\,{8\choose 1}}{{13 \choose 4}}$$
+Para resumir, la probabilidad pedida es:
+$$\sum_{x=0}^3\;  \frac{{5\choose x}\,{8\choose 4-x}}{{13\choose 4}}=99.3$$
+En R sería:
+```{r}
+
+phyper(q=3, m=5, n=8, k=4)
+
+```
+
+c. Encuentre la función de dsitribución de probabilididad
+
+$$p(X=x)= \frac{{5\choose x}\,{8\choose 4-x}}{{13\choose 4}}\qquad \text{para} \quad x=0,1,2,3,4$$
+
+2. Una lista de clientes de una empresa contiene 1000 cuentas. De estos, 700 han comprado al menos una vez en la empresa en los últimos 3 meses. Para evaluar la frecuencia,  se encuestan 50 clientes ¿Cuál es la probabilidad de que más de 45 de los clientes encuestados hayan comprado  en la empresa en los últimos 3 meses?
+
+Sea x la variable aleatoria que representa el número de clientes que han comprado en los ultimos tres meses
+
+Identificar los parámetros:
+
+N=1000
+k=700
+n=50
+
+$$P(x>45)=P(x=46)+p(x=47)+p(x=48)+p(x=49)+p(x=50)$$
+En la calculadora:
+$$P(x>45)=
+\frac{{700\choose 46}\,{300\choose 4}}{{1000\choose 50}}+
+\frac{{700\choose 47}\,{300\choose 3}}{{1000\choose 50}}+
+\frac{{700\choose 48}\,{300\choose 2}}{{1000\choose 50}}+
+\frac{{700\choose 49}\,{300\choose 1}}{{1000\choose 50}}+
+\frac{{700\choose 50}\,{300\choose 0}}{{1000\choose 50}}$$
+
+$$P(x>45)=\sum_{x=46}^{50}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}!!!!!$$
+En R lo realizaremos por el complemento
+
+$$P(x>45)=1-p(x\leq 45)$$
+$$=1-\sum_{x=45}^{0}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}$$
+
+```{r}
+1-phyper(q=45, m=700, n=300, k=50)
+```
+
+
+### Aproximación de la distribución Hipergeométrica a la Binomial
+
+Una distribución hipergeométrica se aproxima a una binomial con p=K/N, cuando N se aproxima a infinito, en general es buena aproximación cuando $n<\frac{N}{10}$
+
+Para resolver el ejercicio anterior el planteamiento es:
+
+$$n<\frac{N}{10}, \qquad 50<\frac{1000}{10}, \qquad 50<100$$
+Luego la probabilidad corresponde a 
+
+$$p=\frac{K}{N}=\frac{700}{1000}=0.7$$
+Recordemos la forma acumulada de la distribución binomial
+
+ $$p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}$$
+Entonces p=0.7, n=50
+$$P(x>45)=P(x\geq 46)=\sum_{x=46}^{50}{50 \choose x}0.7^x 0.3^{50-x}=0.017\%$$
+
+Comparando los resultados
+
+
+En R la respuesta fue 0.000127 mientras que la respuesta por aproximación fue 0.000172
+la diferencia absoluta entre resultados es de 0.000045 y el error relativo es
+
+
+
+```{r}
+
+(abs(0.000127-0.000172)/0.000127)*100
+
+```
+
+
+### Ejercicios propuestos
+
+1. Cada uno de 12 refrigeradores de un tipo ha sido regresado a un distribuidor debido a un ruido agudo audible producido por oscilación cuando el refrigerador está funcionando. Suponga que 7 de estos refrigeradores tienen un compresor defectuoso y que los otros 5 tienen problemas menos serios. Si los refrigeradores se examinan en orden aleatorio, sea X el número entre los primeros 6 examinados que tienen un compresor defectuoso. 
+
+Calcule lo siguiente:
+
+a. P(X=5)
+
+b. P(X<4)
+
+c. La probabilidad de que X exceda su valor medio por más de una desviación estándar
+
+2. Un geólogo recolectó 10 especímenes de roca basáltica y 10 especímenes de granito. Él le pide a su ayudante de laboratorio que seleccione al azar 15 de los especímenes para analizarlos. 
+
+a. ¿Cuál es la función masa de probabilidad del número de especímenes de granito seleccionados para su análisis? 
+
+b. ¿Cuál es la probabilidad de que todos los especímenes de uno de los dos tipos de roca sean seleccionados para su análisis? 
+
+c. ¿Cuál es la probabilidad de que el número de especímenes de granito seleccionados para analizarlos esté dentro de una desviación estándar de su valor medio? 
+
+
+3. Un tipo de cámara digital viene en una versión de 3 megapixeles o una versión de 4 megapixeles. Una tienda de cámaras recibió un envío de 15 de estas cámaras, de las cuales 6 tienen una resolución de 3 megapixeles. Suponga que se seleccionan al azar 5 de estas cámaras para guardarlas detrás del mostrador; las otras 10 se colocan en una bodega. Sea X = el número de cámaras de 3 megapixeles entre las 5 seleccionadas para guardarlas detrás del mostrador. 
+
+a. ¿Qué distribución tiene X (nombre y valores de todos los parámetros)? 
+
+b. Calcule P(X = 2)
+
+c. P(X ≤ 2) 
+
+d. P(X ≥ 2)
+
+e. Calcule el valor medio y la desviación estándar de X. 
