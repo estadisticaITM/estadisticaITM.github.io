@@ -1,0 +1,70 @@
+---
+title: "Distribución normal"
+output: html_document
+---
+Una distribución ampliamente usada es la distribución normal o gaussiana, es la distribución más importante de toda la estadística,diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
+
+- Errores de medición en experimentos científicos
+
+- Mediciones antropométricas
+
+- Tiempos de reacción en experimentos psicológicos
+
+- Mediciones de inteligencia y aptitud 
+
+
+
+### Función de distribución de probabilidad
+
+Esta distribución depende de los parámetros de localización y escala, determinados por la media $\mu$ y la desviación estándar $\sigma$,
+
+El valor de $\sigma$ es la distancia desde $\mu$ hasta los puntos de inflexión de la curva (los puntos donde la curva cambia de concavidad de hacia abajo a hacia arriba).
+
+```{r echo=FALSE}
+
+knitr::include_app("  https://jtrochezg.shinyapps.io/apppoison/",height = "800px")
+
+```
+
+La función de distribución de probabilidad está dada por:
+
+$$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+Con $-\infty<\mu<\infty$ y $\sigma>0$
+
+Si una variable se distribuye normal se denota de la forma:
+
+$$x \sim N(\mu, \sigma^2)$$
+
+Si la distribución de la población de una variable es (aproximadamente) normal, entonces
+
+1. Aproximadamente 68% de los valores están dentro de 1 DE de la media.
+
+$$P(\mu-\sigma\leq x \leq \mu+\sigma)=68.27\%$$
+
+2. Aproximadamente 95% de los valores están dentro de 2 DE de la media.
+$$P(\mu-2\sigma\leq x \leq \mu+2\sigma)=95.45\%$$
+
+3. Aproximadamente 99.7% de los valores están dentro de 3 DE de la media.
+
+$$P(\mu-2\sigma\leq x \leq \mu+2\sigma)=99.73\%$$
+
+
+```{r echo=F,fig.align='center', fig.width=10, fig.height=13,fig.asp=5}
+knitr::include_graphics("imagen/n2.png")
+```
+
+
+### Teorema del límite central
+
+Cuando la distribución subyacente es discreta, la curva normal es una buena aproximación. Además, aun cuando las variables individuales no estén normalmente distribuidas, las sumas y promedios de las variables en condiciones adecuadas tendrán de manera aproximada una distribución normal
+
+### Aproximaciones 
+
+### videos
+
+*Distribución normal*
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/3mikDVlYiok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/tFlKqPVfVU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+

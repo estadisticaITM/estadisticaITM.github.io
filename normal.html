@@ -11,7 +11,7 @@
 
 
 
-<title>Estadística Básica</title>
+<title>Distribución normal</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,79 +309,54 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Estadística Básica</h1>
+<h1 class="title toc-ignore">Distribución normal</h1>
 
 </div>
 
 
-<div id="hola-a-todos-bienvenidos" class="section level2">
-<h2>Hola a todos Bienvenidos</h2>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FW9MX8HJM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6FW9MX8HJM');
-</script>
-</div>
-<div id="documentos-de-interés" class="section level2">
-<h2>Documentos de interés:</h2>
+<p>Una distribución ampliamente usada es la distribución normal o gaussiana, es la distribución más importante de toda la estadística,diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo</p>
 <ul>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/compromiso.pdf">Compromiso académico</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/DIA-%20DIA_ESTADISTICA_BASICA_2017-2oficial%20adriana%20guerrero.pdf">Día a día</a></p></li>
-<li><p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/FDE%20058%20Microcurriculo%20Estad%C3%ADstica%20Basica%202016...docx%20(1)%20(1).docx">Microcurrículo</a></p></li>
+<li><p>Errores de medición en experimentos científicos</p></li>
+<li><p>Mediciones antropométricas</p></li>
+<li><p>Tiempos de reacción en experimentos psicológicos</p></li>
+<li><p>Mediciones de inteligencia y aptitud</p></li>
 </ul>
-<p><img src="pagin1_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="función-de-distribución-de-probabilidad" class="section level3">
+<h3>Función de distribución de probabilidad</h3>
+<p>Esta distribución depende de los parámetros de localización y escala, determinados por la media <span class="math inline">\(\mu\)</span> y la desviación estándar <span class="math inline">\(\sigma\)</span>,</p>
+<p>El valor de <span class="math inline">\(\sigma\)</span> es la distancia desde <span class="math inline">\(\mu\)</span> hasta los puntos de inflexión de la curva (los puntos donde la curva cambia de concavidad de hacia abajo a hacia arriba).</p>
+<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px">
+</iframe>
+<p>La función de distribución de probabilidad está dada por:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span> Con <span class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> y <span class="math inline">\(\sigma&gt;0\)</span></p>
+<p>Si una variable se distribuye normal se denota de la forma:</p>
+<p><span class="math display">\[x \sim N(\mu, \sigma^2)\]</span></p>
+<p>Si la distribución de la población de una variable es (aproximadamente) normal, entonces</p>
+<ol style="list-style-type: decimal">
+<li>Aproximadamente 68% de los valores están dentro de 1 DE de la media.</li>
+</ol>
+<p><span class="math display">\[P(\mu-\sigma\leq x \leq \mu+\sigma)=68.27\%\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Aproximadamente 95% de los valores están dentro de 2 DE de la media. <span class="math display">\[P(\mu-2\sigma\leq x \leq \mu+2\sigma)=95.45\%\]</span></p></li>
+<li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la media.</p></li>
+</ol>
+<p><span class="math display">\[P(\mu-2\sigma\leq x \leq \mu+2\sigma)=99.73\%\]</span></p>
+<p><img src="imagen/n2.png" width="263" style="display: block; margin: auto;" /></p>
 </div>
-<div id="unidades-temáticas" class="section level2">
-<h2><strong>Unidades temáticas</strong></h2>
-<div id="estadística-descriptiva" class="section level3">
-<h3>Estadística descriptiva</h3>
-<p><a href="descriptiva.html" target="_blank"> Clase de estadística descriptiva</a></p>
-<ul>
-<li><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Presentaci%C3%B3n%20del%20curso%20estad%C3%ADstica%20basica2.pdf">Clase de Análisis exploratorio de datos en pdf</a></li>
-</ul>
+<div id="teorema-del-límite-central" class="section level3">
+<h3>Teorema del límite central</h3>
+<p>Cuando la distribución subyacente es discreta, la curva normal es una buena aproximación. Además, aun cuando las variables individuales no estén normalmente distribuidas, las sumas y promedios de las variables en condiciones adecuadas tendrán de manera aproximada una distribución normal</p>
 </div>
-<div id="regresión-lineal" class="section level3">
-<h3>Regresión lineal</h3>
-<p><a href="reg.html" target="_blank"> Clase de regresión</a></p>
-<p><a href="taller-regresión.html" target="_blank"> Taller de regresión</a></p>
+<div id="aproximaciones" class="section level3">
+<h3>Aproximaciones</h3>
 </div>
-<div id="probabilidad" class="section level3">
-<h3>Probabilidad</h3>
-<ul>
-<li><a href="proba.html" target="_blank"> Conceptos de probabilidad</a></li>
-</ul>
-</div>
-<div id="distribuciones-discretas" class="section level3">
-<h3>Distribuciones discretas</h3>
-<ul>
-<li><a href="DISCRE.html" target="_blank">Distribuciones de probabilidad discretas</a></li>
-</ul>
-</div>
-<div id="distribuciones-continuas" class="section level3">
-<h3>Distribuciones continuas</h3>
-<ul>
-<li><a href="CONTINUA.html" target="_blank"> Distribuciones de probabilidad continuas</a></li>
-</ul>
-</div>
-<div id="trabajo-final" class="section level3">
-<h3>Trabajo final</h3>
-<p><a href="posterestdesc.html" target="_blank"> Pautas para el poster</a></p>
-</div>
-<div id="tablas-de-diferentes-distribuciones" class="section level3">
-<h3>Tablas de diferentes distribuciones</h3>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/tabla%20de%20diferentes%20probabilidades.pdf">Aqui</a></p>
-</div>
-<div id="bibliografía" class="section level3">
-<h3>Bibliografía</h3>
-<ul>
-<li><p>Probabilidad y estadística para ingeniería y ciencias Jay L. Devore</p></li>
-<li><p>Guerrero P, A., Buitrago C, M. V., &amp; Curieses P, M. d. (2010). Estadística Basica (2da ed.). Medellin: Fondo Editorial ITM. <a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Estadistica%20basica%202010%20%20libro.pdf">Libro</a></p></li>
-</ul>
-</div>
+<div id="videos" class="section level3">
+<h3>videos</h3>
+<p><em>Distribución normal</em></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/3mikDVlYiok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/tFlKqPVfVU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 
 <br>
