@@ -1,0 +1,70 @@
+---
+title: "Distribución exponencial"
+
+---
+
+**Función de distribución de probabilidad exponencial**
+
+Se dice que X tiene una distribución exponencial con parámetro  λ, con λ>0,  si la función de densidad de probabilidad de X es:
+
+
+$$f(x;λ)=\left\{ \begin{array}{lc}
+            \\ λe^{-λx} &   si  & x \geq 0 \\
+             \\ 0 &  si  & x < 0 
+             \end{array}
+   \right.$$
+
+
+Con valor medio $E(x)=\frac{1}{λ}$  y varianza $Var(x)=\frac{1}{λ^2}$ 
+
+La función de distribución acumulada es 
+
+$$F(x;λ)=\left\{ \begin{array}{lc}
+ \\ 0 &  si  & x < 0 \\
+            \\ 1-e^{-λx} &   si  & x \geq 0 \\
+            
+             \end{array}
+   \right.$$
+
+**Ejemplo**
+
+En promedio un rayo mata 3 personas cada año en un país λ=3 muertes/año Así la función acumulada es
+
+$$F(x;λ)=\left\{ \begin{array}{lc}
+ \\ 0 &  si  & x < 0 \\
+            \\ 1-e^{-3x} &   si  & x \geq 0 \\
+            
+             \end{array}
+   \right.$$
+
+a. Calcule la probabilidad de que el tiempo de muerte sea menos de un año
+
+$$P(x<1)=1-e^{-3}=0.95$$
+
+Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de 18 meses
+$$P(t>1.5)=1-p(t\leq 1.5)=0.95$$
+$$P(t>1.5)=1-F(1.5)=0.95$$
+$$P(t>1.5)=1-(1-e^{-3*1.5})=e^{-4.5}$$
+
+### Ejercicios
+
+1. Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de autopago de un banco local. Si X tiene una distribución exponencial con λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1), calcule lo siguiente:
+a.	El tiempo esperado entre dos llegadas sucesivas
+b.	La desviación estándar del tiempo entre dos llegadas sucesivas
+c. 	P(x≤4)
+d.	P(2≤x≤5)
+
+2. La amplia experiencia con ventiladores de un tipo utilizados en motores diesel ha sugerido que la distribución exponencial proporciona un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que
+a.	 ¿Un ventilador seleccionado al azar dure por lo menos 20 000 horas? 
+b.   ¿Cuándo mucho 30000 horas? ¿Entre 20000 y 30000 horas? 
+c.  	¿Exceda la duración de un ventilador el valor medio por más de dos desviaciones estándar? ¿Más de tres desviaciones estándar?
+
+3. El tiempo entre llegadas de mensajes electrónicos a un computador tiene una distribución exponencial con media de 1.25  horas.
+
+a. ¿Cuál es la probabilidad de que el computador reciba un mensaje en un período de 10 minutos?
+
+b. Si son las 5 de la tarde y no ha recibido mensajes desde las 10 de la mañana, ¿Cuál es la probabilidad de recibir un mensaje antes de las 10 de la noche?
+
+3.	El tiempo entre la llegada de los clientes a un cajero automático es una variable aleatoria exponencial con una media de cinco minutos.
+a.	¿Cuál es la probabilidad de que lleguen al cajero más de tres clientes en un lapso de 10 minutos?
+b.	¿Cuál es la probabilidad de que el tiempo transcurrido hasta que llega el quinto cliente sea menor que 15 minutos?

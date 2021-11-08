@@ -314,14 +314,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="gráfico-de-densidad" class="section level2">
-<h2>Gráfico de densidad</h2>
-<p>Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.</p>
-<p>Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.</p>
-<p><strong>Ejemplo</strong></p>
-<p>Comparar la densidad de las alturas de hombres y mujeres.</p>
-<p><img src="reg_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
 <div id="gráfico-de-dispersión" class="section level2">
 <h2>Gráfico de dispersión</h2>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.</p>
@@ -329,7 +321,7 @@ $(document).ready(function () {
 <pre class="r"><code>plot(pressure)</code></pre>
 <p><img src="reg_files/figure-html/pressure-1.png" width="672" /></p>
 <p>En el siguiente diagrama se ilustra el ancho y el largo de la hoja en relación al tipo de planta.</p>
-<p><img src="reg_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <div id="actividad" class="section level3">
 <h3>Actividad</h3>
 <p>Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes el tipo de tapa.</p>
@@ -489,7 +481,7 @@ $(document).ready(function () {
 <li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
 </ul>
-<p><img src="reg_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level2">
 <h2>Medida de bondad de ajuste R^2</h2>
@@ -506,12 +498,12 @@ $(document).ready(function () {
 <p><span class="math display">\[\Large \hat{\beta_1}=\frac{S_{xy}}{S_{xx}}=\frac{cov(x,y)}{S_{xx}}=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\]</span></p>
 <p>A las cantidades <span class="math inline">\(\Large S_{xx}\)</span> y <span class="math inline">\(\Large S_{xy}\)</span> se les conoce como suma corregida de cuadrados y suma corregida de productos cruzados de x y y, respectivamente</p>
 <p><span class="math display">\[\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}\]</span></p>
-<p><img src="reg_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="residuales" class="section level2">
 <h2>Residuales</h2>
 <p>La diferencia de cada valor <span class="math inline">\(y_i\)</span> de la variable respuesta y su estimación <span class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span class="math display">\[\Large \varepsilon_i= y_i- \hat{y_i}\]</span></p>
-<p><img src="reg_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="cómo-obtener-un-modelo-de-regresión-lineal-simple" class="section level2">
 <h2>Cómo obtener un modelo de regresión lineal simple</h2>
@@ -575,7 +567,7 @@ $(document).ready(function () {
 ## 6    1 1372           142</code></pre>
 <p>El diagrama de dispersión simple es:</p>
 <pre class="r"><code>plot(Orange$age,Orange$circumference,lwd=3)</code></pre>
-<p><img src="reg_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>El modelo de regresión lineal simple corresponde a:</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age)
 summary(model)</code></pre>
@@ -608,7 +600,7 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="reg_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="significado-de-la-pendiente-y-el-intercepto" class="section level2">
 <h2>Significado de la pendiente y el intercepto</h2>
@@ -616,7 +608,7 @@ abline(coef(model))</code></pre>
 <p>La péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades</p>
 <p>El diagrama de dispersión discriminando por los niveles de la variables factor es:</p>
 <pre class="r"><code>plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)</code></pre>
-<p><img src="reg_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="reg_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 summary(model)</code></pre>

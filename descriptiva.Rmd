@@ -821,6 +821,32 @@ Se definen tres tipos de distribuciones según su grado de curtosis, mesocurtica
 knitr::include_graphics("imagen/curtosis.png")
 ```
 
+
+## Gráfico de densidad 
+
+Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.
+
+Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.
+
+**Ejemplo**
+
+Comparar la densidad de las alturas de hombres y mujeres.
+
+
+```{r}
+library(ggplot2)
+# datos (simulados)
+a <- rbeta(1000, 2, 2)
+b <- rbeta(2000, 2, 5)
+
+tmp <- rbind(data.frame(origen = "a", dato = a), 
+             data.frame(origen = "b", dato = b))
+ggplot(tmp, aes(x = dato, fill = origen)) +
+  geom_density(alpha = 0.3)
+```
+
+
+ 
 *Medidas de tendencia central en tablas de frecuencia*
 
 <div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>

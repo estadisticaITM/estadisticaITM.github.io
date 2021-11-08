@@ -11,7 +11,7 @@
 
 
 
-<title>Distribuciones de probabilidad discretas</title>
+<title>gama</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,41 +309,27 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Distribuciones de probabilidad discretas</h1>
+<h1 class="title toc-ignore">gama</h1>
 
 </div>
 
 
-<ul>
-<li><p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase de Distribuciones discretas</a></p></li>
-<li><p><a href="taller-distri.html" target="_blank"> Taller de probabilidad</a></p></li>
-</ul>
-<p><strong>Videos de interés</strong></p>
-<p><em>Variable aleatoria discreta</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p><em>Propiedades de la esperanza y de la varianza</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/0kowS0mEOcU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YiHzJgg0OB8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<div id="distribuciones-de-probabilidad-discretas" class="section level3">
-<h3>Distribuciones de probabilidad discretas</h3>
-<ul>
-<li><p><a href="poisson.html" target="_blank"> Distribución poisson </a></p></li>
-<li><p><a href="binom.html" target="_blank"> Distribución binomial </a></p></li>
-<li><p><a href="hiper.html" target="_blank"> Distribución hipergeométrica </a></p></li>
-</ul>
-<p><strong>Aplicativo de distribuiones de probabilidad discretas</strong></p>
-<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px">
-</iframe>
-</div>
+<p>La distribución gama estándar tiene β= 1, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:</p>
+<p><span class="math display">\[f(x)=\left\{ \begin{array}{lc}
+            \\ 0 &amp;   si  &amp; x &lt; 0 \\
+             \\ \frac{x^{\alpha-1}e^{-x}}{\Gamma (\alpha)} &amp;  si  &amp; x \geq 0 
+             \end{array}
+   \right.\]</span></p>
+<p>La distribución exponencial se deriva de considerar α=1 y β=1/λ</p>
+<p>La media y la varianza de una variable aleatoria X que tiene la distribución gama f (x, α,β) son:</p>
+<p><span class="math display">\[E(x)=μ=αβ\]</span></p>
+<p><span class="math display">\[V(x)=αβ^2\]</span></p>
+<p>Si X tiene una distribución gama con parámetros α y β, luego la función de distribución acumulativa de X es: <span class="math display">\[P(X≤x)=F(x;α,β)=F(\frac{x}{β};α)\]</span> <strong>Ejemplo:</strong></p>
+<p>Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2. Como X es continua: 𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂) 𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2) = 0.960 - 0.801 = 0.159 La probabilidad de que el tiempo de reacción sea de más de 4 s es P(x&gt;4)=1-P(x≤4) =1-F(x=4,α=2) =1-0.908=0.092</p>
+<p><strong>Ejercicios</strong> 1. Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas. a. Halle el valor de α y β b. Cuál es la probabilidad de que un transistor dure entre 18 y 24 semanas? c. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 36 semanas?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 2.1. Insuficiente en un día cualquiera? 2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 2.3 Encuentre E(x) y V(x)</li>
+</ol>
 
 <br>
 <hr>

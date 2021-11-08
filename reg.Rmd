@@ -9,31 +9,6 @@ title: "Regresión lineal"
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Gráfico de densidad 
-
-Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.
-
-Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.
-
-**Ejemplo**
-
-Comparar la densidad de las alturas de hombres y mujeres.
-
-
-```{r}
-library(ggplot2)
-# datos (simulados)
-a <- rbeta(1000, 2, 2)
-b <- rbeta(2000, 2, 5)
-
-tmp <- rbind(data.frame(origen = "a", dato = a), 
-             data.frame(origen = "b", dato = b))
-ggplot(tmp, aes(x = dato, fill = origen)) +
-  geom_density(alpha = 0.3)
-```
-
-
-
 ## Gráfico de dispersión
 
 Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa.

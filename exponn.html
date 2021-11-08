@@ -11,7 +11,7 @@
 
 
 
-<title>Distribuciones de probabilidad discretas</title>
+<title>Distribución exponencial</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,40 +309,74 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Distribuciones de probabilidad discretas</h1>
+<h1 class="title toc-ignore">Distribución exponencial</h1>
 
 </div>
 
 
-<ul>
-<li><p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase de Distribuciones discretas</a></p></li>
-<li><p><a href="taller-distri.html" target="_blank"> Taller de probabilidad</a></p></li>
-</ul>
-<p><strong>Videos de interés</strong></p>
-<p><em>Variable aleatoria discreta</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p><em>Propiedades de la esperanza y de la varianza</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/0kowS0mEOcU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YiHzJgg0OB8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<div id="distribuciones-de-probabilidad-discretas" class="section level3">
-<h3>Distribuciones de probabilidad discretas</h3>
-<ul>
-<li><p><a href="poisson.html" target="_blank"> Distribución poisson </a></p></li>
-<li><p><a href="binom.html" target="_blank"> Distribución binomial </a></p></li>
-<li><p><a href="hiper.html" target="_blank"> Distribución hipergeométrica </a></p></li>
-</ul>
-<p><strong>Aplicativo de distribuiones de probabilidad discretas</strong></p>
-<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px">
-</iframe>
+<p><strong>Función de distribución de probabilidad exponencial</strong></p>
+<p>Se dice que X tiene una distribución exponencial con parámetro λ, con λ&gt;0, si la función de densidad de probabilidad de X es:</p>
+<p><span class="math display">\[f(x;λ)=\left\{ \begin{array}{lc}
+            \\ λe^{-λx} &amp;   si  &amp; x \geq 0 \\
+             \\ 0 &amp;  si  &amp; x &lt; 0 
+             \end{array}
+   \right.\]</span></p>
+<p>Con valor medio <span class="math inline">\(E(x)=\frac{1}{λ}\)</span> y varianza <span class="math inline">\(Var(x)=\frac{1}{λ^2}\)</span></p>
+<p>La función de distribución acumulada es</p>
+$$F(x;λ)={
+<span class="math display">\[\begin{array}{lc}
+ \\ 0 &amp;  si  &amp; x &lt; 0 \\
+            \\ 1-e^{-λx} &amp;   si  &amp; x \geq 0 \\
+            
+             \end{array}\]</span>
+<p>.$$</p>
+<p><strong>Ejemplo</strong></p>
+<p>En promedio un rayo mata 3 personas cada año en un país λ=3 muertes/año Así la función acumulada es</p>
+$$F(x;λ)={
+<span class="math display">\[\begin{array}{lc}
+ \\ 0 &amp;  si  &amp; x &lt; 0 \\
+            \\ 1-e^{-3x} &amp;   si  &amp; x \geq 0 \\
+            
+             \end{array}\]</span>
+<p>.$$</p>
+<ol style="list-style-type: lower-alpha">
+<li>Calcule la probabilidad de que el tiempo de muerte sea menos de un año</li>
+</ol>
+<p><span class="math display">\[P(x&lt;1)=1-e^{-3}=0.95\]</span></p>
+<p>Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de 18 meses <span class="math display">\[P(t&gt;1.5)=1-p(t\leq 1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span></p>
+<div id="ejercicios" class="section level3">
+<h3>Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de autopago de un banco local. Si X tiene una distribución exponencial con λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1), calcule lo siguiente:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>El tiempo esperado entre dos llegadas sucesivas</li>
+<li>La desviación estándar del tiempo entre dos llegadas sucesivas</li>
+<li>P(x≤4)</li>
+<li>P(2≤x≤5)</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>La amplia experiencia con ventiladores de un tipo utilizados en motores diesel ha sugerido que la distribución exponencial proporciona un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Un ventilador seleccionado al azar dure por lo menos 20 000 horas?</li>
+<li>¿Cuándo mucho 30000 horas? ¿Entre 20000 y 30000 horas?</li>
+<li><pre><code> ¿Exceda la duración de un ventilador el valor medio por más de dos desviaciones estándar? ¿Más de tres desviaciones estándar?</code></pre></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>El tiempo entre llegadas de mensajes electrónicos a un computador tiene una distribución exponencial con media de 1.25 horas.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la probabilidad de que el computador reciba un mensaje en un período de 10 minutos?</p></li>
+<li><p>Si son las 5 de la tarde y no ha recibido mensajes desde las 10 de la mañana, ¿Cuál es la probabilidad de recibir un mensaje antes de las 10 de la noche?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>El tiempo entre la llegada de los clientes a un cajero automático es una variable aleatoria exponencial con una media de cinco minutos.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad de que lleguen al cajero más de tres clientes en un lapso de 10 minutos?</li>
+<li>¿Cuál es la probabilidad de que el tiempo transcurrido hasta que llega el quinto cliente sea menor que 15 minutos?</li>
+</ol>
 </div>
 
 <br>
