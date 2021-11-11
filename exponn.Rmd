@@ -1,30 +1,138 @@
 ---
-title: "Distribución exponencial"
+title: "Distribución gama y exponencial"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
 
 ---
 
-**Función de distribución de probabilidad exponencial**
+
+
+## Función gama
+
+Con $\alpha>0$ la función gama $\Gamma(\alpha)$ se define como
+
+
+$$\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx$$
+Las propiedades más importantes de la función gama son las siguientes:
+
+1. Con cualquier $\alpha>1, \Gamma(\alpha-1)*\Gamma(\alpha-1)$
+
+2.Con cualquier entero positivo n, $\Gamma(n)=(n-1)!$
+
+3.$ \Gamma (\frac{1}{2})=\sqrt \pi$
+
+## Distribución gama
+Una variable aleatoria continua X tiene una distribución gama si la función de densidad de probabilidad de X es:
+
+$$
+f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
+            \\ \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma (\alpha)} &   si  & x \geq 0 \\
+             \\ 0 &   & e.o.c 
+             \end{array}
+   \right.
+$$
+
+Donde $\alpha>0$ y $\beta>0 $
+El parámetro $\alpha$ recibe el nombre de parámetro de forma mientras que $\beta$ se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.
+
+## Distribución gama estándar
+
+Cuando $\beta=1 $ se obtiene la ** Distribución gama estándar**, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:
+
+$$f(x)=\left\{ \begin{array}{lc}
+            \\ 0 &   si  & x < 0 \\
+             \\ \frac{x^{\alpha-1}e^{-x}}{\Gamma (\alpha)} &  si  & x \geq 0 
+             \end{array}
+   \right.$$
+
+
+
+La media y la varianza de una variable aleatoria X que tiene la distribución gama   f(x,α,β) son:
+
+$$E(x)=μ=αβ$$
+
+$$V(x)=αβ^2$$
+
+La **función de distribución acumulativa de una distribución gama estándar** de X es:
+$$P(X≤x)=F(x;α,β)=F\left(\frac{x}{β};α\right)=
+\int_0^x \frac{y^{\alpha-1}e^{-y}}{\Gamma (\alpha)} $$
+con x>0
+
+**Hallar probabilidades** a partir de la tabla con $\beta=1$, cuya función se llama la gama incompleta porque el integrando no posee el denominador
+
+**Ejemplo:**
+
+Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2.  Como  X es continua:
+𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂)
+𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2)
+= 0.960 - 0.801 = 0.159
+La probabilidad de que el tiempo de reacción sea de más de 4 s es
+P(x>4)=1-P(x≤4)
+=1-F(x=4,α=2)
+=1-0.908=0.092
+
+**Ejercicios**
+1.  Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas.
+a. Halle el valor de α y β
+b. Cuál es la probabilidad de que un transistor dure entre 18 y 24 semanas? 
+c. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 36 semanas?
+
+2. En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 
+2.1. Insuficiente en un día cualquiera? 
+2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 
+2.3 Encuentre E(x) y V(x)
+
+La distribución normal es simétrica. Existen muchas situaciones de interés en que la  distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama. 
+
+## Función de distribución de probabilidad exponencial
+
+La distribución exponencial se deriva de considerar   α=1 y  β=1/λ en la distribución gama.
+Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.
+
+
+```{r echo=F, fig.asp=1, fig.align='center'}
+knitr::include_graphics("imagen/colas.png")
+```
+
 
 Se dice que X tiene una distribución exponencial con parámetro  λ, con λ>0,  si la función de densidad de probabilidad de X es:
 
 
-$$f(x;λ)=\left\{ \begin{array}{lc}
+$$ f(x;λ)=\left\{ \begin{array}{lc}
             \\ λe^{-λx} &   si  & x \geq 0 \\
              \\ 0 &  si  & x < 0 
              \end{array}
-   \right.$$
+   \right. $$
+
+El valor esperado de una variable aleatoria exponencialmente distribuida X es:
+$$
+E(X)=\int_0^\infty  x λe^{-λx} \,dx
+
+$$
+
+Después de resolver la integral por partes, se tiene que el valor medio es 
+$$E(x)=\frac{1}{λ}$$
 
 
-Con valor medio $E(x)=\frac{1}{λ}$  y varianza $Var(x)=\frac{1}{λ^2}$ 
+Mientras que la varianza se obtiene resolviendo:
+
+$$V(X)=E(X^2)-\mu^2 $$
+$$V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 $$
+al resolver las integrales se obtiene que  
+$$Var(x)=\frac{1}{λ^2}$$
 
 La función de distribución acumulada es 
 
-$$F(x;λ)=\left\{ \begin{array}{lc}
+$$  F(x;λ)=\left\{ \begin{array}{lc}
  \\ 0 &  si  & x < 0 \\
-            \\ 1-e^{-λx} &   si  & x \geq 0 \\
-            
+            \\ 1-e^{-λx} &   si  & x \geq 0 
              \end{array}
-   \right.$$
+   \right.   $$
 
 **Ejemplo**
 
@@ -32,8 +140,7 @@ En promedio un rayo mata 3 personas cada año en un país λ=3 muertes/año Así
 
 $$F(x;λ)=\left\{ \begin{array}{lc}
  \\ 0 &  si  & x < 0 \\
-            \\ 1-e^{-3x} &   si  & x \geq 0 \\
-            
+            \\ 1-e^{-3x} &   si  & x \geq 0
              \end{array}
    \right.$$
 
@@ -46,18 +153,22 @@ $$P(t>1.5)=1-p(t\leq 1.5)=0.95$$
 $$P(t>1.5)=1-F(1.5)=0.95$$
 $$P(t>1.5)=1-(1-e^{-3*1.5})=e^{-4.5}$$
 
+## Relación entre la distribución exponencial y la poisson
+La distribución exponencial se utiliza con frecuencia como modelo de la distribución
+de tiempos entre la ocurrencia de eventos sucesivos, tales como clientes que llegan a una instalación de servicio o llamadas que entran a un conmutador. La razón de esto es que la distribución exponencial está estrechamente relacionada con el proceso de Poisson.
+
 ### Ejercicios
 
 1. Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de autopago de un banco local. Si X tiene una distribución exponencial con λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1), calcule lo siguiente:
 a.	El tiempo esperado entre dos llegadas sucesivas
 b.	La desviación estándar del tiempo entre dos llegadas sucesivas
 c. 	P(x≤4)
-d.	P(2≤x≤5)
+d.  	P(2≤x≤5)
 
 2. La amplia experiencia con ventiladores de un tipo utilizados en motores diesel ha sugerido que la distribución exponencial proporciona un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que
 a.	 ¿Un ventilador seleccionado al azar dure por lo menos 20 000 horas? 
 b.   ¿Cuándo mucho 30000 horas? ¿Entre 20000 y 30000 horas? 
-c.  	¿Exceda la duración de un ventilador el valor medio por más de dos desviaciones estándar? ¿Más de tres desviaciones estándar?
+c.	¿Exceda la duración de un ventilador el valor medio por más de dos desviaciones estándar? ¿Más de tres desviaciones estándar?
 
 3. El tiempo entre llegadas de mensajes electrónicos a un computador tiene una distribución exponencial con media de 1.25  horas.
 
@@ -66,5 +177,8 @@ a. ¿Cuál es la probabilidad de que el computador reciba un mensaje en un perí
 b. Si son las 5 de la tarde y no ha recibido mensajes desde las 10 de la mañana, ¿Cuál es la probabilidad de recibir un mensaje antes de las 10 de la noche?
 
 3.	El tiempo entre la llegada de los clientes a un cajero automático es una variable aleatoria exponencial con una media de cinco minutos.
+
 a.	¿Cuál es la probabilidad de que lleguen al cajero más de tres clientes en un lapso de 10 minutos?
+
 b.	¿Cuál es la probabilidad de que el tiempo transcurrido hasta que llega el quinto cliente sea menor que 15 minutos?
+
