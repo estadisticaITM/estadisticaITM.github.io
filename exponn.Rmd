@@ -12,21 +12,26 @@ output:
 
 
 
+La distribución normal es simétrica. Existen muchas situaciones de interés en que la  distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama. 
+
+Si se está interesado en la ocurrencia de un evento generado por un proceso de Poisson de media $\lambda$, la variable que mide el tiempo transcurrido hasta obtener n ocurrencias del evento, sigue una distribución gamma, por ejemplo cuando se realiza el estudio de la duración de elementos físicos (tiempo de vida).
+
 ## Función gama
 
-Con $\alpha>0$ la función gama $\Gamma(\alpha)$ se define como
+Con $\alpha>0$, la función gama $\Gamma(\alpha)$ se define como:
 
 
 $$\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx$$
 Las propiedades más importantes de la función gama son las siguientes:
 
-1. Con cualquier $\alpha>1, \Gamma(\alpha-1)*\Gamma(\alpha-1)$
+1. Con cualquier $\alpha>1, \Gamma(\alpha)=(\alpha-1)*\Gamma(\alpha-1)$
 
-2.Con cualquier entero positivo n, $\Gamma(n)=(n-1)!$
+2. Con cualquier entero positivo n, $\Gamma(n)=(n-1)!$
 
-3.$ \Gamma (\frac{1}{2})=\sqrt \pi$
+3. $\Gamma(\frac{1}{2})=\sqrt \pi$
 
-## Distribución gama
+## Función de distribución de probabilidad gama
+
 Una variable aleatoria continua X tiene una distribución gama si la función de densidad de probabilidad de X es:
 
 $$
@@ -38,11 +43,19 @@ f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
 $$
 
 Donde $\alpha>0$ y $\beta>0 $
-El parámetro $\alpha$ recibe el nombre de parámetro de forma mientras que $\beta$ se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.
+
+- El parámetro $\alpha$ recibe el nombre de parámetro de forma 
+
+ si $\alpha \leq 1$ la función de densidad muestra un perfil decreciente.
+
+ si $\alpha > 1$ la función de densidad crece
+
+- $\beta$ se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.
+
 
 ## Distribución gama estándar
 
-Cuando $\beta=1 $ se obtiene la ** Distribución gama estándar**, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:
+Cuando $\beta=1$ se obtiene la **Distribución gama estándar**, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:
 
 $$f(x)=\left\{ \begin{array}{lc}
             \\ 0 &   si  & x < 0 \\
@@ -67,13 +80,24 @@ con x>0
 
 **Ejemplo:**
 
-Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2.  Como  X es continua:
+Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2. 
+
+Como  X es continua:
+
 𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂)
+
+
 𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2)
+
 = 0.960 - 0.801 = 0.159
+
 La probabilidad de que el tiempo de reacción sea de más de 4 s es
+
+
 P(x>4)=1-P(x≤4)
+
 =1-F(x=4,α=2)
+
 =1-0.908=0.092
 
 **Ejercicios**
@@ -87,18 +111,18 @@ c. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 36 semanas?
 2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 
 2.3 Encuentre E(x) y V(x)
 
-La distribución normal es simétrica. Existen muchas situaciones de interés en que la  distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama. 
 
-## Función de distribución de probabilidad exponencial
+# Función de distribución de probabilidad exponencial
 
-La distribución exponencial se deriva de considerar   α=1 y  β=1/λ en la distribución gama.
-Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.
+La distribución exponencial se deriva de considerar   α=1 y  β=1/λ en la distribución gama. Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula radiactiva en desintegrarse.
 
 
 ```{r echo=F, fig.asp=1, fig.align='center'}
 knitr::include_graphics("imagen/colas.png")
 ```
 
+
+## Función de distribución de probabilidad
 
 Se dice que X tiene una distribución exponencial con parámetro  λ, con λ>0,  si la función de densidad de probabilidad de X es:
 
@@ -109,10 +133,10 @@ $$ f(x;λ)=\left\{ \begin{array}{lc}
              \end{array}
    \right. $$
 
-El valor esperado de una variable aleatoria exponencialmente distribuida X es:
+El **valor esperado** de una variable aleatoria exponencialmente distribuida X es:
+
 $$
 E(X)=\int_0^\infty  x λe^{-λx} \,dx
-
 $$
 
 Después de resolver la integral por partes, se tiene que el valor medio es 
@@ -125,7 +149,7 @@ $$V(X)=E(X^2)-\mu^2 $$
 $$V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 $$
 al resolver las integrales se obtiene que  
 $$Var(x)=\frac{1}{λ^2}$$
-
+## Función acumulada
 La función de distribución acumulada es 
 
 $$  F(x;λ)=\left\{ \begin{array}{lc}
@@ -152,6 +176,19 @@ Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de
 $$P(t>1.5)=1-p(t\leq 1.5)=0.95$$
 $$P(t>1.5)=1-F(1.5)=0.95$$
 $$P(t>1.5)=1-(1-e^{-3*1.5})=e^{-4.5}$$
+##Propiedad de pérdida de memoria de la distribución exponencial
+
+En el análisis del comportamiento de las líneas de Espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30. 
+
+Teoricamente se traduce en la siguiente propiedad
+$$P(X>x+y|X>y)=P(X>x) $$
+la demostración de esta formula está dada por:
+
+$$P(X>x+y|X>y)=\frac{P(X>x+y \bigcap X>y)=}{P(X>y)}$$
+$$\frac{P(X>x+y )}{P(X>y)}$$
+
+$$\frac{e^{-\lambda(x+y)}}{e^{-\lambda y}}$$
+$$e^{-\lambda x}=P(X>x)$$
 
 ## Relación entre la distribución exponencial y la poisson
 La distribución exponencial se utiliza con frecuencia como modelo de la distribución

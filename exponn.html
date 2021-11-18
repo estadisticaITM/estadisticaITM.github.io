@@ -396,18 +396,20 @@ div.tocify {
 </div>
 
 
+<p>La distribución normal es simétrica. Existen muchas situaciones de interés en que la distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama.</p>
+<p>Si se está interesado en la ocurrencia de un evento generado por un proceso de Poisson de media <span class="math inline">\(\lambda\)</span>, la variable que mide el tiempo transcurrido hasta obtener n ocurrencias del evento, sigue una distribución gamma, por ejemplo cuando se realiza el estudio de la duración de elementos físicos (tiempo de vida).</p>
 <div id="función-gama" class="section level2">
 <h2>Función gama</h2>
-<p>Con <span class="math inline">\(\alpha&gt;0\)</span> la función gama <span class="math inline">\(\Gamma(\alpha)\)</span> se define como</p>
+<p>Con <span class="math inline">\(\alpha&gt;0\)</span>, la función gama <span class="math inline">\(\Gamma(\alpha)\)</span> se define como:</p>
 <p><span class="math display">\[\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx\]</span> Las propiedades más importantes de la función gama son las siguientes:</p>
 <ol style="list-style-type: decimal">
-<li>Con cualquier <span class="math inline">\(\alpha&gt;1, \Gamma(\alpha-1)*\Gamma(\alpha-1)\)</span></li>
+<li><p>Con cualquier <span class="math inline">\(\alpha&gt;1, \Gamma(\alpha)=(\alpha-1)*\Gamma(\alpha-1)\)</span></p></li>
+<li><p>Con cualquier entero positivo n, <span class="math inline">\(\Gamma(n)=(n-1)!\)</span></p></li>
+<li><p><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt \pi\)</span></p></li>
 </ol>
-<p>2.Con cualquier entero positivo n, <span class="math inline">\(\Gamma(n)=(n-1)!\)</span></p>
-<p>3.$ ()=$</p>
 </div>
-<div id="distribución-gama" class="section level2">
-<h2>Distribución gama</h2>
+<div id="función-de-distribución-de-probabilidad-gama" class="section level2">
+<h2>Función de distribución de probabilidad gama</h2>
 <p>Una variable aleatoria continua X tiene una distribución gama si la función de densidad de probabilidad de X es:</p>
 <p><span class="math display">\[
 f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
@@ -416,11 +418,19 @@ f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
              \end{array}
    \right.
 \]</span></p>
-<p>Donde <span class="math inline">\(\alpha&gt;0\)</span> y $&gt;0 $ El parámetro <span class="math inline">\(\alpha\)</span> recibe el nombre de parámetro de forma mientras que <span class="math inline">\(\beta\)</span> se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.</p>
+<p>Donde <span class="math inline">\(\alpha&gt;0\)</span> y $&gt;0 $</p>
+<ul>
+<li>El parámetro <span class="math inline">\(\alpha\)</span> recibe el nombre de parámetro de forma</li>
+</ul>
+<p>si <span class="math inline">\(\alpha \leq 1\)</span> la función de densidad muestra un perfil decreciente.</p>
+<p>si <span class="math inline">\(\alpha &gt; 1\)</span> la función de densidad crece</p>
+<ul>
+<li><span class="math inline">\(\beta\)</span> se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.</li>
+</ul>
 </div>
 <div id="distribución-gama-estándar" class="section level2">
 <h2>Distribución gama estándar</h2>
-<p>Cuando $=1 $ se obtiene la ** Distribución gama estándar**, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:</p>
+<p>Cuando <span class="math inline">\(\beta=1\)</span> se obtiene la <strong>Distribución gama estándar</strong>, así que la función de densidad de probabilidad de una variable aleatoria gama estándar es:</p>
 <p><span class="math display">\[f(x)=\left\{ \begin{array}{lc}
             \\ 0 &amp;   si  &amp; x &lt; 0 \\
              \\ \frac{x^{\alpha-1}e^{-x}}{\Gamma (\alpha)} &amp;  si  &amp; x \geq 0 
@@ -433,30 +443,40 @@ f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
 \int_0^x \frac{y^{\alpha-1}e^{-y}}{\Gamma (\alpha)} \]</span> con x&gt;0</p>
 <p><strong>Hallar probabilidades</strong> a partir de la tabla con <span class="math inline">\(\beta=1\)</span>, cuya función se llama la gama incompleta porque el integrando no posee el denominador</p>
 <p><strong>Ejemplo:</strong></p>
-<p>Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2. Como X es continua: 𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂) 𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2) = 0.960 - 0.801 = 0.159 La probabilidad de que el tiempo de reacción sea de más de 4 s es P(x&gt;4)=1-P(x≤4) =1-F(x=4,α=2) =1-0.908=0.092</p>
+<p>Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con α=2.</p>
+<p>Como X es continua:</p>
+<p>𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂)</p>
+<p>𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2)</p>
+<p>= 0.960 - 0.801 = 0.159</p>
+<p>La probabilidad de que el tiempo de reacción sea de más de 4 s es</p>
+<p>P(x&gt;4)=1-P(x≤4)</p>
+<p>=1-F(x=4,α=2)</p>
+<p>=1-0.908=0.092</p>
 <p><strong>Ejercicios</strong> 1. Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas. a. Halle el valor de α y β b. Cuál es la probabilidad de que un transistor dure entre 18 y 24 semanas? c. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 36 semanas?</p>
 <ol start="2" style="list-style-type: decimal">
 <li>En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 2.1. Insuficiente en un día cualquiera? 2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 2.3 Encuentre E(x) y V(x)</li>
 </ol>
-<p>La distribución normal es simétrica. Existen muchas situaciones de interés en que la distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama.</p>
 </div>
-<div id="función-de-distribución-de-probabilidad-exponencial" class="section level2">
-<h2>Función de distribución de probabilidad exponencial</h2>
-<p>La distribución exponencial se deriva de considerar α=1 y β=1/λ en la distribución gama. Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.</p>
+<div id="función-de-distribución-de-probabilidad-exponencial" class="section level1">
+<h1>Función de distribución de probabilidad exponencial</h1>
+<p>La distribución exponencial se deriva de considerar α=1 y β=1/λ en la distribución gama. Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula radiactiva en desintegrarse.</p>
 <p><img src="imagen/colas.png" width="357" style="display: block; margin: auto;" /></p>
+<div id="función-de-distribución-de-probabilidad" class="section level2">
+<h2>Función de distribución de probabilidad</h2>
 <p>Se dice que X tiene una distribución exponencial con parámetro λ, con λ&gt;0, si la función de densidad de probabilidad de X es:</p>
 <p><span class="math display">\[ f(x;λ)=\left\{ \begin{array}{lc}
             \\ λe^{-λx} &amp;   si  &amp; x \geq 0 \\
              \\ 0 &amp;  si  &amp; x &lt; 0 
              \end{array}
    \right. \]</span></p>
-<p>El valor esperado de una variable aleatoria exponencialmente distribuida X es: $$ E(X)=_0^x λe^{-λx} ,dx</p>
-<p>$$</p>
+<p>El <strong>valor esperado</strong> de una variable aleatoria exponencialmente distribuida X es:</p>
+<p><span class="math display">\[
+E(X)=\int_0^\infty  x λe^{-λx} \,dx
+\]</span></p>
 <p>Después de resolver la integral por partes, se tiene que el valor medio es <span class="math display">\[E(x)=\frac{1}{λ}\]</span></p>
 <p>Mientras que la varianza se obtiene resolviendo:</p>
 <p><span class="math display">\[V(X)=E(X^2)-\mu^2 \]</span> <span class="math display">\[V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 \]</span> al resolver las integrales se obtiene que<br />
-<span class="math display">\[Var(x)=\frac{1}{λ^2}\]</span></p>
-<p>La función de distribución acumulada es</p>
+<span class="math display">\[Var(x)=\frac{1}{λ^2}\]</span> ## Función acumulada La función de distribución acumulada es</p>
 <p><span class="math display">\[  F(x;λ)=\left\{ \begin{array}{lc}
  \\ 0 &amp;  si  &amp; x &lt; 0 \\
             \\ 1-e^{-λx} &amp;   si  &amp; x \geq 0 
@@ -473,7 +493,11 @@ f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
 <li>Calcule la probabilidad de que el tiempo de muerte sea menos de un año</li>
 </ol>
 <p><span class="math display">\[P(x&lt;1)=1-e^{-3}=0.95\]</span></p>
-<p>Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de 18 meses <span class="math display">\[P(t&gt;1.5)=1-p(t\leq 1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span></p>
+<p>Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de 18 meses <span class="math display">\[P(t&gt;1.5)=1-p(t\leq 1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span> ##Propiedad de pérdida de memoria de la distribución exponencial</p>
+<p>En el análisis del comportamiento de las líneas de Espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30.</p>
+<p>Teoricamente se traduce en la siguiente propiedad <span class="math display">\[P(X&gt;x+y|X&gt;y)=P(X&gt;x) \]</span> la demostración de esta formula está dada por:</p>
+<p><span class="math display">\[P(X&gt;x+y|X&gt;y)=\frac{P(X&gt;x+y \bigcap X&gt;y)=}{P(X&gt;y)}\]</span> <span class="math display">\[\frac{P(X&gt;x+y )}{P(X&gt;y)}\]</span></p>
+<p><span class="math display">\[\frac{e^{-\lambda(x+y)}}{e^{-\lambda y}}\]</span> <span class="math display">\[e^{-\lambda x}=P(X&gt;x)\]</span></p>
 </div>
 <div id="relación-entre-la-distribución-exponencial-y-la-poisson" class="section level2">
 <h2>Relación entre la distribución exponencial y la poisson</h2>
@@ -511,6 +535,7 @@ f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
 <li><p>¿Cuál es la probabilidad de que lleguen al cajero más de tres clientes en un lapso de 10 minutos?</p></li>
 <li><p>¿Cuál es la probabilidad de que el tiempo transcurrido hasta que llega el quinto cliente sea menor que 15 minutos?</p></li>
 </ol>
+</div>
 </div>
 </div>
 
