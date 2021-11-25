@@ -549,12 +549,12 @@ summary(gas1)</code></pre>
 ## adjCV   0.2308   0.2438    0.2657
 ## 
 ## TRAINING: % variance explained
-##         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps  9 comps
-## X         78.17    85.58    93.41    96.06    96.94    97.89    98.38    98.85    99.02
-## octane    29.39    96.85    97.89    98.26    98.86    98.96    99.09    99.16    99.28
-##         10 comps
-## X          99.19
-## octane     99.39</code></pre>
+##         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+## X         78.17    85.58    93.41    96.06    96.94    97.89    98.38    98.85
+## octane    29.39    96.85    97.89    98.26    98.86    98.96    99.09    99.16
+##         9 comps  10 comps
+## X         99.02     99.19
+## octane    99.28     99.39</code></pre>
 <p>La validación cruzada del error se hace a través de la siguiente función, donde se relaciona el error con el número de componentes principales, donde se evidencia que es suficiente con dos componentes principales, para reducir el error</p>
 <pre class="r"><code>plot(RMSEP(gas1), legendpos = &quot;topright&quot;)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
@@ -566,10 +566,10 @@ summary(gas1)</code></pre>
 <p><img src="pls_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>La varianza eplicada por cada una de las componentes puede ser extraida mediante:</p>
 <pre class="r"><code>explvar(gas1)</code></pre>
-<pre><code>##     Comp 1     Comp 2     Comp 3     Comp 4     Comp 5     Comp 6     Comp 7     Comp 8 
-## 78.1707683  7.4122245  7.8241556  2.6577773  0.8768214  0.9466384  0.4921537  0.4723207 
-##     Comp 9    Comp 10 
-##  0.1688272  0.1693770</code></pre>
+<pre><code>##     Comp 1     Comp 2     Comp 3     Comp 4     Comp 5     Comp 6     Comp 7 
+## 78.1707683  7.4122245  7.8241556  2.6577773  0.8768214  0.9466384  0.4921537 
+##     Comp 8     Comp 9    Comp 10 
+##  0.4723207  0.1688272  0.1693770</code></pre>
 <p>La grafica de las dos primeras componente estimadas es</p>
 <pre class="r"><code>plot(gas1, &quot;loadings&quot;, comps = 1:3, legendpos = &quot;topleft&quot;,
  labels = &quot;numbers&quot;, xlab = &quot;nm&quot;)
