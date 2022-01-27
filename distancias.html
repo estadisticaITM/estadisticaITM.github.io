@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -59,6 +50,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -71,6 +67,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -81,6 +103,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,13 +123,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -131,7 +184,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -143,7 +196,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -154,23 +207,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -182,6 +222,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -305,7 +346,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -462,28 +503,29 @@ amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
 datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
 
 #matriz de dist
-dist(datos,method = &quot;euclidean&quot;)</code></pre>
-<pre><code>##            1         2         3         4         5         6         7         8
-## 2  2.7964263                                                                      
-## 3  1.5779734 4.0187063                                                            
-## 4  1.2922848 3.7669616 0.9273618                                                  
-## 5  2.4392622 0.5196152 3.7121422 3.4467376                                        
-## 6  2.2271057 4.4698993 0.9110434 1.7578396 4.2201896                              
-## 7  2.3727621 1.2845233 3.3734256 3.2093613 0.9899495 3.9127995                    
-## 8  2.8896367 1.1445523 4.0816663 3.7576588 0.8717798 4.6765372 1.0862780          
-## 9  1.4764823 3.9115214 1.0148892 1.4106736 3.6318040 1.0862780 3.5369478 4.1364236
-## 10 1.0954451 3.2031235 1.3892444 1.1090537 2.7982137 2.2271057 2.4145393 2.9647934
-##            9
-## 2           
-## 3           
-## 4           
-## 5           
-## 6           
-## 7           
-## 8           
-## 9           
-## 10 1.8601075</code></pre>
-<pre class="r"><code>hc &lt;- hclust(dist(datos), &quot;ave&quot;)
+dist(datos,method = &quot;euclidean&quot;)
+#&gt;            1         2         3         4         5         6         7
+#&gt; 2  2.7964263                                                            
+#&gt; 3  1.5779734 4.0187063                                                  
+#&gt; 4  1.2922848 3.7669616 0.9273618                                        
+#&gt; 5  2.4392622 0.5196152 3.7121422 3.4467376                              
+#&gt; 6  2.2271057 4.4698993 0.9110434 1.7578396 4.2201896                    
+#&gt; 7  2.3727621 1.2845233 3.3734256 3.2093613 0.9899495 3.9127995          
+#&gt; 8  2.8896367 1.1445523 4.0816663 3.7576588 0.8717798 4.6765372 1.0862780
+#&gt; 9  1.4764823 3.9115214 1.0148892 1.4106736 3.6318040 1.0862780 3.5369478
+#&gt; 10 1.0954451 3.2031235 1.3892444 1.1090537 2.7982137 2.2271057 2.4145393
+#&gt;            8         9
+#&gt; 2                     
+#&gt; 3                     
+#&gt; 4                     
+#&gt; 5                     
+#&gt; 6                     
+#&gt; 7                     
+#&gt; 8                     
+#&gt; 9  4.1364236          
+#&gt; 10 2.9647934 1.8601075
+
+hc &lt;- hclust(dist(datos), &quot;ave&quot;)
 
 dend1 &lt;- as.dendrogram(hc)
 
@@ -497,18 +539,21 @@ plot(dend1, edgePar=list(col = 1:2, lty = 2:3),edge.root = TRUE)
 
 plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></pre>
 <p><img src="distancias_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>cutree(hc,k=2)</code></pre>
-<pre><code>##  [1] 1 2 1 1 2 1 2 2 1 1</code></pre>
-<pre class="r"><code>cutree(hc,k=3)</code></pre>
-<pre><code>##  [1] 1 2 3 1 2 3 2 2 3 1</code></pre>
-<pre class="r"><code>by(datos,cutree(hc,k=2),colMeans)</code></pre>
-<pre><code>## cutree(hc, k = 2): 1
-##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
-##   25.066667    9.500000    5.533333    3.616667    3.050000 
-## ----------------------------------------------------------------- 
-## cutree(hc, k = 2): 2
-##    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
-##      21.900       8.500       5.500       3.350       2.625</code></pre>
+<pre class="r"><code>
+cutree(hc,k=2)
+#&gt;  [1] 1 2 1 1 2 1 2 2 1 1
+
+cutree(hc,k=3)
+#&gt;  [1] 1 2 3 1 2 3 2 2 3 1
+
+by(datos,cutree(hc,k=2),colMeans)
+#&gt; cutree(hc, k = 2): 1
+#&gt;    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
+#&gt;   25.066667    9.500000    5.533333    3.616667    3.050000 
+#&gt; ------------------------------------------------------ 
+#&gt; cutree(hc, k = 2): 2
+#&gt;    Long_pie     amp_pie   amp_talon lon_dedgran  amp_degran 
+#&gt;      21.900       8.500       5.500       3.350       2.625</code></pre>
 </div>
 
 <br>
@@ -542,7 +587,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

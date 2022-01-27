@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -59,6 +50,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -71,6 +67,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -81,6 +103,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,13 +123,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -131,7 +184,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -143,7 +196,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -154,23 +207,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -182,6 +222,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -305,7 +346,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -515,34 +556,44 @@ amp_degran=c(3.2,2.6,3.1,2.7,2.7,3.3,2.9,2.3,3.2,2.8)
 datos=data.frame(cbind(Long_pie,amp_pie,amp_talon,lon_dedgran,amp_degran))
 boxplot(datos)</code></pre>
 <p><img src="pp1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>vectmed=apply(datos,2,mean)
+<pre class="r"><code>
+vectmed=apply(datos,2,mean)
 
 ##Matriz de varianzas y covarianzas
-round(var(datos),2)</code></pre>
-<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
-## Long_pie        2.94    0.83      0.16        0.37       0.42
-## amp_pie         0.83    0.33     -0.03        0.08       0.09
-## amp_talon       0.16   -0.03      0.24        0.01       0.07
-## lon_dedgran     0.37    0.08      0.01        0.19       0.06
-## amp_degran      0.42    0.09      0.07        0.06       0.10</code></pre>
-<pre class="r"><code>###Matriz de correlaciones
-round(cor(datos),4)*100</code></pre>
-<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
-## Long_pie      100.00   85.07     19.56       49.98      76.00
-## amp_pie        85.07  100.00     -9.58       31.41      48.14
-## amp_talon      19.56   -9.58    100.00        2.53      44.61
-## lon_dedgran    49.98   31.41      2.53      100.00      44.38
-## amp_degran     76.00   48.14     44.61       44.38     100.00</code></pre>
-<pre class="r"><code>plot(datos)</code></pre>
+round(var(datos),2)
+#&gt;             Long_pie amp_pie amp_talon lon_dedgran amp_degran
+#&gt; Long_pie        2.94    0.83      0.16        0.37       0.42
+#&gt; amp_pie         0.83    0.33     -0.03        0.08       0.09
+#&gt; amp_talon       0.16   -0.03      0.24        0.01       0.07
+#&gt; lon_dedgran     0.37    0.08      0.01        0.19       0.06
+#&gt; amp_degran      0.42    0.09      0.07        0.06       0.10
+
+###Matriz de correlaciones
+round(cor(datos),4)*100
+#&gt;             Long_pie amp_pie amp_talon lon_dedgran amp_degran
+#&gt; Long_pie      100.00   85.07     19.56       49.98      76.00
+#&gt; amp_pie        85.07  100.00     -9.58       31.41      48.14
+#&gt; amp_talon      19.56   -9.58    100.00        2.53      44.61
+#&gt; lon_dedgran    49.98   31.41      2.53      100.00      44.38
+#&gt; amp_degran     76.00   48.14     44.61       44.38     100.00
+
+plot(datos)</code></pre>
 <p><img src="pp1_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<pre class="r"><code>summary(datos)</code></pre>
-<pre><code>##     Long_pie        amp_pie         amp_talon      lon_dedgran      amp_degran   
-##  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000   Min.   :2.300  
-##  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225   1st Qu.:3.200   1st Qu.:2.700  
-##  Median :24.30   Median : 9.250   Median :5.500   Median :3.400   Median :2.850  
-##  Mean   :23.80   Mean   : 9.100   Mean   :5.520   Mean   :3.510   Mean   :2.880  
-##  3rd Qu.:25.30   3rd Qu.: 9.400   3rd Qu.:6.000   3rd Qu.:3.825   3rd Qu.:3.175  
-##  Max.   :25.90   Max.   :10.100   Max.   :6.100   Max.   :4.300   Max.   :3.300</code></pre>
+<pre class="r"><code>summary(datos)
+#&gt;     Long_pie        amp_pie         amp_talon      lon_dedgran   
+#&gt;  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000  
+#&gt;  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225   1st Qu.:3.200  
+#&gt;  Median :24.30   Median : 9.250   Median :5.500   Median :3.400  
+#&gt;  Mean   :23.80   Mean   : 9.100   Mean   :5.520   Mean   :3.510  
+#&gt;  3rd Qu.:25.30   3rd Qu.: 9.400   3rd Qu.:6.000   3rd Qu.:3.825  
+#&gt;  Max.   :25.90   Max.   :10.100   Max.   :6.100   Max.   :4.300  
+#&gt;    amp_degran   
+#&gt;  Min.   :2.300  
+#&gt;  1st Qu.:2.700  
+#&gt;  Median :2.850  
+#&gt;  Mean   :2.880  
+#&gt;  3rd Qu.:3.175  
+#&gt;  Max.   :3.300</code></pre>
 <div id="actividad-en-r" class="section level3">
 <h3>Actividad en R</h3>
 <p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
@@ -558,13 +609,15 @@ round(cor(datos),4)*100</code></pre>
 <li><p>Resumen de las medidas</p></li>
 <li><p>Grafico de dispersión</p></li>
 </ul>
-<pre class="r"><code>DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+<pre class="r"><code>
+DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
 
 D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
 
 HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
 
-VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)</code></pre>
+VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+</code></pre>
 </div>
 </div>
 </div>
@@ -626,7 +679,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

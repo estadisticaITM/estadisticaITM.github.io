@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -59,6 +50,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -71,6 +67,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -81,6 +103,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,13 +123,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -131,7 +184,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -143,7 +196,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -154,23 +207,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -182,6 +222,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -305,7 +346,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -389,7 +430,9 @@ y_k
 <ol style="list-style-type: decimal">
 <li>Realizar un análisis descriptivo y de conglomerados para detectar posibles correlaciones.</li>
 </ol>
-<pre class="r"><code>compuesto=as.factor(letters[1:12])
+<pre class="r"><code>
+
+compuesto=as.factor(letters[1:12])
 tress=c(16,15,14,15,14,14,17,16,15,17,18,18)
 tress50=c(62,60,59,61,60,59,63,62,60,63,62,64)
 cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
@@ -397,61 +440,64 @@ cuat50=c(27,31,31,31,30,30,29,28,30,27,28,29)
 
 y=data.frame(tress,tress50,cuat,cuat50)
 
-y</code></pre>
-<pre><code>##    tress tress50 cuat cuat50
-## 1     16      62   67     27
-## 2     15      60   69     31
-## 3     14      59   68     31
-## 4     15      61   71     31
-## 5     14      60   70     30
-## 6     14      59   69     30
-## 7     17      63   68     29
-## 8     16      62   69     28
-## 9     15      60   72     30
-## 10    17      63   69     27
-## 11    18      62   68     28
-## 12    18      64   67     29</code></pre>
-<pre class="r"><code>cor(y)</code></pre>
-<pre><code>##              tress    tress50       cuat     cuat50
-## tress    1.0000000  0.9138115 -0.4983509 -0.6701031
-## tress50  0.9138115  1.0000000 -0.4644110 -0.6922815
-## cuat    -0.4983509 -0.4644110  1.0000000  0.4576692
-## cuat50  -0.6701031 -0.6922815  0.4576692  1.0000000</code></pre>
-<pre class="r"><code>plot(y)</code></pre>
+y
+#&gt;    tress tress50 cuat cuat50
+#&gt; 1     16      62   67     27
+#&gt; 2     15      60   69     31
+#&gt; 3     14      59   68     31
+#&gt; 4     15      61   71     31
+#&gt; 5     14      60   70     30
+#&gt; 6     14      59   69     30
+#&gt; 7     17      63   68     29
+#&gt; 8     16      62   69     28
+#&gt; 9     15      60   72     30
+#&gt; 10    17      63   69     27
+#&gt; 11    18      62   68     28
+#&gt; 12    18      64   67     29
+cor(y)
+#&gt;              tress    tress50       cuat     cuat50
+#&gt; tress    1.0000000  0.9138115 -0.4983509 -0.6701031
+#&gt; tress50  0.9138115  1.0000000 -0.4644110 -0.6922815
+#&gt; cuat    -0.4983509 -0.4644110  1.0000000  0.4576692
+#&gt; cuat50  -0.6701031 -0.6922815  0.4576692  1.0000000
+plot(y)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>##conglomerados
+<pre class="r"><code>
+##conglomerados
 
 y=data.frame(compuesto,tress,tress50,cuat,cuat50)
 #matriz de dist
-dist(y,method = &quot;euclidean&quot;)</code></pre>
-<pre><code>## Warning in dist(y, method = &quot;euclidean&quot;): NAs introducidos por coerción</code></pre>
-<pre><code>##           1        2        3        4        5        6        7        8        9
-## 2  5.590170                                                                        
-## 3  6.123724 1.936492                                                               
-## 4  6.519202 2.500000 4.183300                                                      
-## 5  5.700877 1.936492 2.738613 2.236068                                             
-## 6  5.700877 1.936492 1.581139 3.535534 1.581139                                    
-## 7  2.958040 4.743416 6.020797 5.123475 5.361903 5.809475                           
-## 8  2.500000 4.183300 5.361903 4.330127 4.031129 4.609772 2.236068                  
-## 9  6.982120 3.535534 4.873397 1.936492 2.500000 3.708099 6.123724 4.743416         
-## 10 2.738613 6.020797 7.245688 5.916080 5.916080 6.519202 2.500000 1.936492 6.224950
-## 11 2.738613 5.361903 6.519202 5.916080 5.916080 6.123724 1.936492 2.500000 6.422616
-## 12 3.872983 6.422616 7.582875 6.892024 7.245688 7.582875 1.936492 4.031129 7.984360
-##          10       11
-## 2                   
-## 3                   
-## 4                   
-## 5                   
-## 6                   
-## 7                   
-## 8                   
-## 9                   
-## 10                  
-## 11 2.236068         
-## 12 3.535534 2.738613</code></pre>
-<pre class="r"><code>hc &lt;- hclust(dist(y), &quot;ave&quot;)</code></pre>
-<pre><code>## Warning in dist(y): NAs introducidos por coerción</code></pre>
-<pre class="r"><code>dend1 &lt;- as.dendrogram(hc)
+dist(y,method = &quot;euclidean&quot;)
+#&gt; Warning in dist(y, method = &quot;euclidean&quot;): NAs introduced by coercion
+#&gt;           1        2        3        4        5        6        7
+#&gt; 2  5.590170                                                      
+#&gt; 3  6.123724 1.936492                                             
+#&gt; 4  6.519202 2.500000 4.183300                                    
+#&gt; 5  5.700877 1.936492 2.738613 2.236068                           
+#&gt; 6  5.700877 1.936492 1.581139 3.535534 1.581139                  
+#&gt; 7  2.958040 4.743416 6.020797 5.123475 5.361903 5.809475         
+#&gt; 8  2.500000 4.183300 5.361903 4.330127 4.031129 4.609772 2.236068
+#&gt; 9  6.982120 3.535534 4.873397 1.936492 2.500000 3.708099 6.123724
+#&gt; 10 2.738613 6.020797 7.245688 5.916080 5.916080 6.519202 2.500000
+#&gt; 11 2.738613 5.361903 6.519202 5.916080 5.916080 6.123724 1.936492
+#&gt; 12 3.872983 6.422616 7.582875 6.892024 7.245688 7.582875 1.936492
+#&gt;           8        9       10       11
+#&gt; 2                                     
+#&gt; 3                                     
+#&gt; 4                                     
+#&gt; 5                                     
+#&gt; 6                                     
+#&gt; 7                                     
+#&gt; 8                                     
+#&gt; 9  4.743416                           
+#&gt; 10 1.936492 6.224950                  
+#&gt; 11 2.500000 6.422616 2.236068         
+#&gt; 12 4.031129 7.984360 3.535534 2.738613
+
+hc &lt;- hclust(dist(y), &quot;ave&quot;)
+#&gt; Warning in dist(y): NAs introduced by coercion
+
+dend1 &lt;- as.dendrogram(hc)
 
 op &lt;- par(mfrow= c(2,2), mar = c(3,3,1,1))
 
@@ -473,7 +519,10 @@ plot(dend1, nodePar=list(pch = 2:1,cex=.4*2:1,col = 2:3), horiz = TRUE)</code></
 <li><p>Las componentes principales también se eligen de manera que la primera componente principal <span class="math inline">\(Z_1\)</span>recoge la mayor parte de variación que hay en el conjunto de datos, la segunda recoje la siguiente mayor parte de la variación y así sucesivamente.</p></li>
 <li><p>Por consiguiente, cuando haya correlación significativa el numero de componentes útiles será mucho menor que el número de variables originales</p></li>
 </ul>
-<pre class="r"><code>compuesto=as.factor(letters[1:12])
+<pre class="r"><code>
+
+
+compuesto=as.factor(letters[1:12])
 tress=c(16,15,14,15,14,14,17,16,15,17,18,18)
 tress50=c(62,60,59,61,60,59,63,62,60,63,62,64)
 cuat=c(67,69,68,71,70,69,68,69,72,69,68,67)
@@ -485,49 +534,50 @@ y=data.frame(tress,tress50,cuat,cuat50)
 
 y=data.frame(scale(tress),scale(tress50),scale(cuat),scale(cuat50))
 modelo&lt;-princomp(y)
-summary(modelo)</code></pre>
-<pre><code>## Importance of components:
-##                           Comp.1    Comp.2     Comp.3     Comp.4
-## Standard deviation     1.6250008 0.7690778 0.59767468 0.27810657
-## Proportion of Variance 0.7201712 0.1613129 0.09742228 0.02109362
-## Cumulative Proportion  0.7201712 0.8814841 0.97890638 1.00000000</code></pre>
-<pre class="r"><code>modelo</code></pre>
-<pre><code>## Call:
-## princomp(x = y)
-## 
-## Standard deviations:
-##    Comp.1    Comp.2    Comp.3    Comp.4 
-## 1.6250008 0.7690778 0.5976747 0.2781066 
-## 
-##  4  variables and  12 observations.</code></pre>
-<pre class="r"><code>modelo$loadings</code></pre>
-<pre><code>## 
-## Loadings:
-##                Comp.1 Comp.2 Comp.3 Comp.4
-## scale.tress.    0.547  0.238  0.395  0.699
-## scale.tress50.  0.546  0.299  0.324 -0.712
-## scale.cuat.    -0.400  0.913              
-## scale.cuat50.  -0.493 -0.145  0.856       
-## 
-##                Comp.1 Comp.2 Comp.3 Comp.4
-## SS loadings      1.00   1.00   1.00   1.00
-## Proportion Var   0.25   0.25   0.25   0.25
-## Cumulative Var   0.25   0.50   0.75   1.00</code></pre>
-<pre class="r"><code>modelo$scores</code></pre>
-<pre><code>##           Comp.1      Comp.2     Comp.3      Comp.4
-##  [1,]  1.5952249 -0.76674361 -0.9919303 -0.18579179
-##  [2,] -1.2910394 -0.46621077  0.5611308  0.12874234
-##  [3,] -1.7229810 -1.41291035  0.1476040  0.05875581
-##  [4,] -1.4929986  0.92687704  0.6602714 -0.24302724
-##  [5,] -1.5928482  0.07815250 -0.3300050 -0.28009161
-##  [6,] -1.6564717 -0.70849123 -0.4773996  0.12056591
-##  [7,]  1.3629824 -0.01599411  0.5750957 -0.18164957
-##  [8,]  0.7319674  0.34816951 -0.5116887 -0.16093806
-##  [9,] -1.7556955  1.45109652 -0.1603809  0.24832833
-## [10,]  1.7615838  0.78640005 -0.6266575 -0.08691731
-## [11,]  1.7341863  0.06183714  0.0688296  0.75146211
-## [12,]  2.3260895 -0.28218269  1.0851305 -0.16943893</code></pre>
-<pre class="r"><code>screeplot(modelo)
+summary(modelo)
+#&gt; Importance of components:
+#&gt;                           Comp.1    Comp.2     Comp.3     Comp.4
+#&gt; Standard deviation     1.6250008 0.7690778 0.59767468 0.27810657
+#&gt; Proportion of Variance 0.7201712 0.1613129 0.09742228 0.02109362
+#&gt; Cumulative Proportion  0.7201712 0.8814841 0.97890638 1.00000000
+modelo
+#&gt; Call:
+#&gt; princomp(x = y)
+#&gt; 
+#&gt; Standard deviations:
+#&gt;    Comp.1    Comp.2    Comp.3    Comp.4 
+#&gt; 1.6250008 0.7690778 0.5976747 0.2781066 
+#&gt; 
+#&gt;  4  variables and  12 observations.
+modelo$loadings
+#&gt; 
+#&gt; Loadings:
+#&gt;                Comp.1 Comp.2 Comp.3 Comp.4
+#&gt; scale.tress.    0.547  0.238  0.395  0.699
+#&gt; scale.tress50.  0.546  0.299  0.324 -0.712
+#&gt; scale.cuat.    -0.400  0.913              
+#&gt; scale.cuat50.  -0.493 -0.145  0.856       
+#&gt; 
+#&gt;                Comp.1 Comp.2 Comp.3 Comp.4
+#&gt; SS loadings      1.00   1.00   1.00   1.00
+#&gt; Proportion Var   0.25   0.25   0.25   0.25
+#&gt; Cumulative Var   0.25   0.50   0.75   1.00
+modelo$scores
+#&gt;           Comp.1      Comp.2     Comp.3      Comp.4
+#&gt;  [1,]  1.5952249 -0.76674361 -0.9919303 -0.18579179
+#&gt;  [2,] -1.2910394 -0.46621077  0.5611308  0.12874234
+#&gt;  [3,] -1.7229810 -1.41291035  0.1476040  0.05875581
+#&gt;  [4,] -1.4929986  0.92687704  0.6602714 -0.24302724
+#&gt;  [5,] -1.5928482  0.07815250 -0.3300050 -0.28009161
+#&gt;  [6,] -1.6564717 -0.70849123 -0.4773996  0.12056591
+#&gt;  [7,]  1.3629824 -0.01599411  0.5750957 -0.18164957
+#&gt;  [8,]  0.7319674  0.34816951 -0.5116887 -0.16093806
+#&gt;  [9,] -1.7556955  1.45109652 -0.1603809  0.24832833
+#&gt; [10,]  1.7615838  0.78640005 -0.6266575 -0.08691731
+#&gt; [11,]  1.7341863  0.06183714  0.0688296  0.75146211
+#&gt; [12,]  2.3260895 -0.28218269  1.0851305 -0.16943893
+
+screeplot(modelo)
 plot(modelo)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>plot(modelo$scores[,1],modelo$scores[,2])
@@ -583,21 +633,23 @@ data.frame= heptathlon</code></pre>
 </ol>
 <pre class="r"><code>heptathlon$hurdles=max(heptathlon$hurdles)-heptathlon$hurdles
 heptathlon$run200m=max(heptathlon$run200m)-heptathlon$run200m
-heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
+heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m
+</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Realizar un diagrama de dispersión y calcular la matriz de correlaciones</li>
 </ol>
-<pre class="r"><code>plot(heptathlon[,-8])</code></pre>
+<pre class="r"><code>
+plot(heptathlon[,-8])</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
-<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
-## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
-## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
-## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
-## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
-## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
-## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
-## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
+<pre class="r"><code>round(cor(heptathlon[,-8]),2)
+#&gt;          hurdles highjump shot run200m longjump javelin run800m
+#&gt; hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78
+#&gt; highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59
+#&gt; shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42
+#&gt; run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62
+#&gt; longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70
+#&gt; javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02
+#&gt; run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00</code></pre>
 <ul>
 <li>¿Qué observa?</li>
 <li>¿Entre que variables existe una correlación alta?</li>
@@ -606,9 +658,12 @@ heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Realicemos un análisis boxplot</li>
 </ol>
-<pre class="r"><code>boxplot(heptathlon[,-8])</code></pre>
+<pre class="r"><code>
+
+boxplot(heptathlon[,-8])</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>boxplot(heptathlon$score)</code></pre>
+<pre class="r"><code>
+boxplot(heptathlon$score)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <ul>
 <li>¿Observa la existencia de puntos atípicos?</li>
@@ -619,43 +674,69 @@ heptathlon$run800m=max(heptathlon$run800m)-heptathlon$run800m</code></pre>
 <li>Vuelva a estimar la matriz de correlaciones, sin el punto atípico</li>
 </ol>
 <pre class="r"><code>hep=heptathlon[-grep(&quot;PNG&quot;,rownames(heptathlon)),]
-hep</code></pre>
-<pre><code>##                     hurdles highjump  shot run200m longjump javelin run800m score
-## Joyner-Kersee (USA)    0.00     1.86 15.80    0.00     7.27   45.66    4.31  7291
-## John (GDR)             0.16     1.80 16.23    1.09     6.71   42.56    1.92  6897
-## Behmer (GDR)           0.51     1.83 14.20    0.54     6.68   44.54    0.00  6858
-## Sablovskaite (URS)     0.92     1.80 15.23    1.36     6.25   42.78    8.04  6540
-## Choubenkova (URS)      0.82     1.74 14.76    1.37     6.32   47.46    3.70  6540
-## Schulz (GDR)           1.06     1.83 13.50    2.09     6.33   42.82    1.59  6411
-## Fleming (AUS)          0.69     1.80 12.88    1.03     6.37   40.28    8.34  6351
-## Greiner (USA)          0.86     1.80 14.13    1.92     6.47   38.00    9.45  6297
-## Lajbnerova (CZE)       0.94     1.83 14.28    2.30     6.11   42.20   11.85  6252
-## Bouraga (URS)          0.56     1.77 12.62    1.03     6.28   39.06   10.54  6252
-## Wijnsma (HOL)          1.06     1.86 13.01    2.47     6.34   37.86    7.29  6205
-## Dimitrova (BUL)        0.55     1.80 12.88    1.03     6.37   40.28    8.34  6171
-## Scheider (SWI)         1.16     1.86 11.58    2.31     6.05   47.50   10.73  6137
-## Braun (FRG)            1.02     1.83 13.16    2.22     6.12   44.58   18.62  6109
-## Ruotsalainen (FIN)     1.10     1.80 12.32    2.05     6.08   45.44   12.86  6101
-## Yuping (CHN)           1.24     1.86 14.21    2.44     6.40   38.60   22.47  6087
-## Hagger (GB)            0.78     1.80 12.75    2.91     6.34   35.76   14.28  5975
-## Brown (USA)            1.38     1.83 12.69    2.27     6.13   44.34   22.23  5972
-## Mulliner (GB)          1.70     1.71 12.68    2.36     6.10   37.76   13.82  5746
-## Hautenauve (BEL)       1.35     1.77 11.81    3.05     5.99   35.68    9.70  5734
-## Kytola (FIN)           1.62     1.77 11.66    3.13     5.75   39.48    9.15  5686
-## Geremias (BRA)         1.54     1.71 12.95    2.94     5.50   39.64   19.82  5508
-## Hui-Ing (TAI)          2.16     1.68 10.00    2.67     5.47   39.14   13.10  5290
-## Jeong-Mi (KOR)         1.84     1.71 10.83    4.05     5.50   39.26   14.97  5289</code></pre>
-<pre class="r"><code>plot(hep)</code></pre>
+hep
+#&gt;                     hurdles highjump  shot run200m longjump javelin
+#&gt; Joyner-Kersee (USA)    3.73     1.86 15.80    4.05     7.27   45.66
+#&gt; John (GDR)             3.57     1.80 16.23    2.96     6.71   42.56
+#&gt; Behmer (GDR)           3.22     1.83 14.20    3.51     6.68   44.54
+#&gt; Sablovskaite (URS)     2.81     1.80 15.23    2.69     6.25   42.78
+#&gt; Choubenkova (URS)      2.91     1.74 14.76    2.68     6.32   47.46
+#&gt; Schulz (GDR)           2.67     1.83 13.50    1.96     6.33   42.82
+#&gt; Fleming (AUS)          3.04     1.80 12.88    3.02     6.37   40.28
+#&gt; Greiner (USA)          2.87     1.80 14.13    2.13     6.47   38.00
+#&gt; Lajbnerova (CZE)       2.79     1.83 14.28    1.75     6.11   42.20
+#&gt; Bouraga (URS)          3.17     1.77 12.62    3.02     6.28   39.06
+#&gt; Wijnsma (HOL)          2.67     1.86 13.01    1.58     6.34   37.86
+#&gt; Dimitrova (BUL)        3.18     1.80 12.88    3.02     6.37   40.28
+#&gt; Scheider (SWI)         2.57     1.86 11.58    1.74     6.05   47.50
+#&gt; Braun (FRG)            2.71     1.83 13.16    1.83     6.12   44.58
+#&gt; Ruotsalainen (FIN)     2.63     1.80 12.32    2.00     6.08   45.44
+#&gt; Yuping (CHN)           2.49     1.86 14.21    1.61     6.40   38.60
+#&gt; Hagger (GB)            2.95     1.80 12.75    1.14     6.34   35.76
+#&gt; Brown (USA)            2.35     1.83 12.69    1.78     6.13   44.34
+#&gt; Mulliner (GB)          2.03     1.71 12.68    1.69     6.10   37.76
+#&gt; Hautenauve (BEL)       2.38     1.77 11.81    1.00     5.99   35.68
+#&gt; Kytola (FIN)           2.11     1.77 11.66    0.92     5.75   39.48
+#&gt; Geremias (BRA)         2.19     1.71 12.95    1.11     5.50   39.64
+#&gt; Hui-Ing (TAI)          1.57     1.68 10.00    1.38     5.47   39.14
+#&gt; Jeong-Mi (KOR)         1.89     1.71 10.83    0.00     5.50   39.26
+#&gt;                     run800m score
+#&gt; Joyner-Kersee (USA)   34.92  7291
+#&gt; John (GDR)            37.31  6897
+#&gt; Behmer (GDR)          39.23  6858
+#&gt; Sablovskaite (URS)    31.19  6540
+#&gt; Choubenkova (URS)     35.53  6540
+#&gt; Schulz (GDR)          37.64  6411
+#&gt; Fleming (AUS)         30.89  6351
+#&gt; Greiner (USA)         29.78  6297
+#&gt; Lajbnerova (CZE)      27.38  6252
+#&gt; Bouraga (URS)         28.69  6252
+#&gt; Wijnsma (HOL)         31.94  6205
+#&gt; Dimitrova (BUL)       30.89  6171
+#&gt; Scheider (SWI)        28.50  6137
+#&gt; Braun (FRG)           20.61  6109
+#&gt; Ruotsalainen (FIN)    26.37  6101
+#&gt; Yuping (CHN)          16.76  6087
+#&gt; Hagger (GB)           24.95  5975
+#&gt; Brown (USA)           17.00  5972
+#&gt; Mulliner (GB)         25.41  5746
+#&gt; Hautenauve (BEL)      29.53  5734
+#&gt; Kytola (FIN)          30.08  5686
+#&gt; Geremias (BRA)        19.41  5508
+#&gt; Hui-Ing (TAI)         26.13  5290
+#&gt; Jeong-Mi (KOR)        24.26  5289
+
+plot(hep)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>round(cor(heptathlon[,-8]),2)</code></pre>
-<pre><code>##          hurdles highjump  shot run200m longjump javelin run800m
-## hurdles     1.00    -0.81 -0.65    0.77    -0.91   -0.01    0.78
-## highjump   -0.81     1.00  0.44   -0.49     0.78    0.00   -0.59
-## shot       -0.65     0.44  1.00   -0.68     0.74    0.27   -0.42
-## run200m     0.77    -0.49 -0.68    1.00    -0.82   -0.33    0.62
-## longjump   -0.91     0.78  0.74   -0.82     1.00    0.07   -0.70
-## javelin    -0.01     0.00  0.27   -0.33     0.07    1.00    0.02
-## run800m     0.78    -0.59 -0.42    0.62    -0.70    0.02    1.00</code></pre>
+<pre class="r"><code>round(cor(heptathlon[,-8]),2)
+#&gt;          hurdles highjump shot run200m longjump javelin run800m
+#&gt; hurdles     1.00     0.81 0.65    0.77     0.91    0.01    0.78
+#&gt; highjump    0.81     1.00 0.44    0.49     0.78    0.00    0.59
+#&gt; shot        0.65     0.44 1.00    0.68     0.74    0.27    0.42
+#&gt; run200m     0.77     0.49 0.68    1.00     0.82    0.33    0.62
+#&gt; longjump    0.91     0.78 0.74    0.82     1.00    0.07    0.70
+#&gt; javelin     0.01     0.00 0.27    0.33     0.07    1.00   -0.02
+#&gt; run800m     0.78     0.59 0.42    0.62     0.70   -0.02    1.00</code></pre>
 <ul>
 <li>¿Qué observa en cuanto a los valores de las correlaciones?</li>
 </ul>
@@ -664,67 +745,67 @@ hep</code></pre>
 </ol>
 <pre class="r"><code>hep1=scale(hep)
 
-hep1</code></pre>
-<pre><code>##                         hurdles   highjump        shot     run200m   longjump
-## Joyner-Kersee (USA) -2.02598714  1.2662190  1.75444462 -2.16301826  2.6504631
-## John (GDR)          -1.71504427  0.1194546  2.04165699 -0.99944520  1.2562469
-## Behmer (GDR)        -1.03485674  0.6928368  0.68574739 -1.58656922  1.1815567
-## Sablovskaite (URS)  -0.23806563  0.1194546  1.37372123 -0.71122069  0.1109979
-## Choubenkova (URS)   -0.43240493 -1.0273097  1.05979142 -0.70054570  0.2852749
-## Schulz (GDR)         0.03400938  0.6928368  0.21819235  0.06805301  0.3101716
-## Fleming (AUS)       -0.68504601  0.1194546 -0.19592783 -1.06349510  0.4097585
-## Greiner (USA)       -0.35466921  0.1194546  0.63899188 -0.11342169  0.6587257
-## Lajbnerova (CZE)    -0.19919778  0.6928368  0.73918225  0.29222764 -0.2375562
-## Bouraga (URS)       -0.93768709 -0.4539276 -0.36959112 -1.06349510  0.1856880
-## Wijnsma (HOL)        0.03400938  1.2662190 -0.10909618  0.47370233  0.3350683
-## Dimitrova (BUL)     -0.95712102  0.1194546 -0.19592783 -1.06349510  0.4097585
-## Scheider (SWI)       0.22834867  1.2662190 -1.06424432  0.30290262 -0.3869365
-## Braun (FRG)         -0.04372634  0.6928368 -0.00890581  0.20682778 -0.2126595
-## Ruotsalainen (FIN)   0.11174509  0.1194546 -0.56997185  0.02535308 -0.3122463
-## Yuping (CHN)         0.38382011  1.2662190  0.69242675  0.44167739  0.4844486
-## Hagger (GB)         -0.51014065  0.1194546 -0.28275947  0.94340155  0.3350683
-## Brown (USA)          0.65589512  0.6928368 -0.32283562  0.26020269 -0.1877627
-## Mulliner (GB)        1.27778086 -1.6006919 -0.32951498  0.35627753 -0.2624529
-## Hautenauve (BEL)     0.59759333 -0.4539276 -0.91061910  1.09285130 -0.5363168
-## Kytola (FIN)         1.12230942 -0.4539276 -1.01080946  1.17825116 -1.1338380
-## Geremias (BRA)       0.96683799 -1.6006919 -0.14917232  0.97542649 -1.7562559
-## Hui-Ing (TAI)        2.17174161 -2.1740741 -2.11958283  0.68720198 -1.8309461
-## Jeong-Mi (KOR)       1.54985587 -1.6006919 -1.56519615  2.16034951 -1.7562559
-##                        javelin     run800m       score
-## Joyner-Kersee (USA)  1.2631989 -1.04165853  2.36063285
-## John (GDR)           0.3694941 -1.43045040  1.54252238
-## Behmer (GDR)         0.9403120 -1.74278528  1.46154190
-## Sablovskaite (URS)   0.4329183 -0.43488295  0.80123954
-## Choubenkova (URS)    1.7821242 -1.14088993  0.80123954
-## Schulz (GDR)         0.4444500 -1.48413295  0.53338103
-## Fleming (AUS)       -0.2878114 -0.38608062  0.40879568
-## Greiner (USA)       -0.9451168 -0.20551202  0.29666887
-## Lajbnerova (CZE)     0.2657090  0.18490659  0.20322985
-## Bouraga (URS)       -0.6395275 -0.02819690  0.20322985
-## Wijnsma (HOL)       -0.9854777 -0.55688876  0.10563800
-## Dimitrova (BUL)     -0.2878114 -0.38608062  0.03503963
-## Scheider (SWI)       1.7936559  0.00271124 -0.03555874
-## Braun (FRG)          0.9518437  1.28621241 -0.09369857
-## Ruotsalainen (FIN)   1.1997747  0.34920775 -0.11030995
-## Yuping (CHN)        -0.7721417  1.91250893 -0.13937986
-## Hagger (GB)         -1.5908906  0.58020543 -0.37193918
-## Brown (USA)          0.8826536  1.87346706 -0.37816845
-## Mulliner (GB)       -1.0143069  0.50537520 -0.84743994
-## Hautenauve (BEL)    -1.6139540 -0.16484341 -0.87235701
-## Kytola (FIN)        -0.5184449 -0.25431434 -0.97202529
-## Geremias (BRA)      -0.4723182  1.48142171 -1.34162850
-## Hui-Ing (TAI)       -0.6164641  0.38824961 -1.79428861
-## Jeong-Mi (KOR)      -0.5818691  0.69245078 -1.79636503
-## attr(,&quot;scaled:center&quot;)
-##     hurdles    highjump        shot     run200m    longjump     javelin     run800m 
-##    1.042500    1.793750   13.173333    2.026250    6.205417   41.278333   10.713333 
-##       score 
-## 6154.125000 
-## attr(,&quot;scaled:scale&quot;)
-##      hurdles     highjump         shot      run200m     longjump      javelin 
-##   0.51456398   0.05232112   1.49714995   0.93676972   0.40165938   3.46870690 
-##      run800m        score 
-##   6.14724800 481.59755096</code></pre>
+hep1
+#&gt;                         hurdles   highjump        shot     run200m
+#&gt; Joyner-Kersee (USA)  2.02598714  1.2662190  1.75444462  2.16301826
+#&gt; John (GDR)           1.71504427  0.1194546  2.04165699  0.99944520
+#&gt; Behmer (GDR)         1.03485674  0.6928368  0.68574739  1.58656922
+#&gt; Sablovskaite (URS)   0.23806563  0.1194546  1.37372123  0.71122069
+#&gt; Choubenkova (URS)    0.43240493 -1.0273097  1.05979142  0.70054570
+#&gt; Schulz (GDR)        -0.03400938  0.6928368  0.21819235 -0.06805301
+#&gt; Fleming (AUS)        0.68504601  0.1194546 -0.19592783  1.06349510
+#&gt; Greiner (USA)        0.35466921  0.1194546  0.63899188  0.11342169
+#&gt; Lajbnerova (CZE)     0.19919778  0.6928368  0.73918225 -0.29222764
+#&gt; Bouraga (URS)        0.93768709 -0.4539276 -0.36959112  1.06349510
+#&gt; Wijnsma (HOL)       -0.03400938  1.2662190 -0.10909618 -0.47370233
+#&gt; Dimitrova (BUL)      0.95712102  0.1194546 -0.19592783  1.06349510
+#&gt; Scheider (SWI)      -0.22834867  1.2662190 -1.06424432 -0.30290262
+#&gt; Braun (FRG)          0.04372634  0.6928368 -0.00890581 -0.20682778
+#&gt; Ruotsalainen (FIN)  -0.11174509  0.1194546 -0.56997185 -0.02535308
+#&gt; Yuping (CHN)        -0.38382011  1.2662190  0.69242675 -0.44167739
+#&gt; Hagger (GB)          0.51014065  0.1194546 -0.28275947 -0.94340155
+#&gt; Brown (USA)         -0.65589512  0.6928368 -0.32283562 -0.26020269
+#&gt; Mulliner (GB)       -1.27778086 -1.6006919 -0.32951498 -0.35627753
+#&gt; Hautenauve (BEL)    -0.59759333 -0.4539276 -0.91061910 -1.09285130
+#&gt; Kytola (FIN)        -1.12230942 -0.4539276 -1.01080946 -1.17825116
+#&gt; Geremias (BRA)      -0.96683799 -1.6006919 -0.14917232 -0.97542649
+#&gt; Hui-Ing (TAI)       -2.17174161 -2.1740741 -2.11958283 -0.68720198
+#&gt; Jeong-Mi (KOR)      -1.54985587 -1.6006919 -1.56519615 -2.16034951
+#&gt;                       longjump    javelin     run800m       score
+#&gt; Joyner-Kersee (USA)  2.6504631  1.2631989  1.04165853  2.36063285
+#&gt; John (GDR)           1.2562469  0.3694941  1.43045040  1.54252238
+#&gt; Behmer (GDR)         1.1815567  0.9403120  1.74278528  1.46154190
+#&gt; Sablovskaite (URS)   0.1109979  0.4329183  0.43488295  0.80123954
+#&gt; Choubenkova (URS)    0.2852749  1.7821242  1.14088993  0.80123954
+#&gt; Schulz (GDR)         0.3101716  0.4444500  1.48413295  0.53338103
+#&gt; Fleming (AUS)        0.4097585 -0.2878114  0.38608062  0.40879568
+#&gt; Greiner (USA)        0.6587257 -0.9451168  0.20551202  0.29666887
+#&gt; Lajbnerova (CZE)    -0.2375562  0.2657090 -0.18490659  0.20322985
+#&gt; Bouraga (URS)        0.1856880 -0.6395275  0.02819690  0.20322985
+#&gt; Wijnsma (HOL)        0.3350683 -0.9854777  0.55688876  0.10563800
+#&gt; Dimitrova (BUL)      0.4097585 -0.2878114  0.38608062  0.03503963
+#&gt; Scheider (SWI)      -0.3869365  1.7936559 -0.00271124 -0.03555874
+#&gt; Braun (FRG)         -0.2126595  0.9518437 -1.28621241 -0.09369857
+#&gt; Ruotsalainen (FIN)  -0.3122463  1.1997747 -0.34920775 -0.11030995
+#&gt; Yuping (CHN)         0.4844486 -0.7721417 -1.91250893 -0.13937986
+#&gt; Hagger (GB)          0.3350683 -1.5908906 -0.58020543 -0.37193918
+#&gt; Brown (USA)         -0.1877627  0.8826536 -1.87346706 -0.37816845
+#&gt; Mulliner (GB)       -0.2624529 -1.0143069 -0.50537520 -0.84743994
+#&gt; Hautenauve (BEL)    -0.5363168 -1.6139540  0.16484341 -0.87235701
+#&gt; Kytola (FIN)        -1.1338380 -0.5184449  0.25431434 -0.97202529
+#&gt; Geremias (BRA)      -1.7562559 -0.4723182 -1.48142171 -1.34162850
+#&gt; Hui-Ing (TAI)       -1.8309461 -0.6164641 -0.38824961 -1.79428861
+#&gt; Jeong-Mi (KOR)      -1.7562559 -0.5818691 -0.69245078 -1.79636503
+#&gt; attr(,&quot;scaled:center&quot;)
+#&gt;     hurdles    highjump        shot     run200m    longjump     javelin 
+#&gt;    2.687500    1.793750   13.173333    2.023750    6.205417   41.278333 
+#&gt;     run800m       score 
+#&gt;   28.516667 6154.125000 
+#&gt; attr(,&quot;scaled:scale&quot;)
+#&gt;      hurdles     highjump         shot      run200m     longjump 
+#&gt;   0.51456398   0.05232112   1.49714995   0.93676972   0.40165938 
+#&gt;      javelin      run800m        score 
+#&gt;   3.46870690   6.14724800 481.59755096</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Con los datos normalizados podemos realizar un análisis cluster</li>
 </ol>
@@ -742,72 +823,99 @@ plot(dend1)</code></pre>
 
 
 hep=heptathlon[-grep(&quot;PNG&quot;,rownames(heptathlon)),]
-hep</code></pre>
-<pre><code>##                     hurdles highjump  shot run200m longjump javelin run800m score
-## Joyner-Kersee (USA)    0.00     1.86 15.80    0.00     7.27   45.66    4.31  7291
-## John (GDR)             0.16     1.80 16.23    1.09     6.71   42.56    1.92  6897
-## Behmer (GDR)           0.51     1.83 14.20    0.54     6.68   44.54    0.00  6858
-## Sablovskaite (URS)     0.92     1.80 15.23    1.36     6.25   42.78    8.04  6540
-## Choubenkova (URS)      0.82     1.74 14.76    1.37     6.32   47.46    3.70  6540
-## Schulz (GDR)           1.06     1.83 13.50    2.09     6.33   42.82    1.59  6411
-## Fleming (AUS)          0.69     1.80 12.88    1.03     6.37   40.28    8.34  6351
-## Greiner (USA)          0.86     1.80 14.13    1.92     6.47   38.00    9.45  6297
-## Lajbnerova (CZE)       0.94     1.83 14.28    2.30     6.11   42.20   11.85  6252
-## Bouraga (URS)          0.56     1.77 12.62    1.03     6.28   39.06   10.54  6252
-## Wijnsma (HOL)          1.06     1.86 13.01    2.47     6.34   37.86    7.29  6205
-## Dimitrova (BUL)        0.55     1.80 12.88    1.03     6.37   40.28    8.34  6171
-## Scheider (SWI)         1.16     1.86 11.58    2.31     6.05   47.50   10.73  6137
-## Braun (FRG)            1.02     1.83 13.16    2.22     6.12   44.58   18.62  6109
-## Ruotsalainen (FIN)     1.10     1.80 12.32    2.05     6.08   45.44   12.86  6101
-## Yuping (CHN)           1.24     1.86 14.21    2.44     6.40   38.60   22.47  6087
-## Hagger (GB)            0.78     1.80 12.75    2.91     6.34   35.76   14.28  5975
-## Brown (USA)            1.38     1.83 12.69    2.27     6.13   44.34   22.23  5972
-## Mulliner (GB)          1.70     1.71 12.68    2.36     6.10   37.76   13.82  5746
-## Hautenauve (BEL)       1.35     1.77 11.81    3.05     5.99   35.68    9.70  5734
-## Kytola (FIN)           1.62     1.77 11.66    3.13     5.75   39.48    9.15  5686
-## Geremias (BRA)         1.54     1.71 12.95    2.94     5.50   39.64   19.82  5508
-## Hui-Ing (TAI)          2.16     1.68 10.00    2.67     5.47   39.14   13.10  5290
-## Jeong-Mi (KOR)         1.84     1.71 10.83    4.05     5.50   39.26   14.97  5289</code></pre>
-<pre class="r"><code>hep1=scale(hep)
+hep
+#&gt;                     hurdles highjump  shot run200m longjump javelin
+#&gt; Joyner-Kersee (USA)    3.73     1.86 15.80    4.05     7.27   45.66
+#&gt; John (GDR)             3.57     1.80 16.23    2.96     6.71   42.56
+#&gt; Behmer (GDR)           3.22     1.83 14.20    3.51     6.68   44.54
+#&gt; Sablovskaite (URS)     2.81     1.80 15.23    2.69     6.25   42.78
+#&gt; Choubenkova (URS)      2.91     1.74 14.76    2.68     6.32   47.46
+#&gt; Schulz (GDR)           2.67     1.83 13.50    1.96     6.33   42.82
+#&gt; Fleming (AUS)          3.04     1.80 12.88    3.02     6.37   40.28
+#&gt; Greiner (USA)          2.87     1.80 14.13    2.13     6.47   38.00
+#&gt; Lajbnerova (CZE)       2.79     1.83 14.28    1.75     6.11   42.20
+#&gt; Bouraga (URS)          3.17     1.77 12.62    3.02     6.28   39.06
+#&gt; Wijnsma (HOL)          2.67     1.86 13.01    1.58     6.34   37.86
+#&gt; Dimitrova (BUL)        3.18     1.80 12.88    3.02     6.37   40.28
+#&gt; Scheider (SWI)         2.57     1.86 11.58    1.74     6.05   47.50
+#&gt; Braun (FRG)            2.71     1.83 13.16    1.83     6.12   44.58
+#&gt; Ruotsalainen (FIN)     2.63     1.80 12.32    2.00     6.08   45.44
+#&gt; Yuping (CHN)           2.49     1.86 14.21    1.61     6.40   38.60
+#&gt; Hagger (GB)            2.95     1.80 12.75    1.14     6.34   35.76
+#&gt; Brown (USA)            2.35     1.83 12.69    1.78     6.13   44.34
+#&gt; Mulliner (GB)          2.03     1.71 12.68    1.69     6.10   37.76
+#&gt; Hautenauve (BEL)       2.38     1.77 11.81    1.00     5.99   35.68
+#&gt; Kytola (FIN)           2.11     1.77 11.66    0.92     5.75   39.48
+#&gt; Geremias (BRA)         2.19     1.71 12.95    1.11     5.50   39.64
+#&gt; Hui-Ing (TAI)          1.57     1.68 10.00    1.38     5.47   39.14
+#&gt; Jeong-Mi (KOR)         1.89     1.71 10.83    0.00     5.50   39.26
+#&gt;                     run800m score
+#&gt; Joyner-Kersee (USA)   34.92  7291
+#&gt; John (GDR)            37.31  6897
+#&gt; Behmer (GDR)          39.23  6858
+#&gt; Sablovskaite (URS)    31.19  6540
+#&gt; Choubenkova (URS)     35.53  6540
+#&gt; Schulz (GDR)          37.64  6411
+#&gt; Fleming (AUS)         30.89  6351
+#&gt; Greiner (USA)         29.78  6297
+#&gt; Lajbnerova (CZE)      27.38  6252
+#&gt; Bouraga (URS)         28.69  6252
+#&gt; Wijnsma (HOL)         31.94  6205
+#&gt; Dimitrova (BUL)       30.89  6171
+#&gt; Scheider (SWI)        28.50  6137
+#&gt; Braun (FRG)           20.61  6109
+#&gt; Ruotsalainen (FIN)    26.37  6101
+#&gt; Yuping (CHN)          16.76  6087
+#&gt; Hagger (GB)           24.95  5975
+#&gt; Brown (USA)           17.00  5972
+#&gt; Mulliner (GB)         25.41  5746
+#&gt; Hautenauve (BEL)      29.53  5734
+#&gt; Kytola (FIN)          30.08  5686
+#&gt; Geremias (BRA)        19.41  5508
+#&gt; Hui-Ing (TAI)         26.13  5290
+#&gt; Jeong-Mi (KOR)        24.26  5289
+hep1=scale(hep)
 
 
 modelo&lt;-princomp(hep1[,-8])
-summary(modelo)</code></pre>
-<pre><code>## Importance of components:
-##                           Comp.1    Comp.2    Comp.3     Comp.4     Comp.5     Comp.6
-## Standard deviation     2.0355565 0.9281898 0.8917226 0.66881197 0.53468878 0.33034975
-## Proportion of Variance 0.6176632 0.1284278 0.1185345 0.06667967 0.04261745 0.01626797
-## Cumulative Proportion  0.6176632 0.7460909 0.8646255 0.93130515 0.97392260 0.99019057
-##                             Comp.7
-## Standard deviation     0.256524732
-## Proportion of Variance 0.009809432
-## Cumulative Proportion  1.000000000</code></pre>
-<pre class="r"><code>modelo</code></pre>
-<pre><code>## Call:
-## princomp(x = hep1[, -8])
-## 
-## Standard deviations:
-##    Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
-## 2.0355565 0.9281898 0.8917226 0.6688120 0.5346888 0.3303497 0.2565247 
-## 
-##  7  variables and  24 observations.</code></pre>
-<pre class="r"><code>modelo$loadings</code></pre>
-<pre><code>## 
-## Loadings:
-##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
-## hurdles   0.450         0.174         0.199  0.847       
-## highjump -0.315  0.651 -0.209  0.557                0.332
-## shot     -0.402        -0.153 -0.548  0.672         0.229
-## run200m   0.427  0.185 -0.130  0.231  0.618 -0.333 -0.470
-## longjump -0.451        -0.270        -0.122  0.383 -0.749
-## javelin  -0.242  0.326  0.881                      -0.211
-## run800m   0.303  0.657 -0.193 -0.574 -0.319              
-## 
-##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
-## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000
-## Proportion Var  0.143  0.143  0.143  0.143  0.143  0.143  0.143
-## Cumulative Var  0.143  0.286  0.429  0.571  0.714  0.857  1.000</code></pre>
-<pre class="r"><code># modelo$scores PUNTAJES OBTENIDOS POR LAS VARIABLES EN CADA UNO DE LAS COMPOMPONENTES</code></pre>
+summary(modelo)
+#&gt; Importance of components:
+#&gt;                           Comp.1    Comp.2    Comp.3     Comp.4
+#&gt; Standard deviation     2.0355565 0.9281898 0.8917226 0.66881197
+#&gt; Proportion of Variance 0.6176632 0.1284278 0.1185345 0.06667967
+#&gt; Cumulative Proportion  0.6176632 0.7460909 0.8646255 0.93130515
+#&gt;                            Comp.5     Comp.6      Comp.7
+#&gt; Standard deviation     0.53468878 0.33034975 0.256524732
+#&gt; Proportion of Variance 0.04261745 0.01626797 0.009809432
+#&gt; Cumulative Proportion  0.97392260 0.99019057 1.000000000
+modelo
+#&gt; Call:
+#&gt; princomp(x = hep1[, -8])
+#&gt; 
+#&gt; Standard deviations:
+#&gt;    Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
+#&gt; 2.0355565 0.9281898 0.8917226 0.6688120 0.5346888 0.3303497 0.2565247 
+#&gt; 
+#&gt;  7  variables and  24 observations.
+modelo$loadings
+#&gt; 
+#&gt; Loadings:
+#&gt;          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
+#&gt; hurdles   0.450         0.174         0.199  0.847       
+#&gt; highjump  0.315 -0.651  0.209 -0.557               -0.332
+#&gt; shot      0.402         0.153  0.548 -0.672        -0.229
+#&gt; run200m   0.427  0.185 -0.130  0.231  0.618 -0.333 -0.470
+#&gt; longjump  0.451         0.270         0.122 -0.383  0.749
+#&gt; javelin   0.242 -0.326 -0.881                       0.211
+#&gt; run800m   0.303  0.657 -0.193 -0.574 -0.319              
+#&gt; 
+#&gt;                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
+#&gt; SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000
+#&gt; Proportion Var  0.143  0.143  0.143  0.143  0.143  0.143  0.143
+#&gt; Cumulative Var  0.143  0.286  0.429  0.571  0.714  0.857  1.000
+
+
+# modelo$scores PUNTAJES OBTENIDOS POR LAS VARIABLES EN CADA UNO DE LAS COMPOMPONENTES</code></pre>
 <p>Para efectos de escritura las variables fueron bautizadas así</p>
 <table>
 <thead>
@@ -874,9 +982,13 @@ summary(modelo)</code></pre>
 <p>Componente 6: <span class="math inline">\(\large Z_6=0.847X_1-0.333X_4-0.383X_5\)</span> explicando el 1.62% de la varianza</p>
 <p>Componente 7: <span class="math inline">\(\large Z_7=-0.33X_2-0.23X_3-0.47X_4+0.75X_5+0.211X_7\)</span> explicando el 0.9% de la varianza</p>
 <p>10.Los gráficos resultantes corresponden a:</p>
-<pre class="r"><code>screeplot(modelo)</code></pre>
+<pre class="r"><code>
+
+
+screeplot(modelo)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code>plot(modelo$scores[,1],modelo$scores[,2])
+<pre class="r"><code>
+plot(modelo$scores[,1],modelo$scores[,2])
 abline(h=0)
 abline(v=0)</code></pre>
 <p><img src="componentes_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
@@ -920,7 +1032,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

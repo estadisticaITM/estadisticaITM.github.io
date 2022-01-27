@@ -13,21 +13,12 @@
 
 <title>Análisis exploratorio de datos</title>
 
-<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -35,12 +26,12 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.2/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -69,6 +60,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -81,6 +77,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -91,6 +113,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -107,13 +133,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -141,7 +194,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -153,7 +206,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -164,23 +217,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -192,6 +232,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -323,7 +364,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
+<div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -394,7 +435,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -445,6 +486,38 @@ div.tocify {
 <p><strong>Parámetro:</strong> Valor descriptivo de la población</p>
 <p><strong>Estadístico:</strong> Valor descriptivo para una muestra</p>
 <p><strong>Base de datos:</strong> Colección de información organizada, de tal modo que sea fácilmente accesible, gestionada y actualizada</p>
+<p><strong>Almacenamiento de bases de datos</strong></p>
+<p>Las bases de datos Surgen de la necesidad de almacenar la información a través de la historia</p>
+<ol style="list-style-type: decimal">
+<li>Piedras, madera y arcilla, donde se escribian jeroglíficos.</li>
+</ol>
+<ul>
+<li>Los babilonios y mesopotámicos a través de la escritura cuneiforme que tallaban en tabletas y en rocas, al igual q los mallas</li>
+</ul>
+<p>-La cultura inca que escribian en un sistema de cuerdas anudadas.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/escritura.png" alt="Puntos atípicos" width="526" />
+<p class="caption">
+Puntos atípicos
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Papel</li>
+</ol>
+<p>Edad media: Códice Formato de libro, Se compone de pergaminos plegados, cosidos y encuadernados.</p>
+<p>El papel reemplazó progresivamente al pergamino, una herramienta más barata que permitió una difusión mas amplia, en la época moderna el códice fue hecho en papel</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Films</p></li>
+<li><p>Almacenamiento digital: bytes, tarjetas perforadas, CDs y memorias Actualmente es posible almacenar digitalmente en un disco compacto por ejemplo los datos que cabrian en miles de carpetas archivadas</p></li>
+<li><p>Nube: Se puede guardar y compartir un volumen de archivos ilimitados, asi como acceder a ellos desde cualquier dispositivo con acceso a internet</p></li>
+</ol>
+<p>A lo largo de la historia se ha buscado el sistema más pequeño físicamente con mayor capacidad de almacenamiento</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/nube.png" alt="Discos duros en la nube" width="669" />
+<p class="caption">
+Discos duros en la nube
+</p>
+</div>
 <p><strong>Punto atípico o outlier</strong> Son observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores. Los valores atípicos pueden ser indicativos de datos que pertenecen a una población diferente del resto de las muestras establecidas. Se pueden detectar con un análisis descriptivo, mediante diagramas de dispersión, boxplot o histograma.</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/manzana.png" alt="Puntos atípicos" width="280" />
@@ -578,17 +651,17 @@ fuma &lt;- c(&#39;NUNCA&#39;,&#39;1 ó 2 VECES&#39;,&#39;NUNCA&#39;,&#39;NUNCA&#
 
 # Tabla de resumen
 tabla=table(fuma)
-tabla</code></pre>
-<pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
-##          35          13          10          10          78</code></pre>
-<pre class="r"><code>#Añadir totales
+tabla
+#&gt; fuma
+#&gt; 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+#&gt;          35          13          10          10          78
+#Añadir totales
 Tab=addmargins(tabla)
-Tab</code></pre>
-<pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##          35          13          10          10          78         146</code></pre>
-<pre class="r"><code>kable(Tab,booktabs = TRUE)</code></pre>
+Tab
+#&gt; fuma
+#&gt; 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
+#&gt;          35          13          10          10          78         146
+kable(Tab,booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -623,20 +696,22 @@ Tab</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code># Tabla de proporciones o porcentajes
+<pre class="r"><code>
+# Tabla de proporciones o porcentajes
 
 Tab1=prop.table(table(fuma))
-Tab1</code></pre>
-<pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
-##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658</code></pre>
-<pre class="r"><code>#Añador totales
+Tab1
+#&gt; fuma
+#&gt; 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+#&gt;  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658
+
+#Añador totales
 Tab2=addmargins(Tab1)
-Tab2</code></pre>
-<pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000</code></pre>
-<pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
+Tab2
+#&gt; fuma
+#&gt; 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
+#&gt;  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000
+kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -673,16 +748,18 @@ Tab2</code></pre>
 </table>
 <pre class="r"><code>gen=c(&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;)
 # Tabla de resumen
-table(gen)</code></pre>
-<pre><code>## gen
-## Hombre  Mujer 
-##     93     53</code></pre>
-<pre class="r"><code>#añadir totales
-addmargins(table(gen))</code></pre>
-<pre><code>## gen
-## Hombre  Mujer    Sum 
-##     93     53    146</code></pre>
-<pre class="r"><code>kable(addmargins(table(gen)),booktabs = TRUE)</code></pre>
+table(gen)
+#&gt; gen
+#&gt; Hombre  Mujer 
+#&gt;     93     53
+
+#añadir totales
+addmargins(table(gen))
+#&gt; gen
+#&gt; Hombre  Mujer    Sum 
+#&gt;     93     53    146
+
+kable(addmargins(table(gen)),booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -707,11 +784,12 @@ addmargins(table(gen))</code></pre>
 </table>
 <pre class="r"><code># Tabla de proporciones o porcentajes
 
-addmargins(prop.table(table(gen)))</code></pre>
-<pre><code>## gen
-##    Hombre     Mujer       Sum 
-## 0.6369863 0.3630137 1.0000000</code></pre>
-<pre class="r"><code>kable(prop.table(table(gen))*100,booktabs = TRUE)</code></pre>
+addmargins(prop.table(table(gen)))
+#&gt; gen
+#&gt;    Hombre     Mujer       Sum 
+#&gt; 0.6369863 0.3630137 1.0000000
+
+kable(prop.table(table(gen))*100,booktabs = TRUE)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -770,75 +848,78 @@ Tabla de contingencia relativa por columnas
 <p><strong>Ejemplo 2</strong> La respuesta a la pregunta anterior la podemos encontrar realizando una tabla de contingencia o tabla de doble entrada</p>
 <pre class="r"><code>#tabla de frecuencia absoluta
 marco=table(fuma,gen)
-marco</code></pre>
-<pre><code>##              gen
-## fuma          Hombre Mujer
-##   1 ó 2 VECES     22    13
-##   A DIARIO        10     3
-##   CADA MES         7     3
-##   CADA SEMANA      5     5
-##   NUNCA           49    29</code></pre>
-<pre class="r"><code>##para añadir los totales de filas y columnas
-addmargins(marco)</code></pre>
-<pre><code>##              gen
-## fuma          Hombre Mujer Sum
-##   1 ó 2 VECES     22    13  35
-##   A DIARIO        10     3  13
-##   CADA MES         7     3  10
-##   CADA SEMANA      5     5  10
-##   NUNCA           49    29  78
-##   Sum             93    53 146</code></pre>
+marco
+#&gt;              gen
+#&gt; fuma          Hombre Mujer
+#&gt;   1 ó 2 VECES     22    13
+#&gt;   A DIARIO        10     3
+#&gt;   CADA MES         7     3
+#&gt;   CADA SEMANA      5     5
+#&gt;   NUNCA           49    29
+##para añadir los totales de filas y columnas
+addmargins(marco)
+#&gt;              gen
+#&gt; fuma          Hombre Mujer Sum
+#&gt;   1 ó 2 VECES     22    13  35
+#&gt;   A DIARIO        10     3  13
+#&gt;   CADA MES         7     3  10
+#&gt;   CADA SEMANA      5     5  10
+#&gt;   NUNCA           49    29  78
+#&gt;   Sum             93    53 146</code></pre>
 <p>Sin embargo con las frecuencias absolutas es difícil visualizar cual de los dos generos fuma con más frecuencia para ello hacemos uso de la frecuencia relativa</p>
 <pre class="r"><code>## Frecuencia relativa total
 marco=table(fuma,gen)
 marco2=prop.table(marco)
-marco2</code></pre>
-<pre><code>##              gen
-## fuma              Hombre      Mujer
-##   1 ó 2 VECES 0.15068493 0.08904110
-##   A DIARIO    0.06849315 0.02054795
-##   CADA MES    0.04794521 0.02054795
-##   CADA SEMANA 0.03424658 0.03424658
-##   NUNCA       0.33561644 0.19863014</code></pre>
-<pre class="r"><code>##para añadir los totales de filas y columnas
-addmargins(marco2)</code></pre>
-<pre><code>##              gen
-## fuma              Hombre      Mujer        Sum
-##   1 ó 2 VECES 0.15068493 0.08904110 0.23972603
-##   A DIARIO    0.06849315 0.02054795 0.08904110
-##   CADA MES    0.04794521 0.02054795 0.06849315
-##   CADA SEMANA 0.03424658 0.03424658 0.06849315
-##   NUNCA       0.33561644 0.19863014 0.53424658
-##   Sum         0.63698630 0.36301370 1.00000000</code></pre>
-<pre class="r"><code>##Frecuencia relativa por filas
+marco2
+#&gt;              gen
+#&gt; fuma              Hombre      Mujer
+#&gt;   1 ó 2 VECES 0.15068493 0.08904110
+#&gt;   A DIARIO    0.06849315 0.02054795
+#&gt;   CADA MES    0.04794521 0.02054795
+#&gt;   CADA SEMANA 0.03424658 0.03424658
+#&gt;   NUNCA       0.33561644 0.19863014
+
+##para añadir los totales de filas y columnas
+addmargins(marco2)
+#&gt;              gen
+#&gt; fuma              Hombre      Mujer        Sum
+#&gt;   1 ó 2 VECES 0.15068493 0.08904110 0.23972603
+#&gt;   A DIARIO    0.06849315 0.02054795 0.08904110
+#&gt;   CADA MES    0.04794521 0.02054795 0.06849315
+#&gt;   CADA SEMANA 0.03424658 0.03424658 0.06849315
+#&gt;   NUNCA       0.33561644 0.19863014 0.53424658
+#&gt;   Sum         0.63698630 0.36301370 1.00000000
+
+##Frecuencia relativa por filas
 tabla3=prop.table(table(fuma,gen),margin=1)
-addmargins(tabla3, margin=2)</code></pre>
-<pre><code>##              gen
-## fuma             Hombre     Mujer       Sum
-##   1 ó 2 VECES 0.6285714 0.3714286 1.0000000
-##   A DIARIO    0.7692308 0.2307692 1.0000000
-##   CADA MES    0.7000000 0.3000000 1.0000000
-##   CADA SEMANA 0.5000000 0.5000000 1.0000000
-##   NUNCA       0.6282051 0.3717949 1.0000000</code></pre>
-<pre class="r"><code>##Frecuencia relativa por COLUMNAS
+addmargins(tabla3, margin=2)
+#&gt;              gen
+#&gt; fuma             Hombre     Mujer       Sum
+#&gt;   1 ó 2 VECES 0.6285714 0.3714286 1.0000000
+#&gt;   A DIARIO    0.7692308 0.2307692 1.0000000
+#&gt;   CADA MES    0.7000000 0.3000000 1.0000000
+#&gt;   CADA SEMANA 0.5000000 0.5000000 1.0000000
+#&gt;   NUNCA       0.6282051 0.3717949 1.0000000
+
+##Frecuencia relativa por COLUMNAS
 tabla4=prop.table(table(fuma,gen),margin=2)
-tabla4</code></pre>
-<pre><code>##              gen
-## fuma              Hombre      Mujer
-##   1 ó 2 VECES 0.23655914 0.24528302
-##   A DIARIO    0.10752688 0.05660377
-##   CADA MES    0.07526882 0.05660377
-##   CADA SEMANA 0.05376344 0.09433962
-##   NUNCA       0.52688172 0.54716981</code></pre>
-<pre class="r"><code>addmargins(tabla4, margin=1)</code></pre>
-<pre><code>##              gen
-## fuma              Hombre      Mujer
-##   1 ó 2 VECES 0.23655914 0.24528302
-##   A DIARIO    0.10752688 0.05660377
-##   CADA MES    0.07526882 0.05660377
-##   CADA SEMANA 0.05376344 0.09433962
-##   NUNCA       0.52688172 0.54716981
-##   Sum         1.00000000 1.00000000</code></pre>
+tabla4
+#&gt;              gen
+#&gt; fuma              Hombre      Mujer
+#&gt;   1 ó 2 VECES 0.23655914 0.24528302
+#&gt;   A DIARIO    0.10752688 0.05660377
+#&gt;   CADA MES    0.07526882 0.05660377
+#&gt;   CADA SEMANA 0.05376344 0.09433962
+#&gt;   NUNCA       0.52688172 0.54716981
+addmargins(tabla4, margin=1)
+#&gt;              gen
+#&gt; fuma              Hombre      Mujer
+#&gt;   1 ó 2 VECES 0.23655914 0.24528302
+#&gt;   A DIARIO    0.10752688 0.05660377
+#&gt;   CADA MES    0.07526882 0.05660377
+#&gt;   CADA SEMANA 0.05376344 0.09433962
+#&gt;   NUNCA       0.52688172 0.54716981
+#&gt;   Sum         1.00000000 1.00000000</code></pre>
 <p><strong>Video</strong> (ver hasta el minuto 9:20, lo siguiente es de probabilidades)</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/xWQun-Lyk7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -868,15 +949,16 @@ tabla4</code></pre>
 library(ggplot2)
 
 #Base de datos
-head(mtcars)</code></pre>
-<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<pre class="r"><code>#Creación de tabla de frcuencia absoluta
+head(mtcars)
+#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+#Creación de tabla de frcuencia absoluta
 j=(table(mtcars$cyl))
 
 #creación de porcentajes
@@ -922,10 +1004,12 @@ kable(m,caption = &quot;Frecuencia del número de cilindros&quot;,booktabs = TRU
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>barplot(j,col=&#39;#4168c3&#39;,ylab=&quot;Frecuencia absoluta&quot;, xlab=&quot;Número de cilindros&quot;)
+<pre class="r"><code>
+barplot(j,col=&#39;#4168c3&#39;,ylab=&quot;Frecuencia absoluta&quot;, xlab=&quot;Número de cilindros&quot;)
 box()</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>#Gráfico de tortas
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>
+#Gráfico de tortas
 
 bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
               fill=m$cilindros))+ 
@@ -934,12 +1018,13 @@ bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
        scale_fill_manual(values=c(&quot;salmon&quot;,&quot;steelblue&quot;,&quot;gray&quot;))+theme_void()+  labs(title=&quot;Gráfico de torta&quot;)+
   geom_text(aes(label=porcentajes*100),
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
-bar</code></pre>
-<pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
+bar
+#&gt; Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
 
-## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
-<pre class="r"><code>#Gráfico de donas
+#&gt; Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<pre class="r"><code>
+#Gráfico de donas
 
 bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
               fill=m$cilindros))+ 
@@ -948,11 +1033,11 @@ bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
        scale_fill_manual(values=c(&quot;salmon&quot;,&quot;steelblue&quot;,&quot;gray&quot;))+theme_void()+  labs(title=&quot;Gráfico de donas&quot;)+xlim(0.5,2.5)+
   geom_text(aes(label=porcentajes*100),
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
-bar1</code></pre>
-<pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
+bar1
+#&gt; Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
 
-## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+#&gt; Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
 <p><strong>Algunos videos que sirven de ejemplo</strong></p>
 <p><strong>Ejemplo 1</strong></p>
 <div style="text-align: center;">
@@ -998,12 +1083,13 @@ bar1</code></pre>
 <p><strong>Ejemplo en R</strong></p>
 <p>La siguiente base de datos representa los precios de cierre diarios del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998, los datos se muestrean en horario comercial, es decir, se omiten los fines de semana y feriados. para un total de 1860 observaciones. Los datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
 <p>La serie de tiempo con su respectiva descomposición se enlistan a continuación.</p>
-<pre class="r"><code>tsData &lt;- EuStockMarkets[,1] # ts data
+<pre class="r"><code>
+tsData &lt;- EuStockMarkets[,1] # ts data
 plot(tsData,col=4)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>decomposedRes &lt;- decompose(tsData, type=&quot;mult&quot;) # use type = &quot;additive&quot; for additive components
 plot (decomposedRes,col=4) # see plot below</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 </div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
@@ -1031,8 +1117,8 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-b5428dc267e975fad0ad" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b5428dc267e975fad0ad">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"e70512a48aa":{"x":{},"y":{},"colour":{},"type":"scatter"},"e707fd32fac":{"x":{},"y":{},"colour":{}}},"cur_data":"e70512a48aa","visdat":{"e70512a48aa":["function (y) ","x"],"e707fd32fac":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5fd8835d9fa1b6515178" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5fd8835d9fa1b6515178">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"310733e7db2":{"x":{},"y":{},"colour":{},"type":"scatter"},"3106131114f":{"x":{},"y":{},"colour":{}}},"cur_data":"310733e7db2","visdat":{"310733e7db2":["function (y) ","x"],"3106131114f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Ejemplo en excel</strong></p>
 <p>Se tienen los precios de la zanahoria en las plazas de mercado de 3 ciudades diferentes</p>
 <table>
@@ -1512,61 +1598,66 @@ fig</code></pre>
 library(ggplot2)
 
 #Base de datos
-head(mtcars)</code></pre>
-<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<pre class="r"><code>#resumen de todas las variables de la base de datos
-summary(mtcars)</code></pre>
-<pre><code>##       mpg             cyl             disp             hp             drat      
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930  
-##        wt             qsec             vs               am              gear      
-##  Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000   Min.   :3.000  
-##  1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:3.000  
-##  Median :3.325   Median :17.71   Median :0.0000   Median :0.0000   Median :4.000  
-##  Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062   Mean   :3.688  
-##  3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000  
-##  Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000   Max.   :5.000  
-##       carb      
-##  Min.   :1.000  
-##  1st Qu.:2.000  
-##  Median :2.000  
-##  Mean   :2.812  
-##  3rd Qu.:4.000  
-##  Max.   :8.000</code></pre>
-<pre class="r"><code>#millas por galón
+head(mtcars)
+#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+#resumen de todas las variables de la base de datos
+summary(mtcars)
+#&gt;       mpg             cyl             disp             hp       
+#&gt;  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+#&gt;  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+#&gt;  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+#&gt;  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+#&gt;  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+#&gt;  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+#&gt;       drat             wt             qsec             vs        
+#&gt;  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+#&gt;  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+#&gt;  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+#&gt;  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+#&gt;  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+#&gt;  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+#&gt;        am              gear            carb      
+#&gt;  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+#&gt;  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+#&gt;  Median :0.0000   Median :4.000   Median :2.000  
+#&gt;  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+#&gt;  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+#&gt;  Max.   :1.0000   Max.   :5.000   Max.   :8.000
+
+#millas por galón
 mpg=mtcars[,1]
 
 #media de las millas por galón
-mean(mpg)</code></pre>
-<pre><code>## [1] 20.09062</code></pre>
-<pre class="r"><code>#desviación estándar
-sd(mpg)</code></pre>
-<pre><code>## [1] 6.026948</code></pre>
-<pre class="r"><code>##Media de mpg según elnúmero de cilindros
+mean(mpg)
+#&gt; [1] 20.09062
+
+#desviación estándar
+sd(mpg)
+#&gt; [1] 6.026948
+
+##Media de mpg según elnúmero de cilindros
 # Usually, you&#39;ll want to group first
 mtcars %&gt;%
   group_by(cyl) %&gt;%
-  summarise(mean = mean(mpg))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 3 x 2
-##     cyl  mean
-##   &lt;dbl&gt; &lt;dbl&gt;
-## 1     4  26.7
-## 2     6  19.7
-## 3     8  15.1</code></pre>
-<pre class="r"><code>#boxplot
+  summarise(mean = mean(mpg))
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)
+#&gt; # A tibble: 3 x 2
+#&gt;     cyl  mean
+#&gt;   &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1     4  26.7
+#&gt; 2     6  19.7
+#&gt; 3     8  15.1
+
+#boxplot
 boxplot(mtcars[,1]~mtcars[,2],xlab=&quot;cilindros&quot;,ylab=&quot;mpg&quot;,col =&quot;pink&quot;)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="medidas-de-forma" class="section level2">
 <h2>Medidas de forma</h2>
@@ -1607,7 +1698,7 @@ tmp &lt;- rbind(data.frame(origen = &quot;a&quot;, dato = a),
              data.frame(origen = &quot;b&quot;, dato = b))
 ggplot(tmp, aes(x = dato, fill = origen)) +
   geom_density(alpha = 0.3)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><em>Medidas de tendencia central en tablas de frecuencia</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1840,50 +1931,51 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 <pre class="r"><code>#install.packages(&quot;janitor&quot;)
 library(dplyr)
 
-head(iris)</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<pre class="r"><code>#SE ESCOGE LA VARIABLE LARGO DE SEPALO
+head(iris)
+#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1          5.1         3.5          1.4         0.2  setosa
+#&gt; 2          4.9         3.0          1.4         0.2  setosa
+#&gt; 3          4.7         3.2          1.3         0.2  setosa
+#&gt; 4          4.6         3.1          1.5         0.2  setosa
+#&gt; 5          5.0         3.6          1.4         0.2  setosa
+#&gt; 6          5.4         3.9          1.7         0.4  setosa
+#SE ESCOGE LA VARIABLE LARGO DE SEPALO
 
 iris %&gt;% 
   group_by(iris$Sepal.Length) %&gt;% 
-  summarise(frequency = n())</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 35 x 2
-##    `iris$Sepal.Length` frequency
-##                  &lt;dbl&gt;     &lt;int&gt;
-##  1                 4.3         1
-##  2                 4.4         3
-##  3                 4.5         1
-##  4                 4.6         4
-##  5                 4.7         2
-##  6                 4.8         5
-##  7                 4.9         6
-##  8                 5          10
-##  9                 5.1         9
-## 10                 5.2         4
-## # ... with 25 more rows</code></pre>
+  summarise(frequency = n())
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)
+#&gt; # A tibble: 35 x 2
+#&gt;    `iris$Sepal.Length` frequency
+#&gt;                  &lt;dbl&gt;     &lt;int&gt;
+#&gt;  1                 4.3         1
+#&gt;  2                 4.4         3
+#&gt;  3                 4.5         1
+#&gt;  4                 4.6         4
+#&gt;  5                 4.7         2
+#&gt;  6                 4.8         5
+#&gt;  7                 4.9         6
+#&gt;  8                 5          10
+#&gt;  9                 5.1         9
+#&gt; 10                 5.2         4
+#&gt; # ... with 25 more rows</code></pre>
 <p>La salida de R no muestra todas las entradas, porque son 35 valores diferentes, conviene agruparlos, por intervalos de frecuencias.</p>
 <pre class="r"><code>iris %&gt;% 
   mutate(sepal_length_group = cut(iris$Sepal.Length, breaks = 5)) %&gt;% 
   group_by(sepal_length_group) %&gt;% 
-  summarise(frequency = n())</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 5 x 2
-##   sepal_length_group frequency
-##   &lt;fct&gt;                  &lt;int&gt;
-## 1 (4.3,5.02]                32
-## 2 (5.02,5.74]               41
-## 3 (5.74,6.46]               42
-## 4 (6.46,7.18]               24
-## 5 (7.18,7.9]                11</code></pre>
+  summarise(frequency = n())
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)
+#&gt; # A tibble: 5 x 2
+#&gt;   sepal_length_group frequency
+#&gt;   &lt;fct&gt;                  &lt;int&gt;
+#&gt; 1 (4.3,5.02]                32
+#&gt; 2 (5.02,5.74]               41
+#&gt; 3 (5.74,6.46]               42
+#&gt; 4 (6.46,7.18]               24
+#&gt; 5 (7.18,7.9]                11</code></pre>
 <p>Podemos agregar una columna más a la tabla de frecuencias, acumulando las frecuencias para cada clase, utilizando la función cumsum.</p>
-<pre class="r"><code>breaks &lt;- seq(from = 4, to = 8, by = 1)
+<pre class="r"><code>
+breaks &lt;- seq(from = 4, to = 8, by = 1)
 
 iris %&gt;% 
   mutate(
@@ -1891,15 +1983,15 @@ iris %&gt;%
   ) %&gt;% 
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n()) %&gt;% 
-  mutate(cum_frequency = cumsum(frequency))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 4 x 3
-##   sepal_length_group frequency cum_frequency
-##   &lt;fct&gt;                  &lt;int&gt;         &lt;int&gt;
-## 1 (4,5]                     32            32
-## 2 (5,6]                     57            89
-## 3 (6,7]                     49           138
-## 4 (7,8]                     12           150</code></pre>
+  mutate(cum_frequency = cumsum(frequency))
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)
+#&gt; # A tibble: 4 x 3
+#&gt;   sepal_length_group frequency cum_frequency
+#&gt;   &lt;fct&gt;                  &lt;int&gt;         &lt;int&gt;
+#&gt; 1 (4,5]                     32            32
+#&gt; 2 (5,6]                     57            89
+#&gt; 3 (6,7]                     49           138
+#&gt; 4 (7,8]                     12           150</code></pre>
 <pre class="r"><code>#&quot;install.packages(ggplot2)
 library(ggplot2)
 breaks &lt;- seq(from = 4, to = 8, by = 1)
@@ -1909,9 +2001,9 @@ iris %&gt;%
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n()) %&gt;% 
   ggplot() +
-  geom_bar(aes(x = sepal_length_group, y = frequency), stat = &#39;identity&#39;,col=3)</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+  geom_bar(aes(x = sepal_length_group, y = frequency), stat = &#39;identity&#39;,col=3)
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p><strong>Analisis de datos agrupados</strong></p>
 <p>medidas de tendencia central en datos agrupados</p>
 <div style="text-align: center;">
@@ -1961,7 +2053,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

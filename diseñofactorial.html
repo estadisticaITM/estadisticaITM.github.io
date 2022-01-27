@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -59,6 +50,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -71,6 +67,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -81,6 +103,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,13 +123,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -131,7 +184,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -143,7 +196,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -154,23 +207,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -182,6 +222,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -305,7 +346,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -453,14 +494,29 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     fill1, naft, resp</code></pre>
-<pre><code>## The following objects are masked from d1 (pos = 16):
-## 
-##     fill1, naft, resp</code></pre>
+<pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 9):
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 16):
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 23):
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 30):
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 38):
+#&gt; 
+#&gt;     fill1, naft, resp
+#&gt; The following objects are masked from d1 (pos = 44):
+#&gt; 
+#&gt;     fill1, naft, resp</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code>## NULL</code></pre>
+<pre><code>#&gt; NULL</code></pre>
 <p>De la figura anterior se observa que:</p>
 <ul>
 <li><p>A medida que el relleno aumenta de 0 a 60, la viscosidad aumenta a lo largo de una tendencia bastante lineal.</p></li>
@@ -819,72 +875,222 @@ $(document).ready(function () {
 <ol start="2" style="list-style-type: decimal">
 <li>Haga un análisis descriptivo de los datos.</li>
 </ol>
-<pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 4):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 13):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 14):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 15):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 16):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 18):
-## 
-##     tiempo</code></pre>
+<pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 4):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 6):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 7):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 8):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 9):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 11):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 13):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 14):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 15):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 16):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 18):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 20):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 21):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 22):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 23):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 25):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 27):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 28):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 29):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 30):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 32):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 35):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 36):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 37):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 38):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 40):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 41):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 42):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 43):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 44):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 46):
+#&gt; 
+#&gt;     tiempo</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<pre><code>##   marca tecnico tiempo
-## 1     1       1   59.8
-## 2     2       1   47.8
-## 3     3       1   58.4
-## 4     1       2   48.4
-## 5     2       2   61.2
-## 6     3       2   56.2
-## 7     1       3   60.2
-## 8     2       3   60.8
-## 9     3       3   49.6</code></pre>
+<pre><code>#&gt;   marca tecnico tiempo
+#&gt; 1     1       1   59.8
+#&gt; 2     2       1   47.8
+#&gt; 3     3       1   58.4
+#&gt; 4     1       2   48.4
+#&gt; 5     2       2   61.2
+#&gt; 6     3       2   56.2
+#&gt; 7     1       3   60.2
+#&gt; 8     2       3   60.8
+#&gt; 9     3       3   49.6</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Determine si la interacción es significativa. Escriba la expresión empleada para calcular el valor p. Emplee un nivel de significancia de 0.05 en todas las pruebas.</li>
 </ol>
-<pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 3):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 5):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 14):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 15):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 16):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 17):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 19):
-## 
-##     tiempo</code></pre>
-<pre><code>##               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## marca          2   28.3   14.16   0.272 0.763283    
-## tecnico        2   24.6   12.29   0.236 0.790779    
-## marca:tecnico  4 1215.3  303.82   5.841 0.000994 ***
-## Residuals     36 1872.4   52.01                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 3):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 5):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 7):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 8):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 9):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 10):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 12):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 14):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 15):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 16):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 17):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 19):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 21):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 22):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 23):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 24):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 26):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 28):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 29):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 30):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 31):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 33):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 36):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 37):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 38):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 39):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 41):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 42):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 43):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 44):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 45):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 47):
+#&gt; 
+#&gt;     tiempo
+#&gt;               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+#&gt; marca          2   28.3   14.16   0.272 0.763283    
+#&gt; tecnico        2   24.6   12.29   0.236 0.790779    
+#&gt; marca:tecnico  4 1215.3  303.82   5.841 0.000994 ***
+#&gt; Residuals     36 1872.4   52.01                     
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>##<strong>Significancia de la interacción AB</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong> La interacción entre técnico y marca no es significativa:</li>
@@ -921,83 +1127,158 @@ $(document).ready(function () {
 <li>Construya la tabla de medias por tratamiento.</li>
 </ol>
 <p>Medias de tratamientos técnico*marca e I.C. del 95%.</p>
-<pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 3):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 4):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 6):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 15):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 16):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 17):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 18):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 20):
-## 
-##     tiempo</code></pre>
-<pre><code>##               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## marca          2   28.3   14.16   0.272 0.763283    
-## tecnico        2   24.6   12.29   0.236 0.790779    
-## marca:tecnico  4 1215.3  303.82   5.841 0.000994 ***
-## Residuals     36 1872.4   52.01                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre><code>##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
-## 
-## Fit: aov(formula = tiempo ~ marca * tecnico)
-## 
-## $`marca:tecnico`
-##          diff       lwr      upr     p adj
-## 2:1-1:1 -12.0 -27.03865  3.03865 0.2095773
-## 3:1-1:1  -1.4 -16.43865 13.63865 0.9999970
-## 1:2-1:1 -11.4 -26.43865  3.63865 0.2658953
-## 2:2-1:1   1.4 -13.63865 16.43865 0.9999970
-## 3:2-1:1  -3.6 -18.63865 11.43865 0.9965056
-## 1:3-1:1   0.4 -14.63865 15.43865 1.0000000
-## 2:3-1:1   1.0 -14.03865 16.03865 0.9999998
-## 3:3-1:1 -10.2 -25.23865  4.83865 0.4054029
-## 3:1-2:1  10.6  -4.43865 25.63865 0.3552211
-## 1:2-2:1   0.6 -14.43865 15.63865 1.0000000
-## 2:2-2:1  13.4  -1.63865 28.43865 0.1130579
-## 3:2-2:1   8.4  -6.63865 23.43865 0.6555252
-## 1:3-2:1  12.4  -2.63865 27.43865 0.1771874
-## 2:3-2:1  13.0  -2.03865 28.03865 0.1359755
-## 3:3-2:1   1.8 -13.23865 16.83865 0.9999787
-## 1:2-3:1 -10.0 -25.03865  5.03865 0.4316582
-## 2:2-3:1   2.8 -12.23865 17.83865 0.9994109
-## 3:2-3:1  -2.2 -17.23865 12.83865 0.9999018
-## 1:3-3:1   1.8 -13.23865 16.83865 0.9999787
-## 2:3-3:1   2.4 -12.63865 17.43865 0.9998112
-## 3:3-3:1  -8.8 -23.83865  6.23865 0.5990906
-## 2:2-1:2  12.8  -2.23865 27.83865 0.1487668
-## 3:2-1:2   7.8  -7.23865 22.83865 0.7366003
-## 1:3-1:2  11.8  -3.23865 26.83865 0.2273106
-## 2:3-1:2  12.4  -2.63865 27.43865 0.1771874
-## 3:3-1:2   1.2 -13.83865 16.23865 0.9999991
-## 3:2-2:2  -5.0 -20.03865 10.03865 0.9710966
-## 1:3-2:2  -1.0 -16.03865 14.03865 0.9999998
-## 2:3-2:2  -0.4 -15.43865 14.63865 1.0000000
-## 3:3-2:2 -11.6 -26.63865  3.43865 0.2460831
-## 1:3-3:2   4.0 -11.03865 19.03865 0.9928966
-## 2:3-3:2   4.6 -10.43865 19.63865 0.9825836
-## 3:3-3:2  -6.6 -21.63865  8.43865 0.8715885
-## 2:3-1:3   0.6 -14.43865 15.63865 1.0000000
-## 3:3-1:3 -10.6 -25.63865  4.43865 0.3552211
-## 3:3-2:3 -11.2 -26.23865  3.83865 0.2867388</code></pre>
+<pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 3):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 4):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 6):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 8):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 9):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 10):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 11):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 13):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 15):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 16):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 17):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 18):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 20):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 22):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 23):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 24):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 25):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 27):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 29):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 30):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 31):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 32):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 34):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 37):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 38):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 39):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 40):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 42):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 43):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 44):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 45):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 46):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 48):
+#&gt; 
+#&gt;     tiempo
+#&gt;               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+#&gt; marca          2   28.3   14.16   0.272 0.763283    
+#&gt; tecnico        2   24.6   12.29   0.236 0.790779    
+#&gt; marca:tecnico  4 1215.3  303.82   5.841 0.000994 ***
+#&gt; Residuals     36 1872.4   52.01                     
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt;   Tukey multiple comparisons of means
+#&gt;     95% family-wise confidence level
+#&gt; 
+#&gt; Fit: aov(formula = tiempo ~ marca * tecnico)
+#&gt; 
+#&gt; $`marca:tecnico`
+#&gt;          diff       lwr      upr     p adj
+#&gt; 2:1-1:1 -12.0 -27.03865  3.03865 0.2095773
+#&gt; 3:1-1:1  -1.4 -16.43865 13.63865 0.9999970
+#&gt; 1:2-1:1 -11.4 -26.43865  3.63865 0.2658953
+#&gt; 2:2-1:1   1.4 -13.63865 16.43865 0.9999970
+#&gt; 3:2-1:1  -3.6 -18.63865 11.43865 0.9965056
+#&gt; 1:3-1:1   0.4 -14.63865 15.43865 1.0000000
+#&gt; 2:3-1:1   1.0 -14.03865 16.03865 0.9999998
+#&gt; 3:3-1:1 -10.2 -25.23865  4.83865 0.4054029
+#&gt; 3:1-2:1  10.6  -4.43865 25.63865 0.3552211
+#&gt; 1:2-2:1   0.6 -14.43865 15.63865 1.0000000
+#&gt; 2:2-2:1  13.4  -1.63865 28.43865 0.1130579
+#&gt; 3:2-2:1   8.4  -6.63865 23.43865 0.6555252
+#&gt; 1:3-2:1  12.4  -2.63865 27.43865 0.1771874
+#&gt; 2:3-2:1  13.0  -2.03865 28.03865 0.1359755
+#&gt; 3:3-2:1   1.8 -13.23865 16.83865 0.9999787
+#&gt; 1:2-3:1 -10.0 -25.03865  5.03865 0.4316582
+#&gt; 2:2-3:1   2.8 -12.23865 17.83865 0.9994109
+#&gt; 3:2-3:1  -2.2 -17.23865 12.83865 0.9999018
+#&gt; 1:3-3:1   1.8 -13.23865 16.83865 0.9999787
+#&gt; 2:3-3:1   2.4 -12.63865 17.43865 0.9998112
+#&gt; 3:3-3:1  -8.8 -23.83865  6.23865 0.5990906
+#&gt; 2:2-1:2  12.8  -2.23865 27.83865 0.1487668
+#&gt; 3:2-1:2   7.8  -7.23865 22.83865 0.7366003
+#&gt; 1:3-1:2  11.8  -3.23865 26.83865 0.2273106
+#&gt; 2:3-1:2  12.4  -2.63865 27.43865 0.1771874
+#&gt; 3:3-1:2   1.2 -13.83865 16.23865 0.9999991
+#&gt; 3:2-2:2  -5.0 -20.03865 10.03865 0.9710966
+#&gt; 1:3-2:2  -1.0 -16.03865 14.03865 0.9999998
+#&gt; 2:3-2:2  -0.4 -15.43865 14.63865 1.0000000
+#&gt; 3:3-2:2 -11.6 -26.63865  3.43865 0.2460831
+#&gt; 1:3-3:2   4.0 -11.03865 19.03865 0.9928966
+#&gt; 2:3-3:2   4.6 -10.43865 19.63865 0.9825836
+#&gt; 3:3-3:2  -6.6 -21.63865  8.43865 0.8715885
+#&gt; 2:3-1:3   0.6 -14.43865 15.63865 1.0000000
+#&gt; 3:3-1:3 -10.6 -25.63865  4.43865 0.3552211
+#&gt; 3:3-2:3 -11.2 -26.23865  3.83865 0.2867388</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
 <p>note que en este caso no se obtienen diferencias significativas entre tratamientos, no porque no existan tales diferencias, sino porque se pierde potencia en este procedimiento con un número tan grande de comparaciones.</p>
 <p>Aquí las medias de tratamiento <span class="math inline">\(\Large \mu_{11},\mu_{13}, \mu_{21},\mu_{22},\mu_{23},\mu_{31},\mu_{32},\mu_{33}\)</span> son etiquetadas, respectivamente, como <span class="math inline">\(i:j\)</span>, así, por ejemplo, en la comparación 2:1 – 1:1 hace referencia a la diferencia de las medias <span class="math inline">\(\Large \mu_{21}\)</span> y <span class="math inline">\(\Large \mu_{11}\)</span></p>
@@ -1057,62 +1338,137 @@ $(document).ready(function () {
 <p>Donde: <span class="math display">\[\Large MS_{B|A3}=n \frac {\sum_{i=1}^a(\bar y_{3j\bullet}-\bar y_{3\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 3.</p>
 <p><span class="math display">\[\Large VP=P(f_{2,36}&gt;3.82)=0.0314\]</span></p>
 <p>Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 3 los tiempos promedios de reparación por unidad de al menos dos de las tres marcas son diferentes.</p>
-<pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 3):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 4):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 5):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 7):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 16):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 17):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 18):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following objects are masked from base (pos = 19):
-## 
-##     marca, tecnico, tiempo</code></pre>
-<pre><code>## The following object is masked from ensamble (pos = 21):
-## 
-##     tiempo</code></pre>
-<pre><code>## Efectos Técnico*Marca sobre respuesta Tiempo particionados por
-## Marca</code></pre>
-<pre><code>##           Df   Sum Sq  Mean Sq       F0     P.Value
-## En Marca1  2 448.9333 224.4667 4.315744 0.020888163
-## En Marca2  2 581.2000 290.6000 5.587268 0.007703847
-## En Marca3  2 209.7333 104.8667 2.016236 0.147918236</code></pre>
-<pre><code>## Efectos Técnico*Marca sobre respuesta Tiempo particionados por
-## Técnico</code></pre>
-<pre><code>##             Df   Sum Sq  Mean Sq       F0    P.Value
-## En Técnico1  2 430.5333 215.2667 4.138859 0.02410520
-## En Técnico2  2 416.1333 208.0667 4.000427 0.02698640
-## En Técnico3  2 396.9333 198.4667 3.815851 0.03140553</code></pre>
-<pre><code>##             Df   Sum Sq  Mean Sq       F0    P.Value
-## En Técnico1  2 430.5333 215.2667 4.138859 0.02410520
-## En Técnico2  2 416.1333 208.0667 4.000427 0.02698640
-## En Técnico3  2 396.9333 198.4667 3.815851 0.03140553</code></pre>
+<pre><code>#&gt; The following objects are masked _by_ .GlobalEnv:
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 3):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 4):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 5):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 7):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 9):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 10):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 11):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 12):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 14):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 16):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 17):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 18):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 19):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 21):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 23):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 24):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 25):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 26):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 28):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 30):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 31):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 32):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 33):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 35):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 38):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 39):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 40):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 41):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 43):
+#&gt; 
+#&gt;     tiempo
+#&gt; The following objects are masked from base (pos = 44):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 45):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 46):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following objects are masked from base (pos = 47):
+#&gt; 
+#&gt;     marca, tecnico, tiempo
+#&gt; The following object is masked from ensamble (pos = 49):
+#&gt; 
+#&gt;     tiempo
+#&gt; Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+#&gt; Marca
+#&gt;           Df   Sum Sq  Mean Sq       F0     P.Value
+#&gt; En Marca1  2 448.9333 224.4667 4.315744 0.020888163
+#&gt; En Marca2  2 581.2000 290.6000 5.587268 0.007703847
+#&gt; En Marca3  2 209.7333 104.8667 2.016236 0.147918236
+#&gt; Efectos Técnico*Marca sobre respuesta Tiempo particionados por
+#&gt; Técnico
+#&gt;             Df   Sum Sq  Mean Sq       F0    P.Value
+#&gt; En Técnico1  2 430.5333 215.2667 4.138859 0.02410520
+#&gt; En Técnico2  2 416.1333 208.0667 4.000427 0.02698640
+#&gt; En Técnico3  2 396.9333 198.4667 3.815851 0.03140553
+#&gt;             Df   Sum Sq  Mean Sq       F0    P.Value
+#&gt; En Técnico1  2 430.5333 215.2667 4.138859 0.02410520
+#&gt; En Técnico2  2 416.1333 208.0667 4.000427 0.02698640
+#&gt; En Técnico3  2 396.9333 198.4667 3.815851 0.03140553</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Valide supuestos sobre los errores del modelo (varianza cte. y normalidad)</li>
 </ol>
-<pre class="r"><code>shapiro.test(residuals(model))</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  residuals(model)
-## W = 0.96922, p-value = 0.2712</code></pre>
-<pre class="r"><code>nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
+<pre class="r"><code>shapiro.test(residuals(model))
+#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  residuals(model)
+#&gt; W = 0.96922, p-value = 0.2712
+nf=layout(rbind(c(1,1,2,2),c(3,3,4,4)))
 
 plot(fitted(model),rstudent(model),cex=2,main=&quot;Residuales estudentizados vs. valores ajustados&quot;,xlab=&quot;Valores ajustados&quot;)
 abline(h=c(-2,0,2),col=2)
@@ -1126,7 +1482,8 @@ abline(h=c(-2,0,2),col=2)
 qqnorm(residuals(model),cex=2)
 qqline(residuals(model),col=2)</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre class="r"><code>plot(model)</code></pre>
+<pre class="r"><code>
+plot(model)</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p><strong>Código gerneral</strong></p>
 <pre class="r"><code>##Análisis descriptivo de los datos
@@ -1227,7 +1584,8 @@ cat(&quot;Efectos Técnico*Marca sobre respuesta Tiempo particionados por
 Técnico&quot;,&quot;\n&quot;);Slice_marcas_por_Técnico
 
 
-Slice_marcas_por_Técnico</code></pre>
+Slice_marcas_por_Técnico
+</code></pre>
 <p><strong>Ejemplo de un diseño con tres factores de efectos fijos </strong></p>
 </div>
 
@@ -1262,7 +1620,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>
