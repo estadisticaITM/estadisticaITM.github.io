@@ -492,19 +492,19 @@ div.tocify {
 </ul>
 <p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14 sobrevivan.</p>
 <p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta es:</strong></p>
-<pre class="r"><code>dbinom(14,size=20, prob=0.8)
-#&gt; [1] 0.1090997</code></pre>
+<pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
+<pre><code>## [1] 0.1090997</code></pre>
 <p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
 <p>Recordemos la forma de la función acumulada</p>
 <p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=1-\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.999436\]</span> <strong>En R la respuesta es:</strong></p>
 <p><strong>Nota: </strong></p>
 <p>El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
-<pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)
-#&gt; [1] 0.9994366</code></pre>
+<pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
+<pre><code>## [1] 0.9994366</code></pre>
 <p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
 <p>La probabilidad pedida es <span class="math display">\[P(x \leq 16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
-<pre class="r"><code>pbinom(16,20, prob = 0.8)
-#&gt; [1] 0.5885511</code></pre>
+<pre class="r"><code>pbinom(16,20, prob = 0.8)</code></pre>
+<pre><code>## [1] 0.5885511</code></pre>
 <p>d Encuentre la media y la varianza del número que sobrevive. Media <span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span class="math display">\[Var=npq=20*0.8*0.2=0.32\]</span> Desviación estándar</p>
 <p><span class="math display">\[sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt {3.2}=1.8\]</span></p>
 </div>

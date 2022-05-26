@@ -492,16 +492,15 @@ div.tocify {
 <li>las cuatro plantas brotaran de semillas tratadas?</li>
 </ol>
 <p><span class="math display">\[ P(X=4)\;= \;  \frac{{5\choose 4}\,{8\choose 0}}{{13 \choose 4}}=0.7\%\]</span> El resultado en R sería</p>
-<pre class="r"><code>dhyper(x=4, m=5, n=8, k=4)
-#&gt; [1] 0.006993007</code></pre>
+<pre class="r"><code>dhyper(x=4, m=5, n=8, k=4)</code></pre>
+<pre><code>## [1] 0.006993007</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Tres o menos brotaran de semillas tratadas?</li>
 </ol>
 <p><span class="math display">\[ P(X\leq 3)\;= p(x=0)+p(x=1)+p(x=2)+p(x=3)=\]</span></p>
 <p><span class="math display">\[ \frac{{5\choose 0}\,{8\choose 4}}{{13 \choose 4}}+ \frac{{5\choose 1}\,{8\choose 3}}{{13 \choose 4}}+ \frac{{5\choose 2}\,{8\choose 2}}{{13 \choose 4}}+ \frac{{5\choose 3}\,{8\choose 1}}{{13 \choose 4}}\]</span> Para resumir, la probabilidad pedida es: <span class="math display">\[\sum_{x=0}^3\;  \frac{{5\choose x}\,{8\choose 4-x}}{{13\choose 4}}=99.3\%\]</span> En R sería:</p>
-<pre class="r"><code>
-phyper(q=3, m=5, n=8, k=4)
-#&gt; [1] 0.993007</code></pre>
+<pre class="r"><code>phyper(q=3, m=5, n=8, k=4)</code></pre>
+<pre><code>## [1] 0.993007</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Encuentre la función de dsitribución de probabilididad</li>
 </ol>
@@ -520,8 +519,8 @@ phyper(q=3, m=5, n=8, k=4)
 \frac{{700\choose 50}\,{300\choose 0}}{{1000\choose 50}}\]</span></p>
 <p><span class="math display">\[P(x&gt;45)=\sum_{x=46}^{50}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}!!!!!\]</span> En R lo realizaremos por el complemento</p>
 <p><span class="math display">\[P(x&gt;45)=1-p(x\leq 45)\]</span> <span class="math display">\[=1-\sum_{x=0}^{45}\;\frac{{700\choose x}\,{300\choose 50-x}}{{1000\choose 50}}\]</span></p>
-<pre class="r"><code>1-phyper(q=45, m=700, n=300, k=50)
-#&gt; [1] 0.0001275857</code></pre>
+<pre class="r"><code>1-phyper(q=45, m=700, n=300, k=50)</code></pre>
+<pre><code>## [1] 0.0001275857</code></pre>
 </div>
 <div id="aproximación-de-la-distribución-hipergeométrica-a-la-binomial" class="section level3">
 <h3>Aproximación de la distribución Hipergeométrica a la Binomial</h3>
@@ -532,9 +531,8 @@ phyper(q=3, m=5, n=8, k=4)
 <p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> Entonces p=0.7, n=50 <span class="math display">\[P(x&gt;45)=P(x\geq 46)=\sum_{x=46}^{50}{50 \choose x}0.7^x 0.3^{50-x}=0.017\%\]</span></p>
 <p><strong>Comparando los resultados</strong></p>
 <p>En R la respuesta fue 0.000127 mientras que la respuesta por aproximación fue 0.000172 la diferencia absoluta entre resultados es de 0.000045 y el error relativo es</p>
-<pre class="r"><code>
-(abs(0.000127-0.000172)/0.000127)*100
-#&gt; [1] 35.43307</code></pre>
+<pre class="r"><code>(abs(0.000127-0.000172)/0.000127)*100</code></pre>
+<pre><code>## [1] 35.43307</code></pre>
 </div>
 <div id="videos" class="section level3">
 <h3>Videos</h3>

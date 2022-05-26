@@ -495,8 +495,7 @@ names(coef(modeloRINF))
 
 #Observe nombre de los términos en modeloRINF a ser
 #usados en la especificación del test lineal
-linearHypothesis(modeloRINF,c(&quot;REGION2=REGION3&quot;,&quot;RINF:REGION2=RINF:REGION3&quot;))
-</code></pre>
+linearHypothesis(modeloRINF,c(&quot;REGION2=REGION3&quot;,&quot;RINF:REGION2=RINF:REGION3&quot;))</code></pre>
 </div>
 <div id="parte-ii-tema-b" class="section level1">
 <h1>Parte II (TEMA B)</h1>
@@ -507,9 +506,7 @@ linearHypothesis(modeloRINF,c(&quot;REGION2=REGION3&quot;,&quot;RINF:REGION2=RIN
 <li><p>Realice el grafico de dispersión con las líneas rectas estimadas</p></li>
 <li><p>Analice supuestos de normalidad y varianza constante mediante los residuales, para el modelo general (residuales estudentizados vs. valores ajustados y vs. RINF). Identifique en estos gráficos las observaciones según la región a la cual pertenecen.</p></li>
 </ol>
-<pre class="r"><code>
-
-#LEER DATOS EN APC1modif.TXT
+<pre class="r"><code>#LEER DATOS EN APC1modif.TXT
 datos=read.table(file.choose(),header=T)
 #CONSULTA DE NOMBRE DE VARIABLES EN OBJETO datos
 names(datos)
@@ -522,8 +519,7 @@ attach(datos3)
 REGION=as.factor(REGION)
 REGION=relevel(REGION,ref=&quot;4&quot;)
 modeloPDP=lm(DPERM~PDP*REGION)
-summary(modeloPDP)
-</code></pre>
+summary(modeloPDP)</code></pre>
 </div>
 <div id="parte-ii-tema-c" class="section level1">
 <h1>Parte II (TEMA C)</h1>
@@ -551,8 +547,7 @@ attach(datos3)
 REGION=as.factor(REGION)
 REGION=relevel(REGION,ref=&quot;4&quot;)
 modeloRRX=lm(DPERM~RRX*REGION)
-summary(modeloRRX)
-</code></pre>
+summary(modeloRRX)</code></pre>
 </div>
 
 <br>

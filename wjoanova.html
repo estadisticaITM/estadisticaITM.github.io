@@ -414,8 +414,7 @@ $(document).ready(function () {
 <li><p>Si el factor de tratamientos es significativo, estime las medias de producción y efectos según nivel de nitrato, agrupe las medias y pruebe si “aplicar nitrato produce una producción promedio diferente respecto a no aplicar nitrato”. También pruebe si “aplicar nitrato eleva la producción promedio respecto a no aplicar nitrato”.</p></li>
 <li><p>Valide los supuestos del modelo ANOVA de este experimento. Analice residuos estudentizados.</p></li>
 </ol>
-<pre class="r"><code>
-#CARGANDO LIBRERÍAS NECESARÍAS
+<pre class="r"><code>#CARGANDO LIBRERÍAS NECESARÍAS
 library(gmodels)
 library(multcomp)
 library(car)
@@ -523,8 +522,7 @@ legend(&quot;topleft&quot;,legend=rbind(names(test),test),cex=0.8)
 
 #TESTES PARA HOMOGENEIDAD DE VARIANZA
 bartlett.test(nlechug~nitrato)
-leveneTest (nlechug~nitrato)
-</code></pre>
+leveneTest (nlechug~nitrato)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>(Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:</li>
 </ol>
@@ -577,8 +575,7 @@ leveneTest (nlechug~nitrato)
 </tbody>
 </table>
 <p>a)Analice los datos experimentales b) Especifique cuál modelo aplica a este experimento c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes. Determine si fue útil el control por edad para reducir el error experimental. d) Valide supuestos. Analice puntos atípicos y su posible influencia e) Compare las medias de tratamiento mediante Tukey. También pruebe, mediante un contraste apropiado, si es mejor una dieta extremadamente baja en grasa vs. las otras dos, para reducir el nivel de lípidos en plasma, en promedio. Haga los cálculos manualmente.</p>
-<pre class="r"><code>
-dietas=data.frame(cont.grasa=factor(rep(c(&quot;ExtBaja&quot;,&quot;MedBaja&quot;,&quot;ModBaja&quot;),5)),
+<pre class="r"><code>dietas=data.frame(cont.grasa=factor(rep(c(&quot;ExtBaja&quot;,&quot;MedBaja&quot;,&quot;ModBaja&quot;),5)),
 edad=factor(c(rep(&quot;15-24&quot;,3),rep(&quot;25-34&quot;,3),rep(&quot;35-44&quot;,3),rep(&quot;45-54&quot;,3),
 rep(&quot;55-64&quot;,3))),red.lipidos=scan())
 0.73 0.67 0.15
@@ -616,8 +613,7 @@ abline(h=c(-2,0,2),col=2)
 qqnorm(residuals(modelo.dietas),main=&quot;Grafico Probabilidad normal residuos ordinarios&quot;,cex=2)
 qqline(residuals(modelo.dietas),col=2)
 detach(dietas)
-###########################################################################################
-</code></pre>
+###########################################################################################</code></pre>
 <p>3.(valor 40%) Un fabricante de dispositivos médicos produce venas artificiales. Estos injertos se producen mediante la extrusión de resina de politetrafluoroetileno (PTFE) combinada con un lubricante en tubos. Con frecuencia, algunos de los tubos en una ejecución de producción contienen pequeñas protuberancias duras en la superficie externa. Estos defectos se conocen como “gestos”. El defecto es causa de rechazo de la unidad. El desarrollador del producto responsable de los injertos vasculares sospecha que la presión de extrusión afecta la aparición de películas y, por lo tanto, pretende realizar un experimento para investigar esta hipótesis. Sin embargo, la resina es fabricada por un proveedor externo y se entrega al fabricante del dispositivo médico en lotes. El ingeniero también sospecha que puede haber una variación significativa entre lotes, ya que si bien el material debe ser consistente con respecto a parámetros como el peso molecular, el tamaño medio de partículas, la retención y la relación de altura de pico, probablemente no sea debido a la variación de fabricación en el proveedor de resina y la variación natural en el material. Por lo tanto, el desarrollador del producto decide investigar el efecto de cuatro niveles diferentes de presión de extrusión además considera los bloques de resina BR. La variable respuesta son el porcentaje de unidades que no contenian defectos</p>
 <table>
 <thead>
@@ -776,8 +772,7 @@ ajustados&quot;,xlab=&quot;Pérdida peso ajustado&quot;,ylim=c(-2.5,2.5),cex=2)
 abline(h=c(-2,0,2),col=2)
 qqnorm(residuals(modelo.jabones),cex=2,main=&quot;Grafico Probabilidad normal residuales&quot;)
 qqline(residuals(modelo.jabones),col=2)
-detach(jabones)
-</code></pre>
+detach(jabones)</code></pre>
 <p>2.(Valor 30%) Un investigador estudió los efectos de tres dietas experimentales que varían los contenidos de grasa sobre el nivel total de lípidos en el plasma. El nivel total de lípidos es una variable predictora de enfermedades coronarias ampliamente usada. Quince sujetos varones quienes estaban dentro del 20% del peso corporal ideal fueron agrupados en cinco grupos de acuerdo a la edad. Dentro de cada grupo de edad las tres dietas experimentales fueron aleatoriamente asignadas a los tres sujetos. Los datos sobre la reducción del nivel de lípidos (en gramos por litro) obtenida después de que los sujetos estuvieron a dieta por un periodo de tiempo fijo se muestran a continuación:</p>
 <table>
 <colgroup>
@@ -828,8 +823,7 @@ detach(jabones)
 </tbody>
 </table>
 <p>a)Analice los datos experimentales b) Especifique cuál modelo aplica a este experimento c) Construya la tabla ANOVA y haga las pruebas de hipótesis pertinentes. Determine si fue útil el control por edad para reducir el error experimental. d) Valide supuestos. Analice puntos atípicos y su posible influencia e) Compare las medias de tratamiento mediante Tukey. También pruebe, mediante un contraste apropiado, si es mejor una dieta extremadamente baja en grasa vs. las otras dos, para reducir el nivel de lípidos en plasma, en promedio. Haga los cálculos manualmente.</p>
-<pre class="r"><code>
-dietas=data.frame(cont.grasa=factor(rep(c(&quot;ExtBaja&quot;,&quot;MedBaja&quot;,&quot;ModBaja&quot;),5)),
+<pre class="r"><code>dietas=data.frame(cont.grasa=factor(rep(c(&quot;ExtBaja&quot;,&quot;MedBaja&quot;,&quot;ModBaja&quot;),5)),
 edad=factor(c(rep(&quot;15-24&quot;,3),rep(&quot;25-34&quot;,3),rep(&quot;35-44&quot;,3),rep(&quot;45-54&quot;,3),
 rep(&quot;55-64&quot;,3))),red.lipidos=scan())
 0.73 0.67 0.15
@@ -866,8 +860,7 @@ ajustados&quot;,xlab=&quot;Reducción de lípidos estimada&quot;,cex=2)
 abline(h=c(-2,0,2),col=2)
 qqnorm(residuals(modelo.dietas),main=&quot;Grafico Probabilidad normal residuos ordinarios&quot;,cex=2)
 qqline(residuals(modelo.dietas),col=2)
-detach(dietas)
-</code></pre>
+detach(dietas)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>(valor 40%) Un embotellador de refrescos está interesado en obtener alturas de llenado más uniformes en las botellas producidas por su proceso de fabricación. En teoría, la máquina de llenado llena cada botella hasta la altura correcta del objetivo, pero en la práctica, existe una variación en torno a este objetivo, y el embotellador desearía comprender mejor las fuentes de esta variabilidad y, finalmente, reducirla. El ingeniero de procesos puede controlar tres variables durante el proceso de llenado: el porcentaje de carbonatación (A), la presión de operación en el relleno (B) y las botellas producidas por minuto o la velocidad de la línea (C). La presión y la velocidad son fáciles de controlar, pero el porcentaje de carbonatación es más difícil de controlar durante la fabricación real porque varía con la temperatura del producto. Sin embargo, para propósitos de un experimento, el ingeniero puede controlar la carbonatación en tres niveles: 10, 12 y 14 por ciento. Se elige dos niveles para la presión (25 y 30 psi) y dos niveles para la velocidad de la línea (200 y 250 bpm). Decide ejecutar dos réplicas de un diseño factorial en estos tres factores, con las 24 ejecuciones tomadas en orden aleatorio. La variable de respuesta observada es la desviación promedio de la altura de llenado objetivo observada en un ciclo de producción de botellas en cada conjunto de condiciones. Los datos que resultaron de este experimento se muestran en siguiente Tabla. Las desviaciones positivas son alturas de llenado por encima del objetivo, mientras que las desviaciones negativas son alturas de llenado por debajo del objetivo.</li>
 </ol>
@@ -1203,8 +1196,7 @@ pv=data.frame(&quot;P.Value&quot;=pf(F0_temperaturas[,1],2,27,lower.tail=F))
 #Formando tabla de resultados
 Slice_temperaturas_por_material=cbind(Comp_temperaturas_en_mat,F0_temperaturas,pv)
 cat(&quot;Efectos Material*Temperatura sobre respuesta Duración particionados por
-Material&quot;,&quot;\n&quot;);Slice_temperaturas_por_material
-</code></pre>
+Material&quot;,&quot;\n&quot;);Slice_temperaturas_por_material</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>(valor 40%) Un embotellador de refrescos está interesado en obtener alturas de llenado más uniformes en las botellas producidas por su proceso de fabricación. En teoría, la máquina de llenado llena cada botella hasta la altura correcta del objetivo, pero en la práctica, existe una variación en torno a este objetivo, y el embotellador desearía comprender mejor las fuentes de esta variabilidad y, finalmente, reducirla. El ingeniero de procesos puede controlar tres variables durante el proceso de llenado: el porcentaje de carbonatación (A), la presión de operación en el relleno (B) y las botellas producidas por minuto o la velocidad de la línea (C). La presión y la velocidad son fáciles de controlar, pero el porcentaje de carbonatación es más difícil de controlar durante la fabricación real porque varía con la temperatura del producto. Sin embargo, para propósitos de un experimento, el ingeniero puede controlar la carbonatación en tres niveles: 10, 12 y 14 por ciento. Se elige dos niveles para la presión (25 y 30 psi) y dos niveles para la velocidad de la línea (200 y 250 bpm). Decide ejecutar dos réplicas de un diseño factorial en estos tres factores, con las 24 ejecuciones tomadas en orden aleatorio. La variable de respuesta observada es la desviación promedio de la altura de llenado objetivo observada en un ciclo de producción de botellas en cada conjunto de condiciones. Los datos que resultaron de este experimento se muestran en siguiente Tabla. Las desviaciones positivas son alturas de llenado por encima del objetivo, mientras que las desviaciones negativas son alturas de llenado por debajo del objetivo.</li>
 </ol>

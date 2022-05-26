@@ -422,8 +422,7 @@ b 199 124 46
 &quot;)
 datos &lt;- read.table(textConnection(input), header = TRUE)</code></pre>
 <p><strong>GRAFICAMENTE</strong></p>
-<pre class="r"><code>
-par(mfrow=c(1,3))
+<pre class="r"><code>par(mfrow=c(1,3))
 
 boxplot(datos$pata~datos$especie)
 boxplot(datos$abdomen~datos$especie)

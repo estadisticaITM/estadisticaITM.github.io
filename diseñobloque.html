@@ -718,12 +718,30 @@ $(document).ready(function () {
 <li>Construya la tabla ANOVA y asumiendo válidos los supuestos del modelo, haga las pruebas de hipótesis pertinentes.</li>
 </ol>
 <p>ANOVA:</p>
-<pre class="r"><code>
-
-library(gmodels)
-library(multcomp)
-
-método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
+<pre class="r"><code>library(gmodels)</code></pre>
+<pre><code>## Warning: package &#39;gmodels&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>library(multcomp)</code></pre>
+<pre><code>## Warning: package &#39;multcomp&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Warning: package &#39;mvtnorm&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Warning: package &#39;TH.data&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotly&#39;:
+## 
+##     select</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<pre class="r"><code>método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
 operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
 tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
@@ -732,16 +750,16 @@ ensamble=data.frame(método,operador,tiempo)
 
 #Anova
 diseño=aov(tiempo~método+operador)
-anova(diseño)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: tiempo
-#&gt;           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-#&gt; método     3   61.5    20.5   10.25 0.002919 **
-#&gt; operador   3   28.5     9.5    4.75 0.029846 * 
-#&gt; Residuals  9   18.0     2.0                    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+anova(diseño)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: tiempo
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+## método     3   61.5    20.5   10.25 0.002919 **
+## operador   3   28.5     9.5    4.75 0.029846 * 
+## Residuals  9   18.0     2.0                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><span class="math inline">\(\Large H_0= \alpha_a=\alpha_b=\alpha_c=\alpha_D\)</span></p>
 <p><span class="math inline">\(\Large H_1= Algun \quad par \quad \alpha_i\not= \alpha_j\)</span></p>
 <p>El test de hipótesis es rechazado con un valor p de 0.0029 a un nivel de significancia de 0.05, es decir, los tiempos medios de ensamble no son iguales para todos los métodos.</p>
@@ -749,8 +767,7 @@ anova(diseño)
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Asumiendo válidos los supuestos del modelo, compare las medias de tratamiento mediante Tukey. De acuerdo a los resultados, responda a las dos cuestiones planteadas en la investigación.</li>
 </ol>
-<pre class="r"><code>
-library(gmodels)
+<pre class="r"><code>library(gmodels)
 library(multcomp)
 
 
@@ -761,21 +778,21 @@ operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
 tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
 
-TukeyHSD(diseño,&quot;método&quot;,conf.level=0.95)
-#&gt;   Tukey multiple comparisons of means
-#&gt;     95% family-wise confidence level
-#&gt; 
-#&gt; Fit: aov(formula = tiempo ~ método + operador)
-#&gt; 
-#&gt; $método
-#&gt;      diff        lwr      upr     p adj
-#&gt; B-A  1.50 -1.6217987 4.621799 0.4758801
-#&gt; C-A  5.25  2.1282013 8.371799 0.0024211
-#&gt; D-A  3.25  0.1282013 6.371799 0.0412298
-#&gt; C-B  3.75  0.6282013 6.871799 0.0195634
-#&gt; D-B  1.75 -1.3717987 4.871799 0.3548246
-#&gt; D-C -2.00 -5.1217987 1.121799 0.2566550
-plot(TukeyHSD(diseño,&quot;método&quot;,conf.level = 0.95),cex.lab=0.8,las=1)</code></pre>
+TukeyHSD(diseño,&quot;método&quot;,conf.level=0.95)</code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = tiempo ~ método + operador)
+## 
+## $método
+##      diff        lwr      upr     p adj
+## B-A  1.50 -1.6217987 4.621799 0.4758801
+## C-A  5.25  2.1282013 8.371799 0.0024211
+## D-A  3.25  0.1282013 6.371799 0.0412298
+## C-B  3.75  0.6282013 6.871799 0.0195634
+## D-B  1.75 -1.3717987 4.871799 0.3548246
+## D-C -2.00 -5.1217987 1.121799 0.2566550</code></pre>
+<pre class="r"><code>plot(TukeyHSD(diseño,&quot;método&quot;,conf.level = 0.95),cex.lab=0.8,las=1)</code></pre>
 <p><img src="diseñobloque_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>La prueba de hipótesis de interés es:</p>
 <p><span class="math inline">\(\Large H_o=\mu_i=\mu_j\)</span></p>
@@ -787,178 +804,81 @@ grupo 3: métodos A y B.</p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Estime los efectos de cada metodo sobre el tiempo de ensamble. Dé tanto la estimación puntual como los intervalos de confianza individuales del 95%.</li>
 </ol>
-<pre class="r"><code>
-library(gmodels)
+<pre class="r"><code>library(gmodels)
 library(multcomp)
 
 método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
 operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
 tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
-attach(ensamble)
-#&gt; The following objects are masked _by_ .GlobalEnv:
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 4):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 5):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 6):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 7):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 9):
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 11):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 12):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 13):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 14):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 16):
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 18):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 19):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 20):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 21):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 23):
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 25):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 26):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 27):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 28):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 30):
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 33):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 34):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 35):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 36):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 38):
-#&gt; 
-#&gt;     método, operador, tiempo
-#&gt; The following object is masked from base (pos = 39):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 40):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 41):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following object is masked from base (pos = 42):
-#&gt; 
-#&gt;     tiempo
-#&gt; The following objects are masked from ensamble (pos = 44):
-#&gt; 
-#&gt;     método, operador, tiempo
-
-
-#medias dE tratamientos con sus INTERVALOS
+attach(ensamble)</code></pre>
+<pre><code>## The following objects are masked _by_ .GlobalEnv:
+## 
+##     método, operador, tiempo</code></pre>
+<pre class="r"><code>#medias dE tratamientos con sus INTERVALOS
 ##divide el marco de datos por método
 met=split(ensamble,método)
 
 ##Método A
 metA=met$A
-t.test(metA$tiempo,conf.level = 0.95)
-#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  metA$tiempo
-#&gt; t = 11.619, df = 3, p-value = 0.001369
-#&gt; alternative hypothesis: true mean is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;  5.44574 9.55426
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;       7.5
-
-##Método B
+t.test(metA$tiempo,conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  metA$tiempo
+## t = 11.619, df = 3, p-value = 0.001369
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  5.44574 9.55426
+## sample estimates:
+## mean of x 
+##       7.5</code></pre>
+<pre class="r"><code>##Método B
 metB=met$B
-t.test(metB$tiempo,conf.level = 0.95)
-#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  metB$tiempo
-#&gt; t = 9.859, df = 3, p-value = 0.002219
-#&gt; alternative hypothesis: true mean is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;   6.094837 11.905163
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;         9
-
-##Método C
+t.test(metB$tiempo,conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  metB$tiempo
+## t = 9.859, df = 3, p-value = 0.002219
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##   6.094837 11.905163
+## sample estimates:
+## mean of x 
+##         9</code></pre>
+<pre class="r"><code>##Método C
 metC=met$C
-t.test(metC$tiempo,conf.level = 0.95)
-#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  metC$tiempo
-#&gt; t = 9.26, df = 3, p-value = 0.002665
-#&gt; alternative hypothesis: true mean is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;   8.368113 17.131887
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;     12.75
-
-##Método D
+t.test(metC$tiempo,conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  metC$tiempo
+## t = 9.26, df = 3, p-value = 0.002665
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##   8.368113 17.131887
+## sample estimates:
+## mean of x 
+##     12.75</code></pre>
+<pre class="r"><code>##Método D
 metD=met$D
-t.test(metD$tiempo,conf.level = 0.95)
-#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  metD$tiempo
-#&gt; t = 12.589, df = 3, p-value = 0.001081
-#&gt; alternative hypothesis: true mean is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;   8.032469 13.467531
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;     10.75</code></pre>
+t.test(metD$tiempo,conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  metD$tiempo
+## t = 12.589, df = 3, p-value = 0.001081
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##   8.032469 13.467531
+## sample estimates:
+## mean of x 
+##     10.75</code></pre>
 <ol start="6" style="list-style-type: lower-alpha">
 <li>Valide supuestos. Use gráficos de residuales estudentizados y test de Levene para evaluar varianza constante. Use Shapiro Wilk para probar supuestos de normalidad. Diagnostique observaciones atípicas. ¿Qué repercusiones pueden tener los resultados de estas validaciones sobre el modelo y las inferencias realizadas en los literales anteriores?</li>
 </ol>
-<pre class="r"><code>
-library(gmodels)
+<pre class="r"><code>library(gmodels)
 library(multcomp)
 
 método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
@@ -971,22 +891,19 @@ par(mfrow=c(2,2))
 
 plot(diseño)</code></pre>
 <p><img src="diseñobloque_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>
-residuales=residuals(diseño)
-shapiro.test(residuales)
-#&gt; 
-#&gt;  Shapiro-Wilk normality test
-#&gt; 
-#&gt; data:  residuales
-#&gt; W = 0.97299, p-value = 0.8844
-
-
-bartlett.test(tiempo ~ método )
-#&gt; 
-#&gt;  Bartlett test of homogeneity of variances
-#&gt; 
-#&gt; data:  tiempo by método
-#&gt; Bartlett&#39;s K-squared = 1.5989, df = 3, p-value = 0.6596</code></pre>
+<pre class="r"><code>residuales=residuals(diseño)
+shapiro.test(residuales)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuales
+## W = 0.97299, p-value = 0.8844</code></pre>
+<pre class="r"><code>bartlett.test(tiempo ~ método )</code></pre>
+<pre><code>## 
+##  Bartlett test of homogeneity of variances
+## 
+## data:  tiempo by método
+## Bartlett&#39;s K-squared = 1.5989, df = 3, p-value = 0.6596</code></pre>
 <p>Validemos ahora los supuestos de normalidad y de varianza constante mediante gráficos de residuales: La normalidad parece un supuesto razonable para los errores en este experimento. Sin embargo, hay problemas con el supuesto de varianza constante. Con los métodos B y C la dispersión de los residuales es mayor comparativamente a la dispersión en los métodos A y D. Con el método A hay menos dispersión. A nivel del operador 3 la dispersión de los residuales es mayor aparentemente debido a una observación que es subestimada. A pesar de estos inconvenientes es posible llegar a una conclusión: “Elegir como mejor método el A, dado que tiene menor tiempo promedio observado y menor dispersión” (esto último indica que los operadores con este método son más consistentes)</p>
 <p>Prueba de normalidad <span class="math inline">\(\Large H_o=\)</span> Los residuos son normales <span class="math inline">\(\Large H_o=\)</span> Los residuos no son normales</p>
 <p>Prueba de barlett para homogeneidad de varianzas</p>
