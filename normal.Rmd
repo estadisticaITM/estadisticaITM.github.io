@@ -2,7 +2,7 @@
 title: "Distribución normal"
 output: html_document
 ---
-Una distribución ampliamente usada es la distribución normal o gaussiana, es la distribución más importante de toda la estadística,diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
+Una distribución ampliamente usada y la más importante de toda la estadística,diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
 
 - Errores de medición en experimentos científicos
 
@@ -13,10 +13,9 @@ Una distribución ampliamente usada es la distribución normal o gaussiana, es l
 - Mediciones de inteligencia y aptitud 
 
 
-
 ### Función de distribución de probabilidad
 
-Esta distribución depende de los parámetros de localización y escala, determinados por la media $\mu$ y la desviación estándar $\sigma$,
+Esta distribución depende de los parámetros de localización y escala, determinados por la media $E(X)=\mu$ y la desviación estándar $sd = \sigma$,
 
 El valor de $\sigma$ es la distancia desde $\mu$ hasta los puntos de inflexión de la curva (los puntos donde la curva cambia de concavidad de hacia abajo a hacia arriba).
 
@@ -49,9 +48,33 @@ $$P(\mu-2\sigma\leq x \leq \mu+2\sigma)=95.45\%$$
 $$P(\mu-2\sigma\leq x \leq \mu+2\sigma)=99.73\%$$
 
 
-```{r echo=F,fig.align='center', fig.width=10, fig.height=13,fig.asp=5}
+```{r echo=F,fig.align='center', fig.width=12, fig.height=18,fig.asp=6}
 knitr::include_graphics("imagen/n2.png")
 ```
+
+
+### Distribución normal estándar
+Una variable aleatoria normal con $\mu=0$ y $\sigma=1$, es llamada una variable aleatoria normal estándar y se denota como z.
+$$Z \sim N(0,1)$$
+### Función de distribución de probabilidad acumulada
+
+$$\Phi(x)=P(Z \leq x)=F(x)$$
+
+### ¿Cómo estandarizar una variable aleatoria?
+Suponga x es una variable aleatoria normal con media $\mu$ y varianza $\sigma^2$, para estandarizar la variable se debe usar la formula:
+$$z=\frac{x-\mu}{\sigma}$$
+
+
+```{r echo=F, fig.asp=1, fig.align='center'}
+knitr::include_graphics("imagen/normal.png")
+```
+
+Cualquier distribución Normal se puede convertir a una distribución Normal Estándar
+
+
+### Tabla de la distribución normal
+
+
 
 
 ### Teorema del límite central
