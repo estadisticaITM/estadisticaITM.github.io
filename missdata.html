@@ -13,12 +13,22 @@
 
 <title>Datos faltantes y datos atípicos</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -358,75 +330,146 @@ $(document).ready(function () {
 <div id="tipos-de-datos" class="section level2">
 <h2><strong>Tipos de datos</strong></h2>
 <ul>
-<li><p><strong>Datos experimentales (Datos fuertes): </strong> El investigador tuvo control en la generación de los datos. Definió apriori cuales variables eran dependientes y cuales independendientes y además controló los niveles de estas variables.</p></li>
-<li><p><strong>Datos observacionales (Datos débiles): </strong> Este tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un banco no puede controlar el tipo de clientes que llegan, por ejemplo. No tenemos control en las estadísticas oficiales. No controlamos a veces cosas tan simples como las definiciones de las variables.</p></li>
-<li><p><strong>Datos cuasi-experimentales:</strong> El investigador puede llegar a tener cierto nivel de control, por ejemplo en estudios médicos con pacientes el investigador puede controlar variables tales como dosis, tipo tratamiento, pero no puede decidir sobre quien será el paciente.</p></li>
+<li><p><strong>Datos experimentales (Datos fuertes): </strong> El
+investigador tuvo control en la generación de los datos. Definió apriori
+cuales variables eran dependientes y cuales independendientes y además
+controló los niveles de estas variables.</p></li>
+<li><p><strong>Datos observacionales (Datos débiles): </strong> Este
+tipo de datos aparecen con mucha frecuencia en el trabajo aplicado. Un
+banco no puede controlar el tipo de clientes que llegan, por ejemplo. No
+tenemos control en las estadísticas oficiales. No controlamos a veces
+cosas tan simples como las definiciones de las variables.</p></li>
+<li><p><strong>Datos cuasi-experimentales:</strong> El investigador
+puede llegar a tener cierto nivel de control, por ejemplo en estudios
+médicos con pacientes el investigador puede controlar variables tales
+como dosis, tipo tratamiento, pero no puede decidir sobre quien será el
+paciente.</p></li>
 </ul>
 <p>##<strong>Qué Hacer Cuando Tenemos Datos faltantes?</strong></p>
 <ul>
-<li><p>En muchas ocasiones cuando estamos analizando una base de datos nos enfrentamos con la falta de datos.</p></li>
-<li><p>Esta pérdida de información puede generar problemas, a veces grandes, en especial cuando no tenemos claridad sobre las razones sobre el porqué se perdieron estos datos.</p></li>
-<li><p>Dependiendo del tipo de análisis que pretendamos realizar, la importancia de los valores perdidos puede variar desde extrema hasta ninguna.</p></li>
-<li><p>Cabe anotar la diferencia entre una unidad muestral con no respuesta y una unidad con no respuesta parcial.</p></li>
-<li><p>El primer paso en nuestro análisis es determinar el origen del dato faltante. La falta de un dato puede deberse a múltiples razones, por ejemplo, una no respuesta a una pregunta delicada en un cuestionario, a un mal registro por parte del encuestador, una pérdida aleatoria de información, etc.</p></li>
+<li><p>En muchas ocasiones cuando estamos analizando una base de datos
+nos enfrentamos con la falta de datos.</p></li>
+<li><p>Esta pérdida de información puede generar problemas, a veces
+grandes, en especial cuando no tenemos claridad sobre las razones sobre
+el porqué se perdieron estos datos.</p></li>
+<li><p>Dependiendo del tipo de análisis que pretendamos realizar, la
+importancia de los valores perdidos puede variar desde extrema hasta
+ninguna.</p></li>
+<li><p>Cabe anotar la diferencia entre una unidad muestral con no
+respuesta y una unidad con no respuesta parcial.</p></li>
+<li><p>El primer paso en nuestro análisis es determinar el origen del
+dato faltante. La falta de un dato puede deberse a múltiples razones,
+por ejemplo, una no respuesta a una pregunta delicada en un
+cuestionario, a un mal registro por parte del encuestador, una pérdida
+aleatoria de información, etc.</p></li>
 </ul>
 <p>##<strong>Tipos de datos perdidos</strong></p>
 <ul>
-<li><p>Datos Perdidos Completamente y al Azar (MCAR missing completely at random):</p></li>
+<li><p>Datos Perdidos Completamente y al Azar (MCAR missing completely
+at random):</p></li>
 <li><p>Datos Faltantes al Azar (MAR Missing at Random)</p></li>
 <li><p>Datos Faltantes NO al Azar (NMAR missing not at random)</p></li>
 </ul>
-<p>Su ausencia no se debe a la presencia de las variables en el estudio. ejm: la tendencia que tienen ciertos segmentos poblacionales a no dar respuesta a encuestas.</p>
+<p>Su ausencia no se debe a la presencia de las variables en el estudio.
+ejm: la tendencia que tienen ciertos segmentos poblacionales a no dar
+respuesta a encuestas.</p>
 </div>
-<div id="muestra-univariable-con-datos-faltantes" class="section level2">
+<div id="muestra-univariable-con-datos-faltantes"
+class="section level2">
 <h2>Muestra Univariable con Datos Faltantes</h2>
-<p>Las causas de la pérdida de información se debe principalmente al azar y a la censura algunas formas de trabajar con datos faltantes son las siguientes</p>
+<p>Las causas de la pérdida de información se debe principalmente al
+azar y a la censura algunas formas de trabajar con datos faltantes son
+las siguientes</p>
 <ul>
 <li><p><strong>Ignorar los Datos faltantes</strong></p></li>
-<li><p><strong>Eliminar un sujeto con una o más variables no observadas</strong> Es la estrategia más popular. Es recomendable cuando la fracción de datos faltantes es muy pequeña, los estadísticos son obtenidos a partir de la misma matriz de datos.</p></li>
-<li><p><strong>Imputación de datos</strong> La imputación es la sustitución de valores no informados en una observación por otros, Existen diversas técnicas de imputación.</p></li>
+<li><p><strong>Eliminar un sujeto con una o más variables no
+observadas</strong> Es la estrategia más popular. Es recomendable cuando
+la fracción de datos faltantes es muy pequeña, los estadísticos son
+obtenidos a partir de la misma matriz de datos.</p></li>
+<li><p><strong>Imputación de datos</strong> La imputación es la
+sustitución de valores no informados en una observación por otros,
+Existen diversas técnicas de imputación.</p></li>
 </ul>
 <p>Algunas ventajas de la imputación son:</p>
 <ul>
 <li><p>Se resuelve desde el comienzo el problema</p></li>
 <li><p>No se descarta información</p></li>
-<li><p>Permite utilizar procedimientos y software para datos completos.</p></li>
+<li><p>Permite utilizar procedimientos y software para datos
+completos.</p></li>
 </ul>
 <p><img src="missdata_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ejemplo" class="section level2">
 <h2>EJEMPLO</h2>
-<p>Los siguientes datos son los resultados de la calificación de 9 jurados a las reinas de un concurso de belleza</p>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx">Datos reinas</a></p>
-<p>Realice un análisis descriptivo de estos datos, tenga en cuenta la presencia de datos faltantes y su tratamiento, tenga en cuenta los siguientes aspectos</p>
+<p>Los siguientes datos son los resultados de la calificación de 9
+jurados a las reinas de un concurso de belleza</p>
+<p><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/reinas.xlsx">Datos
+reinas</a></p>
+<p>Realice un análisis descriptivo de estos datos, tenga en cuenta la
+presencia de datos faltantes y su tratamiento, tenga en cuenta los
+siguientes aspectos</p>
 <ul>
 <li><p>Qué metodo propone para los datos faltantes</p></li>
-<li><p>Realice un boxplot para cada reina, quien obtuvo mejor calificación</p></li>
-<li><p>Realice un boxplot para cada jurado, quien dio mejores calificaciones</p></li>
-<li><p>Encuentre el vector de medias y de la desviación estándar</p></li>
+<li><p>Realice un boxplot para cada reina, quien obtuvo mejor
+calificación</p></li>
+<li><p>Realice un boxplot para cada jurado, quien dio mejores
+calificaciones</p></li>
+<li><p>Encuentre el vector de medias y de la desviación
+estándar</p></li>
 </ul>
 </div>
 <div id="datos-atípicos" class="section level2">
 <h2><strong>Datos atípicos</strong></h2>
-<p>Son aquellas observaciones que parecen haberse generado de forma distinta al resto de los datos. Pueden ser causadas por errores de medición o transcripción, cambios en el instrumento de medición o a heterogeneidad intrínseca de los elementos observados.</p>
-<p><strong>Ejemplo</strong> Supongamos que estamos estudiando las características de las viviendas en una zona urbana donde la gran mayoría son pisos, pero se ha incluido en la muestra una gran vivienda unifamiliar con jardín. Esta observación será atípica y corresponde a una heterogeneidad real de los datos.</p>
-<p>Las observaciones atípicas se deben detectar ya que obtendremos una mejor descripción de los datos separandolos del resto de los datos,ya que pueden distorsionar las medias y desviaciones típicas de las variables y destruir las relaciones existentes entre ellas.</p>
-<p>Cuando existe más de un atípico en los datos, puede producirse el efecto conocido como <strong>enmascaramiento</strong>, que consiste en que observaciones atípicas similares se ocultan entre sí.</p>
+<p>Son aquellas observaciones que parecen haberse generado de forma
+distinta al resto de los datos. Pueden ser causadas por errores de
+medición o transcripción, cambios en el instrumento de medición o a
+heterogeneidad intrínseca de los elementos observados.</p>
+<p><strong>Ejemplo</strong> Supongamos que estamos estudiando las
+características de las viviendas en una zona urbana donde la gran
+mayoría son pisos, pero se ha incluido en la muestra una gran vivienda
+unifamiliar con jardín. Esta observación será atípica y corresponde a
+una heterogeneidad real de los datos.</p>
+<p>Las observaciones atípicas se deben detectar ya que obtendremos una
+mejor descripción de los datos separandolos del resto de los datos,ya
+que pueden distorsionar las medias y desviaciones típicas de las
+variables y destruir las relaciones existentes entre ellas.</p>
+<p>Cuando existe más de un atípico en los datos, puede producirse el
+efecto conocido como <strong>enmascaramiento</strong>, que consiste en
+que observaciones atípicas similares se ocultan entre sí.</p>
 <p><strong>¿Cómo tratar a los puntos atípicos?</strong></p>
 <ul>
-<li><p>Utilizar estimadores robustos, diseñados para verse poco afectados por la contaminación de atípicos.</p></li>
-<li><p>La detección de puntos atípicos para eliminarlos y trabajar con las muestras limpias de atípicos.</p></li>
+<li><p>Utilizar estimadores robustos, diseñados para verse poco
+afectados por la contaminación de atípicos.</p></li>
+<li><p>La detección de puntos atípicos para eliminarlos y trabajar con
+las muestras limpias de atípicos.</p></li>
 </ul>
-<p>El procedimiento para detectar grupos de atípicos es eliminar de la muestra todos los puntos sospechosos, de manera que evitemos el enmascaramiento y podamos calcular el vector de medias y la matriz de covarianzas sin distorsiones.</p>
-<p>El primer paso para identificar las observaciones sospechosas es detectar aquellas que lo sean claramente respecto a una variable. Para ello podemos utilizar el histograma o los diagramas de caja. Una regla simple y automática es considerar sospechosas aquellas observaciones tales que:</p>
-<p><span class="math display">\[\frac{x_i-med(x)}{meda(x)}&gt;4.5\]</span> Donde med(x) es la mediana de las observaciones, que es un estimador robusto del centro de los datos, y Meda(x) es la mediana de las desviaciones absolutas |xi − med(x)|, que es una medida robusta de la dispersión. Este método puede verse como una estandarización robusta de los datos.</p>
-<p>Si el número de variables no es muy grande, los diagramas de dispersión pueden ayudar visualmente a determinar datos atípicos en dos dimensiones. .</p>
+<p>El procedimiento para detectar grupos de atípicos es eliminar de la
+muestra todos los puntos sospechosos, de manera que evitemos el
+enmascaramiento y podamos calcular el vector de medias y la matriz de
+covarianzas sin distorsiones.</p>
+<p>El primer paso para identificar las observaciones sospechosas es
+detectar aquellas que lo sean claramente respecto a una variable. Para
+ello podemos utilizar el histograma o los diagramas de caja. Una regla
+simple y automática es considerar sospechosas aquellas observaciones
+tales que:</p>
+<p><span
+class="math display">\[\frac{x_i-med(x)}{meda(x)}&gt;4.5\]</span> Donde
+med(x) es la mediana de las observaciones, que es un estimador robusto
+del centro de los datos, y Meda(x) es la mediana de las desviaciones
+absolutas |xi − med(x)|, que es una medida robusta de la dispersión.
+Este método puede verse como una estandarización robusta de los
+datos.</p>
+<p>Si el número de variables no es muy grande, los diagramas de
+dispersión pueden ayudar visualmente a determinar datos atípicos en dos
+dimensiones. .</p>
 </div>
 
 <br>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -454,7 +497,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

@@ -13,12 +13,22 @@
 
 <title>Distribución Poisson</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -43,6 +53,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -53,11 +64,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -70,32 +76,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -106,10 +87,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -126,40 +103,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -187,7 +140,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -199,7 +152,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -210,10 +163,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -225,7 +191,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -357,7 +322,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -371,7 +336,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -385,28 +350,35 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -419,7 +391,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -428,7 +400,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -437,7 +409,9 @@ div.tocify {
 </div>
 
 
-<p>Describe el numero de eventos por intervalo de tiempo o distancia, tiene una tasa de ocurrencia que se denota por la letra <span class="math inline">\(\lambda\)</span>.</p>
+<p>Describe el numero de eventos por intervalo de tiempo o distancia,
+tiene una tasa de ocurrencia que se denota por la letra <span
+class="math inline">\(\lambda\)</span>.</p>
 <p>Por ejemplo:</p>
 <ul>
 <li><p>Clientes por hora</p></li>
@@ -446,9 +420,13 @@ div.tocify {
 <li><p>Carros que pasan por un peaje</p></li>
 </ul>
 <p><img src="imagen/peaj.png" width="152" style="display: block; margin: auto;" /></p>
-<div id="función-de-distribución-de-probabilidad" class="section level3">
+<div id="función-de-distribución-de-probabilidad"
+class="section level3">
 <h3>Función de distribución de probabilidad</h3>
-<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> Donde <span class="math inline">\(\lambda\)</span> representa la tasa de ocurrencia de los eventos, es mayor que cero y puede tomar diferentes valores bien sea enteros o con decimales</p>
+<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\lambda}\lambda
+^x}{x!}\]</span> Donde <span class="math inline">\(\lambda\)</span>
+representa la tasa de ocurrencia de los eventos, es mayor que cero y
+puede tomar diferentes valores bien sea enteros o con decimales</p>
 <p>X es el número de ocurrencias del evento con x= 0,1,2,3,…</p>
 <p><strong>Poisson requiere unidades consistentes</strong></p>
 <ul>
@@ -464,51 +442,84 @@ div.tocify {
 </div>
 <div id="proceso-poisson" class="section level3">
 <h3>Proceso poisson</h3>
-<p>El número de eventos durante un intervalo de tiempo de duración t es una variable de poisson con parámetro <span class="math inline">\(\alpha t\)</span></p>
-<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\alpha t}{(\alpha t)} ^x}{x!}\]</span></p>
-<p>así que el número esperado durante un intervalo de tiempo unitario es <span class="math inline">\(\alpha\)</span>. Es decir la tasa de ocurrencia de un evento se puede modificar, si esta en horas se puede pasar a otra unidad de medida minutos, horas.</p>
+<p>El número de eventos durante un intervalo de tiempo de duración t es
+una variable de poisson con parámetro <span class="math inline">\(\alpha
+t\)</span></p>
+<p><span class="math display">\[P(x=x)=f(x)=\frac{e^{-\alpha t}{(\alpha
+t)} ^x}{x!}\]</span></p>
+<p>así que el número esperado durante un intervalo de tiempo unitario es
+<span class="math inline">\(\alpha\)</span>. Es decir la tasa de
+ocurrencia de un evento se puede modificar, si esta en horas se puede
+pasar a otra unidad de medida minutos, horas.</p>
 </div>
 <div id="función-de-distribución-acumulada" class="section level3">
 <h3>Función de distribución acumulada</h3>
-<p><span class="math display">\[P(x\leq x)=F(x)=\sum_{x=0}^n \frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
-<p>Las probabilidades se pueden encontrar mediante tres formas por calculadora, por tabla o por las funciones de R:</p>
+<p><span class="math display">\[P(x\leq x)=F(x)=\sum_{x=0}^n
+\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> </p>
+<p>Las probabilidades se pueden encontrar mediante tres formas por
+calculadora, por tabla o por las funciones de R:</p>
 <p><img src="imagen/calc.png" width="629" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ejemplo" class="section level3">
 <h3>Ejemplo</h3>
-<p>El número de solicitudes de ayuda recibidas por un servicio de grúas es un proceso Poisson con razón 4 solicitudes por hora.</p>
-<p>Calcule la probabilidad de que exactamente diez solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
+<p>El número de solicitudes de ayuda recibidas por un servicio de grúas
+es un proceso Poisson con razón 4 solicitudes por hora.</p>
+<p>Calcule la probabilidad de que exactamente diez solicitudes sean
+recibidas durante un periodo particular de 2 horas.</p>
 <p>La tasa de ocurrencia del evento es:</p>
-<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}\]</span></p>
+<p><span class="math display">\[\lambda= \frac {4
+llamadas}{hora}\]</span></p>
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
-<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2 horas= \frac{8 llamadas}{2 horas}\]</span></p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* 2
+horas= \frac{8 llamadas}{2 horas}\]</span></p>
 <p>La probabilidad pedida es:</p>
-<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-\lambda}\lambda ^x}{x!}\]</span> La probabilidad pedida es:</p>
-<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8 ^{10}}{10!}=9.92 \%\]</span> <strong>En R</strong></p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-\lambda}\lambda
+^x}{x!}\]</span> La probabilidad pedida es:</p>
+<p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8
+^{10}}{10!}=9.92 \%\]</span> <strong>En R</strong></p>
 <pre class="r"><code>dpois(x=10,lambda=8)</code></pre>
 <pre><code>## [1] 0.09926153</code></pre>
-<p>b.Calcule la probabilidad de que por lo menos cinco solicitudes sean recibidas durante un periodo particular de 2 horas.</p>
-<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq 4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% \]</span> <strong>En R la respuesta es:</strong></p>
-<p><strong>Nota: </strong> El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
+<p>b.Calcule la probabilidad de que por lo menos cinco solicitudes sean
+recibidas durante un periodo particular de 2 horas.</p>
+<p><span class="math display">\[P(x \geq 5)= 1- P(x\leq
+4)=1-\sum_{x=0}^4 \frac{e^{-8}8 ^x}{x!}=90.03\% \]</span> <strong>En R
+la respuesta es:</strong></p>
+<p><strong>Nota: </strong> El argumento lower tail si es falso, es
+equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por
+ello que la probabilidad de al menos 10 se debe evaluar en el valor
+anterior 9.</p>
 <pre class="r"><code>ppois(4,lambda=8,lower.tail = FALSE)</code></pre>
 <pre><code>## [1] 0.9003676</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Si los operadores del servicio de grúas hacen una pausa de 30 min para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender llamadas de ayuda?</li>
+<li>Si los operadores del servicio de grúas hacen una pausa de 30 min
+para el almuerzo, ¿cuál es la probabilidad de que no dejen de atender
+llamadas de ayuda?</li>
 </ol>
 <p>La tasa se debe modificar a la unidad del tiempo de la pregunta</p>
-<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}* \frac{1 hora}{60 minutos}*30 min= \frac{2 llamadas}{30 min}\]</span> la probabilidad pedida se traduce en</p>
-<p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53 \%\]</span> <strong>En R</strong></p>
+<p><span class="math display">\[\lambda= \frac {4 llamadas}{hora}*
+\frac{1 hora}{60 minutos}*30 min= \frac{2 llamadas}{30 min}\]</span> la
+probabilidad pedida se traduce en</p>
+<p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53
+\%\]</span> <strong>En R</strong></p>
 <pre class="r"><code>dpois(x=0,lambda=2)</code></pre>
 <pre><code>## [1] 0.1353353</code></pre>
 <p>¿Cuántas llamadas esperaría durante la pausa de 30 minutos?</p>
-<p>el valor esperado de una distribución poisson esta dado por la tasa de ocurrencia <span class="math inline">\(\lambda=2\)</span>, se esperaría 2 llamadas.</p>
-<p>¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
-<p>la probabilidad que se da es <span class="math display">\[P(x=0)=0.4\]</span> con una tasa de ocurrencia</p>
-<p><span class="math display">\[\lambda= 4 llamadas/ hora\]</span> reemplazando en la fórmula</p>
-<p><span class="math display">\[P(x=0)=\frac{e^{-4 t}{(4 t)} ^0}{0!}=0.4\]</span> al resolver para despejar t se obtiene:</p>
+<p>el valor esperado de una distribución poisson esta dado por la tasa
+de ocurrencia <span class="math inline">\(\lambda=2\)</span>, se
+esperaría 2 llamadas.</p>
+<p>¿Cuánto puede durar la llamada telefónica del empleado si la
+probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
+<p>la probabilidad que se da es <span
+class="math display">\[P(x=0)=0.4\]</span> con una tasa de
+ocurrencia</p>
+<p><span class="math display">\[\lambda= 4 llamadas/ hora\]</span>
+reemplazando en la fórmula</p>
+<p><span class="math display">\[P(x=0)=\frac{e^{-4 t}{(4 t)}
+^0}{0!}=0.4\]</span> al resolver para despejar t se obtiene:</p>
 <p><span class="math display">\[e^{-4t}=0.4\]</span></p>
 <p><span class="math display">\[Ln (e^{-4t})=Ln(0.4)\]</span></p>
-<p><span class="math display">\[-4t * Ln (e)=Ln(0.4)\]</span> <span class="math display">\[-4t=Ln(0.4)\]</span></p>
+<p><span class="math display">\[-4t * Ln (e)=Ln(0.4)\]</span> <span
+class="math display">\[-4t=Ln(0.4)\]</span></p>
 <p><span class="math display">\[t=Ln(0.4)/-4=0.23\]</span></p>
 <p>La duración de la llamada debe ser de 0.23 horas.</p>
 </div>
@@ -522,15 +533,26 @@ div.tocify {
 <div id="ejercicios-propuestos" class="section level3">
 <h3>Ejercicios propuestos</h3>
 <ol style="list-style-type: decimal">
-<li>Suponga que hay árboles distribuidos en un bosque de acuerdo con un proceso de Poisson bidimensional con parámetro <span class="math inline">\(\alpha\)</span>, el número esperado de árboles por acre es de 80.</li>
+<li>Suponga que hay árboles distribuidos en un bosque de acuerdo con un
+proceso de Poisson bidimensional con parámetro <span
+class="math inline">\(\alpha\)</span>, el número esperado de árboles por
+acre es de 80.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que en un terreno de un cuarto de acre, haya cuando mucho 16 árboles?</p></li>
-<li><p>Si el bosque abarca 85 000 acres, ¿cuál es el número esperado de árboles en el bosque?</p></li>
-<li><p>Suponga que selecciona un punto en el bosque y construye un círculo de 0.1 milla de radio. Sea X = el número de árboles dentro de esa región circular. ¿Cuál es la función masa de probabilidad de X? [Sugerencia: 1 milla cuadrada = 640 acres.]</p></li>
+<li><p>¿Cuál es la probabilidad de que en un terreno de un cuarto de
+acre, haya cuando mucho 16 árboles?</p></li>
+<li><p>Si el bosque abarca 85 000 acres, ¿cuál es el número esperado de
+árboles en el bosque?</p></li>
+<li><p>Suponga que selecciona un punto en el bosque y construye un
+círculo de 0.1 milla de radio. Sea X = el número de árboles dentro de
+esa región circular. ¿Cuál es la función masa de probabilidad de X?
+[Sugerencia: 1 milla cuadrada = 640 acres.]</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Sea X el número de imperfecciones superficiales de una caldera seleccionada al azar de un tipo que tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=5\)</span>. Use la tabla para calcular las siguientes probabilidades:</li>
+<li>Sea X el número de imperfecciones superficiales de una caldera
+seleccionada al azar de un tipo que tiene una distribución de Poisson
+con parámetro <span class="math inline">\(\lambda=5\)</span>. Use la
+tabla para calcular las siguientes probabilidades:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(P(X \leq 8)\)</span></p></li>
@@ -540,40 +562,70 @@ div.tocify {
 <li><p><span class="math inline">\(P(5 &lt;X &lt; 8)\)</span></p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>Suponga que el número de conductores que viajan entre un origen y destino particulares durante un periodo designado tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=20\)</span> ¿Cuál es la probabilida d de que el número de conductores</li>
+<li>Suponga que el número de conductores que viajan entre un origen y
+destino particulares durante un periodo designado tiene una distribución
+de Poisson con parámetro <span class="math inline">\(\lambda=20\)</span>
+¿Cuál es la probabilida d de que el número de conductores</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>sea cuando mucho de 10?</p></li>
 <li><p>sea de más de 20?</p></li>
 <li><p>sea de entre 10 y 20, inclusive?</p></li>
-<li><p>esté dentro de dos desviaciones estándar del valor medio?</p></li>
+<li><p>esté dentro de dos desviaciones estándar del valor
+medio?</p></li>
 </ol>
 <ol start="4" style="list-style-type: decimal">
-<li>Considere escribir en un disco de computadora y luego enviarlo a través de un certificador que cuenta el número de pulsos faltantes. Suponga que este número X tiene una distribución de Poisson con parámetro <span class="math inline">\(\lambda=0.20\)</span></li>
+<li>Considere escribir en un disco de computadora y luego enviarlo a
+través de un certificador que cuenta el número de pulsos faltantes.
+Suponga que este número X tiene una distribución de Poisson con
+parámetro <span class="math inline">\(\lambda=0.20\)</span></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>¿Cuál es la probabilidad de que un disco tenga exactamente un pulso faltante?</li>
-<li>¿Cuál es la probabilidad de que un disco tenga por lo menos dos pulsos faltantes?</li>
-<li>Si seleccionan dos discos independientemente, ¿cuál es la probabilidad de que ninguno contenga un pulso faltante?</li>
+<li>¿Cuál es la probabilidad de que un disco tenga exactamente un pulso
+faltante?</li>
+<li>¿Cuál es la probabilidad de que un disco tenga por lo menos dos
+pulsos faltantes?</li>
+<li>Si seleccionan dos discos independientemente, ¿cuál es la
+probabilidad de que ninguno contenga un pulso faltante?</li>
 </ol>
 <ol start="5" style="list-style-type: decimal">
-<li>Suponga que una pequeña aeronave aterriza en un aeropuerto de acuerdo con un proceso de Poisson con razón <span class="math inline">\(\lambda=8\)</span> por hora de modo que el número de aterrizajes durante un periodo de t horas es una variable aleatoria de Poisson con parámetro <span class="math inline">\(\lambda=8t\)</span>.</li>
+<li>Suponga que una pequeña aeronave aterriza en un aeropuerto de
+acuerdo con un proceso de Poisson con razón <span
+class="math inline">\(\lambda=8\)</span> por hora de modo que el número
+de aterrizajes durante un periodo de t horas es una variable aleatoria
+de Poisson con parámetro <span
+class="math inline">\(\lambda=8t\)</span>.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que exactamente seis aeronaves pequeñas aterricen durante un intervalo de una hora? ¿Por lo menos seis? ¿Por lo menos 10?</p></li>
-<li><p>¿Cuáles son el valor esperado y la desviación estándar del número de aeronaves pequeñas que aterrizan durante un lapso de 90 min?</p></li>
-<li><p>¿Cuál es la probabilidad de que por lo menos 20 aeronaves pequeñas aterricen durante un lapso de 2 horas y media? ¿De qué cuando mucho aterricen 10 durante este periodo?</p></li>
+<li><p>¿Cuál es la probabilidad de que exactamente seis aeronaves
+pequeñas aterricen durante un intervalo de una hora? ¿Por lo menos seis?
+¿Por lo menos 10?</p></li>
+<li><p>¿Cuáles son el valor esperado y la desviación estándar del número
+de aeronaves pequeñas que aterrizan durante un lapso de 90 min?</p></li>
+<li><p>¿Cuál es la probabilidad de que por lo menos 20 aeronaves
+pequeñas aterricen durante un lapso de 2 horas y media? ¿De qué cuando
+mucho aterricen 10 durante este periodo?</p></li>
 </ol>
 <ol start="6" style="list-style-type: decimal">
-<li>El artículo “Reliability-Based Service-Life Assessment of Aging Concrete Structures”. (J. Structural Engr., 1993: 1600–1621) sugiere que un proceso de Poisson puede ser utilizado para representar la ocurrencia de cargas estructurales en el transcurso del tiempo. Suponga que el tiempo medio entre ocurrencias de cargas es de 0.5 al año.</li>
+<li>El artículo “Reliability-Based Service-Life Assessment of Aging
+Concrete Structures”. (J. Structural Engr., 1993: 1600–1621) sugiere que
+un proceso de Poisson puede ser utilizado para representar la ocurrencia
+de cargas estructurales en el transcurso del tiempo. Suponga que el
+tiempo medio entre ocurrencias de cargas es de 0.5 al año.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuántas cargas se espera que ocurran durante un periodo de 2 años?</p></li>
-<li><p>¿Cuál es la probabilidad de que ocurran más de cinco cargas durante un periodo de 2 años?</p></li>
-<li><p>¿Qué tan largo debe ser un periodo de modo que la probabilidad de que no ocurran cargas durante dicho periodo sea cuando mucho de 0.1?</p></li>
+<li><p>¿Cuántas cargas se espera que ocurran durante un periodo de 2
+años?</p></li>
+<li><p>¿Cuál es la probabilidad de que ocurran más de cinco cargas
+durante un periodo de 2 años?</p></li>
+<li><p>¿Qué tan largo debe ser un periodo de modo que la probabilidad de
+que no ocurran cargas durante dicho periodo sea cuando mucho de
+0.1?</p></li>
 </ol>
 <ol start="7" style="list-style-type: decimal">
-<li>Llegan clientes a un mostrador de una tienda con un promedio de siete por hora. Durante una hora determinada, cuales son las probabilidades de que</li>
+<li>Llegan clientes a un mostrador de una tienda con un promedio de
+siete por hora. Durante una hora determinada, cuales son las
+probabilidades de que</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>(10 puntos) no lleguen más de tres clientes?,</li>
@@ -581,14 +633,30 @@ div.tocify {
 <li>(10 puntos) lleguen exactamente cinco clientes?</li>
 </ol>
 <ol start="8" style="list-style-type: decimal">
-<li>El número de errores mecanográficos hechos por una secretaria tiene una distribución de Poisson con un promedio de cuatro errores por página. Si en una página se dan más de cuatro errores, la secretaria debe volver a escribir toda la página. ¿Cuál es la probabilidad de que una página seleccionada al azar no tenga que volver a ser escrita?</li>
+<li>El número de errores mecanográficos hechos por una secretaria tiene
+una distribución de Poisson con un promedio de cuatro errores por
+página. Si en una página se dan más de cuatro errores, la secretaria
+debe volver a escribir toda la página. ¿Cuál es la probabilidad de que
+una página seleccionada al azar no tenga que volver a ser escrita?</li>
 </ol>
-<p>9.Llegan autos a una caseta de pago de peaje de acuerdo con una media de 80 autos por hora. Si el empleado hace una llamada telefónica de 1 minuto:</p>
-<p>a¿cuál es la probabilidad de que al menos 1 auto llegue durante la llamada?</p>
-<p>¿Cuánto puede durar la llamada telefónica del empleado si la probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
+<p>9.Llegan autos a una caseta de pago de peaje de acuerdo con una media
+de 80 autos por hora. Si el empleado hace una llamada telefónica de 1
+minuto:</p>
+<p>a¿cuál es la probabilidad de que al menos 1 auto llegue durante la
+llamada?</p>
+<p>¿Cuánto puede durar la llamada telefónica del empleado si la
+probabilidad de que no lleguen autos durante la llamada es 0.4?</p>
 <ol start="10" style="list-style-type: decimal">
-<li><p>La probabilidad de que un ratón inoculado con un suero contraiga cierta enfermedad es 0.2. Encuentre la probabilidad de que al menos 3 de entre 30 ratones inoculados contraigan la enfermedad.</p></li>
-<li><p>Un lote de estacionamiento tiene dos entradas. Llegan autos a la entrada I de acuerdo con una distribución de Poisson a un promedio de tres por hora y a la entrada II de acuerdo con una distribución de Poisson a un promedio de cuatro por hora. ¿Cuál es la probabilidad de que un total de tres autos lleguen al lote de estacionamiento en una hora determinada? (Suponga que los números de autos que llega a las dos entradas son independientes.)</p></li>
+<li><p>La probabilidad de que un ratón inoculado con un suero contraiga
+cierta enfermedad es 0.2. Encuentre la probabilidad de que al menos 3 de
+entre 30 ratones inoculados contraigan la enfermedad.</p></li>
+<li><p>Un lote de estacionamiento tiene dos entradas. Llegan autos a la
+entrada I de acuerdo con una distribución de Poisson a un promedio de
+tres por hora y a la entrada II de acuerdo con una distribución de
+Poisson a un promedio de cuatro por hora. ¿Cuál es la probabilidad de
+que un total de tres autos lleguen al lote de estacionamiento en una
+hora determinada? (Suponga que los números de autos que llega a las dos
+entradas son independientes.)</p></li>
 </ol>
 </div>
 
@@ -596,6 +664,7 @@ div.tocify {
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 </div>
@@ -625,7 +694,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -634,6 +703,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

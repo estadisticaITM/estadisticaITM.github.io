@@ -13,12 +13,22 @@
 
 <title>Taller distribuciones discretas</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -356,7 +328,10 @@ $(document).ready(function () {
 
 
 <ol style="list-style-type: decimal">
-<li>Una empresa de ventas en línea dispone de seis líneas telefónicas. Sea X el número de líneas en uso en un tiempo especificado. Suponga que la función masa de probabilidad de X es la que se da en la tabla adjunta.</li>
+<li>Una empresa de ventas en línea dispone de seis líneas telefónicas.
+Sea X el número de líneas en uso en un tiempo especificado. Suponga que
+la función masa de probabilidad de X es la que se da en la tabla
+adjunta.</li>
 </ol>
 <table>
 <thead>
@@ -384,10 +359,23 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Calcule la probabilidad de cada uno de los siguientes eventos. a. {cuando mucho tres líneas están en uso} b. {menos de tres líneas están en uso} c. {por lo menos tres líneas están en uso} d. {entre dos y cinco líneas, inclusive, están en uso} e. {entre dos y cuatro líneas, inclusive, no están en uso f. {por lo menos cuatro líneas no están en uso}</p>
-<p><strong>Sugerencia: </strong> Sea x la variable aleatoria que representa las lineas ocupadas Sea y la variable aleatoria que representa las lineas desocupadas</p>
+<p>Calcule la probabilidad de cada uno de los siguientes eventos. a.
+{cuando mucho tres líneas están en uso} b. {menos de tres líneas están
+en uso} c. {por lo menos tres líneas están en uso} d. {entre dos y cinco
+líneas, inclusive, están en uso} e. {entre dos y cuatro líneas,
+inclusive, no están en uso f. {por lo menos cuatro líneas no están en
+uso}</p>
+<p><strong>Sugerencia: </strong> Sea x la variable aleatoria que
+representa las lineas ocupadas Sea y la variable aleatoria que
+representa las lineas desocupadas</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Muchos fabricantes cuentan con programas de control de calidad que incluyen la inspección de los materiales recibidos en busca de defectos. Suponga que un fabricante de computadoras recibe tarjetas madre en lotes de cinco. Se seleccionan dos tarjetas de cada lote para inspeccionarlas. Se pueden representar los posibles resultados del proceso de selección por pares. Por ejemplo, el par (1, 2) representa la selección de las tarjetas 1 y 2 para inspección.</li>
+<li>Muchos fabricantes cuentan con programas de control de calidad que
+incluyen la inspección de los materiales recibidos en busca de defectos.
+Suponga que un fabricante de computadoras recibe tarjetas madre en lotes
+de cinco. Se seleccionan dos tarjetas de cada lote para inspeccionarlas.
+Se pueden representar los posibles resultados del proceso de selección
+por pares. Por ejemplo, el par (1, 2) representa la selección de las
+tarjetas 1 y 2 para inspección.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Mencione los diez posibles resultados diferentes.</li>
@@ -411,24 +399,43 @@ $(document).ready(function () {
 </tbody>
 </table>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Suponga que las tarjetas 1 y 2 son las únicas tarjetas defectuosas en un lote de cinco. Dos tarjetas tienen que ser seleccionadas al azar. Defina X como el número de tarjetas defectuosas observadas entre las inspeccionadas. Encuentre la distribución de probabilidad de X.</li>
+<li>Suponga que las tarjetas 1 y 2 son las únicas tarjetas defectuosas
+en un lote de cinco. Dos tarjetas tienen que ser seleccionadas al azar.
+Defina X como el número de tarjetas defectuosas observadas entre las
+inspeccionadas. Encuentre la distribución de probabilidad de X.</li>
 </ol>
 <p>Rta/ p(0)=0.3 p(1)=0.3 p(2)=0.1</p>
 <ol start="3" style="list-style-type: decimal">
-<li>El voltaje de una batería nueva puede ser aceptable (A) o inaceptable (U). Una linterna requiere dos baterías, así que las baterías serán independientemente seleccionadas y probadas hasta encontrar dos aceptables. Suponga que 90% de todas las baterías tienen voltajes aceptables. Sea Y el número de baterías que deben ser probadas.</li>
+<li>El voltaje de una batería nueva puede ser aceptable (A) o
+inaceptable (U). Una linterna requiere dos baterías, así que las
+baterías serán independientemente seleccionadas y probadas hasta
+encontrar dos aceptables. Suponga que 90% de todas las baterías tienen
+voltajes aceptables. Sea Y el número de baterías que deben ser
+probadas.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>¿Cuál es p(2), es decir P(Y = 2)?</li>
-<li>¿Cuál es p(3)? [Sugerencia: Existen dos resultados diferentes que producen Y=3.]</li>
-<li>Para tener Y=5, ¿qué debe ser cierto de la quinta batería seleccionada? Mencione los cuatro resultados con los cuales Y=5 y luego determine p(5).</li>
-<li>Use el patrón de sus respuestas en los incisos a)–c) para obtener una fórmula general para p(y).</li>
+<li>¿Cuál es p(3)? [Sugerencia: Existen dos resultados diferentes que
+producen Y=3.]</li>
+<li>Para tener Y=5, ¿qué debe ser cierto de la quinta batería
+seleccionada? Mencione los cuatro resultados con los cuales Y=5 y luego
+determine p(5).</li>
+<li>Use el patrón de sus respuestas en los incisos a)–c) para obtener
+una fórmula general para p(y).</li>
 </ol>
 <p>Rta/ a.0.81 b.0.162</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Una biblioteca se suscribe a dos revistas de noticias semanales, cada una de las cuales se supone que llega en el correo de los miércoles. En realidad, cada una puede llegar el miércoles, jueves, viernes o sábado.</li>
+<li>Una biblioteca se suscribe a dos revistas de noticias semanales,
+cada una de las cuales se supone que llega en el correo de los
+miércoles. En realidad, cada una puede llegar el miércoles, jueves,
+viernes o sábado.</li>
 </ol>
-<p>Suponga que las dos llegan independientemente una de otra y para cada una P(mié)=0.3, P(jue)=0.4, P(vie) = 0.2 y P(sáb)=0.1.</p>
-<p>Sea Y=el número de días después del miércoles que pasan para que ambas revistas lleguen (por lo tanto, los posibles valores de Y son 0, 1, 2 o 3). Calcule la función masa de probabilidad de Y=[Sugerencia: Hay 16 posibles resultados: Y(M, M)=0, Y(V, J)=2, y así sucesivamente.]</p>
+<p>Suponga que las dos llegan independientemente una de otra y para cada
+una P(mié)=0.3, P(jue)=0.4, P(vie) = 0.2 y P(sáb)=0.1.</p>
+<p>Sea Y=el número de días después del miércoles que pasan para que
+ambas revistas lleguen (por lo tanto, los posibles valores de Y son 0,
+1, 2 o 3). Calcule la función masa de probabilidad de Y=[Sugerencia: Hay
+16 posibles resultados: Y(M, M)=0, Y(V, J)=2, y así sucesivamente.]</p>
 <table>
 <thead>
 <tr class="header">
@@ -497,7 +504,11 @@ $(document).ready(function () {
 </table>
 <p>Rta/ p(0)=0.09 p(1)=0.4 p(2)=0.32 p(3)=0.19</p>
 <ol start="5" style="list-style-type: decimal">
-<li>Una organización de protección al consumidor que habitualmente evalúa automóviles nuevos reporta el número de defectos importantes encontrados en cada carro examinado. Sea X el número de defectos importantes en un carro seleccionado al azar de cierto tipo. La función de distribución acumulativa de X es la siguiente:</li>
+<li>Una organización de protección al consumidor que habitualmente
+evalúa automóviles nuevos reporta el número de defectos importantes
+encontrados en cada carro examinado. Sea X el número de defectos
+importantes en un carro seleccionado al azar de cierto tipo. La función
+de distribución acumulativa de X es la siguiente:</li>
 </ol>
 <p><span class="math display">\[
 F(x)= \left\{ \begin{array}{lcc}
@@ -520,12 +531,19 @@ F(x)= \left\{ \begin{array}{lcc}
 </ol>
 <p>Rta/ a.0.2 b. 0.33 c.0.78 d. 0.53</p>
 <ol start="6" style="list-style-type: decimal">
-<li>Después de que todos los estudiantes salieron del salón de clases, un profesor nota que tres ejemplares del texto se quedaron debajo de los escritorios. Al principio de la siguiente clase, el profesor distribuye los tres libros al azar a cada uno de los cuatro estudiantes (1, 2 y 3 ) que dicen haber dejado los libros. Un posible resultado es que 1 reciba el libro de 2, que 2 reciba el libro de 3 y que 3 reciba el libro de 1.</li>
+<li>Después de que todos los estudiantes salieron del salón de clases,
+un profesor nota que tres ejemplares del texto se quedaron debajo de los
+escritorios. Al principio de la siguiente clase, el profesor distribuye
+los tres libros al azar a cada uno de los cuatro estudiantes (1, 2 y 3 )
+que dicen haber dejado los libros. Un posible resultado es que 1 reciba
+el libro de 2, que 2 reciba el libro de 3 y que 3 reciba el libro de
+1.</li>
 </ol>
 <p>Este resultado puede ser abreviado como (2, 3, 1).</p>
 <ol style="list-style-type: lower-alpha">
 <li>Mencione los otros 5 posibles resultados.</li>
-<li>Si X es el número de estudiantes que reciben su propio libro, determine la función masa de probabilidad de X.</li>
+<li>Si X es el número de estudiantes que reciben su propio libro,
+determine la función masa de probabilidad de X.</li>
 </ol>
 <p>Sugerencia: ayudese de la siguiente tabla</p>
 <table>
@@ -565,7 +583,9 @@ F(x)= \left\{ \begin{array}{lcc}
 </tbody>
 </table>
 <ol start="7" style="list-style-type: decimal">
-<li>La función masa de probabilidad de X= el número de defectos importantes en un aparato eléctrico de un tipo seleccionado al azar es</li>
+<li>La función masa de probabilidad de X= el número de defectos
+importantes en un aparato eléctrico de un tipo seleccionado al azar
+es</li>
 </ol>
 <table>
 <thead>
@@ -591,13 +611,15 @@ F(x)= \left\{ \begin{array}{lcc}
 </tr>
 </tbody>
 </table>
-<p>Calcule lo siguiente: a. E(X). b. V(X) directamente a partir de la definición. c. La desviación estándar de X.</p>
+<p>Calcule lo siguiente: a. E(X). b. V(X) directamente a partir de la
+definición. c. La desviación estándar de X.</p>
 <p>Rta/a.2.06 b.0.9364 c.0.9677</p>
 
 <br>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -625,7 +647,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

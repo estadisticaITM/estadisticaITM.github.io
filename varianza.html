@@ -13,12 +13,22 @@
 
 <title>Varianza</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -357,45 +329,64 @@ $(document).ready(function () {
 
 <p>##Objetivos del diseño experimental</p>
 <ul>
-<li><p>Planear pruebas experimentales, de forma que los datos generados se analicen estadísticamente para obtener conclusiones válidas y objetivas sobre un proceso.</p></li>
-<li><p>Utilizar técnicas estadísticas para manipular un proceso con el fin de obtener la mayor información posible.</p></li>
-<li><p>Determinar qué pruebas y cómo realizarlas, para extraer conclusiones y tomar decisiones sobre un proceso.</p></li>
+<li><p>Planear pruebas experimentales, de forma que los datos generados
+se analicen estadísticamente para obtener conclusiones válidas y
+objetivas sobre un proceso.</p></li>
+<li><p>Utilizar técnicas estadísticas para manipular un proceso con el
+fin de obtener la mayor información posible.</p></li>
+<li><p>Determinar qué pruebas y cómo realizarlas, para extraer
+conclusiones y tomar decisiones sobre un proceso.</p></li>
 </ul>
 <p>###Aplicaciones del diseño experimental</p>
 <p><strong>En la industria</strong></p>
 <ul>
-<li><p>Comparar proveedores del mismo material para elegir el que mejor cumple especificaciones.</p></li>
-<li><p>Comparar sistemas de medición para verificar si trabajan con la misma precisión y exactitud.</p></li>
-<li><p>Proponer nueva manera de operar un proceso, variar sus condiciones y hacer cambios para reducir defectos.</p></li>
-<li><p>Determinar factores o fuentes de variabilidad con impacto en la capacidad del proceso para cumplir requerimientos.</p></li>
-<li><p>Localizar condiciones de operación para desempeño óptimo del proceso.</p></li>
-<li><p>Proponer métodos de muestreos efectivos y más económicos.</p></li>
+<li><p>Comparar proveedores del mismo material para elegir el que mejor
+cumple especificaciones.</p></li>
+<li><p>Comparar sistemas de medición para verificar si trabajan con la
+misma precisión y exactitud.</p></li>
+<li><p>Proponer nueva manera de operar un proceso, variar sus
+condiciones y hacer cambios para reducir defectos.</p></li>
+<li><p>Determinar factores o fuentes de variabilidad con impacto en la
+capacidad del proceso para cumplir requerimientos.</p></li>
+<li><p>Localizar condiciones de operación para desempeño óptimo del
+proceso.</p></li>
+<li><p>Proponer métodos de muestreos efectivos y más
+económicos.</p></li>
 <li><p>Reducir tiempo de ciclo del proceso.</p></li>
-<li><p>Hacer proceso robusto a oscilaciones de variables no controlables.</p></li>
+<li><p>Hacer proceso robusto a oscilaciones de variables no
+controlables.</p></li>
 <li><p>Apoyar en el diseño o rediseño del producto o proceso.</p></li>
 </ul>
 <p><strong>En la investigación</strong></p>
 <ul>
 <li><p>Validar una hipótesis mediante evidencia objetiva.</p></li>
-<li><p>Generar conocimiento y aprendizaje de forma eficiente. Dirección del aprendizaje: conocimiento, conjeturas, imaginación, experimentación, análisis y reflexión.</p></li>
+<li><p>Generar conocimiento y aprendizaje de forma eficiente. Dirección
+del aprendizaje: conocimiento, conjeturas, imaginación, experimentación,
+análisis y reflexión.</p></li>
 <li><p>Evaluación y comparación de diseños básicos.</p></li>
 <li><p>Evaluación de materiales alternativos.</p></li>
-<li><p>Selección de parámetros del diseño para que el producto tenga un buen funcionamiento en una amplia variedad de condiciones de campo.</p></li>
+<li><p>Selección de parámetros del diseño para que el producto tenga un
+buen funcionamiento en una amplia variedad de condiciones de
+campo.</p></li>
 </ul>
 <p>##Introducción al análisis de varianza</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Al iniciar el estudio, el investigador desarrolla una lista de verificación de aspectos:</p>
+<p>Al iniciar el estudio, el investigador desarrolla una lista de
+verificación de aspectos:</p>
 <ul>
 <li><p>Objetivos específicos del experimento.</p></li>
 <li><p>¿Cuáles variables respuesta se van a medir?</p></li>
-<li><p>Qué factores influyen, cuáles de ellos varían y cuáles permanecen constantes.</p></li>
+<li><p>Qué factores influyen, cuáles de ellos varían y cuáles permanecen
+constantes.</p></li>
 <li><p>¿Cuáles factores serán controlables en el experimento?</p></li>
 <li><p>¿Qué niveles debe usarse de cada factor?</p></li>
-<li><p>Procedimientos particulares para realizar las pruebas o medir las características.</p></li>
+<li><p>Procedimientos particulares para realizar las pruebas o medir las
+características.</p></li>
 <li><p>Número de repeticiones del experimento.</p></li>
 <li><p>Recursos y materiales disponibles.</p></li>
 </ul>
-<p>Las preguntas que centran nuestra atención a través del proceso de diseño incluyen:</p>
+<p>Las preguntas que centran nuestra atención a través del proceso de
+diseño incluyen:</p>
 <ul>
 <li><p>¿Cuál es mi objetivo?</p></li>
 <li><p>¿Qué quiero saber?</p></li>
@@ -405,38 +396,81 @@ $(document).ready(function () {
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Consideraciones prácticas</strong></p>
-<p>Las metodologías estadísticas por sí solas no garantizan investigaciones exitosas:</p>
+<p>Las metodologías estadísticas por sí solas no garantizan
+investigaciones exitosas:</p>
 <ul>
-<li><p>El conocimiento no estadístico es vital: Se requiere buen conocimiento técnico y práctico del proceso.</p></li>
-<li><p>Reconocer la diferencia entre significancia estadística e importancia práctica: diferencias estadísticas no siempre corresponden a diferencias prácticas de importancia.</p></li>
-<li><p>Preferir la experimentación secuencial que un experimento único y definitivo: La experimentación secuencial alcanza paulatinamente mayor precisión en los conocimientos y soluciones. Seguir una estrategia bien definida y pensada.</p></li>
+<li><p>El conocimiento no estadístico es vital: Se requiere buen
+conocimiento técnico y práctico del proceso.</p></li>
+<li><p>Reconocer la diferencia entre significancia estadística e
+importancia práctica: diferencias estadísticas no siempre corresponden a
+diferencias prácticas de importancia.</p></li>
+<li><p>Preferir la experimentación secuencial que un experimento único y
+definitivo: La experimentación secuencial alcanza paulatinamente mayor
+precisión en los conocimientos y soluciones. Seguir una estrategia bien
+definida y pensada.</p></li>
 </ul>
 <p>###Definiciones del diseño experimental</p>
 <p><strong>Experimento</strong></p>
-<p>Cambio deliberado en las condiciones de operación de un proceso, con el fin de medir el efecto sobre una o varias propiedades del producto.</p>
+<p>Cambio deliberado en las condiciones de operación de un proceso, con
+el fin de medir el efecto sobre una o varias propiedades del
+producto.</p>
 <p><strong>Tratamiento</strong></p>
-<p>Conjunto de circunstancias creadas para el experimento, en respuesta a la hipótesis de investigación. Entre los ejemplos de tratamientos se encuentran dietas de animales, producción de variedades de cultivos,temperaturas, tipos de suelo y cantidades de nutrientes.</p>
-<p>En un estudio comparativo se usan dos o más tratamientos y se comparan sus efectos en el sujeto de estudio.</p>
+<p>Conjunto de circunstancias creadas para el experimento, en respuesta
+a la hipótesis de investigación. Entre los ejemplos de tratamientos se
+encuentran dietas de animales, producción de variedades de
+cultivos,temperaturas, tipos de suelo y cantidades de nutrientes.</p>
+<p>En un estudio comparativo se usan dos o más tratamientos y se
+comparan sus efectos en el sujeto de estudio.</p>
 <p><strong>Unidad experimental</strong></p>
-<p>Objeto o sujeto básico expuesto al tratamiento, sobre el cual se obtiene una medición o dato representativo</p>
+<p>Objeto o sujeto básico expuesto al tratamiento, sobre el cual se
+obtiene una medición o dato representativo</p>
 <ul>
-<li><p>Una pieza: En el estudio de la resistencia a la tracción de cierta componente</p></li>
-<li><p>Un lote o grupo de piezas: En el estudio de la proporción de defectuosos en una operación</p></li>
+<li><p>Una pieza: En el estudio de la resistencia a la tracción de
+cierta componente</p></li>
+<li><p>Un lote o grupo de piezas: En el estudio de la proporción de
+defectuosos en una operación</p></li>
 </ul>
-<p>La unidad experimental expuesta al tratamiento, constituye una réplica del tratamiento.</p>
-<p><strong>Las unidades de observación y las experimentales pueden ser claramente distintas</strong></p>
-<p>La unidad de observación puede no ser equivalente a la unidad experimental. La primera puede ser una muestra de la última, como muestras individuales de plantas de una parcela.</p>
-<p>Ejemplo: Un estudio sencillo de raciones de dieta animal tiene un corral con seis animales asignados a la ración A y otro con seis más asignados a la ración B. Se reúnen datos sobre el aumento de peso. Al final del estudio, se toman de cada animal las medidas necesarias.</p>
-<p><strong>Unidad experimental:</strong>El corral, porque es la unidad a la que se administró el tratamiento independiente.</p>
-<p><strong>Unidades de observación:</strong> Los animales en el corral.</p>
+<p>La unidad experimental expuesta al tratamiento, constituye una
+réplica del tratamiento.</p>
+<p><strong>Las unidades de observación y las experimentales pueden ser
+claramente distintas</strong></p>
+<p>La unidad de observación puede no ser equivalente a la unidad
+experimental. La primera puede ser una muestra de la última, como
+muestras individuales de plantas de una parcela.</p>
+<p>Ejemplo: Un estudio sencillo de raciones de dieta animal tiene un
+corral con seis animales asignados a la ración A y otro con seis más
+asignados a la ración B. Se reúnen datos sobre el aumento de peso. Al
+final del estudio, se toman de cada animal las medidas necesarias.</p>
+<p><strong>Unidad experimental:</strong>El corral, porque es la unidad a
+la que se administró el tratamiento independiente.</p>
+<p><strong>Unidades de observación:</strong> Los animales en el
+corral.</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p><strong>Variable respuesta</strong> Característica o propiedad medida en cada unidad, cuyos cambios se desean estudiar.</p>
-<p><strong>Factores controlables</strong> Variables del proceso que se pueden fijar en un valor o nivel de operación, ya que existe el mecanismo para cambiar su nivel. También se les llama variables de entrada, condiciones de proceso, o variables de diseño. Ej. Temperatura, velocidad, presión, concentración, tiempo de aplicación, etc.</p>
-<p><strong>Factores no controlables o de ruido</strong> Variables que no se pueden controlar durante la operación normal del proceso. Ej. Variables ambientales, usos de un producto por los usuarios, etc.</p>
-<p><strong>Factores estudiados</strong> Variables cuyos efectos sobre la respuesta se investigan en el experimento: Pueden ser posiblemente controlables o no controlables durante el experimento. Se requiere probarlos en al menos dos niveles. Los factores en principio pueden afectar la media o la variabilidad de la variable respuesta.</p>
-<p><strong>Niveles</strong> Valores asignados a cada factor de estudio.</p>
-<p><strong>Tratamiento o punto de diseño</strong> Combinación de niveles de factores</p>
+<p><strong>Variable respuesta</strong> Característica o propiedad medida
+en cada unidad, cuyos cambios se desean estudiar.</p>
+<p><strong>Factores controlables</strong> Variables del proceso que se
+pueden fijar en un valor o nivel de operación, ya que existe el
+mecanismo para cambiar su nivel. También se les llama variables de
+entrada, condiciones de proceso, o variables de diseño. Ej. Temperatura,
+velocidad, presión, concentración, tiempo de aplicación, etc.</p>
+<p><strong>Factores no controlables o de ruido</strong> Variables que no
+se pueden controlar durante la operación normal del proceso. Ej.
+Variables ambientales, usos de un producto por los usuarios, etc.</p>
+<p><strong>Factores estudiados</strong> Variables cuyos efectos sobre la
+respuesta se investigan en el experimento: Pueden ser posiblemente
+controlables o no controlables durante el experimento. Se requiere
+probarlos en al menos dos niveles. Los factores en principio pueden
+afectar la media o la variabilidad de la variable respuesta.</p>
+<p><strong>Niveles</strong> Valores asignados a cada factor de
+estudio.</p>
+<p><strong>Tratamiento o punto de diseño</strong> Combinación de niveles
+de factores</p>
 <table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Niveles de factor A (A1,A2)</th>
@@ -468,52 +502,113 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p><strong>Error aleatorio</strong></p>
-<p>Variabilidad observada que no se puede explicar por los factores estudiados, es debido a “causas comunes o aleatorias”, que generan la “variabilidad inherente del proceso”. Incluye efectos pequeños de factores no estudiados, variabilidad de las mediciones hechas bajo mismas condiciones.</p>
+<p>Variabilidad observada que no se puede explicar por los factores
+estudiados, es debido a “causas comunes o aleatorias”, que generan la
+“variabilidad inherente del proceso”. Incluye efectos pequeños de
+factores no estudiados, variabilidad de las mediciones hechas bajo
+mismas condiciones.</p>
 <p><strong>Error experimental</strong></p>
-<p>Describe la variación entre las unidades experimentales tratadas de manera idéntica e independiente. Los distintos orígenes del error experimental son:</p>
+<p>Describe la variación entre las unidades experimentales tratadas de
+manera idéntica e independiente. Los distintos orígenes del error
+experimental son:</p>
 <ul>
 <li><p>La variación natural entre unidades experimentales.</p></li>
 <li><p>La variabilidad en la medición de la respuesta.</p></li>
-<li><p>La imposibilidad de reproducir las condiciones del tratamiento con exactitud de una unidad a otra.</p></li>
-<li><p>La interacción de los tratamientos con las unidades experimentales.</p></li>
-<li><p>Cualquier otro factor externo que influya en las características medidas.</p></li>
+<li><p>La imposibilidad de reproducir las condiciones del tratamiento
+con exactitud de una unidad a otra.</p></li>
+<li><p>La interacción de los tratamientos con las unidades
+experimentales.</p></li>
+<li><p>Cualquier otro factor externo que influya en las características
+medidas.</p></li>
 </ul>
 <p><strong>Ejemplo</strong></p>
-<p>La imposibilidad de reproducir el tratamiento con exactitud se da cuando las réplicas de los tubos de ensayo se preparan de modo independiente, con la misma mezcla de compuestos, y el peso de los productos químicos obtenidos en cada tubo difiere en 0.1 microgramo (pg). Los procesos en pipetas o básculas no son exactos, por lo tanto, introducen una pequeña variación durante la preparación del tratamiento.</p>
+<p>La imposibilidad de reproducir el tratamiento con exactitud se da
+cuando las réplicas de los tubos de ensayo se preparan de modo
+independiente, con la misma mezcla de compuestos, y el peso de los
+productos químicos obtenidos en cada tubo difiere en 0.1 microgramo
+(pg). Los procesos en pipetas o básculas no son exactos, por lo tanto,
+introducen una pequeña variación durante la preparación del
+tratamiento.</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Un importante objetivo de los cálculos estadísticos es lograr una estimación de la varianza del error experimental. En su forma más simple, el error experimental es la varianza en unidades de las observaciones del experimento, cuando las diferencias entre éstas se pueden atribuir sólo al error experimental.</p>
-<p><strong>NOTA</strong> No se deben dejar variar libremente a factores que pueden ser influyentes sobre la respuesta: Principio de bloqueo. <strong>Ejemplo</strong> Factores y variables en la fabricación de un envase plástico:</p>
+<p>Un importante objetivo de los cálculos estadísticos es lograr una
+estimación de la varianza del error experimental. En su forma más
+simple, el error experimental es la varianza en unidades de las
+observaciones del experimento, cuando las diferencias entre éstas se
+pueden atribuir sólo al error experimental.</p>
+<p><strong>NOTA</strong> No se deben dejar variar libremente a factores
+que pueden ser influyentes sobre la respuesta: Principio de bloqueo.
+<strong>Ejemplo</strong> Factores y variables en la fabricación de un
+envase plástico:</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Estudios por observaciones comparativas</strong></p>
-<p>Son aquellos para los que desearíamos hacer un experimento, pero no es posible por razones económicas, prácticas o éticas.</p>
-<p>El investigador tiene en mente condiciones o tratamientos que tienen efectos causales en sujetos para los que no es posible efectuar experimentos hasta obtener respuestas. Los investigadores de las ciencias sociales, ecología, vida silvestre, vida marina y otros recursos naturales, a menudo han de llevar a cabo estudios por observación en vez de la experimentación directa.</p>
-<p><strong>Ejemplo</strong> Considerando un estudio para comparar la severidad de las lesiones por accidentes automovilísticos con y sin el cinturón de seguridad puesto; sería clara la falta de ética si se asignara al azar un tratamiento de personas con cinturón y sin cinturón y después se provocaran colisiones de los autos contra una pared de concreto, tampoco habría quién se prestara para esto. En su lugar, los investigadores se apoyan en los datos de lesiones en los accidentes y comparan los datos de cinturón puesto y sin cinturón.</p>
+<p>Son aquellos para los que desearíamos hacer un experimento, pero no
+es posible por razones económicas, prácticas o éticas.</p>
+<p>El investigador tiene en mente condiciones o tratamientos que tienen
+efectos causales en sujetos para los que no es posible efectuar
+experimentos hasta obtener respuestas. Los investigadores de las
+ciencias sociales, ecología, vida silvestre, vida marina y otros
+recursos naturales, a menudo han de llevar a cabo estudios por
+observación en vez de la experimentación directa.</p>
+<p><strong>Ejemplo</strong> Considerando un estudio para comparar la
+severidad de las lesiones por accidentes automovilísticos con y sin el
+cinturón de seguridad puesto; sería clara la falta de ética si se
+asignara al azar un tratamiento de personas con cinturón y sin cinturón
+y después se provocaran colisiones de los autos contra una pared de
+concreto, tampoco habría quién se prestara para esto. En su lugar, los
+investigadores se apoyan en los datos de lesiones en los accidentes y
+comparan los datos de cinturón puesto y sin cinturón.</p>
 <p><img src="varianza_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Hipótesis de investigación</strong></p>
-<p>Establece un conjunto de circunstancias y sus consecuencias. Los tratamientos son una creación de las circunstancias para el experimento. Así, es importante identificar los tratamientos con el papel que cada uno tiene en la evaluación de la hipótesis de investigación.</p>
+<p>Establece un conjunto de circunstancias y sus consecuencias. Los
+tratamientos son una creación de las circunstancias para el experimento.
+Así, es importante identificar los tratamientos con el papel que cada
+uno tiene en la evaluación de la hipótesis de investigación.</p>
 <p><strong>Relación entre los tratamientos y las hipótesis</strong></p>
-<p>Cuando se eligen los tratamientos adecuados en respuesta a una hipótesis de investigación, es posible comprender mejor los procesos físicos, químicos biológicos o sociales.</p>
-<p>A continuación se presentan tratamientos, usados en el marco de investigaciones reales, generados por hipótesis de investigación:</p>
+<p>Cuando se eligen los tratamientos adecuados en respuesta a una
+hipótesis de investigación, es posible comprender mejor los procesos
+físicos, químicos biológicos o sociales.</p>
+<p>A continuación se presentan tratamientos, usados en el marco de
+investigaciones reales, generados por hipótesis de investigación:</p>
 <ul>
-<li>Se estudió la cinética de bebida de las abejas productoras de miel a diferentes temperaturas ambientales, para responder a la hipótesis de que la energía requerida al reunir comida para la colonia era independiente de la temperatura.</li>
+<li>Se estudió la cinética de bebida de las abejas productoras de miel a
+diferentes temperaturas ambientales, para responder a la hipótesis de
+que la energía requerida al reunir comida para la colonia era
+independiente de la temperatura.</li>
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li>La supervivencia de siembras de Euphorbia (género de plantas) atacadas por un patógeno del suelo se determinó para distintos tipos de tratamientos de fungicida, en respuesta a la hipótesis de que no todos los fungicidas tienen la misma eficiencia para controlar tal patógeno.</li>
+<li>La supervivencia de siembras de Euphorbia (género de plantas)
+atacadas por un patógeno del suelo se determinó para distintos tipos de
+tratamientos de fungicida, en respuesta a la hipótesis de que no todos
+los fungicidas tienen la misma eficiencia para controlar tal
+patógeno.</li>
 </ul>
 <p><strong>Tratamiento control</strong></p>
-<p>Muchas veces se requieren tratamientos adicionales para evaluar por completo las consecuencias de la hipótesis. Una componente importante de muchos diseños de tratamiento es el tratamiento de control.</p>
-<p>El tratamiento de control es un punto necesario para evaluar el efecto de los tratamientos experimentales; existen diversas circunstancias en las que el tratamiento de control es útil y necesario. Un control al que no se da tratamiento revelará las condiciones en las que se efectuó el experimento.</p>
+<p>Muchas veces se requieren tratamientos adicionales para evaluar por
+completo las consecuencias de la hipótesis. Una componente importante de
+muchos diseños de tratamiento es el tratamiento de control.</p>
+<p>El tratamiento de control es un punto necesario para evaluar el
+efecto de los tratamientos experimentales; existen diversas
+circunstancias en las que el tratamiento de control es útil y necesario.
+Un control al que no se da tratamiento revelará las condiciones en las
+que se efectuó el experimento.</p>
 <p><strong>Control local de errores experimentales</strong></p>
-<p>Los principales objetivos de la mayoría de los experimentos son las comparaciones claras y exactas entre tratamientos a través de un conjunto apropiado de condiciones.</p>
-<p>El control local describe las acciones que emplea un investigador para reducir o controlar el error experimental, incrementar la exactitud de las observaciones y establecer la base de la inferencia de un estudio.</p>
+<p>Los principales objetivos de la mayoría de los experimentos son las
+comparaciones claras y exactas entre tratamientos a través de un
+conjunto apropiado de condiciones.</p>
+<p>El control local describe las acciones que emplea un investigador
+para reducir o controlar el error experimental, incrementar la exactitud
+de las observaciones y establecer la base de la inferencia de un
+estudio.</p>
 <p>El investigador controla:</p>
 <ul>
 <li>Técnica.</li>
 <li>Selección de unidades experimentales</li>
-<li>Bloquización o aseguramiento de la uniformidad de información en todos los tratamientos.</li>
+<li>Bloquización o aseguramiento de la uniformidad de información en
+todos los tratamientos.</li>
 <li>Selección del diseño experimental.</li>
-<li>Medición de covariables (son variables relacionadas con la variable respuesta que nos interesa).</li>
+<li>Medición de covariables (son variables relacionadas con la variable
+respuesta que nos interesa).</li>
 </ul>
 <div id="etapas-del-diseño-experimental" class="section level1">
 <h1>Etapas del diseño experimental</h1>
@@ -522,14 +617,19 @@ $(document).ready(function () {
 <li><p>¿Cuántos tratamientos van a ser estudiados?</p></li>
 <li><p>¿Cuántas veces observar cada tratamiento (réplicas)?</p></li>
 <li><p>¿Cuáles son las unidades experimentales?</p></li>
-<li><p>¿Cómo se aplicarán los tratamientos a las unidades experimentales disponibles y luego observar las respuestas?</p></li>
-<li><p>¿Puede el diseño resultante ser analizado o se pueden hacer las comparaciones deseadas?</p></li>
+<li><p>¿Cómo se aplicarán los tratamientos a las unidades experimentales
+disponibles y luego observar las respuestas?</p></li>
+<li><p>¿Puede el diseño resultante ser analizado o se pueden hacer las
+comparaciones deseadas?</p></li>
 </ul>
 <p><img src="varianza_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>#<strong>Principios del diseño</strong></p>
-<div id="aleatorizar-para-tener-inferencias-válidas" class="section level2">
+<div id="aleatorizar-para-tener-inferencias-válidas"
+class="section level2">
 <h2><strong>1. Aleatorizar para tener inferencias válidas</strong></h2>
-<p>“la sola aleatorización proporciona estimaciones válidas de la varianza del error” (Fisher, 1926). La aleatorización es la asignación al azar de tratamientos a las unidades experimentales, permitiendo:</p>
+<p>“la sola aleatorización proporciona estimaciones válidas de la
+varianza del error” (Fisher, 1926). La aleatorización es la asignación
+al azar de tratamientos a las unidades experimentales, permitiendo:</p>
 <ul>
 <li><p>La validación del error experimental</p></li>
 <li><p>Evita sesgos.</p></li>
@@ -538,36 +638,68 @@ $(document).ready(function () {
 <p><img src="varianza_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>##<strong>2. Bloqueo</strong></p>
 <ul>
-<li><p>Mientras más parecidas sean las unidades experimentales, mejor serán las comparaciones entre los tratamientos.</p></li>
-<li><p>En la mayoría de los experimentos es imposible seleccionar todas las unidades experimentales idénticas.</p></li>
-<li><p>La no similaridad entre las unidades experimentales contribuye al ruido.</p></li>
-<li><p>Los experimentos pueden ser mejorados si agrupamos las unidades experimentales dentro de grupos de unidades cercanamente similares, llamadas unidades homogéneas.</p></li>
-<li><p>Los tratamientos pueden ser comparados sobre las unidades experimentales similares donde la variación de grupo puede ser considerada para el análisis. Los grupos de unidades similares u homogéneas son denominados bloques.</p></li>
+<li><p>Mientras más parecidas sean las unidades experimentales, mejor
+serán las comparaciones entre los tratamientos.</p></li>
+<li><p>En la mayoría de los experimentos es imposible seleccionar todas
+las unidades experimentales idénticas.</p></li>
+<li><p>La no similaridad entre las unidades experimentales contribuye al
+ruido.</p></li>
+<li><p>Los experimentos pueden ser mejorados si agrupamos las unidades
+experimentales dentro de grupos de unidades cercanamente similares,
+llamadas unidades homogéneas.</p></li>
+<li><p>Los tratamientos pueden ser comparados sobre las unidades
+experimentales similares donde la variación de grupo puede ser
+considerada para el análisis. Los grupos de unidades similares u
+homogéneas son denominados bloques.</p></li>
 </ul>
-<p><strong>Objetivo del bloqueo</strong> Seleccionar y agrupar el material experimental de modo que el ruido o error experimental en el experimento sea reducido. Así, las unidades experimentales sobre las cuales los tratamientos van a ser comparados deberían ser tan parecidas como sea posible para que la menor diferencia significativa entre dos tratamientos pueda ser detectada.</p>
+<p><strong>Objetivo del bloqueo</strong> Seleccionar y agrupar el
+material experimental de modo que el ruido o error experimental en el
+experimento sea reducido. Así, las unidades experimentales sobre las
+cuales los tratamientos van a ser comparados deberían ser tan parecidas
+como sea posible para que la menor diferencia significativa entre dos
+tratamientos pueda ser detectada.</p>
 <p><strong>Control de factores bloque y de ruido</strong></p>
-<p>Controles posibles sobre fuentes de variación adicionales a factores de estudio:</p>
+<p>Controles posibles sobre fuentes de variación adicionales a factores
+de estudio:</p>
 <ul>
-<li><p>Bloqueo activo durante el experimento, lo que implica que el factor de ruido es parte del estudio y aparece explícitamente. En la práctica sólo controlar factores de bloque que se saben son influyentes y económicamente factibles de fijar en distintos niveles: operadores, tipos de producto, lotes, turnos, tipos de material, etc.</p></li>
-<li><p>Nulificar los efectos al mantenerlos fijos en valor usual durante estudio: Resultados son válidos sólo para nivel seleccionado.</p></li>
-<li><p>Aplicar aleatorización para nulificar efecto indeseable de factores de ruido: Posible efecto es repartido “equitativamente” en todos los tratamientos, y no se puede medir tal efecto posible. E.j. Variables ambientales, cansancio operadores, calentamiento equipo, variables que en general se mueven solas con el tiempo.</p></li>
+<li><p>Bloqueo activo durante el experimento, lo que implica que el
+factor de ruido es parte del estudio y aparece explícitamente. En la
+práctica sólo controlar factores de bloque que se saben son influyentes
+y económicamente factibles de fijar en distintos niveles: operadores,
+tipos de producto, lotes, turnos, tipos de material, etc.</p></li>
+<li><p>Nulificar los efectos al mantenerlos fijos en valor usual durante
+estudio: Resultados son válidos sólo para nivel seleccionado.</p></li>
+<li><p>Aplicar aleatorización para nulificar efecto indeseable de
+factores de ruido: Posible efecto es repartido “equitativamente” en
+todos los tratamientos, y no se puede medir tal efecto posible. E.j.
+Variables ambientales, cansancio operadores, calentamiento equipo,
+variables que en general se mueven solas con el tiempo.</p></li>
 </ul>
 </div>
-<div id="replicar-para-obtener-experimentos-válidos" class="section level2">
+<div id="replicar-para-obtener-experimentos-válidos"
+class="section level2">
 <h2><strong>3. Replicar para obtener experimentos válidos</strong></h2>
-<p>La réplica implica una repetición independiente del experimento básico, cada tratamiento se aplica de manera independiente a dos o más unidades experimentales. Existen diversas razones para hacer réplicas de un experimento, las más notables son:</p>
+<p>La réplica implica una repetición independiente del experimento
+básico, cada tratamiento se aplica de manera independiente a dos o más
+unidades experimentales. Existen diversas razones para hacer réplicas de
+un experimento, las más notables son:</p>
 <ul>
 <li>Permiten estimar el error experimental</li>
 <li>Ejerce control sobre la varianza del error experimental</li>
-<li>Mejora la precisión de un experimento mediante la reducción de la desviación estándar de una media de tratamiento</li>
+<li>Mejora la precisión de un experimento mediante la reducción de la
+desviación estándar de una media de tratamiento</li>
 <li>A mayor número de repeticiones mayor precisión</li>
-<li>Aumenta el alcance de la inferencia (I.C. y pruebas de hipótesis.)</li>
+<li>Aumenta el alcance de la inferencia (I.C. y pruebas de
+hipótesis.)</li>
 </ul>
 <p>#<strong>ANALISIS DE VARIANZA ANOVA</strong></p>
 <ul>
-<li><p>Herramienta estadística para estudiar la relación entre una variable respuesta y una o más variables explicatorias.</p></li>
-<li><p>No requiere ningún supuesto acerca de la relación estadística entre la variable respuesta y las predictoras.</p></li>
-<li><p>No requiere que las variables predictoras sean cuantitativas.</p></li>
+<li><p>Herramienta estadística para estudiar la relación entre una
+variable respuesta y una o más variables explicatorias.</p></li>
+<li><p>No requiere ningún supuesto acerca de la relación estadística
+entre la variable respuesta y las predictoras.</p></li>
+<li><p>No requiere que las variables predictoras sean
+cuantitativas.</p></li>
 </ul>
 </div>
 </div>
@@ -576,23 +708,31 @@ $(document).ready(function () {
 <p>El diseño experimental comprende:</p>
 <ul>
 <li><p>Elección de la estructura de tratamiento</p></li>
-<li><p>Elección de la estructura de diseño y el método de aleatorización</p></li>
+<li><p>Elección de la estructura de diseño y el método de
+aleatorización</p></li>
 </ul>
 <div id="estructura-de-tratamientos" class="section level2">
 <h2>ESTRUCTURA DE TRATAMIENTOS</h2>
-<p>Conjunto de tratamientos que el experimentador ha seleccionado para estudiar y/o comparar.</p>
+<p>Conjunto de tratamientos que el experimentador ha seleccionado para
+estudiar y/o comparar.</p>
 <ul>
 <li>Estructura de tratamiento de un sólo factor.</li>
 <li>Estructura de tratamientos factoriales (dos o más factores)</li>
-<li>Estructura de tratamientos <span class="math inline">\(2^k\)</span> y estructura de tratamientos factoriales fraccionados</li>
+<li>Estructura de tratamientos <span class="math inline">\(2^k\)</span>
+y estructura de tratamientos factoriales fraccionados</li>
 </ul>
 <p>##ESTRUCTURA DE DISEÑO</p>
-<p>Agrupamiento de las unidades experimentales dentro de grupos homogéneos o bloques:</p>
+<p>Agrupamiento de las unidades experimentales dentro de grupos
+homogéneos o bloques:</p>
 <ul>
 <li>Diseño completamente aleatorizado</li>
-<li>Diseño bloqueado: - De bloques completos aleatorizados: Cuadrados latinos y grecolatinos - De bloques incompletos</li>
+<li>Diseño bloqueado: - De bloques completos aleatorizados: Cuadrados
+latinos y grecolatinos - De bloques incompletos</li>
 </ul>
-<p>Por lo general las comparaciones se hacen en términos de las medias poblacionales, aunque también es importante la comparación de varianzas y capacidad actual para cumplir ciertas especificaciones. A manera de resumen las estructuras del diseño son</p>
+<p>Por lo general las comparaciones se hacen en términos de las medias
+poblacionales, aunque también es importante la comparación de varianzas
+y capacidad actual para cumplir ciertas especificaciones. A manera de
+resumen las estructuras del diseño son</p>
 <table>
 <colgroup>
 <col width="21%" />
@@ -613,33 +753,42 @@ $(document).ready(function () {
 <td>Completamente aleatorizado</td>
 <td>0</td>
 <td>ANOVA con un solo criterio de clasificación</td>
-<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\)</span></td>
+<td><span class="math inline">\(\large
+Y_{ij}=\mu+\alpha_i+\varepsilon_{ij}\)</span></td>
 </tr>
 <tr class="even">
 <td>Bloques completamente aleatorizado</td>
 <td>1</td>
 <td>ANOVA con dos criterios de clasificación</td>
-<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\)</span></td>
+<td><span class="math inline">\(\large
+Y_{ij}=\mu+\alpha_i+\beta_j+\varepsilon_{ij}\)</span></td>
 </tr>
 <tr class="odd">
 <td>Cuadrado latino</td>
 <td>2</td>
 <td>ANOVA con tres criterios de clasificación</td>
-<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k +\varepsilon_{ijk}\)</span></td>
+<td><span class="math inline">\(\large
+Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k +\varepsilon_{ijk}\)</span></td>
 </tr>
 <tr class="even">
 <td>Cuadrado greco latino</td>
 <td>3</td>
 <td>ANOVA con cuatro criterios de clasificación</td>
-<td><span class="math inline">\(\large Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k+\delta_l +\varepsilon_{ijkl}\)</span></td>
+<td><span class="math inline">\(\large
+Y_{ij}=\mu+\alpha_i+\beta_j+\gamma_k+\delta_l
++\varepsilon_{ijkl}\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>Donde:</p>
 <ul>
 <li>Y es la variable respuesta</li>
-<li><span class="math inline">\(\large \mu\)</span> es la media global -<span class="math inline">\(\large \alpha_i\)</span> es el efecto del i-ésimo tratamiento</li>
-<li><span class="math inline">\(\large \beta_j, \gamma_k, \delta_l\)</span> efectos de bloques -<span class="math inline">\(\large \varepsilon\)</span> es el error aleatorio</li>
+<li><span class="math inline">\(\large \mu\)</span> es la media global
+-<span class="math inline">\(\large \alpha_i\)</span> es el efecto del
+i-ésimo tratamiento</li>
+<li><span class="math inline">\(\large \beta_j, \gamma_k,
+\delta_l\)</span> efectos de bloques -<span class="math inline">\(\large
+\varepsilon\)</span> es el error aleatorio</li>
 </ul>
 </div>
 </div>
@@ -648,6 +797,7 @@ $(document).ready(function () {
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -675,7 +825,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

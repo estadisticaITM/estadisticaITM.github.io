@@ -13,12 +13,22 @@
 
 <title>Taller de probabilidad</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -358,74 +330,138 @@ $(document).ready(function () {
 <div id="tecnicas-de-conteo-y-probabilidades" class="section level1">
 <h1><strong>Tecnicas de conteo y probabilidades</strong></h1>
 <ol style="list-style-type: decimal">
-<li>Un furgón de ferrocarril contiene seis sistemas electrónicos complejos. Dos de los seis se han de seleccionar al azar para hacerles pruebas completas y luego clasificarlos como defectuosos o no defectuosos.</li>
+<li>Un furgón de ferrocarril contiene seis sistemas electrónicos
+complejos. Dos de los seis se han de seleccionar al azar para hacerles
+pruebas completas y luego clasificarlos como defectuosos o no
+defectuosos.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Si dos de los seis sistemas en realidad están defectuosos, encuentre la probabilidad de que al menos uno de los dos sistemas probados sea defectuoso. Encuentre la probabilidad de que ambos sean defectuosos.</p></li>
-<li><p>Si cuatro de los seis sistemas están defectuosos en realidad, encuentre las probabilidades indicadas en el inciso a.</p></li>
+<li><p>Si dos de los seis sistemas en realidad están defectuosos,
+encuentre la probabilidad de que al menos uno de los dos sistemas
+probados sea defectuoso. Encuentre la probabilidad de que ambos sean
+defectuosos.</p></li>
+<li><p>Si cuatro de los seis sistemas están defectuosos en realidad,
+encuentre las probabilidades indicadas en el inciso a.</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Con fecha de abril de 2006, aproximadamente 50 millones de nombres de dominio web.com fueron registrados (p. ej., yahoo.com).</li>
+<li>Con fecha de abril de 2006, aproximadamente 50 millones de nombres
+de dominio web.com fueron registrados (p. ej., yahoo.com).</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuántos nombres de dominio compuestos de exactamente dos letras pueden ser formados?</p></li>
-<li><p>¿Cuántos nombres de dominio de dos letras existen si como caracteres se permiten dígitos y números? <em>[Nota: Una longitud de carácter de tres o más ahora es obligatoria.] </em> <em>Rta/ 676; 1296</em></p></li>
-<li><p>¿Cuántos nombres de dominio existen compuestos de tres letras en secuencia? ¿Cuántos de esta longitud existen si se permiten letras o dígitos? <em>[Nota: En la actualidad todos están utilizados.]</em> <em>Rta(17576; 46 656)</em></p></li>
-<li><p>Responda las preguntas hechas en b) para secuencias de cuatro caracteres. <em>Rta(456976;1679616)</em></p></li>
-<li><p>Con fecha de abril de 2006, 97786 de las secuencias de cuatro caracteres utilizando letras o dígitos aún no habían sido reclamadas. Si se elige un nombre de cuatro caracteres al azar, ¿cuál es la probabilidad de que ya tenga dueño? <em>Rta(0.942)</em></p></li>
+<li><p>¿Cuántos nombres de dominio compuestos de exactamente dos letras
+pueden ser formados?</p></li>
+<li><p>¿Cuántos nombres de dominio de dos letras existen si como
+caracteres se permiten dígitos y números? <em>[Nota: Una longitud de
+carácter de tres o más ahora es obligatoria.] </em> <em>Rta/ 676;
+1296</em></p></li>
+<li><p>¿Cuántos nombres de dominio existen compuestos de tres letras en
+secuencia? ¿Cuántos de esta longitud existen si se permiten letras o
+dígitos? <em>[Nota: En la actualidad todos están utilizados.]</em>
+<em>Rta(17576; 46 656)</em></p></li>
+<li><p>Responda las preguntas hechas en b) para secuencias de cuatro
+caracteres. <em>Rta(456976;1679616)</em></p></li>
+<li><p>Con fecha de abril de 2006, 97786 de las secuencias de cuatro
+caracteres utilizando letras o dígitos aún no habían sido reclamadas. Si
+se elige un nombre de cuatro caracteres al azar, ¿cuál es la
+probabilidad de que ya tenga dueño? <em>Rta(0.942)</em></p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>Una marca de automóvil viene en cinco estilos diferentes, con cuatro tipos de motor, con dos tipos de transmisiones y en ocho colores.</li>
+<li>Una marca de automóvil viene en cinco estilos diferentes, con cuatro
+tipos de motor, con dos tipos de transmisiones y en ocho colores.</li>
 </ol>
-<p>a.¿Cuántos autos tendría que tener en existencia un distribuidor si incluyera uno por cada combinación de estilo, motor y transmisión?</p>
-<p>b.¿Cuántos tendría que tener en existencia un centro de distribución si todos los colores de autos se tuvieran para cada combinación del inciso a?</p>
+<p>a.¿Cuántos autos tendría que tener en existencia un distribuidor si
+incluyera uno por cada combinación de estilo, motor y transmisión?</p>
+<p>b.¿Cuántos tendría que tener en existencia un centro de distribución
+si todos los colores de autos se tuvieran para cada combinación del
+inciso a?</p>
 <ol start="4" style="list-style-type: decimal">
 <li><ol style="list-style-type: lower-alpha">
-<li>Beethoven escribió 9 sinfonías y Mozart 27 conciertos para piano. Si el locutor de una estación de radio de una universidad desea tocar primero una sinfonía de Beethoven y luego un concierto de Mozart, ¿de cuántas maneras puede hacerlo? <em>Rta (243)</em></li>
+<li>Beethoven escribió 9 sinfonías y Mozart 27 conciertos para piano. Si
+el locutor de una estación de radio de una universidad desea tocar
+primero una sinfonía de Beethoven y luego un concierto de Mozart, ¿de
+cuántas maneras puede hacerlo? <em>Rta (243)</em></li>
 </ol></li>
 </ol>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>El gerente de la estación decide que en cada noche sucesiva (7 días a la semana), se tocará una sinfonía de Beethoven, seguida por un concierto para piano de Mozart, seguido por un cuarteto de cuerdas de Schubert (de los cuales existen 15). ¿Durante aproximadamente cuántos años se podría continuar con esta política antes de que exactamente el mismo programa se repitiera? <em>Rta(364 dias)</em></li>
+<li>El gerente de la estación decide que en cada noche sucesiva (7 días
+a la semana), se tocará una sinfonía de Beethoven, seguida por un
+concierto para piano de Mozart, seguido por un cuarteto de cuerdas de
+Schubert (de los cuales existen 15). ¿Durante aproximadamente cuántos
+años se podría continuar con esta política antes de que exactamente el
+mismo programa se repitiera? <em>Rta(364 dias)</em></li>
 </ol>
 <ol start="5" style="list-style-type: decimal">
-<li>Una fraternidad local está realizando una rifa en la que se han de vender 50 boletos, uno por cliente. Hay tres premios para ser concedidos. Si los cuatro organizadores de la rifa compran un boleto cada uno,</li>
+<li>Una fraternidad local está realizando una rifa en la que se han de
+vender 50 boletos, uno por cliente. Hay tres premios para ser
+concedidos. Si los cuatro organizadores de la rifa compran un boleto
+cada uno,</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>¿cuál es la probabilidad de que los cuatro organizadores ganen a todos los premios?, b exactamente dos de los premios?, c exactamente uno de los premios?, d ninguno de los premios?</li>
+<li>¿cuál es la probabilidad de que los cuatro organizadores ganen a
+todos los premios?, b exactamente dos de los premios?, c exactamente uno
+de los premios?, d ninguno de los premios?</li>
 </ol>
 <ol start="6" style="list-style-type: decimal">
-<li>Una caja en un almacén contiene cuatro focos de 40 W, cinco de 60 W y seis de 75 W. Suponga que se eligen al azar tres focos.</li>
+<li>Una caja en un almacén contiene cuatro focos de 40 W, cinco de 60 W
+y seis de 75 W. Suponga que se eligen al azar tres focos.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>¿Cuál es la probabilidad de que exactamente dos de los focos seleccionados sean de 75 W?</li>
-<li>¿Cuál es la probabilidad de que los tres focos seleccionados sean de los mismos watts?</li>
-<li>¿Cuál es la probabilidad de que se seleccione un foco de cada tipo?</li>
+<li>¿Cuál es la probabilidad de que exactamente dos de los focos
+seleccionados sean de 75 W?</li>
+<li>¿Cuál es la probabilidad de que los tres focos seleccionados sean de
+los mismos watts?</li>
+<li>¿Cuál es la probabilidad de que se seleccione un foco de cada
+tipo?</li>
 </ol>
 <ol start="7" style="list-style-type: decimal">
-<li><p>Una flota de nueve taxis se ha de despachar a tres aeropuertos en forma tal que tres vayan al aeropuerto A, cinco al aeropuerto B y uno al aeropuerto C. A. ¿En cuántas formas distintas se puede lograr esto? Suponga que los taxis son asignados a aeropuertos al azar. a Si exactamente uno de los taxis necesita reparación, ¿cuál es la probabilidad de que sea despachado al aeropuerto C? b Si exactamente tres de los taxis necesitan reparación, ¿cuál es la probabilidad de que cada aeropuerto reciba uno de los taxis que necesita reparación?</p></li>
-<li><p>Un restaurante de nivel económico alto ofrece un menú especial de precios fijos en el que, por un costo fijo de comidas, una persona puede seleccionar de entre cuatro aperitivos, tres ensaladas, cuatro entradas y cinco postres. ¿Cuántas comidas diferentes hay si una de ellas consta de un aperitivo, una ensalada, una entrada y un postre?</p></li>
-<li><p>Un amigo mío va a ofrecer una fiesta. Sus existencias actuales de vino incluyen 8 botellas de zinfandel, 10 de merlot y 12 de cabernet (él sólo bebe vino tinto), todos de diferentes fábricas vinícolas.</p></li>
+<li><p>Una flota de nueve taxis se ha de despachar a tres aeropuertos en
+forma tal que tres vayan al aeropuerto A, cinco al aeropuerto B y uno al
+aeropuerto C. A. ¿En cuántas formas distintas se puede lograr esto?
+Suponga que los taxis son asignados a aeropuertos al azar. a Si
+exactamente uno de los taxis necesita reparación, ¿cuál es la
+probabilidad de que sea despachado al aeropuerto C? b Si exactamente
+tres de los taxis necesitan reparación, ¿cuál es la probabilidad de que
+cada aeropuerto reciba uno de los taxis que necesita
+reparación?</p></li>
+<li><p>Un restaurante de nivel económico alto ofrece un menú especial de
+precios fijos en el que, por un costo fijo de comidas, una persona puede
+seleccionar de entre cuatro aperitivos, tres ensaladas, cuatro entradas
+y cinco postres. ¿Cuántas comidas diferentes hay si una de ellas consta
+de un aperitivo, una ensalada, una entrada y un postre?</p></li>
+<li><p>Un amigo mío va a ofrecer una fiesta. Sus existencias actuales de
+vino incluyen 8 botellas de zinfandel, 10 de merlot y 12 de cabernet (él
+sólo bebe vino tinto), todos de diferentes fábricas vinícolas.</p></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Si 6 botellas de vino tienen que ser seleccionadas al azar de las 30 para servirse, ¿cuántas formas existen de hacerlo?</li>
-<li>Si se seleccionan al azar 6 botellas, ¿cuántas formas existen de obtener dos botellas de cada variedad? c.Si se seleccionan 6 botellas al azar, ¿cuál es la probabilidad de que el resultado sea dos botellas de cada variedad?</li>
+<li>Si 6 botellas de vino tienen que ser seleccionadas al azar de las 30
+para servirse, ¿cuántas formas existen de hacerlo?</li>
+<li>Si se seleccionan al azar 6 botellas, ¿cuántas formas existen de
+obtener dos botellas de cada variedad? c.Si se seleccionan 6 botellas al
+azar, ¿cuál es la probabilidad de que el resultado sea dos botellas de
+cada variedad?</li>
 </ol>
 <ol start="10" style="list-style-type: decimal">
-<li>Cuatro parejas compran 8 lugares en la misma fila para un concierto. ¿De cuántas maneras diferentes se pueden sentar</li>
+<li>Cuatro parejas compran 8 lugares en la misma fila para un concierto.
+¿De cuántas maneras diferentes se pueden sentar</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Sin restricciones?</li>
 <li>si cada pareja se sienta junta?</li>
-<li>si todos los hombres se sientan juntos a la derecha de todas las mujeres?</li>
+<li>si todos los hombres se sientan juntos a la derecha de todas las
+mujeres?</li>
 </ol>
 </div>
 <div id="diagrama-de-venn-y-probabilidad" class="section level1">
 <h1><strong>Diagrama de venn y probabilidad</strong></h1>
 <ol style="list-style-type: decimal">
-<li>Los trenes de aterrizaje hidráulicos que salen de una planta de reparación de aviones se inspeccionan para ver si tienen defectos. Registros históricos indican que 8% tienen defectos sólo en ejes, 6% tienen defectos sólo en bujes y 2% tienen defectos en ejes y bujes.</li>
+<li>Los trenes de aterrizaje hidráulicos que salen de una planta de
+reparación de aviones se inspeccionan para ver si tienen defectos.
+Registros históricos indican que 8% tienen defectos sólo en ejes, 6%
+tienen defectos sólo en bujes y 2% tienen defectos en ejes y bujes.</li>
 </ol>
 <p>a.Realice el diagrama de ven</p>
-<p>Uno de los trenes hidráulicos se selecciona al azar. ¿Cuál es la probabilidad de que el conjunto tenga:</p>
+<p>Uno de los trenes hidráulicos se selecciona al azar. ¿Cuál es la
+probabilidad de que el conjunto tenga:</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>un buje defectuoso?</li>
 <li>un eje o buje defectuoso?</li>
@@ -433,38 +469,83 @@ $(document).ready(function () {
 <li>ningún tipo de defecto?</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>En el último año de colegio, en un grupo de 120 estudiantes se encontró que 42 cursaron Matemáticas, 52 Psicología, 70 Historia, 25 matemáticas e historia, 20 matemáticas y psicología, 16 historia, pero no matemáticas ni psicología, 10 las tres materias y 30 ninguna de las tres. Si se selecciona un estudiante aleatoriamente, encuentre la probabilidad que:</li>
+<li>En el último año de colegio, en un grupo de 120 estudiantes se
+encontró que 42 cursaron Matemáticas, 52 Psicología, 70 Historia, 25
+matemáticas e historia, 20 matemáticas y psicología, 16 historia, pero
+no matemáticas ni psicología, 10 las tres materias y 30 ninguna de las
+tres. Si se selecciona un estudiante aleatoriamente, encuentre la
+probabilidad que:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Una persona inscrita en psicología haya estudiado las tres materias.</p></li>
-<li><p>Una persona que no se inscribió en psicología haya tomado historia y matemáticas.</p></li>
-<li><p>Un estudiante inscrito en historia, haya tomado matemáticas.</p></li>
-<li><p>Un estudiante que no haya cursado matemáticas, haya cursado historia.</p></li>
+<li><p>Una persona inscrita en psicología haya estudiado las tres
+materias.</p></li>
+<li><p>Una persona que no se inscribió en psicología haya tomado
+historia y matemáticas.</p></li>
+<li><p>Un estudiante inscrito en historia, haya tomado
+matemáticas.</p></li>
+<li><p>Un estudiante que no haya cursado matemáticas, haya cursado
+historia.</p></li>
 </ol>
-<p>3.De un grupo de 1352 turistas que visitan México se encuentra que, 935 de ellos visitaron las momias, 955 el museo de antropología, 925 las pirámides, 35 fueron a las pirámides, pero no al museo ni las momias, 80 fueron al museo, pero no a las pirámides ni a las momias, 120 estuvieron en las momias, pero no fueron ni a las pirámides ni al museo, 590 estuvieron en las momias y en las pirámides, 350 estuvieron en los 3 lugares. indique cuantas de estas personas asistieron a: a. Defina los eventos y realice el diagrama de ven Cuál es la probabilidad de que: b. Una persona asista a exactamente a uno de estos lugares c. Una persona asista exactamente a 2 lugares d. Una persona asista al menos a un lugar e. Una persona que no asistió al museo haya asistido a las pirámides</p>
-<p>4.Una compañía de electricidad ofrece una tarifa de consumo mínimo a cualquier usuario cuyo consumo de electricidad sea de menos de 240 kWh durante un mes particular. Si A denota el evento en que un usuario seleccionado al azar en una cierta comunidad no excede el consumo mínimo durante enero y B el evento análogo para el mes de julio (A y B se refieren al mismo usuario. Suponga P(A) = 0.8, P(B)= 0.7 y P(A ∩ B) = 0.9. Calcule lo siguiente: a. P(A U B) b. La probabilidad de que el consumo mínimo sea sobrepasado en exactamente uno de los dos meses. Describa este evento en función de A y B.</p>
+<p>3.De un grupo de 1352 turistas que visitan México se encuentra que,
+935 de ellos visitaron las momias, 955 el museo de antropología, 925 las
+pirámides, 35 fueron a las pirámides, pero no al museo ni las momias, 80
+fueron al museo, pero no a las pirámides ni a las momias, 120 estuvieron
+en las momias, pero no fueron ni a las pirámides ni al museo, 590
+estuvieron en las momias y en las pirámides, 350 estuvieron en los 3
+lugares. indique cuantas de estas personas asistieron a: a. Defina los
+eventos y realice el diagrama de ven Cuál es la probabilidad de que: b.
+Una persona asista a exactamente a uno de estos lugares c. Una persona
+asista exactamente a 2 lugares d. Una persona asista al menos a un lugar
+e. Una persona que no asistió al museo haya asistido a las pirámides</p>
+<p>4.Una compañía de electricidad ofrece una tarifa de consumo mínimo a
+cualquier usuario cuyo consumo de electricidad sea de menos de 240 kWh
+durante un mes particular. Si A denota el evento en que un usuario
+seleccionado al azar en una cierta comunidad no excede el consumo mínimo
+durante enero y B el evento análogo para el mes de julio (A y B se
+refieren al mismo usuario. Suponga P(A) = 0.8, P(B)= 0.7 y P(A ∩ B) =
+0.9. Calcule lo siguiente: a. P(A U B) b. La probabilidad de que el
+consumo mínimo sea sobrepasado en exactamente uno de los dos meses.
+Describa este evento en función de A y B.</p>
 </div>
 <div id="probabilidad-condicional" class="section level1">
 <h1><strong>Probabilidad condicional </strong></h1>
 <ol style="list-style-type: decimal">
-<li>En un experimento para estudiar la relación entre la Diabetes y el consumo de licor, se reunieron los siguientes datos en 180 individuos: Un total de 87 son diabéticos, 69 consumen licor en forma moderada; 21 son diabéticos y consumen licor en forma moderada; 49 toman licor en forma exagerada; 26 no consumen licor y son no diabéticos.</li>
+<li>En un experimento para estudiar la relación entre la Diabetes y el
+consumo de licor, se reunieron los siguientes datos en 180 individuos:
+Un total de 87 son diabéticos, 69 consumen licor en forma moderada; 21
+son diabéticos y consumen licor en forma moderada; 49 toman licor en
+forma exagerada; 26 no consumen licor y son no diabéticos.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Con la información anterior construya una tabla de doble entrada</p></li>
-<li><p>Si se selecciona aleatoriamente a uno de estos individuos y los eventos son DEPENDIENTES, encuentre la probabilidad de que la persona experimente diabetes, y consuma licor moderadamente.</p></li>
-<li><p>Halle la probabilidad de que sea diabético dado que consume licor</p></li>
+<li><p>Con la información anterior construya una tabla de doble
+entrada</p></li>
+<li><p>Si se selecciona aleatoriamente a uno de estos individuos y los
+eventos son DEPENDIENTES, encuentre la probabilidad de que la persona
+experimente diabetes, y consuma licor moderadamente.</p></li>
+<li><p>Halle la probabilidad de que sea diabético dado que consume
+licor</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Considere seleccionar al azar un estudiante en cierta universidad y que A denote el evento en que el individuo seleccionado tenga una tarjeta de crédito Visa y que B sea el evento análogo para la tarjeta MasterCard. Suponga que P(A) = 0.6, P(B)=0.3 y P(A ∩ B)= 0.25.</li>
+<li>Considere seleccionar al azar un estudiante en cierta universidad y
+que A denote el evento en que el individuo seleccionado tenga una
+tarjeta de crédito Visa y que B sea el evento análogo para la tarjeta
+MasterCard. Suponga que P(A) = 0.6, P(B)=0.3 y P(A ∩ B)= 0.25.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>Grafique el diagrama de venn</p></li>
-<li><p>Calcule la probabilidad de que el individuo seleccionado tenga por lo menos uno de los dos tipos de tarjetas</p></li>
-<li><p>Dado que el individuo seleccionado tiene por lo menos una tarjeta, ¿cuál es la probabilidad de que el estudiante tenga una tarjeta master card?</p></li>
-<li><p>Calcule <span class="math inline">\(P(B&#39;|A)\)</span> y <span class="math inline">\(P(A|B)\)</span></p></li>
+<li><p>Calcule la probabilidad de que el individuo seleccionado tenga
+por lo menos uno de los dos tipos de tarjetas</p></li>
+<li><p>Dado que el individuo seleccionado tiene por lo menos una
+tarjeta, ¿cuál es la probabilidad de que el estudiante tenga una tarjeta
+master card?</p></li>
+<li><p>Calcule <span class="math inline">\(P(B&#39;|A)\)</span> y <span
+class="math inline">\(P(A|B)\)</span></p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>Cien adultos fueron entrevistados con respecto a las cargas que implican los préstamos para estudiantes universitarios y si quienes respondieron tenían un hijo actualmente en la universidad. Sus respuestas se resumen en la tabla siguiente:</li>
+<li>Cien adultos fueron entrevistados con respecto a las cargas que
+implican los préstamos para estudiantes universitarios y si quienes
+respondieron tenían un hijo actualmente en la universidad. Sus
+respuestas se resumen en la tabla siguiente:</li>
 </ol>
 <table>
 <thead>
@@ -492,12 +573,23 @@ $(document).ready(function () {
 </table>
 <p>carga de prestamo=CP</p>
 <ol style="list-style-type: lower-alpha">
-<li>Cuál es la probabilidad de que la carga de préstamo sea razonable</li>
-<li>Cuál es la probabilidad de que la carga de préstamo sea alta y se tenga un hijo en la universidad</li>
-<li>Dado que una persona tiene un hijo en la universidad, ¿Cuál es la probabilidad de que la carga de prestamo sea razonable</li>
+<li>Cuál es la probabilidad de que la carga de préstamo sea
+razonable</li>
+<li>Cuál es la probabilidad de que la carga de préstamo sea alta y se
+tenga un hijo en la universidad</li>
+<li>Dado que una persona tiene un hijo en la universidad, ¿Cuál es la
+probabilidad de que la carga de prestamo sea razonable</li>
 </ol>
 <ol start="4" style="list-style-type: decimal">
-<li>Una compañía de seguros ofrece cuatro diferentes niveles de deducible, ninguno, bajo, medio y alto, para sus tenedores de pólizas de propietario de casa y tres diferentes niveles, bajo, medio y alto, para sus tenedores de pólizas de automóviles. La tabla adjunta da proporciones de las varias categorías de tenedores de pólizas que tienen ambos tipos de seguro. Por ejemplo, la proporción de individuos con deducible bajo de casa como deducible bajo de carro es 0.06 (6% de todos los individuos). Suponga que se elige al azar un individuo que posee ambos tipos de pólizas.</li>
+<li>Una compañía de seguros ofrece cuatro diferentes niveles de
+deducible, ninguno, bajo, medio y alto, para sus tenedores de pólizas de
+propietario de casa y tres diferentes niveles, bajo, medio y alto, para
+sus tenedores de pólizas de automóviles. La tabla adjunta da
+proporciones de las varias categorías de tenedores de pólizas que tienen
+ambos tipos de seguro. Por ejemplo, la proporción de individuos con
+deducible bajo de casa como deducible bajo de carro es 0.06 (6% de todos
+los individuos). Suponga que se elige al azar un individuo que posee
+ambos tipos de pólizas.</li>
 </ol>
 <table>
 <thead>
@@ -534,15 +626,24 @@ $(document).ready(function () {
 </tbody>
 </table>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que el individuo tenga un deducible de auto medio y un deducible de casa alto? rta(0.1)</p></li>
-<li><p>¿Cuál es la probabilidad de que el individuo tenga un deducible de casa bajo y un deducible de auto bajo? rta(0.18 0.19)</p></li>
-<li><p>¿Cuál es la probabilidad de que el individuo se encuentre en la misma categoría de deducibles de casa y auto? rta(0.41)</p></li>
-<li><p>Basado en su respuesta en el inciso c), ¿cuál es la probabilidad de que las dos categorías sean diferentes? rta(0.59)</p></li>
-<li><p>¿Cuál es la probabilidad de que el individuo tenga por lo menos un nivel deducible bajo? rta(0.31)</p></li>
-<li><p>Utilizando la respuesta del inciso e). ¿cuál es la probabilidad de que ningún nivel deducible sea bajo? rta(0.69)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo tenga un deducible
+de auto medio y un deducible de casa alto? rta(0.1)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo tenga un deducible
+de casa bajo y un deducible de auto bajo? rta(0.18 0.19)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo se encuentre en la
+misma categoría de deducibles de casa y auto? rta(0.41)</p></li>
+<li><p>Basado en su respuesta en el inciso c), ¿cuál es la probabilidad
+de que las dos categorías sean diferentes? rta(0.59)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo tenga por lo menos
+un nivel deducible bajo? rta(0.31)</p></li>
+<li><p>Utilizando la respuesta del inciso e). ¿cuál es la probabilidad
+de que ningún nivel deducible sea bajo? rta(0.69)</p></li>
 </ol>
 <ol start="5" style="list-style-type: decimal">
-<li>Una encuesta clasificó a gran número de adultos de acuerdo con si se les diagnosticó la necesidad de usar lentes para corregir su visión de lectura o si ya usan lentes cuando leen. Las proporciones que caen en las cuatro categorías resultantes se dan en la tabla siguiente:</li>
+<li>Una encuesta clasificó a gran número de adultos de acuerdo con si se
+les diagnosticó la necesidad de usar lentes para corregir su visión de
+lectura o si ya usan lentes cuando leen. Las proporciones que caen en
+las cuatro categorías resultantes se dan en la tabla siguiente:</li>
 </ol>
 <table>
 <thead>
@@ -565,9 +666,16 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Si se selecciona un solo adulto del grupo grande, encuentre las probabilidades de que a. El adulto necesita lentes, b necesita lentes pero no los usa, c usa lentes los necesite o no. d. Halle la probabilidad de que un adulto necesita lentes SI no los usa.</p>
+<p>Si se selecciona un solo adulto del grupo grande, encuentre las
+probabilidades de que a. El adulto necesita lentes, b necesita lentes
+pero no los usa, c usa lentes los necesite o no. d. Halle la
+probabilidad de que un adulto necesita lentes SI no los usa.</p>
 <ol start="6" style="list-style-type: decimal">
-<li>La población de un país particular se compone de tres grupos étnicos. Cada individuo pertenece a uno de los cuatro grupos sanguíneos principales. La tabla de probabilidad conjunta anexa da la proporción de individuos en las diversas combinaciones de grupo étnico-grupo sanguíneo.</li>
+<li>La población de un país particular se compone de tres grupos
+étnicos. Cada individuo pertenece a uno de los cuatro grupos sanguíneos
+principales. La tabla de probabilidad conjunta anexa da la proporción de
+individuos en las diversas combinaciones de grupo étnico-grupo
+sanguíneo.</li>
 </ol>
 <p>GS: Grupo sanguíneo GE: Grupo étnico</p>
 <table>
@@ -604,25 +712,50 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Suponga que se selecciona un individuo al azar de la población y que los eventos se definen como: A={tipo A seleccionado} B={tipo B seleccionado} C={grupo étnico 3 seleccionado}</p>
+<p>Suponga que se selecciona un individuo al azar de la población y que
+los eventos se definen como: A={tipo A seleccionado} B={tipo B
+seleccionado} C={grupo étnico 3 seleccionado}</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Calcule P(A), P(C) y P(AnC).</p></li>
-<li><p>Calcule tanto P(A | C) y P(C | A) y explique en contexto lo que cada una de estas probabilidades representa.</p></li>
-<li><p>Si el individuo seleccionado no tiene sangre de tipo B, ¿cuál es la probabilidad de que él o ella pertenezca al grupo étnico 1?</p></li>
+<li><p>Calcule tanto P(A | C) y P(C | A) y explique en contexto lo que
+cada una de estas probabilidades representa.</p></li>
+<li><p>Si el individuo seleccionado no tiene sangre de tipo B, ¿cuál es
+la probabilidad de que él o ella pertenezca al grupo étnico 1?</p></li>
 </ol>
-<p>7.Para los clientes que compran un refrigerador en una tienda de aparatos domésticos, sea A el evento en que el refrigerador fue fabricado en EU, B el evento en que el refrigerador contaba con una máquina de hacer hielos y C el evento en que el cliente adquirió una garantía ampliada. Las probabilidades pertinentes son. <span class="math inline">\(P(A)= 0.75\)</span> <span class="math inline">\(P(B|A)=0.9\)</span> <span class="math inline">\(P(B|A&#39;)=0.8\)</span> $P(C |A ∩ B)= 0.8 $ <span class="math inline">\(P(C| A ∩ B&#39;) = 0.6\)</span> <span class="math inline">\(P(C|A&#39; ∩ B) = 0.7\)</span> <span class="math inline">\(P(C| A&#39; ∩ B&#39;)=0.3\)</span></p>
+<p>7.Para los clientes que compran un refrigerador en una tienda de
+aparatos domésticos, sea A el evento en que el refrigerador fue
+fabricado en EU, B el evento en que el refrigerador contaba con una
+máquina de hacer hielos y C el evento en que el cliente adquirió una
+garantía ampliada. Las probabilidades pertinentes son. <span
+class="math inline">\(P(A)= 0.75\)</span> <span
+class="math inline">\(P(B|A)=0.9\)</span> <span
+class="math inline">\(P(B|A&#39;)=0.8\)</span> $P(C |A ∩ B)= 0.8 $ <span
+class="math inline">\(P(C| A ∩ B&#39;) = 0.6\)</span> <span
+class="math inline">\(P(C|A&#39; ∩ B) = 0.7\)</span> <span
+class="math inline">\(P(C| A&#39; ∩ B&#39;)=0.3\)</span></p>
 <ol style="list-style-type: lower-alpha">
-<li>Construya un diagrama de árbol compuesto de ramas de primera, segunda y tercera generaciones y anote el evento y la probabilidad apropiada junto a cada rama.</li>
+<li>Construya un diagrama de árbol compuesto de ramas de primera,
+segunda y tercera generaciones y anote el evento y la probabilidad
+apropiada junto a cada rama.</li>
 <li>Calcule P(A ∩ B ∩ C). rta(0.54)</li>
 <li>Calcule P(B ∩ C). rta(0.68)</li>
 <li>Calcule P(C). rta(0.74)</li>
-<li>Calcule P(A | B ∩ C), la probabilidad de la compra de un refrigerador fabricado en EU dado que también se adquirieron una máquina de hacer hielos y una garantía ampliada. rta(0.7941)</li>
+<li>Calcule P(A | B ∩ C), la probabilidad de la compra de un
+refrigerador fabricado en EU dado que también se adquirieron una máquina
+de hacer hielos y una garantía ampliada. rta(0.7941)</li>
 </ol>
 </div>
-<div id="arboles-y-teorema-de-bayes-regla-de-la-multiplicación" class="section level1">
-<h1><strong>Arboles y teorema de bayes, Regla de la multiplicación </strong></h1>
+<div id="arboles-y-teorema-de-bayes-regla-de-la-multiplicación"
+class="section level1">
+<h1><strong>Arboles y teorema de bayes, Regla de la multiplicación
+</strong></h1>
 <ol style="list-style-type: decimal">
-<li>Una compañía de fondos de inversión mutua ofrece a sus clientes varios fondos diferentes: un fondo de mercado de dinero, tres fondos de bonos (a corto, intermedio y a largo plazo), dos fondos de acciones (de moderado y alto riesgo) y un fondo balanceado. Entre los clientes que poseen acciones en un solo fondo, los porcentajes de clientes en los diferentes fondos son como sigue:</li>
+<li>Una compañía de fondos de inversión mutua ofrece a sus clientes
+varios fondos diferentes: un fondo de mercado de dinero, tres fondos de
+bonos (a corto, intermedio y a largo plazo), dos fondos de acciones (de
+moderado y alto riesgo) y un fondo balanceado. Entre los clientes que
+poseen acciones en un solo fondo, los porcentajes de clientes en los
+diferentes fondos son como sigue:</li>
 </ol>
 <table>
 <thead>
@@ -662,54 +795,106 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Se selecciona al azar un cliente que posee acciones en sólo un fondo.</p>
+<p>Se selecciona al azar un cliente que posee acciones en sólo un
+fondo.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que el individuo seleccionado posea acciones en el fondo balanceado? Rta(0.07)</p></li>
-<li><p>¿Cuál es la probabilidad de que el individuo posea acciones en un fondo de bonos? Rta(0.3)</p></li>
-<li><p>¿Cuál es la probabilidad de que el individuo seleccionado no posea acciones en un fondo de acciones? Rta(0.57)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo seleccionado posea
+acciones en el fondo balanceado? Rta(0.07)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo posea acciones en un
+fondo de bonos? Rta(0.3)</p></li>
+<li><p>¿Cuál es la probabilidad de que el individuo seleccionado no
+posea acciones en un fondo de acciones? Rta(0.57)</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Una caja contiene seis pelotas rojas y cuatro verdes y una segunda caja contiene siete pelotas rojas y tres verdes. Se selecciona una pelota al azar de la primera caja y se le coloca en la segunda caja. Luego se selecciona al azar una pelota de la segunda caja y se le coloca en la primera caja.</li>
+<li>Una caja contiene seis pelotas rojas y cuatro verdes y una segunda
+caja contiene siete pelotas rojas y tres verdes. Se selecciona una
+pelota al azar de la primera caja y se le coloca en la segunda caja.
+Luego se selecciona al azar una pelota de la segunda caja y se le coloca
+en la primera caja.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>¿Cuál es la probabilidad de que se seleccione una pelota roja de la primera caja y de que se seleccione una pelota roja de la segunda caja?</li>
+<li>¿Cuál es la probabilidad de que se seleccione una pelota roja de la
+primera caja y de que se seleccione una pelota roja de la segunda
+caja?</li>
 </ol>
 <p><img src="tallerprob_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
-<li>El 70% de las aeronaves ligeras que desaparecen en vuelo en cierto país son posteriormente localizadas. De las aeronaves que son localizadas, 60% cuentan con un localizador de emergencia, mientras que 90% de las aeronaves no localizadas no cuentan con dicho localizador. Suponga que una aeronave ligera ha desaparecido.</li>
+<li>El 70% de las aeronaves ligeras que desaparecen en vuelo en cierto
+país son posteriormente localizadas. De las aeronaves que son
+localizadas, 60% cuentan con un localizador de emergencia, mientras que
+90% de las aeronaves no localizadas no cuentan con dicho localizador.
+Suponga que una aeronave ligera ha desaparecido.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Si tiene un localizador de emergencia, ¿cuál es la probabilidad de que no sea localizada?</p></li>
-<li><p>Si no tiene un localizador de emergencia, ¿cuál es la probabilidad de que sea localizada?</p></li>
+<li><p>Si tiene un localizador de emergencia, ¿cuál es la probabilidad
+de que no sea localizada?</p></li>
+<li><p>Si no tiene un localizador de emergencia, ¿cuál es la
+probabilidad de que sea localizada?</p></li>
 </ol>
 <ol start="4" style="list-style-type: decimal">
-<li>En una gasolinería, 40% de los clientes utilizan gasolina regular (A1), 35% usan gasolina plus (A2) y 25% utilizan Premium (A3). De los clientes que utilizan gasolina regular, sólo 30% llenan sus tanques (evento B). De los clientes que utilizan plus, 60% llenan sus tanques, mientras que los que utilizan premium, 50% llenan sus tanques.</li>
+<li>En una gasolinería, 40% de los clientes utilizan gasolina regular
+(A1), 35% usan gasolina plus (A2) y 25% utilizan Premium (A3). De los
+clientes que utilizan gasolina regular, sólo 30% llenan sus tanques
+(evento B). De los clientes que utilizan plus, 60% llenan sus tanques,
+mientras que los que utilizan premium, 50% llenan sus tanques.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que el siguiente cliente pida gasolina plus y llene el tanque (A2 ∩ B)? rta (0.21)</p></li>
-<li><p>¿Cuál es la probabilidad de que el siguiente cliente llene el tanque? rta(0.455)</p></li>
-<li><p>Si el siguiente cliente llena el tanque, ¿cuál es la probabilidad que pida gasolina regular? ¿Plus? ¿Premium? Rta (0.264 0.274)</p></li>
+<li><p>¿Cuál es la probabilidad de que el siguiente cliente pida
+gasolina plus y llene el tanque (A2 ∩ B)? rta (0.21)</p></li>
+<li><p>¿Cuál es la probabilidad de que el siguiente cliente llene el
+tanque? rta(0.455)</p></li>
+<li><p>Si el siguiente cliente llena el tanque, ¿cuál es la probabilidad
+que pida gasolina regular? ¿Plus? ¿Premium? Rta (0.264 0.274)</p></li>
 </ol>
-<p>considere la siguiente información adicional sobre el uso de tarjetas de crédito:</p>
-<p>El 70% de todos los clientes que utilizan gasolina regular y que llenan el tanque usan una tarjeta de crédito. El 50% de todos los clientes que utilizan gasolina regular y que no llenan el tanque usan una tarjeta de crédito. El 60% de todos los clientes que llenan el tanque con gasolina plus usan una tarjeta de crédito. El 50% de todos los clientes que utilizan gasolina plus y que no llenan el tanque usan una tarjeta de crédito. El 50% de todos los clientes que utilizan gasolina Premium y que llenan el tanque usan una tarjeta de crédito. El 40% de todos los clientes que utilizan gasolina premium y que no llenan el tanque usan una tarjeta de crédito. Calcule la probabilidad de cada uno de los siguientes eventos para el siguiente cliente que llegue (un diagrama de árbol podría ayudar).</p>
+<p>considere la siguiente información adicional sobre el uso de tarjetas
+de crédito:</p>
+<p>El 70% de todos los clientes que utilizan gasolina regular y que
+llenan el tanque usan una tarjeta de crédito. El 50% de todos los
+clientes que utilizan gasolina regular y que no llenan el tanque usan
+una tarjeta de crédito. El 60% de todos los clientes que llenan el
+tanque con gasolina plus usan una tarjeta de crédito. El 50% de todos
+los clientes que utilizan gasolina plus y que no llenan el tanque usan
+una tarjeta de crédito. El 50% de todos los clientes que utilizan
+gasolina Premium y que llenan el tanque usan una tarjeta de crédito. El
+40% de todos los clientes que utilizan gasolina premium y que no llenan
+el tanque usan una tarjeta de crédito. Calcule la probabilidad de cada
+uno de los siguientes eventos para el siguiente cliente que llegue (un
+diagrama de árbol podría ayudar).</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>{Plus, tanque lleno y tarjeta de crédito} rta(0.126)</p></li>
-<li><p>{Premium, tanque no lleno y tarjeta de crédito} rta(0.05)</p></li>
+<li><p>{Premium, tanque no lleno y tarjeta de crédito}
+rta(0.05)</p></li>
 <li><p>{Premium y tarjeta de crédito} rta(0.1125)</p></li>
 <li><p>{Tanque lleno y tarjeta de crédito} rta(0.2725)</p></li>
 <li><p>{Tarjeta de crédito} rta(0.5325)</p></li>
-<li><p>Si el siguiente cliente utiliza una tarjeta de crédito, ¿cuál es la probabilidad de que pida premium? rta(0.2113)</p></li>
+<li><p>Si el siguiente cliente utiliza una tarjeta de crédito, ¿cuál es
+la probabilidad de que pida premium? rta(0.2113)</p></li>
 </ol>
 <ol start="5" style="list-style-type: decimal">
-<li>En una gran universidad, en la búsqueda que nunca termina de un libro de texto satisfactorio, el Departamento de Estadística probó un texto diferente durante cada uno de los últimos tres trimestres. Durante el trimestre de otoño, 500 estudiantes utilizaron el texto del profesor Mean; durante el trimestre de invierno, 300 estudiantes usaron el texto del profesor Median y durante el trimestre de primavera, 200 estudiantes utilizaron el texto del profesor Mode. Una encuesta realizada al final de cada trimestre mostró que 200 estudiantes se sintieron satisfechos con el libro de Mean, 150 con el libro de Median y 160 con el libro de Mode. Si se selecciona al azar un estudiante que cursó estadística durante uno de estos trimestres y admite haber estado satisfecho con el texto, ¿es probable que el estudiante haya utilizado el libro de Mean, Median o Mode? ¿Quién es el autor menos probable? [Sugerencia: Trace un diagrama de árbol o use el teorema de Bayes.]</li>
+<li>En una gran universidad, en la búsqueda que nunca termina de un
+libro de texto satisfactorio, el Departamento de Estadística probó un
+texto diferente durante cada uno de los últimos tres trimestres. Durante
+el trimestre de otoño, 500 estudiantes utilizaron el texto del profesor
+Mean; durante el trimestre de invierno, 300 estudiantes usaron el texto
+del profesor Median y durante el trimestre de primavera, 200 estudiantes
+utilizaron el texto del profesor Mode. Una encuesta realizada al final
+de cada trimestre mostró que 200 estudiantes se sintieron satisfechos
+con el libro de Mean, 150 con el libro de Median y 160 con el libro de
+Mode. Si se selecciona al azar un estudiante que cursó estadística
+durante uno de estos trimestres y admite haber estado satisfecho con el
+texto, ¿es probable que el estudiante haya utilizado el libro de Mean,
+Median o Mode? ¿Quién es el autor menos probable? [Sugerencia: Trace un
+diagrama de árbol o use el teorema de Bayes.]</li>
 </ol>
-<p>rta/P(Media|S)= 0.3922, P(Media|S)= 0.2941, de modo que Media y Mediana son la más y la menos probable, respectivamente</p>
+<p>rta/P(Media|S)= 0.3922, P(Media|S)= 0.2941, de modo que Media y
+Mediana son la más y la menos probable, respectivamente</p>
 </div>
 
 <br>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -737,7 +922,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

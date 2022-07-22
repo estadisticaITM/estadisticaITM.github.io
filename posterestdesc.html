@@ -13,12 +13,22 @@
 
 <title>Poster de estadística descriptiva</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -43,6 +53,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -53,11 +64,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -70,32 +76,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -106,10 +87,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -126,40 +103,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -187,7 +140,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -199,7 +152,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -210,10 +163,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -225,7 +191,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -357,7 +322,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -371,7 +336,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -385,28 +350,35 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -419,7 +391,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -428,7 +400,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -439,7 +411,9 @@ div.tocify {
 
 <div id="objetivo-general" class="section level2">
 <h2><strong>Objetivo general:</strong></h2>
-<p>Poner en práctica los conceptos aprendidos en el curso de estadística descriptiva través de la realización de un poster o cartelera del tema de preferencia.</p>
+<p>Poner en práctica los conceptos aprendidos en el curso de estadística
+descriptiva través de la realización de un poster o cartelera del tema
+de preferencia.</p>
 </div>
 <div id="objetivos-específicos" class="section level2">
 <h2><strong>Objetivos específicos:</strong></h2>
@@ -447,25 +421,34 @@ div.tocify {
 <li><p>Repasar conceptos de estadística descriptiva</p></li>
 <li><p>Usar las diferentes funciones del software excel</p></li>
 <li><p>Número de integrantes: Máximo 2 personas</p></li>
-<li><p>Fechas de exposición del poster: Según lo acordado en el compromiso académico</p></li>
+<li><p>Fechas de exposición del poster: Según lo acordado en el
+compromiso académico</p></li>
 </ul>
 </div>
 <div id="pasos-a-realizar" class="section level2">
 <h2><strong>Pasos a realizar:</strong></h2>
 <ol style="list-style-type: decimal">
-<li>Escoger una base de datos de su preferencia que contenga 2 variables cuantitativas y dos variables cualitativas, (por favor ponerse de acuerdo con el docente), mínimo 500 datos, algunos de las bases de datos de donde se pueden obtener datos son:</li>
+<li>Escoger una base de datos de su preferencia que contenga 2 variables
+cuantitativas y dos variables cualitativas, (por favor ponerse de
+acuerdo con el docente), mínimo 500 datos, algunos de las bases de datos
+de donde se pueden obtener datos son:</li>
 </ol>
 <ul>
-<li><p><a href="https://www.dane.gov.co/index.php/estadisticas-por-tema">DANE</a></p></li>
-<li><p><a href="https://datos.bancomundial.org/indicador/SH.HIV.0014">BANCO MUNDIAL</a></p></li>
-<li><p><a href="https://www.agronet.gov.co/estadistica/Paginas/home.aspx">Agronet</a></p></li>
+<li><p><a
+href="https://www.dane.gov.co/index.php/estadisticas-por-tema">DANE</a></p></li>
+<li><p><a
+href="https://datos.bancomundial.org/indicador/SH.HIV.0014">BANCO
+MUNDIAL</a></p></li>
+<li><p><a
+href="https://www.agronet.gov.co/estadistica/Paginas/home.aspx">Agronet</a></p></li>
 <li><p><a href="https://www.kaggle.com/">KAGGLE</a></p></li>
 <li><p><a href="https://www.datos.gov.co/">Datos abiertos</a></p></li>
 </ul>
 </div>
 <div id="calificación" class="section level2">
 <h2><strong>Calificación</strong></h2>
-<p>La calificación de esta actividad se realizará con la siguiente rúbrica:</p>
+<p>La calificación de esta actividad se realizará con la siguiente
+rúbrica:</p>
 <table>
 <colgroup>
 <col width="24%" />
@@ -484,38 +467,63 @@ div.tocify {
 <tbody>
 <tr class="odd">
 <td>Presentación</td>
-<td>Contiene título, nombres de los integrantes está bien organizado y ordenado, no hay sobrecarga de texto, ni espacios en blanco, buena ortografía, Bibliografía</td>
-<td>Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, buena ortografía, Bibliografía.</td>
-<td>Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, más de 3 errores de ortografía, sin Bibliografía</td>
+<td>Contiene título, nombres de los integrantes está bien organizado y
+ordenado, no hay sobrecarga de texto, ni espacios en blanco, buena
+ortografía, Bibliografía</td>
+<td>Contiene título, nombres de los integrantes no está bien organizado
+y ordenado, hay sobrecarga de texto ó espacios en blanco, buena
+ortografía, Bibliografía.</td>
+<td>Contiene título, nombres de los integrantes no está bien organizado
+y ordenado, hay sobrecarga de texto ó espacios en blanco, más de 3
+errores de ortografía, sin Bibliografía</td>
 </tr>
 <tr class="even">
 <td>Regresión lineal</td>
-<td>Contiene el diagrama de dispersión discriminando con colores los niveles de una variable cualitativa, además tiene la línea recta superpuesta y la ecuación de la línea recta estimada con su respectivo análisis, para cada uno de los niveles del factor</td>
-<td>Contiene el diagrama de dispersión sin discriminar los niveles de una variable cualitativa, además tiene la línea recta superpuesta, la ecuación de la línea recta estimada y el análisis del mismo.</td>
-<td>Contiene el diagrama de dispersión con la línea recta superpuesta y la ecuación de la recta</td>
+<td>Contiene el diagrama de dispersión discriminando con colores los
+niveles de una variable cualitativa, además tiene la línea recta
+superpuesta y la ecuación de la línea recta estimada con su respectivo
+análisis, para cada uno de los niveles del factor</td>
+<td>Contiene el diagrama de dispersión sin discriminar los niveles de
+una variable cualitativa, además tiene la línea recta superpuesta, la
+ecuación de la línea recta estimada y el análisis del mismo.</td>
+<td>Contiene el diagrama de dispersión con la línea recta superpuesta y
+la ecuación de la recta</td>
 </tr>
 <tr class="odd">
 <td>Medidas de tendencia central y de variabilidad</td>
-<td>Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas según los niveles del factor</td>
-<td>Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas</td>
+<td>Tabla con el resumen de las medidas de tendencia central y de
+variabilidad de las variables cuantitativas según los niveles del
+factor</td>
+<td>Tabla con el resumen de las medidas de tendencia central y de
+variabilidad de las variables cuantitativas</td>
 <td>Solo una de las medidas</td>
 </tr>
 <tr class="even">
 <td>Vídeo con la exposición</td>
-<td>El vídeo se escucha y se visualiza correctamente, dura los 5 minutos. Se enfoca tanto en la presentación como en el locutor</td>
-<td>El vídeo se escucha y se visualiza correctamente, solo se enfoca en la presentación o en el locutor, dura más o menos de 5 minutos</td>
+<td>El vídeo se escucha y se visualiza correctamente, dura los 5
+minutos. Se enfoca tanto en la presentación como en el locutor</td>
+<td>El vídeo se escucha y se visualiza correctamente, solo se enfoca en
+la presentación o en el locutor, dura más o menos de 5 minutos</td>
 <td>El video no está bien elaborado, no entrega video</td>
 </tr>
 <tr class="odd">
 <td>Métodos gráficos</td>
-<td>Utiliza gráficos para el análisis descriptivo de las variables. Boxplot comparativo de los niveles de factor de una variable cualitativa con una cuantitativa, Histograma, grafico de perfiles, de tortas, de barras, (5 tipos de gráfico) cada gráfico debe estar bien presentado con títulos de ejes y su análisis</td>
-<td>Utiliza 4 tipos de gráficos para el análisis descriptivo de las variables, los gráficos no tiene los títulos de ejes, y el análisis.</td>
+<td>Utiliza gráficos para el análisis descriptivo de las variables.
+Boxplot comparativo de los niveles de factor de una variable cualitativa
+con una cuantitativa, Histograma, grafico de perfiles, de tortas, de
+barras, (5 tipos de gráfico) cada gráfico debe estar bien presentado con
+títulos de ejes y su análisis</td>
+<td>Utiliza 4 tipos de gráficos para el análisis descriptivo de las
+variables, los gráficos no tiene los títulos de ejes, y el
+análisis.</td>
 <td>Utiliza tres tipos de gráficos</td>
 </tr>
 <tr class="even">
 <td>Gráficos de series de tiempo</td>
-<td>Grafico de perfiles y de series de tiempo con descomposición hecha en R</td>
-<td>grafico de perfiles o de series de tiempo con descomposición en R</td>
+<td>Grafico de perfiles y de series de tiempo con descomposición hecha
+en R</td>
+<td>grafico de perfiles o de series de tiempo con descomposición en
+R</td>
 <td>grafico de perfiles o de series de tiempo sin la descomposición</td>
 </tr>
 </tbody>
@@ -535,27 +543,38 @@ div.tocify {
 <li><p>en los casos que aplique hacer un top 5</p></li>
 </ul>
 <p><strong>Ejemplo</strong></p>
-<p>Se puede apoyar en el siguiente ejemplo: <a href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/PRACTICA.xlsx">Ejercicio en excel</a></p>
-<p><strong>Videos de interés para la construcción del poster</strong></p>
+<p>Se puede apoyar en el siguiente ejemplo: <a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/PRACTICA.xlsx">Ejercicio
+en excel</a></p>
+<p><strong>Videos de interés para la construcción del
+poster</strong></p>
 <p><em>Video de regresión lineal en excel</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/nEAvKHStLyU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/missdata_files">Video de tablas dinámicas en excel</a></p>
-<p><a href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/pagin2_files">Video de gráficos en excel</a></p>
+<p><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/missdata_files">Video
+de tablas dinámicas en excel</a></p>
+<p><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/tree/master/pagin2_files">Video
+de gráficos en excel</a></p>
 </div>
 <div id="plantillas" class="section level2">
 <h2><strong>Plantillas</strong></h2>
-<p>Algunas de las plantillas para realizar el poster son las siguientes</p>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/plantilla%20poster.pptx">Plantilla1</a></p>
-<p><a href="https://github.com/estadisticaITM/repositorioprueba/blob/master/posterzul.pptx">plantilla2</a></p>
+<p>Algunas de las plantillas para realizar el poster son las
+siguientes</p>
+<p><a
+href="https://github.com/estadisticaITM/repositorioprueba/blob/master/plantilla%20poster.pptx">Plantilla1</a></p>
+<p><a
+href="https://github.com/estadisticaITM/repositorioprueba/blob/master/posterzul.pptx">plantilla2</a></p>
 </div>
 
 <br>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 </div>
@@ -585,7 +604,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -594,6 +613,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

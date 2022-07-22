@@ -13,12 +13,22 @@
 
 <title>Analisis multivariante</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -357,106 +329,150 @@ $(document).ready(function () {
 
 <div id="qué-es-el-análisis-multivariado" class="section level1">
 <h1>¿Qué es el análisis multivariado?</h1>
-<p>Es un conjunto de técnicas para analizar simultáneamente más de una variable. Usualmente se limita al análisis de variables continuas bajo el supuesto de que provienen de una distribución normal multivariable. (Aproximación clásica al análisis multivariable).</p>
+<p>Es un conjunto de técnicas para analizar simultáneamente más de una
+variable. Usualmente se limita al análisis de variables continuas bajo
+el supuesto de que provienen de una distribución normal multivariable.
+(Aproximación clásica al análisis multivariable).</p>
 <div id="definiciones-básicas" class="section level2">
 <h2>Definiciones Básicas</h2>
-<p><strong>Vector aleatorio:</strong> Contiene la información sobre k variables medidas en un sujeto sacado al azar de una población particular.</p>
+<p><strong>Vector aleatorio:</strong> Contiene la información sobre k
+variables medidas en un sujeto sacado al azar de una población
+particular.</p>
 <p><span class="math display">\[\Large
 X= \left[ \begin{array}{cc}
- x_1 &amp; \\
- x_2&amp;\\
- .&amp;\\
- .&amp;\\
- .&amp;\\
- x_k &amp;
+x_1 &amp; \\
+x_2&amp;\\
+.&amp;\\
+.&amp;\\
+.&amp;\\
+x_k &amp;
 \end{array} \right] \]</span></p>
-<p><strong>Muestra:</strong><span class="math inline">\(x_1, x_2,..., x_n\)</span> sujetos, el i-ésimo sujeto tiene el vector.</p>
-<p><span class="math display">\[\Large x_i= 
+<p><strong>Muestra:</strong><span class="math inline">\(x_1, x_2,...,
+x_n\)</span> sujetos, el i-ésimo sujeto tiene el vector.</p>
+<p><span class="math display">\[\Large x_i=
 \left[ \begin{array}{cc}
- x_{i1} &amp; \\
- x_{i2}&amp;\\
- \vdots&amp;\\
- x_{ik} &amp;
+x_{i1} &amp; \\
+x_{i2}&amp;\\
+\vdots&amp;\\
+x_{ik} &amp;
 \end{array} \right] \]</span></p>
 <p><strong>Matriz de datos:</strong></p>
-<p>Llamaremos matriz, A, de dimensiones (n × p) a un conjunto de n × p números reales, ordenados en n filas y p columnas.</p>
-<p>Contiene la información sobre n sujetos de la población tomados al azar y a los cuales se les han medido las variables <span class="math inline">\(x_1, x_2,..., x_k\)</span></p>
-<p><span class="math display">\[\Large 
+<p>Llamaremos matriz, A, de dimensiones (n × p) a un conjunto de n × p
+números reales, ordenados en n filas y p columnas.</p>
+<p>Contiene la información sobre n sujetos de la población tomados al
+azar y a los cuales se les han medido las variables <span
+class="math inline">\(x_1, x_2,..., x_k\)</span></p>
+<p><span class="math display">\[\Large
 X=\left( \begin{array}{cccc}
- x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}  \\ 
- x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p}\\
- \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
- x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
+x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p}  \\
+x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np}
 \end{array} \right) \]</span></p>
 <p><strong>Determinante de una matriz</strong></p>
-<p>Dada una matriz A cuadrada y diagonal con términos <span class="math inline">\(a_{ii}\)</span> se denomina determinante de la matriz, y lo representaremos por |A|, al escalar resultante de multiplicar todos los términos diagonales de la matriz. Supongamos una matriz de orden dos como</p>
-<p><span class="math display">\[\Large 
+<p>Dada una matriz A cuadrada y diagonal con términos <span
+class="math inline">\(a_{ii}\)</span> se denomina determinante de la
+matriz, y lo representaremos por |A|, al escalar resultante de
+multiplicar todos los términos diagonales de la matriz. Supongamos una
+matriz de orden dos como</p>
+<p><span class="math display">\[\Large
 X=\left( \begin{array}{cccc}
- 2 &amp; 0 \\ 
- 0 &amp; 4
+2 &amp; 0 \\
+0 &amp; 4
 \end{array} \right) \]</span></p>
-<p>si consideramos las columnas de esta matriz como vectores, cada vector está situado en uno de los ejes coordenados. El determinante de esta matriz es 2×4=8, igual al área del rectángulo determinado por ambos vectores.</p>
+<p>si consideramos las columnas de esta matriz como vectores, cada
+vector está situado en uno de los ejes coordenados. El determinante de
+esta matriz es 2×4=8, igual al área del rectángulo determinado por ambos
+vectores.</p>
 <p><strong>Transpuesta de una matriz</strong></p>
-<p>Sea A una matriz con n filas y p columnas. La matriz traspuesta, denotada con <span class="math inline">\({\displaystyle A^{t}}\)</span></p>
+<p>Sea A una matriz con n filas y p columnas. La matriz traspuesta,
+denotada con <span class="math inline">\({\displaystyle
+A^{t}}\)</span></p>
 <p>Está dada por:</p>
-<p><span class="math inline">\({\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m} {\displaystyle (A^{t})_{ij}=A_{ji},\ 1\leq i\leq n,\ 1\leq j\leq m}\)</span> En donde el elemento <span class="math inline">\({\displaystyle a_{ji}}\)</span> de la matriz original A se convertirá en el elemento <span class="math inline">\({\displaystyle a_{ij}}\)</span> de la matriz traspuesta <span class="math inline">\({\displaystyle A^{t}}\)</span></p>
+<p><span class="math inline">\({\displaystyle (A^{t})_{ij}=A_{ji},\
+1\leq i\leq n,\ 1\leq j\leq m} {\displaystyle (A^{t})_{ij}=A_{ji},\
+1\leq i\leq n,\ 1\leq j\leq m}\)</span> En donde el elemento <span
+class="math inline">\({\displaystyle a_{ji}}\)</span> de la matriz
+original A se convertirá en el elemento <span
+class="math inline">\({\displaystyle a_{ij}}\)</span> de la matriz
+traspuesta <span class="math inline">\({\displaystyle
+A^{t}}\)</span></p>
 <p><strong>Inversa de una matriz</strong></p>
 <p><span class="math display">\[A^{-1}=\frac{1}{|A|}*(A^T)\]</span></p>
 <p><strong>Matriz de varianzas y covarianzas</strong></p>
 <p><span class="math display">\[
-\Large 
+\Large
 S=\left( \begin{array}{cccc}
- s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1p}  \\ 
- s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2p}\\
- \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
- s_{n1} &amp; s_{n2} &amp; \cdots &amp; s_{np}
-\end{array} \right) 
+s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1p}  \\
+s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+s_{n1} &amp; s_{n2} &amp; \cdots &amp; s_{np}
+\end{array} \right)
 \]</span></p>
 <p>Donde:</p>
 <ul>
-<li>La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias</li>
+<li>La covarianza indica el grado de variación conjunta de dos variables
+aleatorias respecto a sus medias</li>
 </ul>
-<p><span class="math display">\[\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span></p>
+<p><span class="math display">\[\Large
+cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}\]</span></p>
 <ul>
 <li>la varianza indica la variabilidad de una variable continua.</li>
 </ul>
-<p><span class="math display">\[\Large S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar x_j)^2}{(n-1)}\]</span></p>
+<p><span class="math display">\[\Large
+S_{jj}=var(x_j)=\sum_{k=1}^{n}\frac{(x_{kj}-\bar
+x_j)^2}{(n-1)}\]</span></p>
 <p>##Coeficiente de correlación</p>
-<p>Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.</p>
-<p><span class="math display">\[\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
-{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}\]</span></p>
+<p>Indica la fuerza y la dirección de una relación lineal y
+proporcionalidad entre dos variables cuantitativas estadísticas.</p>
+<p><span class="math display">\[\Large
+cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2
+}}\]</span></p>
 <p>También es posible obtener la matriz de correlaciones</p>
 <p><span class="math display">\[
-\Large 
+\Large
 R=\left( \begin{array}{cccc}
- 1 &amp; r_{12} &amp; \cdots &amp; r_{1p}  \\ 
- r_{21} &amp; 1 &amp; \cdots &amp; r_{2p}\\
- \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
- r_{n1} &amp; r_{n2} &amp; \cdots &amp; 1
-\end{array} \right) 
+1 &amp; r_{12} &amp; \cdots &amp; r_{1p}  \\
+r_{21} &amp; 1 &amp; \cdots &amp; r_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+r_{n1} &amp; r_{n2} &amp; \cdots &amp; 1
+\end{array} \right)
 \]</span></p>
 </div>
-<div id="características-del-coeficiente-de-correlación" class="section level2">
+<div id="características-del-coeficiente-de-correlación"
+class="section level2">
 <h2>Características del coeficiente de correlación</h2>
 <ul>
 <li><p>Rango entre -1 y 1</p></li>
-<li><p>Valores cercanos a -1 la relación es fuertemente negativa.</p></li>
-<li><p>Valores cercanos a 1 la relación es fuertemente positiva.</p></li>
-<li><p>Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal</p></li>
+<li><p>Valores cercanos a -1 la relación es fuertemente
+negativa.</p></li>
+<li><p>Valores cercanos a 1 la relación es fuertemente
+positiva.</p></li>
+<li><p>Valores cercanos a 0 la relación es débil, es decir no hay una
+relación lineal</p></li>
 </ul>
-<p><strong>Vector de medias muestrales</strong> vector de dimensión p cuyos componentes son las medias de cada una de las p variables.</p>
+<p><strong>Vector de medias muestrales</strong> vector de dimensión p
+cuyos componentes son las medias de cada una de las p variables.</p>
 <p>$$</p>
 <p>x=<em>{i=1}^nx_i=</em>{i=1}^n=$$</p>
 <p><strong>Tipos de variables</strong></p>
 <p><img src="pp1_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li><p>Usualmente una base de datos es una combinación de diferentes tipos de variables: Sexo, Edad, Número de hijos, Estado civil, Fecha de nacimiento, etc.</p></li>
-<li><p>Para muchos análisis solo trabajamos con un solo tipo de variables, por ejemplo, en el análisis clásico multivariable se asume que se tienen solo variables continuas.</p></li>
-<li><p>Si tenemos una variable categórica que indique un grupo podemos subdividir la base de acuerdo a esa variable y realizar los mismos análisis dentro de cada grupo: análisis segmentado.</p></li>
+<li><p>Usualmente una base de datos es una combinación de diferentes
+tipos de variables: Sexo, Edad, Número de hijos, Estado civil, Fecha de
+nacimiento, etc.</p></li>
+<li><p>Para muchos análisis solo trabajamos con un solo tipo de
+variables, por ejemplo, en el análisis clásico multivariable se asume
+que se tienen solo variables continuas.</p></li>
+<li><p>Si tenemos una variable categórica que indique un grupo podemos
+subdividir la base de acuerdo a esa variable y realizar los mismos
+análisis dentro de cada grupo: análisis segmentado.</p></li>
 </ul>
 <p>Asumiendo que todas las variables son continuas.</p>
 <p><strong>Ejemplo</strong></p>
-<p>La siguiente tabla presenta las mediciones realizadas a 10 estudiantes universitarios de sus pies.</p>
+<p>La siguiente tabla presenta las mediciones realizadas a 10
+estudiantes universitarios de sus pies.</p>
 <table>
 <thead>
 <tr class="header">
@@ -543,9 +559,12 @@ R=\left( \begin{array}{cccc}
 <p>Donde</p>
 <p><span class="math inline">\(x_1:\)</span> Longitud máxima del pie</p>
 <p><span class="math inline">\(x_2\)</span>: Amplitud máxima del pie</p>
-<p><span class="math inline">\(x_3:\)</span> Amplitud máxima del talón</p>
-<p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo grande</p>
-<p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo grande</p>
+<p><span class="math inline">\(x_3:\)</span> Amplitud máxima del
+talón</p>
+<p><span class="math inline">\(x_4:\)</span> Longitud máxima del dedo
+grande</p>
+<p><span class="math inline">\(x_5:\)</span> Amplitud máxima del dedo
+grande</p>
 <p>En R</p>
 <pre class="r"><code>Long_pie=c(24.2,21.7,25.4,25,22,25.9,22.2,21.7,25.5,24.4)
 amp_pie=c(9.4,8.5,9.6,10.1,8.5,9.3,8.6,8.4,9.2,9.4)
@@ -593,12 +612,17 @@ round(cor(datos),4)*100</code></pre>
 ##  Max.   :3.300</code></pre>
 <div id="actividad-en-r" class="section level3">
 <h3>Actividad en R</h3>
-<p>Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:</p>
+<p>Para estimar la producción en madera de un bosque se suele realizar
+un muestreo previo en el que se toman una serie de mediciones no
+destructivas. Disponemos de mediciones para 20 árboles, así como el
+volumen de madera que producen una vez cortados. Las variables
+observadas son:</p>
 <p>HT = altura en pies</p>
 <p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>
 <p>D16 = diámetro del tronco a 16 pies de altura (en pulgadas)</p>
 <p>VOL = volumen de madera obtenida (en pies cúbicos).</p>
-<p>El objetivo del análisis es determinar cuál es la relación entre dichas medidas, estime:</p>
+<p>El objetivo del análisis es determinar cuál es la relación entre
+dichas medidas, estime:</p>
 <ul>
 <li><p>El vector de medias y de la desv estándar</p></li>
 <li><p>Matriz de varianzas y covariazas</p></li>
@@ -616,29 +640,37 @@ VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16
 </div>
 </div>
 </div>
-<div id="análisis-exploratorio-de-datos-multivariables" class="section level1">
+<div id="análisis-exploratorio-de-datos-multivariables"
+class="section level1">
 <h1>Análisis Exploratorio de Datos Multivariables</h1>
-<p>Existe una gran cantidad de herramientas para realizar análisis exploratorios para datos univariables. El objetivo fundamental es <strong>entender</strong> la información que se dispone.</p>
-<p>Podemos decir que el análisis exploratorio de una variable continua se realiza mediante:</p>
+<p>Existe una gran cantidad de herramientas para realizar análisis
+exploratorios para datos univariables. El objetivo fundamental es
+<strong>entender</strong> la información que se dispone.</p>
+<p>Podemos decir que el análisis exploratorio de una variable continua
+se realiza mediante:</p>
 <ol style="list-style-type: decimal">
 <li>Medidas de resumen</li>
 <li>Gráficos</li>
-<li>Detección de cosas <strong>raras</strong>: multimodalidades, outliers, huecos.</li>
+<li>Detección de cosas <strong>raras</strong>: multimodalidades,
+outliers, huecos.</li>
 </ol>
-<p>En una base de datos multivariable se puede realizar una exploración a varios niveles:</p>
+<p>En una base de datos multivariable se puede realizar una exploración
+a varios niveles:</p>
 <ol style="list-style-type: decimal">
 <li>A nivel de variables individules:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Variables continuas: Forma habitual</li>
-<li>Variables cualitativas: Porcentajes y tablas de frecuencias. Chequear desbalances.</li>
+<li>Variables cualitativas: Porcentajes y tablas de frecuencias.
+Chequear desbalances.</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
 <li>A nivel de pares de variables:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Si ambas variables son continuas: Gráficos de dispersión</li>
-<li>Si ambas variables son categóricas: Tablas de frecuencia y porcentajes</li>
+<li>Si ambas variables son categóricas: Tablas de frecuencia y
+porcentajes</li>
 <li>Si una es categórica y la otra continua: Análisis segmentado.</li>
 </ol>
 </div>
@@ -647,6 +679,7 @@ VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -674,7 +707,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

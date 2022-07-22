@@ -13,25 +13,35 @@
 
 <title>Análisis exploratorio de datos</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -50,6 +60,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -60,11 +71,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -77,32 +83,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -113,10 +94,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -133,40 +110,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -194,7 +147,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -206,7 +159,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -217,10 +170,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -232,7 +198,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -364,7 +329,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -378,7 +343,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -392,28 +357,35 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -426,7 +398,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -435,7 +407,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -458,18 +430,29 @@ div.tocify {
 <div id="qué-es-la-estadística" class="section level2">
 <h2>¿Qué es la estadística?</h2>
 <ul>
-<li><p>Ciencia que describe y realiza inferencias sobre el mundo desde una muestra de datos</p></li>
-<li><p>Ciencia que proporciona metodologías para recolectar organizar, resumir, presentar y analizar datos y hacer inferencias a partir de ellos.</p></li>
+<li><p>Ciencia que describe y realiza inferencias sobre el mundo desde
+una muestra de datos</p></li>
+<li><p>Ciencia que proporciona metodologías para recolectar organizar,
+resumir, presentar y analizar datos y hacer inferencias a partir de
+ellos.</p></li>
 </ul>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/MaTO78ZoNoo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
 <p><strong>Ramas de la estadística</strong></p>
-<p><strong>Estadística descriptiva:</strong> Organiza y describe las características de un conjunto de datos con el propósito de facilitar su aplicación, generalmente con el apoyo de gráficas, tablas o medidas numéricas.</p>
-<p>Los parámetros estadísticos usados son las medidas de tendencia central y de variabilidad, y los gráficos de barras, de tortas y el histograma.</p>
+<p><strong>Estadística descriptiva:</strong> Organiza y describe las
+características de un conjunto de datos con el propósito de facilitar su
+aplicación, generalmente con el apoyo de gráficas, tablas o medidas
+numéricas.</p>
+<p>Los parámetros estadísticos usados son las medidas de tendencia
+central y de variabilidad, y los gráficos de barras, de tortas y el
+histograma.</p>
 <p><strong>Estadística inferencial:</strong></p>
-<p>Obtiene conclusiones de la población partiendo de una muestra, por medio de diferentes métodos, como las puebas de hipótesis, pronósticos de futuras observaciones, correlaciones y modelos de asociación entre variables.</p>
+<p>Obtiene conclusiones de la población partiendo de una muestra, por
+medio de diferentes métodos, como las puebas de hipótesis, pronósticos
+de futuras observaciones, correlaciones y modelos de asociación entre
+variables.</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/buKDQZG5phM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -477,22 +460,28 @@ div.tocify {
 </div>
 <div id="algunas-definiciones" class="section level2">
 <h2>Algunas definiciones</h2>
-<p><strong>Población:</strong> Conjunto de elementos sobre los que queremos hacer afirmaciones</p>
-<p><strong>Muestra:</strong> Conjunto de personas o cosas que se consideran representativos del grupo al que pertenecen, con la finalidad de estudiar o determinar las características del grupo.</p>
+<p><strong>Población:</strong> Conjunto de elementos sobre los que
+queremos hacer afirmaciones</p>
+<p><strong>Muestra:</strong> Conjunto de personas o cosas que se
+consideran representativos del grupo al que pertenecen, con la finalidad
+de estudiar o determinar las características del grupo.</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/d6rrvuxBoY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
 <p><strong>Parámetro:</strong> Valor descriptivo de la población</p>
 <p><strong>Estadístico:</strong> Valor descriptivo para una muestra</p>
-<p><strong>Base de datos:</strong> Colección de información organizada, de tal modo que sea fácilmente accesible, gestionada y actualizada</p>
+<p><strong>Base de datos:</strong> Colección de información organizada,
+de tal modo que sea fácilmente accesible, gestionada y actualizada</p>
 <p><strong>Almacenamiento de bases de datos</strong></p>
-<p>Las bases de datos Surgen de la necesidad de almacenar la información a través de la historia</p>
+<p>Las bases de datos Surgen de la necesidad de almacenar la información
+a través de la historia</p>
 <ol style="list-style-type: decimal">
 <li>Piedras, madera y arcilla, donde se escribian jeroglíficos.</li>
 </ol>
 <ul>
-<li>Los babilonios y mesopotámicos a través de la escritura cuneiforme que tallaban en tabletas y en rocas, al igual q los mallas</li>
+<li>Los babilonios y mesopotámicos a través de la escritura cuneiforme
+que tallaban en tabletas y en rocas, al igual q los mallas</li>
 </ul>
 <p>-La cultura inca que escribian en un sistema de cuerdas anudadas.</p>
 <div class="figure" style="text-align: center">
@@ -504,21 +493,35 @@ Puntos atípicos
 <ol start="2" style="list-style-type: decimal">
 <li>Papel</li>
 </ol>
-<p>Edad media: Códice Formato de libro, Se compone de pergaminos plegados, cosidos y encuadernados.</p>
-<p>El papel reemplazó progresivamente al pergamino, una herramienta más barata que permitió una difusión mas amplia, en la época moderna el códice fue hecho en papel</p>
+<p>Edad media: Códice Formato de libro, Se compone de pergaminos
+plegados, cosidos y encuadernados.</p>
+<p>El papel reemplazó progresivamente al pergamino, una herramienta más
+barata que permitió una difusión mas amplia, en la época moderna el
+códice fue hecho en papel</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Films</p></li>
-<li><p>Almacenamiento digital: bytes, tarjetas perforadas, CDs y memorias Actualmente es posible almacenar digitalmente en un disco compacto por ejemplo los datos que cabrian en miles de carpetas archivadas</p></li>
-<li><p>Nube: Se puede guardar y compartir un volumen de archivos ilimitados, asi como acceder a ellos desde cualquier dispositivo con acceso a internet</p></li>
+<li><p>Almacenamiento digital: bytes, tarjetas perforadas, CDs y
+memorias Actualmente es posible almacenar digitalmente en un disco
+compacto por ejemplo los datos que cabrian en miles de carpetas
+archivadas</p></li>
+<li><p>Nube: Se puede guardar y compartir un volumen de archivos
+ilimitados, asi como acceder a ellos desde cualquier dispositivo con
+acceso a internet</p></li>
 </ol>
-<p>A lo largo de la historia se ha buscado el sistema más pequeño físicamente con mayor capacidad de almacenamiento</p>
+<p>A lo largo de la historia se ha buscado el sistema más pequeño
+físicamente con mayor capacidad de almacenamiento</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/nube.png" alt="Discos duros en la nube" width="669" />
 <p class="caption">
 Discos duros en la nube
 </p>
 </div>
-<p><strong>Punto atípico o outlier</strong> Son observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores. Los valores atípicos pueden ser indicativos de datos que pertenecen a una población diferente del resto de las muestras establecidas. Se pueden detectar con un análisis descriptivo, mediante diagramas de dispersión, boxplot o histograma.</p>
+<p><strong>Punto atípico o outlier</strong> Son observaciones extremas,
+alejadas hacia valores muy grandes o pequeños comparadas con el resto de
+valores. Los valores atípicos pueden ser indicativos de datos que
+pertenecen a una población diferente del resto de las muestras
+establecidas. Se pueden detectar con un análisis descriptivo, mediante
+diagramas de dispersión, boxplot o histograma.</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/manzana.png" alt="Puntos atípicos" width="280" />
 <p class="caption">
@@ -528,7 +531,8 @@ Puntos atípicos
 </div>
 <div id="tipos-de-variables" class="section level2">
 <h2>Tipos de variables</h2>
-<p>Característica o condición que puede tomar diferentes valores en una muestra. Ejm:</p>
+<p>Característica o condición que puede tomar diferentes valores en una
+muestra. Ejm:</p>
 <ul>
 <li>Presión sanguínea</li>
 <li>Masa de los niños</li>
@@ -624,23 +628,32 @@ Puntos atípicos
 </div>
 <div id="frecuencia-estadística" class="section level2">
 <h2>Frecuencia estadística</h2>
-<p>La frecuencia es el número de veces en que un evento se repite durante un experimento, comúnmente, la distribución de la frecuencia suele visualizarse con el uso de histogramas.</p>
+<p>La frecuencia es el número de veces en que un evento se repite
+durante un experimento, comúnmente, la distribución de la frecuencia
+suele visualizarse con el uso de histogramas.</p>
 <p><strong>Frecuencia absoluta</strong></p>
-<p>Es el conteo o número de veces que sucede un evento en un experimento</p>
+<p>Es el conteo o número de veces que sucede un evento en un
+experimento</p>
 <p><strong>Frecuencia relativa</strong></p>
-<p>Es el porcentaje o proporción de veces que sucede un evento en un experimento, se calcula así:</p>
-<p><span class="math display">\[X_i=\frac{xi}{N}=\frac{veces\quad que \quad se \quad observa \quad un \quad evento }{Total \quad de \quad veces}\]</span></p>
+<p>Es el porcentaje o proporción de veces que sucede un evento en un
+experimento, se calcula así:</p>
+<p><span class="math display">\[X_i=\frac{xi}{N}=\frac{veces\quad que
+\quad se \quad observa \quad un \quad evento }{Total \quad de \quad
+veces}\]</span></p>
 </div>
 <div id="tablas-de-frecuencia" class="section level2">
 <h2>Tablas de frecuencia</h2>
-<p>Se pueden construir tablas de frecuencia para variables cualitativas y cuantitativas, con la frecuencia absoluta y la frecuencia relativa.</p>
+<p>Se pueden construir tablas de frecuencia para variables cualitativas
+y cuantitativas, con la frecuencia absoluta y la frecuencia
+relativa.</p>
 <p><em>Ejemplo:</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/ZcxjURk69IA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
 <p><strong>Tablas de frecuencia en R</strong></p>
-<p>Se preguntó a los estudiantes sobre el hábito de fumar y el género, los resultados encontrados se ilustran a continuación</p>
+<p>Se preguntó a los estudiantes sobre el hábito de fumar y el género,
+los resultados encontrados se ilustran a continuación</p>
 <pre class="r"><code>#Para instalar librerías se hace uso de la siguiente #instrucción, sin el #
 #El # sirve para marcar comentarios en códigos de R 
 
@@ -659,8 +672,10 @@ tabla</code></pre>
 Tab=addmargins(tabla)
 Tab</code></pre>
 <pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##          35          13          10          10          78         146</code></pre>
+## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+##          35          13          10          10          78 
+##         Sum 
+##         146</code></pre>
 <pre class="r"><code>kable(Tab,booktabs = TRUE)</code></pre>
 <table>
 <thead>
@@ -707,8 +722,10 @@ Tab1</code></pre>
 Tab2=addmargins(Tab1)
 Tab2</code></pre>
 <pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000</code></pre>
+## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658 
+##         Sum 
+##  1.00000000</code></pre>
 <pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
 <table>
 <thead>
@@ -803,12 +820,18 @@ addmargins(prop.table(table(gen)))</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>Pregunta</strong> ¿Quién fuma con más frecuencia? Hombres o mujeres</p>
+<p><strong>Pregunta</strong> ¿Quién fuma con más frecuencia? Hombres o
+mujeres</p>
 <div id="tablas-de-contingencia" class="section level3">
 <h3>Tablas de contingencia</h3>
-<p>Además de las tablas de frecuencia también podemos encontrar tablas de doble entrada o tablas de contingencia, donde se pueden relacionar dos variables cualitativas, con sus diferentes niveles. Además de usar la frecuencia absoluta, la frecuencia relativa puede usarse de diferentes maneras</p>
+<p>Además de las tablas de frecuencia también podemos encontrar tablas
+de doble entrada o tablas de contingencia, donde se pueden relacionar
+dos variables cualitativas, con sus diferentes niveles. Además de usar
+la frecuencia absoluta, la frecuencia relativa puede usarse de
+diferentes maneras</p>
 <p><strong>Ejemplo 1</strong></p>
-<p>Se analiza el hobbie (Bailar, Ver TV, Deporte) y el género (Femenino y masculino) y se realiza una tabla de doble entrada:</p>
+<p>Se analiza el hobbie (Bailar, Ver TV, Deporte) y el género (Femenino
+y masculino) y se realiza una tabla de doble entrada:</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/conti.png" alt="Tabla de contingencia" width="616" />
 <p class="caption">
@@ -825,7 +848,9 @@ Tabla de contingencia relativa
 </p>
 </div>
 <p><strong>Tabla de frecuencia relativa por filas</strong></p>
-<p>Cada observación se divide por el total de la fila, esta forma sirve para comparar, en este caso, cuál es el deporte favorito de cada genero.</p>
+<p>Cada observación se divide por el total de la fila, esta forma sirve
+para comparar, en este caso, cuál es el deporte favorito de cada
+genero.</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/conti2.png" alt="Tabla de contingencia relativa por filas" width="615" />
 <p class="caption">
@@ -833,14 +858,18 @@ Tabla de contingencia relativa por filas
 </p>
 </div>
 <p><strong>Tabla de frecuencia relativa por columnas</strong></p>
-<p>Cada observación se divide por el total de la columna, esta forma sirve para comparar, en este caso, cuál género prefiere cada uno de los deportes.</p>
+<p>Cada observación se divide por el total de la columna, esta forma
+sirve para comparar, en este caso, cuál género prefiere cada uno de los
+deportes.</p>
 <div class="figure" style="text-align: center">
 <img src="imagen/conti3.png" alt="Tabla de contingencia relativa por columnas" width="536" />
 <p class="caption">
 Tabla de contingencia relativa por columnas
 </p>
 </div>
-<p><strong>Ejemplo 2</strong> La respuesta a la pregunta anterior la podemos encontrar realizando una tabla de contingencia o tabla de doble entrada</p>
+<p><strong>Ejemplo 2</strong> La respuesta a la pregunta anterior la
+podemos encontrar realizando una tabla de contingencia o tabla de doble
+entrada</p>
 <pre class="r"><code>#tabla de frecuencia absoluta
 marco=table(fuma,gen)
 marco</code></pre>
@@ -861,7 +890,9 @@ addmargins(marco)</code></pre>
 ##   CADA SEMANA      5     5  10
 ##   NUNCA           49    29  78
 ##   Sum             93    53 146</code></pre>
-<p>Sin embargo con las frecuencias absolutas es difícil visualizar cual de los dos generos fuma con más frecuencia para ello hacemos uso de la frecuencia relativa</p>
+<p>Sin embargo con las frecuencias absolutas es difícil visualizar cual
+de los dos generos fuma con más frecuencia para ello hacemos uso de la
+frecuencia relativa</p>
 <pre class="r"><code>## Frecuencia relativa total
 marco=table(fuma,gen)
 marco2=prop.table(marco)
@@ -912,7 +943,8 @@ tabla4</code></pre>
 ##   CADA SEMANA 0.05376344 0.09433962
 ##   NUNCA       0.52688172 0.54716981
 ##   Sum         1.00000000 1.00000000</code></pre>
-<p><strong>Video</strong> (ver hasta el minuto 9:20, lo siguiente es de probabilidades)</p>
+<p><strong>Video</strong> (ver hasta el minuto 9:20, lo siguiente es de
+probabilidades)</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/xWQun-Lyk7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -921,22 +953,40 @@ tabla4</code></pre>
 </div>
 <div id="gráficos" class="section level2">
 <h2>Gráficos</h2>
-<p>Existen diferentes tipos de gráficos, los cuales ilustran la información contenida en tablas, dentro de los gráficos más usados se encuentran:</p>
+<p>Existen diferentes tipos de gráficos, los cuales ilustran la
+información contenida en tablas, dentro de los gráficos más usados se
+encuentran:</p>
 <div id="gráfico-de-barras" class="section level3">
 <h3>Gráfico de barras</h3>
-<p>Forma de resumir un conjunto de datos por categorías. Muestra los datos usando varias barras de la misma anchura, cada una representa una categoría concreta. La altura de cada barra es proporcional a la suma de los valores de la categoría que representa.</p>
+<p>Forma de resumir un conjunto de datos por categorías. Muestra los
+datos usando varias barras de la misma anchura, cada una representa una
+categoría concreta. La altura de cada barra es proporcional a la suma de
+los valores de la categoría que representa.</p>
 </div>
 <div id="histograma" class="section level3">
 <h3>Histograma</h3>
-<p>Es una representación gráfica de una variable en forma de barras, donde la superficie de cada barra es proporcional a la frecuencia de los valores representados, sirven para obtener una “primera vista” general de la distribución de la muestra, respecto a una característica</p>
+<p>Es una representación gráfica de una variable en forma de barras,
+donde la superficie de cada barra es proporcional a la frecuencia de los
+valores representados, sirven para obtener una “primera vista” general
+de la distribución de la muestra, respecto a una característica</p>
 </div>
 <div id="gráfico-de-tortas" class="section level3">
 <h3>Gráfico de tortas</h3>
-<p>Representación gráfica de una serie de cantidades, consiste en un círculo dividido en varios sectores, cuyo tamaño corresponde con las proporciones de las cantidades. Básicamente, este tipo de gráfico muestra la relación porcentual entre las partes con relación a su conjunto. El área proporcional en grados de la circunferencia se cacula así:</p>
-<p><span class="math display">\[Grados=360° * frecuencia\quad  relativa=360°* \frac{veces \quad que \quad se \quad repite \quad un \quad evento}{total\quad de \quad veces}\]</span></p>
+<p>Representación gráfica de una serie de cantidades, consiste en un
+círculo dividido en varios sectores, cuyo tamaño corresponde con las
+proporciones de las cantidades. Básicamente, este tipo de gráfico
+muestra la relación porcentual entre las partes con relación a su
+conjunto. El área proporcional en grados de la circunferencia se cacula
+así:</p>
+<p><span class="math display">\[Grados=360° *
+frecuencia\quad  relativa=360°* \frac{veces \quad que \quad se \quad
+repite \quad un \quad evento}{total\quad de \quad veces}\]</span></p>
 <p><strong>Ejemplo</strong></p>
-<p>La siguiente información fue reportada en la revista Motor Trend de EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
-<p>A continuación se ilustra un resumen del número de cilindros que cada uno de los automoviles mostró</p>
+<p>La siguiente información fue reportada en la revista Motor Trend de
+EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos
+del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
+<p>A continuación se ilustra un resumen del número de cilindros que cada
+uno de los automoviles mostró</p>
 <pre class="r"><code>library(knitr)
 library(ggplot2)
 
@@ -1009,8 +1059,7 @@ bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar</code></pre>
 <pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
-
-## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+## Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de donas
 
@@ -1023,8 +1072,7 @@ bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar1</code></pre>
 <pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
-
-## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+## Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
 <p><strong>Algunos videos que sirven de ejemplo</strong></p>
 <p><strong>Ejemplo 1</strong></p>
@@ -1038,7 +1086,9 @@ bar1</code></pre>
 </iframe>
 </div>
 <p><strong>Ejemplo 3</strong></p>
-<p>En el siguiente ejemplo se hace uso de variables de tipo cualitativo, con la que se construye una tabla de frecuencias, gráfico de barras y de tortas.</p>
+<p>En el siguiente ejemplo se hace uso de variables de tipo cualitativo,
+con la que se construye una tabla de frecuencias, gráfico de barras y de
+tortas.</p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/DRSJxpKpL30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -1046,7 +1096,10 @@ bar1</code></pre>
 </div>
 <div id="gráfico-de-series-de-tiempo" class="section level3">
 <h3>Gráfico de series de tiempo</h3>
-<p>Una serie de tiempo es una colección de observaciones de una variable tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo equiespacios). Las series pueden tener periodicidad anual, semestral, trimestral, mensual,diaria etc.</p>
+<p>Una serie de tiempo es una colección de observaciones de una variable
+tomadas de forma secuencial y ordenada en el tiempo (instantes de tiempo
+equiespacios). Las series pueden tener periodicidad anual, semestral,
+trimestral, mensual,diaria etc.</p>
 <p><strong>Aparecen en numerosos campos</strong></p>
 <p><em>Economía y Marketing</em></p>
 <ul>
@@ -1063,14 +1116,23 @@ bar1</code></pre>
 <p><em>Medioambiente</em></p>
 <p>— Lluvia recogida diariamente en una localidad.</p>
 <p>— Temperatura media diaria.</p>
-<p>— Medición diaria de materal particulado en el área metropolitana.</p>
+<p>— Medición diaria de materal particulado en el área
+metropolitana.</p>
 <p><em>Tendencia</em></p>
-<p>Cambio a largo plazo que se produce en relación al nivel medio, se identifica con un movimiento suave de la serie a largo plazo, puede ser ascendente ó descendente.</p>
+<p>Cambio a largo plazo que se produce en relación al nivel medio, se
+identifica con un movimiento suave de la serie a largo plazo, puede ser
+ascendente ó descendente.</p>
 <p><em>Efecto estacional</em></p>
-<p>Variación de un patrón de comportamiento ciclico que se repiten cada cierto periodo de tiempo.</p>
+<p>Variación de un patrón de comportamiento ciclico que se repiten cada
+cierto periodo de tiempo.</p>
 <p><strong>Ejemplo en R</strong></p>
-<p>La siguiente base de datos representa los precios de cierre diarios del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998, los datos se muestrean en horario comercial, es decir, se omiten los fines de semana y feriados. para un total de 1860 observaciones. Los datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
-<p>La serie de tiempo con su respectiva descomposición se enlistan a continuación.</p>
+<p>La siguiente base de datos representa los precios de cierre diarios
+del índice bursátil Alemania DAX (Ibis), desde el año 1991 hasta 1998,
+los datos se muestrean en horario comercial, es decir, se omiten los
+fines de semana y feriados. para un total de 1860 observaciones. Los
+datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
+<p>La serie de tiempo con su respectiva descomposición se enlistan a
+continuación.</p>
 <pre class="r"><code>tsData &lt;- EuStockMarkets[,1] # ts data
 plot(tsData,col=4)</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
@@ -1080,9 +1142,13 @@ plot (decomposedRes,col=4) # see plot below</code></pre>
 </div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
-<p>Muestran tendencias a lo largo de un período de tiempo, para diferentes niveles de una variable cualitativa, por lo tanto se usan para hacer comparaciones.</p>
+<p>Muestran tendencias a lo largo de un período de tiempo, para
+diferentes niveles de una variable cualitativa, por lo tanto se usan
+para hacer comparaciones.</p>
 <p><strong>Ejemplo</strong></p>
-<p>Los siguientes datos describen el efecto de la vitamina c en el crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
+<p>Los siguientes datos describen el efecto de la vitamina c en el
+crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado
+bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
 <pre class="r"><code>library(plotly)
 
 datn &lt;- read.table(header=TRUE, text=&#39;
@@ -1104,10 +1170,11 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-462af26618c1fe82b3fa" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-462af26618c1fe82b3fa">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.96751968503937},"annotations":[{"text":"supp","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"3a506d7622ef":{"x":{},"y":{},"colour":{},"type":"scatter"},"3a506db7151a":{"x":{},"y":{},"colour":{}}},"cur_data":"3a506d7622ef","visdat":{"3a506d7622ef":["function (y) ","x"],"3a506db7151a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-32fc7bf59730e4effb80" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-32fc7bf59730e4effb80">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6301e582bae":{"x":{},"y":{},"colour":{},"type":"scatter"},"630395c2e09":{"x":{},"y":{},"colour":{}}},"cur_data":"6301e582bae","visdat":{"6301e582bae":["function (y) ","x"],"630395c2e09":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Ejemplo en excel</strong></p>
-<p>Se tienen los precios de la zanahoria en las plazas de mercado de 3 ciudades diferentes</p>
+<p>Se tienen los precios de la zanahoria en las plazas de mercado de 3
+ciudades diferentes</p>
 <table>
 <caption>Precios de la zanahoria</caption>
 <thead>
@@ -1281,37 +1348,52 @@ fig</code></pre>
 </div>
 <div id="medidas-de-tendencia-central" class="section level2">
 <h2>Medidas de tendencia central</h2>
-<p>Son 3 valores que resumen y representan la información contenida en un conjunto de datos. Las tres medidas son la media, la mediana y la moda.</p>
+<p>Son 3 valores que resumen y representan la información contenida en
+un conjunto de datos. Las tres medidas son la media, la mediana y la
+moda.</p>
 <p><img src="imagen/central.png" width="235" style="display: block; margin: auto;" /></p>
 <div id="moda" class="section level3">
 <h3>Moda</h3>
-<p>Es el valor que más se repite, si no hay datos que se repiten se dice que no hay moda. Si dos datos se repiten con la misma frecuencia se dice que los datos son bimodales.</p>
+<p>Es el valor que más se repite, si no hay datos que se repiten se dice
+que no hay moda. Si dos datos se repiten con la misma frecuencia se dice
+que los datos son bimodales.</p>
 </div>
 <div id="media" class="section level3">
 <h3>Media</h3>
-<p>Valor promedio de un conjunto de datos numéricos, calculada como la suma del conjunto de valores dividida entre el número total de valores, la fórmula con la que se estima es:</p>
+<p>Valor promedio de un conjunto de datos numéricos, calculada como la
+suma del conjunto de valores dividida entre el número total de valores,
+la fórmula con la que se estima es:</p>
 <p><strong>Media Muestral</strong></p>
-<p><span class="math display">\[\bar x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
+<p><span class="math display">\[\bar
+x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
 <p><strong>Media poblacional</strong></p>
-<p><span class="math display">\[\hat \mu =\frac{\sum_{i=1}^{n}x_i}{N}\]</span></p>
-<p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada observación</p>
+<p><span class="math display">\[\hat \mu
+=\frac{\sum_{i=1}^{n}x_i}{N}\]</span></p>
+<p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada
+observación</p>
 <p>N es el tamaño poblacional</p>
 <p>n es el tamaño muestral</p>
-<p>Según el teorema de límite central cuando n&gt;30 se considera poblacional</p>
+<p>Según el teorema de límite central cuando n&gt;30 se considera
+poblacional</p>
 </div>
 <div id="mediana" class="section level3">
 <h3>Mediana</h3>
-<p>Es un valor que se encuentra en la mitad de los datos, cuando estos están ordenados</p>
+<p>Es un valor que se encuentra en la mitad de los datos, cuando estos
+están ordenados</p>
 <ol style="list-style-type: lower-alpha">
-<li>si los datos son pares, la mediana es la suma de los dos valores centrales dividida por dos</li>
+<li>si los datos son pares, la mediana es la suma de los dos valores
+centrales dividida por dos</li>
 </ol>
-<p><span class="math display">\[M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}\]</span></p>
+<p><span
+class="math display">\[M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}\]</span></p>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>si los datos son impares la mediana es el valor que se encuentra en la posición <span class="math inline">\(\frac{n+1}{2}\)</span></li>
+<li>si los datos son impares la mediana es el valor que se encuentra en
+la posición <span class="math inline">\(\frac{n+1}{2}\)</span></li>
 </ol>
 <p><span class="math display">\[M_e=X_\frac{_{n+1}}{2}\]</span></p>
 <p><strong>Ejemplo</strong></p>
-<p>Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres</p>
+<p>Se tienen las edades de una muestra de estudiantes de estadística
+básica compuesta por hombres y mujeres</p>
 <table>
 <thead>
 <tr class="header">
@@ -1364,12 +1446,21 @@ fig</code></pre>
 </div>
 <div id="medidas-de-variabilidad" class="section level2">
 <h2>Medidas de variabilidad</h2>
-<p>La media es un buen indicador de tendencia central, pero no da una evidencia real acerca de los datos.</p>
-<p>Las medidas de variabilidad determinan el grado de acercamiento o distanciamiento de los valores de una distribución frente a su promedio de localización.</p>
+<p>La media es un buen indicador de tendencia central, pero no da una
+evidencia real acerca de los datos.</p>
+<p>Las medidas de variabilidad determinan el grado de acercamiento o
+distanciamiento de los valores de una distribución frente a su promedio
+de localización.</p>
 <ul>
-<li><p>Entre más grande sea el grado de variación, menor uniformidad tendrán los datos (sinónimo de heterogeneidad) y por lo tanto menor confiabilidad del promedio de tendencia central o localización por haber sido obtenido de datos dispersos (Mendoza et al, 2002).</p></li>
-<li><p>Si este valor es pequeño (respecto a la unidad de medida) entonces hay una gran uniformidad entre los datos(Mendoza et al, 2002).</p></li>
-<li><p>Cuando es cero quiere decir que todos los datos son iguales.</p></li>
+<li><p>Entre más grande sea el grado de variación, menor uniformidad
+tendrán los datos (sinónimo de heterogeneidad) y por lo tanto menor
+confiabilidad del promedio de tendencia central o localización por haber
+sido obtenido de datos dispersos (Mendoza et al, 2002).</p></li>
+<li><p>Si este valor es pequeño (respecto a la unidad de medida)
+entonces hay una gran uniformidad entre los datos(Mendoza et al,
+2002).</p></li>
+<li><p>Cuando es cero quiere decir que todos los datos son
+iguales.</p></li>
 </ul>
 <div id="rango" class="section level3">
 <h3>Rango</h3>
@@ -1384,12 +1475,22 @@ fig</code></pre>
 <p><img src="imagen/sd.png" width="414" style="display: block; margin: auto;" /></p>
 <p><strong>Caso poblacional</strong></p>
 <p><strong>Varianza</strong></p>
-<p><span class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span> <strong>Desviación estándar</strong></p>
-<p><span class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span> <strong>Caso muestral</strong></p>
-<p><strong>Varianza</strong> <span class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación estándar</strong></p>
+<p><span
+class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span>
+<strong>Desviación estándar</strong></p>
+<p><span
+class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span>
+<strong>Caso muestral</strong></p>
+<p><strong>Varianza</strong> <span
+class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span
+class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación
+estándar</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Encuentre la media</p></li>
-<li><p>Encuentre la desviación de cada uno de los valores con respecto a la media.</p></li>
+<li><p>Encuentre la desviación de cada uno de los valores con respecto a
+la media.</p></li>
 <li><p>Eleve cada valor obtenido al cuadrado</p></li>
 <li><p>Halle la suma de cada uno de los cuadrados</p></li>
 <li><p>Divida la suma de los cuadrados por el número de ítems</p></li>
@@ -1400,7 +1501,8 @@ fig</code></pre>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/cg4kUsbjQms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<p><strong>Diferencia en medidas entre la población y la muestra</strong></p>
+<p><strong>Diferencia en medidas entre la población y la
+muestra</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -1434,7 +1536,8 @@ fig</code></pre>
 </table>
 <p><strong>Comparemos</strong></p>
 <p><img src="imagen/bolas.png" width="489" style="display: block; margin: auto;" /></p>
-<p><em>Cómo estimar la media, la desviación estandar en la calculadora</em></p>
+<p><em>Cómo estimar la media, la desviación estandar en la
+calculadora</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/4eXrcn6QLgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -1446,11 +1549,16 @@ fig</code></pre>
 </div>
 <div id="coeficiente-de-variación" class="section level3">
 <h3>Coeficiente de variación</h3>
-<p>Es una medida de la dispersión relativa de un conjunto de datos, la cual relaciona la desviación típica de una muestra y su media.</p>
-<p>Se expresa en términos porcentuales, la fórmula con la que se estima es: <span class="math display">\[CV=\frac{S}{\bar x}*100\]</span></p>
-<p>No depende de las unidades de medición, por lo que sirve para comparar la variabilidad de dos conjuntos de datos, siempre que sus medias sean positivas.</p>
+<p>Es una medida de la dispersión relativa de un conjunto de datos, la
+cual relaciona la desviación típica de una muestra y su media.</p>
+<p>Se expresa en términos porcentuales, la fórmula con la que se estima
+es: <span class="math display">\[CV=\frac{S}{\bar x}*100\]</span></p>
+<p>No depende de las unidades de medición, por lo que sirve para
+comparar la variabilidad de dos conjuntos de datos, siempre que sus
+medias sean positivas.</p>
 <p><strong>Ejemplo</strong></p>
-<p>Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres</p>
+<p>Se tienen las edades de una muestra de estudiantes de estadística
+básica compuesta por hombres y mujeres</p>
 <table>
 <thead>
 <tr class="header">
@@ -1494,9 +1602,15 @@ fig</code></pre>
 </div>
 <div id="media-ponderada" class="section level2">
 <h2>Media ponderada</h2>
-<p>Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene una importancia relativa (o peso) respecto de los demás datos. Se obtiene multiplicando cada uno de los datos por su ponderación (peso) para luego sumarlos</p>
-<p><span class="math display">\[\bar X=\sum_{i=1}^{n}x_i*w_i\]</span></p>
-<p>Donde <span class="math inline">\(X_i\)</span> es cada una de las observaciones, <span class="math inline">\(W_i\)</span> es la ponderación de cada uno de ellos.</p>
+<p>Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene
+una importancia relativa (o peso) respecto de los demás datos. Se
+obtiene multiplicando cada uno de los datos por su ponderación (peso)
+para luego sumarlos</p>
+<p><span class="math display">\[\bar
+X=\sum_{i=1}^{n}x_i*w_i\]</span></p>
+<p>Donde <span class="math inline">\(X_i\)</span> es cada una de las
+observaciones, <span class="math inline">\(W_i\)</span> es la
+ponderación de cada uno de ellos.</p>
 <p><span class="math display">\[\sum_{i=1}^n w_i=1\]</span></p>
 <p><strong>Ejemplo</strong></p>
 <p>Se tienen las siguientes notas de un estudiante</p>
@@ -1535,52 +1649,75 @@ fig</code></pre>
 </table>
 <ul>
 <li><p>¿Cuál es la nota total obtenida en la materia?</p></li>
-<li><p>Si faltara la última nota,¿Cuanto tendría que sacar para ganar la asignatura?</p></li>
+<li><p>Si faltara la última nota,¿Cuanto tendría que sacar para ganar la
+asignatura?</p></li>
 </ul>
 </div>
 <div id="medidas-de-posición" class="section level2">
 <h2>Medidas de posición</h2>
-<p>Son valores que permiten dividir el conjunto de datos en partes porcentuales iguales y se usan para clasificar una observación dentro de una población o muestra. Las medidas de posición más usuales son los cuartiles, los deciles y los percentiles.</p>
+<p>Son valores que permiten dividir el conjunto de datos en partes
+porcentuales iguales y se usan para clasificar una observación dentro de
+una población o muestra. Las medidas de posición más usuales son los
+cuartiles, los deciles y los percentiles.</p>
 <div id="cuartiles" class="section level3">
 <h3>Cuartiles</h3>
-<p>Son tres valores que distribuyen la serie de datos ordenada, en cuatro tramos iguales, en los que cada uno de ellos se concentra el 25% de los resultados.</p>
+<p>Son tres valores que distribuyen la serie de datos ordenada, en
+cuatro tramos iguales, en los que cada uno de ellos se concentra el 25%
+de los resultados.</p>
 <p><img src="imagen/cuartiles.png" width="528" style="display: block; margin: auto;" /></p>
 <p>La fórmula con la que se estima está dada por:</p>
-<p><span class="math display">\[Q_k=X_{(k \frac{n+1}{4})}\]</span> con k=1,2,3</p>
-<p><strong>Rango intercuartilico IQR</strong> Se define como la diferencia entre el tercer cuartil y el primer cuartil, es decir:</p>
+<p><span class="math display">\[Q_k=X_{(k \frac{n+1}{4})}\]</span> con
+k=1,2,3</p>
+<p><strong>Rango intercuartilico IQR</strong> Se define como la
+diferencia entre el tercer cuartil y el primer cuartil, es decir:</p>
 <p><span class="math display">\[IRQ=Q_3-Q_1\]</span></p>
 <p>The Interquartile Range (or IQR)</p>
 </div>
 <div id="deciles" class="section level3">
 <h3>Deciles</h3>
-<p>Son 9 valores que distribuyen la serie de datos ordenada, en diez tramos iguales, en los que cada uno de ellos concentra el 10% de los resultados.</p>
+<p>Son 9 valores que distribuyen la serie de datos ordenada, en diez
+tramos iguales, en los que cada uno de ellos concentra el 10% de los
+resultados.</p>
 <p>La fórmula con la que se estima está dada por:</p>
-<p><span class="math display">\[D_k=X_{(k \frac{n+1}{10})}\]</span> con k=1,2,3…9</p>
+<p><span class="math display">\[D_k=X_{(k \frac{n+1}{10})}\]</span> con
+k=1,2,3…9</p>
 </div>
 <div id="percentiles" class="section level3">
 <h3>Percentiles</h3>
-<p>Divide un conjunto de datos ordenados en 100 partes iguales, es decir hay 99 percentiles.</p>
-<p><span class="math display">\[P_k=X_{(k \frac{n+1}{100})}\]</span> con k=1,2,3…99</p>
+<p>Divide un conjunto de datos ordenados en 100 partes iguales, es decir
+hay 99 percentiles.</p>
+<p><span class="math display">\[P_k=X_{(k \frac{n+1}{100})}\]</span> con
+k=1,2,3…99</p>
 </div>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
-<p>El boxplot es una herramienta de análisis que resalta las principales características de un conjunto de datos, los números usados para construirlo son:</p>
+<p>El boxplot es una herramienta de análisis que resalta las principales
+características de un conjunto de datos, los números usados para
+construirlo son:</p>
 <ul>
 <li>Valor mínimo</li>
 <li>Los cuartiles <span class="math inline">\(Q_1,Q_2,Q_3\)</span></li>
 <li>Valor máximo</li>
 </ul>
 <p><img src="imagen/boxplot.png" width="294" style="display: block; margin: auto;" /></p>
-<p>Cada sección contiene el 25% de los datos. La caja muestra la mitad de los datos, es decir el 50% de ellos, contiene la información entre el 3 cuartil y el primer cuartil.</p>
+<p>Cada sección contiene el 25% de los datos. La caja muestra la mitad
+de los datos, es decir el 50% de ellos, contiene la información entre el
+3 cuartil y el primer cuartil.</p>
 <ul>
-<li><p>Sirve para realizar comparaciones de una variable cuantitativa, en relación a los niveles de una variable cualitativa.</p></li>
-<li><p>Es posible observar la dispersión de cada caja, mientras mas larga, más dispersión.</p></li>
-<li><p>Permite observar puntos atípicos,los cuales no están contenidos dentro de la caja, ni en sus bigotes.</p></li>
+<li><p>Sirve para realizar comparaciones de una variable cuantitativa,
+en relación a los niveles de una variable cualitativa.</p></li>
+<li><p>Es posible observar la dispersión de cada caja, mientras mas
+larga, más dispersión.</p></li>
+<li><p>Permite observar puntos atípicos,los cuales no están contenidos
+dentro de la caja, ni en sus bigotes.</p></li>
 </ul>
 <p><strong>Ejemplo en R</strong></p>
-<p>La siguiente información fue reportada en la revista Motor Trend de EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
-<p>A continuación se ilustra un resumen del número de cilindros que cada uno de los automoviles mostró</p>
+<p>La siguiente información fue reportada en la revista Motor Trend de
+EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos
+del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
+<p>A continuación se ilustra un resumen del número de cilindros que cada
+uno de los automoviles mostró</p>
 <pre class="r"><code>library(knitr)
 library(ggplot2)
 
@@ -1630,7 +1767,6 @@ sd(mpg)</code></pre>
 mtcars %&gt;%
   group_by(cyl) %&gt;%
   summarise(mean = mean(mpg))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##     cyl  mean
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -1643,32 +1779,51 @@ boxplot(mtcars[,1]~mtcars[,2],xlab=&quot;cilindros&quot;,ylab=&quot;mpg&quot;,co
 </div>
 <div id="medidas-de-forma" class="section level2">
 <h2>Medidas de forma</h2>
-<p>Permiten identificar si una distribución de frecuencia presenta uniformidad. Son necesarias para determinar el comportamiento de los datos. Se clasifican en Medidas de asimetría y medidas de curtosis</p>
+<p>Permiten identificar si una distribución de frecuencia presenta
+uniformidad. Son necesarias para determinar el comportamiento de los
+datos. Se clasifican en Medidas de asimetría y medidas de curtosis</p>
 <div id="medidas-de-asimetría" class="section level3">
 <h3>Medidas de asimetría</h3>
-<p>Permite establecer el grado de simetría que tiene una distribución</p>
+<p>Permite establecer el grado de simetría que tiene una
+distribución</p>
 <p><strong>Coeficiente de asimetría de Pearson</strong></p>
 <p>Relaciona la media y la moda de un conjunto de datos</p>
 <p><span class="math display">\[A_s=\frac{\bar x-M_o}{S}\]</span></p>
 <p><strong>Distribución Simétrica</strong></p>
-<p><span class="math display">\[\bar X=M_o=M_e\]</span> - Cuando <span class="math inline">\(\bar X&lt;M_e\)</span> decimos que la distribución es Asimétrica a la izquierda, Asimétrica de cola izquierda o que tiene Asimetría negativa</p>
+<p><span class="math display">\[\bar X=M_o=M_e\]</span> - Cuando <span
+class="math inline">\(\bar X&lt;M_e\)</span> decimos que la distribución
+es Asimétrica a la izquierda, Asimétrica de cola izquierda o que tiene
+Asimetría negativa</p>
 <ul>
-<li>Cuando <span class="math inline">\(\bar X&gt;M_e\)</span> decimos que la distribución es Asimétrica a la derecha, Asimétrica de cola derecha o que tiene Asimetría positiva</li>
+<li>Cuando <span class="math inline">\(\bar X&gt;M_e\)</span> decimos
+que la distribución es Asimétrica a la derecha, Asimétrica de cola
+derecha o que tiene Asimetría positiva</li>
 </ul>
 <p><strong>Comparemos</strong></p>
 <p><img src="imagen/simetria.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="medidas-de-curtosis" class="section level3">
 <h3>Medidas de curtosis</h3>
-<p>Medida que sirve para analizar el grado de concentración que presentan los valores de una variable analizada alrededor de la zona central de la distribución de frecuencias, la kurtósis se conoce como una medida del apuntalamiento de la distribución. Se definen tres tipos de distribuciones según su grado de curtosis, mesocurtica, platicurtica, leptocurtica.</p>
+<p>Medida que sirve para analizar el grado de concentración que
+presentan los valores de una variable analizada alrededor de la zona
+central de la distribución de frecuencias, la kurtósis se conoce como
+una medida del apuntalamiento de la distribución. Se definen tres tipos
+de distribuciones según su grado de curtosis, mesocurtica, platicurtica,
+leptocurtica.</p>
 <p><strong>Comparemos</strong></p>
 <p><img src="imagen/CURTOSIS.png" width="252" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="gráfico-de-densidad" class="section level2">
 <h2>Gráfico de densidad</h2>
-<p>Visualiza la distribución de datos en un intervalo o período de tiempo continuo. Este gráfico es una variación de un histograma, donde el concepto de frecuencia relativa se cambia por el de probabilidad, la suma de todas la superficie será 1.</p>
-<p>Los picos ayudan a mostrar dónde los valores se concentran en el intervalo, a su vez permite comparar la densidad de una variable continua en relación a los niveles de factor de una variable cualitativa.</p>
+<p>Visualiza la distribución de datos en un intervalo o período de
+tiempo continuo. Este gráfico es una variación de un histograma, donde
+el concepto de frecuencia relativa se cambia por el de probabilidad, la
+suma de todas la superficie será 1.</p>
+<p>Los picos ayudan a mostrar dónde los valores se concentran en el
+intervalo, a su vez permite comparar la densidad de una variable
+continua en relación a los niveles de factor de una variable
+cualitativa.</p>
 <p><strong>Ejemplo</strong></p>
 <p>Comparar la densidad de las alturas de hombres y mujeres.</p>
 <pre class="r"><code>library(ggplot2)
@@ -1689,31 +1844,60 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 </div>
 <div id="tabla-de-datos-agrupados" class="section level2">
 <h2>Tabla de datos agrupados</h2>
-<p>Cuando los valores de la variable (continuas o discretas) son muchos, conviene agrupar los datos en intervalos o clases para así realizar un mejor análisis e interpretación de ellos.</p>
-<p><strong>Proceso para la construcción de la tabla de frecuencia para datos agrupados</strong></p>
+<p>Cuando los valores de la variable (continuas o discretas) son muchos,
+conviene agrupar los datos en intervalos o clases para así realizar un
+mejor análisis e interpretación de ellos.</p>
+<p><strong>Proceso para la construcción de la tabla de frecuencia para
+datos agrupados</strong></p>
 <ol style="list-style-type: decimal">
-<li>Se elige ó se calcula el número de intervalos de clase representado por la variable m se puede usar la fórmula</li>
+<li>Se elige ó se calcula el número de intervalos de clase representado
+por la variable m se puede usar la fórmula</li>
 </ol>
-<p><span class="math display">\[m=\sqrt n\]</span> 2. Calcule el rango R</p>
+<p><span class="math display">\[m=\sqrt n\]</span> 2. Calcule el rango
+R</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Calcule la amplitud de los intervalos, el cual se denota por la letra a:</li>
+<li>Calcule la amplitud de los intervalos, el cual se denota por la
+letra a:</li>
 </ol>
-<p><span class="math display">\[a=\frac{R}{m}\]</span> 4. Calcule los intervalos de clase: son dos columnas que delimitan el límite superior e inferior del intervalo (LI y LS)</p>
-<p>El intervalo es cerrado a la izquierda y abierto a la derecha <span class="math inline">\([x_1,x_2)\)</span></p>
-<p>El último intervalo es cerrado a ambos lados, para no dejar información fuera del rango</p>
+<p><span class="math display">\[a=\frac{R}{m}\]</span> 4. Calcule los
+intervalos de clase: son dos columnas que delimitan el límite superior e
+inferior del intervalo (LI y LS)</p>
+<p>El intervalo es cerrado a la izquierda y abierto a la derecha <span
+class="math inline">\([x_1,x_2)\)</span></p>
+<p>El último intervalo es cerrado a ambos lados, para no dejar
+información fuera del rango</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Se busca la marca de clase que se denota por 𝑋𝑖 dada por</li>
 </ol>
-<p><span class="math display">\[X_i=\frac{L_{infi}+L_{supi}}{2}\]</span></p>
+<p><span
+class="math display">\[X_i=\frac{L_{infi}+L_{supi}}{2}\]</span></p>
 <ol start="6" style="list-style-type: decimal">
-<li>Otra columna de la tabla para datos agrupados es la frecuencia absoluta(𝑓𝑖):</li>
+<li>Otra columna de la tabla para datos agrupados es la frecuencia
+absoluta(𝑓𝑖):</li>
 </ol>
-<p>Es el número de observaciones que caen en un intervalo sin incluir el limite superior, es decir número de datos mayores o iguales al límite inferior pero menores que el límite superior</p>
-<p>Es decir el intervalo es cerrado a la izquierda y abierto a la derecha. El último intervalo es cerrado a ambos lados, para no dejar información fuera del rango</p>
+<p>Es el número de observaciones que caen en un intervalo sin incluir el
+limite superior, es decir número de datos mayores o iguales al límite
+inferior pero menores que el límite superior</p>
+<p>Es decir el intervalo es cerrado a la izquierda y abierto a la
+derecha. El último intervalo es cerrado a ambos lados, para no dejar
+información fuera del rango</p>
 <ol start="7" style="list-style-type: decimal">
-<li>Se busca las otras columnas que corresponden a la Frecuencia absoluta acumulada <span class="math inline">\(F_i\)</span>, frecuencia relativa <span class="math inline">\(h_i\)</span> y frecuencia relativa acumulada <span class="math inline">\(H_i\)</span></li>
+<li>Se busca las otras columnas que corresponden a la Frecuencia
+absoluta acumulada <span class="math inline">\(F_i\)</span>, frecuencia
+relativa <span class="math inline">\(h_i\)</span> y frecuencia relativa
+acumulada <span class="math inline">\(H_i\)</span></li>
 </ol>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col width="13%" />
+<col width="21%" />
+<col width="33%" />
+<col width="11%" />
+<col width="4%" />
+<col width="5%" />
+<col width="4%" />
+<col width="5%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">intervalo</th>
@@ -1730,7 +1914,8 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 <tr class="odd">
 <td align="center">1</td>
 <td align="center"><span class="math inline">\([X_{min}\)</span></td>
-<td align="center"><span class="math inline">\(L_{s1}=L_{inf1}+a)\)</span></td>
+<td align="center"><span
+class="math inline">\(L_{s1}=L_{inf1}+a)\)</span></td>
 <td align="center"><span class="math inline">\(x_1\)</span></td>
 <td align="center"><span class="math inline">\(f_1\)</span></td>
 <td align="center"><span class="math inline">\(F_1=f_1\)</span></td>
@@ -1739,8 +1924,10 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 </tr>
 <tr class="even">
 <td align="center">2</td>
-<td align="center">[<span class="math inline">\(L_{inf2}=L_{sup1}\)</span></td>
-<td align="center"><span class="math inline">\(L_{sup2}=L_{inf2}+a)\)</span></td>
+<td align="center">[<span
+class="math inline">\(L_{inf2}=L_{sup1}\)</span></td>
+<td align="center"><span
+class="math inline">\(L_{sup2}=L_{inf2}+a)\)</span></td>
 <td align="center"><span class="math inline">\(x_2\)</span></td>
 <td align="center"><span class="math inline">\(f_2\)</span></td>
 <td align="center"><span class="math inline">\(F_2=f_1+f_2\)</span></td>
@@ -1771,11 +1958,16 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 </table>
 <div id="media-de-datos-agrupados" class="section level3">
 <h3>Media de datos agrupados</h3>
-<p><span class="math display">\[\bar x=\frac{\sum_{i=1}^n X_if_i}{n}\]</span> Donde: <span class="math inline">\(X_i\)</span> es la marca de clase</p>
-<p><span class="math inline">\(f_i\)</span> es la frecuencia relativa</p>
+<p><span class="math display">\[\bar x=\frac{\sum_{i=1}^n
+X_if_i}{n}\]</span> Donde: <span class="math inline">\(X_i\)</span> es
+la marca de clase</p>
+<p><span class="math inline">\(f_i\)</span> es la frecuencia
+relativa</p>
 <p>n tamaño de la muestra</p>
-<p>También es posible encontrar el intervalo modal y el intervalo de la mediana</p>
-<p><strong>Tablas de frecuencia para variables cuantitativas</strong> Se tiene la edad de 96 estudiantes nuevos del itm</p>
+<p>También es posible encontrar el intervalo modal y el intervalo de la
+mediana</p>
+<p><strong>Tablas de frecuencia para variables cuantitativas</strong> Se
+tiene la edad de 96 estudiantes nuevos del itm</p>
 <table>
 <thead>
 <tr class="header">
@@ -1909,7 +2101,9 @@ ggplot(tmp, aes(x = dato, fill = origen)) +
 </tbody>
 </table>
 <p><strong>Ejemplo en R</strong></p>
-<p>El siguiente conjunto de datos da las medidas en centimetros de las variables largo y ancho, tanto del sepalo como del petalo, para 3 especies de flores, iris setosa, versicolor y virginica.</p>
+<p>El siguiente conjunto de datos da las medidas en centimetros de las
+variables largo y ancho, tanto del sepalo como del petalo, para 3
+especies de flores, iris setosa, versicolor y virginica.</p>
 <pre class="r"><code>#install.packages(&quot;janitor&quot;)
 library(dplyr)
 
@@ -1926,7 +2120,6 @@ head(iris)</code></pre>
 iris %&gt;% 
   group_by(iris$Sepal.Length) %&gt;% 
   summarise(frequency = n())</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 35 x 2
 ##    `iris$Sepal.Length` frequency
 ##                  &lt;dbl&gt;     &lt;int&gt;
@@ -1941,12 +2134,12 @@ iris %&gt;%
 ##  9                 5.1         9
 ## 10                 5.2         4
 ## # ... with 25 more rows</code></pre>
-<p>La salida de R no muestra todas las entradas, porque son 35 valores diferentes, conviene agruparlos, por intervalos de frecuencias.</p>
+<p>La salida de R no muestra todas las entradas, porque son 35 valores
+diferentes, conviene agruparlos, por intervalos de frecuencias.</p>
 <pre class="r"><code>iris %&gt;% 
   mutate(sepal_length_group = cut(iris$Sepal.Length, breaks = 5)) %&gt;% 
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n())</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 5 x 2
 ##   sepal_length_group frequency
 ##   &lt;fct&gt;                  &lt;int&gt;
@@ -1955,7 +2148,8 @@ iris %&gt;%
 ## 3 (5.74,6.46]               42
 ## 4 (6.46,7.18]               24
 ## 5 (7.18,7.9]                11</code></pre>
-<p>Podemos agregar una columna más a la tabla de frecuencias, acumulando las frecuencias para cada clase, utilizando la función cumsum.</p>
+<p>Podemos agregar una columna más a la tabla de frecuencias, acumulando
+las frecuencias para cada clase, utilizando la función cumsum.</p>
 <pre class="r"><code>breaks &lt;- seq(from = 4, to = 8, by = 1)
 
 iris %&gt;% 
@@ -1965,7 +2159,6 @@ iris %&gt;%
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n()) %&gt;% 
   mutate(cum_frequency = cumsum(frequency))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 3
 ##   sepal_length_group frequency cum_frequency
 ##   &lt;fct&gt;                  &lt;int&gt;         &lt;int&gt;
@@ -1983,7 +2176,6 @@ iris %&gt;%
   summarise(frequency = n()) %&gt;% 
   ggplot() +
   geom_bar(aes(x = sepal_length_group, y = frequency), stat = &#39;identity&#39;,col=3)</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p><strong>Analisis de datos agrupados</strong></p>
 <p>medidas de tendencia central en datos agrupados</p>
@@ -1996,8 +2188,15 @@ iris %&gt;%
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>
 <ul>
-<li><p>Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística. Universidad Nacional de Colombia, <a href="http://www.virtual.unal.edu.co/cursos/ciencias/2001065/" class="uri">http://www.virtual.unal.edu.co/cursos/ciencias/2001065/</a>. Licencia: Creative Commons BY-NC-ND.</p></li>
-<li><p>R Core Team (2019). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p></li>
+<li><p>Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística.
+Universidad Nacional de Colombia, <a
+href="http://www.virtual.unal.edu.co/cursos/ciencias/2001065/"
+class="uri">http://www.virtual.unal.edu.co/cursos/ciencias/2001065/</a>.
+Licencia: Creative Commons BY-NC-ND.</p></li>
+<li><p>R Core Team (2019). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria. URL
+<a href="https://www.R-project.org/"
+class="uri">https://www.R-project.org/</a>.</p></li>
 </ul>
 </div>
 
@@ -2005,6 +2204,7 @@ iris %&gt;%
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 </div>
@@ -2034,7 +2234,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -2043,6 +2243,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

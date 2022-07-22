@@ -13,12 +13,22 @@
 
 <title>Distribución gama y exponencial</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -43,6 +53,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -53,11 +64,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -70,32 +76,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -106,10 +87,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -126,40 +103,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -187,7 +140,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -199,7 +152,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -210,10 +163,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -225,7 +191,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -357,7 +322,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -371,7 +336,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -385,28 +350,35 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -419,7 +391,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -428,7 +400,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -437,133 +409,226 @@ div.tocify {
 </div>
 
 
-<div id="función-de-distribución-de-probabilidad-gama" class="section level1">
+<div id="función-de-distribución-de-probabilidad-gama"
+class="section level1">
 <h1>Función de distribución de probabilidad Gama</h1>
-<p>La distribución normal es simétrica. Existen muchas situaciones de interés en que la distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama.</p>
-<p>Si se está interesado en la ocurrencia de un evento generado por un proceso de Poisson de media <span class="math inline">\(\lambda\)</span>, la variable que mide el tiempo transcurrido hasta obtener n ocurrencias del evento, sigue una distribución gamma, por ejemplo cuando se realiza el estudio de la duración de elementos físicos (tiempo de vida).</p>
+<p>La distribución normal es simétrica. Existen muchas situaciones de
+interés en que la distribución es asimétrica. Una familia de
+distribuciones que tiene esta propiedad es la familia gama.</p>
+<p>Si se está interesado en la ocurrencia de un evento generado por un
+proceso de Poisson de media <span
+class="math inline">\(\lambda\)</span>, la variable que mide el tiempo
+transcurrido hasta obtener n ocurrencias del evento, sigue una
+distribución gamma, por ejemplo cuando se realiza el estudio de la
+duración de elementos físicos (tiempo de vida).</p>
 <div id="función-gama" class="section level2">
 <h2>Función gama</h2>
-<p>Con <span class="math inline">\(\alpha&gt;0\)</span>, la función gama <span class="math inline">\(\Gamma(\alpha)\)</span> se define como:</p>
-<p><span class="math display">\[\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx\]</span> Las propiedades más importantes de la función gama son las siguientes:</p>
+<p>Con <span class="math inline">\(\alpha&gt;0\)</span>, la función gama
+<span class="math inline">\(\Gamma(\alpha)\)</span> se define como:</p>
+<p><span class="math display">\[\Gamma(\alpha)=\int_0^\infty
+x^{\alpha-1}e^{-x}dx\]</span> Las propiedades más importantes de la
+función gama son las siguientes:</p>
 <ol style="list-style-type: decimal">
-<li><p>Con cualquier <span class="math inline">\(\alpha&gt;1, \Gamma(\alpha)=(\alpha-1)*\Gamma(\alpha-1)\)</span></p></li>
-<li><p>Con cualquier entero positivo n, <span class="math inline">\(\Gamma(n)=(n-1)!\)</span></p></li>
-<li><p><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt \pi\)</span></p></li>
+<li><p>Con cualquier <span class="math inline">\(\alpha&gt;1,
+\Gamma(\alpha)=(\alpha-1)*\Gamma(\alpha-1)\)</span></p></li>
+<li><p>Con cualquier entero positivo n, <span
+class="math inline">\(\Gamma(n)=(n-1)!\)</span></p></li>
+<li><p><span class="math inline">\(\Gamma(\frac{1}{2})=\sqrt
+\pi\)</span></p></li>
 </ol>
 </div>
-<div id="función-de-distribución-de-probabilidad-gama-1" class="section level2">
+<div id="función-de-distribución-de-probabilidad-gama-1"
+class="section level2">
 <h2>Función de distribución de probabilidad gama</h2>
-<p>Una variable aleatoria continua X tiene una distribución gama si la función de densidad de probabilidad de X es:</p>
+<p>Una variable aleatoria continua X tiene una distribución gama si la
+función de densidad de probabilidad de X es:</p>
 <p><span class="math display">\[
 f(x;\alpha,\beta)=\left\{ \begin{array}{lc}
-            \\ \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma (\alpha)} &amp;   si  &amp; x \geq 0 \\
-             \\ 0 &amp;   &amp; e.o.c 
+            \\ \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma
+(\alpha)} &amp;   si  &amp; x \geq 0 \\
+             \\ 0 &amp;   &amp; e.o.c
              \end{array}
    \right.
 \]</span></p>
-<p>Donde <span class="math inline">\(\alpha&gt;0\)</span> y <span class="math inline">\(\beta&gt;0\)</span></p>
+<p>Donde <span class="math inline">\(\alpha&gt;0\)</span> y <span
+class="math inline">\(\beta&gt;0\)</span></p>
 <ul>
-<li>El parámetro <span class="math inline">\(\alpha\)</span> recibe el nombre de parámetro de forma</li>
+<li>El parámetro <span class="math inline">\(\alpha\)</span> recibe el
+nombre de parámetro de forma</li>
 </ul>
-<p>si <span class="math inline">\(\alpha \leq 1\)</span> la función de densidad muestra un perfil decreciente.</p>
-<p>si <span class="math inline">\(\alpha&gt;1\)</span> la función de densidad crece</p>
+<p>si <span class="math inline">\(\alpha \leq 1\)</span> la función de
+densidad muestra un perfil decreciente.</p>
+<p>si <span class="math inline">\(\alpha&gt;1\)</span> la función de
+densidad crece</p>
 <ul>
-<li><p><span class="math inline">\(\beta\)</span> se llama parámetro de escala porque los valores diferentes alargan o comprimen la función de densidad de probabilidad en la dirección x.</p></li>
-<li><p>La distribución exponencial se deriva de considerar <span class="math inline">\(\alpha=1\)</span> y <span class="math inline">\(\beta=1/\lambda\)</span></p></li>
-<li><p>Cuando <span class="math inline">\(\beta=1\)</span> se obtiene la <strong>Distribución gama estándar</strong></p></li>
+<li><p><span class="math inline">\(\beta\)</span> se llama parámetro de
+escala porque los valores diferentes alargan o comprimen la función de
+densidad de probabilidad en la dirección x.</p></li>
+<li><p>La distribución exponencial se deriva de considerar <span
+class="math inline">\(\alpha=1\)</span> y <span
+class="math inline">\(\beta=1/\lambda\)</span></p></li>
+<li><p>Cuando <span class="math inline">\(\beta=1\)</span> se obtiene la
+<strong>Distribución gama estándar</strong></p></li>
 </ul>
 </div>
-<div id="función-de-distribución-de-probabilidad-gama-estándar" class="section level2">
+<div id="función-de-distribución-de-probabilidad-gama-estándar"
+class="section level2">
 <h2>Función de distribución de probabilidad gama estándar</h2>
 <p><span class="math display">\[f(x)=\left\{ \begin{array}{lc}
             \\ 0 &amp;   si  &amp; x &lt; 0 \\
-             \\ \frac{x^{\alpha-1}e^{-x}}{\Gamma (\alpha)} &amp;  si  &amp; x \geq 0 
+             \\ \frac{x^{\alpha-1}e^{-x}}{\Gamma (\alpha)}
+&amp;  si  &amp; x \geq 0
              \end{array}
    \right.\]</span></p>
-<p>La media y la varianza de una variable aleatoria X que tiene la distribución gama f(x,α,β) son:</p>
+<p>La media y la varianza de una variable aleatoria X que tiene la
+distribución gama f(x,α,β) son:</p>
 <p><span class="math display">\[E(x)=μ=αβ\]</span></p>
 <p><span class="math display">\[V(x)=αβ^2\]</span></p>
-<p>La <strong>función de distribución acumulativa de una distribución gama estándar</strong> de X, con x&gt;0 es:</p>
-<p><span class="math display">\[P(X≤x)=F(x;α,β)=F\left(\frac{x}{β};α\right)=
+<p>La <strong>función de distribución acumulativa de una distribución
+gama estándar</strong> de X, con x&gt;0 es:</p>
+<p><span
+class="math display">\[P(X≤x)=F(x;α,β)=F\left(\frac{x}{β};α\right)=
 \int_0^x \frac{y^{\alpha-1}e^{-y}}{\Gamma (\alpha)} \]</span></p>
-<p>donde <span class="math inline">\(F(.;\alpha)\)</span> es la función gama incompleta</p>
-<p><strong>Hallar probabilidades</strong> a partir de la tabla con <span class="math inline">\(\beta=1\)</span>, cuya función se llama la gama incompleta porque el integrando no posee el denominador</p>
+<p>donde <span class="math inline">\(F(.;\alpha)\)</span> es la función
+gama incompleta</p>
+<p><strong>Hallar probabilidades</strong> a partir de la tabla con <span
+class="math inline">\(\beta=1\)</span>, cuya función se llama la gama
+incompleta porque el integrando no posee el denominador</p>
 <p><strong>Ejemplo 1:</strong></p>
-<p>Suponga que el tiempo de reacción X de un individuo seleccionado al azar a un estímulo tiene una distribución gama estándar con <span class="math inline">\(\alpha=2\)</span></p>
+<p>Suponga que el tiempo de reacción X de un individuo seleccionado al
+azar a un estímulo tiene una distribución gama estándar con <span
+class="math inline">\(\alpha=2\)</span></p>
 <p>Como X es continua:</p>
 <p><span class="math display">\[𝑷(𝒂≤𝒙≤𝒃)=𝑭(𝒃)−𝑭(𝒂)\]</span></p>
-<p><span class="math display">\[𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2)\]</span></p>
+<p><span
+class="math display">\[𝑷(3≤𝒙≤5)=𝑭(x=5,α=2)−𝑭(x=3,α=2)\]</span></p>
 <p><span class="math display">\[= 0.960 - 0.801 = 0.159\]</span></p>
 <p>La probabilidad de que el tiempo de reacción sea de más de 4 s es</p>
 <p><span class="math display">\[P(x&gt;4)=1-P(x≤4)\]</span></p>
 <p><span class="math display">\[=1-F(x=4,α=2)\]</span></p>
-<p><span class="math display">\[=1-0.908=0.092\]</span> <strong>Ejemplo 2:</strong> Suponga que el tiempo de sobrevivencia de un ratón macho seleccionado al azar expuesto a 240 rads de radiación gama tiene una distribución gama con <span class="math inline">\(\alpha=8\)</span> y <span class="math inline">\(\beta=15\)</span>.</p>
+<p><span class="math display">\[=1-0.908=0.092\]</span> <strong>Ejemplo
+2:</strong> Suponga que el tiempo de sobrevivencia de un ratón macho
+seleccionado al azar expuesto a 240 rads de radiación gama tiene una
+distribución gama con <span class="math inline">\(\alpha=8\)</span> y
+<span class="math inline">\(\beta=15\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Halle el tiempo de sobrevivencia esperado</li>
 </ol>
-<p><span class="math display">\[E(X)=8*15=120 \quad semanas\]</span> b. halle la varianza y la sd</p>
+<p><span class="math display">\[E(X)=8*15=120 \quad semanas\]</span> b.
+halle la varianza y la sd</p>
 <p><span class="math display">\[V(X)=(8)*(15)^2=1800\]</span></p>
-<p><span class="math display">\[sd=\sqrt {1800}=42.43 \quad sem\]</span></p>
+<p><span class="math display">\[sd=\sqrt {1800}=42.43 \quad
+sem\]</span></p>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>cuál es la probabilidad de que un ratón sobreviva entre 60 y 120 semanas</li>
+<li>cuál es la probabilidad de que un ratón sobreviva entre 60 y 120
+semanas</li>
 </ol>
-<p><span class="math display">\[P(60 \leq X \leq 120)= P(X \leq 120)- P(X\leq 60)\]</span> Estandarizando</p>
+<p><span class="math display">\[P(60 \leq X \leq 120)= P(X \leq 120)-
+P(X\leq 60)\]</span> Estandarizando</p>
 <p><span class="math display">\[F(120/15;8)- F(60/15;8)\]</span></p>
-<p><span class="math display">\[ F(8; 8) - F(4; 8)= 0.547- 0.051 = 0.496\]</span> d. Cual es la probabilidad de que un ratón sobreviva por lo menos 30 semanas</p>
-<p><span class="math display">\[P(X&gt;30)= 1 - P(X\leq 30)\]</span> <span class="math display">\[ 1 - F(30/15;8)= 0.999\]</span></p>
+<p><span class="math display">\[ F(8; 8) - F(4; 8)= 0.547- 0.051 =
+0.496\]</span> d. Cual es la probabilidad de que un ratón sobreviva por
+lo menos 30 semanas</p>
+<p><span class="math display">\[P(X&gt;30)= 1 - P(X\leq 30)\]</span>
+<span class="math display">\[ 1 - F(30/15;8)= 0.999\]</span></p>
 </div>
 </div>
-<div id="función-de-distribución-de-probabilidad-exponencial" class="section level1">
+<div id="función-de-distribución-de-probabilidad-exponencial"
+class="section level1">
 <h1>Función de distribución de probabilidad exponencial</h1>
-<p>La distribución exponencial se deriva de considerar <span class="math inline">\(\alpha=1\)</span> y <span class="math inline">\(\beta=1/\lambda\)</span> en la distribución gama. Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula radiactiva en desintegrarse.</p>
+<p>La distribución exponencial se deriva de considerar <span
+class="math inline">\(\alpha=1\)</span> y <span
+class="math inline">\(\beta=1/\lambda\)</span> en la distribución gama.
+Esta distribución analiza el espacio entre dos eventos en un proceso de
+Poisson, donde los eventos ocurren de manera continua e independiente a
+una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula
+radiactiva en desintegrarse.</p>
 <p><img src="imagen/colas.png" width="357" style="display: block; margin: auto;" /></p>
-<div id="función-de-distribución-de-probabilidad" class="section level2">
+<div id="función-de-distribución-de-probabilidad"
+class="section level2">
 <h2>Función de distribución de probabilidad</h2>
-<p>Se dice que X tiene una distribución exponencial con parámetro λ, con λ&gt;0, si la función de densidad de probabilidad de X es:</p>
+<p>Se dice que X tiene una distribución exponencial con parámetro λ, con
+λ&gt;0, si la función de densidad de probabilidad de X es:</p>
 <p><span class="math display">\[ f(x;λ)=\left\{ \begin{array}{lc}
             \\ λe^{-λx} &amp;   si  &amp; x \geq 0 \\
-             \\ 0 &amp;  si  &amp; x &lt; 0 
+             \\ 0 &amp;  si  &amp; x &lt; 0
              \end{array}
    \right. \]</span></p>
-<p>El <strong>valor esperado</strong> de una variable aleatoria exponencialmente distribuida X es:</p>
+<p>El <strong>valor esperado</strong> de una variable aleatoria
+exponencialmente distribuida X es:</p>
 <p><span class="math display">\[
 E(X)=\int_0^\infty  x λe^{-λx} \,dx
 \]</span></p>
-<p>Después de resolver la integral por partes, se tiene que el valor medio es <span class="math display">\[E(x)=\frac{1}{λ}\]</span></p>
+<p>Después de resolver la integral por partes, se tiene que el valor
+medio es <span class="math display">\[E(x)=\frac{1}{λ}\]</span></p>
 <p>Mientras que la varianza se obtiene resolviendo:</p>
-<p><span class="math display">\[V(X)=E(X^2)-\mu^2 \]</span> <span class="math display">\[V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 \]</span> al resolver las integrales se obtiene que<br />
-<span class="math display">\[Var(x)=\frac{1}{λ^2}\]</span> ## Función acumulada</p>
+<p><span class="math display">\[V(X)=E(X^2)-\mu^2 \]</span> <span
+class="math display">\[V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 \]</span>
+al resolver las integrales se obtiene que<br />
+<span class="math display">\[Var(x)=\frac{1}{λ^2}\]</span> ## Función
+acumulada</p>
 <p>La función de distribución acumulada es</p>
 <p><span class="math display">\[  F(x;λ)=\left\{ \begin{array}{lc}
- \\ 0 &amp;  si  &amp; x &lt; 0 \\
-            \\ 1-e^{-λx} &amp;   si  &amp; x \geq 0 
+\\ 0 &amp;  si  &amp; x &lt; 0 \\
+            \\ 1-e^{-λx} &amp;   si  &amp; x \geq 0
              \end{array}
    \right.   \]</span></p>
 <p><strong>Ejemplo 1</strong></p>
-<p>En promedio un rayo mata 3 personas cada año en un país λ=3 muertes/año.</p>
+<p>En promedio un rayo mata 3 personas cada año en un país λ=3
+muertes/año.</p>
 <p>Así la función acumulada es</p>
 <p><span class="math display">\[F(x;λ)=\left\{ \begin{array}{lc}
- \\ 0 &amp;  si  &amp; x &lt; 0 \\
+\\ 0 &amp;  si  &amp; x &lt; 0 \\
             \\ 1-e^{-3x} &amp;   si  &amp; x \geq 0
              \end{array}
    \right.\]</span></p>
 <ol style="list-style-type: lower-alpha">
-<li>Calcule la probabilidad de que el tiempo de muerte sea menos de un año</li>
+<li>Calcule la probabilidad de que el tiempo de muerte sea menos de un
+año</li>
 </ol>
 <p><span class="math display">\[P(x&lt;1)=1-e^{-3}=0.95\]</span></p>
-<p>Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de 18 meses <span class="math display">\[P(t&gt;1.5)=1-p(t\leq 1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span> ## Propiedad de pérdida de memoria de la distribución exponencial</p>
-<p>En el análisis del comportamiento de las líneas de Espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30.</p>
-<p>Teoricamente se traduce en la siguiente propiedad <span class="math display">\[P(X&gt;x+y|X&gt;y)=P(X&gt;x) \]</span> la demostración de esta formula está dada por:</p>
-<p><span class="math display">\[P(X&gt;x+y|X&gt;y)=\frac{P(X&gt;x+y \bigcap X&gt;y)=}{P(X&gt;y)}\]</span> <span class="math display">\[\frac{P(X&gt;x+y )}{P(X&gt;y)}\]</span></p>
-<p><span class="math display">\[\frac{e^{-\lambda(x+y)}}{e^{-\lambda y}}\]</span> <span class="math display">\[e^{-\lambda x}=P(X&gt;x)\]</span></p>
+<p>Calcule la probabilidad de que el tiempo hasta la próxima falla sea
+al menos de 18 meses <span class="math display">\[P(t&gt;1.5)=1-p(t\leq
+1.5)=0.95\]</span> <span
+class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span
+class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span> ##
+Propiedad de pérdida de memoria de la distribución exponencial</p>
+<p>En el análisis del comportamiento de las líneas de Espera, se
+reconoce que el proceso de llegada de los clientes al sistema ocurre de
+forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia
+de un evento no se ve afectado por el tiempo transcurrido desde la
+ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son
+las 10:30 y la última llegada de un cliente fue a las 10:15, la
+probabilidad de que la siguiente llegada sea a las 10:35 es función sólo
+de las 10:30 a las 10:35 y en consecuencia es totalmente independiente
+del tiempo transcurrido desde la ocurrencia del último evento, es decir,
+de las 10:15 a las 10:30.</p>
+<p>Teoricamente se traduce en la siguiente propiedad <span
+class="math display">\[P(X&gt;x+y|X&gt;y)=P(X&gt;x) \]</span> la
+demostración de esta formula está dada por:</p>
+<p><span class="math display">\[P(X&gt;x+y|X&gt;y)=\frac{P(X&gt;x+y
+\bigcap X&gt;y)=}{P(X&gt;y)}\]</span> <span
+class="math display">\[\frac{P(X&gt;x+y )}{P(X&gt;y)}\]</span></p>
+<p><span class="math display">\[\frac{e^{-\lambda(x+y)}}{e^{-\lambda
+y}}\]</span> <span class="math display">\[e^{-\lambda
+x}=P(X&gt;x)\]</span></p>
 </div>
-<div id="relación-entre-la-distribución-exponencial-y-la-poisson" class="section level2">
+<div id="relación-entre-la-distribución-exponencial-y-la-poisson"
+class="section level2">
 <h2>Relación entre la distribución exponencial y la poisson</h2>
-<p>La distribución exponencial se utiliza con frecuencia como modelo de la distribución de tiempos entre la ocurrencia de eventos sucesivos, tales como clientes que llegan a una instalación de servicio o llamadas que entran a un conmutador. La razón de esto es que la distribución exponencial está estrechamente relacionada con el proceso de Poisson.</p>
+<p>La distribución exponencial se utiliza con frecuencia como modelo de
+la distribución de tiempos entre la ocurrencia de eventos sucesivos,
+tales como clientes que llegan a una instalación de servicio o llamadas
+que entran a un conmutador. La razón de esto es que la distribución
+exponencial está estrechamente relacionada con el proceso de
+Poisson.</p>
 <div id="ejercicios" class="section level3">
 <h3>Ejercicios</h3>
 <ol style="list-style-type: decimal">
-<li>Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de autopago de un banco local. Si X tiene una distribución exponencial con λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1), calcule lo siguiente:</li>
+<li>Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de
+autopago de un banco local. Si X tiene una distribución exponencial con
+λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1),
+calcule lo siguiente:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>El tiempo esperado entre dos llegadas sucesivas</li>
@@ -573,50 +638,134 @@ E(X)=\int_0^\infty  x λe^{-λx} \,dx
 </ol>
 <p>(rta/ a. 1 b. 1 c. 0.982 d. 0.129)</p>
 <ol start="2" style="list-style-type: decimal">
-<li>La amplia experiencia con ventiladores de un tipo utilizados en motores diesel ha sugerido que la distribución exponencial proporciona un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que</li>
+<li>La amplia experiencia con ventiladores de un tipo utilizados en
+motores diesel ha sugerido que la distribución exponencial proporciona
+un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio
+hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>¿Un ventilador seleccionado al azar dure por lo menos 20 000 horas?</li>
+<li>¿Un ventilador seleccionado al azar dure por lo menos 20 000
+horas?</li>
 <li>¿Cuándo mucho 30000 horas? ¿Entre 20000 y 30000 horas?</li>
-<li>¿Exceda la duración de un ventilador el valor medio por más de dos desviaciones estándar? ¿Más de tres desviaciones estándar? (rta a. 0.449, 0.699, 0.148 b. 0.05, 0.018)</li>
+<li>¿Exceda la duración de un ventilador el valor medio por más de dos
+desviaciones estándar? ¿Más de tres desviaciones estándar? (rta a.
+0.449, 0.699, 0.148 b. 0.05, 0.018)</li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>El tiempo entre llegadas de mensajes electrónicos a un computador tiene una distribución exponencial con media de 1.25 horas.</li>
+<li>El tiempo entre llegadas de mensajes electrónicos a un computador
+tiene una distribución exponencial con media de 1.25 horas.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que el computador reciba un mensaje en un período de 10 minutos?</p></li>
-<li><p>Si son las 5 de la tarde y no ha recibido mensajes desde las 10 de la mañana, ¿Cuál es la probabilidad de recibir un mensaje antes de las 10 de la noche?</p></li>
+<li><p>¿Cuál es la probabilidad de que el computador reciba un mensaje
+en un período de 10 minutos?</p></li>
+<li><p>Si son las 5 de la tarde y no ha recibido mensajes desde las 10
+de la mañana, ¿Cuál es la probabilidad de recibir un mensaje antes de
+las 10 de la noche?</p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>El tiempo entre la llegada de los clientes a un cajero automático es una variable aleatoria exponencial con una media de cinco minutos.</li>
+<li>El tiempo entre la llegada de los clientes a un cajero automático es
+una variable aleatoria exponencial con una media de cinco minutos.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que lleguen al cajero más de tres clientes en un lapso de 10 minutos?</p></li>
-<li><p>¿Cuál es la probabilidad de que el tiempo transcurrido hasta que llega el quinto cliente sea menor que 15 minutos?</p></li>
+<li><p>¿Cuál es la probabilidad de que lleguen al cajero más de tres
+clientes en un lapso de 10 minutos?</p></li>
+<li><p>¿Cuál es la probabilidad de que el tiempo transcurrido hasta que
+llega el quinto cliente sea menor que 15 minutos?</p></li>
 </ol>
 <ol start="4" style="list-style-type: decimal">
-<li>La magnitud de temblores registrados en una región de América del Norte puede modelarse como si tuviera una distribución exponencial con media 2.4, según se mide en la escala de Richter. Encuentre la probabilidad de que un temblor que ocurra en esta región</li>
+<li>La magnitud de temblores registrados en una región de América del
+Norte puede modelarse como si tuviera una distribución exponencial con
+media 2.4, según se mide en la escala de Richter. Encuentre la
+probabilidad de que un temblor que ocurra en esta región</li>
 </ol>
-<p>a sea mayor que 3.0 en la escala de Richter. b caiga entre 2.0 y 3.0 en la escala de Richter. c. De los siguientes diez temblores que afecten esta región, ¿cuál es la probabilidad de que al menos uno de ellos sea mayor que 5.0 en la escala de Richter?</p>
-<p>Suponga que la magnitud de los terremotos que afectan la región tiene una distribución gamma con <span class="math inline">\(\alpha=0.8\)</span> y <span class="math inline">\(\beta = 2.4\)</span>. a ¿Cuál es la magnitud media de los terremotos que afectan la región? b ¿Cuál es la probabilidad de que la magnitud de un terremoto que afecte la región exceda de 3.0 en la escala Richter? c Compare sus respuestas con el Ejercicio anterior. ¿Cuál probabilidad es mayor? Explique. d ¿Cuál es la probabilidad de que un terremoto que afecte las regiones caiga entre 2.0 y 3.0 en la escala Richter? (rta a E(Y) = 1.92 b P(Y &gt; 3) =.21036 d P(2 ≤Y ≤3) =.12943)</p>
+<p>a sea mayor que 3.0 en la escala de Richter. b caiga entre 2.0 y 3.0
+en la escala de Richter. c. De los siguientes diez temblores que afecten
+esta región, ¿cuál es la probabilidad de que al menos uno de ellos sea
+mayor que 5.0 en la escala de Richter?</p>
+<p>Suponga que la magnitud de los terremotos que afectan la región tiene
+una distribución gamma con <span
+class="math inline">\(\alpha=0.8\)</span> y <span
+class="math inline">\(\beta = 2.4\)</span>. a ¿Cuál es la magnitud media
+de los terremotos que afectan la región? b ¿Cuál es la probabilidad de
+que la magnitud de un terremoto que afecte la región exceda de 3.0 en la
+escala Richter? c Compare sus respuestas con el Ejercicio anterior.
+¿Cuál probabilidad es mayor? Explique. d ¿Cuál es la probabilidad de que
+un terremoto que afecte las regiones caiga entre 2.0 y 3.0 en la escala
+Richter? (rta a E(Y) = 1.92 b P(Y &gt; 3) =.21036 d P(2 ≤Y ≤3)
+=.12943)</p>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Si Y tiene una distribución exponencial y P(Y&gt;2)=0.0821, ¿cuál es <span class="math display">\[a. \beta=E(Y)?\]</span> <span class="math display">\[b. P(Y\leq 1.7)?\]</span> (Rta/ <span class="math inline">\(\beta=0.8\)</span>, <span class="math inline">\(P(y\leq1.7)=0.8806\)</span>)</p></li>
-<li><p>El operador de una estación de bombeo ha observado que la demanda de agua durante las primeras horas de la tarde tiene una distribución aproximadamente exponencial con media de 100 pes (pcs cúbicos por segundo). a Encuentre la probabilidad de que la demanda sea mayor que 200 pcs durante las primeras horas de la tarde en un día seleccionado al azar. b ¿Qué capacidad de bombeo de agua debe mantener la estación durante las primeras horas de la tarde para que la probabilidad de que la demanda sea mayor que la capacidad en un día seleccionado al azar sea de sólo .01?</p></li>
+<li><p>Si Y tiene una distribución exponencial y P(Y&gt;2)=0.0821, ¿cuál
+es <span class="math display">\[a. \beta=E(Y)?\]</span> <span
+class="math display">\[b. P(Y\leq 1.7)?\]</span> (Rta/ <span
+class="math inline">\(\beta=0.8\)</span>, <span
+class="math inline">\(P(y\leq1.7)=0.8806\)</span>)</p></li>
+<li><p>El operador de una estación de bombeo ha observado que la demanda
+de agua durante las primeras horas de la tarde tiene una distribución
+aproximadamente exponencial con media de 100 pes (pcs cúbicos por
+segundo). a Encuentre la probabilidad de que la demanda sea mayor que
+200 pcs durante las primeras horas de la tarde en un día seleccionado al
+azar. b ¿Qué capacidad de bombeo de agua debe mantener la estación
+durante las primeras horas de la tarde para que la probabilidad de que
+la demanda sea mayor que la capacidad en un día seleccionado al azar sea
+de sólo .01?</p></li>
 </ol>
 <p>(rta a 0.1353 b 460.52 cfs)</p>
 <ol start="7" style="list-style-type: decimal">
-<li><p>Una evidencia histórica indica que los tiempos entre accidentes mortales en vuelos nacionales de horario programado en aviones de pasajeros en Estados Unidos tienen una distribución aproximadamente exponencial. Suponga que el tiempo medio entre accidentes es de 44 días. a Si uno de los accidentes ocurrió el 1 de julio de un año seleccionado al azar en el periodo de estudio, ¿cuál es la probabilidad de que ocurra otro accidente ese mismo mes? b ¿Cuál es la varianza de los tiempos entre accidentes? (rta a 0.5057 b. 1936)</p></li>
-<li><p>Una planta de manufactura utiliza un producto específico a granel. La cantidad de producto empleada en un día puede ser modelada por una distribución exponencial con <span class="math inline">\(\beta=4\)</span> (medida en toneladas). Encuentre la probabilidad de que la planta utilice más de 4 toneladas en un día determinado.</p></li>
+<li><p>Una evidencia histórica indica que los tiempos entre accidentes
+mortales en vuelos nacionales de horario programado en aviones de
+pasajeros en Estados Unidos tienen una distribución aproximadamente
+exponencial. Suponga que el tiempo medio entre accidentes es de 44 días.
+a Si uno de los accidentes ocurrió el 1 de julio de un año seleccionado
+al azar en el periodo de estudio, ¿cuál es la probabilidad de que ocurra
+otro accidente ese mismo mes? b ¿Cuál es la varianza de los tiempos
+entre accidentes? (rta a 0.5057 b. 1936)</p></li>
+<li><p>Una planta de manufactura utiliza un producto específico a
+granel. La cantidad de producto empleada en un día puede ser modelada
+por una distribución exponencial con <span
+class="math inline">\(\beta=4\)</span> (medida en toneladas). Encuentre
+la probabilidad de que la planta utilice más de 4 toneladas en un día
+determinado.</p></li>
 </ol>
-<p>(rta 0.3679) ¿Cuánto producto a granel debe tener en existencia para que la probabilidad de que se agote el producto en la planta sea de sólo 0.05?</p>
-<p>Suponga que la cantidad de producto usado en un día tiene una distribución gamma con <span class="math inline">\(\alpha=1.5\)</span> y <span class="math inline">\(\beta = 3\)</span>. a Encuentre la probabilidad de que la planta use más de 4 toneladas en un día determinado. b ¿Cuánto del producto a granel debe haber en existencia para que la probabilidad de que la planta agote el producto sea de sólo .05?</p>
-<p><strong>Ejercicios GAMA</strong> 1. Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas. a. ¿Cuál es la probabilidad de que un transistor dure entre 12 y 24 semanas? b. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 24 semanas? ¿Es la mediana de la distribución de duración menor que 24? ¿Por qué si o por qué no? c. ¿Cuál es el 99o percentil de la distribución de duración? d. Suponga que la prueba termina en realidad después de t semanas. ¿Qué valor de t es tal que sólo el 0.5% de todos los transistores continuarán funcionando al término de la prueba?</p>
+<p>(rta 0.3679) ¿Cuánto producto a granel debe tener en existencia para
+que la probabilidad de que se agote el producto en la planta sea de sólo
+0.05?</p>
+<p>Suponga que la cantidad de producto usado en un día tiene una
+distribución gamma con <span class="math inline">\(\alpha=1.5\)</span> y
+<span class="math inline">\(\beta = 3\)</span>. a Encuentre la
+probabilidad de que la planta use más de 4 toneladas en un día
+determinado. b ¿Cuánto del producto a granel debe haber en existencia
+para que la probabilidad de que la planta agote el producto sea de sólo
+.05?</p>
+<p><strong>Ejercicios GAMA</strong> 1. Suponga que cuando un transistor
+de cierto tipo se somete a una prueba de duración acelerada, la duración
+X (en semanas) tiene una distribución gama acelerada con media de 24
+semanas y desviación estándar de 12 semanas. a. ¿Cuál es la probabilidad
+de que un transistor dure entre 12 y 24 semanas? b. ¿Cuál es la
+probabilidad de que un transistor dure cuando mucho 24 semanas? ¿Es la
+mediana de la distribución de duración menor que 24? ¿Por qué si o por
+qué no? c. ¿Cuál es el 99o percentil de la distribución de duración?
+d. Suponga que la prueba termina en realidad después de t semanas. ¿Qué
+valor de t es tal que sólo el 0.5% de todos los transistores continuarán
+funcionando al término de la prueba?</p>
 <ol style="list-style-type: lower-alpha">
 <li>0.424 b. 0.567,$ &lt; 24$ c. 60 d. 66</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li><p>En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 2.1. Insuficiente en un día cualquiera? 2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 2.3 Encuentre E(x) y V(x)</p></li>
-<li><p>Si X tiene una distribución gama estándar con <span class="math inline">\(\alpha=7\)</span> evalúe lo siguiente: <span class="math display">\[a. P(X \leq 5)\]</span> <span class="math display">\[b.P(X&lt; 5)\]</span> <span class="math display">\[c. P(X&gt;8)\]</span> <span class="math display">\[d. P(3 \leq X \leq 8)\]</span> <span class="math display">\[ e. P(3 &lt; X &lt; 8)\]</span> <span class="math display">\[f. P(X &lt;4 o X &gt; 6)\]</span></p></li>
+<li><p>En cierta ciudad el consumo diario de energía eléctrica, en
+millones de kilovatios por hora, puede considerarse como una variable
+aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de
+energía de esta ciudad tiene una capacidad diaria de 10 millones de
+KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 2.1.
+Insuficiente en un día cualquiera? 2.2 Se consuman entre 3 y 8 millones
+de K. W./Hora? 2.3 Encuentre E(x) y V(x)</p></li>
+<li><p>Si X tiene una distribución gama estándar con <span
+class="math inline">\(\alpha=7\)</span> evalúe lo siguiente: <span
+class="math display">\[a. P(X \leq 5)\]</span> <span
+class="math display">\[b.P(X&lt; 5)\]</span> <span
+class="math display">\[c. P(X&gt;8)\]</span> <span
+class="math display">\[d. P(3 \leq X \leq 8)\]</span> <span
+class="math display">\[ e. P(3 &lt; X &lt; 8)\]</span> <span
+class="math display">\[f. P(X &lt;4 o X &gt; 6)\]</span></p></li>
 </ol>
 </div>
 </div>
@@ -626,6 +775,7 @@ E(X)=\int_0^\infty  x λe^{-λx} \,dx
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 </div>
@@ -655,7 +805,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -664,6 +814,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

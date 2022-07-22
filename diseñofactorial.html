@@ -13,12 +13,22 @@
 
 <title>DISEÑO FACTORIAL</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -356,13 +328,25 @@ $(document).ready(function () {
 
 
 <ul>
-<li><p>Los experimentos factoriales son aquellos en los cuales el interés se centra en el estudio de los efectos de las combinaciones de dos o más factores sobre una variable respuesta.</p></li>
-<li><p>En la práctica cuando el número de factores a considerar es mayor que 3, se suelen utilizar experimentos 2k (k factores con dos niveles cada uno), experimentos 3k (k factores con tres niveles cada uno), experimentos factoriales fraccionados, etc.</p></li>
-<li><p>Las unidades experimentales se considerarán homogéneas respecto a las características individuales que pudieran afectar las respuestas a los tratamientos aplicados.</p></li>
+<li><p>Los experimentos factoriales son aquellos en los cuales el
+interés se centra en el estudio de los efectos de las combinaciones de
+dos o más factores sobre una variable respuesta.</p></li>
+<li><p>En la práctica cuando el número de factores a considerar es mayor
+que 3, se suelen utilizar experimentos 2k (k factores con dos niveles
+cada uno), experimentos 3k (k factores con tres niveles cada uno),
+experimentos factoriales fraccionados, etc.</p></li>
+<li><p>Las unidades experimentales se considerarán homogéneas respecto a
+las características individuales que pudieran afectar las respuestas a
+los tratamientos aplicados.</p></li>
 </ul>
 <p>##<strong>Diseño con 2 factores</strong></p>
-<p>En el caso de dos factores A y B, El número de niveles del factor A lo denotaremos por a y el número de niveles de B lo denotaremos por b.</p>
-<p><strong>Definición</strong> Llamaremos tratamiento a cada combinación posible entre los niveles de los factores. Así, para el caso de dos factores, se tendrá un total de ab posibles tratamientos. Por ejemplo, sea a=3 y b=2:</p>
+<p>En el caso de dos factores A y B, El número de niveles del factor A
+lo denotaremos por a y el número de niveles de B lo denotaremos por
+b.</p>
+<p><strong>Definición</strong> Llamaremos tratamiento a cada combinación
+posible entre los niveles de los factores. Así, para el caso de dos
+factores, se tendrá un total de ab posibles tratamientos. Por ejemplo,
+sea a=3 y b=2:</p>
 <table>
 <thead>
 <tr class="header">
@@ -394,55 +378,137 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Cada combinación AiBj con i=1,2,3 y j=1,2 define un tratamiento, entonces hay 6 posibles tratamientos correspondientes a las entradas de esta tabla.</p>
-<div id="tipos-de-experimentos-factoriales-con-dos-factores" class="section level2">
+<p>Cada combinación AiBj con i=1,2,3 y j=1,2 define un tratamiento,
+entonces hay 6 posibles tratamientos correspondientes a las entradas de
+esta tabla.</p>
+<div id="tipos-de-experimentos-factoriales-con-dos-factores"
+class="section level2">
 <h2>Tipos de experimentos factoriales con dos factores:</h2>
-<p><strong>1. De efectos fijos:</strong> Los a niveles del factor A como los b niveles del factor B son definidos a propósito por el investigador.</p>
-<p><strong>2. De efectos aleatorios:</strong> Los a niveles del factor A como los b niveles del factor B son elegidos aleatoriamente dentro de una población de posibles niveles, respectivamente.</p>
-<p><strong>3. De efectos mixtos:</strong> Uno de los dos factores es de efectos fijos en tanto que el otro es de efectos aleatorios.</p>
-<p>En cualquiera de los anteriores casos se debe considerar el fenómeno conocido como interacción de los factores, los modelos deben iniciarse considerando la existencia de interacción y luego a través de la evidencia muestral, determinar si dicha interacción es o no significativa. Sólo si en cada tratamiento se toman réplicas (n&gt;1 observaciones por tratamiento), será posible estimar y evaluar la interacción entre los factores.</p>
-<p>A cada tratamiento se asignan en forma completamente aleatorizada, n unidades experimentales obteniéndose por tanto de cada tratamiento n observaciones de la variable respuesta. En total habrán N=abn observaciones de la variable respuesta. La tabla de entrada de datos del experimento será como se presenta en la siguiente figura</p>
+<p><strong>1. De efectos fijos:</strong> Los a niveles del factor A como
+los b niveles del factor B son definidos a propósito por el
+investigador.</p>
+<p><strong>2. De efectos aleatorios:</strong> Los a niveles del factor A
+como los b niveles del factor B son elegidos aleatoriamente dentro de
+una población de posibles niveles, respectivamente.</p>
+<p><strong>3. De efectos mixtos:</strong> Uno de los dos factores es de
+efectos fijos en tanto que el otro es de efectos aleatorios.</p>
+<p>En cualquiera de los anteriores casos se debe considerar el fenómeno
+conocido como interacción de los factores, los modelos deben iniciarse
+considerando la existencia de interacción y luego a través de la
+evidencia muestral, determinar si dicha interacción es o no
+significativa. Sólo si en cada tratamiento se toman réplicas (n&gt;1
+observaciones por tratamiento), será posible estimar y evaluar la
+interacción entre los factores.</p>
+<p>A cada tratamiento se asignan en forma completamente aleatorizada, n
+unidades experimentales obteniéndose por tanto de cada tratamiento n
+observaciones de la variable respuesta. En total habrán N=abn
+observaciones de la variable respuesta. La tabla de entrada de datos del
+experimento será como se presenta en la siguiente figura</p>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Se postula el modelo con interacción, para la k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:</p>
-<p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span> Donde:</p>
-<p><span class="math inline">\(\Large Y_{ijk}\)</span> Variable respuesta</p>
-<p><span class="math inline">\(\Large \mu\)</span> Media global de la respuesta</p>
-<p><span class="math inline">\(\Large \alpha_i\)</span> Efecto fijo del i-ésimo nivel del factor A sobre la respuesta promedio global.</p>
-<p><span class="math inline">\(\Large \beta_j\)</span> Efecto fijo del j-ésimo niveles del factor B sobre la respuesta promedio global.</p>
-<p><span class="math inline">\(\Large \alpha_i \beta_j\)</span> Efecto fijo de la interacción de los factores A y B en sus niveles i y j, respectivamente, sobre la respuesta promedio global.</p>
-<p><span class="math inline">\(\Large \varepsilon_{ijk}\)</span> error aleatorio</p>
+<p>Se postula el modelo con interacción, para la k-ésima respuesta en el
+tratamiento AiBj (nivel i del factor A combinado con nivel j del factor
+B), que aparece a continuación:</p>
+<p><span class="math display">\[\Large
+Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span>
+Donde:</p>
+<p><span class="math inline">\(\Large Y_{ijk}\)</span> Variable
+respuesta</p>
+<p><span class="math inline">\(\Large \mu\)</span> Media global de la
+respuesta</p>
+<p><span class="math inline">\(\Large \alpha_i\)</span> Efecto fijo del
+i-ésimo nivel del factor A sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \beta_j\)</span> Efecto fijo del
+j-ésimo niveles del factor B sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \alpha_i \beta_j\)</span> Efecto
+fijo de la interacción de los factores A y B en sus niveles i y j,
+respectivamente, sobre la respuesta promedio global.</p>
+<p><span class="math inline">\(\Large \varepsilon_{ijk}\)</span> error
+aleatorio</p>
 <p><strong>Supuestos y restricciones</strong></p>
-<p><span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> para todo i, j, k</p>
-<p><span class="math display">\[\Large \sum_{i=1}^a\alpha_i=0\]</span> <span class="math display">\[\Large \sum_{j=1}^b\beta_j=0\]</span></p>
-<p><span class="math display">\[\Large \sum_{i=1}^a(\alpha\beta)_{ij}=0\]</span></p>
-<p><span class="math display">\[\Large \sum_{j=1}^b(\alpha\beta)_{ij}=0\]</span></p>
+<p><span class="math display">\[\Large \varepsilon_{ij} \sim
+N(0,\sigma^2)\]</span> para todo i, j, k</p>
+<p><span class="math display">\[\Large \sum_{i=1}^a\alpha_i=0\]</span>
+<span class="math display">\[\Large \sum_{j=1}^b\beta_j=0\]</span></p>
+<p><span class="math display">\[\Large
+\sum_{i=1}^a(\alpha\beta)_{ij}=0\]</span></p>
+<p><span class="math display">\[\Large
+\sum_{j=1}^b(\alpha\beta)_{ij}=0\]</span></p>
 <p><strong>Parámetros del modelo</strong></p>
-<p>Efectos de tratamientos <span class="math display">\[\Large \tau_{ij}=\alpha_i+\beta_j+(\alpha\beta)_{ij}\]</span> Representa el efecto del tratamiento AiBj sobre la respuesta promedio global.</p>
+<p>Efectos de tratamientos <span class="math display">\[\Large
+\tau_{ij}=\alpha_i+\beta_j+(\alpha\beta)_{ij}\]</span> Representa el
+efecto del tratamiento AiBj sobre la respuesta promedio global.</p>
 <p>Note que:</p>
-<p><span class="math display">\[\Large \sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0\]</span> <strong>Medias de tratamientos:</strong></p>
-<p><span class="math inline">\(\Large \mu_{ij}=\mu+\tau_{ij}\)</span> de donde <span class="math inline">\(\Large \tau_{ij}=\mu_{ij}-\mu\)</span>$</p>
+<p><span class="math display">\[\Large
+\sum_{i=1}^a\sum_{j=1}^b\tau_{ij}=0\]</span> <strong>Medias de
+tratamientos:</strong></p>
+<p><span class="math inline">\(\Large \mu_{ij}=\mu+\tau_{ij}\)</span> de
+donde <span class="math inline">\(\Large
+\tau_{ij}=\mu_{ij}-\mu\)</span>$</p>
 <p><strong>Media del nivel i del factor A</strong></p>
-<p><span class="math inline">\(\Large \mu_{i\bullet}=\mu+\alpha_i\)</span> de donde <span class="math inline">\(\Large \alpha_{i}=\mu_{i\bullet}-\mu\)</span>. Note que <span class="math inline">\(\Large \mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}\)</span></p>
+<p><span class="math inline">\(\Large
+\mu_{i\bullet}=\mu+\alpha_i\)</span> de donde <span
+class="math inline">\(\Large \alpha_{i}=\mu_{i\bullet}-\mu\)</span>.
+Note que <span class="math inline">\(\Large
+\mu_{i\bullet}=\frac{1}{b}\sum_{j=1}^b \mu_{ij}\)</span></p>
 <p><strong>Media del nivel j del factor B</strong></p>
-<p><span class="math inline">\(\Large \mu_{\bullet j}=\mu+\beta_j\)</span> de donde <span class="math inline">\(\Large \beta_{j}=\mu_{\bullet j}-\mu\)</span>. Note que <span class="math inline">\(\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a \mu_{ij}\)</span></p>
-<p><strong>Media global</strong> <span class="math display">\[\Large \mu_{\bullet }=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}\]</span> <strong>Efectos de interacción</strong></p>
-<p><span class="math display">\[\Large (\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu \]</span></p>
+<p><span class="math inline">\(\Large \mu_{\bullet
+j}=\mu+\beta_j\)</span> de donde <span class="math inline">\(\Large
+\beta_{j}=\mu_{\bullet j}-\mu\)</span>. Note que <span
+class="math inline">\(\Large \mu_{\bullet j}=\frac{1}{a}\sum_{i=1}^a
+\mu_{ij}\)</span></p>
+<p><strong>Media global</strong> <span class="math display">\[\Large
+\mu_{\bullet }=\frac{1}{ab}\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}\]</span>
+<strong>Efectos de interacción</strong></p>
+<p><span class="math display">\[\Large
+(\alpha\beta)_{ij}=\mu_{ij}-\mu_{i\bullet}-\mu_{\bullet j}+\mu
+\]</span></p>
 <p>##<strong>Interacción</strong></p>
-<p>La interacción de dos factores significa que las diferencias entre las medias de tratamientos según los niveles de un factor varían (bien sea en dimensión y/o signo) de nivel a nivel del otro factor.</p>
-<p>Para analizar los cambios de la respuesta promedio de cada tratamiento, se usan los gráficos de perfiles de medias o <strong>Gráficos de interacción</strong> en los cuales se presentan las medias de tratamiento en cada uno de los niveles de uno de los factores fijando los niveles del otro factor ubicado en el eje horizontal.</p>
+<p>La interacción de dos factores significa que las diferencias entre
+las medias de tratamientos según los niveles de un factor varían (bien
+sea en dimensión y/o signo) de nivel a nivel del otro factor.</p>
+<p>Para analizar los cambios de la respuesta promedio de cada
+tratamiento, se usan los gráficos de perfiles de medias o
+<strong>Gráficos de interacción</strong> en los cuales se presentan las
+medias de tratamiento en cada uno de los niveles de uno de los factores
+fijando los niveles del otro factor ubicado en el eje horizontal.</p>
 <p><strong>Diagnóstico de la presencia de interacción</strong></p>
-<p>Muestralmente podemos establecer la presencia de interacción mediante una de las siguientes formas equivalentes:</p>
+<p>Muestralmente podemos establecer la presencia de interacción mediante
+una de las siguientes formas equivalentes:</p>
 <ul>
-<li><p>Si se observa que los gráficos de perfiles de medias muestrales de tratamientos no son paralelos.</p></li>
-<li><p>Si la diferencia entre las respuestas medias para cualesquiera dos niveles del factor A no es la misma para todos los niveles de B.</p></li>
-<li><p>Si la diferencia entre las respuestas medias para cualesquiera dos niveles del factor B no es la misma para todos los niveles de A.</p></li>
-<li><p>Si las medias de tratamientos no son todas iguales a la suma de la media global más los respectivos efectos principales de los factores A y B</p></li>
+<li><p>Si se observa que los gráficos de perfiles de medias muestrales
+de tratamientos no son paralelos.</p></li>
+<li><p>Si la diferencia entre las respuestas medias para cualesquiera
+dos niveles del factor A no es la misma para todos los niveles de
+B.</p></li>
+<li><p>Si la diferencia entre las respuestas medias para cualesquiera
+dos niveles del factor B no es la misma para todos los niveles de
+A.</p></li>
+<li><p>Si las medias de tratamientos no son todas iguales a la suma de
+la media global más los respectivos efectos principales de los factores
+A y B</p></li>
 </ul>
-<p><strong>Encubrimiento o enmascaramiento de efectos principales:</strong></p>
-<p>Los efectos <span class="math inline">\(\Large \alpha_i\)</span> y <span class="math inline">\(\Large \beta_j\)</span> constituyen los efectos principales del modelo. Cuando los efectos de interacción son significativos, pueden encubrir o enmascarar a los efectos principales de uno o de ambos factores, esto significa que en las pruebas F asociadas a la significancia simultánea de los efectos del respectivo factor, no se rechaza la hipótesis nula, es decir, se concluye que el factor A, o el B o ambos, no son significativos, cuando ya se ha probado que estos interactúan significativamente.</p>
-<p>Pero tenga en cuenta que, en presencia de interacción significativa, no se puede concluir que alguno o ambos factores son no significativos a pesar de que el respectivo test de significancia individual para cada factor arroje como resultado la no significancia, porque tal evento es consecuencia de un encubrimiento debido a la interacción.</p>
+<p><strong>Encubrimiento o enmascaramiento de efectos
+principales:</strong></p>
+<p>Los efectos <span class="math inline">\(\Large \alpha_i\)</span> y
+<span class="math inline">\(\Large \beta_j\)</span> constituyen los
+efectos principales del modelo. Cuando los efectos de interacción son
+significativos, pueden encubrir o enmascarar a los efectos principales
+de uno o de ambos factores, esto significa que en las pruebas F
+asociadas a la significancia simultánea de los efectos del respectivo
+factor, no se rechaza la hipótesis nula, es decir, se concluye que el
+factor A, o el B o ambos, no son significativos, cuando ya se ha probado
+que estos interactúan significativamente.</p>
+<p>Pero tenga en cuenta que, en presencia de interacción significativa,
+no se puede concluir que alguno o ambos factores son no significativos a
+pesar de que el respectivo test de significancia individual para cada
+factor arroje como resultado la no significancia, porque tal evento es
+consecuencia de un encubrimiento debido a la interacción.</p>
 <p>##<strong>EJEMPLO</strong></p>
-<p>La siguiente tabla muestra los resultados de un experimento factorial llevado a cabo por Derringer (1974) para determinar el efecto de los compuestos de elastómero sobre la viscosidad del sílice a 100 C. Los compuestos de elastómero estudiados fueron aceite de nafteno, en 4 niveles, y contenido de relleno (phr), en 6 niveles</p>
+<p>La siguiente tabla muestra los resultados de un experimento factorial
+llevado a cabo por Derringer (1974) para determinar el efecto de los
+compuestos de elastómero sobre la viscosidad del sílice a 100 C. Los
+compuestos de elastómero estudiados fueron aceite de nafteno, en 4
+niveles, y contenido de relleno (phr), en 6 niveles</p>
 <table>
 <thead>
 <tr class="header">
@@ -500,21 +566,37 @@ $(document).ready(function () {
 <pre><code>## The following objects are masked from d1 (pos = 9):
 ## 
 ##     fill1, naft, resp</code></pre>
+<pre><code>## The following objects are masked from d1 (pos = 16):
+## 
+##     fill1, naft, resp</code></pre>
 <pre><code>## The following objects are masked from d1 (pos = 23):
+## 
+##     fill1, naft, resp</code></pre>
+<pre><code>## The following objects are masked from d1 (pos = 30):
+## 
+##     fill1, naft, resp</code></pre>
+<pre><code>## The following objects are masked from d1 (pos = 38):
+## 
+##     fill1, naft, resp</code></pre>
+<pre><code>## The following objects are masked from d1 (pos = 44):
 ## 
 ##     fill1, naft, resp</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## NULL</code></pre>
 <p>De la figura anterior se observa que:</p>
 <ul>
-<li><p>A medida que el relleno aumenta de 0 a 60, la viscosidad aumenta a lo largo de una tendencia bastante lineal.</p></li>
-<li><p>Cuando no se agrega aceite de nafteno, aumentar el relleno de 0 a 60 hace que la viscosidad aumente rápidamente de 25 a 60.</p></li>
-<li><p>la pendiente de la línea de tendencia depende del nivel de aceite de nafteno.</p></li>
+<li><p>A medida que el relleno aumenta de 0 a 60, la viscosidad aumenta
+a lo largo de una tendencia bastante lineal.</p></li>
+<li><p>Cuando no se agrega aceite de nafteno, aumentar el relleno de 0 a
+60 hace que la viscosidad aumente rápidamente de 25 a 60.</p></li>
+<li><p>la pendiente de la línea de tendencia depende del nivel de aceite
+de nafteno.</p></li>
 </ul>
 </div>
 <div id="análisis-de-varianza" class="section level2">
 <h2><strong>Análisis de Varianza</strong></h2>
-<p>Para el ANOVA tendremos en cuenta los siguientes estadísticos muestrales:</p>
+<p>Para el ANOVA tendremos en cuenta los siguientes estadísticos
+muestrales:</p>
 <table>
 <colgroup>
 <col width="37%" />
@@ -531,22 +613,30 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td>Media global <span class="math inline">\(\Large \mu\)</span></td>
-<td><span class="math inline">\(\Large \bar Y_{\bullet \bullet \bullet}=\frac{1}{abn} \sum_{i=1}^a \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{\bullet \bullet
+\bullet}=\frac{1}{abn} \sum_{i=1}^a \sum_{j=1}^b \sum_{k=1}^n
+Y_{ijk}\)</span></td>
 <td>Promedio de todas las abn observaciones</td>
 </tr>
 <tr class="even">
-<td>Media del tratamiento AiBj <span class="math inline">\(\Large \mu_{ij}\)</span></td>
-<td><span class="math inline">\(\Large \bar Y_{ij \bullet}=\frac{1}{n} \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Media del tratamiento AiBj <span class="math inline">\(\Large
+\mu_{ij}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{ij \bullet}=\frac{1}{n}
+\sum_{k=1}^n Y_{ijk}\)</span></td>
 <td>Promedio de las observaciones en la celda i,j</td>
 </tr>
 <tr class="odd">
-<td>Media del nivel i del factor A <span class="math inline">\(\Large \mu_{i\bullet}\)</span></td>
-<td><span class="math inline">\(\Large \bar Y_{i \bullet \bullet}=\frac{1}{bn} \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Media del nivel i del factor A <span class="math inline">\(\Large
+\mu_{i\bullet}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{i \bullet
+\bullet}=\frac{1}{bn} \sum_{j=1}^b \sum_{k=1}^n Y_{ijk}\)</span></td>
 <td>Promedio de las observaciones en la fila i</td>
 </tr>
 <tr class="even">
-<td>Media del nivel j del factor B <span class="math inline">\(\Large \mu_{\bullet j}\)</span></td>
-<td><span class="math inline">\(\Large \bar Y_{\bullet j \bullet}=\frac{1}{an} \sum_{i=1}^a \sum_{k=1}^n Y_{ijk}\)</span></td>
+<td>Media del nivel j del factor B <span class="math inline">\(\Large
+\mu_{\bullet j}\)</span></td>
+<td><span class="math inline">\(\Large \bar Y_{\bullet j
+\bullet}=\frac{1}{an} \sum_{i=1}^a \sum_{k=1}^n Y_{ijk}\)</span></td>
 <td>Media de las observaciones en la columna j</td>
 </tr>
 </tbody>
@@ -576,21 +666,26 @@ $(document).ready(function () {
 <td>a-1</td>
 <td>SSA</td>
 <td><span class="math inline">\(\Large MSA=SSA/(a-1)\)</span></td>
-<td><span class="math inline">\(\Large E(MSA)=\sigma^2+bn\frac{\sum_{i=1}^a\alpha_i^2}{a-1}\)</span></td>
+<td><span class="math inline">\(\Large
+E(MSA)=\sigma^2+bn\frac{\sum_{i=1}^a\alpha_i^2}{a-1}\)</span></td>
 </tr>
 <tr class="even">
 <td>Factor B</td>
 <td>b-1</td>
 <td>SSB</td>
 <td><span class="math inline">\(\Large MSB=SSB/(b-1)\)</span></td>
-<td><span class="math inline">\(\Large E(MSB)=\sigma^2+an\frac{\sum_{j=1}^b\beta_i^2}{a-1}\)</span></td>
+<td><span class="math inline">\(\Large
+E(MSB)=\sigma^2+an\frac{\sum_{j=1}^b\beta_i^2}{a-1}\)</span></td>
 </tr>
 <tr class="odd">
 <td>Interacción AB</td>
 <td>(a-1)(b-1)</td>
 <td>SS(AB)</td>
-<td><span class="math inline">\(\Large MS(AB)=SS(AB)/(a-1)(b-1)\)</span></td>
-<td><span class="math inline">\(\Large E(MS(AB))=\sigma^2+n\frac{\sum_{i=1}^a\sum_{j=1}^b(\alpha \beta)_{ij}^2}{(a-1)(b-1)}\)</span></td>
+<td><span class="math inline">\(\Large
+MS(AB)=SS(AB)/(a-1)(b-1)\)</span></td>
+<td><span class="math inline">\(\Large
+E(MS(AB))=\sigma^2+n\frac{\sum_{i=1}^a\sum_{j=1}^b(\alpha
+\beta)_{ij}^2}{(a-1)(b-1)}\)</span></td>
 </tr>
 <tr class="even">
 <td>Error</td>
@@ -610,84 +705,175 @@ $(document).ready(function () {
 </table>
 <p><strong>Fórmulas</strong></p>
 <p>Las sumas de cuadrados del modelo ANOVA SST=SSA+SSB+SSE</p>
-<p><span class="math display">\[\Large SST=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a \sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
-<p>-La variabilidad en la respuesta explicada por el factor A, con a -1 grados de libertad, está dada por:</p>
-<p><span class="math display">\[\Large SSA=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a \bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
-<p>-La variabilidad en la respuesta explicada por el bloque B, con b-1 grados de libertad, está dada por:</p>
-<p><span class="math display">\[\Large SSB=\sum_{i=1}^a \sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a \bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p><span class="math display">\[\Large SST=\sum_{i=1}^a
+\sum_{j=1}^{b}(Y_{ij}-\bar{Y}_{\bullet \bullet})^2=\sum_{i=1}^a
+\sum_{j=1}^{n_i} Y^2_{ij}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el factor A, con a -1
+grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSA=\sum_{i=1}^a
+\sum_{j=1}^{b}(Y_{i\bullet}-\bar{Y}_{\bullet \bullet})^2=b\sum_{i=1}^a
+\bar{Y^2_{i\bullet}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
+<p>-La variabilidad en la respuesta explicada por el bloque B, con b-1
+grados de libertad, está dada por:</p>
+<p><span class="math display">\[\Large SSB=\sum_{i=1}^a
+\sum_{j=1}^{b}(Y_{\bullet j}-\bar{Y}_{\bullet \bullet})^2=a\sum_{i=1}^a
+\bar{Y^2_{\bullet j}}-ab\bar{Y}_{\bullet \bullet}^2 \]</span></p>
 <ul>
-<li>La variabilidad en la respuesta explicada por la aleatoriedad, con (a-1)(b-1) grados de libertad, está dada por</li>
+<li>La variabilidad en la respuesta explicada por la aleatoriedad, con
+(a-1)(b-1) grados de libertad, está dada por</li>
 </ul>
 <p><span class="math display">\[\Large SSE=SST-SSA-SSB\]</span></p>
-<p>La media muestral en el nivel i del factor de tratamiento está dada por: <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i \bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}\]</span></p>
+<p>La media muestral en el nivel i del factor de tratamiento está dada
+por: <span class="math display">\[\Large \hat {\mu}_i=\bar{Y}_{i
+\bullet}=\frac{1}{b} \sum_{j=1}^b Y_{ij}\]</span></p>
 <p>La media muestral en el nivel j del bloque está dada por:</p>
-<p><span class="math display">\[\Large \hat {\mu}_j=\bar{Y}_{ \bullet j }=\frac{1}{a} \sum_{j=1}^a Y_{ij}\]</span></p>
+<p><span class="math display">\[\Large \hat {\mu}_j=\bar{Y}_{ \bullet j
+}=\frac{1}{a} \sum_{j=1}^a Y_{ij}\]</span></p>
 <p><strong>Hipótesis de interés</strong></p>
-<p>##<strong>Significancia de la interacción AB</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia de la interacción AB</strong> La prueba de
+hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
-<p><span class="math inline">\(\Large H_0=(\alpha \beta)_{11}=(\alpha \beta)_{12}=...=(\alpha \beta)_{ab}=0\)</span></p>
-<p><span class="math inline">\(\Large H_1=(\alpha \beta)_{11}\not =(\alpha \beta)_{12}\not =...=(\alpha \beta)_{ab}\not =0\)</span></p>
+<p><span class="math inline">\(\Large H_0=(\alpha \beta)_{11}=(\alpha
+\beta)_{12}=...=(\alpha \beta)_{ab}=0\)</span></p>
+<p><span class="math inline">\(\Large H_1=(\alpha \beta)_{11}\not
+=(\alpha \beta)_{12}\not =...=(\alpha \beta)_{ab}\not =0\)</span></p>
 <p>Con i=1,2,…a, j=1,2,…b</p>
 <ul>
-<li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MS(AB)}{MSE}\sim f_{(a-1)(b-1),ab(n-1)}\]</span></li>
+<li><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MS(AB)}{MSE}\sim
+f_{(a-1)(b-1),ab(n-1)}\]</span></li>
 </ul>
-<p>Si la interacción es significativa (es decir, se rechaza H0), proceder con precaución en la interpretación de los resultados de los tests de significancia sobre los efectos principales:</p>
-<p>##<strong>Significancia del efecto A</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>Si la interacción es significativa (es decir, se rechaza H0),
+proceder con precaución en la interpretación de los resultados de los
+tests de significancia sobre los efectos principales:</p>
+<p>##<strong>Significancia del efecto A</strong> La prueba de hipótesis
+asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
-<p><span class="math inline">\(\Large H_0=\alpha_{1}=\alpha_{2}=...=\alpha_{a}=0\)</span></p>
-<p><span class="math inline">\(\Large H_1=\alpha_{1}\not =\alpha_{2}\not =...\not =\alpha_{a}\not =0\)</span></p>
+<p><span class="math inline">\(\Large
+H_0=\alpha_{1}=\alpha_{2}=...=\alpha_{a}=0\)</span></p>
+<p><span class="math inline">\(\Large H_1=\alpha_{1}\not =\alpha_{2}\not
+=...\not =\alpha_{a}\not =0\)</span></p>
 <p>Con i=1,2,…a</p>
 <ul>
-<li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MSA}{MSE}\sim f_{(a-1),ab(n-1)}\]</span></li>
+<li><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MSA}{MSE}\sim
+f_{(a-1),ab(n-1)}\]</span></li>
 </ul>
-<p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.</p>
-<p>##<strong>Significancia del efecto B</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo
+interacción significativa, hay encubrimiento de los efectos principales
+de este factor por parte de la interacción.</p>
+<p>##<strong>Significancia del efecto B</strong> La prueba de hipótesis
+asociada al ANOVA esta dado por:</p>
 <ul>
 <li><strong>Juego de hipótesis</strong></li>
 </ul>
-<p><span class="math inline">\(\Large H_0=\beta_{1}=\beta_{2}=...=\beta_{a}=0\)</span></p>
-<p><span class="math inline">\(\Large H_1=\beta_{1}\not =\beta_{2}\not =...\not =\beta_{a}\not =0\)</span></p>
+<p><span class="math inline">\(\Large
+H_0=\beta_{1}=\beta_{2}=...=\beta_{a}=0\)</span></p>
+<p><span class="math inline">\(\Large H_1=\beta_{1}\not =\beta_{2}\not
+=...\not =\beta_{a}\not =0\)</span></p>
 <p>Con j=1,2,…b</p>
 <ul>
-<li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MSA}{MSE}\sim f_{(b-1),ab(n-1)}\]</span></li>
+<li><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MSA}{MSE}\sim
+f_{(b-1),ab(n-1)}\]</span></li>
 </ul>
-<p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo interacción significativa, hay encubrimiento de los efectos principales de este factor por parte de la interacción.</p>
-<p><strong>Modelo sin interacción</strong> En caso de que los datos obtenidos presenten evidencia respecto a la no significancia del término de interacción, el modelo factorial debe replantearse de la siguiente manera:</p>
-<p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span></p>
+<p>Si no se rechaza <span class="math inline">\(H_o\)</span> bajo
+interacción significativa, hay encubrimiento de los efectos principales
+de este factor por parte de la interacción.</p>
+<p><strong>Modelo sin interacción</strong> En caso de que los datos
+obtenidos presenten evidencia respecto a la no significancia del término
+de interacción, el modelo factorial debe replantearse de la siguiente
+manera:</p>
+<p><span class="math display">\[\Large
+Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span></p>
 <p>##<strong>Diseños factoriales con tres factores</strong></p>
 <ul>
-<li>El estudio factorial de tres factores A, B y C permite estudiar los efectos A, B, C (efectos principales), AB, AC, BC (efectos de las interacciones de a dos factores) y ABC (la triple interacción), donde el grado de detalle con el que se puede estudiar depende del número de niveles usados para cada factor.</li>
+<li>El estudio factorial de tres factores A, B y C permite estudiar los
+efectos A, B, C (efectos principales), AB, AC, BC (efectos de las
+interacciones de a dos factores) y ABC (la triple interacción), donde el
+grado de detalle con el que se puede estudiar depende del número de
+niveles usados para cada factor.</li>
 </ul>
-<p>Por ejemplo, para un factor con dos niveles no es posible descomponer su efecto individual; pero si se toman tres niveles el efecto individual de un factor puede descomponerse en una parte lineal y una cuadrática.</p>
-<p>Sean a, b, y c el número de niveles usados de los factores A, B y C respectivamente y n el número de réplicas en cada tratamiento (combinaciones de niveles de los tres factores). Se tendrá entonces la siguiente tabla ANOVA:</p>
+<p>Por ejemplo, para un factor con dos niveles no es posible descomponer
+su efecto individual; pero si se toman tres niveles el efecto individual
+de un factor puede descomponerse en una parte lineal y una
+cuadrática.</p>
+<p>Sean a, b, y c el número de niveles usados de los factores A, B y C
+respectivamente y n el número de réplicas en cada tratamiento
+(combinaciones de niveles de los tres factores). Se tendrá entonces la
+siguiente tabla ANOVA:</p>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Se postula el modelo con interacción, para la k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:</p>
-<p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+\lambda_k+(\alpha\beta)_{ij}+(\alpha\lambda)_{ik}+(\beta\lambda)_{jk}+(\alpha\beta\lambda)_{ijk}+\varepsilon_{ijk}\]</span></p>
-<p><span class="math inline">\(\Large \alpha_i, \beta_j, \lambda_k\)</span> denotan los efectos sobre la respuesta promedio global de los factores A, B y C en sus niveles i, j k respectivamente.</p>
-<p><span class="math inline">\(\Large (\alpha\beta)_{ij},(\alpha\lambda)_{ik}\)</span> y $ ()_{jk}$ son los efectos de las interacciones de a dos factores</p>
-<p><span class="math inline">\(\Large (\alpha\beta \lambda)_{ijk}\)</span> es la interacción triple,</p>
+<p>Se postula el modelo con interacción, para la k-ésima respuesta en el
+tratamiento AiBj (nivel i del factor A combinado con nivel j del factor
+B), que aparece a continuación:</p>
+<p><span class="math display">\[\Large
+Y_{ijk}=\mu+\alpha_i+\beta_j+\lambda_k+(\alpha\beta)_{ij}+(\alpha\lambda)_{ik}+(\beta\lambda)_{jk}+(\alpha\beta\lambda)_{ijk}+\varepsilon_{ijk}\]</span></p>
+<p><span class="math inline">\(\Large \alpha_i, \beta_j,
+\lambda_k\)</span> denotan los efectos sobre la respuesta promedio
+global de los factores A, B y C en sus niveles i, j k
+respectivamente.</p>
+<p><span class="math inline">\(\Large
+(\alpha\beta)_{ij},(\alpha\lambda)_{ik}\)</span> y $ ()_{jk}$ son los
+efectos de las interacciones de a dos factores</p>
+<p><span class="math inline">\(\Large (\alpha\beta
+\lambda)_{ijk}\)</span> es la interacción triple,</p>
 <p><strong>Supuestos y restricciones</strong></p>
-<p><span class="math display">\[\Large \varepsilon_{ijkl} \sim N(0,\sigma^2)\]</span> para todo i, j, k</p>
-<p><span class="math display">\[\Large \sum_{i=1}^a\alpha_i=\sum_{j=1}^b\beta_j=\sum_{k=1}^c
+<p><span class="math display">\[\Large \varepsilon_{ijkl} \sim
+N(0,\sigma^2)\]</span> para todo i, j, k</p>
+<p><span class="math display">\[\Large
+\sum_{i=1}^a\alpha_i=\sum_{j=1}^b\beta_j=\sum_{k=1}^c
 \lambda_k=0\]</span></p>
-<p><span class="math display">\[\Large \sum_{i=1}^a\sum_{j=1}^b(\alpha\beta)_{ij}=0\]</span></p>
-<p><span class="math display">\[\Large \sum_{j=1}^b\sum_{k=1}^c(\alpha\lambda)_{ik}=0\]</span></p>
+<p><span class="math display">\[\Large
+\sum_{i=1}^a\sum_{j=1}^b(\alpha\beta)_{ij}=0\]</span></p>
+<p><span class="math display">\[\Large
+\sum_{j=1}^b\sum_{k=1}^c(\alpha\lambda)_{ik}=0\]</span></p>
 <ul>
-<li><p>El análisis de la significancia de los efectos de este modelo debe realizarse en forma jerárquica partiendo de los efectos de interacción de mayor orden.</p></li>
-<li><p>Ningún efecto principal o de interacción de dos factores puede eliminarse de un modelo mientras la triple interacción sea significativa.</p></li>
-<li><p>En general, ningún factor deberá descartarse del modelo mientras participe en efectos de interacción de cualquier orden que sean significativos.</p></li>
-<li><p>En el caso que ni sus efectos de interacción ni sus efectos principales resulten significativos, se podrá concluir que tal factor no incide sobre el promedio de la respuesta.</p></li>
+<li><p>El análisis de la significancia de los efectos de este modelo
+debe realizarse en forma jerárquica partiendo de los efectos de
+interacción de mayor orden.</p></li>
+<li><p>Ningún efecto principal o de interacción de dos factores puede
+eliminarse de un modelo mientras la triple interacción sea
+significativa.</p></li>
+<li><p>En general, ningún factor deberá descartarse del modelo mientras
+participe en efectos de interacción de cualquier orden que sean
+significativos.</p></li>
+<li><p>En el caso que ni sus efectos de interacción ni sus efectos
+principales resulten significativos, se podrá concluir que tal factor no
+incide sobre el promedio de la respuesta.</p></li>
 </ul>
-<p><strong>Procedimiento</strong> <strong>Paso 1:</strong> <span class="math inline">\(H_0=(\alpha\beta\lambda)_{111}=...=(\alpha\beta\lambda)_{abc}\)</span> si no se rechaza <span class="math inline">\(H_0\)</span> relice la siguiente prueba</p>
-<p><strong>Paso 2:</strong> evaluar la prueba de hipótesis de las interacciones</p>
-<p><strong>Paso 3:</strong> Realizar las pruebas de cada factor sólo para los factores no involucrados en interacciones significativas de ningún orden (dobles o triple).</p>
-<p>##<strong>Comparación de medias ante la presencia de interacción</strong></p>
-<p>La estimación de un efecto principal es una diferencia promediada o contraste entre todas las medias de los niveles del factor correspondiente, por ello al hacer inferencias sobre tales medias con base en las estimaciones de los efectos principales, en presencia de interacción, es realizar una generalización sobre los niveles del factor, y por tanto dichas inferencias estarán equivocadas.</p>
-<p>Una comparación generalizada entre las medias de un factor tiene sentido si las diferencias existentes entre dichas medias se sostienen de nivel a nivel del otro factor, es decir, cuando no hay interacción. De lo contrario, lo mejor es realizar comparaciones y contrastes de medias de tratamientos <span class="math inline">\(\Large \mu_{ij}\)</span> que ayuden a interpretar los efectos significativos de la interacción. Así ante interacción, sería más conveniente comparar las medias de dicho factor pero en cada uno de los niveles del otro factor. Por ejemplo, suponga un experimento con a=3 y b=2 en el cual los datos evidencian interacción significativa pero aparentemente el factor A no es significativo; en este caso sería conveniente realizar pruebas como las siguientes:</p>
+<p><strong>Procedimiento</strong> <strong>Paso 1:</strong> <span
+class="math inline">\(H_0=(\alpha\beta\lambda)_{111}=...=(\alpha\beta\lambda)_{abc}\)</span>
+si no se rechaza <span class="math inline">\(H_0\)</span> relice la
+siguiente prueba</p>
+<p><strong>Paso 2:</strong> evaluar la prueba de hipótesis de las
+interacciones</p>
+<p><strong>Paso 3:</strong> Realizar las pruebas de cada factor sólo
+para los factores no involucrados en interacciones significativas de
+ningún orden (dobles o triple).</p>
+<p>##<strong>Comparación de medias ante la presencia de
+interacción</strong></p>
+<p>La estimación de un efecto principal es una diferencia promediada o
+contraste entre todas las medias de los niveles del factor
+correspondiente, por ello al hacer inferencias sobre tales medias con
+base en las estimaciones de los efectos principales, en presencia de
+interacción, es realizar una generalización sobre los niveles del
+factor, y por tanto dichas inferencias estarán equivocadas.</p>
+<p>Una comparación generalizada entre las medias de un factor tiene
+sentido si las diferencias existentes entre dichas medias se sostienen
+de nivel a nivel del otro factor, es decir, cuando no hay interacción.
+De lo contrario, lo mejor es realizar comparaciones y contrastes de
+medias de tratamientos <span class="math inline">\(\Large
+\mu_{ij}\)</span> que ayuden a interpretar los efectos significativos de
+la interacción. Así ante interacción, sería más conveniente comparar las
+medias de dicho factor pero en cada uno de los niveles del otro factor.
+Por ejemplo, suponga un experimento con a=3 y b=2 en el cual los datos
+evidencian interacción significativa pero aparentemente el factor A no
+es significativo; en este caso sería conveniente realizar pruebas como
+las siguientes:</p>
 <table>
 <thead>
 <tr class="header">
@@ -722,30 +908,48 @@ $(document).ready(function () {
 <ol style="list-style-type: lower-alpha">
 <li>Comparar medias de A en el nivel 1 de B</li>
 </ol>
-<p><span class="math inline">\(\Large H_0=\mu{11}=\mu_{21}=\mu_{31}\)</span></p>
-<p><span class="math inline">\(\Large H_1=\mu{11}\not =\mu_{21}\not =\mu_{31}\)</span></p>
+<p><span class="math inline">\(\Large
+H_0=\mu{11}=\mu_{21}=\mu_{31}\)</span></p>
+<p><span class="math inline">\(\Large H_1=\mu{11}\not =\mu_{21}\not
+=\mu_{31}\)</span></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Comparar medias de A en el nivel 2 de B</li>
 </ol>
-<p><span class="math inline">\(\Large H_0=\mu{12}=\mu_{22}=\mu_{32}\)</span></p>
-<p><span class="math inline">\(\Large H_1=\mu{12}\not =\mu_{22}\not =\mu_{32}\)</span></p>
+<p><span class="math inline">\(\Large
+H_0=\mu{12}=\mu_{22}=\mu_{32}\)</span></p>
+<p><span class="math inline">\(\Large H_1=\mu{12}\not =\mu_{22}\not
+=\mu_{32}\)</span></p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Comparar medias de B en el nivel 1 de A</li>
 </ol>
 <p><span class="math inline">\(\Large H_0=\mu{11}=\mu_{12}\)</span></p>
-<p><span class="math inline">\(\Large H_1=\mu{11}\not =\mu_{12}\)</span></p>
+<p><span class="math inline">\(\Large H_1=\mu{11}\not
+=\mu_{12}\)</span></p>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Comparar medias de B en el nivel 2 de A</li>
 </ol>
 <p><span class="math inline">\(\Large H_0=\mu{21}=\mu_{22}\)</span></p>
-<p><span class="math inline">\(\Large H_1=\mu{21}\not =\mu_{22}\)</span></p>
+<p><span class="math inline">\(\Large H_1=\mu{21}\not
+=\mu_{22}\)</span></p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Comparar medias de B en el nivel 1 de A</li>
 </ol>
 <p><span class="math inline">\(\Large H_0=\mu{31}=\mu_{32}\)</span></p>
-<p><span class="math inline">\(\Large H_1=\mu{31}\not =\mu_{32}\)</span></p>
-<p>Ante interacción no se recomienda realizar comparaciones de Tukey sobre las medias de cada factor. Tukey podría aplicarse más bien a las medias de un factor en cada nivel del otro. Por ejemplo para comparar todas las medias de A en el nivel Bj, es decir las medias <span class="math inline">\(\Large \mu_{1j},\mu_{2j}...\mu_{aj}\)</span>.</p>
-<p><strong>Ejemplo de un diseño con dos factores de efectos fijos</strong> El personal de un centro de servicio electrónico incluye tres técnicos especializados en reparar las tres marcas más usadas de unidades de disquetes para micro computadores. Se desea estudiar los efectos del factor TECNICO y del factor MARCA de la unidad de disquete, sobre el tiempo de servicio dado en minutos. A cada técnico se le asignaron aleatoriamente cinco trabajos de cada una de las marcas y se registro el número de minutos requerido para completar cada trabajo.</p>
+<p><span class="math inline">\(\Large H_1=\mu{31}\not
+=\mu_{32}\)</span></p>
+<p>Ante interacción no se recomienda realizar comparaciones de Tukey
+sobre las medias de cada factor. Tukey podría aplicarse más bien a las
+medias de un factor en cada nivel del otro. Por ejemplo para comparar
+todas las medias de A en el nivel Bj, es decir las medias <span
+class="math inline">\(\Large \mu_{1j},\mu_{2j}...\mu_{aj}\)</span>.</p>
+<p><strong>Ejemplo de un diseño con dos factores de efectos
+fijos</strong> El personal de un centro de servicio electrónico incluye
+tres técnicos especializados en reparar las tres marcas más usadas de
+unidades de disquetes para micro computadores. Se desea estudiar los
+efectos del factor TECNICO y del factor MARCA de la unidad de disquete,
+sobre el tiempo de servicio dado en minutos. A cada técnico se le
+asignaron aleatoriamente cinco trabajos de cada una de las marcas y se
+registro el número de minutos requerido para completar cada trabajo.</p>
 <table>
 <thead>
 <tr class="header">
@@ -848,18 +1052,36 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Las gráficas y tablas siguientes representan el análisis de varianza realizado. 1. Defina claramente el modelo de análisis de varianza requerido para estudiar este problema.</p>
-<p>Se postula el modelo con interacción, para la k-ésima respuesta en el tratamiento AiBj (nivel i del factor A combinado con nivel j del factor B), que aparece a continuación:</p>
-<p><span class="math display">\[\Large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span> donde tomando como factor A: TECNICO y B: MARCA, con niveles a=3 y b=3 respectivamente y n=5,</p>
-<p><span class="math inline">\(\Large Y_{ijk}\)</span> tiempo de reparación en la k-ésima unidad de la marca j con técnico i</p>
-<p><span class="math inline">\(\Large \mu\)</span> es el promedio global del tiempo de reparación de una unidad</p>
-<p><span class="math inline">\(\Large \alpha_i\)</span> es el efecto del técnico i sobre el promedio global del tiempo de reparación de una unidad.</p>
-<p><span class="math inline">\(\Large \beta_j\)</span> es el efecto de la marca j sobre el promedio global del tiempo de reparación de una unidad.</p>
-<p><span class="math inline">\(\Large \alpha_i \beta_j\)</span> es el efecto de la interacción del técnico i con la marca j sobre el promedio global del tiempo de reparación de una unidad</p>
-<p><span class="math inline">\(\Large \varepsilon_{ijk}\)</span> es el error aleatorio en la k-ésima réplica del tratamiento ij</p>
+<p>Las gráficas y tablas siguientes representan el análisis de varianza
+realizado. 1. Defina claramente el modelo de análisis de varianza
+requerido para estudiar este problema.</p>
+<p>Se postula el modelo con interacción, para la k-ésima respuesta en el
+tratamiento AiBj (nivel i del factor A combinado con nivel j del factor
+B), que aparece a continuación:</p>
+<p><span class="math display">\[\Large
+Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}+\varepsilon_{ijk}\]</span>
+donde tomando como factor A: TECNICO y B: MARCA, con niveles a=3 y b=3
+respectivamente y n=5,</p>
+<p><span class="math inline">\(\Large Y_{ijk}\)</span> tiempo de
+reparación en la k-ésima unidad de la marca j con técnico i</p>
+<p><span class="math inline">\(\Large \mu\)</span> es el promedio global
+del tiempo de reparación de una unidad</p>
+<p><span class="math inline">\(\Large \alpha_i\)</span> es el efecto del
+técnico i sobre el promedio global del tiempo de reparación de una
+unidad.</p>
+<p><span class="math inline">\(\Large \beta_j\)</span> es el efecto de
+la marca j sobre el promedio global del tiempo de reparación de una
+unidad.</p>
+<p><span class="math inline">\(\Large \alpha_i \beta_j\)</span> es el
+efecto de la interacción del técnico i con la marca j sobre el promedio
+global del tiempo de reparación de una unidad</p>
+<p><span class="math inline">\(\Large \varepsilon_{ijk}\)</span> es el
+error aleatorio en la k-ésima réplica del tratamiento ij</p>
 <p><strong>Supuestos y restricciones</strong></p>
-<p><span class="math display">\[\Large \varepsilon_{ij} \sim N(0,\sigma^2)\]</span> para todo i, j, k</p>
-<p><span class="math display">\[\Large \sum_{i=1}^3\alpha_i=\sum_{j=1}^3\beta_j=\sum_{i=1}^3(\alpha\beta)_{ij}=\sum_{j=1}^3(\alpha\beta)_{ij}=0\]</span></p>
+<p><span class="math display">\[\Large \varepsilon_{ij} \sim
+N(0,\sigma^2)\]</span> para todo i, j, k</p>
+<p><span class="math display">\[\Large
+\sum_{i=1}^3\alpha_i=\sum_{j=1}^3\beta_j=\sum_{i=1}^3(\alpha\beta)_{ij}=\sum_{j=1}^3(\alpha\beta)_{ij}=0\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Haga un análisis descriptivo de los datos.</li>
 </ol>
@@ -884,6 +1106,21 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 11):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 13):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 14):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 15):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 16):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 18):
+## 
+##     tiempo</code></pre>
 <pre><code>## The following objects are masked from base (pos = 20):
 ## 
 ##     marca, tecnico, tiempo</code></pre>
@@ -899,6 +1136,51 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 25):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 27):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 28):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 29):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 30):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 32):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 35):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 36):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 37):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 38):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 40):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 41):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 42):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 43):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 44):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 46):
+## 
+##     tiempo</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>##   marca tecnico tiempo
 ## 1     1       1   59.8
@@ -911,7 +1193,9 @@ $(document).ready(function () {
 ## 8     2       3   60.8
 ## 9     3       3   49.6</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Determine si la interacción es significativa. Escriba la expresión empleada para calcular el valor p. Emplee un nivel de significancia de 0.05 en todas las pruebas.</li>
+<li>Determine si la interacción es significativa. Escriba la expresión
+empleada para calcular el valor p. Emplee un nivel de significancia de
+0.05 en todas las pruebas.</li>
 </ol>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
 ## 
@@ -937,6 +1221,21 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 12):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 14):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 15):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 16):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 17):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 19):
+## 
+##     tiempo</code></pre>
 <pre><code>## The following objects are masked from base (pos = 21):
 ## 
 ##     marca, tecnico, tiempo</code></pre>
@@ -952,6 +1251,51 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 26):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 28):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 29):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 30):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 31):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 33):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 36):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 37):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 38):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 39):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 41):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 42):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 43):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 44):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 45):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 47):
+## 
+##     tiempo</code></pre>
 <pre><code>##               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## marca          2   28.3   14.16   0.272 0.763283    
 ## tecnico        2   24.6   12.29   0.236 0.790779    
@@ -959,38 +1303,87 @@ $(document).ready(function () {
 ## Residuals     36 1872.4   52.01                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>##<strong>Significancia de la interacción AB</strong> La prueba de hipótesis asociada al ANOVA esta dado por:</p>
+<p>##<strong>Significancia de la interacción AB</strong> La prueba de
+hipótesis asociada al ANOVA esta dado por:</p>
 <ul>
-<li><strong>Juego de hipótesis</strong> La interacción entre técnico y marca no es significativa:</li>
+<li><strong>Juego de hipótesis</strong> La interacción entre técnico y
+marca no es significativa:</li>
 </ul>
-<p><span class="math inline">\(\Large H_0=(\alpha \beta)_{11}=(\alpha \beta)_{12}=...=(\alpha \beta)_{33}=0\)</span></p>
-<p>La interacción entre técnico y marca es significativa: <span class="math inline">\(\Large H_1=(\alpha \beta)_{11}\not =(\alpha \beta)_{12}\not =...=(\alpha \beta)_{ab}\not =0\)</span></p>
+<p><span class="math inline">\(\Large H_0=(\alpha \beta)_{11}=(\alpha
+\beta)_{12}=...=(\alpha \beta)_{33}=0\)</span></p>
+<p>La interacción entre técnico y marca es significativa: <span
+class="math inline">\(\Large H_1=(\alpha \beta)_{11}\not =(\alpha
+\beta)_{12}\not =...=(\alpha \beta)_{ab}\not =0\)</span></p>
 <p>Con i=1,2,3, j=1,2,3</p>
 <ul>
-<li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MS(AB)}{MSE}=5.84\sim f_{4,36}\]</span> <span class="math inline">\(VP=P(f_{4,36}&gt;5.84)=0.001\)</span></li>
+<li><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MS(AB)}{MSE}=5.84\sim f_{4,36}\]</span>
+<span class="math inline">\(VP=P(f_{4,36}&gt;5.84)=0.001\)</span></li>
 </ul>
-<p>Se concluye con una significancia de 0.05 que sí hay interacción significativa entre los factores TÉCNICO y MARCA, por lo tanto los efectos de cada factor dependen del otro. Como consecuencia de esto es necesario interpretar con precaución los resultados de los tests sobre la significancia de los efectos principales de cada factor: De hecho, si la interacción es significativa, entonces los dos factores son significativos a través de la interacción!!!.</p>
+<p>Se concluye con una significancia de 0.05 que sí hay interacción
+significativa entre los factores TÉCNICO y MARCA, por lo tanto los
+efectos de cada factor dependen del otro. Como consecuencia de esto es
+necesario interpretar con precaución los resultados de los tests sobre
+la significancia de los efectos principales de cada factor: De hecho, si
+la interacción es significativa, entonces los dos factores son
+significativos a través de la interacción!!!.</p>
 <ol start="4" style="list-style-type: decimal">
-<li>Discuta la significancia de los efectos principales factores TECNICO y MARCA. En el caso de indicios de encubrimiento realice pruebas de hipótesis para confirmarlo y haga las recomendaciones.</li>
+<li>Discuta la significancia de los efectos principales factores TECNICO
+y MARCA. En el caso de indicios de encubrimiento realice pruebas de
+hipótesis para confirmarlo y haga las recomendaciones.</li>
 </ol>
 <ul>
-<li>Sobre la significancia de los efectos principales del factor TÉCNICO:</li>
+<li>Sobre la significancia de los efectos principales del factor
+TÉCNICO:</li>
 </ul>
-<p>Efectos principales del factor técnico no son significativos <span class="math inline">\(\Large H_0=\alpha_{1}=\alpha_{2}=\alpha_{3}=0\)</span> Algunos efectos principales del factor técnico son significativos <span class="math inline">\(\Large H_1=\alpha_{1}\not =\alpha_{2}\not =\alpha_{3}\not =0\)</span></p>
+<p>Efectos principales del factor técnico no son significativos <span
+class="math inline">\(\Large
+H_0=\alpha_{1}=\alpha_{2}=\alpha_{3}=0\)</span> Algunos efectos
+principales del factor técnico son significativos <span
+class="math inline">\(\Large H_1=\alpha_{1}\not =\alpha_{2}\not
+=\alpha_{3}\not =0\)</span></p>
 <p>O bien en terminos de las medias</p>
-<p>Las medias de los tiempos de reparación según el factor técnico no difieren significativamente <span class="math inline">\(\Large H_0=\mu_{1 \bullet}=\mu_{2 \bullet}=\mu_{3\bullet}\)</span> Al menos dos de las medias de los tiempos de reparación según el factor técnico difieren significativamente <span class="math inline">\(\Large H_1 =\mu_{1 \bullet}\not=\mu_{2 \bullet}\not=\mu_{3\bullet}\)</span></p>
+<p>Las medias de los tiempos de reparación según el factor técnico no
+difieren significativamente <span class="math inline">\(\Large
+H_0=\mu_{1 \bullet}=\mu_{2 \bullet}=\mu_{3\bullet}\)</span> Al menos dos
+de las medias de los tiempos de reparación según el factor técnico
+difieren significativamente <span class="math inline">\(\Large H_1
+=\mu_{1 \bullet}\not=\mu_{2 \bullet}\not=\mu_{3\bullet}\)</span></p>
 <ul>
-<li><p><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MS(AB)}{MSE}=0.24\sim f_{2,36}\]</span> <span class="math inline">\(VP=P(f_{2,36}&gt;0.24)=0.7908\)</span></p></li>
-<li><p>Sobre la significancia de los efectos principales del factor MARCA:</p></li>
+<li><p><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MS(AB)}{MSE}=0.24\sim f_{2,36}\]</span>
+<span
+class="math inline">\(VP=P(f_{2,36}&gt;0.24)=0.7908\)</span></p></li>
+<li><p>Sobre la significancia de los efectos principales del factor
+MARCA:</p></li>
 </ul>
-<p>Efectos principales del factor marca no son significativos <span class="math inline">\(\Large H_0=\beta_{1}=\beta_{2}=\beta_{3}=0\)</span> Algunos efectos principales del factor marca son significativos <span class="math inline">\(\Large H_1=\beta_{1}\not =\beta_{2}\not =\beta_{3}\not =0\)</span></p>
+<p>Efectos principales del factor marca no son significativos <span
+class="math inline">\(\Large
+H_0=\beta_{1}=\beta_{2}=\beta_{3}=0\)</span> Algunos efectos principales
+del factor marca son significativos <span class="math inline">\(\Large
+H_1=\beta_{1}\not =\beta_{2}\not =\beta_{3}\not =0\)</span></p>
 <p>O bien en terminos de las medias</p>
-<p>Las medias de los tiempos de reparación según el factor marca no difieren significativamente <span class="math inline">\(\Large H_0=\mu_{\bullet 1}=\mu_{ \bullet 2}=\mu_{\bullet 3}\)</span></p>
-<p>Al menos dos de las medias de los tiempos de reparación según el factor marca difieren significativamente <span class="math inline">\(\Large H_1 =\mu_{1 \bullet}\not=\mu_{2 \bullet}\not=\mu_{3\bullet}\)</span></p>
+<p>Las medias de los tiempos de reparación según el factor marca no
+difieren significativamente <span class="math inline">\(\Large
+H_0=\mu_{\bullet 1}=\mu_{ \bullet 2}=\mu_{\bullet 3}\)</span></p>
+<p>Al menos dos de las medias de los tiempos de reparación según el
+factor marca difieren significativamente <span
+class="math inline">\(\Large H_1 =\mu_{1 \bullet}\not=\mu_{2
+\bullet}\not=\mu_{3\bullet}\)</span></p>
 <ul>
-<li><strong>Estadístico de prueba</strong> <span class="math display">\[F_3=\frac{MS(AB)}{MSE}=0.27\sim f_{2,36}\]</span> <span class="math inline">\(VP=P(f_{2,36}&gt;0.27)=0.7633\)</span></li>
+<li><strong>Estadístico de prueba</strong> <span
+class="math display">\[F_3=\frac{MS(AB)}{MSE}=0.27\sim f_{2,36}\]</span>
+<span class="math inline">\(VP=P(f_{2,36}&gt;0.27)=0.7633\)</span></li>
 </ul>
-<p>Se concluye que con una significancia de 0.05, ante interacción significativa, los efectos principales del factor MARCA son enmascarados por la interacción y por lo tanto no pueden ser medidos sus efectos principales!!!. Esto quiere decir que no tiene sentido estimar ni efectos, ni medias para los niveles de MARCA y tampoco tiene sentido construir I.C, o hacer comparaciones de Tukey o contrastes con las medias de este factor. Lo más recomendable es realizar contrastes o comparaciones de medias de tratamientos de un factor en cada nivel del otro factor.</p>
+<p>Se concluye que con una significancia de 0.05, ante interacción
+significativa, los efectos principales del factor MARCA son enmascarados
+por la interacción y por lo tanto no pueden ser medidos sus efectos
+principales!!!. Esto quiere decir que no tiene sentido estimar ni
+efectos, ni medias para los niveles de MARCA y tampoco tiene sentido
+construir I.C, o hacer comparaciones de Tukey o contrastes con las
+medias de este factor. Lo más recomendable es realizar contrastes o
+comparaciones de medias de tratamientos de un factor en cada nivel del
+otro factor.</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Construya la tabla de medias por tratamiento.</li>
 </ol>
@@ -1022,6 +1415,21 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 13):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 15):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 16):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 17):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 18):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 20):
+## 
+##     tiempo</code></pre>
 <pre><code>## The following objects are masked from base (pos = 22):
 ## 
 ##     marca, tecnico, tiempo</code></pre>
@@ -1035,6 +1443,51 @@ $(document).ready(function () {
 ## 
 ##     marca, tecnico, tiempo</code></pre>
 <pre><code>## The following object is masked from ensamble (pos = 27):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 29):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 30):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 31):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 32):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 34):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 37):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 38):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 39):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 40):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 42):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 43):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 44):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 45):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 46):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 48):
 ## 
 ##     tiempo</code></pre>
 <pre><code>##               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
@@ -1088,64 +1541,192 @@ $(document).ready(function () {
 ## 3:3-1:3 -10.6 -25.63865  4.43865 0.3552211
 ## 3:3-2:3 -11.2 -26.23865  3.83865 0.2867388</code></pre>
 <p><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="diseñofactorial_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
-<p>note que en este caso no se obtienen diferencias significativas entre tratamientos, no porque no existan tales diferencias, sino porque se pierde potencia en este procedimiento con un número tan grande de comparaciones.</p>
-<p>Aquí las medias de tratamiento <span class="math inline">\(\Large \mu_{11},\mu_{13}, \mu_{21},\mu_{22},\mu_{23},\mu_{31},\mu_{32},\mu_{33}\)</span> son etiquetadas, respectivamente, como <span class="math inline">\(i:j\)</span>, así, por ejemplo, en la comparación 2:1 – 1:1 hace referencia a la diferencia de las medias <span class="math inline">\(\Large \mu_{21}\)</span> y <span class="math inline">\(\Large \mu_{11}\)</span></p>
+<p>note que en este caso no se obtienen diferencias significativas entre
+tratamientos, no porque no existan tales diferencias, sino porque se
+pierde potencia en este procedimiento con un número tan grande de
+comparaciones.</p>
+<p>Aquí las medias de tratamiento <span class="math inline">\(\Large
+\mu_{11},\mu_{13},
+\mu_{21},\mu_{22},\mu_{23},\mu_{31},\mu_{32},\mu_{33}\)</span> son
+etiquetadas, respectivamente, como <span
+class="math inline">\(i:j\)</span>, así, por ejemplo, en la comparación
+2:1 – 1:1 hace referencia a la diferencia de las medias <span
+class="math inline">\(\Large \mu_{21}\)</span> y <span
+class="math inline">\(\Large \mu_{11}\)</span></p>
 <p>La prueba de hipótesis corresponde a:</p>
-<p><span class="math inline">\(\Large H_0=\)</span> Algún $<em>{ij} = </em>{ij} $ <span class="math inline">\(\Large H_1=\)</span> Algún $<em>{ij} = </em>{ij} $</p>
+<p><span class="math inline">\(\Large H_0=\)</span> Algún $<em>{ij} =
+</em>{ij} $ <span class="math inline">\(\Large H_1=\)</span> Algún
+$<em>{ij} = </em>{ij} $</p>
 <ol start="6" style="list-style-type: decimal">
-<li>Plantee un contraste para probar si el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.</li>
+<li>Plantee un contraste para probar si el tiempo promedio empleado para
+reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el
+técnico 2 y 3.</li>
 </ol>
-<p>Se pide comparar el promedio de las medias <span class="math inline">\(\Large \mu_{22}\)</span> y <span class="math inline">\(\Large \mu_{23}\)</span> es igual al promedio de las medias <span class="math inline">\(\Large \mu_{32}\)</span> y <span class="math inline">\(\Large \mu_{33}\)</span></p>
-<p>El contraste indicado es <span class="math display">\[\Large W=\frac{1}{2}(\mu_{22}+\mu_{23})-\frac{1}{2}(\mu_{32}+\mu_{33})\]</span> El test de hipótesis corresponde a:</p>
-<p><span class="math display">\[\Large H_o= W=0\]</span> <span class="math display">\[\Large H_1=W \not=0\]</span> Equivalentemente <span class="math display">\[\Large H_0=\mu_{22}+\mu_{23}=\mu_{32}+\mu_{33}\]</span> <span class="math display">\[\Large H_1=\mu_{22}+\mu_{23}\not =\mu_{32}+\mu_{33}\]</span></p>
-<p>Como cada media <span class="math inline">\(\Large \bar y_{ij\bullet}\sim N(\mu_{ij},\frac{\sigma^2}{n})\)</span> y todas las medias muestrales de tratamiento son mutuamente independientes, entonces el estimador del contraste de medias es: <span class="math display">\[\Large \hat W=\frac{1}{2}(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})\sim N (W,\sigma^2 [\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}])\]</span></p>
+<p>Se pide comparar el promedio de las medias <span
+class="math inline">\(\Large \mu_{22}\)</span> y <span
+class="math inline">\(\Large \mu_{23}\)</span> es igual al promedio de
+las medias <span class="math inline">\(\Large \mu_{32}\)</span> y <span
+class="math inline">\(\Large \mu_{33}\)</span></p>
+<p>El contraste indicado es <span class="math display">\[\Large
+W=\frac{1}{2}(\mu_{22}+\mu_{23})-\frac{1}{2}(\mu_{32}+\mu_{33})\]</span>
+El test de hipótesis corresponde a:</p>
+<p><span class="math display">\[\Large H_o= W=0\]</span> <span
+class="math display">\[\Large H_1=W \not=0\]</span> Equivalentemente
+<span class="math display">\[\Large
+H_0=\mu_{22}+\mu_{23}=\mu_{32}+\mu_{33}\]</span> <span
+class="math display">\[\Large H_1=\mu_{22}+\mu_{23}\not
+=\mu_{32}+\mu_{33}\]</span></p>
+<p>Como cada media <span class="math inline">\(\Large \bar
+y_{ij\bullet}\sim N(\mu_{ij},\frac{\sigma^2}{n})\)</span> y todas las
+medias muestrales de tratamiento son mutuamente independientes, entonces
+el estimador del contraste de medias es: <span
+class="math display">\[\Large \hat W=\frac{1}{2}(\bar y_{22\bullet}+\bar
+y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})\sim N
+(W,\sigma^2
+[\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}+\frac{1}{4n}])\]</span></p>
 <p>para esta prueba se puede construir un estadístico t dado por:</p>
-<p><span class="math display">\[\Large T_0=\frac{\frac{1}{2}*(\bar y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y _{33\bullet})}{\sqrt{ MSE*\frac{1}{n}}}\sim t_{ab(n-1)}\]</span> y se rechazaría <span class="math inline">\(H_0\)</span> a un nivel de significancia de 0.05 si<span class="math inline">\(|T_0|&gt;t_{0.025,ab(n-1)}\)</span></p>
+<p><span class="math display">\[\Large T_0=\frac{\frac{1}{2}*(\bar
+y_{22\bullet}+\bar y_{23\bullet})-\frac{1}{2}(\bar y_{32\bullet}+\bar y
+_{33\bullet})}{\sqrt{ MSE*\frac{1}{n}}}\sim t_{ab(n-1)}\]</span> y se
+rechazaría <span class="math inline">\(H_0\)</span> a un nivel de
+significancia de 0.05 si<span
+class="math inline">\(|T_0|&gt;t_{0.025,ab(n-1)}\)</span></p>
 <p>Para la prueba en cuestión se tiene que:</p>
-<p><span class="math inline">\(\Large \bar y_{22\bullet}=61.2\)</span></p>
-<p><span class="math inline">\(\large \bar y_{23\bullet}=56.2\)</span></p>
-<p><span class="math inline">\(\Large \bar y_{32\bullet}=60.8\)</span></p>
-<p><span class="math inline">\(\Large \bar y _{33\bullet}=49.6\)</span></p>
+<p><span class="math inline">\(\Large \bar
+y_{22\bullet}=61.2\)</span></p>
+<p><span class="math inline">\(\large \bar
+y_{23\bullet}=56.2\)</span></p>
+<p><span class="math inline">\(\Large \bar
+y_{32\bullet}=60.8\)</span></p>
+<p><span class="math inline">\(\Large \bar y
+_{33\bullet}=49.6\)</span></p>
 <p><span class="math inline">\(n=5\)</span></p>
 <p><span class="math inline">\(MSE=52.01\)</span></p>
-<p>Luego <span class="math inline">\(T_0=1.0852\)</span> y <span class="math inline">\(t_{0.025,36}=2.028\)</span> por tanto se concluye que el tiempo promedio empleado para reparar un micro de la marca 2 y uno de la marca 3 es el mismo para el técnico 2 y 3.</p>
+<p>Luego <span class="math inline">\(T_0=1.0852\)</span> y <span
+class="math inline">\(t_{0.025,36}=2.028\)</span> por tanto se concluye
+que el tiempo promedio empleado para reparar un micro de la marca 2 y
+uno de la marca 3 es el mismo para el técnico 2 y 3.</p>
 <ol start="7" style="list-style-type: decimal">
-<li>Compare ahora las medias del factor TÉCNICO en cada nivel del factor MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca del problema en cuestión? Cuáles son las recomendaciones que usted haría si quiere disminuir el tiempo de servicio del centro de servicios electrónicos.</li>
+<li>Compare ahora las medias del factor TÉCNICO en cada nivel del factor
+MARCA, y viceversa. Permiten estos resultados tomar decisiones acerca
+del problema en cuestión? Cuáles son las recomendaciones que usted haría
+si quiere disminuir el tiempo de servicio del centro de servicios
+electrónicos.</li>
 </ol>
-<p>En la siguiente tabla se aprecian los resultados de los testes sobre la igualdad de las medias del factor TÉCNICO en cada nivel del factor MARCA, veamos cada una:</p>
-<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 1:</strong></p>
-<p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{11}=\mu_{21}=\mu_{31}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B1}}{MSE}=4.32\sim f_{a-1,ab(n-1)}\]</span></p>
-<p>Donde <span class="math display">\[\Large MS_{A|B1}=n \frac {\sum_{i=1}^a(\bar y_{i1\bullet}-\bar y_{\bullet1\bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1. <span class="math display">\[\Large VP=P(f_{2,36}&gt;4.32)=0.0209\]</span> Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 1 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).</p>
-<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 2:</strong></p>
-<p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{12}=\mu_{22}=\mu_{32}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B2}}{MSE}=5.59\sim f_{a-1,ab(n-1)}\]</span></p>
-<p>Donde <span class="math display">\[\Large MS_{A|B2}=n \frac {\sum_{i=1}^a(\bar y_{i2\bullet}-\bar y_{\bullet2\bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1.</p>
-<p><span class="math display">\[\Large VP=P(f_{2,36}&gt;5.59)=0.077\]</span> Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 2 los técnicos tardan en promedio diferente tiempo para reparar una unidad (al menos dos de ellos).</p>
-<p>###<strong>Comparación de las medias de los técnicos a nivel de la marca 3:</strong></p>
-<p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{13}=\mu_{23}=\mu_{33}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{A|B3}}{MSE}=2.02\sim f_{a-1,ab(n-1)}\]</span></p>
-<p>Donde <span class="math display">\[\Large MS_{A|B3}=n \frac {\sum_{i=1}^a(\bar y_{i3\bullet}-\bar y_{\bullet 3 \bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor TÉCNICO pero correspondiente alas observaciones con la marca 1.</p>
-<p><span class="math display">\[\Large VP=P(f_{2,36}&gt;2.02)=0.1479\]</span> Con estos resultados se concluye que a un nivel de significancia de 0.05, con la marca 3 los técnicos tardan en promedio el mismo tiempo para reparar una unidad. Sin embargo mire en la figura 3 estas tres medias y en el numeral 5.3 los valores de las medias estimadas que corresponden a <span class="math inline">\(\bar y_{13\bullet}=58.4, \bar y _{23\bullet}=56.2\)</span> y <span class="math inline">\(\bar y_{33\bullet}=49.6\)</span> , hay una diferencia de 8.8 y 6.6 minutos de las dos primeras medias respecto a la última; la pregunta es si en términos prácticos tales diferencias son o no significativas, a pesar que no se encuentra significancia estadística!!!</p>
-<p><strong>Comparación de las medias de las marcas a nivel de cada técnico</strong></p>
-<p>En la siguiente tabla precedente se aprecian los resultados de los pruebas sobre la igualdad de las medias del factor MARCA en cada nivel del factor TÉCNICO, veamos cada una:</p>
-<p><strong>Comparación de las medias de las marcas a nivel del técnico 1:</strong></p>
-<p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{11}=\mu_{12}=\mu_{13}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{B|A1}}{MSE}=4.14\sim f_{b-1,ab(n-1)}\]</span></p>
-<p>Donde <span class="math display">\[\Large MS_{B|A1}=n \frac {\sum_{i=1}^a(\bar y_{1j\bullet}-\bar y_{1\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 1.</p>
-<p><span class="math display">\[\Large VP=P(f_{2,36}&gt;4.14)=0.0241\]</span></p>
-<p>Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 1 los tiempos promedios de reparación por unidad de al menos dos de las tres marcas son diferentes.</p>
-<p><strong>Comparación de las medias de las marcas a nivel del técnico 2:</strong></p>
-<p>técnico,operario <span class="math inline">\(\Large H_o: \mu_{21}=\mu_{22}=\mu_{23}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{B|A2}}{MSE}=4\sim f_{b-1,ab(n-1)}\]</span></p>
-<p>Donde <span class="math display">\[\Large MS_{B|A2}=n \frac {\sum_{i=1}^a(\bar y_{2j\bullet}-\bar y_{2\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 2.</p>
-<p><span class="math display">\[\Large VP=P(f_{2,36}&gt;4.14)=0.0241\]</span></p>
-<p>Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 2 los tiempos promedios de reparación por unidad de al menos dos de las tres marcas son diferentes.</p>
-<p><strong>Comparación de las medias de las marcas a nivel del técnico 3:</strong> técnico,operario <span class="math inline">\(\Large H_o: \mu_{31}=\mu_{32}=\mu_{33}\)</span></p>
-<p>El estadístico para probar esta hipótesis corresponde a: <span class="math display">\[\Large F_0=\frac{MS_{B|A3}}{MSE}=3.82\sim f_{b-1,ab(n-1)}\]</span></p>
-<p>Donde: <span class="math display">\[\Large MS_{B|A3}=n \frac {\sum_{i=1}^a(\bar y_{3j\bullet}-\bar y_{3\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios debida al factor marca pero correspondiente a las observaciones con el técnico 3.</p>
-<p><span class="math display">\[\Large VP=P(f_{2,36}&gt;3.82)=0.0314\]</span></p>
-<p>Con estos resultados se concluye que a un nivel de significancia de 0.05, con el técnico 3 los tiempos promedios de reparación por unidad de al menos dos de las tres marcas son diferentes.</p>
+<p>En la siguiente tabla se aprecian los resultados de los testes sobre
+la igualdad de las medias del factor TÉCNICO en cada nivel del factor
+MARCA, veamos cada una:</p>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la
+marca 1:</strong></p>
+<p>técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{11}=\mu_{21}=\mu_{31}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{A|B1}}{MSE}=4.32\sim
+f_{a-1,ab(n-1)}\]</span></p>
+<p>Donde <span class="math display">\[\Large MS_{A|B1}=n \frac
+{\sum_{i=1}^a(\bar y_{i1\bullet}-\bar
+y_{\bullet1\bullet})}{a-1}\]</span> es la suma de cuadrados medios
+debida al factor TÉCNICO pero correspondiente alas observaciones con la
+marca 1. <span class="math display">\[\Large
+VP=P(f_{2,36}&gt;4.32)=0.0209\]</span> Con estos resultados se concluye
+que a un nivel de significancia de 0.05, con la marca 1 los técnicos
+tardan en promedio diferente tiempo para reparar una unidad (al menos
+dos de ellos).</p>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la
+marca 2:</strong></p>
+<p>técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{12}=\mu_{22}=\mu_{32}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{A|B2}}{MSE}=5.59\sim
+f_{a-1,ab(n-1)}\]</span></p>
+<p>Donde <span class="math display">\[\Large MS_{A|B2}=n \frac
+{\sum_{i=1}^a(\bar y_{i2\bullet}-\bar
+y_{\bullet2\bullet})}{a-1}\]</span> es la suma de cuadrados medios
+debida al factor TÉCNICO pero correspondiente alas observaciones con la
+marca 1.</p>
+<p><span class="math display">\[\Large
+VP=P(f_{2,36}&gt;5.59)=0.077\]</span> Con estos resultados se concluye
+que a un nivel de significancia de 0.05, con la marca 2 los técnicos
+tardan en promedio diferente tiempo para reparar una unidad (al menos
+dos de ellos).</p>
+<p>###<strong>Comparación de las medias de los técnicos a nivel de la
+marca 3:</strong></p>
+<p>técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{13}=\mu_{23}=\mu_{33}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{A|B3}}{MSE}=2.02\sim
+f_{a-1,ab(n-1)}\]</span></p>
+<p>Donde <span class="math display">\[\Large MS_{A|B3}=n \frac
+{\sum_{i=1}^a(\bar y_{i3\bullet}-\bar y_{\bullet 3
+\bullet})}{a-1}\]</span> es la suma de cuadrados medios debida al factor
+TÉCNICO pero correspondiente alas observaciones con la marca 1.</p>
+<p><span class="math display">\[\Large
+VP=P(f_{2,36}&gt;2.02)=0.1479\]</span> Con estos resultados se concluye
+que a un nivel de significancia de 0.05, con la marca 3 los técnicos
+tardan en promedio el mismo tiempo para reparar una unidad. Sin embargo
+mire en la figura 3 estas tres medias y en el numeral 5.3 los valores de
+las medias estimadas que corresponden a <span class="math inline">\(\bar
+y_{13\bullet}=58.4, \bar y _{23\bullet}=56.2\)</span> y <span
+class="math inline">\(\bar y_{33\bullet}=49.6\)</span> , hay una
+diferencia de 8.8 y 6.6 minutos de las dos primeras medias respecto a la
+última; la pregunta es si en términos prácticos tales diferencias son o
+no significativas, a pesar que no se encuentra significancia
+estadística!!!</p>
+<p><strong>Comparación de las medias de las marcas a nivel de cada
+técnico</strong></p>
+<p>En la siguiente tabla precedente se aprecian los resultados de los
+pruebas sobre la igualdad de las medias del factor MARCA en cada nivel
+del factor TÉCNICO, veamos cada una:</p>
+<p><strong>Comparación de las medias de las marcas a nivel del técnico
+1:</strong></p>
+<p>técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{11}=\mu_{12}=\mu_{13}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{B|A1}}{MSE}=4.14\sim
+f_{b-1,ab(n-1)}\]</span></p>
+<p>Donde <span class="math display">\[\Large MS_{B|A1}=n \frac
+{\sum_{i=1}^a(\bar y_{1j\bullet}-\bar
+y_{1\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios
+debida al factor marca pero correspondiente a las observaciones con el
+técnico 1.</p>
+<p><span class="math display">\[\Large
+VP=P(f_{2,36}&gt;4.14)=0.0241\]</span></p>
+<p>Con estos resultados se concluye que a un nivel de significancia de
+0.05, con el técnico 1 los tiempos promedios de reparación por unidad de
+al menos dos de las tres marcas son diferentes.</p>
+<p><strong>Comparación de las medias de las marcas a nivel del técnico
+2:</strong></p>
+<p>técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{21}=\mu_{22}=\mu_{23}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{B|A2}}{MSE}=4\sim
+f_{b-1,ab(n-1)}\]</span></p>
+<p>Donde <span class="math display">\[\Large MS_{B|A2}=n \frac
+{\sum_{i=1}^a(\bar y_{2j\bullet}-\bar
+y_{2\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios
+debida al factor marca pero correspondiente a las observaciones con el
+técnico 2.</p>
+<p><span class="math display">\[\Large
+VP=P(f_{2,36}&gt;4.14)=0.0241\]</span></p>
+<p>Con estos resultados se concluye que a un nivel de significancia de
+0.05, con el técnico 2 los tiempos promedios de reparación por unidad de
+al menos dos de las tres marcas son diferentes.</p>
+<p><strong>Comparación de las medias de las marcas a nivel del técnico
+3:</strong> técnico,operario <span class="math inline">\(\Large H_o:
+\mu_{31}=\mu_{32}=\mu_{33}\)</span></p>
+<p>El estadístico para probar esta hipótesis corresponde a: <span
+class="math display">\[\Large F_0=\frac{MS_{B|A3}}{MSE}=3.82\sim
+f_{b-1,ab(n-1)}\]</span></p>
+<p>Donde: <span class="math display">\[\Large MS_{B|A3}=n \frac
+{\sum_{i=1}^a(\bar y_{3j\bullet}-\bar
+y_{3\bullet\bullet})}{b-1}\]</span> es la suma de cuadrados medios
+debida al factor marca pero correspondiente a las observaciones con el
+técnico 3.</p>
+<p><span class="math display">\[\Large
+VP=P(f_{2,36}&gt;3.82)=0.0314\]</span></p>
+<p>Con estos resultados se concluye que a un nivel de significancia de
+0.05, con el técnico 3 los tiempos promedios de reparación por unidad de
+al menos dos de las tres marcas son diferentes.</p>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
 ## 
 ##     marca, tecnico, tiempo</code></pre>
@@ -1176,6 +1757,21 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from ensamble (pos = 14):
 ## 
 ##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 16):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 17):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 18):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 19):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 21):
+## 
+##     tiempo</code></pre>
 <pre><code>## The following objects are masked from base (pos = 23):
 ## 
 ##     marca, tecnico, tiempo</code></pre>
@@ -1189,6 +1785,51 @@ $(document).ready(function () {
 ## 
 ##     marca, tecnico, tiempo</code></pre>
 <pre><code>## The following object is masked from ensamble (pos = 28):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 30):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 31):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 32):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 33):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 35):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 38):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 39):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 40):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 41):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 43):
+## 
+##     tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 44):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 45):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 46):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following objects are masked from base (pos = 47):
+## 
+##     marca, tecnico, tiempo</code></pre>
+<pre><code>## The following object is masked from ensamble (pos = 49):
 ## 
 ##     tiempo</code></pre>
 <pre><code>## Efectos Técnico*Marca sobre respuesta Tiempo particionados por
@@ -1208,7 +1849,8 @@ $(document).ready(function () {
 ## En Técnico2  2 416.1333 208.0667 4.000427 0.02698640
 ## En Técnico3  2 396.9333 198.4667 3.815851 0.03140553</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>Valide supuestos sobre los errores del modelo (varianza cte. y normalidad)</li>
+<li>Valide supuestos sobre los errores del modelo (varianza cte. y
+normalidad)</li>
 </ol>
 <pre class="r"><code>shapiro.test(residuals(model))</code></pre>
 <pre><code>## 
@@ -1332,13 +1974,15 @@ Técnico&quot;,&quot;\n&quot;);Slice_marcas_por_Técnico
 
 
 Slice_marcas_por_Técnico</code></pre>
-<p><strong>Ejemplo de un diseño con tres factores de efectos fijos </strong></p>
+<p><strong>Ejemplo de un diseño con tres factores de efectos fijos
+</strong></p>
 </div>
 
 <br>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -1366,7 +2010,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

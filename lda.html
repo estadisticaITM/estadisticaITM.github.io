@@ -11,14 +11,24 @@
 
 
 
-<title>lda.utf8</title>
+<title>lda.knit</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,6 +50,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -50,11 +61,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -67,32 +73,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -103,10 +84,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -123,40 +100,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -184,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -196,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -207,10 +160,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -222,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -289,7 +254,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -303,28 +268,35 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -337,7 +309,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -346,7 +318,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -356,47 +328,99 @@ $(document).ready(function () {
 
 <div id="análisis-discriminante-lineal" class="section level1">
 <h1>Análisis discriminante lineal</h1>
-<p>El Análisis Discriminante Lineal es un método de clasificación supervisado de variables cualitativas en el que dos o más grupos son conocidos a priori y nuevas observaciones se clasifican en uno de ellos en función de sus características. Es una alternativa a la regresión logística cuando la variable cualitativa tiene más de dos niveles, por ejemplo:</p>
+<p>El Análisis Discriminante Lineal es un método de clasificación
+supervisado de variables cualitativas en el que dos o más grupos son
+conocidos a priori y nuevas observaciones se clasifican en uno de ellos
+en función de sus características. Es una alternativa a la regresión
+logística cuando la variable cualitativa tiene más de dos niveles, por
+ejemplo:</p>
 <ul>
-<li><p>Los sistemas automáticos de concesión de créditos (credit scoring) implantados en instituciones financieras tienen que utilizar variables medibles hoy (ingresos, antigüedad en el trabajo, patrimonio, etc) para prever el comportamiento futuro.</p></li>
-<li><p>La clasificación de estudiantes en desertores en función de sus características, como estrato, carrera, edad.</p></li>
+<li><p>Los sistemas automáticos de concesión de créditos (credit
+scoring) implantados en instituciones financieras tienen que utilizar
+variables medibles hoy (ingresos, antigüedad en el trabajo, patrimonio,
+etc) para prever el comportamiento futuro.</p></li>
+<li><p>La clasificación de estudiantes en desertores en función de sus
+características, como estrato, carrera, edad.</p></li>
 </ul>
-<div id="el-proceso-de-un-análisis-discriminante-puede-resumirse-en-6-pasos" class="section level2">
-<h2>El proceso de un análisis discriminante puede resumirse en 6 pasos:</h2>
+<div
+id="el-proceso-de-un-análisis-discriminante-puede-resumirse-en-6-pasos"
+class="section level2">
+<h2>El proceso de un análisis discriminante puede resumirse en 6
+pasos:</h2>
 <ol style="list-style-type: decimal">
-<li><p>Disponer de un conjunto de datos de entrenamiento (training data) en el que se conoce a que grupo pertenece cada observación.</p></li>
-<li><p>Calcular las probabilidades previas (prior probabilities): la proporción esperada de observaciones que pertenecen a cada grupo.</p></li>
-<li><p>Determinar si la varianza o matriz de covarianzas es homogénea en todos los grupos.</p></li>
-<li><p>Estimar los parámetros necesarios para las funciones de probabilidad condicional, verificando que se cumplen las condiciones para hacerlo.</p></li>
-<li><p>Calcular el resultado de la función discriminante. El resultado de esta determina a qué grupo se asigna cada observación.</p></li>
-<li><p>Utilizar validación cruzada (cross-validation) para estimar las probabilidades de clasificaciones erróneas.</p></li>
+<li><p>Disponer de un conjunto de datos de entrenamiento (training data)
+en el que se conoce a que grupo pertenece cada observación.</p></li>
+<li><p>Calcular las probabilidades previas (prior probabilities): la
+proporción esperada de observaciones que pertenecen a cada
+grupo.</p></li>
+<li><p>Determinar si la varianza o matriz de covarianzas es homogénea en
+todos los grupos.</p></li>
+<li><p>Estimar los parámetros necesarios para las funciones de
+probabilidad condicional, verificando que se cumplen las condiciones
+para hacerlo.</p></li>
+<li><p>Calcular el resultado de la función discriminante. El resultado
+de esta determina a qué grupo se asigna cada observación.</p></li>
+<li><p>Utilizar validación cruzada (cross-validation) para estimar las
+probabilidades de clasificaciones erróneas.</p></li>
 </ol>
 </div>
 <div id="teorema-de-bayes-para-clasificación" class="section level2">
 <h2><strong>Teorema de Bayes para clasificación</strong></h2>
-<p>Haciendo uso del teorema de Bayes, Considérese dos eventos A y B, el teorema de Bayes establece:</p>
-<p><span class="math display">\[\Large P(B|A)=\frac{P(A\cap B)}{P(A)}\]</span> LDA estima la probabilidad de que una observación, dado un determinado valor de predictores, pertenezca a cada una de las clases de la variable cualitativa,<span class="math inline">\(\Large P(Y=k|X=x)\)</span>.Finalmente se asigna la observación a la clase k para la que la probabilidad predicha sea mayor.</p>
-<p>Supóngase que se desea clasificar una nueva observación en una de las K clases de una variable cualitativa Y, siendo <span class="math inline">\(\Large K≥2\)</span>, a partir de un solo predictor X. Se dispone de las siguientes definiciones:</p>
+<p>Haciendo uso del teorema de Bayes, Considérese dos eventos A y B, el
+teorema de Bayes establece:</p>
+<p><span class="math display">\[\Large P(B|A)=\frac{P(A\cap
+B)}{P(A)}\]</span> LDA estima la probabilidad de que una observación,
+dado un determinado valor de predictores, pertenezca a cada una de las
+clases de la variable cualitativa,<span class="math inline">\(\Large
+P(Y=k|X=x)\)</span>.Finalmente se asigna la observación a la clase k
+para la que la probabilidad predicha sea mayor.</p>
+<p>Supóngase que se desea clasificar una nueva observación en una de las
+K clases de una variable cualitativa Y, siendo <span
+class="math inline">\(\Large K≥2\)</span>, a partir de un solo predictor
+X. Se dispone de las siguientes definiciones:</p>
 <ul>
-<li>Se define como overall, prior probability o probabilidad previa <span class="math inline">\(\Large(\pi k)\)</span> la probabilidad de que una observación aleatoria pertenezca a la clase k.</li>
+<li>Se define como overall, prior probability o probabilidad previa
+<span class="math inline">\(\Large(\pi k)\)</span> la probabilidad de
+que una observación aleatoria pertenezca a la clase k.</li>
 </ul>
 </div>
 <div id="condiciones-de-lda" class="section level2">
 <h2><strong>Condiciones de LDA</strong></h2>
-<p>Las condiciones que se deben cumplir para que un Análisis Discriminante Lineal sea válido son:</p>
+<p>Las condiciones que se deben cumplir para que un Análisis
+Discriminante Lineal sea válido son:</p>
 <ul>
-<li><p>Cada predictor que forma parte del modelo se distribuye de forma normal en cada una de las clases de la variable respuesta. En el caso de múltiples predictores, las observaciones siguen una distribución normal multivariante en todas las clases.</p></li>
-<li><p>La varianza del predictor es igual en todas las clases de la variable respuesta. En el caso de múltiples predictores, la matriz de covarianza es igual en todas las clases</p></li>
-<li><p>Cuando la condición de normalidad no se cumple, el LDA pierde precisión pero aun así puede llegar a clasificaciones relativamente buenas.</p></li>
+<li><p>Cada predictor que forma parte del modelo se distribuye de forma
+normal en cada una de las clases de la variable respuesta. En el caso de
+múltiples predictores, las observaciones siguen una distribución normal
+multivariante en todas las clases.</p></li>
+<li><p>La varianza del predictor es igual en todas las clases de la
+variable respuesta. En el caso de múltiples predictores, la matriz de
+covarianza es igual en todas las clases</p></li>
+<li><p>Cuando la condición de normalidad no se cumple, el LDA pierde
+precisión pero aun así puede llegar a clasificaciones relativamente
+buenas.</p></li>
 </ul>
 <p>##<strong>Precisión del LDA</strong></p>
-<p>Se evalua la clasificación resultante, es decir se calcula el porcentaje de aciertos en las clasificaciones. Las matrices de confusión son una de las mejores formas de evaluar la capacidad de acierto que tiene un modelo LDA. Muestran el número de verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos.</p>
+<p>Se evalua la clasificación resultante, es decir se calcula el
+porcentaje de aciertos en las clasificaciones. Las matrices de confusión
+son una de las mejores formas de evaluar la capacidad de acierto que
+tiene un modelo LDA. Muestran el número de verdaderos positivos,
+verdaderos negativos, falsos positivos y falsos negativos.</p>
 <ul>
-<li><p>Cuando para evaluar el error de clasificación se emplean las mismas observaciones con las que se ha creado el modelo, se obtiene lo que se denomina el training error. Si bien esta es una forma sencilla de estimar la precisión en la clasificación, tiende a ser excesivamente optimista.</p></li>
-<li><p>Es más adecuado evaluar el modelo empleando observaciones nuevas que el modelo no ha visto, obteniendo así el test error.</p></li>
+<li><p>Cuando para evaluar el error de clasificación se emplean las
+mismas observaciones con las que se ha creado el modelo, se obtiene lo
+que se denomina el training error. Si bien esta es una forma sencilla de
+estimar la precisión en la clasificación, tiende a ser excesivamente
+optimista.</p></li>
+<li><p>Es más adecuado evaluar el modelo empleando observaciones nuevas
+que el modelo no ha visto, obteniendo así el test error.</p></li>
 </ul>
 <p>##<strong>EJEMPLO</strong></p>
-<p>Un equipo de biólogos quiere generar un modelo estadístico que permita identificar a que especie (a o b) pertenece un determinado insecto. Para ello se han medido tres variables (longitud de las patas, diámetro del abdomen y diámetro del órgano sexual) en 10 individuos de cada una de las dos especies.</p>
+<p>Un equipo de biólogos quiere generar un modelo estadístico que
+permita identificar a que especie (a o b) pertenece un determinado
+insecto. Para ello se han medido tres variables (longitud de las patas,
+diámetro del abdomen y diámetro del órgano sexual) en 10 individuos de
+cada una de las dos especies.</p>
 <pre class="r"><code>input &lt;- (&quot;
 especie pata abdomen organo_sexual 
 a 191 131 53
@@ -427,23 +451,35 @@ datos &lt;- read.table(textConnection(input), header = TRUE)</code></pre>
 boxplot(datos$pata~datos$especie)
 boxplot(datos$abdomen~datos$especie)
 boxplot(datos$organo_sexual~datos$especie)</code></pre>
-<p><img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" /> Las patas tienen claramente un comportamiento diferente entre especies</p>
+<p><img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+Las patas tienen claramente un comportamiento diferente entre
+especies</p>
 <pre class="r"><code>plot(datos[-1],col = c(&quot;firebrick&quot;, &quot;green3&quot;)[datos$especie], pch = 19)</code></pre>
 <p><img src="lda_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>El par de variables abdomen-pata y el par pata-organo_sexual parecen separar bien las dos especies.</p>
+<p>El par de variables abdomen-pata y el par pata-organo_sexual parecen
+separar bien las dos especies.</p>
 </div>
 <div id="prior-probabilities" class="section level2">
 <h2><strong>Prior probabilities</strong></h2>
-<p>Como no se dispone de información sobre la abundancia relativa de las especies a nivel poblacional, se considera como probabilidad previa de cada especie el número de observaciones de la especie entre el número de observaciones totales.</p>
-<p><span class="math display">\[\Large \hat \pi_a=\hat \pi_b=0.5\]</span></p>
+<p>Como no se dispone de información sobre la abundancia relativa de las
+especies a nivel poblacional, se considera como probabilidad previa de
+cada especie el número de observaciones de la especie entre el número de
+observaciones totales.</p>
+<p><span class="math display">\[\Large \hat \pi_a=\hat
+\pi_b=0.5\]</span></p>
 <p>##<strong>Homogeneidad de varianza</strong></p>
 <p>##<strong>Prueba de normalidad</strong></p>
-<p>Una vez obtenidas las funciones discriminantes, se puede clasificar un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual = 49.</p>
+<p>Una vez obtenidas las funciones discriminantes, se puede clasificar
+un nuevo insecto en función de sus medidas. Por ejemplo, un nuevo
+espécimen cuyas medidas sean: pata = 194, abdomen = 124, organo_sexual =
+49.</p>
 </div>
 <div id="bibliografia" class="section level2">
 <h2><strong>BIBLIOGRAFIA</strong></h2>
 <ul>
-<li><a href="https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#</a></li>
+<li><a
+href="https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#"
+class="uri">https://rstudio-pubs-static.s3.amazonaws.com/233932_49e0c489526a413485965ffc42003e47.html#</a></li>
 </ul>
 </div>
 </div>
@@ -452,6 +488,7 @@ boxplot(datos$organo_sexual~datos$especie)</code></pre>
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 
@@ -479,7 +516,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

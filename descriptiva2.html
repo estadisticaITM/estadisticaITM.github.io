@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Análisis exploratorio de datos</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de experimentos
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-pie-chart"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Análisis exploratorio de datos</h1>
+
+</div>
+
+
+<div id="historia-de-la-estadística" class="section level2">
+<h2>Historia de la estadística</h2>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/O2L_VsKDxlw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/LMsjlMmrc_0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="qué-es-la-estadística" class="section level2">
+<h2>¿Qué es la estadística?</h2>
+<ul>
+<li><p>Ciencia que describe y realiza inferencias sobre el mundo desde
+una muestra de datos</p></li>
+<li><p>Ciencia que proporciona metodologías para recolectar organizar,
+resumir, presentar y analizar datos y hacer inferencias a partir de
+ellos.</p></li>
+</ul>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/MaTO78ZoNoo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Ramas de la estadística</strong></p>
+<p><strong>Estadística descriptiva:</strong> Organiza y describe las
+características de un conjunto de datos con el propósito de facilitar su
+aplicación, generalmente con el apoyo de gráficas, tablas o medidas
+numéricas.</p>
+<p>Los parámetros estadísticos usados son las medidas de tendencia
+central y de variabilidad, y los gráficos de barras, de tortas y el
+histograma.</p>
+<p><strong>Estadística inferencial:</strong></p>
+<p>Obtiene conclusiones de la población partiendo de una muestra, por
+medio de diferentes métodos, como las puebas de hipótesis, pronósticos
+de futuras observaciones, correlaciones y modelos de asociación entre
+variables.</p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/buKDQZG5phM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="algunas-definiciones" class="section level2">
+<h2>Algunas definiciones</h2>
+<p><strong>Población:</strong> Conjunto de elementos sobre los que
+queremos hacer afirmaciones</p>
+<p><strong>Muestra:</strong> Conjunto de personas o cosas que se
+consideran representativos del grupo al que pertenecen, con la finalidad
+de estudiar o determinar las características del grupo.</p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/d6rrvuxBoY8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Parámetro:</strong> Valor descriptivo de la población</p>
+<p><strong>Estadístico:</strong> Valor descriptivo para una muestra</p>
+<p><strong>Base de datos:</strong> Colección de información organizada,
+de tal modo que sea fácilmente accesible, gestionada y actualizada</p>
+<p><strong>Almacenamiento de bases de datos</strong></p>
+<p>Las bases de datos Surgen de la necesidad de almacenar la información
+a través de la historia</p>
+<ol style="list-style-type: decimal">
+<li>Piedras, madera y arcilla, donde se escribian jeroglíficos.</li>
+</ol>
+<ul>
+<li>Los babilonios y mesopotámicos a través de la escritura cuneiforme
+que tallaban en tabletas y en rocas, al igual q los mallas</li>
+</ul>
+<p>-La cultura inca que escribian en un sistema de cuerdas anudadas.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/escritura.png" alt="Puntos atípicos" width="526" />
+<p class="caption">
+Puntos atípicos
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Papel</li>
+</ol>
+<p>Edad media: Códice Formato de libro, Se compone de pergaminos
+plegados, cosidos y encuadernados.</p>
+<p>El papel reemplazó progresivamente al pergamino, una herramienta más
+barata que permitió una difusión mas amplia, en la época moderna el
+códice fue hecho en papel</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Films</p></li>
+<li><p>Almacenamiento digital: bytes, tarjetas perforadas, CDs y
+memorias Actualmente es posible almacenar digitalmente en un disco
+compacto por ejemplo los datos que cabrian en miles de carpetas
+archivadas</p></li>
+<li><p>Nube: Se puede guardar y compartir un volumen de archivos
+ilimitados, asi como acceder a ellos desde cualquier dispositivo con
+acceso a internet</p></li>
+</ol>
+<p>A lo largo de la historia se ha buscado el sistema más pequeño
+físicamente con mayor capacidad de almacenamiento</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/nube.png" alt="Discos duros en la nube" width="669" />
+<p class="caption">
+Discos duros en la nube
+</p>
+</div>
+<p><strong>Punto atípico o outlier</strong> Son observaciones extremas,
+alejadas hacia valores muy grandes o pequeños comparadas con el resto de
+valores. Los valores atípicos pueden ser indicativos de datos que
+pertenecen a una población diferente del resto de las muestras
+establecidas. Se pueden detectar con un análisis descriptivo, mediante
+diagramas de dispersión, boxplot o histograma.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/manzana.png" alt="Puntos atípicos" width="280" />
+<p class="caption">
+Puntos atípicos
+</p>
+</div>
+</div>
+<div id="tipos-de-variables" class="section level2">
+<h2>Tipos de variables</h2>
+<p>Característica o condición que puede tomar diferentes valores en una
+muestra. Ejm:</p>
+<ul>
+<li>Presión sanguínea</li>
+<li>Masa de los niños</li>
+<li>Frecuencia cardiaca</li>
+<li>Estatura de un grupo de estudiantes</li>
+<li>Edad de los pacientes de un médico</li>
+</ul>
+<p><em>Tipos de variables</em></p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/sQ08tqf-rXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Actividad</strong></p>
+<p>Clasifique las siguiente variables según sea el caso</p>
+<table>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th align="center">tipo de variable</th>
+<th align="center">clasificación</th>
+<th align="center">niveles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Color de ojos</td>
+<td align="center">Cualitativa</td>
+<td align="center">Nominal</td>
+<td align="center">verde, azul,cafe</td>
+</tr>
+<tr class="even">
+<td>Edad</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>velocidad</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>Estado civil</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Color de la piel</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>Color del cabello</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Marcas de carro</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>Número de hijos de una familia</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Número de mensajes enviados por whatsap un dia</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>Número de estudiantes conectados a clase</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Días de la semana</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="medidas-de-tendencia-central" class="section level2">
+<h2>Medidas de tendencia central</h2>
+<p>Son 3 valores que resumen y representan la información contenida en
+un conjunto de datos. Las tres medidas son la media, la mediana y la
+moda.</p>
+<p><img src="imagen/central.png" width="235" style="display: block; margin: auto;" /></p>
+<div id="moda" class="section level3">
+<h3>Moda</h3>
+<p>Es el valor que más se repite, si no hay datos que se repiten se dice
+que no hay moda. Si dos datos se repiten con la misma frecuencia se dice
+que los datos son bimodales.</p>
+</div>
+<div id="media" class="section level3">
+<h3>Media</h3>
+<p>Valor promedio de un conjunto de datos numéricos, calculada como la
+suma del conjunto de valores dividida entre el número total de valores,
+la fórmula con la que se estima es:</p>
+<p><strong>Media Muestral</strong></p>
+<p><span class="math display">\[\bar
+x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
+<p><strong>Media poblacional</strong></p>
+<p><span class="math display">\[\hat \mu
+=\frac{\sum_{i=1}^{n}x_i}{N}\]</span></p>
+<p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada
+observación</p>
+<p>N es el tamaño poblacional</p>
+<p>n es el tamaño muestral</p>
+<p>Según el teorema de límite central cuando n&gt;30 se considera
+poblacional</p>
+</div>
+<div id="mediana" class="section level3">
+<h3>Mediana</h3>
+<p>Es un valor que se encuentra en la mitad de los datos, cuando estos
+están ordenados</p>
+<ol style="list-style-type: lower-alpha">
+<li>si los datos son pares, la mediana es la suma de los dos valores
+centrales dividida por dos</li>
+</ol>
+<p><span
+class="math display">\[M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>si los datos son impares la mediana es el valor que se encuentra en
+la posición <span class="math inline">\(\frac{n+1}{2}\)</span></li>
+</ol>
+<p><span class="math display">\[M_e=X_\frac{_{n+1}}{2}\]</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen las edades de una muestra de estudiantes de estadística
+básica compuesta por hombres y mujeres</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Hombre</th>
+<th>20</th>
+<th>22</th>
+<th>26</th>
+<th>20</th>
+<th>26</th>
+<th>19</th>
+<th>20</th>
+<th>21</th>
+<th>26</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mujer</td>
+<td>20</td>
+<td>20</td>
+<td>31</td>
+<td>26</td>
+<td>23</td>
+<td>42</td>
+<td>23</td>
+<td>20</td>
+<td>24</td>
+<td>25</td>
+<td>24</td>
+<td>27</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<p>Estime la media por género, la moda y la mediana.</p>
+<p><em>Video medidas de tendencia central</em></p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/A_u9fS2r-Eg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/0DA7Wtz1ddg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+</div>
+<div id="medidas-de-variabilidad" class="section level2">
+<h2>Medidas de variabilidad</h2>
+<p>La media es un buen indicador de tendencia central, pero no da una
+evidencia real acerca de los datos.</p>
+<p>Las medidas de variabilidad determinan el grado de acercamiento o
+distanciamiento de los valores de una distribución frente a su promedio
+de localización.</p>
+<ul>
+<li><p>Entre más grande sea el grado de variación, menor uniformidad
+tendrán los datos (sinónimo de heterogeneidad) y por lo tanto menor
+confiabilidad del promedio de tendencia central o localización por haber
+sido obtenido de datos dispersos (Mendoza et al, 2002).</p></li>
+<li><p>Si este valor es pequeño (respecto a la unidad de medida)
+entonces hay una gran uniformidad entre los datos(Mendoza et al,
+2002).</p></li>
+<li><p>Cuando es cero quiere decir que todos los datos son
+iguales.</p></li>
+</ul>
+<div id="rango" class="section level3">
+<h3>Rango</h3>
+<p>Es la diferencia entre el valor máximo y el valor mínimo</p>
+<p>Rango= valor max - valor mínimo</p>
+<p>Esta medida ignora la manera en que los datos están distribuidos</p>
+<p><img src="imagen/rango.png" width="475" style="display: block; margin: auto;" /></p>
+</div>
+<div id="varianza-y-desviación-estándar" class="section level3">
+<h3>Varianza y Desviación estándar</h3>
+<p>indica qué tan dispersos están los datos con respecto a la media</p>
+<p><img src="imagen/sd.png" width="414" style="display: block; margin: auto;" /></p>
+<p><strong>Caso poblacional</strong></p>
+<p><strong>Varianza</strong></p>
+<p><span
+class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span>
+<strong>Desviación estándar</strong></p>
+<p><span
+class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span>
+<strong>Caso muestral</strong></p>
+<p><strong>Varianza</strong> <span
+class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span
+class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación
+estándar</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Encuentre la media</p></li>
+<li><p>Encuentre la desviación de cada uno de los valores con respecto a
+la media.</p></li>
+<li><p>Eleve cada valor obtenido al cuadrado</p></li>
+<li><p>Halle la suma de cada uno de los cuadrados</p></li>
+<li><p>Divida la suma de los cuadrados por el número de ítems</p></li>
+<li><p>Encuentre la raíz cuadrada de la varianza</p></li>
+</ol>
+<p><em>Medidas de variabilidad</em></p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/cg4kUsbjQms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Diferencia en medidas entre la población y la
+muestra</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Medida</th>
+<th align="center">Población</th>
+<th align="center">Muestra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Tamaño</td>
+<td align="center">N</td>
+<td align="center">n</td>
+</tr>
+<tr class="even">
+<td align="center">Media</td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\bar x\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Varianza</td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+<td align="center"><span class="math inline">\(S^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Desviación estándar</td>
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+<td align="center">S</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparemos</strong></p>
+<p><img src="imagen/bolas.png" width="489" style="display: block; margin: auto;" /></p>
+<p><em>Cómo estimar la media, la desviación estandar en la
+calculadora</em></p>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4eXrcn6QLgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/6jqoucoas8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="coeficiente-de-variación" class="section level3">
+<h3>Coeficiente de variación</h3>
+<p>Es una medida de la dispersión relativa de un conjunto de datos, la
+cual relaciona la desviación típica de una muestra y su media.</p>
+<p>Se expresa en términos porcentuales, la fórmula con la que se estima
+es: <span class="math display">\[CV=\frac{S}{\bar x}*100\]</span></p>
+<p>No depende de las unidades de medición, por lo que sirve para
+comparar la variabilidad de dos conjuntos de datos, siempre que sus
+medias sean positivas.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen las edades de una muestra de estudiantes de estadística
+básica compuesta por hombres y mujeres</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Hombre</th>
+<th>20</th>
+<th>22</th>
+<th>26</th>
+<th>20</th>
+<th>26</th>
+<th>19</th>
+<th>20</th>
+<th>21</th>
+<th>26</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mujer</td>
+<td>20</td>
+<td>20</td>
+<td>31</td>
+<td>26</td>
+<td>23</td>
+<td>42</td>
+<td>23</td>
+<td>20</td>
+<td>24</td>
+<td>25</td>
+<td>24</td>
+<td>27</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<p>Estime las medidas de variación y el coeficiente de variación.</p>
+</div>
+</div>
+<div id="media-ponderada" class="section level2">
+<h2>Media ponderada</h2>
+<p>Es apropiada cuando en un conjunto de datos, cada uno de ellos tiene
+una importancia relativa (o peso) respecto de los demás datos. Se
+obtiene multiplicando cada uno de los datos por su ponderación (peso)
+para luego sumarlos</p>
+<p><span class="math display">\[\bar
+X=\sum_{i=1}^{n}x_i*w_i\]</span></p>
+<p>Donde <span class="math inline">\(X_i\)</span> es cada una de las
+observaciones, <span class="math inline">\(W_i\)</span> es la
+ponderación de cada uno de ellos.</p>
+<p><span class="math display">\[\sum_{i=1}^n w_i=1\]</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen las siguientes notas de un estudiante</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Peso(%)</th>
+<th>25</th>
+<th>15</th>
+<th>35</th>
+<th>10</th>
+<th>15</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Nota</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Ponderación</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>¿Cuál es la nota total obtenida en la materia?</p></li>
+<li><p>Si faltara la última nota,¿Cuanto tendría que sacar para ganar la
+asignatura?</p></li>
+</ul>
+</div>
+<div id="medidas-de-posición" class="section level2">
+<h2>Medidas de posición</h2>
+<p>Son valores que permiten dividir el conjunto de datos en partes
+porcentuales iguales y se usan para clasificar una observación dentro de
+una población o muestra. Las medidas de posición más usuales son los
+cuartiles, los deciles y los percentiles.</p>
+<div id="cuartiles" class="section level3">
+<h3>Cuartiles</h3>
+<p>Son tres valores que distribuyen la serie de datos ordenada, en
+cuatro tramos iguales, en los que cada uno de ellos se concentra el 25%
+de los resultados.</p>
+<p><img src="imagen/cuartiles.png" width="528" style="display: block; margin: auto;" /></p>
+<p>La fórmula con la que se estima está dada por:</p>
+<p><span class="math display">\[Q_k=X_{(k \frac{n+1}{4})}\]</span> con
+k=1,2,3</p>
+<p><strong>Rango intercuartilico IQR</strong> Se define como la
+diferencia entre el tercer cuartil y el primer cuartil, es decir:</p>
+<p><span class="math display">\[IRQ=Q_3-Q_1\]</span></p>
+<p>The Interquartile Range (or IQR)</p>
+</div>
+<div id="deciles" class="section level3">
+<h3>Deciles</h3>
+<p>Son 9 valores que distribuyen la serie de datos ordenada, en diez
+tramos iguales, en los que cada uno de ellos concentra el 10% de los
+resultados.</p>
+<p>La fórmula con la que se estima está dada por:</p>
+<p><span class="math display">\[D_k=X_{(k \frac{n+1}{10})}\]</span> con
+k=1,2,3…9</p>
+</div>
+<div id="percentiles" class="section level3">
+<h3>Percentiles</h3>
+<p>Divide un conjunto de datos ordenados en 100 partes iguales, es decir
+hay 99 percentiles.</p>
+<p><span class="math display">\[P_k=X_{(k \frac{n+1}{100})}\]</span> con
+k=1,2,3…99</p>
+</div>
+</div>
+<div id="boxplot" class="section level2">
+<h2>Boxplot</h2>
+<p>El boxplot es una herramienta de análisis que resalta las principales
+características de un conjunto de datos, los números usados para
+construirlo son:</p>
+<ul>
+<li>Valor mínimo</li>
+<li>Los cuartiles <span class="math inline">\(Q_1,Q_2,Q_3\)</span></li>
+<li>Valor máximo</li>
+</ul>
+<p><img src="imagen/boxplot.png" width="294" style="display: block; margin: auto;" /></p>
+<p>Cada sección contiene el 25% de los datos. La caja muestra la mitad
+de los datos, es decir el 50% de ellos, contiene la información entre el
+3 cuartil y el primer cuartil.</p>
+<ul>
+<li><p>Sirve para realizar comparaciones de una variable cuantitativa,
+en relación a los niveles de una variable cualitativa.</p></li>
+<li><p>Es posible observar la dispersión de cada caja, mientras mas
+larga, más dispersión.</p></li>
+<li><p>Permite observar puntos atípicos,los cuales no están contenidos
+dentro de la caja, ni en sus bigotes.</p></li>
+</ul>
+<p><strong>Ejemplo en R</strong></p>
+<p>La siguiente información fue reportada en la revista Motor Trend de
+EE.UU, en el año 1974. contiene el consumo de combustible y 10 aspectos
+del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
+<p>A continuación se ilustra un resumen del número de cilindros que cada
+uno de los automoviles mostró</p>
+<pre class="r"><code>library(knitr)
+library(ggplot2)
+
+#Base de datos
+head(mtcars)</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<pre class="r"><code>#resumen de todas las variables de la base de datos
+summary(mtcars)</code></pre>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<pre class="r"><code>#millas por galón
+mpg=mtcars[,1]
+
+#media de las millas por galón
+mean(mpg)</code></pre>
+<pre><code>## [1] 20.09062</code></pre>
+<pre class="r"><code>#desviación estándar
+sd(mpg)</code></pre>
+<pre><code>## [1] 6.026948</code></pre>
+<pre class="r"><code>##Media de mpg según elnúmero de cilindros
+# Usually, you&#39;ll want to group first
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarise(mean = mean(mpg))</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##     cyl  mean
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  26.7
+## 2     6  19.7
+## 3     8  15.1</code></pre>
+<pre class="r"><code>#boxplot
+boxplot(mtcars[,1]~mtcars[,2],xlab=&quot;cilindros&quot;,ylab=&quot;mpg&quot;,col =&quot;pink&quot;)</code></pre>
+<p><img src="descriptiva2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="bibliografía" class="section level2">
+<h2>Bibliografía</h2>
+<ul>
+<li><p>Mendoza, H, Bautista, G. (2002). Probabilidad y Estadística.
+Universidad Nacional de Colombia, <a
+href="http://www.virtual.unal.edu.co/cursos/ciencias/2001065/"
+class="uri">http://www.virtual.unal.edu.co/cursos/ciencias/2001065/</a>.
+Licencia: Creative Commons BY-NC-ND.</p></li>
+<li><p>R Core Team (2019). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria. URL
+<a href="https://www.R-project.org/"
+class="uri">https://www.R-project.org/</a>.</p></li>
+</ul>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

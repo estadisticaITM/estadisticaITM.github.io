@@ -13,12 +13,22 @@
 
 <title>Distribución binomial</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -43,6 +53,7 @@
   ga('send', 'pageview');
 </script>
 
+
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -53,11 +64,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -70,32 +76,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -106,10 +87,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -126,40 +103,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -187,7 +140,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -199,7 +152,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -210,10 +163,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -225,7 +191,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -357,7 +322,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -371,7 +336,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -385,28 +350,35 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="pagin1.html">
-    <span class="fas fa-line-chart"></span>
+    <span class="fa fa-line-chart"></span>
      
-    Estadística Básica
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
   </a>
 </li>
 <li>
   <a href="pagin2.html">
-    <span class="fas fa-bar-chart-o"></span>
+    <span class="fa fa-bar-chart-o"></span>
      
-    Estadística inferencial
+    Diseño de experimentos
   </a>
 </li>
 <li>
   <a href="pagin3.html">
-    <span class="fas fa-pie-chart"></span>
+    <span class="fa fa-pie-chart"></span>
      
     Análisis multivariado
   </a>
 </li>
 <li>
   <a href="about.html">
-    <span class="fas fa-puzzle-piece"></span>
+    <span class="fa fa-puzzle-piece"></span>
      
     Semillero de R
   </a>
@@ -419,7 +391,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/estadisticaITM">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -428,7 +400,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -439,74 +411,119 @@ div.tocify {
 
 <div id="experimentos-bernoulli" class="section level3">
 <h3>Experimentos bernoulli</h3>
-<p>Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1 se llama variable aleatoria de Bernoulli, se utilizan para modelar fenómenos aleatorios que sólo tienen dos resultados posibles.</p>
+<p>Cualquier variable aleatoria cuyos únicos valores posibles son 0 y 1
+se llama variable aleatoria de Bernoulli, se utilizan para modelar
+fenómenos aleatorios que sólo tienen dos resultados posibles.</p>
 <ul>
 <li><p>Bueno o malo</p></li>
 <li><p>Hombre o Mujer</p></li>
 <li><p>Éxito o fracaso</p></li>
-<li><p>Al lanzar una moneda, comprobar si sale cara (éxito) o cruz (fracaso). Se suele suponer que una moneda tiene una probabilidad de éxito de 0,5.</p></li>
-<li><p>Al lanzar un dado, ver si se obtiene un seis (éxito) o cualquier otro valor (fracaso).</p></li>
-<li><p>Escoger un votante al azar, ver si este votará “sí” en un referéndum próximo.</p></li>
+<li><p>Al lanzar una moneda, comprobar si sale cara (éxito) o cruz
+(fracaso). Se suele suponer que una moneda tiene una probabilidad de
+éxito de 0,5.</p></li>
+<li><p>Al lanzar un dado, ver si se obtiene un seis (éxito) o cualquier
+otro valor (fracaso).</p></li>
+<li><p>Escoger un votante al azar, ver si este votará “sí” en un
+referéndum próximo.</p></li>
 <li><p>¿Son verdes los ojos de una persona?</p></li>
-<li><p>¿Decidió un cliente potencial comprar determinado producto?</p></li>
+<li><p>¿Decidió un cliente potencial comprar determinado
+producto?</p></li>
 </ul>
 <p><img src="imagen/bernoulli.png" width="502" style="display: block; margin: auto;" /></p>
 </div>
 <div id="experimento-binomial" class="section level3">
 <h3>Experimento binomial</h3>
 <ul>
-<li><p>Consiste en una secuencia de n experimentos llamados ensayos, donde n se fija antes del experimento.</p></li>
+<li><p>Consiste en una secuencia de n experimentos llamados ensayos,
+donde n se fija antes del experimento.</p></li>
 <li><p>Las salidas de cada ensayo son independientes</p></li>
 </ul>
 <p><img src="imagen/ESAY.png" width="439" style="display: block; margin: auto;" /></p>
 <ul>
-<li><p>Cada ensayo puede dar por resultado un éxito (E) o falla (F).</p></li>
+<li><p>Cada ensayo puede dar por resultado un éxito (E) o falla
+(F).</p></li>
 <li><p>Cada ensayo es determinado por el éxito o fracaso,</p></li>
-<li><p>X es el numero de éxitos esperados Con <span class="math inline">\(x=0,1,2...,n\)</span>,</p></li>
-<li><p>La probabilidad de éxito en cada ensayo es constante (p), <span class="math inline">\(0 \leq p \leq 1\)</span></p></li>
-<li><p>La probabilidad de fracaso está dada por (q), <span class="math inline">\(0 \leq q \leq 1\)</span></p></li>
+<li><p>X es el numero de éxitos esperados Con <span
+class="math inline">\(x=0,1,2...,n\)</span>,</p></li>
+<li><p>La probabilidad de éxito en cada ensayo es constante (p), <span
+class="math inline">\(0 \leq p \leq 1\)</span></p></li>
+<li><p>La probabilidad de fracaso está dada por (q), <span
+class="math inline">\(0 \leq q \leq 1\)</span></p></li>
 <li><p>El exito y fracaso son dos eventos complementarios</p></li>
 </ul>
 <p><span class="math display">\[p+q=1\]</span></p>
 </div>
-<div id="función-de-distribución-de-probabilidad" class="section level3">
+<div id="función-de-distribución-de-probabilidad"
+class="section level3">
 <h3>Función de distribución de probabilidad</h3>
-<p><span class="math display">\[p(x=x)=f(x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> Si una variable aleatoria sigue una distribución binomial con parámetros n y p luego:</p>
-<p><span class="math display">\[x\sim Bin(n,p)\]</span> <strong>Media o valor esperado:</strong> <span class="math display">\[E(X)=np\]</span></p>
-<p><strong>Varianza</strong> <span class="math display">\[V(X)=npq\]</span> <strong>Desviación estándar:</strong> <span class="math display">\[sd=\sqrt{npq}\]</span></p>
+<p><span class="math display">\[p(x=x)=f(x)=\displaystyle{n \choose
+x}p^x q^{n-x}\]</span> Si una variable aleatoria sigue una distribución
+binomial con parámetros n y p luego:</p>
+<p><span class="math display">\[x\sim Bin(n,p)\]</span> <strong>Media o
+valor esperado:</strong> <span
+class="math display">\[E(X)=np\]</span></p>
+<p><strong>Varianza</strong> <span
+class="math display">\[V(X)=npq\]</span> <strong>Desviación
+estándar:</strong> <span
+class="math display">\[sd=\sqrt{npq}\]</span></p>
 </div>
-<div id="función-de-distribución-de-probabilidad-acumulada" class="section level3">
+<div id="función-de-distribución-de-probabilidad-acumulada"
+class="section level3">
 <h3>Función de distribución de probabilidad acumulada</h3>
-<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span></p>
-<p>Las probabilidades se pueden encontrar mediante tres formas diferentes por calculadora, por tabla, o por las funciones de R:</p>
+<p><span class="math display">\[p(x\leq
+x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span></p>
+<p>Las probabilidades se pueden encontrar mediante tres formas
+diferentes por calculadora, por tabla, o por las funciones de R:</p>
 <p><img src="imagen/CALCBINO.png" width="986" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ejemplo" class="section level3">
 <h3>Ejemplo</h3>
-<p>Una concentración particular de un producto químico detectado en agua contaminada se encuentra que es letal para 20% de los peces que queden expuestos a la concentración durante 24 horas. Veinte peces se colocan en un tanque que contiene esta concentración del producto químico en agua.</p>
+<p>Una concentración particular de un producto químico detectado en agua
+contaminada se encuentra que es letal para 20% de los peces que queden
+expuestos a la concentración durante 24 horas. Veinte peces se colocan
+en un tanque que contiene esta concentración del producto químico en
+agua.</p>
 <p>Los datos que suministra el enunciado son los siguientes:</p>
 <ul>
-<li><p>Sea x la variable aleatoria que representa los peces que sobreviven</p></li>
-<li><p>Siendo así, la probabilidad p de sobrevivir es p=0.8, mientras que la probabilidad de no sobrevivir es q=0.2</p></li>
+<li><p>Sea x la variable aleatoria que representa los peces que
+sobreviven</p></li>
+<li><p>Siendo así, la probabilidad p de sobrevivir es p=0.8, mientras
+que la probabilidad de no sobrevivir es q=0.2</p></li>
 <li><p>El numero de ensayos es n=20</p></li>
 </ul>
-<p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14 sobrevivan.</p>
-<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta es:</strong></p>
+<p><span class="math display">\[p(x=x)=\displaystyle{n \choose x}p^x
+q^{n-x}\]</span> a Encuentre la probabilidad de que exactamente 14
+sobrevivan.</p>
+<p><span class="math display">\[p(x=14)=\displaystyle{20 \choose
+14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta
+es:</strong></p>
 <pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
 <pre><code>## [1] 0.1090997</code></pre>
 <p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
 <p>Recordemos la forma de la función acumulada</p>
-<p><span class="math display">\[p(x\leq x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La probabilidad pedida es <span class="math display">\[P(x \geq 10)=1-p(x\leq 9)=1-\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.999436\]</span> <strong>En R la respuesta es:</strong></p>
+<p><span class="math display">\[p(x\leq
+x)=F(x)=\sum_{x=0}^x\displaystyle{n \choose x}p^x q^{n-x}\]</span> La
+probabilidad pedida es <span class="math display">\[P(x \geq
+10)=1-p(x\leq 9)=1-\sum_{x=0}^9\displaystyle{20 \choose x}0.8^x
+0.2^{20-x}=0.999436\]</span> <strong>En R la respuesta es:</strong></p>
 <p><strong>Nota: </strong></p>
-<p>El argumento lower tail si es falso, es equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por ello que la probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
+<p>El argumento lower tail si es falso, es equivalente a <span
+class="math inline">\(P(X&gt;x)\)</span>, es por ello que la
+probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
 <pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
 <pre><code>## [1] 0.9994366</code></pre>
 <p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
-<p>La probabilidad pedida es <span class="math display">\[P(x \leq 16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x 0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
+<p>La probabilidad pedida es <span class="math display">\[P(x \leq
+16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x
+0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
 <pre class="r"><code>pbinom(16,20, prob = 0.8)</code></pre>
 <pre><code>## [1] 0.5885511</code></pre>
-<p>d Encuentre la media y la varianza del número que sobrevive. Media <span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span class="math display">\[Var=npq=20*0.8*0.2=0.32\]</span> Desviación estándar</p>
-<p><span class="math display">\[sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt {3.2}=1.8\]</span></p>
+<p>d Encuentre la media y la varianza del número que sobrevive. Media
+<span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span
+class="math display">\[Var=npq=20*0.8*0.2=0.32\]</span> Desviación
+estándar</p>
+<p><span class="math display">\[sd=\sqrt {npq}=\sqrt {20*0.8*0.2}=\sqrt
+{3.2}=1.8\]</span></p>
 </div>
 <div id="videos-de-interés" class="section level3">
 <h3>Videos de interés</h3>
@@ -522,61 +539,110 @@ div.tocify {
 <div id="ejercicios-propuestos" class="section level3">
 <h3>Ejercicios propuestos</h3>
 <ol style="list-style-type: decimal">
-<li>El voltaje de una batería nueva puede ser aceptable (A) o inaceptable (U). Una linterna requiere dos baterías, así que las baterías serán independientemente seleccionadas y probadas hasta encontrar dos aceptables. Suponga que 90% de todas las baterías tienen voltajes aceptables. Sea Y el número de baterías que deben ser probadas.</li>
+<li>El voltaje de una batería nueva puede ser aceptable (A) o
+inaceptable (U). Una linterna requiere dos baterías, así que las
+baterías serán independientemente seleccionadas y probadas hasta
+encontrar dos aceptables. Suponga que 90% de todas las baterías tienen
+voltajes aceptables. Sea Y el número de baterías que deben ser
+probadas.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>¿Cuál es p(2), es decir P(Y = 2)? Rta=0.81</p></li>
-<li><p>¿Cuál es p(3)? [Sugerencia: Existen dos resultados diferentes que producen Y=3.] Rta=0.162</p></li>
-<li><p>Para tener Y=5, ¿qué debe ser cierto de la quinta batería seleccionada? Mencione los cuatro resultados con los cuales Y=5 y luego determine p(5).</p></li>
-<li><p>Use el patrón de sus respuestas en los incisos a)–c) para obtener una fórmula general para p(y).</p></li>
+<li><p>¿Cuál es p(3)? [Sugerencia: Existen dos resultados diferentes que
+producen Y=3.] Rta=0.162</p></li>
+<li><p>Para tener Y=5, ¿qué debe ser cierto de la quinta batería
+seleccionada? Mencione los cuatro resultados con los cuales Y=5 y luego
+determine p(5).</p></li>
+<li><p>Use el patrón de sus respuestas en los incisos a)–c) para obtener
+una fórmula general para p(y).</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Una compañía que produce cristales finos sabe por experiencia que 10% de sus copas de mesa tienen imperfecciones cosméticas y deben ser clasificadas como “de segunda”.</li>
+<li>Una compañía que produce cristales finos sabe por experiencia que
+10% de sus copas de mesa tienen imperfecciones cosméticas y deben ser
+clasificadas como “de segunda”.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Entre seis copas seleccionadas al azar, ¿qué tan probable es que sólo una sea de segunda?</p></li>
-<li><p>Entre seis copas seleccionadas al azar, ¿qué tan probable es que por lo menos dos sean de segunda?</p></li>
-<li><p>Si las copas se examinan una por una, ¿cuál es la probabilidad de cuando mucho cinco deban ser seleccionadas para encontrar cuatro que no sean de segunda?</p></li>
+<li><p>Entre seis copas seleccionadas al azar, ¿qué tan probable es que
+sólo una sea de segunda?</p></li>
+<li><p>Entre seis copas seleccionadas al azar, ¿qué tan probable es que
+por lo menos dos sean de segunda?</p></li>
+<li><p>Si las copas se examinan una por una, ¿cuál es la probabilidad de
+cuando mucho cinco deban ser seleccionadas para encontrar cuatro que no
+sean de segunda?</p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>Se utiliza un número telefónico particular para recibir tanto llamadas de voz como faxes. Suponga que 25% de las llamadas entrantes son faxes y considere una muestra de 25 llamadas entrantes. ¿Cuál es la probabilidad de que</li>
+<li>Se utiliza un número telefónico particular para recibir tanto
+llamadas de voz como faxes. Suponga que 25% de las llamadas entrantes
+son faxes y considere una muestra de 25 llamadas entrantes. ¿Cuál es la
+probabilidad de que</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>Cuando mucho 6 de las llamadas sean un fax?</p></li>
 <li><p>Exactamente 6 de las llamadas sean un fax?</p></li>
 <li><p>Por lo menos 6 de las llamadas sean un fax?</p></li>
 <li><p>Más de 6 de las llamadas sean un fax?</p></li>
-<li><p>¿Cuál es el número esperado de llamadas entre las 25 que impliquen un fax?</p></li>
-<li><p>¿Cuál es la desviación estándar del número entre las 25 llamadas que implican un fax?</p></li>
-<li><p>¿Cuál es la probabilidad de que el número de llamadas entre las 25 que implican una transmisión de fax sobrepase el número esperado por más de 2 desviaciones estándar?</p></li>
+<li><p>¿Cuál es el número esperado de llamadas entre las 25 que
+impliquen un fax?</p></li>
+<li><p>¿Cuál es la desviación estándar del número entre las 25 llamadas
+que implican un fax?</p></li>
+<li><p>¿Cuál es la probabilidad de que el número de llamadas entre las
+25 que implican una transmisión de fax sobrepase el número esperado por
+más de 2 desviaciones estándar?</p></li>
 </ol>
 <ol start="4" style="list-style-type: decimal">
-<li><p>El 20% de todos los teléfonos de cierto tipo son llevados a servicio mientras se encuentran dentro de la garantía. De éstos, 60% puede ser reparado, mientras el 40% restante debe ser reemplazado con unidades nuevas. Si una compañía adquiere diez de estos teléfonos, ¿cuál es la probabilidad de que exactamente dos sean reemplazados bajo garantía? Rta/ 0,1478</p></li>
-<li><p>Suponga que 90% de todas las baterías de cierto proveedor tienen voltajes aceptables. Un tipo de linterna requiere que las dos baterías sean tipo D y la linterna funcionará sólo si sus dos baterías tienen voltajes aceptables. Entre diez linternas seleccionadas al azar, ¿cuál es la probabilidad de que por lo menos nueve funcionarán? ¿Qué suposiciones hizo para responder la pregunta planteada? Rta/ 0,407 independencia</p></li>
-<li><p>Suponga que p = P(nacimiento de un varón) = 0.5. Una pareja desea tener exactamente dos niñas en su familia. Tendrán hijos hasta que esta condición se satisfaga.</p></li>
+<li><p>El 20% de todos los teléfonos de cierto tipo son llevados a
+servicio mientras se encuentran dentro de la garantía. De éstos, 60%
+puede ser reparado, mientras el 40% restante debe ser reemplazado con
+unidades nuevas. Si una compañía adquiere diez de estos teléfonos, ¿cuál
+es la probabilidad de que exactamente dos sean reemplazados bajo
+garantía? Rta/ 0,1478</p></li>
+<li><p>Suponga que 90% de todas las baterías de cierto proveedor tienen
+voltajes aceptables. Un tipo de linterna requiere que las dos baterías
+sean tipo D y la linterna funcionará sólo si sus dos baterías tienen
+voltajes aceptables. Entre diez linternas seleccionadas al azar, ¿cuál
+es la probabilidad de que por lo menos nueve funcionarán? ¿Qué
+suposiciones hizo para responder la pregunta planteada? Rta/ 0,407
+independencia</p></li>
+<li><p>Suponga que p = P(nacimiento de un varón) = 0.5. Una pareja desea
+tener exactamente dos niñas en su familia. Tendrán hijos hasta que esta
+condición se satisfaga.</p></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que la familia tenga x varones?</p></li>
-<li><p>¿Cuál es la probabilidad de que la familia tenga cuatro hijos?</p></li>
-<li><p>¿Cuál es la probabilidad de que la familia tenga cuando mucho cuatro hijos?</p></li>
-<li><p>¿Cuántos varones cree que tenga esta familia? ¿Cuántos hijos esperaría que tenga esta familia?</p></li>
+<li><p>¿Cuál es la probabilidad de que la familia tenga x
+varones?</p></li>
+<li><p>¿Cuál es la probabilidad de que la familia tenga cuatro
+hijos?</p></li>
+<li><p>¿Cuál es la probabilidad de que la familia tenga cuando mucho
+cuatro hijos?</p></li>
+<li><p>¿Cuántos varones cree que tenga esta familia? ¿Cuántos hijos
+esperaría que tenga esta familia?</p></li>
 </ol>
 <ol start="7" style="list-style-type: decimal">
-<li>Un artículo en Los Ángeles Times (3 de diciembre de 1993) reporta que una de cada 200 personas portan el gen defectuoso que provoca cáncer de colon hereditario. En una muestra de 1000 individuos , ¿cuál es la distribución aproximada del número que porta este gen? Use esta distribución para calcular la probabilidad aproximada de que</li>
+<li>Un artículo en Los Ángeles Times (3 de diciembre de 1993) reporta
+que una de cada 200 personas portan el gen defectuoso que provoca cáncer
+de colon hereditario. En una muestra de 1000 individuos , ¿cuál es la
+distribución aproximada del número que porta este gen? Use esta
+distribución para calcular la probabilidad aproximada de que</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>Entre 5 y 8 (inclusive) porten el gen.</p></li>
 <li><p>Por lo menos 8 porten el gen.</p></li>
 </ol>
 <ol start="8" style="list-style-type: decimal">
-<li>De todos los clientes que adquieren abre puertas de cochera automáticas, 75% adquieren el modelo de transmisión por cadena. Sea X =el número entre los siguientes 15 compradores que seleccionan el modelo de transmisión por cadena.</li>
+<li>De todos los clientes que adquieren abre puertas de cochera
+automáticas, 75% adquieren el modelo de transmisión por cadena. Sea X
+=el número entre los siguientes 15 compradores que seleccionan el modelo
+de transmisión por cadena.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>¿Cuál es la función masa de probabilidad de X?</p></li>
 <li><p>Calcule P(X &gt; 10).</p></li>
 <li><p>Calcule P(6 ≤ X ≤ 10).</p></li>
 <li><p>Calcule la media y la desviación estándar</p></li>
-<li><p>Si la tienda actualmente tiene en existencia 10 modelos de transmisión por cadena y 8 modelos de transmisión por flecha, ¿cuál es la probabilidad de que las solicitudes de estos 15 clientes puedan ser satisfechas con las existencias actuales?</p></li>
+<li><p>Si la tienda actualmente tiene en existencia 10 modelos de
+transmisión por cadena y 8 modelos de transmisión por flecha, ¿cuál es
+la probabilidad de que las solicitudes de estos 15 clientes puedan ser
+satisfechas con las existencias actuales?</p></li>
 </ol>
 </div>
 
@@ -584,6 +650,7 @@ div.tocify {
 <hr>
 <p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
 <hr>
+
 
 
 </div>
@@ -613,7 +680,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -622,6 +689,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
