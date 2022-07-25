@@ -385,6 +385,15 @@ aleatoria normal estándar y se denota como z. <span
 class="math display">\[Z \sim N(0,1)\]</span> ### Función de
 distribución de probabilidad acumulada</p>
 <p><span class="math display">\[\Phi(x)=P(Z \leq x)=F(x)\]</span></p>
+<pre class="r"><code>x&lt;-seq(-5,5,0.1)
+hist &lt;- dnorm(x, mean=0, sd=1) 
+plot(x, hist, type=&quot;l&quot;, xlab=&quot;X&quot;, ylab=&quot;Densidad&quot;,
+     ylim=c(0,0.5),xlim=c(-5,5),main=&quot;Grafico de Densidad \
+     Distribución normal estándar&quot;, lty = 1, lwd = 3, yaxs=&quot;i&quot;) 
+polygon(c(x[x &lt;= 1],1), c(dnorm(x[x &lt;= 1]), 0), col=&quot;lightblue&quot;)
+prob &lt;- pnorm(1, 0,1)
+text(0, .1,bquote(&quot;Prob:&quot; ~ .(round(prob, 4))))</code></pre>
+<p><img src="normal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="cómo-estandarizar-una-variable-aleatoria"
 class="section level3">
@@ -392,9 +401,9 @@ class="section level3">
 <p>Suponga x es una variable aleatoria normal con media <span
 class="math inline">\(\mu\)</span> y varianza <span
 class="math inline">\(\sigma^2\)</span>, para estandarizar la variable
-se debe usar la formula: <span
-class="math display">\[z=\frac{x-\mu}{\sigma}\]</span></p>
-<p><img src="imagen/normal.png" width="276" style="display: block; margin: auto;" /></p>
+se debe usar la formula:</p>
+<p><span class="math display">\[z=\frac{x-\mu}{\sigma}\]</span></p>
+<p><img src="imagen/ESTAN.png" width="640" style="display: block; margin: auto;" /></p>
 <p>Cualquier distribución Normal se puede convertir a una distribución
 Normal Estándar</p>
 </div>

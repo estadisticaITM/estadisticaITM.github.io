@@ -56,17 +56,35 @@ knitr::include_graphics("imagen/n2.png")
 ### Distribución normal estándar
 Una variable aleatoria normal con $\mu=0$ y $\sigma=1$, es llamada una variable aleatoria normal estándar y se denota como z.
 $$Z \sim N(0,1)$$
-### Función de distribución de probabilidad acumulada
+###   Función de distribución de probabilidad acumulada
 
 $$\Phi(x)=P(Z \leq x)=F(x)$$
 
+
+```{r}
+
+x<-seq(-5,5,0.1)
+hist <- dnorm(x, mean=0, sd=1) 
+plot(x, hist, type="l", xlab="X", ylab="Densidad",
+     ylim=c(0,0.5),xlim=c(-5,5),main="Grafico de Densidad \
+     Distribución normal estándar", lty = 1, lwd = 3, yaxs="i") 
+polygon(c(x[x <= 1],1), c(dnorm(x[x <= 1]), 0), col="lightblue")
+prob <- pnorm(1, 0,1)
+text(0, .1,bquote("Prob:" ~ .(round(prob, 4))))
+ 
+
+```
+
+
 ### ¿Cómo estandarizar una variable aleatoria?
 Suponga x es una variable aleatoria normal con media $\mu$ y varianza $\sigma^2$, para estandarizar la variable se debe usar la formula:
+
+
 $$z=\frac{x-\mu}{\sigma}$$
 
 
-```{r echo=F, fig.asp=1, fig.align='center'}
-knitr::include_graphics("imagen/normal.png")
+```{r echo=F,fig.align='center', fig.width=12, fig.height=18,fig.asp=6}
+knitr::include_graphics("imagen/ESTAN.png")
 ```
 
 Cualquier distribución Normal se puede convertir a una distribución Normal Estándar
