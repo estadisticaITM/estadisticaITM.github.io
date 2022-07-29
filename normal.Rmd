@@ -87,12 +87,73 @@ $$z=\frac{x-\mu}{\sigma}$$
 knitr::include_graphics("imagen/ESTAN.png")
 ```
 
+
+
+
+lkfdla
+
+
+```{r}
+par(mfrow=c(1,2))
+
+
+library(latex2exp)
+
+x<-seq(-5,15,0.1)
+hist <- dnorm(x, mean=5, sd=3) 
+plot(x, hist, type="l", xlab="X", ylab="Densidad",
+     ylim=c(0,0.2),xlim=c(-5,15),
+     main=TeX('$P(X \\leq 5.6)$'),lty = 1, lwd = 3, yaxs="i") 
+mtext(TeX('$\\mu=5$, $\\sigma=3$'), side = 3)
+polygon(c(x[x <= 5.6],5.6), c(dnorm(x[x <= 5.6],mean=5, sd=3),0), 
+        col="lightblue")
+prob <- pnorm(5.6, mean=5, sd=3)
+text(3.5,0.15,bquote("Prob:" ~ .(round(prob, 4))))
+
+
+hist <- dnorm(x, mean=0, sd=1) 
+plot(x, hist, type="l", xlab="X", ylab="Densidad",
+     ylim=c(0,0.5),xlim=c(-5,5),
+     main=TeX('$P(X \\leq 0.3)$'),lty = 1, lwd = 3, yaxs="i") 
+mtext(TeX('$\\mu=0$, $\\sigma=1$'), side = 3)
+     polygon(c(x[x <= 0.3],0.3), c(dnorm(x[x <= 0.3]), 0), col="lightblue")
+prob <- pnorm(0.3, 0,1)
+text(0, .1,bquote("Prob:" ~ .(round(prob, 4))))
+
+```
+
 Cualquier distribución Normal se puede convertir a una distribución Normal Estándar
 
 
 ### Tabla de la distribución normal
 
+#### Estructura de la normal
 
+
+
+```{r echo=F,fig.align='center', fig.width=12, fig.height=18,fig.asp=6}
+knitr::include_graphics("imagen/tn.png")
+```
+
+
+#### Ejemplo 1
+
+```{r}
+x<-seq(-5,5,0.1)
+hist <- dnorm(x, mean=0, sd=1) 
+plot(x, hist, type="l", xlab="X", ylab="Densidad",
+     ylim=c(0,0.5),xlim=c(-5,5),main="P(Z<=-0.86)", 
+     lty = 1, lwd = 3, yaxs="i") 
+polygon(c(x[x <= -0.86],-0.86), c(dnorm(x[x <= -0.86]), -0.86), col="lightblue")
+prob <- pnorm(-0.86, 0,1)
+text(-2,0.13,bquote("Prob:" ~ .(round(prob, 4))))
+
+```
+
+
+```{r echo=F,fig.align='center', fig.width=12, fig.height=18,fig.asp=6}
+knitr::include_graphics("imagen/tn2.png")
+```
 
 
 ### Teorema del límite central
