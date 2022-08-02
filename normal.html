@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -328,8 +410,8 @@ $(document).ready(function () {
 
 
 <p>Una distribución ampliamente usada y la más importante de toda la
-estadística,diversas poblaciones y fenómenos numéricos son representados
-por esta distribución por ejemplo</p>
+estadística, diversas poblaciones y fenómenos numéricos son
+representados por esta distribución por ejemplo</p>
 <ul>
 <li><p>Errores de medición en experimentos científicos</p></li>
 <li><p>Mediciones antropométricas</p></li>
@@ -347,52 +429,48 @@ y la desviación estándar <span class="math inline">\(sd =
 distancia desde <span class="math inline">\(\mu\)</span> hasta los
 puntos de inflexión de la curva (los puntos donde la curva cambia de
 concavidad de hacia abajo a hacia arriba).</p>
-<iframe src="  https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="800px" data-external="1">
-</iframe>
 <p>La función de distribución de probabilidad está dada por:</p>
-<p><span
-class="math display">\[f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+<p><span class="math display">\[\LARGE
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \]</span> Con <span
 class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> y <span
 class="math inline">\(\sigma&gt;0\)</span></p>
 <p>Si una variable se distribuye normal se denota de la forma:</p>
-<p><span class="math display">\[x \sim N(\mu, \sigma^2)\]</span></p>
+<p><span class="math display">\[\LARGE x \sim N(\mu,
+\sigma^2)\]</span></p>
 <p>Si la distribución de la población de una variable es
 (aproximadamente) normal, entonces</p>
 <ol style="list-style-type: decimal">
-<li>Aproximadamente 68% de los valores están dentro de 1 DE de la
-media.</li>
+<li>Aproximadamente 68% de los valores están dentro de 1 DE (desviación
+estándar) de la media.</li>
 </ol>
-<p><span class="math display">\[P(\mu-\sigma\leq x \leq
+<p><span class="math display">\[\LARGE P(\mu-\sigma\leq x \leq
 \mu+\sigma)=68.27\%\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Aproximadamente 95% de los valores están dentro de 2 DE de la
-media. <span class="math display">\[P(\mu-2\sigma\leq x \leq
+media. <span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
 \mu+2\sigma)=95.45\%\]</span></p></li>
 <li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la
 media.</p></li>
 </ol>
-<p><span class="math display">\[P(\mu-2\sigma\leq x \leq
+<p><span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
 \mu+2\sigma)=99.73\%\]</span></p>
-<p><img src="imagen/n2.png" width="263" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/n2.png" width="500" height="500" /></p>
+<p><strong>Aplicativo de distribuciones de probabilidad
+continuas</strong></p>
+<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
+</iframe>
 </div>
 <div id="distribución-normal-estándar" class="section level3">
 <h3>Distribución normal estándar</h3>
 <p>Una variable aleatoria normal con <span
 class="math inline">\(\mu=0\)</span> y <span
 class="math inline">\(\sigma=1\)</span>, es llamada una variable
-aleatoria normal estándar y se denota como z. <span
-class="math display">\[Z \sim N(0,1)\]</span> ### Función de
-distribución de probabilidad acumulada</p>
-<p><span class="math display">\[\Phi(x)=P(Z \leq x)=F(x)\]</span></p>
-<pre class="r"><code>x&lt;-seq(-5,5,0.1)
-hist &lt;- dnorm(x, mean=0, sd=1) 
-plot(x, hist, type=&quot;l&quot;, xlab=&quot;X&quot;, ylab=&quot;Densidad&quot;,
-     ylim=c(0,0.5),xlim=c(-5,5),main=&quot;Grafico de Densidad \
-     Distribución normal estándar&quot;, lty = 1, lwd = 3, yaxs=&quot;i&quot;) 
-polygon(c(x[x &lt;= 1],1), c(dnorm(x[x &lt;= 1]), 0), col=&quot;lightblue&quot;)
-prob &lt;- pnorm(1, 0,1)
-text(0, .1,bquote(&quot;Prob:&quot; ~ .(round(prob, 4))))</code></pre>
+aleatoria normal estándar y se denota como z.</p>
+<p><span class="math display">\[\LARGE Z \sim N(0,1)\]</span> ###
+Función de distribución de probabilidad acumulada</p>
+<p><span class="math display">\[\LARGE \Phi(x)=P(Z \leq
+x)=F(x)\]</span></p>
 <p><img src="normal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="cómo-estandarizar-una-variable-aleatoria"
@@ -402,13 +480,43 @@ class="section level3">
 class="math inline">\(\mu\)</span> y varianza <span
 class="math inline">\(\sigma^2\)</span>, para estandarizar la variable
 se debe usar la formula:</p>
-<p><span class="math display">\[z=\frac{x-\mu}{\sigma}\]</span></p>
-<p><img src="imagen/ESTAN.png" width="640" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[\LARGE
+z=\frac{x-\mu}{\sigma}\]</span></p>
 <p>Cualquier distribución Normal se puede convertir a una distribución
 Normal Estándar</p>
+<p><strong>Ejemplo 1</strong></p>
+<p>Se desea estandarizar una variable aleatoria con valor x=5.9, media
+<span class="math inline">\(\mu=5\)</span> y desviación estándar <span
+class="math inline">\(sd=0.3\)</span>.</p>
+<p><span class="math display">\[\LARGE
+z=\frac{5.9-5}{0.3}=?\]</span></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="tabla-de-la-distribución-normal" class="section level3">
 <h3>Tabla de la distribución normal</h3>
+<p><strong>Estructura de la normal</strong></p>
+<p><img src="imagen/tn.png" width="500" height="400" /></p>
+<p><strong>Ejemplo 2</strong></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>En la tabla buscar en el lado negativo: <span
+class="math display">\[P(Z\leq -0.86)=0.1949\]</span>
+<img src="imagen/tn2.png" width="500" height="150" /></p>
+<p><strong>Ejemplo 3</strong></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>En la tabla buscar en el lado positivo: <span
+class="math display">\[P(Z\leq 1.37)=0.1949\]</span>
+<img src="imagen/tn3.png" width="500" height="150" /></p>
+<p><strong>Ejemplo 4</strong> La cantidad de café que vierte una máquina
+en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una
+variable aleatoria que tiene una distribución normalcon σ = 0,04
+onzas.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la probabilidad de que el contenido de una de las jarras
+este entre 3.5 y 4.5 onzas?</p></li>
+<li><p>Si sólo el 2% de las jarras va a contener menos de 4 onzas de
+café. ¿Cuál debe ser el contenido medio de estas jarras? Sol: μ = 4,082
+onzas.</p></li>
+</ol>
 </div>
 <div id="teorema-del-límite-central" class="section level3">
 <h3>Teorema del límite central</h3>
@@ -429,6 +537,173 @@ normal</p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/tFlKqPVfVU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+<div id="taller" class="section level3">
+<h3>Taller</h3>
+<ol style="list-style-type: decimal">
+<li>Hallar el área bajo la curva normal tipificada:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Entre Z = 0 y Z = 1,2 Sol: 0,3849</li>
+<li>Entre Z = 0,81 y Z = 1,94 Sol: 0,1828</li>
+<li>A la derecha de Z = -1,28 Sol: 0,8997</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Si “área” se refiere al área bajo la curva normal tipificada, hallar
+el valor o los valores de Z tales que:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>El área entre 0 y Z sea 0,3770 Sol: Z = ±1,16</li>
+<li>El área a la izquierda de Z sea 0,8621 Sol: Z = 1,09</li>
+<li>El área entre -1,5 y Z sea 0,0217 Sol: Z = -1,69 y Z = -1,35</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>El peso medio de 500 estudiantes varones de una universidad es de
+68,5 Kg. y la desviación típica es de 10 Kg. Suponiendo que los pesos
+están distribuidos normalmente, hallar el número de estudiantes que
+pesan:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Entre 48 y 71 kg. Sol: entre 289 y 290 estudiantes.</li>
+<li>Más de 91 kg. Sol: entre 6 y 7 estudiantes.</li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li><p>La media del diámetro interior del conjunto de lavadoras
+producidas por una máquina es 1,275 cm. y la desviación típica de 0,0125
+cm. El propósito para el cual se han diseñado las lavadoras permite una
+tolerancia máxima en el diámetro de 1,26cm. a 1,29 cm., de otra forma
+las lavadoras se consideran defectuosas. Determinar el porcentaje de
+lavadoras defectuosas producidas por la máquina, suponiendo que los
+diámetros están distribuidos normalmente. Sol: 23,02%</p></li>
+<li><p>Si X está distribuida normalmente con media 5 y desviación típica
+2, hallar P (X &gt; 8). Sol: 0,0668</p></li>
+<li><p>Se tiene un programador de entrenamiento diseñado para mejorar la
+calidad de las habilidades de los supervisores de la línea de
+producción. Debido a que el programa es auto administrativo, los
+supervisores requieren un número diferente de horas para terminarlo. Un
+estudio de los participantes anteriores indica que el tiempo medio que
+se lleva completar el programa es de 500 h. y que esta variable
+aleatoria normalmente distribuida tiene una desviación estándar de 100
+h.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál es la probabilidad de que un participante elegido al azar
+requiera más de 500 h. para completar el programa?. Sol: 0,5</p></li>
+<li><p>¿Cuál es la probabilidad de que un candidato elegido al azar se
+tome entre 500 h. y 650 h. para completar el programa de entrenamiento?.
+Sol: 0,4332</p></li>
+<li><p>¿Cuál es la probabilidad de que un candidato elegido al azar se
+tome más de 700 h. en completar el programa?. Sol: 0,0228</p></li>
+<li><p>Suponga que el director del programa de entrenamiento desea saber
+la probabilidad de que un participante escogido al azar requiera entre
+550 y 650 h. para completar el trabajo requerido en el programa. ¿Cuánto
+ha de ser ese valor? Sol: 0,2417</p></li>
+<li><p>¿Cuál es la probabilidad de que un candidato elegido al azar se
+tomará menos de 580 h. para completar el programa? Sol; 0,7881</p></li>
+<li><p>¿Cuál es la probabilidad de que un candidato escogido al azar se
+tome entre 420h.y 570 h. para completar el programa? Sol:
+0,5461</p></li>
+</ol>
+<ol start="7" style="list-style-type: decimal">
+<li>Dada una variable con distribución normal de media μ = 40 y
+desviación estándar σ = 6 encuentre el valor de x que tiene:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>El 34% del área a la izquierda. Sol: 37,54</li>
+<li>El 5% del área a la derecha. Sol: 49,87</li>
+</ol>
+<ol start="8" style="list-style-type: decimal">
+<li>Cierto tipo de pieza para automóvil tiene un promedio de duración de
+tres años, con una desviación estándar de 0,5 años. Suponga que las
+duraciones de las piezas están normalmente distribuidas y encuentre la
+probabilidad de que una pieza determinada tenga un tiempo de duración de
+más de 3,5 años. Sol: 0,1587</li>
+<li>Una fábrica de alimentos empaca productos cuyos pesos están
+normalmente distribuidos con media de 450 gramos y desviación estándar
+de 20 gramos. Encuentre la probabilidad de que un paquete escogido al
+azar pese entre 425 y 486 gramos. Sol: 0,8585</li>
+<li>En un proceso industrial el diámetro de una arandela es muy
+importante. El comprador establece en sus especificaciones que el
+diámetro debe ser de 3,0 ± 0,01 mm. La condición es que no acepta
+ninguna arandela que se salga de estas especificaciones. Se sabe que en
+el proceso el diámetro de las arandelas tienen distribución normal con
+media de 3,0 mm y una desviación estándar de 0,005 mm. ¿Qué porcentaje
+de arandelas será rechazado?. Sol: 4,56%</li>
+<li>Determine el área situada debajo de la curva normal estándar que
+está:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>A la izquierda de z = 0,94 Sol: 0,8264</li>
+<li>A la derecha de z = - 0,65 Sol: 0,7422</li>
+<li>A la derecha de z = 1,76 Sol: 0,0392</li>
+<li>A la izquierda de z = - 0,85 Sol: 0,1977</li>
+<li>Entre z = - 0,87 y z = - 1,28 Sol: 0,0919</li>
+<li>Entre z = - 0,34 y z = 0,62 Sol: 0,3655</li>
+</ol>
+<ol start="12" style="list-style-type: decimal">
+<li>Determine las probabilidades de que una variable aleatoria tome un
+valor entre 12 y 15 dado que tenga una distribución normal con:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>μ = 10 y σ = 5 Sol: 0,1859</li>
+<li>μ = 20 y σ = 10 Sol: 0,0966</li>
+</ol>
+<ol start="13" style="list-style-type: decimal">
+<li>Obtenga Z si:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>El área de la curva normal entre 0 y Z es 0,2019 Sol: Z=±0,53</li>
+<li>El área de la curva normal a la derecha de Z es 0,8810 Sol:
+Z=-1,18</li>
+<li>El área de la curva normal a la derecha de Z es 0,0336 Sol: Z=
+1,83</li>
+<li>El área de la curva normal entre -Z y Z es 0,2662 Sol: Z =±0,34</li>
+</ol>
+<ol start="15" style="list-style-type: decimal">
+<li>Una empresa fabrica juntas teóricas para el trasbordador espacial de
+la NASA. Las cuales se han diseñado para sellar conexiones y piezas en
+el sistema de combustible a fin de impedir fugas. Un tipo de juntas ha
+de tener 5 centímetros de diámetro para que encaje como es debido; no
+puede variar arriba o abajo en más de 0,25 cm. sin provocar una fuga
+peligrosa. La empresa afirma que esta junta tiene 5 cm. de media con una
+desviación típica de 0,17 cm. Si estas cifras son correctas y se supone
+una distribución normal de los diámetros, los funcionarios de la NASA
+desean determinar:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>La proporción de juntas que se adaptarán correctamente. Sol:
+0,8584</li>
+<li>La proporción de juntas que son defectuosas. Sol: 0,1416</li>
+<li>La probabilidad de que cualquier junta tenga un diámetro superior a
+5,3 cm. Sol: 0,0392</li>
+<li>La probabilidad de que una junta tenga un diámetro comprendido entre
+4,9 y 5,2 cm. Sol: 0,6034</li>
+<li>La probabilidad de que una junta elegida al azar tenga un diámetro
+entre 5,3 y 5,5 cm. Sol:0,0376</li>
+</ol>
+<ol start="17" style="list-style-type: decimal">
+<li>Un estudio reciente reveló que el 64% de las mujeres mayores de 18
+años, consideran a la nutrición la prioridad en su vida. Se seleccionó
+una muestra de 60 mujeres. Determinar la probabilidad de que:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>32 o más consideren importante la dieta diaria. Sol: 0,9686</li>
+<li>44 o más estimen que la alimentación es esencial. Sol: 0,0853</li>
+<li>Más de 32 pero menos de 43 consideren importante el aspecto
+dietético. Sol: 0,8084</li>
+<li>Exactamente 44 consideren fundamental la alimentación. Sol:
+0,0348</li>
+</ol>
+<ol start="18" style="list-style-type: decimal">
+<li>Supóngase que X tiene una distribución probabilística binomial, con
+n = 50 y p = 0,25. Calcule:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>La media y la desviación estándar de la variable aleatoria. Sol:
+12,5 y 3,06</li>
+<li>La probabilidad de que X valga 15 o más. Sol: 0,2578</li>
+<li>La probabilidad de que X valga 10 o menos. Sol: 0,2578</li>
+</ol>
+</div>
 
 <br>
 <hr>
@@ -437,6 +712,8 @@ normal</p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -469,6 +746,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
