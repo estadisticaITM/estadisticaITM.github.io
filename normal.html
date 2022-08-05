@@ -409,6 +409,8 @@ div.tocify {
 </div>
 
 
+<div id="distribución-normal" class="section level1">
+<h1>Distribución normal</h1>
 <p>Una distribución ampliamente usada y la más importante de toda la
 estadística, diversas poblaciones y fenómenos numéricos son
 representados por esta distribución por ejemplo</p>
@@ -419,8 +421,8 @@ representados por esta distribución por ejemplo</p>
 <li><p>Mediciones de inteligencia y aptitud</p></li>
 </ul>
 <div id="función-de-distribución-de-probabilidad"
-class="section level3">
-<h3>Función de distribución de probabilidad</h3>
+class="section level2">
+<h2>Función de distribución de probabilidad</h2>
 <p>Esta distribución depende de los parámetros de localización y escala,
 determinados por la media <span class="math inline">\(E(X)=\mu\)</span>
 y la desviación estándar <span class="math inline">\(sd =
@@ -460,7 +462,6 @@ media.</p></li>
 continuas</strong></p>
 <iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
 </iframe>
-</div>
 <div id="distribución-normal-estándar" class="section level3">
 <h3>Distribución normal estándar</h3>
 <p>Una variable aleatoria normal con <span
@@ -502,13 +503,26 @@ z=\frac{5.9-5}{0.3}=?\]</span></p>
 class="math display">\[P(Z\leq -0.86)=0.1949\]</span>
 <img src="imagen/tn2.png" width="500" height="150" /></p>
 <p><strong>Ejemplo 3</strong></p>
-<p><img src="normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><span class="math display">\[P(Z\leq 1.37)=0.9147\]</span>
+<img src="normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>En la tabla buscar en el lado positivo: <span
-class="math display">\[P(Z\leq 1.37)=0.1949\]</span>
+class="math display">\[P(Z\leq 1.37)=0.9147\]</span>
 <img src="imagen/tn3.png" width="500" height="150" /></p>
-<p><strong>Ejemplo 4</strong> La cantidad de café que vierte una máquina
+<p><strong>Ejemplo 4</strong></p>
+<p><img src="imagen/tn4.png" width="500" height="150" /></p>
+<p><strong>Ejemplo 5</strong></p>
+<p><span class="math display">\[P(Z&gt;1.55)=1-P(x\leq
+1.55)=1-0.9334=0.0666\]</span></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="imagen/tn5.png" width="500" height="150" /></p>
+<p><strong>Ejemplo 6</strong></p>
+<p><span class="math display">\[P(-1.88&lt;Z&lt;0.46)=P(z\leq 0.46)-P(z
+\leq -1.88)=0.6772-0.0301\]</span></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="imagen/tn6.png" width="500" height="150" /></p>
+<p><strong>Ejemplo 7</strong> La cantidad de café que vierte una máquina
 en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una
-variable aleatoria que tiene una distribución normalcon σ = 0,04
+variable aleatoria que tiene una distribución normal con σ = 0,04
 onzas.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>¿Cuál es la probabilidad de que el contenido de una de las jarras
@@ -517,6 +531,16 @@ este entre 3.5 y 4.5 onzas?</p></li>
 café. ¿Cuál debe ser el contenido medio de estas jarras? Sol: μ = 4,082
 onzas.</p></li>
 </ol>
+<p><strong>Ejercicios</strong> <span
+class="math display">\[\phi(c)=0.9838\]</span> <span
+class="math display">\[p(0\leq z \leq c)=0.291\]</span> <span
+class="math display">\[p(-c \leq z \leq c)=0.668\]</span></p>
+<p><strong>Ejemplo 8</strong> Suponga que la fuerza que actúa en una
+columna que ayuda a soportar un edificio está normalmente distribuida
+con media de 15 0 kips y desviación estándar de 1 25 kips ¿ Cuál es la
+probabilidad de que la fuerza</p>
+<p>a.sea de más de 18 kips b. esté entre 10 y 12 kips c. Difiera de 15.0
+kips en cuando mucho 1.5 desviaciones estándar</p>
 </div>
 <div id="teorema-del-límite-central" class="section level3">
 <h3>Teorema del límite central</h3>
@@ -612,24 +636,24 @@ desviación estándar σ = 6 encuentre el valor de x que tiene:</li>
 <li>El 5% del área a la derecha. Sol: 49,87</li>
 </ol>
 <ol start="8" style="list-style-type: decimal">
-<li>Cierto tipo de pieza para automóvil tiene un promedio de duración de
-tres años, con una desviación estándar de 0,5 años. Suponga que las
+<li><p>Cierto tipo de pieza para automóvil tiene un promedio de duración
+de tres años, con una desviación estándar de 0,5 años. Suponga que las
 duraciones de las piezas están normalmente distribuidas y encuentre la
 probabilidad de que una pieza determinada tenga un tiempo de duración de
-más de 3,5 años. Sol: 0,1587</li>
-<li>Una fábrica de alimentos empaca productos cuyos pesos están
+más de 3,5 años. Sol: 0,1587</p></li>
+<li><p>Una fábrica de alimentos empaca productos cuyos pesos están
 normalmente distribuidos con media de 450 gramos y desviación estándar
 de 20 gramos. Encuentre la probabilidad de que un paquete escogido al
-azar pese entre 425 y 486 gramos. Sol: 0,8585</li>
-<li>En un proceso industrial el diámetro de una arandela es muy
+azar pese entre 425 y 486 gramos. Sol: 0,8585</p></li>
+<li><p>En un proceso industrial el diámetro de una arandela es muy
 importante. El comprador establece en sus especificaciones que el
 diámetro debe ser de 3,0 ± 0,01 mm. La condición es que no acepta
 ninguna arandela que se salga de estas especificaciones. Se sabe que en
 el proceso el diámetro de las arandelas tienen distribución normal con
 media de 3,0 mm y una desviación estándar de 0,005 mm. ¿Qué porcentaje
-de arandelas será rechazado?. Sol: 4,56%</li>
-<li>Determine el área situada debajo de la curva normal estándar que
-está:</li>
+de arandelas será rechazado?. Sol: 4,56%</p></li>
+<li><p>Determine el área situada debajo de la curva normal estándar que
+está:</p></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>A la izquierda de z = 0,94 Sol: 0,8264</li>
@@ -703,6 +727,8 @@ n = 50 y p = 0,25. Calcule:</li>
 <li>La probabilidad de que X valga 15 o más. Sol: 0,2578</li>
 <li>La probabilidad de que X valga 10 o menos. Sol: 0,2578</li>
 </ol>
+</div>
+</div>
 </div>
 
 <br>

@@ -167,43 +167,8 @@ knitr::include_graphics("imagen/tn2.png")
 
 **Ejemplo 3**
 
-```{r echo=FALSE}
-library(latex2exp)
-x<-seq(-5,5,0.1)
-hist <- dnorm(x, mean=0, sd=1) 
-plot(x, hist, type="l", xlab="X", ylab="Densidad",
-     ylim=c(0,0.5),xlim=c(-5,5),main=TeX('$P(Z\\leq 1.37)$'), 
-     lty = 1, lwd = 3, yaxs="i") 
-polygon(c(x[x <= 1.37],1.37), c(dnorm(x[x <=1.37]),0), col="lightblue")
-prob <- pnorm(1.37, 0,1)
-text(-2,0.3,bquote("Prob:" ~ .(round(prob, 4))))
-```
-
-En la tabla buscar en el lado positivo:
 $$P(Z\leq 1.37)=0.9147$$
-```{r echo=F, out.height=150, out.width=500}
-knitr::include_graphics("imagen/tn3.png")
-```
-
-
-**Ejemplo 4** 
-
-```{r echo=F, out.height=150, out.width=500}
-knitr::include_graphics("imagen/tn4.png")
-```
-
-
-**Ejemplo 5** 
-$$P(Z>1.5)=1-P(x\leq 1.55)=1-0.9334=0.0666$$
-
-```{r}
-
-x <- pnorm(1.55, mean = 0, sd = 1, lower.tail = TRUE) # 0.0668072
-qnorm(x, mean = 0, sd = 1, lower.tail = FALSE) # 1.5
-
-# Equivalente a:
-# x <- 1- pnorm(1.5, mean = 0, sd = 1) 
-# qnorm(1 - x, mean = 0, sd = 1)
+```{r echo=FALSE}
 
 normal_area <- function(mean = 0, sd = 1, lb, ub, acolor = "lightgray", ...) {
   x <- seq(mean - 3 * sd, mean + 3 * sd, length = 100) 
@@ -224,12 +189,33 @@ normal_area <- function(mean = 0, sd = 1, lb, ub, acolor = "lightgray", ...) {
 }
 
 
+normal_area(mean = 0, sd = 1, lb = -3, ub = 1.37,
+            acolor = rgb(0, 0, 1, alpha = 0.5))
+
+```
+
+En la tabla buscar en el lado positivo:
+$$P(Z\leq 1.37)=0.9147$$
+```{r echo=F, out.height=150, out.width=500}
+knitr::include_graphics("imagen/tn3.png")
+```
+
+
+**Ejemplo 4** 
+
+```{r echo=F, out.height=150, out.width=500}
+knitr::include_graphics("imagen/tn4.png")
+```
+
+
+**Ejemplo 5** 
+
+$$P(Z>1.55)=1-P(x\leq 1.55)=1-0.9334=0.0666$$
+
+```{r echo=F}
+
 normal_area(mean = 0, sd = 1, lb = 1.55, lwd = 2,
             acolor = rgb(0, 0, 1, alpha = 0.5))
-arrows(0, 0.1, 1.45, 0, lwd = 2, length = 0.2)
-text(0, 0.13, "1.55", cex = 1.5)
-
-
 ```
 
 
@@ -240,20 +226,37 @@ knitr::include_graphics("imagen/tn5.png")
 
 **Ejemplo 6** 
 
+$$P(-1.88<Z<0.46)=P(z\leq 0.46)-P(z \leq -1.88)=0.6772-0.0301$$
 
-```{r}
-normal_area(mean = 0, sd = 1, lb = -1.8, ub = 0.42,
+```{r echo=F}
+normal_area(mean = 0, sd = 1, lb = -1.88, ub = 0.46,
             acolor = rgb(0, 0, 1, alpha = 0.5))
 text(995, 0.01, "34.13%", srt = 90)
 ```
 
+```{r echo=F, out.height=150, out.width=500}
+knitr::include_graphics("imagen/tn6.png")
+```
 
 **Ejemplo 7** 
-La cantidad de café que vierte una máquina en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una variable aleatoria que tiene una distribución normalcon σ = 0,04 onzas.
+La cantidad de café que vierte una máquina en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una variable aleatoria que tiene una distribución normal con σ = 0,04 onzas.
 
 a. ¿Cuál es la probabilidad de que el contenido de una de las jarras este entre 3.5 y 4.5 onzas?
 
 b. Si sólo el 2% de las jarras va a contener menos de 4 onzas de café. ¿Cuál debe ser el contenido medio de estas jarras? Sol: μ = 4,082 onzas.
+
+**Ejercicios** 
+$$\phi(c)=0.9838$$
+$$p(0\leq z \leq c)=0.291$$
+$$p(-c \leq z \leq c)=0.668$$
+
+
+**Ejemplo 8** 
+Suponga que la fuerza que actúa en una columna que ayuda a soportar un edificio está normalmente distribuida con media de 15 0 kips y desviación estándar de 1 25 kips ¿ Cuál es la probabilidad de que la fuerza
+
+a.sea de más de 18 kips
+b. esté entre 10 y 12 kips
+c. Difiera de 15.0 kips en cuando mucho 1.5 desviaciones estándar
 
 ### Teorema del límite central
 
@@ -322,11 +325,9 @@ duración de más de 3,5 años. Sol: 0,1587
 9) Una fábrica de alimentos empaca productos cuyos pesos están normalmente distribuidos
 con media de 450 gramos y desviación estándar de 20 gramos. Encuentre la probabilidad de
 que un paquete escogido al azar pese entre 425 y 486 gramos. Sol: 0,8585
-10) En un proceso industrial el diámetro de una arandela es muy importante. El comprador
-establece en sus especificaciones que el diámetro debe ser de 3,0 ± 0,01 mm. La condición
-es que no acepta ninguna arandela que se salga de estas especificaciones. Se sabe que en el
-proceso el diámetro de las arandelas tienen distribución normal con media de 3,0 mm y una
-desviación estándar de 0,005 mm. ¿Qué porcentaje de arandelas será rechazado?. Sol: 4,56%
+
+10) En un proceso industrial el diámetro de una arandela es muy importante. El comprador establece en sus especificaciones que el diámetro debe ser de 3,0 ± 0,01 mm. La condición es que no acepta ninguna arandela que se salga de estas especificaciones. Se sabe que en el proceso el diámetro de las arandelas tienen distribución normal con media de 3,0 mm y una desviación estándar de 0,005 mm. ¿Qué porcentaje de arandelas será rechazado?. Sol: 4,56%
+
 11) Determine el área situada debajo de la curva normal estándar que está:
 a) A la izquierda de z = 0,94 Sol: 0,8264
 b) A la derecha de z = - 0,65 Sol: 0,7422
@@ -334,8 +335,8 @@ c) A la derecha de z = 1,76 Sol: 0,0392
 d) A la izquierda de z = - 0,85 Sol: 0,1977
 e) Entre z = - 0,87 y z = - 1,28 Sol: 0,0919
 f) Entre z = - 0,34 y z = 0,62 Sol: 0,3655
-12) Determine las probabilidades de que una variable aleatoria tome un valor entre 12 y 15
-dado que tenga una distribución normal con:
+
+12) Determine las probabilidades de que una variable aleatoria tome un valor entre 12 y 15 dado que tenga una distribución normal con:
 a) μ = 10 y σ = 5 Sol: 0,1859
 b) μ = 20 y σ = 10 Sol: 0,0966
 
@@ -356,11 +357,12 @@ b) La proporción de juntas que son defectuosas. Sol: 0,1416
 c) La probabilidad de que cualquier junta tenga un diámetro superior a 5,3 cm. Sol: 0,0392
 d) La probabilidad de que una junta tenga un diámetro comprendido entre 4,9 y 5,2 cm.
  Sol: 0,6034
-e) La probabilidad de que una junta elegida al azar tenga un diámetro entre 5,3 y 5,5 cm.
- Sol:0,0376
+e) La probabilidad de que una junta elegida al azar tenga un diámetro entre 5,3 y 5,5 cm.  Sol:0,0376
+
+
 17) Un estudio reciente reveló que el 64% de las mujeres mayores de 18 años, consideran a
-la nutrición la prioridad en su vida. Se seleccionó una muestra de 60 mujeres. Determinar la
-probabilidad de que:
+la nutrición la prioridad en su vida. Se seleccionó una muestra de 60 mujeres. Determinar la probabilidad de que:
+
 a) 32 o más consideren importante la dieta diaria. Sol: 0,9686
 b) 44 o más estimen que la alimentación es esencial. Sol: 0,0853
 c) Más de 32 pero menos de 43 consideren importante el aspecto dietético. Sol: 0,8084
