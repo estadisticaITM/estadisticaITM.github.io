@@ -114,7 +114,7 @@ x<-seq(-5,15,0.1)
 hist <- dnorm(x, mean=5, sd=3) 
 plot(x, hist, type="l", xlab="X", ylab="Densidad",
      ylim=c(0,0.2),xlim=c(-5,15),
-     main=TeX('$P(X \\leq 5.9)$'),lty = 1, lwd = 3, yaxs="i") 
+     main=expression(paste(P(X <= 5.9))),lty = 1, lwd = 3, yaxs="i") 
 mtext(TeX('$\\mu=5$, $\\sigma=3$'), side = 3)
 polygon(c(x[x <= 5.9],5.9), c(dnorm(x[x <= 5.9],mean=5, sd=3),0), 
         col="lightblue")
@@ -125,7 +125,7 @@ text(3.5,0.15,bquote("Prob:" ~ .(round(prob, 4))))
 hist <- dnorm(x, mean=0, sd=1) 
 plot(x, hist, type="l", xlab="X", ylab="Densidad",
      ylim=c(0,0.5),xlim=c(-5,5),
-     main=TeX('$P(X \\leq 0.3)$'),lty = 1, lwd = 3, yaxs="i") 
+      main=expression(paste(P(z <= 0.3))),lty = 1, lwd = 3, yaxs="i")
 mtext(TeX('$\\mu=0$, $\\sigma=1$'), side = 3)
      polygon(c(x[x <= 0.3],0.3), c(dnorm(x[x <= 0.3]), 0), col="lightblue")
 prob <- pnorm(0.3, 0,1)
@@ -150,9 +150,9 @@ library(latex2exp)
 x<-seq(-5,5,0.1)
 hist <- dnorm(x, mean=0, sd=1) 
 plot(x, hist, type="l", xlab="X", ylab="Densidad",
-     ylim=c(0,0.5),xlim=c(-5,5),main=TeX('$P(Z\\leq-0.86)$'), 
-     lty = 1, lwd = 3, yaxs="i") 
-polygon(c(x[x <= -0.86],-0.86), c(dnorm(x[x <= -0.86]), -0.86), col="lightblue")
+     ylim=c(0,0.5),xlim=c(-5,5),
+     main=expression(paste(P(z <= -0.86))),lty = 1, lwd = 3, yaxs="i")
+    polygon(c(x[x <= -0.86],-0.86), c(dnorm(x[x <= -0.86]), -0.86), col="lightblue")
 prob <- pnorm(-0.86, 0,1)
 text(-2,0.13,bquote("Prob:" ~ .(round(prob, 4))))
 ```
@@ -210,7 +210,7 @@ knitr::include_graphics("imagen/tn4.png")
 
 **Ejemplo 5** 
 
-$$P(Z>1.55)=1-P(x\leq 1.55)=1-0.9334=0.0666$$
+$$P(Z>1.55)=1-P(z\leq 1.55)=1-0.9334=0.0666$$
 
 ```{r echo=F}
 
@@ -234,7 +234,7 @@ normal_area(mean = 0, sd = 1, lb = -1.88, ub = 0.46,
 text(995, 0.01, "34.13%", srt = 90)
 ```
 
-```{r echo=F, out.height=150, out.width=500}
+```{r echo=F, out.height=200, out.width=500}
 knitr::include_graphics("imagen/tn6.png")
 ```
 

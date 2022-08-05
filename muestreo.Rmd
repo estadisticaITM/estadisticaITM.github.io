@@ -1,0 +1,132 @@
+---
+title: "Muestreo"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+   
+---
+
+
+```{r echo=F, out.height=500, out.width=500 }
+knitr::include_graphics("imagen/muestreo.png")
+```
+
+
+**Población:** conjunto de elementos sobre los que queremos hacer afirmaciones.
+
+**Muestra:** subconjunto de la población que se extrae para ser estudiado
+
+
+**Inferencia estadística**
+
+Obtener conclusiones de la población a partir de la muestra, esto ocurre cuando es imposible censar toda la población. 
+
+El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
+
+
+**Por qué una muestra**
+Imposibilidad o costo excesivo de realizar un censo en que se mide toda la población
+
+## Objetivos del muestreo 
+
+- Describir la muestra: Estadística Descriptiva
+
+- Obtener conclusiones de la población a partir de la muestra: Inferencia Estadística.
+
+**Parámetro:** número derivado del estudio de una variable estadística de toda una población.
+
+**Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
+
+
+**Cómo elegir el tamaño de la muestra**
+
+Algunos Criterios Generales son;
+¿Qué se va a medir?
+¿Qué se quiere determinar? 
+Nivel máximo de error admisible 
+Nivel de confianza con qué se quiere obtener la estimación del tamaño muestral
+Variabilidad de las características a medir
+
+ 
+Se dice que las variables aleatorias X1, X2, . . . , Xn forman una muestra aleatoria simple de tamaño n si:
+
+1. Las Xi son variables aleatorias independientes.
+2. Cada Xi tiene la misma distribución de probabilidad, en la mayoría de veces se asume normal
+3. Cualquier función de las variables aleatorias que forman una muestra se llaman estadístico .
+ 
+Es decir las Xi son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
+
+## Tipos de muestreo
+
+```{r echo=F, out.height=200, out.width=500}
+knitr::include_graphics("imagen/mues.png")
+```
+
+
+### Muestreo No-Aleatorizado (o No-Probabilista) 
+ 1.   Se basa en el juicio personal del investigador. 
+2.   Puede generar buenas muestras pero no permite una evaluación estadística de confianza. 
+3.      Frecuentemente usado como primera aproximación 
+
+### Muestreo Aleatorizado (o Probabilista ) 
+Se controla la probabilidad de seleccionar un determinado individuo 
+Permite estudiar objetivamente la confianza de las generalizaciones hacia la población objetivo. 
+
+
+
+
+### Muestreo no-Aleatorizado o no-Probabilístico 
+ Muestreo por convenciencia  
+ Muestreo por juicio 
+ Muestreo por cuota 
+ Muestreo tipo “bola de nieve” (snowball) 
+
+### Muestreo Aleatorizado o Probabilístico: 
+Muestreo aleatorio simple 
+Muestreo sistemático 
+Muestreo estratificado 
+Muestreo por grupos
+
+### Muestreo por Conveniencia o no probabilista 
+
+Los elementos de la muestra se eligen por estar en el lugar o en el momento adecuado para la investigación. 
+El criterio de selección (lugar, tiempo y demás) es completamente dependiente del investigador, sin reglas predeterminadas. 
+
+Ejemplos: 
+- Encuestas en la calle
+- Encuestas a estudiantes 
+- Encuestas web
+
+
+### Muestreo por juicio
+
+Se selecciona de acuerdo a alguna característica especifica del encuestado juzgada por el encuestador 
+- Muestreo por conveniencia 
+- Clientes / Consumidores de un cierto tipo
+- Expertos en un tema o aspecto de la organización 
+- Personajes “líderes de opinión”
+
+
+
+```{r echo=F, out.height=200, out.width=500}
+knitr::include_graphics("imagen/mj.png")
+```
+
+### Muestreo por cuota
+
+Separa la población de acuerdo a variables de control: edad, sexo, raza, nivel socio-económico  A cada subgrupo se le asigna una proporción de muestreo, típicamente un % de la población
+
+
+```{r echo=F, out.height=200, out.width=500}
+knitr::include_graphics("imagen/mc.png")
+```
+
+###  Muestreo bola de nieve
+
+Se selecciona un grupo inicial Los nuevos encuestados se seleccionan en base a las referencias de los encuestados anteriores, explotando sus “redes sociales” .
+Muy utilizado en ciencias sociales, cuando la característica a estudiar es rara o escasa y cuando es difícil conseguir encuestados.
+
+```{r echo=F, out.height=200, out.width=500}
+knitr::include_graphics("imagen/mb.png")
+```
