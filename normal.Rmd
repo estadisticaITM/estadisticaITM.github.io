@@ -174,7 +174,7 @@ hist <- dnorm(x, mean=0, sd=1)
 plot(x, hist, type="l", xlab="X", ylab="Densidad",
      ylim=c(0,0.5),xlim=c(-5,5),main=TeX('$P(Z\\leq 1.37)$'), 
      lty = 1, lwd = 3, yaxs="i") 
-polygon(c(x[x <= 1.37],1.37), c(dnorm(x[x <=1.37]),1.37), col="lightblue")
+polygon(c(x[x <= 1.37],1.37), c(dnorm(x[x <=1.37]),0), col="lightblue")
 prob <- pnorm(1.37, 0,1)
 text(-2,0.3,bquote("Prob:" ~ .(round(prob, 4))))
 ```
@@ -194,6 +194,61 @@ knitr::include_graphics("imagen/tn4.png")
 
 
 **Ejemplo 5** 
+$$P(Z>1.5)=1-P(x\leq 1.55)=1-0.9334=0.0666$$
+
+```{r}
+
+x <- pnorm(1.55, mean = 0, sd = 1, lower.tail = TRUE) # 0.0668072
+qnorm(x, mean = 0, sd = 1, lower.tail = FALSE) # 1.5
+
+# Equivalente a:
+# x <- 1- pnorm(1.5, mean = 0, sd = 1) 
+# qnorm(1 - x, mean = 0, sd = 1)
+
+normal_area <- function(mean = 0, sd = 1, lb, ub, acolor = "lightgray", ...) {
+  x <- seq(mean - 3 * sd, mean + 3 * sd, length = 100) 
+  
+  if (missing(lb)) {
+    lb <- min(x)
+  }
+  if (missing(ub)) {
+    ub <- max(x)
+  }
+  
+  x2 <- seq(lb, ub, length = 100)    
+  plot(x, dnorm(x, mean, sd), type = "n", ylab = "")
+  
+  y <- dnorm(x2, mean, sd)
+  polygon(c(lb, x2, ub), c(0, y, 0), col = acolor)
+  lines(x, dnorm(x, mean, sd), type = "l", ...)
+}
+
+
+normal_area(mean = 0, sd = 1, lb = 1.55, lwd = 2,
+            acolor = rgb(0, 0, 1, alpha = 0.5))
+arrows(0, 0.1, 1.45, 0, lwd = 2, length = 0.2)
+text(0, 0.13, "1.55", cex = 1.5)
+
+
+```
+
+
+
+```{r echo=F, out.height=150, out.width=500}
+knitr::include_graphics("imagen/tn5.png")
+```
+
+**Ejemplo 6** 
+
+
+```{r}
+normal_area(mean = 0, sd = 1, lb = -1.8, ub = 0.42,
+            acolor = rgb(0, 0, 1, alpha = 0.5))
+text(995, 0.01, "34.13%", srt = 90)
+```
+
+
+**Ejemplo 7** 
 La cantidad de café que vierte una máquina en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una variable aleatoria que tiene una distribución normalcon σ = 0,04 onzas.
 
 a. ¿Cuál es la probabilidad de que el contenido de una de las jarras este entre 3.5 y 4.5 onzas?
