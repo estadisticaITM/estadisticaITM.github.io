@@ -409,7 +409,7 @@ div.tocify {
 </div>
 
 
-<p><img src="imagen/muestreo.png" width="500" height="500" /></p>
+<p><img src="imagen/muestreo.png" width="350" height="300" /></p>
 <p><strong>Población:</strong> conjunto de elementos sobre los que
 queremos hacer afirmaciones.</p>
 <p><strong>Muestra:</strong> subconjunto de la población que se extrae
@@ -451,40 +451,23 @@ se llaman estadístico .</li>
 <p>Es decir las Xi son independientes e idénticamente distribuidas (iid)
 <span class="math display">\[𝑋_𝑖\sim  N(0,\sigma ^2)\]</span></p>
 </div>
-<div id="tipos-de-muestreo" class="section level2">
-<h2>Tipos de muestreo</h2>
-<p><img src="imagen/mues.png" width="500" height="200" /></p>
-<div id="muestreo-no-aleatorizado-o-no-probabilista"
-class="section level3">
-<h3>Muestreo No-Aleatorizado (o No-Probabilista)</h3>
-<ol style="list-style-type: decimal">
-<li>Se basa en el juicio personal del investigador.</li>
-<li>Puede generar buenas muestras pero no permite una evaluación
-estadística de confianza.</li>
-<li><pre><code> Frecuentemente usado como primera aproximación </code></pre></li>
-</ol>
-</div>
-<div id="muestreo-aleatorizado-o-probabilista" class="section level3">
-<h3>Muestreo Aleatorizado (o Probabilista )</h3>
-<p>Se controla la probabilidad de seleccionar un determinado individuo
-Permite estudiar objetivamente la confianza de las generalizaciones
-hacia la población objetivo.</p>
-</div>
-<div id="muestreo-no-aleatorizado-o-no-probabilístico"
-class="section level3">
-<h3>Muestreo no-Aleatorizado o no-Probabilístico</h3>
-<p>Muestreo por convenciencia<br />
-Muestreo por juicio Muestreo por cuota Muestreo tipo “bola de nieve”
-(snowball)</p>
-</div>
-<div id="muestreo-aleatorizado-o-probabilístico" class="section level3">
-<h3>Muestreo Aleatorizado o Probabilístico:</h3>
-<p>Muestreo aleatorio simple Muestreo sistemático Muestreo estratificado
-Muestreo por grupos</p>
-</div>
-<div id="muestreo-por-conveniencia-o-no-probabilista"
-class="section level3">
-<h3>Muestreo por Conveniencia o no probabilista</h3>
+<div id="tipos-de-muestreo" class="section level1">
+<h1>Tipos de muestreo</h1>
+<p><img src="imagen/mues.png" width="500" height="500" /></p>
+<div id="muestreo-no-probabilístico" class="section level2">
+<h2>Muestreo no-Probabilístico</h2>
+<p>1.Se basa en el juicio personal del investigador. 2.Puede generar
+buenas muestras pero no permite una evaluación estadística de confianza.
+3. Frecuentemente usado como primera aproximación</p>
+<p>Algunos de este tipo de muestreo son:</p>
+<ul>
+<li>Muestreo por convenciencia<br />
+</li>
+<li>Muestreo por cuotas</li>
+<li>Muestreo tipo “bola de nieve” (snowball)</li>
+</ul>
+<div id="muestreo-por-conveniencia" class="section level3">
+<h3>Muestreo por Conveniencia</h3>
 <p>Los elementos de la muestra se eligen por estar en el lugar o en el
 momento adecuado para la investigación. El criterio de selección (lugar,
 tiempo y demás) es completamente dependiente del investigador, sin
@@ -492,29 +475,57 @@ reglas predeterminadas.</p>
 <p>Ejemplos: - Encuestas en la calle - Encuestas a estudiantes -
 Encuestas web</p>
 </div>
-<div id="muestreo-por-juicio" class="section level3">
-<h3>Muestreo por juicio</h3>
-<p>Se selecciona de acuerdo a alguna característica especifica del
-encuestado juzgada por el encuestador - Muestreo por conveniencia -
-Clientes / Consumidores de un cierto tipo - Expertos en un tema o
-aspecto de la organización - Personajes “líderes de opinión”</p>
-<p><img src="imagen/mj.png" width="500" height="200" /></p>
-</div>
-<div id="muestreo-por-cuota" class="section level3">
-<h3>Muestreo por cuota</h3>
-<p>Separa la población de acuerdo a variables de control: edad, sexo,
-raza, nivel socio-económico A cada subgrupo se le asigna una proporción
-de muestreo, típicamente un % de la población</p>
-<p><img src="imagen/mc.png" width="500" height="200" /></p>
+<div id="muestreo-por-cuotas" class="section level3">
+<h3>Muestreo por cuotas</h3>
+<p>Permite dividir la población en grupos o estratos que comparten
+características como el sexo, la edad, los estudios, etc., y de ellos se
+selecciona una muestra proporcional y representativa.</p>
+<p>Por ejemplo: en una empresa grande quieren saber cuáles son los
+hobbies preferidos por sus empleados. Como son tantas personas, deciden
+dividirlas en dos estratos, por género: hombres y mujeres.</p>
+<p>Las mujeres representan el 40 % de los empleados y los hombres el 60
+%, por lo tanto, el investigador decide que en la muestra se incluirán
+400 mujeres y 600 hombres para tener un total de 1000 individuos en el
+estudio. Así, asegura que la participación de cada género es
+proporcional a la población que representan. A esos porcentajes elegidos
+se les llama cuotas.</p>
+<p><img src="imagen/mj.png" width="500" height="300" /></p>
+<p><img src="imagen/mc.png" width="500" height="300" /></p>
 </div>
 <div id="muestreo-bola-de-nieve" class="section level3">
 <h3>Muestreo bola de nieve</h3>
-<p>Se selecciona un grupo inicial Los nuevos encuestados se seleccionan
+<p>Se selecciona un grupo inicial, los nuevos encuestados se seleccionan
 en base a las referencias de los encuestados anteriores, explotando sus
-“redes sociales” . Muy utilizado en ciencias sociales, cuando la
-característica a estudiar es rara o escasa y cuando es difícil conseguir
-encuestados.</p>
-<p><img src="imagen/mb.png" width="500" height="200" /></p>
+“redes sociales”,es útil si el tamaño de la muestra es pequeño y no está
+disponible fácilmente.esta técnica ayuda a los investigadores a
+encontrar muestras cuando son difíciles de localizar.</p>
+<p>Muy utilizado en ciencias sociales, cuando la característica a
+estudiar es rara o escasa y cuando es difícil conseguir encuestados.</p>
+<p>Por ejemplo: si eres un investigador y estás buscando personas con
+cierta enfermedad, lo que haces es contactar a uno o dos individuos que
+presenten dicha condición médica y que ellos mismos sean quienes te
+recomienden a otros individuos con una historia médica parecida.</p>
+<p><img src="imagen/mb.png" width="500" height="300" /></p>
+</div>
+</div>
+<div id="muestreo-probabilístico" class="section level2">
+<h2>Muestreo probabilístico</h2>
+<p>Se controla la probabilidad de seleccionar un determinado individuo,
+permite estudiar objetivamente la confianza de las generalizaciones
+hacia la población objetivo.</p>
+<p>Algunos de este tipo de muestreo son:</p>
+<div id="muestreo-aleatorio-simple" class="section level3">
+<h3>Muestreo aleatorio simple</h3>
+<p>Cada elemento del marco muestral tiene la misma probabilidad de ser
+seleccionado y cada elemento se selecciona de manera independiente de
+los otros.</p>
+<p>Con reemplazo: se pueden repetir elementos Sin reemplazo: no se
+pueden repetir elementos Se indexa a la población y luego se elige un
+índice de manera aleatoria hasta completar el tamaño deseado de la
+muestra.</p>
+<p>Muestreo sistemático Muestreo estratificado Muestreo por grupos</p>
+<p><img src="imagen/bingo.png" width="500" height="300" /></p>
+</div>
 </div>
 </div>
 

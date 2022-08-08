@@ -8,7 +8,7 @@ output:
 ---
 
 
-```{r echo=F, out.height=500, out.width=500 }
+```{r echo=F, out.height=300, out.width=350 }
 knitr::include_graphics("imagen/muestreo.png")
 ```
 
@@ -57,76 +57,89 @@ Se dice que las variables aleatorias X1, X2, . . . , Xn forman una muestra aleat
  
 Es decir las Xi son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
 
-## Tipos de muestreo
+# Tipos de muestreo
 
-```{r echo=F, out.height=200, out.width=500}
+```{r echo=F, out.height=500, out.width=500}
 knitr::include_graphics("imagen/mues.png")
 ```
 
 
-### Muestreo No-Aleatorizado (o No-Probabilista) 
- 1.   Se basa en el juicio personal del investigador. 
-2.   Puede generar buenas muestras pero no permite una evaluación estadística de confianza. 
-3.      Frecuentemente usado como primera aproximación 
+## Muestreo no-Probabilístico
 
-### Muestreo Aleatorizado (o Probabilista ) 
-Se controla la probabilidad de seleccionar un determinado individuo 
-Permite estudiar objetivamente la confianza de las generalizaciones hacia la población objetivo. 
+1.Se basa en el juicio personal del investigador. 
+2.Puede generar buenas muestras pero no permite una evaluación estadística de confianza. 
+3. Frecuentemente usado como primera aproximación 
 
+Algunos de este tipo de muestreo son:
 
+- Muestreo por convenciencia  
+- Muestreo por cuotas 
+- Muestreo tipo “bola de nieve” (snowball) 
 
+### Muestreo por Conveniencia 
 
-### Muestreo no-Aleatorizado o no-Probabilístico 
- Muestreo por convenciencia  
- Muestreo por juicio 
- Muestreo por cuota 
- Muestreo tipo “bola de nieve” (snowball) 
-
-### Muestreo Aleatorizado o Probabilístico: 
-Muestreo aleatorio simple 
-Muestreo sistemático 
-Muestreo estratificado 
-Muestreo por grupos
-
-### Muestreo por Conveniencia o no probabilista 
-
-Los elementos de la muestra se eligen por estar en el lugar o en el momento adecuado para la investigación. 
-El criterio de selección (lugar, tiempo y demás) es completamente dependiente del investigador, sin reglas predeterminadas. 
+Los elementos de la muestra se eligen por estar en el lugar o en el momento adecuado para la investigación. El criterio de selección (lugar, tiempo y demás) es completamente dependiente del investigador, sin reglas predeterminadas. 
 
 Ejemplos: 
 - Encuestas en la calle
 - Encuestas a estudiantes 
 - Encuestas web
 
+### Muestreo por cuotas
 
-### Muestreo por juicio
+Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
 
-Se selecciona de acuerdo a alguna característica especifica del encuestado juzgada por el encuestador 
-- Muestreo por conveniencia 
-- Clientes / Consumidores de un cierto tipo
-- Expertos en un tema o aspecto de la organización 
-- Personajes “líderes de opinión”
+Por ejemplo: en una empresa grande quieren saber cuáles son los hobbies preferidos por sus empleados. Como son tantas personas, deciden dividirlas en dos estratos, por género: hombres y mujeres.
 
+Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo tanto, el investigador decide que en la muestra se incluirán 400 mujeres y 600 hombres para tener un total de 1000 individuos en el estudio. Así, asegura que la participación de cada género es proporcional a la población que representan. A esos porcentajes elegidos se les llama cuotas.
 
 
-```{r echo=F, out.height=200, out.width=500}
+
+```{r echo=F, out.height=300, out.width=500}
 knitr::include_graphics("imagen/mj.png")
 ```
 
-### Muestreo por cuota
 
-Separa la población de acuerdo a variables de control: edad, sexo, raza, nivel socio-económico  A cada subgrupo se le asigna una proporción de muestreo, típicamente un % de la población
-
-
-```{r echo=F, out.height=200, out.width=500}
+```{r echo=F, out.height=300, out.width=500}
 knitr::include_graphics("imagen/mc.png")
 ```
 
 ###  Muestreo bola de nieve
 
-Se selecciona un grupo inicial Los nuevos encuestados se seleccionan en base a las referencias de los encuestados anteriores, explotando sus “redes sociales” .
+Se selecciona un grupo inicial, los nuevos encuestados se seleccionan en base a las referencias de los encuestados anteriores, explotando sus “redes sociales”,es útil si el tamaño de la muestra es pequeño y no está disponible fácilmente.esta técnica ayuda a los investigadores a encontrar muestras cuando son difíciles de localizar.  
+
 Muy utilizado en ciencias sociales, cuando la característica a estudiar es rara o escasa y cuando es difícil conseguir encuestados.
 
-```{r echo=F, out.height=200, out.width=500}
+Por ejemplo: si eres un investigador y estás buscando personas con cierta enfermedad, lo que haces es contactar a uno o dos individuos que presenten dicha condición médica y que ellos mismos sean quienes te recomienden a otros individuos con una historia médica parecida.
+
+
+
+```{r echo=F, out.height=300, out.width=500}
 knitr::include_graphics("imagen/mb.png")
 ```
+
+
+## Muestreo probabilístico
+
+Se controla la probabilidad de seleccionar un determinado individuo, permite estudiar objetivamente la confianza de las generalizaciones hacia la población objetivo. 
+
+
+Algunos de este tipo de muestreo son:
+
+
+### Muestreo aleatorio simple 
+Cada elemento del marco muestral tiene la misma probabilidad de ser seleccionado y cada elemento se selecciona de manera independiente de los otros.
+
+Con reemplazo: se pueden repetir elementos
+Sin reemplazo: no se pueden repetir elementos
+Se indexa a la población y luego se elige un índice de manera aleatoria hasta completar el tamaño deseado de la muestra.
+
+Muestreo sistemático 
+Muestreo estratificado 
+Muestreo por grupos
+
+```{r echo=F, out.height=300, out.width=500}
+knitr::include_graphics("imagen/bingo.png")
+```
+
+
