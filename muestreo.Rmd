@@ -12,20 +12,25 @@ output:
 knitr::include_graphics("imagen/muestreo.png")
 ```
 
+## Definiciones
 
 **Población:** conjunto de elementos sobre los que queremos hacer afirmaciones.
 
 **Muestra:** subconjunto de la población que se extrae para ser estudiado
 
+**Parámetro:** número derivado del estudio de una variable estadística de toda una población.
+
+**Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
 
 **Inferencia estadística**
 
-Obtener conclusiones de la población a partir de la muestra, esto ocurre cuando es imposible censar toda la población. 
+Es una rama de la estadística por medio de la cual se obtienen conclusiones de la población a partir de la muestra, esto ocurre cuando es imposible censar toda la población. 
 
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
 
 
 **Por qué una muestra**
+
 Imposibilidad o costo excesivo de realizar un censo en que se mide toda la población
 
 ## Objetivos del muestreo 
@@ -34,32 +39,37 @@ Imposibilidad o costo excesivo de realizar un censo en que se mide toda la pobla
 
 - Obtener conclusiones de la población a partir de la muestra: Inferencia Estadística.
 
-**Parámetro:** número derivado del estudio de una variable estadística de toda una población.
 
-**Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
 
 
 **Cómo elegir el tamaño de la muestra**
 
 Algunos Criterios Generales son;
-¿Qué se va a medir?
-¿Qué se quiere determinar? 
-Nivel máximo de error admisible 
-Nivel de confianza con qué se quiere obtener la estimación del tamaño muestral
-Variabilidad de las características a medir
+
+- ¿Qué se va a medir?
+
+- ¿Qué se quiere determinar? 
+
+- Nivel máximo de error admisible.
+
+- Nivel de confianza con qué se quiere obtener la estimación del tamaño muestral
+
+- Variabilidad de las características a medir
 
  
-Se dice que las variables aleatorias X1, X2, . . . , Xn forman una muestra aleatoria simple de tamaño n si:
+Se dice que las variables aleatorias $X_1, X_2, . . . , X_n$ forman una muestra aleatoria simple de tamaño n si:
 
-1. Las Xi son variables aleatorias independientes.
-2. Cada Xi tiene la misma distribución de probabilidad, en la mayoría de veces se asume normal
+1. Las $X_i$ son variables aleatorias independientes.
+
+2. Cada $X_i$ tiene la misma distribución de probabilidad, en la mayoría de veces se asume normal.
+
 3. Cualquier función de las variables aleatorias que forman una muestra se llaman estadístico .
  
-Es decir las Xi son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
+Es decir las $X_i$ son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
 
 # Tipos de muestreo
 
-```{r echo=F, out.height=500, out.width=500}
+```{r echo=F, out.height=350, out.width=500}
 knitr::include_graphics("imagen/mues.png")
 ```
 
@@ -67,12 +77,14 @@ knitr::include_graphics("imagen/mues.png")
 ## Muestreo no-Probabilístico
 
 1.Se basa en el juicio personal del investigador. 
+
 2.Puede generar buenas muestras pero no permite una evaluación estadística de confianza. 
+
 3. Frecuentemente usado como primera aproximación 
 
 Algunos de este tipo de muestreo son:
 
-- Muestreo por convenciencia  
+- Muestreo por conveniencia  
 - Muestreo por cuotas 
 - Muestreo tipo “bola de nieve” (snowball) 
 
@@ -81,17 +93,12 @@ Algunos de este tipo de muestreo son:
 Los elementos de la muestra se eligen por estar en el lugar o en el momento adecuado para la investigación. El criterio de selección (lugar, tiempo y demás) es completamente dependiente del investigador, sin reglas predeterminadas. 
 
 Ejemplos: 
+
 - Encuestas en la calle
+
 - Encuestas a estudiantes 
+
 - Encuestas web
-
-### Muestreo por cuotas
-
-Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
-
-Por ejemplo: en una empresa grande quieren saber cuáles son los hobbies preferidos por sus empleados. Como son tantas personas, deciden dividirlas en dos estratos, por género: hombres y mujeres.
-
-Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo tanto, el investigador decide que en la muestra se incluirán 400 mujeres y 600 hombres para tener un total de 1000 individuos en el estudio. Así, asegura que la participación de cada género es proporcional a la población que representan. A esos porcentajes elegidos se les llama cuotas.
 
 
 
@@ -100,7 +107,17 @@ knitr::include_graphics("imagen/mj.png")
 ```
 
 
-```{r echo=F, out.height=300, out.width=500}
+### Muestreo por cuotas
+
+Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
+
+Por ejemplo: en una empresa grande quieren saber cuáles son los hobbies preferidos por sus empleados. Como son tantas personas, deciden dividirlas en dos estratos, por género: hombres y mujeres.
+
+Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo tanto, el investigador decide que en la muestra se incluirán 40 mujeres y 60 hombres para tener un total de 100 individuos en el estudio. Así, asegura que la participación de cada género es proporcional a la población que representan. A esos porcentajes elegidos se les llama cuotas.
+
+
+
+```{r echo=F, out.height=300, out.width=400}
 knitr::include_graphics("imagen/mc.png")
 ```
 
@@ -110,8 +127,7 @@ Se selecciona un grupo inicial, los nuevos encuestados se seleccionan en base a 
 
 Muy utilizado en ciencias sociales, cuando la característica a estudiar es rara o escasa y cuando es difícil conseguir encuestados.
 
-Por ejemplo: si eres un investigador y estás buscando personas con cierta enfermedad, lo que haces es contactar a uno o dos individuos que presenten dicha condición médica y que ellos mismos sean quienes te recomienden a otros individuos con una historia médica parecida.
-
+Por ejemplo: si  un investigador está buscando personas con cierta enfermedad, contacta a uno o dos individuos que presenten dicha condición médica y que ellos mismos sean quienes te recomienden a otros individuos con una historia médica parecida.
 
 
 ```{r echo=F, out.height=300, out.width=500}
@@ -138,8 +154,60 @@ Muestreo sistemático
 Muestreo estratificado 
 Muestreo por grupos
 
-```{r echo=F, out.height=300, out.width=500}
+```{r echo=F, out.height=250, out.width=500}
 knitr::include_graphics("imagen/bingo.png")
 ```
+
+### Muestreo aleatorio estratificado 
+
+Antes de seleccionar los elementos, se agrupa la población muestral en estratos de acuerdo a una variable importante: edad, género, ocupación.
+
+Objetivo: reducir la variabilidad que se puede observar dentro de cada estrato
+
+Dentro de cada estrato se puede proceder con muestreo simple.
+
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/estrato.png")
+```
+
+### Muestreo por conglomerados
+
+El método de muestreo por conglomerados se utiliza cuando la población está agrupada naturalmente.
+
+Si se supone que los conglomerados son muestra significativa de la variable que se está estudiando, se puede seleccionar algunos grupos al azar (todos los conglomerados deben tener las mismas probabilidades de ser seleccionados) y utilizarlos en representación de la población.
+
+
+En la práctica, el conglomerado más utilizado es el geográfico. Si queremos hacer un estudio en un país, podemos dividir el país en conglomerados como las comunidades, provincias, ciudades
+
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/conglomerados.png")
+```
+
+
+### Muestreo sistemático
+
+Se utiliza en muestras ordenadas del 1 al N.
+Supongamos que tenemos una población de N individuos ordenados del 1 al N. Queremos seleccionar una muestra de tamaño n.
+Sea k el entero más próximo a N/n.
+Escogemos al azar un número i entre 1 y k (utilizando los números aleatorios, sacar una bola de un bombo, etc.).
+La muestra será el elemento i y los elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a intervalos fijos k hasta conseguir los n sujetos:
+
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/sistema.png")
+```
+
+**Ejemplo**
+Se quiere saber la opinión sobre un profesor de una clase de 60 personas. Dichas personas están ordenadas por orden alfabético en la lista de alumnos de clase. Para realizar la encuesta, seleccionamos a 12 personas. Por lo tanto, N=60 y n=12. El intervalo fijo entre sujetos es:
+
+$$k=N/n     =60/12=5$$
+Ahora elegimos al azar un número entre 1 y k=5. Suponemos que nos sale $i=2$. La muestra resultado mediante el muestreo sistemático será:
+
+
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/sistema2.png")
+```
+
+
+
 
 
