@@ -793,9 +793,25 @@ modelo, haga las pruebas de hipótesis pertinentes.</li>
 </ol>
 <p>ANOVA:</p>
 <pre class="r"><code>library(gmodels)
-library(multcomp)
-
-método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
+library(multcomp)</code></pre>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotly&#39;:
+## 
+##     select</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<pre class="r"><code>método=factor(rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;),4))
 operador=factor(c(rep(1,4),rep(2,4),rep(3,4),rep(4,4)))
 tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
@@ -813,8 +829,7 @@ anova(diseño)</code></pre>
 ## operador   3   28.5     9.5    4.75 0.029846 * 
 ## Residuals  9   18.0     2.0                    
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><span class="math inline">\(\Large H_0=
 \alpha_a=\alpha_b=\alpha_c=\alpha_D\)</span></p>
 <p><span class="math inline">\(\Large H_1= Algun \quad par \quad
@@ -883,21 +898,6 @@ tiempo=c(6,7,10,10,9,10,16,13,7,11,11,11,8,8,14,9)
 ensamble=data.frame(método,operador,tiempo)
 attach(ensamble)</code></pre>
 <pre><code>## The following objects are masked _by_ .GlobalEnv:
-## 
-##     método, operador, tiempo</code></pre>
-<pre><code>## The following object is masked from base (pos = 12):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following object is masked from base (pos = 13):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following object is masked from base (pos = 14):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following object is masked from base (pos = 15):
-## 
-##     tiempo</code></pre>
-<pre><code>## The following objects are masked from ensamble (pos = 17):
 ## 
 ##     método, operador, tiempo</code></pre>
 <pre class="r"><code>#medias dE tratamientos con sus INTERVALOS
@@ -992,8 +992,7 @@ shapiro.test(residuales)</code></pre>
 ##  Bartlett test of homogeneity of variances
 ## 
 ## data:  tiempo by método
-## Bartlett&#39;s K-squared = 1.5989, df = 3, p-value =
-## 0.6596</code></pre>
+## Bartlett&#39;s K-squared = 1.5989, df = 3, p-value = 0.6596</code></pre>
 <p>Validemos ahora los supuestos de normalidad y de varianza constante
 mediante gráficos de residuales: La normalidad parece un supuesto
 razonable para los errores en este experimento. Sin embargo, hay

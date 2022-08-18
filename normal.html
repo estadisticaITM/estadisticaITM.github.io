@@ -472,6 +472,11 @@ aleatoria normal estándar y se denota como z.</p>
 Función de distribución de probabilidad acumulada</p>
 <p><span class="math display">\[\LARGE \Phi(x)=P(Z \leq
 x)=F(x)\]</span></p>
+<pre><code>## 
+## Attaching package: &#39;latex2exp&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotly&#39;:
+## 
+##     TeX</code></pre>
 <p><img src="normal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="cómo-estandarizar-una-variable-aleatoria"
@@ -508,17 +513,21 @@ class="math display">\[P(Z\leq -0.86)=0.1949\]</span>
 <p>En la tabla buscar en el lado positivo: <span
 class="math display">\[P(Z\leq 1.37)=0.9147\]</span>
 <img src="imagen/tn3.png" width="500" height="150" /></p>
-<p><strong>Ejemplo 4</strong></p>
+<p><strong>Ejemplo 4</strong> <span class="math display">\[P(-1.25\leq
+Z\leq 0.37)\]</span></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<span class="math display">\[P(Z\leq 0.37)-P(Z\leq
+-1.25)=0.6443-0.1056=0.5387\]</span></p>
 <p><img src="imagen/tn4.png" width="500" height="150" /></p>
 <p><strong>Ejemplo 5</strong></p>
 <p><span class="math display">\[P(Z&gt;1.55)=1-P(z\leq
 1.55)=1-0.9334=0.0666\]</span></p>
-<p><img src="normal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><img src="imagen/tn5.png" width="500" height="150" /></p>
 <p><strong>Ejemplo 6</strong></p>
 <p><span class="math display">\[P(-1.88&lt;Z&lt;0.46)=P(z\leq 0.46)-P(z
 \leq -1.88)=0.6772-0.0301\]</span></p>
-<p><img src="normal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><img src="imagen/tn6.png" width="500" height="200" /></p>
 <p><strong>Ejemplo 7</strong> La cantidad de café que vierte una máquina
 en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una
@@ -544,14 +553,33 @@ kips en cuando mucho 1.5 desviaciones estándar</p>
 </div>
 <div id="teorema-del-límite-central" class="section level3">
 <h3>Teorema del límite central</h3>
+<p>Si se toman muestras cada vez más grandes de cualquier población,
+entonces la media de la distribución muestral,<span
+class="math inline">\(\bar x\)</span> tiende a acercarse cada vez más a
+la verdadera media de la población <span
+class="math inline">\(\mu\)</span>.</p>
+<p><strong>Aplicativo de distribuciones de probabilidad
+discretas</strong></p>
+<iframe src="https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px" data-external="1">
+</iframe>
+<p><strong>Teorema del límite central:</strong></p>
+<p>Sean <span class="math inline">\(Y_1, Y_2, . . . , Y_n\)</span>
+variables aleatorias independientes y distribuidas idénticamente con
+<span class="math inline">\(E(Yi)=\mu\)</span> y <span
+class="math inline">\(V(Y_i)=\sigma^2\)</span></p>
+<p>Definamos</p>
+<p>Un = n i=1 Yi −nm s√n = Y −m s/√n donde Y = 1 n n i=1 Yi . Entonces
+la función de distribución de Un converge hacia la función de
+distribución normal estándar cuando n S q. Esto es, lím n S q P(Un ≤u) =
+u −q 1 √2p e−t2/2 dt para toda u.</p>
+</div>
+<div id="aproximaciones" class="section level3">
+<h3>Aproximaciones</h3>
 <p>Cuando la distribución subyacente es discreta, la curva normal es una
 buena aproximación. Además, aun cuando las variables individuales no
 estén normalmente distribuidas, las sumas y promedios de las variables
 en condiciones adecuadas tendrán de manera aproximada una distribución
-normal</p>
-</div>
-<div id="aproximaciones" class="section level3">
-<h3>Aproximaciones</h3>
+normal.</p>
 </div>
 <div id="videos" class="section level3">
 <h3>videos</h3>

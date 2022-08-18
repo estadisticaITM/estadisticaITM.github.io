@@ -202,6 +202,14 @@ knitr::include_graphics("imagen/tn3.png")
 
 
 **Ejemplo 4** 
+$$P(-1.25\leq Z\leq 0.37)$$
+
+```{r echo=F}
+normal_area(mean = 0, sd = 1, lb = -1.25, ub = 0.37,
+            acolor = rgb(0, 0, 1, alpha = 0.5))
+text(995, 0.01, "53.87%", srt = 90)
+```
+$$P(Z\leq 0.37)-P(Z\leq -1.25)=0.6443-0.1056=0.5387$$
 
 ```{r echo=F, out.height=150, out.width=500}
 knitr::include_graphics("imagen/tn4.png")
@@ -260,11 +268,50 @@ c. Difiera de 15.0 kips en cuando mucho 1.5 desviaciones estándar
 
 ### Teorema del límite central
 
-Cuando la distribución subyacente es discreta, la curva normal es una buena aproximación. Además, aun cuando las variables individuales no estén normalmente distribuidas, las sumas y promedios de las variables en condiciones adecuadas tendrán de manera aproximada una distribución normal
+Si se toman muestras cada vez más grandes de cualquier población, entonces la media de la distribución muestral,$\bar x$ tiende a acercarse cada vez más a la verdadera media de la población $\mu$.
+
+
+**Aplicativo de distribuciones de probabilidad discretas**
+
+```{r echo=FALSE}
+
+knitr::include_app("https://jtrochezg.shinyapps.io/apppoison/",height = "1000px")
+
+```
+
+**Teorema del límite central:**
+
+Sean $Y_1, Y_2, . . . , Y_n$ variables aleatorias independientes y distribuidas idénticamente con $E(Yi)=\mu$ y $V(Y_i)=\sigma^2$
+
+
+Definamos
+
+
+Un =
+n
+i=1 Yi −nm
+s√n
+=
+Y −m
+s/√n
+donde Y =
+1
+n
+n
+i=1
+Yi .
+Entonces la función de distribución de Un converge hacia la función de distribución normal estándar cuando n S q. Esto es,
+lím n S q
+P(Un ≤u) =
+u
+−q
+1
+√2p
+e−t2/2 dt para toda u.
 
 ### Aproximaciones 
 
-
+Cuando la distribución subyacente es discreta, la curva normal es una buena aproximación. Además, aun cuando las variables individuales no estén normalmente distribuidas, las sumas y promedios de las variables en condiciones adecuadas tendrán de manera aproximada una distribución normal.
 
 
 
