@@ -4,6 +4,9 @@ output:
   html_document:
     toc: true
     toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
    
 ---
 
@@ -12,7 +15,7 @@ output:
 knitr::include_graphics("imagen/muestreo.png")
 ```
 
-## Definiciones
+# Definiciones
 
 **Población:** conjunto de elementos sobre los que queremos hacer afirmaciones.
 
@@ -23,9 +26,7 @@ knitr::include_graphics("imagen/muestreo.png")
 **Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
 
 
-**Unidad de observación:** Objeto sobre el cual se
-realiza una medición. En poblaciones humanas las unidades
-de observación son los humanos.
+**Unidad de observación:** Objeto sobre el cual se realiza una medición. En poblaciones humanas las unidades de observación son los humanos.
 
 **Unidad de muestreo:** Unidad donde realizamos el muestreo
 
@@ -38,9 +39,14 @@ de observación son los individuos que viven en una familia.
 
 **Inferencia estadística**
 
-Es una rama de la estadística por medio de la cual se obtienen conclusiones de la población a partir de la muestra, esto ocurre cuando es imposible censar toda la población. 
+Es una rama de la estadística, que a través de métodos y muestras realiza inferencias o generalizaciones de una población.
 
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
+
+
+```{r echo=F, out.height=350, out.width=500}
+knitr::include_graphics("imagen/mmm.png")
+```
 
 
 **Por qué una muestra**
@@ -52,8 +58,6 @@ Imposibilidad o costo excesivo de realizar un censo en que se mide toda la pobla
 - Describir la muestra: Estadística Descriptiva
 
 - Obtener conclusiones de la población a partir de la muestra: Inferencia Estadística.
-
-
 
 
 **Cómo elegir el tamaño de la muestra**
@@ -81,10 +85,14 @@ Se dice que las variables aleatorias $X_1, X_2, . . . , X_n$ forman una muestra 
  
 Es decir las $X_i$ son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
 
-#### Videos de tamaños de muestra
 
 
-#### Para la media
+
+# Tamaños de muestra
+
+## Para la media
+
+
 
   <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  </div>
@@ -236,5 +244,23 @@ knitr::include_graphics("imagen/sistema2.png")
 
 
 
+**Ejemplo**
 
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
+```
 
+**Ficha técnica de la encuesta**
+
+|Item |Respuesta|
+|---------|-----|
+|**Persona natural o jurídica que la realizó:**| YanHaas S.A Incrito ante el consejo nacional electoral|
+|**Encomendada y financiada por:**| Alinza de medios; RCN y periódicos asociados    |
+|**Temas a los que se refiere:**|Intención de voto para las elecciones presidenciales 2022|
+|**Universo poblacional:**|Personas 18 años en adelante que manifiestan interés de votar en las proximas elecciones presidenciales 2022, en las cinco regiones geográficas de estudio: Antioquia-eje cafetero(1), Caribe (2), Bogotá (3), central-Oriente (4) y pacífica (5) |
+|**Grupo objetivo**|Hombres y mujeres mayores de 18 años que manifestaron intención de voto en las próximas elecciones presidenciales del año 2022|
+|**Sistema de muestreo**|Muestreo aleatorio estratificado por región y tamaño del municipio según censo electoral |
+|**Marco muestral:**|Listado de municipios y barrios, viviendas y personas|
+|**Tamaño de la muestra:**|1249 encuestas distribuidas en 60 municipios del país|
+| **Margen de error observado:**|3.2%|
+|**Nivel de confianza:**|95%|

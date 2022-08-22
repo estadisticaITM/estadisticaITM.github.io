@@ -371,14 +371,8 @@ explicatorias, la matrix XtX seria singular y por tanto no podríamos
 hallar los estimadores de mínimos cuadrados!.</p>
 <p>##Ejemplo</p>
 <p>Retomando el ejemplo de los arboles</p>
-<pre class="r"><code>library(car)</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre><code>## 
-## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     recode</code></pre>
-<pre class="r"><code>#library(rgl)
+<pre class="r"><code>library(car)
+#library(rgl)
 library(perturbR)
 library(leaps)
 library(scatterplot3d)
@@ -425,24 +419,18 @@ summary(m1)</code></pre>
 ## HT             0.6938     0.1631   4.254 0.000606 ***
 ## DBH            1.6258     1.0259   1.585 0.132611    
 ## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 3.095 on 16 degrees of freedom
 ## Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
 ## F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11</code></pre>
 <pre class="r"><code>miscoeficientes(m1,bosque)</code></pre>
 <pre><code>## Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados</code></pre>
-<pre><code>##                Estimacin Limites.2.5.. Limites.97.5..
-## (Intercept) -108.5758465  -138.5559230     -78.595770
-## D16            5.6713954     3.1227268       8.220064
-## HT             0.6937702     0.3480719       1.039469
-## DBH            1.6257654    -0.5491507       3.800682
-##                  Vif  Coef.Std
-## (Intercept) 0.000000 0.0000000
-## D16         7.470209 0.6522030
-## HT          1.234397 0.2391034
-## DBH         7.087104 0.2133976</code></pre>
+<pre><code>##                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
+## (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
+## D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
+## HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
+## DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
 
 <br>
 <hr>
