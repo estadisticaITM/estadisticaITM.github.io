@@ -652,7 +652,8 @@ summary(md)
 #&gt; (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
 #&gt; cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 15.38 on 48 degrees of freedom
 #&gt; Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
@@ -670,7 +671,8 @@ anova(md)
 #&gt; cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
 #&gt; Residuals  48  11354   236.5                     
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 <div id="modelo-de-regresión-lineal-simple-en-la-calculadora"
 class="section level2">
@@ -905,7 +907,8 @@ summary(m1)
 #&gt; HT             0.6938     0.1631   4.254 0.000606 ***
 #&gt; DBH            1.6258     1.0259   1.585 0.132611    
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 3.095 on 16 degrees of freedom
 #&gt; Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
@@ -920,7 +923,8 @@ anova(m1)
 #&gt; DBH        1   24.1    24.1   2.5111 0.1326107    
 #&gt; Residuals 16  153.3     9.6                       
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Al quitar la variable no significativa del modelo queda:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT)
 summary(m1)
@@ -938,7 +942,8 @@ summary(m1)
 #&gt; D16            7.4128     0.5088  14.568 4.92e-11 ***
 #&gt; HT             0.6765     0.1698   3.985 0.000959 ***
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 3.23 on 17 degrees of freedom
 #&gt; Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
@@ -960,7 +965,8 @@ tiene:</p>
 #&gt; HT         1  165.7   165.7  15.878 0.0009585 ***
 #&gt; Residuals 17  177.4    10.4                      
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>###<strong>Regresión lineal con variables indicadoras</strong>
 Suponga que en un modelo de regresión para el gasto mensual por familia
 en actividades recreativas, se tiene entre las variables predictoras el
@@ -1109,7 +1115,8 @@ summary(model)
 #&gt; (Intercept) 17.399650   8.622660   2.018   0.0518 .  
 #&gt; Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 23.74 on 33 degrees of freedom
 #&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
@@ -1157,15 +1164,23 @@ summary(model)
 #&gt; -30.505  -8.790   3.737   7.650  21.859 
 #&gt; 
 #&gt; Coefficients:
-#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
-#&gt; Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
-#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
-#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
-#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
+#&gt;                           Estimate Std. Error t value
+#&gt; (Intercept)              17.399650   5.543461   3.139
+#&gt; Orange$age                0.106770   0.005321  20.066
+#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923
+#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437
+#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433
+#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814
+#&gt;                          Pr(&gt;|t|)    
+#&gt; (Intercept)               0.00388 ** 
+#&gt; Orange$age                &lt; 2e-16 ***
+#&gt; as.factor(Orange$Tree).L 1.31e-07 ***
+#&gt; as.factor(Orange$Tree).Q  0.66544    
+#&gt; as.factor(Orange$Tree).C  0.16248    
+#&gt; as.factor(Orange$Tree)^4  0.42224    
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 15.26 on 29 degrees of freedom
 #&gt; Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
@@ -1201,12 +1216,17 @@ anova(model)
 #&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Response: Orange$circumference
-#&gt;                        Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; Orange$age              1  93772   93772 402.639 &lt; 2.2e-16 ***
-#&gt; as.factor(Orange$Tree)  4  11841    2960  12.711 4.289e-06 ***
-#&gt; Residuals              29   6754     233                      
+#&gt;                        Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt; Orange$age              1  93772   93772 402.639 &lt; 2.2e-16
+#&gt; as.factor(Orange$Tree)  4  11841    2960  12.711 4.289e-06
+#&gt; Residuals              29   6754     233                  
+#&gt;                           
+#&gt; Orange$age             ***
+#&gt; as.factor(Orange$Tree) ***
+#&gt; Residuals                 
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div id="otro-ejemplo-considerando-pendiente-e-intercepto-diferentes"
 class="section level3">
 <h3>Otro ejemplo Considerando pendiente e intercepto diferentes</h3>
@@ -1235,15 +1255,23 @@ summary(modelo1)
 #&gt; -0.87683 -0.22516  0.04366  0.14985  0.64418 
 #&gt; 
 #&gt; Coefficients:
-#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)           3.0318     1.0346   2.930   0.0167 *  
-#&gt; Publicidad            1.1590     0.1403   8.262 1.71e-05 ***
-#&gt; SeccionB              6.7317     2.4423   2.756   0.0222 *  
-#&gt; SeccionC              5.2429     2.0724   2.530   0.0322 *  
-#&gt; Publicidad:SeccionB  -0.8169     0.2718  -3.005   0.0148 *  
-#&gt; Publicidad:SeccionC  -0.1603     0.2068  -0.775   0.4581    
+#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)
+#&gt; (Intercept)           3.0318     1.0346   2.930   0.0167
+#&gt; Publicidad            1.1590     0.1403   8.262 1.71e-05
+#&gt; SeccionB              6.7317     2.4423   2.756   0.0222
+#&gt; SeccionC              5.2429     2.0724   2.530   0.0322
+#&gt; Publicidad:SeccionB  -0.8169     0.2718  -3.005   0.0148
+#&gt; Publicidad:SeccionC  -0.1603     0.2068  -0.775   0.4581
+#&gt;                        
+#&gt; (Intercept)         *  
+#&gt; Publicidad          ***
+#&gt; SeccionB            *  
+#&gt; SeccionC            *  
+#&gt; Publicidad:SeccionB *  
+#&gt; Publicidad:SeccionC    
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 0.4709 on 9 degrees of freedom
 #&gt; Multiple R-squared:  0.9916, Adjusted R-squared:  0.9869 
@@ -1260,13 +1288,19 @@ anova(modelo1)
 #&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Response: Ventas
-#&gt;                    Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
-#&gt; Publicidad          1 193.859 193.859 874.1066 2.829e-10 ***
-#&gt; Seccion             2  38.523  19.261  86.8493 1.307e-06 ***
-#&gt; Publicidad:Seccion  2   2.023   1.011   4.5601   0.04289 *  
-#&gt; Residuals           9   1.996   0.222                       
+#&gt;                    Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
+#&gt; Publicidad          1 193.859 193.859 874.1066 2.829e-10
+#&gt; Seccion             2  38.523  19.261  86.8493 1.307e-06
+#&gt; Publicidad:Seccion  2   2.023   1.011   4.5601   0.04289
+#&gt; Residuals           9   1.996   0.222                   
+#&gt;                       
+#&gt; Publicidad         ***
+#&gt; Seccion            ***
+#&gt; Publicidad:Seccion *  
+#&gt; Residuals             
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #recta para la sección a
 abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 # Recta para la sección b
@@ -1293,7 +1327,8 @@ summary(modelo2)
 #&gt; SeccionB     -0.5582     0.4686  -1.191 0.258600    
 #&gt; SeccionC      4.2451     0.6671   6.363 5.34e-05 ***
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 0.6044 on 11 degrees of freedom
 #&gt; Multiple R-squared:  0.983,  Adjusted R-squared:  0.9784 
@@ -1307,7 +1342,8 @@ anova(modelo2)
 #&gt; Seccion     2  38.523  19.261  52.722 2.312e-06 ***
 #&gt; Residuals  11   4.019   0.365                      
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 confint(modelo2)
 #&gt;                  2.5 %    97.5 %
 #&gt; (Intercept)  2.4316194 6.4557425
@@ -1421,23 +1457,24 @@ summary(m1)
 #&gt; HT             0.6938     0.1631   4.254 0.000606 ***
 #&gt; DBH            1.6258     1.0259   1.585 0.132611    
 #&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; Signif. codes:  
+#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
 #&gt; Residual standard error: 3.095 on 16 degrees of freedom
 #&gt; Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
 #&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
 miscoeficientes(m1,bosque)
 #&gt; Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados
-#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif
-#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000
-#&gt; D16            5.6713954     3.1227268       8.220064 7.470209
-#&gt; HT             0.6937702     0.3480719       1.039469 1.234397
-#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104
-#&gt;              Coef.Std
-#&gt; (Intercept) 0.0000000
-#&gt; D16         0.6522030
-#&gt; HT          0.2391034
-#&gt; DBH         0.2133976</code></pre>
+#&gt;                Estimacin Limites.2.5.. Limites.97.5..
+#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770
+#&gt; D16            5.6713954     3.1227268       8.220064
+#&gt; HT             0.6937702     0.3480719       1.039469
+#&gt; DBH            1.6257654    -0.5491507       3.800682
+#&gt;                  Vif  Coef.Std
+#&gt; (Intercept) 0.000000 0.0000000
+#&gt; D16         7.470209 0.6522030
+#&gt; HT          1.234397 0.2391034
+#&gt; DBH         7.087104 0.2133976</code></pre>
 <p>Examinando los valores en la columna “Standarized Estimate”, vemos
 que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el
 volumen de madera en función de las variables estandarizadas: el

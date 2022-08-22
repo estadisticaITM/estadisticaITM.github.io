@@ -455,8 +455,8 @@ media. <span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
 <li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la
 media.</p></li>
 </ol>
-<p><span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
-\mu+2\sigma)=99.73\%\]</span></p>
+<p><span class="math display">\[\LARGE P(\mu-3\sigma\leq x \leq
+\mu+3\sigma)=99.73\%\]</span></p>
 <p><img src="imagen/n2.png" width="500" height="500" /></p>
 <p><strong>Aplicativo de distribuciones de probabilidad
 continuas</strong></p>
@@ -493,9 +493,8 @@ Normal Estándar</p>
 <p><strong>Ejemplo 1</strong></p>
 <p>Se desea estandarizar una variable aleatoria con valor x=5.9, media
 <span class="math inline">\(\mu=5\)</span> y desviación estándar <span
-class="math inline">\(sd=0.3\)</span>.</p>
-<p><span class="math display">\[\LARGE
-z=\frac{5.9-5}{0.3}=?\]</span></p>
+class="math inline">\(sd=3\)</span>.</p>
+<p><span class="math display">\[\LARGE z=\frac{5.9-5}{3}=?\]</span></p>
 <p><img src="normal_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="tabla-de-la-distribución-normal" class="section level3">
@@ -531,48 +530,84 @@ Z\leq 0.37)\]</span></p>
 <p><img src="imagen/tn6.png" width="500" height="200" /></p>
 <p><strong>Ejemplo 7</strong> La cantidad de café que vierte una máquina
 en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una
-variable aleatoria que tiene una distribución normal con σ = 0,04
+variable aleatoria que tiene una distribución normal con σ = 0,2
 onzas.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>¿Cuál es la probabilidad de que el contenido de una de las jarras
-este entre 3.5 y 4.5 onzas?</p></li>
-<li><p>Si sólo el 2% de las jarras va a contener menos de 4 onzas de
-café. ¿Cuál debe ser el contenido medio de estas jarras? Sol: μ = 4,082
-onzas.</p></li>
+este entre 3.5 y 3.8 onzas? Rta/ 0.1525</p></li>
+<li><p>Cuál es la cantidad que caracteriza el 3% de las jarras con mayor
+contenido.</p></li>
+<li><p>Cuál es la cantidad que caracteriza el 5% de las jarras con menor
+contenido.</p></li>
 </ol>
 <p><strong>Ejercicios</strong> <span
 class="math display">\[\phi(c)=0.9838\]</span> <span
 class="math display">\[p(0\leq z \leq c)=0.291\]</span> <span
 class="math display">\[p(-c \leq z \leq c)=0.668\]</span></p>
-<p><strong>Ejemplo 8</strong> Suponga que la fuerza que actúa en una
-columna que ayuda a soportar un edificio está normalmente distribuida
-con media de 15 0 kips y desviación estándar de 1 25 kips ¿ Cuál es la
-probabilidad de que la fuerza</p>
-<p>a.sea de más de 18 kips b. esté entre 10 y 12 kips c. Difiera de 15.0
-kips en cuando mucho 1.5 desviaciones estándar</p>
+<p><strong>Ejemplo 8</strong></p>
+<p>Suponga que la fuerza que actúa en una columna que ayuda a soportar
+un edificio está normalmente distribuida con media de 15 kips y
+desviación estándar de 1,25 kips ¿ Cuál es la probabilidad de que la
+fuerza</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Sea de más de 18 kips</p></li>
+<li><p>Este entre 10 y 12 kips</p></li>
+<li><p>Este entre 1.5 desviaciones estándar de la media</p></li>
+<li><p>Difiera de 15.0 kips en cuando mucho 1.5 desviaciones
+estándar</p></li>
+</ol>
 </div>
-<div id="teorema-del-límite-central" class="section level3">
-<h3>Teorema del límite central</h3>
+</div>
+<div id="teorema-del-límite-central" class="section level2">
+<h2>Teorema del límite central</h2>
 <p>Si se toman muestras cada vez más grandes de cualquier población,
-entonces la media de la distribución muestral,<span
-class="math inline">\(\bar x\)</span> tiende a acercarse cada vez más a
+entonces la media de la distribución muestral<span
+class="math inline">\(\bar x\)</span>, tiende a acercarse cada vez más a
 la verdadera media de la población <span
-class="math inline">\(\mu\)</span>.</p>
+class="math inline">\(\mu\)</span>. En la practica cuando n&gt;30 se
+consideran medidas poblacionales.</p>
 <p><strong>Aplicativo de distribuciones de probabilidad
 discretas</strong></p>
 <iframe src="https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px" data-external="1">
 </iframe>
+<ul>
+<li><p>La distribución binomial se asemeja a una distribución normal en
+la medida en que los tamaños muestrales aumentan, con <span
+class="math inline">\(p\neq 0.5\)</span>, también se observa este mismo
+comportamiento cuando n=0.5</p></li>
+<li><p>La distribución poisson se asemeja a una distribución normal en
+la medida en que la tasa de ocurrencia aumenta.</p></li>
+</ul>
 <p><strong>Teorema del límite central:</strong></p>
 <p>Sean <span class="math inline">\(Y_1, Y_2, . . . , Y_n\)</span>
 variables aleatorias independientes y distribuidas idénticamente con
 <span class="math inline">\(E(Yi)=\mu\)</span> y <span
-class="math inline">\(V(Y_i)=\sigma^2\)</span></p>
-<p>Definamos</p>
-<p>Un = n i=1 Yi −nm s√n = Y −m s/√n donde Y = 1 n n i=1 Yi . Entonces
-la función de distribución de Un converge hacia la función de
-distribución normal estándar cuando n S q. Esto es, lím n S q P(Un ≤u) =
-u −q 1 √2p e−t2/2 dt para toda u.</p>
-</div>
+class="math inline">\(V(Y_i)=\sigma^2 &lt;\infty\)</span>.
+Definamos:</p>
+<p><span class="math display">\[U_n=\frac{\sum_{i=1}^n -
+n\mu}{\sigma/\sqrt n}\]</span></p>
+<p>Donde <span class="math display">\[\bar
+Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
+<p>Entonces la función de distribución de <span
+class="math inline">\(U_n\)</span> converge hacia la función de
+distribución normal estándar cuando <span
+class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Las califi caciones de exámenes para todos los estudiantes de último
+año de preparatoria en cierto estado tienen media de 60 y varianza de
+64. Una muestra aleatoria de n=100 estudiantes de una escuela
+preparatoria grande tuvo una calificación media de 58. ¿Hay evidencia
+para sugerir que el nivel de conocimientos de esta escuela sea
+inferior?</p>
+<p>(Calcule la probabilidad de que la media muestral sea a lo sumo 58
+cuando n = 100.)</p>
+<p>Solución</p>
+<p>Denote con Y la media de una muestra aleatoria de n = 100 califi
+caciones de una población con m = 60 y s2 = 64. Deseamos calcular P(Y
+≤58). Sabemos por el Teorema 7.4 que (Y −m)/(s/√n) tiene una
+distribución que puede aproximarse con una distribución normal estándar.
+En consecuencia, usando la Tabla 4, Apéndice 3, tenemos P(Y ≤58) = P Y
+−60 8/√100 ≤ 58 −60 .8 ≈ P(Z ≤−2.5) = .0062.</p>
 <div id="aproximaciones" class="section level3">
 <h3>Aproximaciones</h3>
 <p>Cuando la distribución subyacente es discreta, la curva normal es una

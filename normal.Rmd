@@ -48,7 +48,7 @@ $$\LARGE P(\mu-2\sigma\leq x \leq \mu+2\sigma)=95.45\%$$
 
 3. Aproximadamente 99.7% de los valores están dentro de 3 DE de la media.
 
-$$\LARGE P(\mu-2\sigma\leq x \leq \mu+2\sigma)=99.73\%$$
+$$\LARGE P(\mu-3\sigma\leq x \leq \mu+3\sigma)=99.73\%$$
 
 
 ```{r echo=F, out.height=500, out.width=500 }
@@ -102,9 +102,9 @@ Cualquier distribución Normal se puede convertir a una distribución Normal Est
 
 **Ejemplo 1**
 
-Se desea estandarizar una variable aleatoria con valor x=5.9, media $\mu=5$ y desviación estándar $sd=0.3$.
+Se desea estandarizar una variable aleatoria con valor x=5.9, media $\mu=5$ y desviación estándar $sd=3$.
 
-$$\LARGE z=\frac{5.9-5}{0.3}=?$$
+$$\LARGE z=\frac{5.9-5}{3}=?$$
 
 ```{r echo=F}
 par(mfrow=c(1,2))
@@ -247,11 +247,15 @@ knitr::include_graphics("imagen/tn6.png")
 ```
 
 **Ejemplo 7** 
-La cantidad de café que vierte una máquina en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una variable aleatoria que tiene una distribución normal con σ = 0,04 onzas.
+La cantidad de café que vierte una máquina en jarras de 4 onzas varía de una jarra a otra, se puede fijar como una variable aleatoria que tiene una distribución normal con σ = 0,2 onzas.
 
-a. ¿Cuál es la probabilidad de que el contenido de una de las jarras este entre 3.5 y 4.5 onzas?
+a. ¿Cuál es la probabilidad de que el contenido de una de las jarras este entre 3.5 y 3.8 onzas? Rta/ 0.1525
 
-b. Si sólo el 2% de las jarras va a contener menos de 4 onzas de café. ¿Cuál debe ser el contenido medio de estas jarras? Sol: μ = 4,082 onzas.
+b. Cuál es la cantidad que caracteriza el 3% de las jarras con mayor contenido.
+
+c. Cuál es la cantidad que caracteriza el 5% de las jarras con menor contenido.
+
+
 
 **Ejercicios** 
 $$\phi(c)=0.9838$$
@@ -260,15 +264,21 @@ $$p(-c \leq z \leq c)=0.668$$
 
 
 **Ejemplo 8** 
-Suponga que la fuerza que actúa en una columna que ayuda a soportar un edificio está normalmente distribuida con media de 15 0 kips y desviación estándar de 1 25 kips ¿ Cuál es la probabilidad de que la fuerza
 
-a.sea de más de 18 kips
-b. esté entre 10 y 12 kips
-c. Difiera de 15.0 kips en cuando mucho 1.5 desviaciones estándar
+Suponga que la fuerza que actúa en una columna que ayuda a soportar un edificio está normalmente distribuida con media de 15 kips y desviación estándar de 1,25 kips ¿ Cuál es la probabilidad de que la fuerza
 
-### Teorema del límite central
+a. Sea de más de 18 kips
 
-Si se toman muestras cada vez más grandes de cualquier población, entonces la media de la distribución muestral,$\bar x$ tiende a acercarse cada vez más a la verdadera media de la población $\mu$.
+b. Este entre 10 y 12 kips
+
+c. Este entre 1.5 desviaciones estándar de la media
+
+d. Difiera de 15.0 kips en cuando mucho 1.5 desviaciones estándar
+
+
+## Teorema del límite central
+
+Si se toman muestras cada vez más grandes de cualquier población, entonces la media de la distribución muestral$\bar x$, tiende a acercarse cada vez más a la verdadera media de la población $\mu$. En la practica cuando n>30 se consideran medidas poblacionales.
 
 
 **Aplicativo de distribuciones de probabilidad discretas**
@@ -279,35 +289,39 @@ knitr::include_app("https://jtrochezg.shinyapps.io/apppoison/",height = "1000px"
 
 ```
 
+- La distribución binomial se asemeja a una distribución normal en la medida en que los tamaños muestrales aumentan, con $p\neq 0.5$, también se observa este mismo comportamiento cuando n=0.5
+
+- La distribución poisson se asemeja a una distribución normal en la medida en que la tasa de ocurrencia aumenta.
+
 **Teorema del límite central:**
 
-Sean $Y_1, Y_2, . . . , Y_n$ variables aleatorias independientes y distribuidas idénticamente con $E(Yi)=\mu$ y $V(Y_i)=\sigma^2$
+Sean $Y_1, Y_2, . . . , Y_n$ variables aleatorias independientes y distribuidas idénticamente con $E(Yi)=\mu$ y $V(Y_i)=\sigma^2 <\infty$. Definamos:
 
 
-Definamos
+$$U_n=\frac{\sum_{i=1}^n - n\mu}{\sigma/\sqrt n}=\frac{\bar Y -\mu }{\sigma/\sqrt n}$$
+
+Donde 
+$$\bar Y=\frac{1}{n}\sum_{i=1}^nY_i$$
+
+Entonces la función de distribución de $U_n$ converge hacia la función de distribución normal estándar cuando $n\longrightarrow \infty$. 
+
+**Ejemplo**
+
+Las calificaciones de exámenes para todos los estudiantes de último año de preparatoria en cierto estado tienen media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes de una escuela preparatoria grande tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el nivel de conocimientos de esta escuela sea inferior? 
+
+(Calcule la probabilidad de que la media muestral sea a lo sumo 58 cuando n = 100.)
+
+**Solución **
+
+Denote con Y la media de una muestra aleatoria de n = 100 calificaciones de una población con $\mu = 60$ y $s^2 = 64$. 
+
+$$P(\bar Y≤58)$$
+estandarizamos por medio del teorema de límite central
 
 
-Un =
-n
-i=1 Yi −nm
-s√n
-=
-Y −m
-s/√n
-donde Y =
-1
-n
-n
-i=1
-Yi .
-Entonces la función de distribución de Un converge hacia la función de distribución normal estándar cuando n S q. Esto es,
-lím n S q
-P(Un ≤u) =
-u
-−q
-1
-√2p
-e−t2/2 dt para toda u.
+$$P \left(z ≤\frac {58-60}{8/\sqrt 100}\right)$$
+$$P \left (z ≤\frac {58-60}{0.8} \right)$$
+$$P \left (z ≤-2.5 \right)=0.0062$$
 
 ### Aproximaciones 
 
@@ -324,7 +338,9 @@ Cuando la distribución subyacente es discreta, la curva normal es una buena apr
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/tFlKqPVfVU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Taller
+## Taller
+
+### Distribución normal
 
 1) Hallar el área bajo la curva normal tipificada:
 a) Entre Z = 0 y Z = 1,2 Sol: 0,3849
@@ -420,5 +436,95 @@ a) La media y la desviación estándar de la variable aleatoria. Sol: 12,5 y 3,0
 b) La probabilidad de que X valga 15 o más. Sol: 0,2578
 c) La probabilidad de que X valga 10 o menos. Sol: 0,2578
 
+### Teorema central del límite
+1. La resistencia a la ruptura del vidrio templado promedia 14 (medida en miles de libras por pulgada cuadrada) y tiene una desviación estándar de 2.
 
+a ¿Cuál es la probabilidad de que el promedio de resistencia a la ruptura de 100 piezas seleccionadas aleatoriamente de este vidrio exceda de 14.5?
+
+b Encuentre un intervalo que incluya, con probabilidad 0.95, el promedio de resistencia a la ruptura de 100 piezas de este vidrio seleccionadas aleatoriamente.
+
+2. Una antropóloga desea calcular el promedio de estatura de los hombres de cierta raza. Si se supone que la desviación estándar poblacional es de 2.5 pulgadas y si ella muestrea 100 hombres aleatoriamente, 
+
+a) encuentre la probabilidad de que la diferencia entre la media muestral y la verdadera media poblacional no exceda de 0.5 pulgada. Rta/0.9544
+
+b) Suponga que la antropóloga desea que la diferencia entre la media muestral y la mediapoblacional sea menor que 0.4 pulgada, con probabilidad de 0.95. ¿Cuántos hombres debe tomar como muestra para lograr este objetivo?
+
+3. Trabajadores de una gran empresa de servicios tienen un salario promedio de $7.00%$ por hora con una desviación estándar de $0.50$. La industria tiene 64 trabajadores de cierto grupo étnico que tienen un salario promedio de $6.90$ por hora. ¿Es razonable suponer que la tasa salarial del grupo étnico es equivalente a la de una muestra aleatoria de trabajadores tomada de los empleados en la industria militar?
+[Sugerencia: calcule la probabilidad de obtener una media muestral menor o igual que $6.90 por hora.Rta/0.0548]
+
+4. La acidez de los suelos se mide mediante una cantidad llamada pH, que varía de 0 (acidez alta) a 14 (alcalinidad alta). Un edafólogo desea calcular el promedio de pH para un campo de grandes dimensiones al seleccionar aleatoriamente n muestras de núcleos y medir el pH de cada muestra. Aun cuando la desviación estándar poblacional de mediciones de pH no se conoce, la experiencia del pasado indica que casi todos los suelos tienen un valor de pH de entre 5 y 8. 
+
+a. Si el científico selecciona n = 40 muestras, encuentre la probabilidad aproximada de que la media muestral de las 40 mediciones de pH esté a 0.2 unidades del verdadero promedio de pH para el campo. [Sugerencia: vea el Ejercicio 1.17.]
+
+
+5. Suponga que al científico del Ejercicio 7.46 le gustaría que la media muestral estuviera a no más de 0.1 de la verdadera media con probabilidad .90. ¿Cuántas muestras de núcleos debe tomar?
+7.48 Un aspecto importante de un plan económico federal era que los consumidores ahorraran una parte importante
+de dinero que recibieran por una reducción de impuestos sobre sus ingresos. Suponga que las
+primeras estimaciones de la parte del total de impuesto ahorrada, con base en una muestra aleatoria de
+35 economistas, tuvo media de 26% y desviación estándar de 12%.
+a ¿Cuál es la probabilidad aproximada de que la estimación de la media muestral, basada en una muestra
+aleatoria de n = 35 economistas, se encuentre a no más de 1% de la media de la población de las
+estimaciones de todos los economistas?
+b ¿Es necesariamente verdadero que la media de la población de las estimaciones de todos los economistas
+sea igual al porcentaje de ahorro en impuestos que en realidad se logrará?
+7.49 El tiempo necesario para el mantenimiento periódico de un automóvil u otra máquina tiene por lo
+general una distribución de probabilidad en forma de campana. Debido a que se presentarán algunos
+alargamientos en los tiempos de servicio, la distribución tiende a estar sesgada a la derecha. Suponga
+que el tiempo necesario para dar servicio a un automóvil que ha recorrido 5000 millas tiene una media
+de 1.4 horas y desviación estándar de .7 horas. Suponga también que el departamento de servicio planea
+atender a 50 automóviles por jornada de 8 horas y que, para hacerlo, puede dedicar un tiempo promedio
+máximo de sólo 1.6 horas por automóvil. ¿Cuántos días tendrá que trabajar tiempo extra el departamento
+de servicio?
+7.50 Se ha encontrado que las mediciones de resistencia al corte en soldaduras por puntos tienen una desviación
+estándar de 10 libras por pulgada cuadrada (psi). Si se han de medir 100 soldaduras de prueba,
+¿cuál es la probabilidad aproximada de que la media muestral se encuentre a no más de 1 psi de la verdadera
+media poblacional?
+7.51 Consulte el Ejercicio 7.50. Si la desviación estándar de mediciones de resistencia al corte en soldaduras
+por puntos es 10 psi, ¿cuántas soldaduras de prueba deben muestrearse si deseamos que la media muestral
+se encuentre a no más de 1 psi de la verdadera media con probabilidad aproximada de .99?
+7.52 Los resistores que se han de usar en un circuito tienen un promedio de resistencia de 200 ohms y desviación
+estándar de 10 ohms. Suponga que 25 de estos resistores se seleccionan aleatoriamente para usarse
+en un circuito.
+a ¿Cuál es la probabilidad de que la resistencia promedio para los 25 resistores esté entre 199 y 202
+ohms?
+b Encuentre la probabilidad de que la resistencia total no exceda de 5100 ohms. [Sugerencia: vea el
+Ejemplo 7.9.]
+7.53 Concentraciones de monóxido de carbono de cierta hora en muestras de aire de una gran ciudad promedian
+12 ppm (partes por millón) con desviación estándar de 9 partes por millón.
+a ¿Cree usted que las concentraciones de monóxido de carbono en las muestras de aire de esta ciudad
+están distribuidas normalmente? ¿Por qué sí o por qué no?
+b Encuentre la probabilidad de que la concentración promedio en 100 muestras seleccionadas aleatoriamente
+exceda de 14 partes por millón.
+7.54 Asfaltos no alterados, como se encuentran por lo general en depósitos de plomo y zinc, tienen razones
+atómicas de hidrógeno/carbono (H/C) que promedian 1.4 con desviación estándar de .05. Encuentre la
+probabilidad de que la razón promedio de H/C sea menor que 1.3 si seleccionamos al azar 25 muestras
+de asfaltos.
+Ejercicios 375
+376 Capítulo 7 Distribuciones muestrales y el teorema del límite central
+7.55 El tiempo de inactividad por día para una central de cómputo tiene una media de 4 horas y desviación
+estándar de .8 hora.
+a Suponga que deseamos calcular probabilidades acerca del promedio diario de inactividad durante un
+periodo de 30 días.
+i ¿Qué suposiciones deben ser verdaderas para usar el resultado del Teorema 7.4 y así obtener una
+aproximación válida para probabilidades acerca del promedio diario de inactividad?
+ii De acuerdo con las suposiciones descritas en el inciso i, ¿cuál es la probabilidad aproximada de
+que el promedio diario de inactividad, durante un periodo de 30 días, sea de entre 1 y 5 horas?
+b De acuerdo con las suposiciones descritas en el inciso a, ¿cuál es la probabilidad aproximada de que
+el tiempo total de inactividad, durante un periodo de 30 días, sea menor que 115 horas?
+7.56 Para muchos productos a granel, por ejemplo mineral de hierro y azúcar sin refi nar, se muestrea su
+calidad mediante un método que requiere que pequeñas muestras se tomen periódicamente cuando el
+material se mueve en una banda transportadora. Las pequeñas muestras se combinan entonces y se
+mezclan para formar una muestra compuesta. Denote con Yi el volumen de la i-ésima pequeña muestra
+de un lote particular y suponga que Y1, Y2, . . . , Yn constituyen una muestra aleatoria y que cada valor
+de Yi tiene una media de m (en pulgadas cúbicas) y varianza s2. El volumen promedio m de las muestras
+se puede establecer al ajustar el tamaño del equipo de muestreo. Suponga que se sabe que la varianza
+s2 de los volúmenes de las muestras es aproximadamente 4. El volumen total de la muestra compuesta
+debe exceder de 200 pulgadas cúbicas con probabilidad aproximadamente de .95 cuando se seleccionan
+n = 50 pequeñas muestras. Determine un ajuste para m que permita que se satisfagan los requisitos del
+muestreo.
+7.57 Se conectan 25 lámparas de calor en un invernadero para que cuando falle una de ellas, otra tome su
+lugar de inmediato. (Sólo una lámpara se enciende a la vez.) Las lámparas operan de manera independiente
+y cada una tiene una vida útil de 50 horas y desviación estándar de 4 horas. Si el invernadero no
+se revisa durante 1300 horas después de encender el sistema de lámparas, ¿cuál es la probabilidad de que
+una lámpara permanezca encendida al fi nal del periodo de 1300 horas?
 
