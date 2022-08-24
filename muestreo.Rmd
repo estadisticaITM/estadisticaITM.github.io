@@ -25,14 +25,14 @@ knitr::include_graphics("imagen/muestreo.png")
 
 **Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
 
-
 **Unidad de observación:** Objeto sobre el cual se realiza una medición. En poblaciones humanas las unidades de observación son los humanos.
 
 **Unidad de muestreo:** Unidad donde realizamos el muestreo
 
 **Marco de muestreo:** Lista de las unidades de muestreo
 
- Las familias sirven como unidades de muestreo y las unidades
+
+Las familias sirven como unidades de muestreo y las unidades
 de observación son los individuos que viven en una familia.
 
 
@@ -44,16 +44,17 @@ Es una rama de la estadística, que a través de métodos y muestras realiza inf
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
 
 
-```{r echo=F, out.height=350, out.width=500}
+```{r echo=F, out.height=200, out.width=300}
 knitr::include_graphics("imagen/mmm.png")
 ```
 
+# Muestreo
 
 **Por qué una muestra**
 
 Imposibilidad o costo excesivo de realizar un censo en que se mide toda la población
 
-## Objetivos del muestreo 
+**Objetivos del muestreo **
 
 - Describir la muestra: Estadística Descriptiva
 
@@ -83,24 +84,133 @@ Se dice que las variables aleatorias $X_1, X_2, . . . , X_n$ forman una muestra 
 
 3. Cualquier función de las variables aleatorias que forman una muestra se llaman estadístico .
  
-Es decir las $X_i$ son independientes e idénticamente distribuidas (iid) $$𝑋_𝑖\sim  N(0,\sigma ^2)$$
+Es decir las $X_i$ son independientes e idénticamente distribuidas (iid) $$𝑋_i\sim  N(0,\sigma ^2)$$
 
 
+## Nivel de confianza
 
 
-# Tamaños de muestra
+**Qué es el nivel de confianza**
 
-## Para la media
+<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado.
+
+- Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.
 
 
+```{r echo=F, out.height=250, out.width=350}
+knitr::include_graphics("imagen/nc.png")
+```
+
+**Ejemplo:**
+
+Si se construyen 100 intervalos de la forma $\hat \theta_{inf}< \theta <\hat \theta_{sup}$ con un nivel de confianza NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
+
+## Nivel de significancia 
+
+- Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta. 
+
+- Máximo error que queremos cometer en nuestra estimación o contraste.
+
+
+```{r echo=F, out.height=250, out.width=350}
+knitr::include_graphics("imagen/ns.png")
+```
+
+
+$$\Huge NC+\alpha=100\% $$
+
+|NC  |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
+|----|-----------|----------|-----------|--------------|
+|90% |10%        |          |         5%|              |
+|95% | 5%        |          |     2.5%  |              |
+|99% |1%         |          |   0.05%   |              |
+
+
+## Tamaños de muestra
+
+### Para la media
+
+**Video**
 
   <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  </div>
 
+**Población finita**
 
-#### Para la proporción
+$$\Large n=\frac{NZ^2\sigma ^2}{(N-1)e^2+Z^2\sigma^2}$$
+**Población Infinita**
+
+$$\Large n=\frac{Z^2\sigma ^2}{e^2}$$
+
+```{r echo=F, out.height=300, out.width=500}
+knitr::include_graphics("imagen/mj.png")
+```
+
+
+**Ejemplo población infinita**
+
+Se desea estimar el contenido medio de un refresco con un nivel de confianza del 93%, con un error máximo de estimación de 5 ml. Muestras previas indican que la desviación del contenido es 12 ml. Calcular el tamaño de muestra.
+
+NC=0.93
+
+$\alpha=0.07$
+
+$\alpha/2=0.035$
+
+$Z_{\alpha/2}=1.81$
+
+$\sigma=12 ml$
+
+$e=5 ml$
+
+
+$$\Large n=\frac{Z^2\sigma ^2}{e^2}$$
+
+$$\Large n=\frac{1.81^2* 12 ^2}{5^2}=19$$
+
+Se deben hacer mediciones en 19 refrescos.
+
+### Para la proporción
+
+**Video**
 
   <iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+**Población finita**
+$$\Large n=\frac{NZ^2pq}{(N-1)e^2+Z^2pq}$$
+
+**Población Infinita**
+$$\Large n=\frac{Z^2pq}{e^2}$$
+**Ejemplo población infinita**
+
+Se desea estimar con un nivel de confianza del 97%, el porcentaje de clientes que compraría un nuevo producto, para esto se toma una muestra previa de 80 clientes, de los cuales 65 manifestarían que compraría el nuevo producto. Si se desea un error máximo de estimación del 6%. calcule el tamaño de muestra.
+
+
+
+NC=0.97
+
+$\alpha=0.03$
+
+$\alpha/2=0.015$
+
+$Z_{\alpha/2}=2.17$
+
+$p=\frac{65}{80}\approx 0.8$
+
+q=0.2 
+
+$e=0.06$
+
+
+$$\Large n=\frac{Z^2pq}{e^2}$$
+
+$$\Large n=\frac{2.17^2*0.8*0.2}{0.06^2}\approx 210$$
+Se deben encuestar 210 personas para conocer sus preferencias sobre la compra o no del producto.
+
 
 # Tipos de muestreo
 
@@ -142,7 +252,7 @@ knitr::include_graphics("imagen/mj.png")
 ```
 
 
-### Muestreo por cuotas
+### Muestreo por cuotas o estratos
 
 Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
 
@@ -218,6 +328,11 @@ En la práctica, el conglomerado más utilizado es el geográfico. Si queremos h
 knitr::include_graphics("imagen/conglomerados.png")
 ```
 
+**Diferencia entre el muestreo por conglomerados y estratos**
+
+```{r echo=F, out.height=250, out.width=500}
+knitr::include_graphics("imagen/diff.png")
+```
 
 ### Muestreo sistemático
 
@@ -252,15 +367,47 @@ knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 
 **Ficha técnica de la encuesta**
 
-|Item |Respuesta|
-|---------|-----|
-|**Persona natural o jurídica que la realizó:**| YanHaas S.A Incrito ante el consejo nacional electoral|
-|**Encomendada y financiada por:**| Alinza de medios; RCN y periódicos asociados    |
+|Item|Respuesta|
+|------|---------|
+|**Persona jurídica que realizó la encuesta:**| YanHaas S.A Incrito ante el consejo nacional electoral|
+|**Encomendada y financiada por:**| Alianza de medios; RCN y periódicos asociados    |
+|**Tipo de estudio/ Investigación** |Exploratorio /Cuantitativo|
 |**Temas a los que se refiere:**|Intención de voto para las elecciones presidenciales 2022|
-|**Universo poblacional:**|Personas 18 años en adelante que manifiestan interés de votar en las proximas elecciones presidenciales 2022, en las cinco regiones geográficas de estudio: Antioquia-eje cafetero(1), Caribe (2), Bogotá (3), central-Oriente (4) y pacífica (5) |
+|**Universo poblacional:**|Potencial de sufragantes 9.583.254, en las cinco regiones geográficas de estudio: Antioquia-eje cafetero(1), Caribe (2), Bogotá (3), central-Oriente (4) y pacífica (5) |
 |**Grupo objetivo**|Hombres y mujeres mayores de 18 años que manifestaron intención de voto en las próximas elecciones presidenciales del año 2022|
 |**Sistema de muestreo**|Muestreo aleatorio estratificado por región y tamaño del municipio según censo electoral |
-|**Marco muestral:**|Listado de municipios y barrios, viviendas y personas|
+|**Técnica de muestreo**|Entrevista personal cara a cara en hogares|
+|**Marco muestral:**|Censo electoral colombiano discriminado por municipios|
+|**Elemento muestral**|Persona mayor de edad,  residente de las principales regiones de colombia, que manifestaron intención de voto|
 |**Tamaño de la muestra:**|1249 encuestas distribuidas en 60 municipios del país|
 | **Margen de error observado:**|3.2%|
 |**Nivel de confianza:**|95%|
+
+# EJercicios 
+## Tamaños de muestra para la media
+1. Un biólogo quiere estimar el peso promedio de los ciervos cazados en el estado de Maryland. Un estudio anterior de diez ciervos cazados mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe ser una muestra para que el biólogo tenga el 95% de confianza de que el error de estimación es a lo más de 4 libras?
+
+Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de confianza en que $\mu $ difiere en menos de 4 libras de $\bar x$ .
+
+2. Una empresa eléctrica fabrica focos que tienen una duración aproximadamente normal con una desviación estándar de 40 horas. ¿De qué tamaño se necesita una muestra si se desea tener 96% de confianza que la media real esté dentro de 10 horas de la media real?
+
+Rta/ Se necesita una muestra de 68 focos para estimar la media de la población y tener un error máximo de 10 horas.
+
+3. Qué pasaría si en lugar de tener un error de estimación de 10 horas sólo se requiere un error de 5 horas?
+
+
+Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene como beneficio una estimación más exacta.
+
+### Tamaños de muestra para la proporción
+
+1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
+
+Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
+
+2. Una legisladora estatal desea encuestar a los residentes de su distrito para conocer qué proporción del electorado conoce la opinión de ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué tamaño de muestra se necesita si se requiere un confianza del 95% y un error máximo de estimación de 0.10?
+
+Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confianza del 95% la estimación tenga un error máximo de 0.10.
+
+3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
+
+4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147

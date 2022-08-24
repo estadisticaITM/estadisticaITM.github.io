@@ -436,12 +436,14 @@ realiza inferencias o generalizaciones de una población.</p>
 parámetros desconocidos de la población, por medio de un experimento que
 permite observar o medir las características de la población, de las
 cuáles se tiene incertidumbre.</p>
-<p><img src="imagen/mmm.png" width="500" height="350" /></p>
+<p><img src="imagen/mmm.png" width="300" height="250" /></p>
+</div>
+<div id="muestreo" class="section level1">
+<h1>Muestreo</h1>
 <p><strong>Por qué una muestra</strong></p>
 <p>Imposibilidad o costo excesivo de realizar un censo en que se mide
 toda la población</p>
-<div id="objetivos-del-muestreo" class="section level2">
-<h2>Objetivos del muestreo</h2>
+<p><strong>Objetivos del muestreo </strong></p>
 <ul>
 <li><p>Describir la muestra: Estadística Descriptiva</p></li>
 <li><p>Obtener conclusiones de la población a partir de la muestra:
@@ -471,19 +473,132 @@ muestra se llaman estadístico .</p></li>
 </ol>
 <p>Es decir las <span class="math inline">\(X_i\)</span> son
 independientes e idénticamente distribuidas (iid) <span
-class="math display">\[𝑋_𝑖\sim  N(0,\sigma ^2)\]</span></p>
+class="math display">\[𝑋_i\sim  N(0,\sigma ^2)\]</span></p>
+<div id="nivel-de-confianza" class="section level2">
+<h2>Nivel de confianza</h2>
+<p><strong>Qué es el nivel de confianza</strong></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<ul>
+<li><p>Probabilidad máxima con la que podríamos asegurar que el
+parámetro a estimar se encuentra dentro de nuestro intervalo
+estimado.</p></li>
+<li><p>Representa el porcentaje de intervalos que tomados de 100
+muestras independientes distintas contienen en realidad el valor
+desconocido.</p></li>
+</ul>
+<p><img src="imagen/nc.png" width="350" height="250" /></p>
+<p><strong>Ejemplo:</strong></p>
+<p>Si se construyen 100 intervalos de la forma <span
+class="math inline">\(\hat \theta_{inf}&lt; \theta &lt;\hat
+\theta_{sup}\)</span> con un nivel de confianza NC=0.97 entonces se
+espera que 97 de los 100 intervalos contengan el parámetro <span
+class="math inline">\(\theta\)</span></p>
 </div>
+<div id="nivel-de-significancia" class="section level2">
+<h2>Nivel de significancia</h2>
+<ul>
+<li><p>Es la probabilidad máxima que asumimos de forma voluntaria de
+equivocarnos al rechazar la hipótesis nula cuando en realidad es
+cierta.</p></li>
+<li><p>Máximo error que queremos cometer en nuestra estimación o
+contraste.</p></li>
+</ul>
+<p><img src="imagen/ns.png" width="350" height="250" /></p>
+<p><span class="math display">\[\Huge NC+\alpha=100\% \]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th>NC</th>
+<th>NS <span class="math inline">\(\alpha\)</span></th>
+<th><span class="math inline">\(Z_\alpha\)</span></th>
+<th><span class="math inline">\(\alpha/2\)</span></th>
+<th><span class="math inline">\(Z_{\alpha/2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td>10%</td>
+<td></td>
+<td>5%</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>95%</td>
+<td>5%</td>
+<td></td>
+<td>2.5%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>99%</td>
+<td>1%</td>
+<td></td>
+<td>0.05%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="tamaños-de-muestra" class="section level1">
-<h1>Tamaños de muestra</h1>
-<div id="para-la-media" class="section level2">
-<h2>Para la media</h2>
+<div id="tamaños-de-muestra" class="section level2">
+<h2>Tamaños de muestra</h2>
+<div id="para-la-media" class="section level3">
+<h3>Para la media</h3>
+<p><strong>Video</strong></p>
 <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div id="para-la-proporción" class="section level4">
-<h4>Para la proporción</h4>
-<p><iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p><strong>Población finita</strong></p>
+<p><span class="math display">\[\Large n=\frac{NZ^2\sigma
+^2}{(N-1)e^2+Z^2\sigma^2}\]</span> <strong>Población
+Infinita</strong></p>
+<p><span class="math display">\[\Large n=\frac{Z^2\sigma
+^2}{e^2}\]</span></p>
+<p><img src="imagen/mj.png" width="500" height="300" /></p>
+<p><strong>Ejemplo población infinita</strong></p>
+<p>Se desea estimar el contenido medio de un refresco con un nivel de
+confianza del 93%, con un error máximo de estimación de 5 ml. Muestras
+previas indican que la desviación del contenido es 12 ml. Calcular el
+tamaño de muestra.</p>
+<p>NC=0.93</p>
+<p><span class="math inline">\(\alpha=0.07\)</span></p>
+<p><span class="math inline">\(\alpha/2=0.035\)</span></p>
+<p><span class="math inline">\(Z_{\alpha/2}=1.81\)</span></p>
+<p><span class="math inline">\(\sigma=12 ml\)</span></p>
+<p><span class="math inline">\(e=5 ml\)</span></p>
+<p><span class="math display">\[\Large n=\frac{Z^2\sigma
+^2}{e^2}\]</span></p>
+<p><span class="math display">\[\Large n=\frac{1.81^2* 12
+^2}{5^2}=19\]</span></p>
+<p>Se deben hacer mediciones en 19 refrescos.</p>
 </div>
+</div>
+<div id="para-la-proporción" class="section level2">
+<h2>Para la proporción</h2>
+<p><strong>Video</strong></p>
+<p><iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p><strong>Población finita</strong> <span class="math display">\[\Large
+n=\frac{NZ^2pq}{(N-1)e^2+Z^2pq}\]</span></p>
+<p><strong>Población Infinita</strong> <span
+class="math display">\[\Large n=\frac{Z^2pq}{e^2}\]</span>
+<strong>Ejemplo población infinita</strong></p>
+<p>Se desea estimar con un nivel de confianza del 97%, el porcentaje de
+clientes que compraría un nuevo producto, para esto se toma una muestra
+previa de 80 clientes, de los cuales 65 manifestarían que compraría el
+nuevo producto. Si se desea un error máximo de estimación del 6%.
+calcule el tamaño de muestra.</p>
+<p>NC=0.97</p>
+<p><span class="math inline">\(\alpha=0.03\)</span></p>
+<p><span class="math inline">\(\alpha/2=0.015\)</span></p>
+<p><span class="math inline">\(Z_{\alpha/2}=2.17\)</span></p>
+<p><span class="math inline">\(p=\frac{65}{80}\approx 0.8\)</span></p>
+<p>q=0.2</p>
+<p><span class="math inline">\(e=0.06\)</span></p>
+<p><span class="math display">\[\Large n=\frac{Z^2pq}{e^2}\]</span></p>
+<p><span class="math display">\[\Large
+n=\frac{2.17^2*0.8*0.2}{0.06^2}\approx 210\]</span> Se deben encuestar
+210 personas para conocer sus preferencias sobre la compra o no del
+producto.</p>
 </div>
 </div>
 <div id="tipos-de-muestreo" class="section level1">
@@ -518,8 +633,8 @@ reglas predeterminadas.</p>
 </ul>
 <p><img src="imagen/mj.png" width="500" height="300" /></p>
 </div>
-<div id="muestreo-por-cuotas" class="section level3">
-<h3>Muestreo por cuotas</h3>
+<div id="muestreo-por-cuotas-o-estratos" class="section level3">
+<h3>Muestreo por cuotas o estratos</h3>
 <p>Permite dividir la población en grupos o estratos que comparten
 características como el sexo, la edad, los estudios, etc., y de ellos se
 selecciona una muestra proporcional y representativa.</p>
@@ -590,6 +705,9 @@ ser seleccionados) y utilizarlos en representación de la población.</p>
 queremos hacer un estudio en un país, podemos dividir el país en
 conglomerados como las comunidades, provincias, ciudades</p>
 <p><img src="imagen/conglomerados.png" width="500" height="250" /></p>
+<p><strong>Diferencia entre el muestreo por conglomerados y
+estratos</strong></p>
+<p><img src="imagen/diff.png" width="500" height="250" /></p>
 </div>
 <div id="muestreo-sistemático" class="section level3">
 <h3>Muestreo sistemático</h3>
@@ -616,8 +734,8 @@ muestreo sistemático será:</p>
 <p><strong>Ficha técnica de la encuesta</strong></p>
 <table>
 <colgroup>
-<col width="64%" />
-<col width="35%" />
+<col width="40%" />
+<col width="60%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -627,52 +745,131 @@ muestreo sistemático será:</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Persona natural o jurídica que la realizó:</strong></td>
+<td><strong>Persona jurídica que realizó la encuesta:</strong></td>
 <td>YanHaas S.A Incrito ante el consejo nacional electoral</td>
 </tr>
 <tr class="even">
 <td><strong>Encomendada y financiada por:</strong></td>
-<td>Alinza de medios; RCN y periódicos asociados</td>
+<td>Alianza de medios; RCN y periódicos asociados</td>
 </tr>
 <tr class="odd">
+<td><strong>Tipo de estudio/ Investigación</strong></td>
+<td>Exploratorio /Cuantitativo</td>
+</tr>
+<tr class="even">
 <td><strong>Temas a los que se refiere:</strong></td>
 <td>Intención de voto para las elecciones presidenciales 2022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Universo poblacional:</strong></td>
-<td>Personas 18 años en adelante que manifiestan interés de votar en las
-proximas elecciones presidenciales 2022, en las cinco regiones
+<td>Potencial de sufragantes 9.583.254, en las cinco regiones
 geográficas de estudio: Antioquia-eje cafetero(1), Caribe (2), Bogotá
 (3), central-Oriente (4) y pacífica (5)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Grupo objetivo</strong></td>
 <td>Hombres y mujeres mayores de 18 años que manifestaron intención de
 voto en las próximas elecciones presidenciales del año 2022</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Sistema de muestreo</strong></td>
 <td>Muestreo aleatorio estratificado por región y tamaño del municipio
 según censo electoral</td>
 </tr>
+<tr class="even">
+<td><strong>Técnica de muestreo</strong></td>
+<td>Entrevista personal cara a cara en hogares</td>
+</tr>
 <tr class="odd">
 <td><strong>Marco muestral:</strong></td>
-<td>Listado de municipios y barrios, viviendas y personas</td>
+<td>Censo electoral colombiano discriminado por municipios</td>
 </tr>
 <tr class="even">
+<td><strong>Elemento muestral</strong></td>
+<td>Persona mayor de edad, residente de las principales regiones de
+colombia, que manifestaron intención de voto</td>
+</tr>
+<tr class="odd">
 <td><strong>Tamaño de la muestra:</strong></td>
 <td>1249 encuestas distribuidas en 60 municipios del país</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Margen de error observado:</strong></td>
 <td>3.2%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Nivel de confianza:</strong></td>
 <td>95%</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div id="ejercicios" class="section level1">
+<h1>EJercicios</h1>
+<div id="tamaños-de-muestra-para-la-media" class="section level2">
+<h2>Tamaños de muestra para la media</h2>
+<ol style="list-style-type: decimal">
+<li>Un biólogo quiere estimar el peso promedio de los ciervos cazados en
+el estado de Maryland. Un estudio anterior de diez ciervos cazados
+mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué
+tan grande debe ser una muestra para que el biólogo tenga el 95% de
+confianza de que el error de estimación es a lo más de 4 libras?</li>
+</ol>
+<p>Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de
+confianza en que $$ difiere en menos de 4 libras de <span
+class="math inline">\(\bar x\)</span> .</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una empresa eléctrica fabrica focos que tienen una duración
+aproximadamente normal con una desviación estándar de 40 horas. ¿De qué
+tamaño se necesita una muestra si se desea tener 96% de confianza que la
+media real esté dentro de 10 horas de la media real?</li>
+</ol>
+<p>Rta/ Se necesita una muestra de 68 focos para estimar la media de la
+población y tener un error máximo de 10 horas.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Qué pasaría si en lugar de tener un error de estimación de 10 horas
+sólo se requiere un error de 5 horas?</li>
+</ol>
+<p>Rta/ Se puede observar como el tamaño de la muestra aumenta, pero
+esto tiene como beneficio una estimación más exacta.</p>
+<div id="tamaños-de-muestra-para-la-proporción" class="section level3">
+<h3>Tamaños de muestra para la proporción</h3>
+<ol style="list-style-type: decimal">
+<li>En una muestra aleatoria de 500 familias que tienen televisores en
+la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a
+HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener
+95% de confianza de que la estimación de P esté dentro de 0.02?</li>
+</ol>
+<p>Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria
+de tamaño 2090, se puede tener una confianza de 95% de que nuestra
+proporción muestral no diferirá de la proporción real por más de
+0.02.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una legisladora estatal desea encuestar a los residentes de su
+distrito para conocer qué proporción del electorado conoce la opinión de
+ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué
+tamaño de muestra se necesita si se requiere un confianza del 95% y un
+error máximo de estimación de 0.10?</li>
+</ol>
+<p>Rta/ Se requiere un tamaño de muestra de 97 residentes para que con
+una confianza del 95% la estimación tenga un error máximo de 0.10.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Se planea realizar un estudio de tiempos para estimar el tiempo
+medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad
+de 0.90, para terminar un trabajo de montaje. Si la experiencia previa
+sugiere que <span class="math inline">\(\sigma= 16 seg\)</span>. mide la
+variación en el tiempo de montaje entre un trabajador y otro al realizar
+una sola operación de montaje, ¿cuántos operarios habrá que incluir en
+la muestra? Rta/n=44</p></li>
+<li><p>Un ingeniero de control de calidad quiere estimar la fracción de
+elementos defectuosos en un gran lote de lámparas. Por la experiencia,
+cree que la fracción real de defectuosos tendría que andar alrededor de
+0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere
+estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de
+confianza fe 95%? rta/6147</p></li>
+</ol>
 </div>
 </div>
 </div>
