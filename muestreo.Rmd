@@ -44,7 +44,7 @@ Es una rama de la estadística, que a través de métodos y muestras realiza inf
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
 
 
-```{r echo=F, out.height=200, out.width=300}
+```{r echo=F, out.height=150, out.width=300}
 knitr::include_graphics("imagen/mmm.png")
 ```
 
@@ -139,10 +139,10 @@ $$\Huge NC+\alpha=100\% $$
 
 **Población finita**
 
-$$\Large n=\frac{NZ^2\sigma ^2}{(N-1)e^2+Z^2\sigma^2}$$
+$$\Large n=\frac{N*Z_{\alpha/2}^2*\sigma ^2}{(N-1)e^2+Z_{\alpha/2}^2\sigma^2}$$
 **Población Infinita**
 
-$$\Large n=\frac{Z^2\sigma ^2}{e^2}$$
+$$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$
 
 ```{r echo=F, out.height=300, out.width=500}
 knitr::include_graphics("imagen/mj.png")
@@ -166,13 +166,13 @@ $\sigma=12 ml$
 $e=5 ml$
 
 
-$$\Large n=\frac{Z^2\sigma ^2}{e^2}$$
+$$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$
 
 $$\Large n=\frac{1.81^2* 12 ^2}{5^2}=19$$
 
 Se deben hacer mediciones en 19 refrescos.
 
-### Para la proporción
+## Para la proporción
 
 **Video**
 
@@ -181,10 +181,10 @@ Se deben hacer mediciones en 19 refrescos.
 
 
 **Población finita**
-$$\Large n=\frac{NZ^2pq}{(N-1)e^2+Z^2pq}$$
+$$\Large n=\frac{NZ_{\alpha/2}^2pq}{(N-1)e^2+Z_{\alpha/2}^2pq}$$
 
 **Población Infinita**
-$$\Large n=\frac{Z^2pq}{e^2}$$
+$$\Large n=\frac{Z_{\alpha/2}^2pq}{e^2}$$
 **Ejemplo población infinita**
 
 Se desea estimar con un nivel de confianza del 97%, el porcentaje de clientes que compraría un nuevo producto, para esto se toma una muestra previa de 80 clientes, de los cuales 65 manifestarían que compraría el nuevo producto. Si se desea un error máximo de estimación del 6%. calcule el tamaño de muestra.
@@ -211,8 +211,37 @@ $$\Large n=\frac{Z^2pq}{e^2}$$
 $$\Large n=\frac{2.17^2*0.8*0.2}{0.06^2}\approx 210$$
 Se deben encuestar 210 personas para conocer sus preferencias sobre la compra o no del producto.
 
+### EJercicios 
 
-# Tipos de muestreo
+**Tamaños de muestra para la media**
+1. Un biólogo quiere estimar el peso promedio de los ciervos cazados en el estado de Maryland. Un estudio anterior de diez ciervos cazados mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe ser una muestra para que el biólogo tenga el 95% de confianza de que el error de estimación es a lo más de 4 libras?
+
+Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de confianza en que $\mu $ difiere en menos de 4 libras de $\bar x$ .
+
+2. Una empresa eléctrica fabrica focos que tienen una duración aproximadamente normal con una desviación estándar de 40 horas. ¿De qué tamaño se necesita una muestra si se desea tener 96% de confianza que la media real esté dentro de 10 horas de la media real?
+
+Rta/ Se necesita una muestra de 68 focos para estimar la media de la población y tener un error máximo de 10 horas.
+
+3. Qué pasaría si en lugar de tener un error de estimación de 10 horas sólo se requiere un error de 5 horas?
+
+
+Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene como beneficio una estimación más exacta.
+
+**Tamaños de muestra para la proporción**
+
+1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
+
+Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
+
+2. Una legisladora estatal desea encuestar a los residentes de su distrito para conocer qué proporción del electorado conoce la opinión de ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué tamaño de muestra se necesita si se requiere un confianza del 95% y un error máximo de estimación de 0.10?
+
+Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confianza del 95% la estimación tenga un error máximo de 0.10.
+
+3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
+
+4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147
+
+## Tipos de muestreo
 
 ```{r echo=F, out.height=350, out.width=500}
 knitr::include_graphics("imagen/mues.png")
@@ -383,31 +412,4 @@ knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 | **Margen de error observado:**|3.2%|
 |**Nivel de confianza:**|95%|
 
-# EJercicios 
-## Tamaños de muestra para la media
-1. Un biólogo quiere estimar el peso promedio de los ciervos cazados en el estado de Maryland. Un estudio anterior de diez ciervos cazados mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe ser una muestra para que el biólogo tenga el 95% de confianza de que el error de estimación es a lo más de 4 libras?
 
-Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de confianza en que $\mu $ difiere en menos de 4 libras de $\bar x$ .
-
-2. Una empresa eléctrica fabrica focos que tienen una duración aproximadamente normal con una desviación estándar de 40 horas. ¿De qué tamaño se necesita una muestra si se desea tener 96% de confianza que la media real esté dentro de 10 horas de la media real?
-
-Rta/ Se necesita una muestra de 68 focos para estimar la media de la población y tener un error máximo de 10 horas.
-
-3. Qué pasaría si en lugar de tener un error de estimación de 10 horas sólo se requiere un error de 5 horas?
-
-
-Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene como beneficio una estimación más exacta.
-
-### Tamaños de muestra para la proporción
-
-1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
-
-Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
-
-2. Una legisladora estatal desea encuestar a los residentes de su distrito para conocer qué proporción del electorado conoce la opinión de ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué tamaño de muestra se necesita si se requiere un confianza del 95% y un error máximo de estimación de 0.10?
-
-Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confianza del 95% la estimación tenga un error máximo de 0.10.
-
-3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
-
-4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147

@@ -436,7 +436,7 @@ realiza inferencias o generalizaciones de una población.</p>
 parámetros desconocidos de la población, por medio de un experimento que
 permite observar o medir las características de la población, de las
 cuáles se tiene incertidumbre.</p>
-<p><img src="imagen/mmm.png" width="300" height="250" /></p>
+<p><img src="imagen/mmm.png" width="300" height="150" /></p>
 </div>
 <div id="muestreo" class="section level1">
 <h1>Muestreo</h1>
@@ -549,10 +549,10 @@ contraste.</p></li>
 <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <p><strong>Población finita</strong></p>
-<p><span class="math display">\[\Large n=\frac{NZ^2\sigma
-^2}{(N-1)e^2+Z^2\sigma^2}\]</span> <strong>Población
+<p><span class="math display">\[\Large n=\frac{N*Z_{\alpha/2}^2*\sigma
+^2}{(N-1)e^2+Z_{\alpha/2}^2\sigma^2}\]</span> <strong>Población
 Infinita</strong></p>
-<p><span class="math display">\[\Large n=\frac{Z^2\sigma
+<p><span class="math display">\[\Large n=\frac{Z_{\alpha/2}^2\sigma
 ^2}{e^2}\]</span></p>
 <p><img src="imagen/mj.png" width="500" height="300" /></p>
 <p><strong>Ejemplo población infinita</strong></p>
@@ -566,7 +566,7 @@ tamaño de muestra.</p>
 <p><span class="math inline">\(Z_{\alpha/2}=1.81\)</span></p>
 <p><span class="math inline">\(\sigma=12 ml\)</span></p>
 <p><span class="math inline">\(e=5 ml\)</span></p>
-<p><span class="math display">\[\Large n=\frac{Z^2\sigma
+<p><span class="math display">\[\Large n=\frac{Z_{\alpha/2}^2\sigma
 ^2}{e^2}\]</span></p>
 <p><span class="math display">\[\Large n=\frac{1.81^2* 12
 ^2}{5^2}=19\]</span></p>
@@ -578,9 +578,9 @@ tamaño de muestra.</p>
 <p><strong>Video</strong></p>
 <p><iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 <p><strong>Población finita</strong> <span class="math display">\[\Large
-n=\frac{NZ^2pq}{(N-1)e^2+Z^2pq}\]</span></p>
+n=\frac{NZ_{\alpha/2}^2pq}{(N-1)e^2+Z_{\alpha/2}^2pq}\]</span></p>
 <p><strong>Población Infinita</strong> <span
-class="math display">\[\Large n=\frac{Z^2pq}{e^2}\]</span>
+class="math display">\[\Large n=\frac{Z_{\alpha/2}^2pq}{e^2}\]</span>
 <strong>Ejemplo población infinita</strong></p>
 <p>Se desea estimar con un nivel de confianza del 97%, el porcentaje de
 clientes que compraría un nuevo producto, para esto se toma una muestra
@@ -599,11 +599,72 @@ calcule el tamaño de muestra.</p>
 n=\frac{2.17^2*0.8*0.2}{0.06^2}\approx 210\]</span> Se deben encuestar
 210 personas para conocer sus preferencias sobre la compra o no del
 producto.</p>
+<div id="ejercicios" class="section level3">
+<h3>EJercicios</h3>
+<p><strong>Tamaños de muestra para la media</strong> 1. Un biólogo
+quiere estimar el peso promedio de los ciervos cazados en el estado de
+Maryland. Un estudio anterior de diez ciervos cazados mostró que la
+desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe
+ser una muestra para que el biólogo tenga el 95% de confianza de que el
+error de estimación es a lo más de 4 libras?</p>
+<p>Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de
+confianza en que $$ difiere en menos de 4 libras de <span
+class="math inline">\(\bar x\)</span> .</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una empresa eléctrica fabrica focos que tienen una duración
+aproximadamente normal con una desviación estándar de 40 horas. ¿De qué
+tamaño se necesita una muestra si se desea tener 96% de confianza que la
+media real esté dentro de 10 horas de la media real?</li>
+</ol>
+<p>Rta/ Se necesita una muestra de 68 focos para estimar la media de la
+población y tener un error máximo de 10 horas.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Qué pasaría si en lugar de tener un error de estimación de 10 horas
+sólo se requiere un error de 5 horas?</li>
+</ol>
+<p>Rta/ Se puede observar como el tamaño de la muestra aumenta, pero
+esto tiene como beneficio una estimación más exacta.</p>
+<p><strong>Tamaños de muestra para la proporción</strong></p>
+<ol style="list-style-type: decimal">
+<li>En una muestra aleatoria de 500 familias que tienen televisores en
+la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a
+HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener
+95% de confianza de que la estimación de P esté dentro de 0.02?</li>
+</ol>
+<p>Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria
+de tamaño 2090, se puede tener una confianza de 95% de que nuestra
+proporción muestral no diferirá de la proporción real por más de
+0.02.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una legisladora estatal desea encuestar a los residentes de su
+distrito para conocer qué proporción del electorado conoce la opinión de
+ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué
+tamaño de muestra se necesita si se requiere un confianza del 95% y un
+error máximo de estimación de 0.10?</li>
+</ol>
+<p>Rta/ Se requiere un tamaño de muestra de 97 residentes para que con
+una confianza del 95% la estimación tenga un error máximo de 0.10.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Se planea realizar un estudio de tiempos para estimar el tiempo
+medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad
+de 0.90, para terminar un trabajo de montaje. Si la experiencia previa
+sugiere que <span class="math inline">\(\sigma= 16 seg\)</span>. mide la
+variación en el tiempo de montaje entre un trabajador y otro al realizar
+una sola operación de montaje, ¿cuántos operarios habrá que incluir en
+la muestra? Rta/n=44</p></li>
+<li><p>Un ingeniero de control de calidad quiere estimar la fracción de
+elementos defectuosos en un gran lote de lámparas. Por la experiencia,
+cree que la fracción real de defectuosos tendría que andar alrededor de
+0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere
+estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de
+confianza fe 95%? rta/6147</p></li>
+</ol>
 </div>
 </div>
-<div id="tipos-de-muestreo" class="section level1">
-<h1>Tipos de muestreo</h1>
+<div id="tipos-de-muestreo" class="section level2">
+<h2>Tipos de muestreo</h2>
 <p><img src="imagen/mues.png" width="500" height="350" /></p>
+</div>
 <div id="muestreo-no-probabilístico" class="section level2">
 <h2>Muestreo no-Probabilístico</h2>
 <p>1.Se basa en el juicio personal del investigador.</p>
@@ -803,73 +864,6 @@ colombia, que manifestaron intención de voto</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-<div id="ejercicios" class="section level1">
-<h1>EJercicios</h1>
-<div id="tamaños-de-muestra-para-la-media" class="section level2">
-<h2>Tamaños de muestra para la media</h2>
-<ol style="list-style-type: decimal">
-<li>Un biólogo quiere estimar el peso promedio de los ciervos cazados en
-el estado de Maryland. Un estudio anterior de diez ciervos cazados
-mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué
-tan grande debe ser una muestra para que el biólogo tenga el 95% de
-confianza de que el error de estimación es a lo más de 4 libras?</li>
-</ol>
-<p>Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de
-confianza en que $$ difiere en menos de 4 libras de <span
-class="math inline">\(\bar x\)</span> .</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Una empresa eléctrica fabrica focos que tienen una duración
-aproximadamente normal con una desviación estándar de 40 horas. ¿De qué
-tamaño se necesita una muestra si se desea tener 96% de confianza que la
-media real esté dentro de 10 horas de la media real?</li>
-</ol>
-<p>Rta/ Se necesita una muestra de 68 focos para estimar la media de la
-población y tener un error máximo de 10 horas.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Qué pasaría si en lugar de tener un error de estimación de 10 horas
-sólo se requiere un error de 5 horas?</li>
-</ol>
-<p>Rta/ Se puede observar como el tamaño de la muestra aumenta, pero
-esto tiene como beneficio una estimación más exacta.</p>
-<div id="tamaños-de-muestra-para-la-proporción" class="section level3">
-<h3>Tamaños de muestra para la proporción</h3>
-<ol style="list-style-type: decimal">
-<li>En una muestra aleatoria de 500 familias que tienen televisores en
-la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a
-HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener
-95% de confianza de que la estimación de P esté dentro de 0.02?</li>
-</ol>
-<p>Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria
-de tamaño 2090, se puede tener una confianza de 95% de que nuestra
-proporción muestral no diferirá de la proporción real por más de
-0.02.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Una legisladora estatal desea encuestar a los residentes de su
-distrito para conocer qué proporción del electorado conoce la opinión de
-ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué
-tamaño de muestra se necesita si se requiere un confianza del 95% y un
-error máximo de estimación de 0.10?</li>
-</ol>
-<p>Rta/ Se requiere un tamaño de muestra de 97 residentes para que con
-una confianza del 95% la estimación tenga un error máximo de 0.10.</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Se planea realizar un estudio de tiempos para estimar el tiempo
-medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad
-de 0.90, para terminar un trabajo de montaje. Si la experiencia previa
-sugiere que <span class="math inline">\(\sigma= 16 seg\)</span>. mide la
-variación en el tiempo de montaje entre un trabajador y otro al realizar
-una sola operación de montaje, ¿cuántos operarios habrá que incluir en
-la muestra? Rta/n=44</p></li>
-<li><p>Un ingeniero de control de calidad quiere estimar la fracción de
-elementos defectuosos en un gran lote de lámparas. Por la experiencia,
-cree que la fracción real de defectuosos tendría que andar alrededor de
-0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere
-estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de
-confianza fe 95%? rta/6147</p></li>
-</ol>
 </div>
 </div>
 </div>
