@@ -9,7 +9,11 @@ output:
 
 # Estimación puntual
 
-Una estimación puntual de un parámetro $\theta$ es un número único que puede ser considerado como un valor sensible de $\theta$. Se obtiene una estimación puntual seleccionando un estadístico apropiado y calculando su valor con los datos muestrales dados. El estadístico seleccionado se llama estimador puntual de $\theta$.
+Una estimación puntual de un parámetro $\theta$ es un número único que puede ser considerado como un valor sensible de $\theta$. 
+
+Se obtiene una estimación puntual seleccionando un estadístico apropiado y calculando su valor con los datos muestrales dados. 
+
+El estadístico seleccionado se llama estimador puntual de $\theta$.
 
 
 La estimación puntual es similar, a disparar a un tiro al blanco.
@@ -44,6 +48,16 @@ $$\hat \sigma^2=S^2=\frac{\sum(x_i-\bar x )^2}{n-1}$$
 
 es un estimador insesgado de $\sigma^2$
 
+**Valores esperados y errores estándar de algunos estimadores puntuales comunes**
+
+|Parámetro objetivo| tamaño de muestra|Estimador puntual$\hat \theta$|$E(\hat \theta)$|Error estándar $\sigma_{\hat \theta}$|
+|-------|----------|------------------|-------|------------------------|
+|$\mu$  |n         |$\hat Y $         |$\mu$  |$\frac{\sigma}{\sqrt n}$|
+|p      | n        |$\hat p=\frac{Y}{n}$| p   |$\sqrt{\frac{pq}{n}}$   |
+|$\mu_1-\mu_2$|$n_1,n_2$|$\bar Y_1-\bar Y_2$| $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$|
+|$p_1-p_2$|$n_1,n_2$|$\bar p_1-\bar p_2$| $\sqrt{\frac{p_1q_1}{n_1}+\frac{p_2q_2}{n_2}}$|
+
+
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/est.png")
 ```
@@ -51,14 +65,18 @@ knitr::include_graphics("imagen/est.png")
 **Ejemplo 1**
 
 Una muestra de n = 1000 votantes, seleccionados al azar en Bogotá mostró y = 560 a favor del candidato petro. Estime p, la fracción de votantes de la población que están a favor de petro y precise un límite de error estándar de 2 en el error de estimación.
-Solución Utilizaremos el estimador $\hat p=y/n$ para calcular p. Por tanto, la estimación de p, la fracción
-de votantes que están a favor del candidato petro, es
+
+**Solución **
+
+
+Utilizaremos el estimador $\hat p=y/n$ para calcular p. Por tanto, la estimación de p, la fracción de votantes que están a favor del candidato petro, es
 
 $$\hat p =\frac{y}{n}=\frac{560}{1000}=0.56$$
 ¿Qué tan confiable es este valor? La distribución de probabilidad de $\hat p$ se aproxima en forma muy precisa mediante una distribución de probabilidad normal para muestras grandes.
 
-Como n = 1000, cuando $b = 2 \sigma_{\hat p}$, la probabilidad de que e sea menor que b es aproximadamente
-0.95.
+Como n = 1000, cuando $b = 2 \sigma_{\hat p}$, la probabilidad de que e sea menor que b es aproximadamente 0.95.
+
+
 De la anterior el error estándar del estimador para p está dado por $\sigma_{\hat p}= \sqrt \frac {pq}{n}$ por tanto
 
 $$b = 2 \sigma_{\hat p}=2 \sqrt \frac {pq}{n}$$

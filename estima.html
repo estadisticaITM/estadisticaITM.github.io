@@ -414,10 +414,11 @@ div.tocify {
 <p>Una estimación puntual de un parámetro <span
 class="math inline">\(\theta\)</span> es un número único que puede ser
 considerado como un valor sensible de <span
-class="math inline">\(\theta\)</span>. Se obtiene una estimación puntual
-seleccionando un estadístico apropiado y calculando su valor con los
-datos muestrales dados. El estadístico seleccionado se llama estimador
-puntual de <span class="math inline">\(\theta\)</span>.</p>
+class="math inline">\(\theta\)</span>.</p>
+<p>Se obtiene una estimación puntual seleccionando un estadístico
+apropiado y calculando su valor con los datos muestrales dados.</p>
+<p>El estadístico seleccionado se llama estimador puntual de <span
+class="math inline">\(\theta\)</span>.</p>
 <p>La estimación puntual es similar, a disparar a un tiro al blanco.</p>
 <p><img src="imagen/central.png" width="235" style="display: block; margin: auto;" /></p>
 <p>Como las estimaciones son números, se evalua la bondad del estimador
@@ -458,15 +459,70 @@ class="math inline">\(\sigma^2\)</span> Entonces el estimador</p></li>
 )^2}{n-1}\]</span></p>
 <p>es un estimador insesgado de <span
 class="math inline">\(\sigma^2\)</span></p>
+<p><strong>Valores esperados y errores estándar de algunos estimadores
+puntuales comunes</strong></p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="27%" />
+<col width="10%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parámetro objetivo</th>
+<th>tamaño de muestra</th>
+<th>Estimador puntual<span class="math inline">\(\hat
+\theta\)</span></th>
+<th><span class="math inline">\(E(\hat \theta)\)</span></th>
+<th>Error estándar <span class="math inline">\(\sigma_{\hat
+\theta}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mu\)</span></td>
+<td>n</td>
+<td>$Y $</td>
+<td><span class="math inline">\(\mu\)</span></td>
+<td><span class="math inline">\(\frac{\sigma}{\sqrt n}\)</span></td>
+</tr>
+<tr class="even">
+<td>p</td>
+<td>n</td>
+<td><span class="math inline">\(\hat p=\frac{Y}{n}\)</span></td>
+<td>p</td>
+<td><span class="math inline">\(\sqrt{\frac{pq}{n}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_1-\mu_2\)</span></td>
+<td><span class="math inline">\(n_1,n_2\)</span></td>
+<td><span class="math inline">\(\bar Y_1-\bar Y_2\)</span></td>
+<td><span
+class="math inline">\(\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p_1-p_2\)</span></td>
+<td><span class="math inline">\(n_1,n_2\)</span></td>
+<td><span class="math inline">\(\bar p_1-\bar p_2\)</span></td>
+<td><span
+class="math inline">\(\sqrt{\frac{p_1q_1}{n_1}+\frac{p_2q_2}{n_2}}\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><img src="imagen/est.png" width="534" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo 1</strong></p>
 <p>Una muestra de n = 1000 votantes, seleccionados al azar en Bogotá
 mostró y = 560 a favor del candidato petro. Estime p, la fracción de
 votantes de la población que están a favor de petro y precise un límite
-de error estándar de 2 en el error de estimación. Solución Utilizaremos
-el estimador <span class="math inline">\(\hat p=y/n\)</span> para
-calcular p. Por tanto, la estimación de p, la fracción de votantes que
-están a favor del candidato petro, es</p>
+de error estándar de 2 en el error de estimación.</p>
+<p><strong>Solución </strong></p>
+<p>Utilizaremos el estimador <span class="math inline">\(\hat
+p=y/n\)</span> para calcular p. Por tanto, la estimación de p, la
+fracción de votantes que están a favor del candidato petro, es</p>
 <p><span class="math display">\[\hat p
 =\frac{y}{n}=\frac{560}{1000}=0.56\]</span> ¿Qué tan confiable es este
 valor? La distribución de probabilidad de <span
@@ -475,8 +531,9 @@ mediante una distribución de probabilidad normal para muestras
 grandes.</p>
 <p>Como n = 1000, cuando <span class="math inline">\(b = 2 \sigma_{\hat
 p}\)</span>, la probabilidad de que e sea menor que b es aproximadamente
-0.95. De la anterior el error estándar del estimador para p está dado
-por <span class="math inline">\(\sigma_{\hat p}= \sqrt \frac
+0.95.</p>
+<p>De la anterior el error estándar del estimador para p está dado por
+<span class="math inline">\(\sigma_{\hat p}= \sqrt \frac
 {pq}{n}\)</span> por tanto</p>
 <p><span class="math display">\[b = 2 \sigma_{\hat p}=2 \sqrt \frac
 {pq}{n}\]</span></p>
