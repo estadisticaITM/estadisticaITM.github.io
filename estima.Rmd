@@ -7,8 +7,6 @@ output:
 ---
 
 
-# Estimación puntual
-
 Una estimación puntual de un parámetro $\theta$ es un número único que puede ser considerado como un valor sensible de $\theta$. 
 
 Se obtiene una estimación puntual seleccionando un estadístico apropiado y calculando su valor con los datos muestrales dados. 
@@ -22,17 +20,29 @@ La estimación puntual es similar, a disparar a un tiro al blanco.
 knitr::include_graphics("imagen/central.png")
 ```
 
-Como las estimaciones son números, se evalua la bondad del estimador puntual al construir una distribución de frecuencia con los valores de las estimaciones obtenidas en muestreo repetido y se observa cómo se agrupa esta distribución alrededor del parámetro objetivo.
+Como las estimaciones $\hat \theta$ son números, se evalua la bondad del estimador puntual al construir una distribución de frecuencia con los valores de las estimaciones obtenidas en muestreo repetido y se observa cómo se agrupa esta distribución alrededor del parámetro objetivo.
+
+El error de estimación $\varepsilon$ es la distancia entre un estimador y su parámetro objetivo. Esto es, $\varepsilon=\hat \theta-\theta$ 
+
+
+Si seleccionamos dos puntos, $(\theta − b)$ y $(\theta + b)$, situados cerca de las colas de la densidad de probabilidad, la probabilidad de que el error de estimación $\varepsilon$ sea menor que b está representada por el área sombreada de la siguiente figura.
+
+Considere a b como un límite probabilístico en el error de estimación.
+Esta probabilidad identifica la fracción de veces, en muestreo repetido, que el estimador $\hat \theta$  cae dentro de b unidades de $\theta$, el parámetro objetivo.
+
 
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/estimador.png")
 ```
-Considere a b como un límite probabilístico en el error de estimación.
+
+
+$b = 2 \sigma _{\hat \theta}$ es un buen **límite para el error de estimación** 
+
 
 ## **Propiedades de los estimadores**
 
 
-Se desea estimar un parámetro poblacional $\theta$. El estimador de $\theta$ estará indicado por el símbolo $\hat \theta$, que se lee como teta estimado 
+El estimador poblacional del parámetro $\theta$ estará indicado por el símbolo $\hat \theta$, que se lee como teta estimado 
 
 1. Se desea que la media o valor esperado de la distribución de estimaciones fuera igual al parámetro estimado; esto es, $E(\hat \theta)=\theta$ Se dice que los **estimadores  son insesgados**.
 
@@ -50,21 +60,17 @@ es un estimador insesgado de $\sigma^2$
 
 **Valores esperados y errores estándar de algunos estimadores puntuales comunes**
 
-|Parámetro objetivo| tamaño de muestra|Estimador puntual$\hat \theta$|$E(\hat \theta)$|Error estándar $\sigma_{\hat \theta}$|
-|-------|----------|------------------|-------|------------------------|
-|$\mu$  |n         |$\hat Y $         |$\mu$  |$\frac{\sigma}{\sqrt n}$|
+|Parámetro objetivo| tamaño de muestra|Estimador puntual $\hat \theta$|$E(\hat \theta)$|Error estándar $\sigma_{\hat \theta}$|
+|---------------|------------|------------------|-------|---------------------|
+|$\mu$  |n         |$\bar Y$         |$\mu$  |$\frac{\sigma}{\sqrt n}$|
 |p      | n        |$\hat p=\frac{Y}{n}$| p   |$\sqrt{\frac{pq}{n}}$   |
-|$\mu_1-\mu_2$|$n_1,n_2$|$\bar Y_1-\bar Y_2$| $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$|
-|$p_1-p_2$|$n_1,n_2$|$\bar p_1-\bar p_2$| $\sqrt{\frac{p_1q_1}{n_1}+\frac{p_2q_2}{n_2}}$|
+|$\mu_1-\mu_2$|$n_1,n_2$|$\bar Y_1-\bar Y_2$|$\mu_1-\mu_2$| $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$|
+|$p_1-p_2$|$n_1,n_2$|$\bar p_1-\bar p_2$|$p_1-p_2$| $\sqrt{\frac{p_1q_1}{n_1}+\frac{p_2q_2}{n_2}}$|
 
-
-```{r fig.asp=0.8, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/est.png")
-```
 
 **Ejemplo 1**
 
-Una muestra de n = 1000 votantes, seleccionados al azar en Bogotá mostró y = 560 a favor del candidato petro. Estime p, la fracción de votantes de la población que están a favor de petro y precise un límite de error estándar de 2 en el error de estimación.
+Una muestra de 1000 votantes, seleccionados al azar en Bogotá mostró que 560 personas estaban a favor del candidato petro. Sea p=0.56, la fracción de votantes de la población que están a favor de petro. Precise un límite de error estándar de 2 en el error de estimación.
 
 **Solución **
 
@@ -74,17 +80,21 @@ Utilizaremos el estimador $\hat p=y/n$ para calcular p. Por tanto, la estimació
 $$\hat p =\frac{y}{n}=\frac{560}{1000}=0.56$$
 ¿Qué tan confiable es este valor? La distribución de probabilidad de $\hat p$ se aproxima en forma muy precisa mediante una distribución de probabilidad normal para muestras grandes.
 
-Como n = 1000, cuando $b = 2 \sigma_{\hat p}$, la probabilidad de que e sea menor que b es aproximadamente 0.95.
+Como n = 1000, cuando $b = 2 \sigma_{\hat p}$, la probabilidad de que 
+$\varepsilon$ sea menor que b es aproximadamente 0.95.
 
 
-De la anterior el error estándar del estimador para p está dado por $\sigma_{\hat p}= \sqrt \frac {pq}{n}$ por tanto
+De lo anterior el error estándar del estimador para p está dado por 
+$\sigma_{\hat p}= \sqrt \frac {pq}{n}$ por tanto
 
 $$b = 2 \sigma_{\hat p}=2 \sqrt \frac {pq}{n}$$
 
 $$b = 2 \sigma_{\hat p}=2 \sqrt \frac {0.56*0.44}{1000}=0.03$$
 
 
-¿Cuál es la importancia de nuestros cálculos? La probabilidad de que el error de estimación sea menor que 0.03 es aproximadamente 0.95. En consecuencia, podemos tener una confianza razonable de que nuestra estimación, 0.56, está a no más de .03 del valor verdadero de p, la proporción de votantes en la población que está a favor petro.
+La probabilidad de que el error de estimación sea menor que 0.03 es aproximadamente 0.95. 
+
+Se tiene una confianza razonable de que nuestra estimación, 0.56, está a no más de 0.03 del valor verdadero de p, la proporción de votantes en la población que está a favor petro.
 
 
 

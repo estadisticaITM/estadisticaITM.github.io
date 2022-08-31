@@ -409,8 +409,6 @@ div.tocify {
 </div>
 
 
-<div id="estimación-puntual" class="section level1">
-<h1>Estimación puntual</h1>
 <p>Una estimación puntual de un parámetro <span
 class="math inline">\(\theta\)</span> es un número único que puede ser
 considerado como un valor sensible de <span
@@ -421,17 +419,32 @@ apropiado y calculando su valor con los datos muestrales dados.</p>
 class="math inline">\(\theta\)</span>.</p>
 <p>La estimación puntual es similar, a disparar a un tiro al blanco.</p>
 <p><img src="imagen/central.png" width="235" style="display: block; margin: auto;" /></p>
-<p>Como las estimaciones son números, se evalua la bondad del estimador
-puntual al construir una distribución de frecuencia con los valores de
-las estimaciones obtenidas en muestreo repetido y se observa cómo se
-agrupa esta distribución alrededor del parámetro objetivo.</p>
-<p><img src="imagen/estimador.png" width="582" style="display: block; margin: auto;" />
-Considere a b como un límite probabilístico en el error de
-estimación.</p>
+<p>Como las estimaciones <span class="math inline">\(\hat
+\theta\)</span> son números, se evalua la bondad del estimador puntual
+al construir una distribución de frecuencia con los valores de las
+estimaciones obtenidas en muestreo repetido y se observa cómo se agrupa
+esta distribución alrededor del parámetro objetivo.</p>
+<p>El error de estimación <span
+class="math inline">\(\varepsilon\)</span> es la distancia entre un
+estimador y su parámetro objetivo. Esto es, <span
+class="math inline">\(\varepsilon=\hat \theta-\theta\)</span></p>
+<p>Si seleccionamos dos puntos, <span class="math inline">\((\theta −
+b)\)</span> y <span class="math inline">\((\theta + b)\)</span>,
+situados cerca de las colas de la densidad de probabilidad, la
+probabilidad de que el error de estimación <span
+class="math inline">\(\varepsilon\)</span> sea menor que b está
+representada por el área sombreada de la siguiente figura.</p>
+<p>Considere a b como un límite probabilístico en el error de
+estimación. Esta probabilidad identifica la fracción de veces, en
+muestreo repetido, que el estimador <span class="math inline">\(\hat
+\theta\)</span> cae dentro de b unidades de <span
+class="math inline">\(\theta\)</span>, el parámetro objetivo.</p>
+<p><img src="imagen/estimador.png" width="582" style="display: block; margin: auto;" /></p>
+<p><span class="math inline">\(b = 2 \sigma _{\hat \theta}\)</span> es
+un buen <strong>límite para el error de estimación</strong></p>
 <div id="propiedades-de-los-estimadores" class="section level2">
 <h2><strong>Propiedades de los estimadores</strong></h2>
-<p>Se desea estimar un parámetro poblacional <span
-class="math inline">\(\theta\)</span>. El estimador de <span
+<p>El estimador poblacional del parámetro <span
 class="math inline">\(\theta\)</span> estará indicado por el símbolo
 <span class="math inline">\(\hat \theta\)</span>, que se lee como teta
 estimado</p>
@@ -463,17 +476,17 @@ class="math inline">\(\sigma^2\)</span></p>
 puntuales comunes</strong></p>
 <table>
 <colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="27%" />
-<col width="10%" />
-<col width="36%" />
+<col width="20%" />
+<col width="16%" />
+<col width="24%" />
+<col width="9%" />
+<col width="28%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Parámetro objetivo</th>
 <th>tamaño de muestra</th>
-<th>Estimador puntual<span class="math inline">\(\hat
+<th>Estimador puntual <span class="math inline">\(\hat
 \theta\)</span></th>
 <th><span class="math inline">\(E(\hat \theta)\)</span></th>
 <th>Error estándar <span class="math inline">\(\sigma_{\hat
@@ -484,7 +497,7 @@ puntuales comunes</strong></p>
 <tr class="odd">
 <td><span class="math inline">\(\mu\)</span></td>
 <td>n</td>
-<td>$Y $</td>
+<td><span class="math inline">\(\bar Y\)</span></td>
 <td><span class="math inline">\(\mu\)</span></td>
 <td><span class="math inline">\(\frac{\sigma}{\sqrt n}\)</span></td>
 </tr>
@@ -499,26 +512,25 @@ puntuales comunes</strong></p>
 <td><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td><span class="math inline">\(n_1,n_2\)</span></td>
 <td><span class="math inline">\(\bar Y_1-\bar Y_2\)</span></td>
+<td><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td><span
 class="math inline">\(\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\)</span></td>
-<td></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(p_1-p_2\)</span></td>
 <td><span class="math inline">\(n_1,n_2\)</span></td>
 <td><span class="math inline">\(\bar p_1-\bar p_2\)</span></td>
+<td><span class="math inline">\(p_1-p_2\)</span></td>
 <td><span
 class="math inline">\(\sqrt{\frac{p_1q_1}{n_1}+\frac{p_2q_2}{n_2}}\)</span></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<p><img src="imagen/est.png" width="534" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo 1</strong></p>
-<p>Una muestra de n = 1000 votantes, seleccionados al azar en Bogotá
-mostró y = 560 a favor del candidato petro. Estime p, la fracción de
-votantes de la población que están a favor de petro y precise un límite
-de error estándar de 2 en el error de estimación.</p>
+<p>Una muestra de 1000 votantes, seleccionados al azar en Bogotá mostró
+que 560 personas estaban a favor del candidato petro. Sea p=0.56, la
+fracción de votantes de la población que están a favor de petro. Precise
+un límite de error estándar de 2 en el error de estimación.</p>
 <p><strong>Solución </strong></p>
 <p>Utilizaremos el estimador <span class="math inline">\(\hat
 p=y/n\)</span> para calcular p. Por tanto, la estimación de p, la
@@ -530,20 +542,21 @@ class="math inline">\(\hat p\)</span> se aproxima en forma muy precisa
 mediante una distribución de probabilidad normal para muestras
 grandes.</p>
 <p>Como n = 1000, cuando <span class="math inline">\(b = 2 \sigma_{\hat
-p}\)</span>, la probabilidad de que e sea menor que b es aproximadamente
-0.95.</p>
-<p>De la anterior el error estándar del estimador para p está dado por
+p}\)</span>, la probabilidad de que <span
+class="math inline">\(\varepsilon\)</span> sea menor que b es
+aproximadamente 0.95.</p>
+<p>De lo anterior el error estándar del estimador para p está dado por
 <span class="math inline">\(\sigma_{\hat p}= \sqrt \frac
 {pq}{n}\)</span> por tanto</p>
 <p><span class="math display">\[b = 2 \sigma_{\hat p}=2 \sqrt \frac
 {pq}{n}\]</span></p>
 <p><span class="math display">\[b = 2 \sigma_{\hat p}=2 \sqrt \frac
 {0.56*0.44}{1000}=0.03\]</span></p>
-<p>¿Cuál es la importancia de nuestros cálculos? La probabilidad de que
-el error de estimación sea menor que 0.03 es aproximadamente 0.95. En
-consecuencia, podemos tener una confianza razonable de que nuestra
-estimación, 0.56, está a no más de .03 del valor verdadero de p, la
-proporción de votantes en la población que está a favor petro.</p>
+<p>La probabilidad de que el error de estimación sea menor que 0.03 es
+aproximadamente 0.95.</p>
+<p>Se tiene una confianza razonable de que nuestra estimación, 0.56,
+está a no más de 0.03 del valor verdadero de p, la proporción de
+votantes en la población que está a favor petro.</p>
 <p><strong>Ejemplo 2</strong></p>
 <p>Una comparación de la durabilidad de dos tipos de llantas para
 automóvil se obtuvo de muestras de pruebas en carretera de n1 = n2 = 100
@@ -594,7 +607,6 @@ de intervalo.</p>
 <p><strong>Estimación puntual y por intervalo</strong></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/cMqgG_lBC2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-</div>
 </div>
 <div id="teorema-del-límite-central" class="section level1">
 <h1>Teorema del límite central</h1>
