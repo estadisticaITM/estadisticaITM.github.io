@@ -446,12 +446,12 @@ Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
 <p>esta distribuida normalmente con media <span
 class="math inline">\(\mu_{\bar y }=\mu\)</span> y varianza <span
 class="math inline">\(\sigma^2_{\bar y }=\sigma^2/n\)</span></p>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="42%" />
-<col width="12%" />
-<col width="12%" />
-<col width="31%" />
+<col width="26%" />
+<col width="16%" />
+<col width="16%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -466,29 +466,26 @@ class="math inline">\(\sigma^2_{\bar y }=\sigma^2/n\)</span></p>
 <td>Variables aleatorias <span class="math inline">\(Y_1, Y_2, . . . ,
 Y_n\)</span></td>
 <td><span class="math inline">\(\sigma^2\)</span></td>
-<td><span class="math inline">\(\sigma^2\)</span></td>
+<td><span class="math inline">\(\sigma\)</span></td>
 <td><span class="math inline">\(Z=\frac{y-\mu}{\sigma}\)</span></td>
 </tr>
 <tr class="even">
 <td>Distribución muestral <span class="math inline">\(\bar
-Y_i,\)</span></td>
-<td><span class="math inline">\(\sigma^2/n=\sigma^2_{\bar y
-}\)</span></td>
-<td><span class="math inline">\(\sigma_{\bar y }\)</span></td>
+Y_i\)</span></td>
+<td><span class="math inline">\(\sigma^2_{\bar y
+}=\sigma^2/n\)</span></td>
+<td><span class="math inline">\(\sigma_{\bar y }=\sigma/\sqrt
+n\)</span></td>
 <td><span class="math inline">\(Z=\frac{y-\mu}{\sigma/\sqrt
 n}\)</span></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Ejemplo 1</strong></p>
-<p>Las calificaciones de exámenes para todos los estudiantes de último
-año de preparatoria en cierto estado tienen media de 60 y varianza de
-64. Una muestra aleatoria de n=100 estudiantes de una escuela
-preparatoria grande tuvo una calificación media de 58. ¿Hay evidencia
-para sugerir que el nivel de conocimientos de esta escuela sea
-inferior?</p>
-<p>(Calcule la probabilidad de que la media muestral sea a lo sumo 58
-cuando n = 100.)</p>
+<p>Las calificaciones de exámenes para todos los estudiantes tienen
+media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes
+tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el
+nivel de conocimientos de esta escuela sea inferior?</p>
 <p><strong>Solución </strong></p>
 <p>Denote con Y la media de una muestra aleatoria de n = 100
 calificaciones de una población con <span class="math inline">\(\mu =
@@ -508,9 +505,11 @@ menos de 2 horas de tiempo total de servicio.</p>
 <p><strong>Solución</strong></p>
 <p>Sea <span class="math inline">\(Y_i\)</span> el tiempo de servicio
 para el i-ésimo cliente, entonces queremos calcular:</p>
-<p><span class="math display">\[\Large P \left( \sum_{i=1}^{100}  \leq
-120 \right)=P \left(\bar Y \leq \frac{120}{100}\right )=P \left(\bar Y
-\leq 1.2\right )\]</span></p>
+<p><span class="math display">\[\Large P \left( \sum_{i=1}^{100} y_i
+\leq 120 \right)=\Large P \left( \frac{1}{n}\sum_{i=1}^{100} y_i \leq
+\frac{120}{n} \right)\]</span> <span class="math display">\[P \left(\bar
+Y \leq \frac{120}{100}\right )=P \left(\bar Y \leq 1.2\right
+)\]</span></p>
 <p>Como el tamaño muestral es grande, el teorema del límite central nos
 dice que <span class="math inline">\(\bar Y\)</span> está distribuida
 normalmente en forma aproximada con media <span

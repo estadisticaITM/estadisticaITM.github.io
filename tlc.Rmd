@@ -52,15 +52,13 @@ esta distribuida normalmente con media $\mu_{\bar y }=\mu$ y varianza $\sigma^2_
 
 
 |ítem            |varianza|Desviación estándar|Estandarización|
-|---------------------------------|----------|----------|------------------------|
-|Variables aleatorias $Y_1, Y_2, . . . , Y_n$|$\sigma^2$|$\sigma^2$|$Z=\frac{y-\mu}{\sigma}$|
-|Distribución muestral $\bar Y_i,$|$\sigma^2/n=\sigma^2_{\bar y }$|$\sigma_{\bar y }$|$Z=\frac{y-\mu}{\sigma/\sqrt n}$|
+|----------------|----------|----------|------------------------|
+|Variables aleatorias $Y_1, Y_2, . . . , Y_n$|$\sigma^2$|$\sigma$|$Z=\frac{y-\mu}{\sigma}$|
+|Distribución muestral $\bar Y_i$|$\sigma^2_{\bar y }=\sigma^2/n$|$\sigma_{\bar y }=\sigma/\sqrt n$|$Z=\frac{y-\mu}{\sigma/\sqrt n}$|
 
 **Ejemplo 1**
 
-Las calificaciones de exámenes para todos los estudiantes de último año de preparatoria en cierto estado tienen media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes de una escuela preparatoria grande tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el nivel de conocimientos de esta escuela sea inferior? 
-
-(Calcule la probabilidad de que la media muestral sea a lo sumo 58 cuando n = 100.)
+Las calificaciones de exámenes para todos los estudiantes tienen media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el nivel de conocimientos de esta escuela sea inferior? 
 
 **Solución **
 
@@ -86,7 +84,8 @@ Calcule la probabilidad de que 100 clientes puedan ser atendidos en menos de 2 h
 Sea $Y_i$ el tiempo de servicio para el i-ésimo cliente, entonces queremos calcular:
 
 
-$$\Large P \left( \sum_{i=1}^{100}  \leq 120 \right)=P \left(\bar Y \leq \frac{120}{100}\right )=P \left(\bar Y \leq 1.2\right )$$
+$$\Large P \left( \sum_{i=1}^{100} y_i \leq 120 \right)=\Large P \left( \frac{1}{n}\sum_{i=1}^{100} y_i \leq \frac{120}{n} \right)$$
+$$P \left(\bar Y \leq \frac{120}{100}\right )=P \left(\bar Y \leq 1.2\right )$$
 
 
 Como el tamaño muestral es grande, el teorema del límite central nos dice que $\bar Y$ está distribuida
