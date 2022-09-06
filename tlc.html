@@ -11,7 +11,7 @@
 
 
 
-<title>Teorema de límite central</title>
+<title>Distribuciones muestrales y el teorema de límite central</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -404,13 +404,17 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Teorema de límite central</h1>
+<h1 class="title toc-ignore">Distribuciones muestrales y el teorema de
+límite central</h1>
 
 </div>
 
 
+<p>Un estadístico es una función de las variables aleatorias observables
+en una muestra. En consecuencia tienen distribuciones de probabilidad,
+llamadas <strong>distribuciones muestrales</strong>.</p>
 <p>Si se toman muestras cada vez más grandes de cualquier población,
-entonces la media de la distribución muestral<span
+entonces la media de la distribución muestral <span
 class="math inline">\(\bar x\)</span>, tiende a acercarse cada vez más a
 la verdadera media de la población <span
 class="math inline">\(\mu\)</span>. En la practica cuando n&gt;30 se
@@ -427,25 +431,55 @@ class="math inline">\(p\neq 0.5\)</span>,</p></li>
 <li><p>Cuando p=0.5 y los tamaños de muestra son grandes.</p></li>
 </ul>
 <p><strong>casos en los que la distribución poisson se asemeja a una
-distribución normal</strong></p>
-<ul>
-<li>La distribución poisson se asemeja a una distribución normal en la
-medida en que la tasa de ocurrencia aumenta.</li>
-</ul>
-<p><strong>Teorema del límite central:</strong></p>
+distribución normal</strong> - La distribución poisson se asemeja a una
+distribución normal en la medida en que la tasa de ocurrencia
+aumenta.</p>
+<div id="teorema-del-límite-central" class="section level2">
+<h2>Teorema del límite central</h2>
 <p>Sean <span class="math inline">\(Y_1, Y_2, . . . , Y_n\)</span>
-variables aleatorias independientes y distribuidas idénticamente con
-<span class="math inline">\(E(Yi)=\mu\)</span> y <span
-class="math inline">\(V(Y_i)=\sigma^2 &lt;\infty\)</span>.
-Definamos:</p>
-<p><span class="math display">\[U_n=\frac{\sum_{i=1}^n Y_i-
-n\mu}{\sigma/\sqrt n}=\frac{\bar Y -\mu }{\sigma/\sqrt n}\]</span></p>
-<p>Donde <span class="math display">\[\bar
+variables aleatorias independientes y distribuidas idénticamente con</p>
+<p><span class="math inline">\(E(Yi)=\mu\)</span> y <span
+class="math inline">\(V(Y_i)=\sigma^2 &lt;\infty\)</span>.</p>
+<p>Entonces:</p>
+<p><span class="math display">\[\bar
 Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
-<p>Entonces la función de distribución de <span
-class="math inline">\(U_n\)</span> converge hacia la función de
-distribución normal estándar cuando <span
-class="math inline">\(n\longrightarrow \infty\)</span>.</p>
+<p>esta distribuida normalmente con media <span
+class="math inline">\(\mu_{\bar y }=\mu\)</span> y varianza <span
+class="math inline">\(\sigma^2_{\bar y }=\sigma^2/n\)</span></p>
+<table style="width:100%;">
+<colgroup>
+<col width="42%" />
+<col width="12%" />
+<col width="12%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ítem</th>
+<th>varianza</th>
+<th>Desviación estándar</th>
+<th>Estandarización</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variables aleatorias <span class="math inline">\(Y_1, Y_2, . . . ,
+Y_n\)</span></td>
+<td><span class="math inline">\(\sigma^2\)</span></td>
+<td><span class="math inline">\(\sigma^2\)</span></td>
+<td><span class="math inline">\(Z=\frac{y-\mu}{\sigma}\)</span></td>
+</tr>
+<tr class="even">
+<td>Distribución muestral <span class="math inline">\(\bar
+Y_i,\)</span></td>
+<td><span class="math inline">\(\sigma^2/n=\sigma^2_{\bar y
+}\)</span></td>
+<td><span class="math inline">\(\sigma_{\bar y }\)</span></td>
+<td><span class="math inline">\(Z=\frac{y-\mu}{\sigma/\sqrt
+n}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Ejemplo 1</strong></p>
 <p>Las calificaciones de exámenes para todos los estudiantes de último
 año de preparatoria en cierto estado tienen media de 60 y varianza de
@@ -491,6 +525,7 @@ $<sup>2_{y=}</sup>2/n=1/100 $</p>
 la probabilidad de que 100 clientes puedan ser atendidos en menos de 2
 horas es aproximadamente 0.0013. Esta pequeña probabilidad indica que es
 prácticamente imposible atender a 100 clientes en menos de 2 horas.</p>
+</div>
 <div id="taller" class="section level2">
 <h2>Taller</h2>
 <div id="ejercicios-teorema-central-del-límite" class="section level3">
