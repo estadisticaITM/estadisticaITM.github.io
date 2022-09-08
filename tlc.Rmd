@@ -101,35 +101,62 @@ Entonces, la probabilidad de que 100 clientes puedan ser atendidos en menos de 2
 
 
 
-## Distribución chi 2
-
-Como Y1, Y2, . . . , Yn es una muestra aleatoria de una distribución normal con media m y
-varianza s2, Yi, i = 1, 2, . . . , n son variables independientes distribuidas normalmente
-
-
-```{r}
-
-#create density curve
-curve(dchisq(x, df = 10), from = 0, to = 40,
-main = 'Chi-Square Distribution (df = 10)',
-ylab = 'Density',
-lwd = 2)
-
-#create vector of x values
-x_vector <- seq(0, 10)
-
-#create vector of chi-square density values
-p_vector <- dchisq(x_vector, df = 10)
-
-#fill in portion of the density plot from 0 to 10
-polygon(c(x_vector, rev(x_vector)), c(p_vector, rep(0, length(p_vector))),
-        col = adjustcolor('red', alpha=0.3), border = NA)
+## Distribución  muestral de medias
 
 
 
+Se seleccionan muestras aleatorias de tamaño 20 en una población grande. Se calcula la media muestral x para cada muestra; la colección de todas estas medias muestrales recibe el nombre de **distribución muestral de medias**, así como tambien se puede obtener la **distribución muestral de las desviaciones estándar** lo que se puede ilustrar en la siguiente figura:
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/dmm.png")
+```
+
+Si la población de la que se extraen las muestras es normal, la distribución
+muestral de medias será normal sin importar el tamaño de la muestra.
+
+
+## Distribución muestral de Proporciones
+
+se desea investigar la proporción de artículos defectuosos. Esta
+distribución se genera extrayendo muestras de la población y calculando la proporción (p=x/n en donde “x” es el número de éxitos u observaciones de interés y “n” el tamaño de la muestra).
+
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/dmp.png")
 ```
 
 
+La fórmula que se utilizará para el cálculo de probabilidad en una distribución muestral de proporciones está basada en la aproximación de la distribución normal a la binomial. Esta fórmula nos servirá para calcular la probabilidad del
+comportamiento de la proporción en la muestra.
+
+
+$$z=\frac{p-P}{\sqrt{\frac{Pq}{n}}}$$
+
+**Ejemplo:**
+Se ha determinado que 60% de los estudiantes de una universidad grande fuman cigarrillos. Se toma una muestra aleatoria de 800 estudiantes. Calcule la
+probabilidad de que la proporción de la muestra de la gente que fuma cigarrillos
+sea menor que 0.55.
+
+
+**Ejemplo**
+
+n=800 est
+P=0.6
+p=0.55
+
+
+p(p<0.55)
+
+Aplicando factor de corrección por continuidad
+ 
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/ejemplo.png")
+```
+
+
+
+$$P(p\leq 0.5493)=P\left(\frac{p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92$$
+$$P(p\leq 0.5493)=P\left(z\leq -2.92 \right)=0.0018$$
 ## Taller
 
 ### Ejercicios teorema central del límite
