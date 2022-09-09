@@ -130,12 +130,10 @@ La fórmula que se utilizará para el cálculo de probabilidad en una distribuci
 comportamiento de la proporción en la muestra.
 
 
-$$z=\frac{p-P}{\sqrt{\frac{Pq}{n}}}$$
+$$z=\frac{\hat p-P}{\sqrt{\frac{Pq}{n}}}$$
 
 **Ejemplo:**
-Se ha determinado que 60% de los estudiantes de una universidad grande fuman cigarrillos. Se toma una muestra aleatoria de 800 estudiantes. Calcule la
-probabilidad de que la proporción de la muestra de la gente que fuma cigarrillos
-sea menor que 0.55.
+Se ha determinado que 60% de los estudiantes de una universidad grande fuman cigarrillos. Se toma una muestra aleatoria de 800 estudiantes. Calcule la probabilidad de que la proporción de la muestra de la gente que fuma cigarrillos sea menor que 0.55.
 
 
 **Ejemplo**
@@ -145,7 +143,7 @@ P=0.6
 p=0.55
 
 
-p(p<0.55)
+$$P(\hat p<0.55)$$
 
 Aplicando factor de corrección por continuidad
  
@@ -155,8 +153,8 @@ knitr::include_graphics("imagen/ejemplo.png")
 
 
 
-$$P(p\leq 0.5493)=P\left(\frac{p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92$$
-$$P(p\leq 0.5493)=P\left(z\leq -2.92 \right)=0.0018$$
+$$P(\hat p\leq 0.5493)=P\left(\frac{\hat p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92$$
+$$P\left(z\leq -2.92 \right)=0.0018$$
 ## Taller
 
 ### Ejercicios teorema central del límite
@@ -173,8 +171,8 @@ a) encuentre la probabilidad de que la diferencia entre la media muestral y la v
 
 b) Suponga que la antropóloga desea que la diferencia entre la media muestral y la mediapoblacional sea menor que 0.4 pulgada, con probabilidad de 0.95. ¿Cuántos hombres debe tomar como muestra para lograr este objetivo?
 
-3. Trabajadores de una gran empresa de servicios tienen un salario promedio de $7.00%$ por hora con una desviación estándar de $0.50$. La industria tiene 64 trabajadores de cierto grupo étnico que tienen un salario promedio de $6.90$ por hora. ¿Es razonable suponer que la tasa salarial del grupo étnico es equivalente a la de una muestra aleatoria de trabajadores tomada de los empleados en la industria militar?
-[Sugerencia: calcule la probabilidad de obtener una media muestral menor o igual que $6.90 por hora.Rta/0.0548]
+3. Trabajadores de una gran empresa de servicios tienen un salario promedio de 7% por hora con una desviación estándar de 0.5. La industria tiene 64 trabajadores de cierto grupo étnico que tienen un salario promedio de $6.9$ por hora. ¿Es razonable suponer que la tasa salarial del grupo étnico es equivalente a la de una muestra aleatoria de trabajadores tomada de los empleados en la industria militar?
+[Sugerencia: calcule la probabilidad de obtener una media muestral menor o igual que $6.9 por hora.Rta/0.0548]
 
 4. La acidez de los suelos se mide mediante una cantidad llamada pH, que varía de 0 (acidez alta) a 14 (alcalinidad alta). Un edafólogo desea calcular el promedio de pH para un campo de grandes dimensiones al seleccionar aleatoriamente n muestras de núcleos y medir el pH de cada muestra. Aun cuando la desviación estándar poblacional de mediciones de pH no se conoce, la experiencia del pasado indica que casi todos los suelos tienen un valor de pH de entre 5 y 8. 
 
@@ -194,11 +192,11 @@ máximo de sólo 1.6 horas por automóvil. ¿Cuántos días tendrá que trabajar
 
 8. Se ha encontrado que las mediciones de resistencia al corte en soldaduras por puntos tienen una desviación estándar de 10 libras por pulgada cuadrada (psi). Si se han de medir 100 soldaduras de prueba, ¿cuál es la probabilidad aproximada de que la media muestral se encuentre a no más de 1 psi de la verdadera media poblacional?
 
-Si la desviación estándar de mediciones de resistencia al corte en soldaduras
-por puntos es 10 psi, ¿cuántas soldaduras de prueba deben muestrearse si deseamos que la media muestral se encuentre a no más de 1 psi de la verdadera media con probabilidad aproximada de 0.99?
+Si la desviación estándar de mediciones de resistencia al corte en soldaduras por puntos es 10 psi, ¿cuántas soldaduras de prueba deben muestrearse si deseamos que la media muestral se encuentre a no más de 1 psi de la verdadera media con probabilidad aproximada de 0.99?
 
 9. Los resistores que se han de usar en un circuito tienen un promedio de resistencia de 200 ohms y desviación estándar de 10 ohms. Suponga que 25 de estos resistores se seleccionan aleatoriamente para usarse en un circuito.
 a ¿Cuál es la probabilidad de que la resistencia promedio para los 25 resistores esté entre 199 y 202 ohms?
+
 b Encuentre la probabilidad de que la resistencia total no exceda de 5100 ohms.
 
 10 Concentraciones de monóxido de carbono de cierta hora en muestras de aire de una gran ciudad promedian 12 ppm (partes por millón) con desviación estándar de 9 partes por millón.
@@ -207,5 +205,14 @@ a ¿Cree usted que las concentraciones de monóxido de carbono en las muestras d
 
 b Encuentre la probabilidad de que la concentración promedio en 100 muestras seleccionadas aleatoriamente exceda de 14 partes por millón.
 
+### Ejercicios distribución muestral de proporciones
 
+1. Un medicamento para malestar estomacal tiene la advertencia de que algunos usuarios pueden presentar una reacción adversa a él, más aún, se piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una muestra aleatoria de 150 personas con malestar estomacal usa el medicamento, encuentre la probabilidad de que la proporción de la muestra de los usuarios que realmente presentan una reacción adversa, exceda el 4%.
 
+Resolverlo mediante distribución binomial Rta/0.1685
+Resolverlo con la distribución muestral de proporciones
+
+2. Se sabe que la verdadera proporción de los componentes defectuosos fabricadas por una firma es de 4%, y encuentre la probabilidad de que una muestra aleatoria de tamaño 60 tenga:
+
+Menos del 3% de los componentes defectuosos. 0.2327
+Más del 1% pero menos del 5% de partes defectuosas 0.3290

@@ -366,7 +366,7 @@ div.tocify {
   <a href="pagin2.html">
     <span class="fa fa-bar-chart-o"></span>
      
-    Diseño de experimentos
+    Diseño de exp
   </a>
 </li>
 <li>
@@ -533,7 +533,7 @@ de todas estas medias muestrales recibe el nombre de
 <strong>distribución muestral de medias</strong>, así como tambien se
 puede obtener la <strong>distribución muestral de las desviaciones
 estándar</strong> lo que se puede ilustrar en la siguiente figura:</p>
-<p><img src="imagen/dmm.png" width="552" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/dmm.png" width="926" style="display: block; margin: auto;" /></p>
 <p>Si la población de la que se extraen las muestras es normal, la
 distribución muestral de medias será normal sin importar el tamaño de la
 muestra.</p>
@@ -550,8 +550,8 @@ distribución muestral de proporciones está basada en la aproximación de
 la distribución normal a la binomial. Esta fórmula nos servirá para
 calcular la probabilidad del comportamiento de la proporción en la
 muestra.</p>
-<p><span
-class="math display">\[z=\frac{p-P}{\sqrt{\frac{Pq}{n}}}\]</span></p>
+<p><span class="math display">\[z=\frac{\hat
+p-P}{\sqrt{\frac{Pq}{n}}}\]</span></p>
 <p><strong>Ejemplo:</strong> Se ha determinado que 60% de los
 estudiantes de una universidad grande fuman cigarrillos. Se toma una
 muestra aleatoria de 800 estudiantes. Calcule la probabilidad de que la
@@ -559,13 +559,13 @@ proporción de la muestra de la gente que fuma cigarrillos sea menor que
 0.55.</p>
 <p><strong>Ejemplo</strong></p>
 <p>n=800 est P=0.6 p=0.55</p>
-<p>p(p&lt;0.55)</p>
+<p><span class="math display">\[P(\hat p&lt;0.55)\]</span></p>
 <p>Aplicando factor de corrección por continuidad</p>
 <p><img src="imagen/ejemplo.png" width="433" style="display: block; margin: auto;" /></p>
-<p><span class="math display">\[P(p\leq
-0.5493)=P\left(\frac{p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92\]</span>
-<span class="math display">\[P(p\leq 0.5493)=P\left(z\leq -2.92
-\right)=0.0018\]</span> ## Taller</p>
+<p><span class="math display">\[P(\hat p\leq 0.5493)=P\left(\frac{\hat
+p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92\]</span>
+<span class="math display">\[P\left(z\leq -2.92 \right)=0.0018\]</span>
+## Taller</p>
 <div id="ejercicios-teorema-central-del-límite" class="section level3">
 <h3>Ejercicios teorema central del límite</h3>
 <ol style="list-style-type: decimal">
@@ -596,15 +596,13 @@ lograr este objetivo?</p></li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Trabajadores de una gran empresa de servicios tienen un salario
-promedio de <span class="math inline">\(7.00%\)</span> por hora con una
-desviación estándar de <span class="math inline">\(0.50\)</span>. La
-industria tiene 64 trabajadores de cierto grupo étnico que tienen un
-salario promedio de <span class="math inline">\(6.90\)</span> por hora.
-¿Es razonable suponer que la tasa salarial del grupo étnico es
-equivalente a la de una muestra aleatoria de trabajadores tomada de los
-empleados en la industria militar? [Sugerencia: calcule la probabilidad
-de obtener una media muestral menor o igual que $6.90 por
-hora.Rta/0.0548]</p></li>
+promedio de 7% por hora con una desviación estándar de 0.5. La industria
+tiene 64 trabajadores de cierto grupo étnico que tienen un salario
+promedio de <span class="math inline">\(6.9\)</span> por hora. ¿Es
+razonable suponer que la tasa salarial del grupo étnico es equivalente a
+la de una muestra aleatoria de trabajadores tomada de los empleados en
+la industria militar? [Sugerencia: calcule la probabilidad de obtener
+una media muestral menor o igual que $6.9 por hora.Rta/0.0548]</p></li>
 <li><p>La acidez de los suelos se mide mediante una cantidad llamada pH,
 que varía de 0 (acidez alta) a 14 (alcalinidad alta). Un edafólogo desea
 calcular el promedio de pH para un campo de grandes dimensiones al
@@ -664,9 +662,10 @@ psi de la verdadera media con probabilidad aproximada de 0.99?</p>
 de resistencia de 200 ohms y desviación estándar de 10 ohms. Suponga que
 25 de estos resistores se seleccionan aleatoriamente para usarse en un
 circuito. a ¿Cuál es la probabilidad de que la resistencia promedio para
-los 25 resistores esté entre 199 y 202 ohms? b Encuentre la probabilidad
-de que la resistencia total no exceda de 5100 ohms.</li>
+los 25 resistores esté entre 199 y 202 ohms?</li>
 </ol>
+<p>b Encuentre la probabilidad de que la resistencia total no exceda de
+5100 ohms.</p>
 <p>10 Concentraciones de monóxido de carbono de cierta hora en muestras
 de aire de una gran ciudad promedian 12 ppm (partes por millón) con
 desviación estándar de 9 partes por millón.</p>
@@ -676,6 +675,28 @@ sí o por qué no?</p>
 <p>b Encuentre la probabilidad de que la concentración promedio en 100
 muestras seleccionadas aleatoriamente exceda de 14 partes por
 millón.</p>
+</div>
+<div id="ejercicios-distribución-muestral-de-proporciones"
+class="section level3">
+<h3>Ejercicios distribución muestral de proporciones</h3>
+<ol style="list-style-type: decimal">
+<li>Un medicamento para malestar estomacal tiene la advertencia de que
+algunos usuarios pueden presentar una reacción adversa a él, más aún, se
+piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una
+muestra aleatoria de 150 personas con malestar estomacal usa el
+medicamento, encuentre la probabilidad de que la proporción de la
+muestra de los usuarios que realmente presentan una reacción adversa,
+exceda el 4%.</li>
+</ol>
+<p>Resolverlo mediante distribución binomial Rta/0.1685 Resolverlo con
+la distribución muestral de proporciones</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Se sabe que la verdadera proporción de los componentes defectuosos
+fabricadas por una firma es de 4%, y encuentre la probabilidad de que
+una muestra aleatoria de tamaño 60 tenga:</li>
+</ol>
+<p>Menos del 3% de los componentes defectuosos. 0.2327 Más del 1% pero
+menos del 5% de partes defectuosas 0.3290</p>
 </div>
 </div>
 
