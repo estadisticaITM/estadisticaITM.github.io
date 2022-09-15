@@ -1,0 +1,83 @@
+---
+title: "Taller de Intervalos de confianza"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+
+---
+
+# Intervalos de confianza para la media
+
+## IC para la media con desviación estándar desconocida
+
+1. El contenido de siete contenedores similares de ácido sulfúrico son 9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un intervalo de confianza del 95% para la media de todos los contenedores si se supone una distribución aproximadamente normal.
+(Rta/9.47 y 10.26 litros.)
+
+2. Un artículo publicado en el Journal of Testing and Evaluation presenta las siguientes 20 mediciones del tiempo de combustión residual en segundos de especímenes tratados de ropa de dormir para niños:
+
+|9.85 | 9.93| 9.75| 9.77| 9.67|
+|-----|-----|-----|-----|-----|
+|9.87 |9.67 |9.94 |9.85 |9.75 |
+|9.83 |9.92 |9.74 |9.99 |9.88 |
+|9.95 |9.95 |9.93 |9.92 |9.89 |
+
+Se desea encontrar un nivel de confianza del 95% para el tiempo de combustión residual promedio. Supóngase que el tiempo de combustión residual sigue una distribución normal.
+
+Rta(9.8073 y 9.8977 segundos)
+
+## IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES, VARIANZAS DESCONOCIDAS PERO DIFERENTES
+
+# Intervalos de confianza para dos muestras
+
+## IC para la razón de varianzas
+
+1. Encontrar el valor de F, en cada uno de los siguientes casos:
+
+El área a la derecha de F, es de 0.25 con $v_1=4$ y $v_2 =9$.
+El área a la izquierda de F, es de 0.95 con $v_1=15$ y $v_2=10$.
+El área a la derecha de F es de 0.95 con con $v_1=6$ y $v_2=8$.
+El área a la izquierda de F, es de 0.10 con con $v_1=24$ y $v_2 =24$
+
+2. Un fabricante de automóviles pone a prueba dos nuevos métodos de ensamblaje de motores respecto al tiempo en minutos. Los resultados se muestran el la siguiente tabla:
+
+
+|Método|Tamaño|Varianza|
+|------|------|--------|
+|  1   |31    |50      |
+|  2   | 25   |  24    |
+
+Construya un intervalo de confianza del 90% para la razón de varianzas
+Rta( 1.07 y 3.93 )
+
+3. Una compañía fabrica propulsores para uso en motores de turbina. Al ingeniero de manufactura le gustaría seleccionar el proceso que tenga la menor variabilidad en la rugosidad de la superficie. Para ello toma una muestra de n1=16 partes del primer proceso, la cual tiene una desviación estándar $s1 = 4.7$ micropulgadas, y una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene una desviación estándar $s2 = 5.1$ micropulgadas. Se desea encontrar un intervalo de confianza del 90% para el cociente de las dos varianzas.
+
+## IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES, VARIANZAS DESCONOCIDAS PERO IGUALES
+
+1. Un artículo publicado dio a conocer los resultados de un análisis del peso de calcio en cemento estándar y en cemento contaminado con plomo. Los niveles bajos de calcio indican que el mecanismo de hidratación del cemento queda bloqueado y esto permite que el agua ataque varias partes de una estructura de cemento. Al tomar diez muestras de cemento estándar, se encontró que el peso promedio de calcio es de 90 con una desviación estándar de 5; los resultados obtenidos con 15 muestras de cemento contaminado con plomo fueron de 87 en promedio con una desviación estándar de 4. Supóngase que el porcentaje de peso de calcio está distribuido de manera normal. Encuéntrese un intervalo de confianza del 95% para la diferencia entre medias de los dos tipos de cementos. Por otra parte, supóngase que las dos poblaciones normales tienen la misma desviación estándar.
+
+Rta(0.72,6.72)
+
+2. Se realizó un experimento para comparar el tiempo promedio requerido por el cuerpo humano para absorber dos medicamentos, A y B. Suponga que el tiempo necesario para que cada medicamento alcance un nivel específico en el torrente sanguíneo se distribuye normalmente. Se eligieron al azar a doce personas para ensayar cada fármaco registrándose el tiempo en minutos que tardó en alcanzar un nivel específico en la sangre. Calcule un intervalo de confianza del 95% para la diferencia del tiempo promedio. Suponga varianzas iguales.
+
+Rta(2.35,9.25)
+
+## IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES, VARIANZAS DESCONOCIDAS PERO IGUALES (probarlo)
+
+1. Un artículo publicado dio a conocer los resultados de un análisis del peso de calcio en cemento estándar y en cemento contaminado con plomo. Los niveles bajos de calcio indican que el mecanismo de hidratación del cemento queda bloqueado y esto permite que el agua ataque varias partes de una estructura de cemento. Al tomar diez muestras de cemento estándar, se encontró que el peso promedio de calcio es de 90 con una desviación estándar de 5; los resultados obtenidos con 15 muestras de cemento contaminado con plomo fueron de 87 en promedio con una desviación estándar de 4. Supóngase que el porcentaje de peso de calcio está distribuido de manera normal. Encuéntrese un intervalo de confianza del 95% para la diferencia entre medias de los dos tipos de cementos. Por otra parte, supóngase que las dos poblaciones normales tienen la misma desviación estándar.(probarlo)
+
+Rta(0.72,6.72)
+
+2. Se realizó un experimento para comparar el tiempo promedio requerido por el cuerpo humano para absorber dos medicamentos, A y B. Suponga que el tiempo necesario para que cada medicamento alcance un nivel específico en el torrente sanguíneo se distribuye normalmente. Se eligieron al azar a doce personas para ensayar cada fármaco registrándose el tiempo en minutos que tardó en alcanzar un nivel específico en la sangre. Calcule un intervalo de confianza del 95% para la diferencia del tiempo promedio. Suponga varianzas iguales.
+
+
+|Medicamento |Tamaño de muestra |promedio |varianza|
+|------------|------------------|---------|--------|
+|A           |   $n_A=12$       |26.8     |12.57   |
+| B          |  $n_B=32.6$      |32.6     |17.54   |
+
+
+## IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES, VARIANZAS DESCONOCIDAS PERO DIFERENTES.
+
+1. El departamento de zoología de la Universidad de Virginia llevó a cabo un estudio para estimar la diferencia en la cantidad de ortofósforo químico medido en dos estaciones diferentes del río James. El ortofósforo se mide en miligramos por litro. Se reunieron 15 muestras de la estación 1 y se ontuvo una media de 3.84 con una desviación estándar de 3.07 miligramos por litro, mientras que 12 muestras de la estación 2 tuvieron un contenido promedio de 1.49 con una desviación estándar 0.80 miligramos por litro. Encuentre un intervalo de confianza de 95% para la diferencia del contenido promedio real de ortofósforo en estas dos estaciones, suponga que las observaciones vienen de poblaciones normales con varianzas diferentes.
+ Rta(0.6,4.1)
