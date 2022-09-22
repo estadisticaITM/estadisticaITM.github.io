@@ -579,30 +579,49 @@ boxplot(datos)</code></pre>
 
 ##Matriz de varianzas y covarianzas
 round(var(datos),2)</code></pre>
-<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
-## Long_pie        2.94    0.83      0.16        0.37       0.42
-## amp_pie         0.83    0.33     -0.03        0.08       0.09
-## amp_talon       0.16   -0.03      0.24        0.01       0.07
-## lon_dedgran     0.37    0.08      0.01        0.19       0.06
-## amp_degran      0.42    0.09      0.07        0.06       0.10</code></pre>
+<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran
+## Long_pie        2.94    0.83      0.16        0.37
+## amp_pie         0.83    0.33     -0.03        0.08
+## amp_talon       0.16   -0.03      0.24        0.01
+## lon_dedgran     0.37    0.08      0.01        0.19
+## amp_degran      0.42    0.09      0.07        0.06
+##             amp_degran
+## Long_pie          0.42
+## amp_pie           0.09
+## amp_talon         0.07
+## lon_dedgran       0.06
+## amp_degran        0.10</code></pre>
 <pre class="r"><code>###Matriz de correlaciones
 round(cor(datos),4)*100</code></pre>
-<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran amp_degran
-## Long_pie      100.00   85.07     19.56       49.98      76.00
-## amp_pie        85.07  100.00     -9.58       31.41      48.14
-## amp_talon      19.56   -9.58    100.00        2.53      44.61
-## lon_dedgran    49.98   31.41      2.53      100.00      44.38
-## amp_degran     76.00   48.14     44.61       44.38     100.00</code></pre>
+<pre><code>##             Long_pie amp_pie amp_talon lon_dedgran
+## Long_pie      100.00   85.07     19.56       49.98
+## amp_pie        85.07  100.00     -9.58       31.41
+## amp_talon      19.56   -9.58    100.00        2.53
+## lon_dedgran    49.98   31.41      2.53      100.00
+## amp_degran     76.00   48.14     44.61       44.38
+##             amp_degran
+## Long_pie         76.00
+## amp_pie          48.14
+## amp_talon        44.61
+## lon_dedgran      44.38
+## amp_degran      100.00</code></pre>
 <pre class="r"><code>plot(datos)</code></pre>
 <p><img src="pp1_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <pre class="r"><code>summary(datos)</code></pre>
-<pre><code>##     Long_pie        amp_pie         amp_talon      lon_dedgran      amp_degran   
-##  Min.   :21.70   Min.   : 8.400   Min.   :4.700   Min.   :3.000   Min.   :2.300  
-##  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225   1st Qu.:3.200   1st Qu.:2.700  
-##  Median :24.30   Median : 9.250   Median :5.500   Median :3.400   Median :2.850  
-##  Mean   :23.80   Mean   : 9.100   Mean   :5.520   Mean   :3.510   Mean   :2.880  
-##  3rd Qu.:25.30   3rd Qu.: 9.400   3rd Qu.:6.000   3rd Qu.:3.825   3rd Qu.:3.175  
-##  Max.   :25.90   Max.   :10.100   Max.   :6.100   Max.   :4.300   Max.   :3.300</code></pre>
+<pre><code>##     Long_pie        amp_pie         amp_talon    
+##  Min.   :21.70   Min.   : 8.400   Min.   :4.700  
+##  1st Qu.:22.05   1st Qu.: 8.525   1st Qu.:5.225  
+##  Median :24.30   Median : 9.250   Median :5.500  
+##  Mean   :23.80   Mean   : 9.100   Mean   :5.520  
+##  3rd Qu.:25.30   3rd Qu.: 9.400   3rd Qu.:6.000  
+##  Max.   :25.90   Max.   :10.100   Max.   :6.100  
+##   lon_dedgran      amp_degran   
+##  Min.   :3.000   Min.   :2.300  
+##  1st Qu.:3.200   1st Qu.:2.700  
+##  Median :3.400   Median :2.850  
+##  Mean   :3.510   Mean   :2.880  
+##  3rd Qu.:3.825   3rd Qu.:3.175  
+##  Max.   :4.300   Max.   :3.300</code></pre>
 <div id="actividad-en-r" class="section level3">
 <h3>Actividad en R</h3>
 <p>Para estimar la producción en madera de un bosque se suele realizar

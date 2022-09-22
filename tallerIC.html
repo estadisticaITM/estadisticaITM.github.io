@@ -415,15 +415,28 @@ div.tocify {
 class="section level2">
 <h2>IC para la media con desviación estándar desconocida</h2>
 <ol style="list-style-type: decimal">
-<li><p>El contenido de siete contenedores similares de ácido sulfúrico
-son 9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un
-intervalo de confianza del 95% para la media de todos los contenedores
-si se supone una distribución aproximadamente normal. (Rta/9.47 y 10.26
-litros.)</p></li>
-<li><p>Un artículo publicado en el Journal of Testing and Evaluation
+<li>El contenido de siete contenedores similares de ácido sulfúrico son
+9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un intervalo
+de confianza del 95% para la media de todos los contenedores si se
+supone una distribución aproximadamente normal.</li>
+</ol>
+<pre class="r"><code>T&lt;-c(9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6)
+t.test(T,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = 93.541, df = 6, p-value = 1.006e-10
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##   9.738414 10.261586
+## sample estimates:
+## mean of x 
+##        10</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Un artículo publicado en el Journal of Testing and Evaluation
 presenta las siguientes 20 mediciones del tiempo de combustión residual
-en segundos de especímenes tratados de ropa de dormir para
-niños:</p></li>
+en segundos de especímenes tratados de ropa de dormir para niños:</li>
 </ol>
 <table>
 <thead>
@@ -462,7 +475,20 @@ niños:</p></li>
 <p>Se desea encontrar un nivel de confianza del 95% para el tiempo de
 combustión residual promedio. Supóngase que el tiempo de combustión
 residual sigue una distribución normal.</p>
-<p>Rta(9.8073 y 9.8977 segundos)</p>
+<pre class="r"><code>T&lt;-c(9.85,9.93,9.75,9.77,9.67,9.87,9.67,9.94,9.85,9.75,
+9.83,9.92,9.74,9.99,9.88,9.95,9.95,9.93,9.92,9.89)
+t.test(T,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = 456.8, df = 19, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  9.807357 9.897643
+## sample estimates:
+## mean of x 
+##    9.8525</code></pre>
 </div>
 </div>
 <div id="intervalos-de-confianza-para-dos-muestras"
@@ -521,9 +547,9 @@ varianzas Rta( 1.07 y 3.93 )</p>
 ingeniero de manufactura le gustaría seleccionar el proceso que tenga la
 menor variabilidad en la rugosidad de la superficie. Para ello toma una
 muestra de n1=16 partes del primer proceso, la cual tiene una desviación
-estándar <span class="math inline">\(s1 = 4.7\)</span> micropulgadas, y
+estándar <span class="math inline">\(s1=4.7\)</span> micropulgadas, y
 una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene
-una desviación estándar <span class="math inline">\(s2 = 5.1\)</span>
+una desviación estándar <span class="math inline">\(s2=5.1\)</span>
 micropulgadas. Se desea encontrar un intervalo de confianza del 90% para
 el cociente de las dos varianzas.</li>
 </ol>

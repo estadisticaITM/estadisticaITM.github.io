@@ -12,7 +12,11 @@ output:
 ## IC para la media con desviación estándar desconocida
 
 1. El contenido de siete contenedores similares de ácido sulfúrico son 9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un intervalo de confianza del 95% para la media de todos los contenedores si se supone una distribución aproximadamente normal.
-(Rta/9.47 y 10.26 litros.)
+
+```{r}
+T<-c(9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6)
+t.test(T,conf.level=0.95)
+```
 
 2. Un artículo publicado en el Journal of Testing and Evaluation presenta las siguientes 20 mediciones del tiempo de combustión residual en segundos de especímenes tratados de ropa de dormir para niños:
 
@@ -24,8 +28,12 @@ output:
 
 Se desea encontrar un nivel de confianza del 95% para el tiempo de combustión residual promedio. Supóngase que el tiempo de combustión residual sigue una distribución normal.
 
-Rta(9.8073 y 9.8977 segundos)
 
+```{r}
+T<-c(9.85,9.93,9.75,9.77,9.67,9.87,9.67,9.94,9.85,9.75,
+9.83,9.92,9.74,9.99,9.88,9.95,9.95,9.93,9.92,9.89)
+t.test(T,conf.level=0.95)
+```
 # Intervalos de confianza para dos muestras
 
 ## IC para la diferencia de medias de dos distribuciones normales, varianzas desconocidas pero diferentes.
@@ -51,7 +59,7 @@ El área a la izquierda de F, es de 0.10 con con $v_1=24$ y $v_2 =24$
 Construya un intervalo de confianza del 90% para la razón de varianzas
 Rta( 1.07 y 3.93 )
 
-3. Una compañía fabrica propulsores para uso en motores de turbina. Al ingeniero de manufactura le gustaría seleccionar el proceso que tenga la menor variabilidad en la rugosidad de la superficie. Para ello toma una muestra de n1=16 partes del primer proceso, la cual tiene una desviación estándar $s1 = 4.7$ micropulgadas, y una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene una desviación estándar $s2 = 5.1$ micropulgadas. Se desea encontrar un intervalo de confianza del 90% para el cociente de las dos varianzas.
+3. Una compañía fabrica propulsores para uso en motores de turbina. Al ingeniero de manufactura le gustaría seleccionar el proceso que tenga la menor variabilidad en la rugosidad de la superficie. Para ello toma una muestra de n1=16 partes del primer proceso, la cual tiene una desviación estándar $s1=4.7$ micropulgadas, y una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene una desviación estándar $s2=5.1$ micropulgadas. Se desea encontrar un intervalo de confianza del 90% para el cociente de las dos varianzas.
 
 ## IC para la diferencia de medias de dos distribuciones normales, varianzas desconocidas pero iguales.
 
