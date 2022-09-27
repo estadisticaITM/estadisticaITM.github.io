@@ -7,7 +7,7 @@ output:
 
 ---
 
-# Intervalos de confianza para la media
+# Intervalos de confianza para una muestra
 
 ## IC para la media con desviación estándar desconocida
 
@@ -16,6 +16,7 @@ output:
 ```{r}
 T<-c(9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6)
 t.test(T,conf.level=0.95)
+
 ```
 
 2. Un artículo publicado en el Journal of Testing and Evaluation presenta las siguientes 20 mediciones del tiempo de combustión residual en segundos de especímenes tratados de ropa de dormir para niños:
@@ -44,8 +45,11 @@ t.test(T,conf.level=0.95)
 1. Encontrar el valor de F, en cada uno de los siguientes casos:
 
 El área a la derecha de F, es de 0.25 con $v_1=4$ y $v_2 =9$.
+
 El área a la izquierda de F, es de 0.95 con $v_1=15$ y $v_2=10$.
+
 El área a la derecha de F es de 0.95 con con $v_1=6$ y $v_2=8$.
+
 El área a la izquierda de F, es de 0.10 con con $v_1=24$ y $v_2 =24$
 
 2. Un fabricante de automóviles pone a prueba dos nuevos métodos de ensamblaje de motores respecto al tiempo en minutos. Los resultados se muestran el la siguiente tabla:
@@ -56,10 +60,43 @@ El área a la izquierda de F, es de 0.10 con con $v_1=24$ y $v_2 =24$
 |  1   |31    |50      |
 |  2   | 25   |  24    |
 
-Construya un intervalo de confianza del 90% para la razón de varianzas
-Rta( 1.07 y 3.93 )
+Construya un intervalo de confianza del 90% para la razón de varianzas Rta( 1.07 y 3.93 )
 
 3. Una compañía fabrica propulsores para uso en motores de turbina. Al ingeniero de manufactura le gustaría seleccionar el proceso que tenga la menor variabilidad en la rugosidad de la superficie. Para ello toma una muestra de n1=16 partes del primer proceso, la cual tiene una desviación estándar $s1=4.7$ micropulgadas, y una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene una desviación estándar $s2=5.1$ micropulgadas. Se desea encontrar un intervalo de confianza del 90% para el cociente de las dos varianzas.
+
+4. Una operación de montaje en una fábrica manufacturera requiere aproximadamente un período de entrenamiento de un mes para que un nuevo operario alcance la máxima eficiencia. Se sugirió un nuevo método para el entrenamiento y se realizó una prueba para comparar el método nuevo con el método estándar. Se entrenaron dos grupos de 9 nuevos empleados durante un período de un mes; un grupo utilizó el método estándar y el otro grupo usó el método nuevo. Se midió el tiempo en minutos que necesito cada empleado en armar cierto dispositivo al final del período de entrenamiento; los resultados obtenidos fueron:
+
+|Método estándar|32|37|35|28|41|44|35|31|34|
+|---------------|--|--|--|--|--|--|--|--|--|
+|Método nuevo   |35|31|29|25|34|40|27|32|31|
+
+Admitiendo que el tiempo de armado utilizado en ambos métodos son variables aleatorias independientes y distribuidas normalmente: ¿Tiene igual varianza? compruebelo a través de un intervalo de confianza para la razón de varianzas con un nivel de confianza del 90%
+
+
+```{r}
+
+E<-c(32,37,35,28,41,44,35,31,34)
+N<-c(35,31,29,25,34,40,27,32,31)
+var.test(E,N, alternative = c("two.sided"),
+         conf.level = 0.9) 
+var(E)
+var(N)
+
+qf(0.05,8,8)
+
+```
+¿Se puede aceptar la hipótesis de igualdad de tiempos de armado, en función de los datos construya un IC con un nivel de confianza del 95%?
+
+```{r}
+E<-c(32,37,35,28,41,44,35,31,34)
+N<-c(35,31,29,25,34,40,27,32,31)
+t.test (E,N,paired=T,conf.level=0.95)
+ t.test (E,N,paired=F,conf.level=0.95)
+
+```
+
+Estime la diferencia real de las medias poblacionales con un nivel de confianza del
+95%. 
 
 ## IC para la diferencia de medias de dos distribuciones normales, varianzas desconocidas pero iguales.
 
@@ -71,7 +108,7 @@ Rta(0.72,6.72)
 
 Rta(2.35,9.25)
 
-## IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES, VARIANZAS DESCONOCIDAS PERO IGUALES (probarlo)
+## IC para la diferencia de medias de dos distribuciones normales, varianzas desconocidas pero iguales (probarlo)
 
 1. Un artículo publicado dio a conocer los resultados de un análisis del peso de calcio en cemento estándar y en cemento contaminado con plomo. Los niveles bajos de calcio indican que el mecanismo de hidratación del cemento queda bloqueado y esto permite que el agua ataque varias partes de una estructura de cemento. Al tomar diez muestras de cemento estándar, se encontró que el peso promedio de calcio es de 90 con una desviación estándar de 5; los resultados obtenidos con 15 muestras de cemento contaminado con plomo fueron de 87 en promedio con una desviación estándar de 4. Supóngase que el porcentaje de peso de calcio está distribuido de manera normal. Encuéntrese un intervalo de confianza del 95% para la diferencia entre medias de los dos tipos de cementos. Por otra parte, supóngase que las dos poblaciones normales tienen la misma desviación estándar.(probarlo)
 

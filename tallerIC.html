@@ -409,8 +409,9 @@ div.tocify {
 </div>
 
 
-<div id="intervalos-de-confianza-para-la-media" class="section level1">
-<h1>Intervalos de confianza para la media</h1>
+<div id="intervalos-de-confianza-para-una-muestra"
+class="section level1">
+<h1>Intervalos de confianza para una muestra</h1>
 <div id="ic-para-la-media-con-desviación-estándar-desconocida"
 class="section level2">
 <h2>IC para la media con desviación estándar desconocida</h2>
@@ -507,13 +508,16 @@ varianzas desconocidas pero diferentes.</h2>
 </ol>
 <p>El área a la derecha de F, es de 0.25 con <span
 class="math inline">\(v_1=4\)</span> y <span class="math inline">\(v_2
-=9\)</span>. El área a la izquierda de F, es de 0.95 con <span
+=9\)</span>.</p>
+<p>El área a la izquierda de F, es de 0.95 con <span
 class="math inline">\(v_1=15\)</span> y <span
-class="math inline">\(v_2=10\)</span>. El área a la derecha de F es de
-0.95 con con <span class="math inline">\(v_1=6\)</span> y <span
-class="math inline">\(v_2=8\)</span>. El área a la izquierda de F, es de
-0.10 con con <span class="math inline">\(v_1=24\)</span> y <span
-class="math inline">\(v_2 =24\)</span></p>
+class="math inline">\(v_2=10\)</span>.</p>
+<p>El área a la derecha de F es de 0.95 con con <span
+class="math inline">\(v_1=6\)</span> y <span
+class="math inline">\(v_2=8\)</span>.</p>
+<p>El área a la izquierda de F, es de 0.10 con con <span
+class="math inline">\(v_1=24\)</span> y <span class="math inline">\(v_2
+=24\)</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Un fabricante de automóviles pone a prueba dos nuevos métodos de
 ensamblaje de motores respecto al tiempo en minutos. Los resultados se
@@ -543,16 +547,120 @@ muestran el la siguiente tabla:</li>
 <p>Construya un intervalo de confianza del 90% para la razón de
 varianzas Rta( 1.07 y 3.93 )</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Una compañía fabrica propulsores para uso en motores de turbina. Al
-ingeniero de manufactura le gustaría seleccionar el proceso que tenga la
-menor variabilidad en la rugosidad de la superficie. Para ello toma una
-muestra de n1=16 partes del primer proceso, la cual tiene una desviación
-estándar <span class="math inline">\(s1=4.7\)</span> micropulgadas, y
-una muestra aleatoria de n2=12 partes del segundo proceso, la cual tiene
-una desviación estándar <span class="math inline">\(s2=5.1\)</span>
-micropulgadas. Se desea encontrar un intervalo de confianza del 90% para
-el cociente de las dos varianzas.</li>
+<li><p>Una compañía fabrica propulsores para uso en motores de turbina.
+Al ingeniero de manufactura le gustaría seleccionar el proceso que tenga
+la menor variabilidad en la rugosidad de la superficie. Para ello toma
+una muestra de n1=16 partes del primer proceso, la cual tiene una
+desviación estándar <span class="math inline">\(s1=4.7\)</span>
+micropulgadas, y una muestra aleatoria de n2=12 partes del segundo
+proceso, la cual tiene una desviación estándar <span
+class="math inline">\(s2=5.1\)</span> micropulgadas. Se desea encontrar
+un intervalo de confianza del 90% para el cociente de las dos
+varianzas.</p></li>
+<li><p>Una operación de montaje en una fábrica manufacturera requiere
+aproximadamente un período de entrenamiento de un mes para que un nuevo
+operario alcance la máxima eficiencia. Se sugirió un nuevo método para
+el entrenamiento y se realizó una prueba para comparar el método nuevo
+con el método estándar. Se entrenaron dos grupos de 9 nuevos empleados
+durante un período de un mes; un grupo utilizó el método estándar y el
+otro grupo usó el método nuevo. Se midió el tiempo en minutos que
+necesito cada empleado en armar cierto dispositivo al final del período
+de entrenamiento; los resultados obtenidos fueron:</p></li>
 </ol>
+<table>
+<thead>
+<tr class="header">
+<th>Método estándar</th>
+<th>32</th>
+<th>37</th>
+<th>35</th>
+<th>28</th>
+<th>41</th>
+<th>44</th>
+<th>35</th>
+<th>31</th>
+<th>34</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Método nuevo</td>
+<td>35</td>
+<td>31</td>
+<td>29</td>
+<td>25</td>
+<td>34</td>
+<td>40</td>
+<td>27</td>
+<td>32</td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+<p>Admitiendo que el tiempo de armado utilizado en ambos métodos son
+variables aleatorias independientes y distribuidas normalmente: ¿Tiene
+igual varianza? compruebelo a través de un intervalo de confianza para
+la razón de varianzas con un nivel de confianza del 90%</p>
+<pre class="r"><code>E&lt;-c(32,37,35,28,41,44,35,31,34)
+N&lt;-c(35,31,29,25,34,40,27,32,31)
+var.test(E,N, alternative = c(&quot;two.sided&quot;),
+         conf.level = 0.9) </code></pre>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  E and N
+## F = 1.2205, num df = 8, denom df = 8, p-value = 0.7849
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 90 percent confidence interval:
+##  0.3550003 4.1962955
+## sample estimates:
+## ratio of variances 
+##           1.220527</code></pre>
+<pre class="r"><code>var(E)</code></pre>
+<pre><code>## [1] 24.44444</code></pre>
+<pre class="r"><code>var(N)</code></pre>
+<pre><code>## [1] 20.02778</code></pre>
+<pre class="r"><code>qf(0.05,8,8)</code></pre>
+<pre><code>## [1] 0.2908582</code></pre>
+<p>¿Se puede aceptar la hipótesis de igualdad de tiempos de armado, en
+función de los datos construya un IC con un nivel de confianza del
+95%?</p>
+<pre class="r"><code>E&lt;-c(32,37,35,28,41,44,35,31,34)
+N&lt;-c(35,31,29,25,34,40,27,32,31)
+t.test (E,N,paired=T,conf.level=0.95)</code></pre>
+<pre><code>## Warning in if (paired) xok &lt;- yok &lt;- complete.cases(x, y) else {: the condition has
+## length &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (paired) {: the condition has length &gt; 1 and only the first element will
+## be used</code></pre>
+<pre><code>## Warning in if (paired) &quot;Paired t-test&quot; else &quot;One Sample t-test&quot;: the condition has
+## length &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (paired) &quot;mean of the differences&quot; else &quot;mean of x&quot;: the condition has
+## length &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  E and N
+## t = 2.9938, df = 8, p-value = 0.01723
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.8423999 6.4909334
+## sample estimates:
+## mean of the differences 
+##                3.666667</code></pre>
+<pre class="r"><code> t.test (E,N,paired=F,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  E and N
+## t = 1.6495, df = 15.844, p-value = 0.1187
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.049486  8.382820
+## sample estimates:
+## mean of x mean of y 
+##  35.22222  31.55556</code></pre>
+<p>Estime la diferencia real de las medias poblacionales con un nivel de
+confianza del 95%.</p>
 </div>
 <div
 id="ic-para-la-diferencia-de-medias-de-dos-distribuciones-normales-varianzas-desconocidas-pero-iguales."
@@ -590,8 +698,8 @@ la diferencia del tiempo promedio. Suponga varianzas iguales.</li>
 <div
 id="ic-para-la-diferencia-de-medias-de-dos-distribuciones-normales-varianzas-desconocidas-pero-iguales-probarlo"
 class="section level2">
-<h2>IC PARA LA DIFERENCIA DE MEDIAS DE DOS DISTRIBUCIONES NORMALES,
-VARIANZAS DESCONOCIDAS PERO IGUALES (probarlo)</h2>
+<h2>IC para la diferencia de medias de dos distribuciones normales,
+varianzas desconocidas pero iguales (probarlo)</h2>
 <ol style="list-style-type: decimal">
 <li>Un artículo publicado dio a conocer los resultados de un análisis
 del peso de calcio en cemento estándar y en cemento contaminado con
