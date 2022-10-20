@@ -2,22 +2,32 @@
 title: "Pruebas no paramétricas"
 ---
 
-Gran parte de los procedimientos descritos anteriormente de test de hipótesis, consideran que las observaciones provienen de poblaciones normales. En muchas situaciones este supuesto no se cumple. Una alternativa a la no normalidad de los datos, es proceder a implementar test no paramétricos.
+Gran parte de los procedimientos descritos anteriormente de pruebas de hipótesis, consideran que las observaciones provienen de poblaciones normales. En muchas situaciones este supuesto no se cumple. Una alternativa a la no normalidad de los datos, es proceder a implementar pruebas no paramétricas.
 
 # Pruebas de normalidad
 
-## Test de Kolmogorov-Smirnov
-Este test nos permite contrastar si un conjunto de datos muestrales proviene de una población normal. 
-El contraste es el siguiente.
+La hipotesis nula y alternativa de normalidad son las siguientes:
 
-$$H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal$$
+ $$ H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal$$
 $$H_1:  \quad Los\quad datos\quad no \quad se\quad distribuyen \quad normal$$
+Existen diferentes pruebas para evaluar la normalidad, todas son de fácil implementación en R.
+
+
+## Test de Kolmogorov-Smirnov K-S
+
+Se emplea para saber si dos distribuciones son distintas o si una distribución de probabilidad subyacente difiere de una distribución hipotética, por lo general la distribución normal. Es decir permite contrastar si un conjunto de datos muestrales proviene de una población normal. 
+
+Cuando K-S se aplica para contrastar la hipótesis de normalidad de la población, el estadístico de prueba es la máxima diferencia entre las funciones de distribución de probabilidad muestral y la teórica:
+
+$$D=max|F_n-F_0(x)|$$
+
+Siendo $F_n (x)$ la función de distribución muestral y $F_0(x)$ es la función teórica (normal) especificada en la hipotesis nula $H_0$
 
 ### Ejemplo en R
 
 Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE}
 
 x=rnorm(100,170,8)
 plot(density(x))
@@ -27,7 +37,15 @@ ks.test(x, "pnorm",170,8)
 ¿Según los criterios vistos en clase cuál es la desición apropiada?
 
 ## Test de Shapiro-Wilk
-También se usa para contrastar normalidad de un conjunto de datos. Ésta es una alternativa más potente que la prueba de Kolmogorov-Smirnov.
+
+También se usa para contrastar normalidad de un conjunto de datos, cuando la muestra es como máximo de tamaño 50. Es una alternativa más potente que la prueba de K-S. 
+
+Para efectuarla se calcula la media y la varianza muestral $S^2$, y se ordenan las observaciones de menor a mayor, luego se calculan las diferencias entre: el primero y el último; el segundo y el penúltimo; el tercero y el antepenúltimo, etc. y se corrigen con unos coeficientes tabulados por Shapiro y Wilk. El estadístico de prueba es:
+
+$$W=\frac{D^2}{nS^2}$$
+
+
+donde D es la suma de las diferencias corregidas.
 
 ### Ejemplo en R
 
@@ -39,7 +57,7 @@ Se mide las concentraciones de cortisol en dos grupos de mujeres antes de dar a 
 
 
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE}
 
 ###Ingresamos los datos como vectores de los dos grupos de madres
 
@@ -62,6 +80,7 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
 
 
 ## Test de Mann-Whitney o prueba de wilcoxon
+
 Es una prueba no paramétrica con la cual se identifican **diferencias entre dos poblaciones** basadas en el análisis de dos muestras independientes. Es la versión no paramétrica del test t-Student de diferencias de medias.
 
 ## Prueba de wilcoxon en R

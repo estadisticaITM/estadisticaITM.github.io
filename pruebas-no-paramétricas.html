@@ -327,21 +327,34 @@ $(document).ready(function () {
 </div>
 
 
-<p>Gran parte de los procedimientos descritos anteriormente de test de
-hipótesis, consideran que las observaciones provienen de poblaciones
+<p>Gran parte de los procedimientos descritos anteriormente de pruebas
+de hipótesis, consideran que las observaciones provienen de poblaciones
 normales. En muchas situaciones este supuesto no se cumple. Una
 alternativa a la no normalidad de los datos, es proceder a implementar
-test no paramétricos.</p>
+pruebas no paramétricas.</p>
 <div id="pruebas-de-normalidad" class="section level1">
 <h1>Pruebas de normalidad</h1>
-<div id="test-de-kolmogorov-smirnov" class="section level2">
-<h2>Test de Kolmogorov-Smirnov</h2>
-<p>Este test nos permite contrastar si un conjunto de datos muestrales
-proviene de una población normal. El contraste es el siguiente.</p>
-<p><span class="math display">\[H_0:  \quad Los\quad datos\quad se\quad
+<p>La hipotesis nula y alternativa de normalidad son las siguientes:</p>
+<p><span class="math display">\[ H_0:  \quad Los\quad datos\quad se\quad
 distribuyen \quad normal\]</span> <span
 class="math display">\[H_1:  \quad Los\quad datos\quad no \quad se\quad
-distribuyen \quad normal\]</span></p>
+distribuyen \quad normal\]</span> Existen diferentes pruebas para
+evaluar la normalidad, todas son de fácil implementación en R.</p>
+<div id="test-de-kolmogorov-smirnov-k-s" class="section level2">
+<h2>Test de Kolmogorov-Smirnov K-S</h2>
+<p>Se emplea para saber si dos distribuciones son distintas o si una
+distribución de probabilidad subyacente difiere de una distribución
+hipotética, por lo general la distribución normal. Es decir permite
+contrastar si un conjunto de datos muestrales proviene de una población
+normal.</p>
+<p>Cuando K-S se aplica para contrastar la hipótesis de normalidad de la
+población, el estadístico de prueba es la máxima diferencia entre las
+funciones de distribución de probabilidad muestral y la teórica:</p>
+<p><span class="math display">\[D=max|F_n-F_0(x)|\]</span></p>
+<p>Siendo <span class="math inline">\(F_n (x)\)</span> la función de
+distribución muestral y <span class="math inline">\(F_0(x)\)</span> es
+la función teórica (normal) especificada en la hipotesis nula <span
+class="math inline">\(H_0\)</span></p>
 <div id="ejemplo-en-r" class="section level3">
 <h3>Ejemplo en R</h3>
 <p>Se generan 100 observaciones de una población normal con media 170 y
@@ -352,15 +365,29 @@ normal.</p>
 plot(density(x))</code></pre>
 <p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre class="r"><code>ks.test(x, &quot;pnorm&quot;,170,8)</code></pre>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x
+## D = 0.10193, p-value = 0.2499
+## alternative hypothesis: two-sided</code></pre>
 <p>¿Según los criterios vistos en clase cuál es la desición
 apropiada?</p>
 </div>
 </div>
 <div id="test-de-shapiro-wilk" class="section level2">
 <h2>Test de Shapiro-Wilk</h2>
-<p>También se usa para contrastar normalidad de un conjunto de datos.
-Ésta es una alternativa más potente que la prueba de
-Kolmogorov-Smirnov.</p>
+<p>También se usa para contrastar normalidad de un conjunto de datos,
+cuando la muestra es como máximo de tamaño 50. Es una alternativa más
+potente que la prueba de K-S.</p>
+<p>Para efectuarla se calcula la media y la varianza muestral <span
+class="math inline">\(S^2\)</span>, y se ordenan las observaciones de
+menor a mayor, luego se calculan las diferencias entre: el primero y el
+último; el segundo y el penúltimo; el tercero y el antepenúltimo, etc. y
+se corrigen con unos coeficientes tabulados por Shapiro y Wilk. El
+estadístico de prueba es:</p>
+<p><span class="math display">\[W=\frac{D^2}{nS^2}\]</span></p>
+<p>donde D es la suma de las diferencias corregidas.</p>
 <div id="ejemplo-en-r-1" class="section level3">
 <h3>Ejemplo en R</h3>
 <p>Se mide las concentraciones de cortisol en dos grupos de mujeres
@@ -381,14 +408,44 @@ grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)
 
 
 ## Prueba de normalidad
-shapiro.test(grupo1)
-shapiro.test(grupo2)
-
-## Prueba de igualdad entre varinzas
-var.test(grupo1,grupo2)
-
-## prueba de diferencias entre medias
+shapiro.test(grupo1)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  grupo1
+## W = 0.96658, p-value = 0.8575</code></pre>
+<pre class="r"><code>shapiro.test(grupo2)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  grupo2
+## W = 0.95245, p-value = 0.673</code></pre>
+<pre class="r"><code>## Prueba de igualdad entre varinzas
+var.test(grupo1,grupo2)</code></pre>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  grupo1 and grupo2
+## F = 0.16182, num df = 9, denom df = 11, p-value = 0.0108
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.04510143 0.63304938
+## sample estimates:
+## ratio of variances 
+##          0.1618194</code></pre>
+<pre class="r"><code>## prueba de diferencias entre medias
 t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  grupo1 and grupo2
+## t = -6.7277, df = 14.996, p-value = 6.787e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -272.7363 -141.4970
+## sample estimates:
+## mean of x mean of y 
+##  421.3000  628.4167</code></pre>
 </div>
 </div>
 <div id="test-de-mann-whitney-o-prueba-de-wilcoxon"
