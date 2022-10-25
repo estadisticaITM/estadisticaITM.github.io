@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -355,8 +437,7 @@ funciones de distribución de probabilidad muestral y la teórica:</p>
 distribución muestral y <span class="math inline">\(F_0(x)\)</span> es
 la función teórica (normal) especificada en la hipotesis nula <span
 class="math inline">\(H_0\)</span></p>
-<div id="ejemplo-en-r" class="section level3">
-<h3>Ejemplo en R</h3>
+<p><strong>Ejemplo en R</strong></p>
 <p>Se generan 100 observaciones de una población normal con media 170 y
 desviación estándar 8. Note que estas pueden ser muestras de estaturas
 de individuos. Veamos si los datos generados realmente provienen de una
@@ -369,11 +450,10 @@ plot(density(x))</code></pre>
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
-## D = 0.089215, p-value = 0.4037
+## D = 0.041455, p-value = 0.9954
 ## alternative hypothesis: two-sided</code></pre>
 <p>¿Según los criterios vistos en clase cuál es la desición
 apropiada?</p>
-</div>
 </div>
 <div id="test-de-shapiro-wilk" class="section level2">
 <h2>Test de Shapiro-Wilk</h2>
@@ -388,8 +468,7 @@ se corrigen con unos coeficientes tabulados por Shapiro y Wilk. El
 estadístico de prueba es:</p>
 <p><span class="math display">\[W=\frac{D^2}{nS^2}\]</span></p>
 <p>donde D es la suma de las diferencias corregidas.</p>
-<div id="ejemplo-en-r-1" class="section level3">
-<h3>Ejemplo en R</h3>
+<p><strong>Ejemplo en R</strong></p>
 <p>Se mide las concentraciones de cortisol en dos grupos de mujeres
 antes de dar a luz. Al grupo 1 se le practicó una cesárea de urgencias
 después de inducido el parto. Las del grupo 2, dieron a luz mediante
@@ -450,23 +529,41 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
 ##  421.3000  628.4167</code></pre>
 </div>
 </div>
-<div id="test-de-mann-whitney-o-prueba-de-wilcoxon"
-class="section level2">
-<h2>Test de Mann-Whitney o prueba de wilcoxon</h2>
-<p>Es una prueba no paramétrica con la cual se identifican
-<strong>diferencias entre dos poblaciones</strong> basadas en el
-análisis de dos muestras independientes. Es la versión no paramétrica
-del test t-Student de diferencias de medias.</p>
-</div>
-<div id="prueba-de-wilcoxon-en-r" class="section level2">
-<h2>Prueba de wilcoxon en R</h2>
+<div
+id="prueba-no-paramétrica-para-la-diferencias-entre-dos-poblaciones"
+class="section level1">
+<h1>Prueba no paramétrica para la diferencias entre dos poblaciones</h1>
+<div id="prueba-de-mann-whitney" class="section level2">
+<h2>Prueba de Mann-Whitney</h2>
+<ul>
+<li><p>Es una prueba no paramétrica para identificar <strong>diferencias
+entre dos poblaciones</strong> basadas en el análisis de dos muestras
+independientes.</p></li>
+<li><p>Se usa cuando los conjuntos de datos no cumplen los requisitos de
+la prueba de t-Student y la normal, (normalidad de los datos y tamaño de
+muestra mayor a 30)</p></li>
+<li><p>Para realizar la prueba las observaciones de las dos muestras
+deben estar en orden ascendente.</p></li>
+<li><p>También se conoce con otros nombres: Mann–Whitney–Wilcoxon,
+Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. Por ello está disponible
+en R por medio de la función wilcox.test.</p></li>
+<li><p>La prueba se basa en una comparación de cada observación de una
+muestra <span class="math inline">\(x_i\)</span> con cada observación en
+la segunda muestra <span class="math inline">\(y_i\)</span> Si las
+muestras tienen la misma mediana, entones cada observación tiene un 50%
+de probabilidad de ser mayor o menor que la observación correspondiente
+de la otra muestra. Por tanto plantea las hipotesis:</p></li>
+</ul>
+<p><span class="math display">\[H_o:P(x_i&gt;y_i)=0.5\]</span> <span
+class="math display">\[H_1: P(x_i&gt;y_i) \neq 0.5\]</span></p>
+<p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
 <p>Los datos siguientes datos corresponden a constantes de permeabilidad
 de la membrana chorioamnion en humanos (una membrana placentaria) medida
 a las 12 y 26 semanas de edad gestacional.</p>
 <ol style="list-style-type: decimal">
 <li><p>realice una prueba de normalidad para verificar la normalidad en
 los conjuntos de datos</p></li>
-<li><p>Asumiendo que los datos no son normales, pruebe aun nivel de
+<li><p>Asumiendo que los datos no son normales, pruebe a un nivel de
 significancia de α = 0.05 para chequear la alternativa, mayor
 permeabilidad de la membrana chorioamnion para el inicio del
 embarazo.</p></li>
@@ -475,11 +572,26 @@ embarazo.</p></li>
 y=c(1.15, 0.88, 0.90, 0.74, 1.21)
 
 # prueba no parametrica dewilcoxon
-wilcox.test(x,y, alternative = &quot;g&quot;)
-
-##PRUEBA DE NORMALIDAD
-shapiro.test(x)
-shapiro.test(y)</code></pre>
+wilcox.test(x,y, alternative = &quot;g&quot;)</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  x and y
+## W = 35, p-value = 0.1272
+## alternative hypothesis: true location shift is greater than 0</code></pre>
+<pre class="r"><code>##PRUEBA DE NORMALIDAD
+shapiro.test(x)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.91129, p-value = 0.29</code></pre>
+<pre class="r"><code>shapiro.test(y)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  y
+## W = 0.91538, p-value = 0.5006</code></pre>
 <div id="prueba-t-student-en-r" class="section level3">
 <h3>Prueba t-Student en R</h3>
 <p>Los siguientes datos corresponden al rendimiento por hectárea de
@@ -499,26 +611,54 @@ rendimiento por hectárea se distribuye aproximadamente normal.</p></li>
 T&lt;-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
 
 #Prueba de normalidad sobre el vector T
-shapiro.test(T)
-
-#Tabulación de datos
-table(T)
-
-#histograma de los datos
+shapiro.test(T)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  T
+## W = 0.89424, p-value = 0.2205</code></pre>
+<pre class="r"><code>#Tabulación de datos
+table(T)</code></pre>
+<pre><code>## T
+## 3.35 3.36 3.42 3.72 3.92 4.19 4.26 4.38  4.5 
+##    1    1    1    1    1    1    1    1    1</code></pre>
+<pre class="r"><code>#histograma de los datos
 hist(T,breaks=3,col=4)</code></pre>
 <p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>#gráfico de densidad de dtos
 plot(density(T))</code></pre>
 <p><img src="pruebas-no-paramétricas_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre class="r"><code>##prueba t de dos colas
-t.test(T,conf.level=0.90)
-
-##prueba t de cola superior
+t.test(T,conf.level=0.90)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = 25.674, df = 8, p-value = 5.681e-09
+## alternative hypothesis: true mean is not equal to 0
+## 90 percent confidence interval:
+##  3.617526 4.182474
+## sample estimates:
+## mean of x 
+##       3.9</code></pre>
+<pre class="r"><code>##prueba t de cola superior
 t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = -0.65831, df = 8, p-value = 0.7356
+## alternative hypothesis: true mean is greater than 4
+## 90 percent confidence interval:
+##  3.687817      Inf
+## sample estimates:
+## mean of x 
+##       3.9</code></pre>
 </div>
 </div>
-<div id="test-de-independencia" class="section level2">
-<h2>Test de independencia</h2>
+</div>
+<div id="test-de-independencia" class="section level1">
+<h1>Test de independencia</h1>
 <p>Dos variables aleatorias X e Y son llamadas independientes si la
 distribución de probabilidad de una de las variables no es afectada por
 la presencia de la otra. Asuma que <span
@@ -533,8 +673,7 @@ Los\quad datos\quad no \quad son \quad independientes\]</span></p>
 <p><strong>Estadístico:</strong></p>
 <p><span class="math display">\[ \large \chi^2=\sum_{i,j}^n \frac
 {(o_{ij}-e_{ij})^2}{e_{ij}}\]</span></p>
-</div>
-<div id="ejemplo-en-r-2" class="section level2">
+<div id="ejemplo-en-r" class="section level2">
 <h2>Ejemplo en R:</h2>
 <p>Se usan los datos de la base survey de la librería MASS de R, que
 corresponden a 237 observaciones provenientes de una encuesta a
@@ -592,6 +731,8 @@ chisq.test(ctbl)</code></pre>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -624,6 +765,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

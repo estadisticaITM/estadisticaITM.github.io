@@ -1,5 +1,12 @@
 ---
 title: "Pruebas no paramétricas"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
 ---
 
 Gran parte de los procedimientos descritos anteriormente de pruebas de hipótesis, consideran que las observaciones provienen de poblaciones normales. En muchas situaciones este supuesto no se cumple. Una alternativa a la no normalidad de los datos, es proceder a implementar pruebas no paramétricas.
@@ -23,7 +30,7 @@ $$D=max|F_n-F_0(x)|$$
 
 Siendo $F_n (x)$ la función de distribución muestral y $F_0(x)$ es la función teórica (normal) especificada en la hipotesis nula $H_0$
 
-### Ejemplo en R
+**Ejemplo en R**
 
 Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.
 
@@ -47,16 +54,14 @@ $$W=\frac{D^2}{nS^2}$$
 
 donde D es la suma de las diferencias corregidas.
 
-### Ejemplo en R
+**Ejemplo en R**
 
 Se mide las concentraciones de cortisol en dos grupos de mujeres antes de dar a luz. Al grupo 1 se le practicó una cesárea de urgencias después de inducido el parto. Las del grupo 2, dieron a luz mediante operación cesárea o vía vaginal después de presentarse el trabajo de parto expontáneamente.
 
 1. Verifique normalidad en los conjuntos de datos usando α = 0.05.
 
-
-
-
 2. Verifique la igualdad de varianzas entre los grupos de datos
+
 3. Según la prueba de varianzas, que prueba recomienda para comparar las medias entre los grupos de madres
 
 
@@ -82,20 +87,33 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
 ```
 
 
+# Prueba no paramétrica para la diferencias entre dos poblaciones
 
-## Test de Mann-Whitney o prueba de wilcoxon
+## Prueba de Mann-Whitney
 
-Es una prueba no paramétrica con la cual se identifican **diferencias entre dos poblaciones** basadas en el análisis de dos muestras independientes. Es la versión no paramétrica del test t-Student de diferencias de medias.
+- Es una prueba no paramétrica para identificar **diferencias entre dos poblaciones** basadas en el análisis de dos muestras independientes. 
+ 
+- Se usa cuando los conjuntos de datos no cumplen los requisitos de la prueba de t-Student y la normal, (normalidad de los datos y tamaño de muestra mayor a 30)
 
-## Prueba de wilcoxon en R
+- Para realizar la prueba las observaciones de las dos muestras deben estar en orden ascendente.
+
+- También se conoce con otros nombres: Mann–Whitney–Wilcoxon, Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. Por ello está disponible en R por medio de la función wilcox.test.
+
+- La prueba se basa en una comparación de cada observación de una muestra  $x_i$ con cada observación en la segunda muestra $y_i$ Si las muestras tienen la misma mediana, entones cada observación tiene un 50% de probabilidad de ser mayor o menor que la observación correspondiente de la otra muestra. Por tanto plantea las hipotesis:
+
+$$H_o:P(x_i>y_i)=0.5$$
+$$H_1: P(x_i>y_i) \neq 0.5$$
+
+**Ejemplo Prueba de wilcoxon en R**
+
 Los datos siguientes datos corresponden a constantes de permeabilidad de la membrana chorioamnion en humanos (una membrana placentaria) medida a las 12 y 26 semanas de edad gestacional.
 
 
 1. realice una prueba de normalidad para verificar la normalidad en los conjuntos de datos
 
-2. Asumiendo que los datos no son normales, pruebe aun nivel de significancia de α = 0.05 para chequear la alternativa, mayor permeabilidad de la membrana chorioamnion para el inicio del embarazo.
+2. Asumiendo que los datos no son normales, pruebe a un nivel de significancia de α = 0.05 para chequear la alternativa, mayor permeabilidad de la membrana chorioamnion para el inicio del embarazo.
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE}
 
 x=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
 y=c(1.15, 0.88, 0.90, 0.74, 1.21)
@@ -127,7 +145,7 @@ Los siguientes datos corresponden al rendimiento por hectárea de cierta nueva v
 
 
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE}
 
 #vector de datos
 T<-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
@@ -153,7 +171,7 @@ t.test(T,conf.level=0.90,alternative="greater",mu=4)
 ```
 
 
-## Test de independencia
+# Test de independencia
 
 Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra.
 Asuma que $Oij$ es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que eij son las correspondientes frecuencias esperadas si X e Y son independientes.
