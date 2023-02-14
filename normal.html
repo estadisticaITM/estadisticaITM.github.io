@@ -472,11 +472,6 @@ aleatoria normal estándar y se denota como z.</p>
 Función de distribución de probabilidad acumulada</p>
 <p><span class="math display">\[\LARGE \Phi(x)=P(Z \leq
 x)=F(x)\]</span></p>
-<pre><code>## 
-## Attaching package: &#39;latex2exp&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:plotly&#39;:
-## 
-##     TeX</code></pre>
 <p><img src="normal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="cómo-estandarizar-una-variable-aleatoria"
@@ -584,65 +579,6 @@ distribución normal</strong></p>
 <li>La distribución poisson se asemeja a una distribución normal en la
 medida en que la tasa de ocurrencia aumenta.</li>
 </ul>
-<p><strong>Teorema del límite central:</strong></p>
-<p>Sean <span class="math inline">\(Y_1, Y_2, . . . , Y_n\)</span>
-variables aleatorias independientes y distribuidas idénticamente con
-<span class="math inline">\(E(Yi)=\mu\)</span> y <span
-class="math inline">\(V(Y_i)=\sigma^2 &lt;\infty\)</span>.
-Definamos:</p>
-<p><span class="math display">\[U_n=\frac{\sum_{i=1}^n Y_i-
-n\mu}{\sigma/\sqrt n}=\frac{\bar Y -\mu }{\sigma/\sqrt n}\]</span></p>
-<p>Donde <span class="math display">\[\bar
-Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
-<p>Entonces la función de distribución de <span
-class="math inline">\(U_n\)</span> converge hacia la función de
-distribución normal estándar cuando <span
-class="math inline">\(n\longrightarrow \infty\)</span>.</p>
-<p><strong>Ejemplo 1</strong></p>
-<p>Las calificaciones de exámenes para todos los estudiantes de último
-año de preparatoria en cierto estado tienen media de 60 y varianza de
-64. Una muestra aleatoria de n=100 estudiantes de una escuela
-preparatoria grande tuvo una calificación media de 58. ¿Hay evidencia
-para sugerir que el nivel de conocimientos de esta escuela sea
-inferior?</p>
-<p>(Calcule la probabilidad de que la media muestral sea a lo sumo 58
-cuando n = 100.)</p>
-<p><strong>Solución </strong></p>
-<p>Denote con Y la media de una muestra aleatoria de n = 100
-calificaciones de una población con <span class="math inline">\(\mu =
-60\)</span> y <span class="math inline">\(s^2 = 64\)</span>.</p>
-<p><span class="math display">\[\Large P(\bar Y≤58)\]</span>
-estandarizamos por medio del teorema de límite central</p>
-<p><span class="math display">\[P \left(Z ≤\frac {58-60}{8/\sqrt
-100}\right)\]</span> <span class="math display">\[\Large P \left (Z
-≤\frac {58-60}{0.8} \right)\]</span> <span class="math display">\[\Large
-P \left (z ≤-2.5 \right)=0.0062\]</span></p>
-<p><strong>Ejemplo 2</strong></p>
-<p>Los tiempos de servicio para los clientes que pasan por la caja en
-una tienda de venta al menudeo son variables aleatorias independientes
-con media de 1.5 minutos y varianza de 1.0.</p>
-<p>Calcule la probabilidad de que 100 clientes puedan ser atendidos en
-menos de 2 horas de tiempo total de servicio.</p>
-<p><strong>Solución</strong></p>
-<p>Sea <span class="math inline">\(Y_i\)</span> el tiempo de servicio
-para el i-ésimo cliente, entonces queremos calcular:</p>
-<p><span class="math display">\[\Large P \left( \sum_{i=1}^{100}  \leq
-120 \right)=P \left(\bar Y \leq \frac{120}{100}\right )=P \left(\bar Y
-\leq 1.2\right )\]</span></p>
-<p>Como el tamaño muestral es grande, el teorema del límite central nos
-dice que <span class="math inline">\(\bar Y\)</span> está distribuida
-normalmente en forma aproximada con media <span
-class="math inline">\(\mu_{\bar y }=\mu=1.5\)</span> y varianza
-$<sup>2_{y=}</sup>2/n=1/100 $</p>
-<p>Por tanto</p>
-<p><span class="math display">\[\Large P(\bar Y ≤1.20) = P\left(\frac
-{\bar Y-\mu}{\sigma/\sqrt n } \leq \frac{1.2-1.5}{1/\sqrt 100}\right
-)\]</span></p>
-<p><span class="math display">\[\Large P\left(Z \leq
-\frac{0.3}{0.1}\right )=P\left(Z \leq 3\right )=0.001\]</span> Entonces,
-la probabilidad de que 100 clientes puedan ser atendidos en menos de 2
-horas es aproximadamente 0.0013. Esta pequeña probabilidad indica que es
-prácticamente imposible atender a 100 clientes en menos de 2 horas.</p>
 </div>
 <div id="aproximaciones" class="section level1">
 <h1>Aproximaciones</h1>
