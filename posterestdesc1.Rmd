@@ -16,21 +16,23 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## **Objetivo general:** 
 
-Poner en práctica los conceptos aprendidos en el curso de estadística descriptiva través de la realización de un poster o cartelera del tema de preferencia.
+Poner en práctica los conceptos aprendidos en el curso de estadística descriptiva e inferencial,a través de la realización de un trabajo escrito del tema de preferencia.
 
 ## **Objetivos específicos:**
 
 -	Repasar conceptos de estadística descriptiva
 
--	Usar las diferentes funciones del software excel
+- Aplicar los conceptos de estadística inferencial
+
+-	Usar las diferentes funciones del software excel y de R
 
 - Número de integrantes: Máximo 2 personas
 
-- Fechas de exposición del poster: Según lo acordado en el compromiso académico
+- Fechas de entrega del trabajo escrito: Según lo acordado en el compromiso académico
 
 ## **Pasos a realizar:**
 
-1. Escoger una base de datos de su preferencia que contenga 2 variables cuantitativas y dos variables cualitativas, (por favor ponerse de acuerdo con el docente), mínimo 500 datos, algunos de las bases de datos de donde se pueden obtener datos son:
+1. Escoger una base de datos de su preferencia que contenga 3 variables cuantitativas y dos variables cualitativas, mínimo 100 datos, algunos de las bases de datos de donde se pueden obtener datos son:
 
 - [DANE](https://www.dane.gov.co/index.php/estadisticas-por-tema)
 
@@ -47,30 +49,49 @@ Poner en práctica los conceptos aprendidos en el curso de estadística descript
 
 La calificación de esta actividad se realizará con la siguiente rúbrica:
 
-|Ítem       	|Excelente (7-10)|Bueno(4-6)|Regular (0-3) |
-|-------------|----------------|----------|--------------|
-|Presentación |	Contiene título, nombres de los integrantes está bien organizado y ordenado, no hay sobrecarga de texto, ni espacios en blanco, buena ortografía, Bibliografía|Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, buena ortografía, Bibliografía.|Contiene título, nombres de los integrantes no está bien organizado y ordenado, hay sobrecarga de texto ó espacios en blanco, más de 3 errores de ortografía, sin Bibliografía|
-|Regresión lineal|Contiene el diagrama de dispersión discriminando con colores los niveles de una variable cualitativa, además tiene la línea recta superpuesta y la ecuación de la línea recta estimada con su respectivo análisis, para cada uno de los niveles del factor|Contiene el diagrama de dispersión sin discriminar los niveles de una variable cualitativa, además tiene la línea recta superpuesta, la ecuación de la línea recta estimada y el análisis del mismo.|Contiene el diagrama de dispersión con la línea recta superpuesta y la ecuación de la recta|
-|Medidas de tendencia central y de variabilidad|Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas según los niveles del factor|Tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables cuantitativas|Solo una de las medidas|
-|Vídeo con la exposición|El vídeo se escucha y se visualiza correctamente, dura los 5 minutos. Se enfoca tanto en la presentación como en el locutor|El vídeo se escucha y se visualiza correctamente, solo se enfoca en la presentación o en el locutor, dura más o menos de 5 minutos|El video no está bien elaborado, no entrega video|
-|Métodos gráficos|Utiliza gráficos para el análisis descriptivo de las variables. Boxplot comparativo de los niveles de factor de una variable cualitativa con una cuantitativa, Histograma, grafico de perfiles, de tortas, de barras, (5 tipos de gráfico) cada gráfico debe estar bien presentado con títulos de ejes y su análisis|Utiliza 4 tipos de gráficos para el análisis descriptivo de las variables, los gráficos no tiene los títulos de ejes, y el análisis.|Utiliza tres tipos de gráficos|
-|Estima tamaños de muestra|Plantear una estimación de tamaños de muestra| | |
+|subtema|Ítem      |puntos|Excelente|Bueno|Regular|
+|-------|----------|------|---------|-----|-------|
+|______________|_______________|_________|____________|___________|__________|
+|  |1. Boxplot|3|comparativo de los niveles de factor de una variable cualitativa con una cuantitativa (5 puntos) |de una sola variable cuantitativa sin comparar nada (1 punto)  |no lo hace|
+| |2. Torta |3| |  |no lo hace|
+|Descriptiva|3. Grafico de barras con top 5|3| |  |no lo hace|
+| |4. Histograma|3| |  |no lo hace|
+| |5. Gráfico de series de tiempo |3|cuando sea el caso, si tiene la variable tiempo (3 puntos) |  |no lo hace|
+|______________|_______________|_________|____________|___________|__________|
+| |6.Matriz de correlaciones (MC) entre variables cuantitativas (VC) |3|MC entre VC con su respectivo análisis| | |
+|Regresión lineal|7. Diagrama de dispersión (DD)|3|Contiene el DD discriminando con colores los niveles de una variable cualitativa, con la línea recta superpuesta, para cada uno de los niveles del factor (3 puntos)| Contiene el DD sin discriminar los niveles de una variable cualitativa, superpone una línea recta (2 puntos) |Contiene el DD sin línea recta superpuesta(0 punto)|
+|Regresión lineal|8. Ajuste de la recta de regresión lineal|4|Ajusta un modelo de regresión lineal multivariado y lo interpreta(4 pts)| Ajusta un modelo de regresión lineal simple(3 pts)|No ajusta ningún modelo|
+| |9. Validación con pruebas de hipótesis (PH) de los supuestos de normalidad sobre residuales|4| Escribe la PH de normalidad sobre los residuales y la verifica con la prueba de shapiro wilk en R  (4 pts)  | Escribe la PH de normalidad sobre los residuales ó la verifica con la prueba de shapiro wilk en R|No verifica normalidad|
+|______________|_______________|_________|____________|___________|__________|
+|Tamaño de muestra (TM)| 10|3| Estima un TM para los datos que está tratando  |     |        |
+|______________|_______________|_________|_________________|___________|__________|
+|Pruebas de hipótesis (PH)|11 |4| Para una muestra|  |    | 
+| |12 |4| Para dos muestras|  |    | 
+|______________|_______________|_________|_________________|___________|__________|
+|Intervalos de confianza (IC)|13 |3| Para una muestra|  |    | 
+||14 |3| Para dos muestras|  |    | 
+|______________|_______________|_________|_________________|___________|__________|
+|Presentación del trabajo escrito |15  | 4| 1. Portada 2. Cada gráfica tiene su respectivo análisis 3. Bibliografía según normas APA 4. Conclusiones  |   |
+|______________|_______________|_________|________________|___________|__________|
+
+
+
 
 ## **Entregables**
 
-- Video de 5 minutos con la exposición del poster
-
-- Pdf con el póster de solo 1 página
+- Trabajo escrito en word o pdf
 
 **Observaciones**
+
+- Para el punto de PH e IC recordar verificación de igualdad de varianzas, para elaborar este punto debe de realizar una tabla con el resumen de las medidas de tendencia central y de variabilidad de las variables que vaya a analizar.
 
 -	Los gráficos deben tener títulos de ejes 
 
 -	Cada gráfico debe tener su respectivo análisis.
 
--	Por cada tilde a corregir se baja la nota 0.1
+-	Por cada tílde a corregir se baja la nota 0.1
 
-- en los casos que aplique hacer un top 5
+- En los casos que aplique hacer un top 5
 
 
 **Ejemplo**
