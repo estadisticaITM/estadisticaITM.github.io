@@ -14,13 +14,13 @@ Un **estadístico** es una función de las variables aleatorias observables en u
 
 Se usan estadísticos para hacer inferencias o estimaciones, acerca de parámetros de población desconocidos. Todos los estadísticos son funciones de las variables aleatorias observadas en una muestra, por tanto también son variables aleatorias. En consecuencia, todos **los estadísticos tienen distribuciones de probabilidad, que llamaremos distribuciones muestrales**. 
 
+La distribución muestral de un estadístico proporciona un modelo teórico para el histograma de frecuencia relativa de los posibles valores del estadístico que observaríamos por medio de muestreo repetido.
 
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}
-knitr::include_graphics("tabla/dmm.png")
+knitr::include_graphics("imagen/tabla.png")
 ```
 
 
-La distribución muestral de un estadístico proporciona un modelo teórico para el histograma de frecuencia relativa de los posibles valores del estadístico que observaríamos por medio de muestreo repetido.
 
 ## Distribución  muestral de medias
 
@@ -56,14 +56,34 @@ $$Z=\frac{\bar y-\mu}{\sigma/\sqrt n}$$
 
 ____________________________________________________________________________
 
-|ítem            |varianza|Desviación estándar|Estandarización|
-|----------------|----------|---------------|-------------------|
-|Variables aleatorias $Y_1, Y_2, . . . , Y_n$|$\sigma^2$|$\sigma$|$Z=\frac{y-\mu}{\sigma}$|
-|Distribución muestral $\bar Y_i$|$\sigma^2_{\bar y }=\sigma^2/n$|$\sigma_{\bar y }=\sigma/\sqrt n$|$Z=\frac{y-\mu}{\sigma/\sqrt n}$|
+
+**Casos de la distribución muestral de medias según la varianza poblacional**
+
+1.$\sigma ^2$ conocida
+
+2.$\sigma ^2$ desconocida
+
+3.$\sigma ^2$ desconocida con n>30
+
+
+
 
 ____________________________________________________________________________
 
-**Ejemplo 1**
+|ítem            |varianza|Desviación estándar|Estadístico|Distribución|
+|----------------|----------|---------------|-------------------|----------|
+|Variables aleatorias $Y_1, Y_2, . . . , Y_n$|$\sigma^2$|$\sigma$|$Z=\frac{y-\mu}{\sigma}$|$N(\mu,\sigma^2)$ |$N(\mu,\sigma^2)$|
+|Distribución muestral $\bar Y_i$, $\sigma^2$ conocida|$\sigma^2_{\bar y }=\sigma^2/n$|$\sigma_{\bar y }=\sigma/\sqrt n$|$Z=\frac{\bar y-\mu}{S/\sqrt n}$|$N(\mu,\sigma^2)$ |$N(\mu,\sigma^2)$|
+|Distribución muestral $\bar Y_i$, $\sigma^2$ desconocida|$S^2_{\bar y }=S^2/n$|$S_{\bar y }=S/\sqrt n$|$T=\frac{\bar y-\mu}{S/\sqrt n}$|$t_{n-1}$|
+|Distribución muestral $\bar Y_i$, $\sigma^2$ desconocida con n>30|$S^2_{\bar y }=S^2/n$|$S_{\bar y }=S/\sqrt n$|$Z=\frac{\bar y-\mu}{S/\sqrt n}$|$T \rightarrow N(0,1)$|
+
+
+
+____________________________________________________________________________
+
+**Ejemplo 1** 
+
+**$\sigma ^2$ desconocida, con n>30**
 
 Las calificaciones de exámenes para todos los estudiantes tienen media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el nivel de conocimientos de esta escuela sea inferior? 
 
@@ -80,6 +100,7 @@ $$\Large P \left (Z ≤\frac {58-60}{0.8} \right)$$
 $$\Large P \left (z ≤-2.5 \right)=0.0062$$
 
 **Ejemplo 2**
+**$\sigma ^2$ desconocida, con n>30**
 
 Los tiempos de servicio para los clientes que pasan por la caja en una tienda de venta al menudeo son variables aleatorias independientes con media de 1.5 minutos y varianza de 1.0.
 
@@ -133,7 +154,11 @@ Se desea hacer una inferencia acerca de la varianza poblacional basada en una mu
 
 $$\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar Y)^2$$
 tiene una distribución $\chi^2$ con n-1 grados de libertad. También $\bar Y$ y $S^2$ son variables aleatorias independientes.
+
+
 ____________________________________________________________________________
+
+
 
 **Ejemplo**
 

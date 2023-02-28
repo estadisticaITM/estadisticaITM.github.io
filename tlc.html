@@ -410,30 +410,7 @@ límite central</h1>
 </div>
 
 
-<div id="teorema-del-límite-central" class="section level1">
-<h1>Teorema del límite central</h1>
-<p>Si se toman muestras cada vez más grandes de cualquier población,
-entonces la media de la distribución muestral <span
-class="math inline">\(\bar X\)</span>, tiende a acercarse cada vez más a
-la verdadera media de la población <span
-class="math inline">\(\mu\)</span>. En la practica cuando n&gt;30 se
-consideran medidas poblacionales.</p>
-<p>Sean <span class="math inline">\(Y_1, Y_2, . . . , Y_n\)</span>
-variables aleatorias independientes y distribuidas idénticamente con
-<span class="math inline">\(E(Yi)=\mu\)</span> y <span
-class="math inline">\(V(Y_i)=\sigma^2 &lt;\infty\)</span>.
-Definamos:</p>
-<p><span class="math display">\[U_n=\frac{\sum_{i=1}^n Y_i-
-n\mu}{\sigma/\sqrt n}=\frac{\bar Y -\mu }{\sigma/\sqrt n}\]</span></p>
-<p>Donde:</p>
-<p><span class="math display">\[\bar
-Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
-<p>Entonces la función de distribución de <span
-class="math inline">\(U_n\)</span> converge hacia la función de
-distribución normal estándar cuando <span
-class="math inline">\(n\longrightarrow \infty\)</span>.</p>
 <hr />
-</div>
 <div id="distribuciones-muestrales" class="section level1">
 <h1>Distribuciones muestrales</h1>
 <p>Un <strong>estadístico</strong> es una función de las variables
@@ -451,6 +428,7 @@ llamaremos distribuciones muestrales</strong>.</p>
 teórico para el histograma de frecuencia relativa de los posibles
 valores del estadístico que observaríamos por medio de muestreo
 repetido.</p>
+<p><img src="imagen/tabla.png" width="688" style="display: block; margin: auto;" /></p>
 <div id="distribución-muestral-de-medias" class="section level2">
 <h2>Distribución muestral de medias</h2>
 <p>Si se seleccionan muestras aleatorias de tamaño 20 en una población
@@ -476,20 +454,33 @@ Y=\frac{1}{n}\sum_{i=1}^nY_i\]</span></p>
 <p>está distribuida normalmente con media <span
 class="math inline">\(\mu_{\bar y }=\mu\)</span> y varianza <span
 class="math inline">\(\sigma^2_{\bar y }=\sigma^2/n\)</span></p>
+<p><span class="math display">\[\bar Y \sim N( \mu,\sigma^2/n) \]</span>
+y la estandarización es:</p>
+<p><span class="math display">\[Z=\frac{\bar y-\mu}{\sigma/\sqrt
+n}\]</span></p>
+<hr />
+<p><strong>Casos de la distribución muestral de medias según la varianza
+poblacional</strong></p>
+<p>1.<span class="math inline">\(\sigma ^2\)</span> conocida</p>
+<p>2.<span class="math inline">\(\sigma ^2\)</span> desconocida</p>
+<p>3.<span class="math inline">\(\sigma ^2\)</span> desconocida con
+n&gt;30</p>
 <hr />
 <table>
 <colgroup>
-<col width="26%" />
-<col width="16%" />
-<col width="25%" />
-<col width="31%" />
+<col width="22%" />
+<col width="14%" />
+<col width="21%" />
+<col width="27%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>ítem</th>
 <th>varianza</th>
 <th>Desviación estándar</th>
-<th>Estandarización</th>
+<th>Estadístico</th>
+<th>Distribución</th>
 </tr>
 </thead>
 <tbody>
@@ -499,21 +490,44 @@ Y_n\)</span></td>
 <td><span class="math inline">\(\sigma^2\)</span></td>
 <td><span class="math inline">\(\sigma\)</span></td>
 <td><span class="math inline">\(Z=\frac{y-\mu}{\sigma}\)</span></td>
+<td><span class="math inline">\(N(\mu,\sigma^2)\)</span></td>
 </tr>
 <tr class="even">
-<td>Distribución muestral <span class="math inline">\(\bar
-Y_i\)</span></td>
+<td>Distribución muestral <span class="math inline">\(\bar Y_i\)</span>,
+<span class="math inline">\(\sigma^2\)</span> conocida</td>
 <td><span class="math inline">\(\sigma^2_{\bar y
 }=\sigma^2/n\)</span></td>
 <td><span class="math inline">\(\sigma_{\bar y }=\sigma/\sqrt
 n\)</span></td>
-<td><span class="math inline">\(Z=\frac{y-\mu}{\sigma/\sqrt
+<td><span class="math inline">\(Z=\frac{\bar y-\mu}{S/\sqrt
 n}\)</span></td>
+<td><span class="math inline">\(N(\mu,\sigma^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Distribución muestral <span class="math inline">\(\bar Y_i\)</span>,
+<span class="math inline">\(\sigma^2\)</span> desconocida</td>
+<td><span class="math inline">\(S^2_{\bar y }=S^2/n\)</span></td>
+<td><span class="math inline">\(S_{\bar y }=S/\sqrt n\)</span></td>
+<td><span class="math inline">\(T=\frac{\bar y-\mu}{S/\sqrt
+n}\)</span></td>
+<td><span class="math inline">\(t_{n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Distribución muestral <span class="math inline">\(\bar Y_i\)</span>,
+<span class="math inline">\(\sigma^2\)</span> desconocida con
+n&gt;30</td>
+<td><span class="math inline">\(S^2_{\bar y }=S^2/n\)</span></td>
+<td><span class="math inline">\(S_{\bar y }=S/\sqrt n\)</span></td>
+<td><span class="math inline">\(Z=\frac{\bar y-\mu}{S/\sqrt
+n}\)</span></td>
+<td><span class="math inline">\(T \rightarrow N(0,1)\)</span></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <p><strong>Ejemplo 1</strong></p>
+<p><strong><span class="math inline">\(\sigma ^2\)</span> desconocida,
+con n&gt;30</strong></p>
 <p>Las calificaciones de exámenes para todos los estudiantes tienen
 media de 60 y varianza de 64. Una muestra aleatoria de n=100 estudiantes
 tuvo una calificación media de 58. ¿Hay evidencia para sugerir que el
@@ -528,7 +542,8 @@ estandarizamos por medio del teorema de límite central</p>
 100}\right)\]</span> <span class="math display">\[\Large P \left (Z
 ≤\frac {58-60}{0.8} \right)\]</span> <span class="math display">\[\Large
 P \left (z ≤-2.5 \right)=0.0062\]</span></p>
-<p><strong>Ejemplo 2</strong></p>
+<p><strong>Ejemplo 2</strong> <strong><span class="math inline">\(\sigma
+^2\)</span> desconocida, con n&gt;30</strong></p>
 <p>Los tiempos de servicio para los clientes que pasan por la caja en
 una tienda de venta al menudeo son variables aleatorias independientes
 con media de 1.5 minutos y varianza de 1.0.</p>
@@ -593,8 +608,8 @@ Y)^2\]</span> tiene una distribución <span
 class="math inline">\(\chi^2\)</span> con n-1 grados de libertad.
 También <span class="math inline">\(\bar Y\)</span> y <span
 class="math inline">\(S^2\)</span> son variables aleatorias
-independientes.
-____________________________________________________________________________</p>
+independientes.</p>
+<hr />
 <p><strong>Ejemplo</strong></p>
 <p>Las onzas de líquido que vierte una máquina embotelladora tienen una
 distribución normal con <span class="math inline">\(\sigma^2=1\)</span>.
