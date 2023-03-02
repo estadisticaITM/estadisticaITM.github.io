@@ -411,6 +411,24 @@ límite central</h1>
 
 
 <hr />
+<div id="distribuciones-asociadas-al-muestreo" class="section level1">
+<h1>Distribuciones asociadas al muestreo</h1>
+<div id="distribución-t" class="section level2">
+<h2>Distribución t</h2>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/wGSutshZDiA?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla t-student" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="distribución-chi-cuadrado" class="section level2">
+<h2>Distribución Chi cuadrado</h2>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="distribución-f" class="section level2">
+<h2>Distribución F</h2>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/wFwKZyvyGOg?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla F" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+</div>
 <div id="distribuciones-muestrales" class="section level1">
 <h1>Distribuciones muestrales</h1>
 <p>Un <strong>estadístico</strong> es una función de las variables
@@ -518,7 +536,7 @@ n}\)</span></td>
 n&gt;30</td>
 <td><span class="math inline">\(S^2_{\bar y }=S^2/n\)</span></td>
 <td><span class="math inline">\(S_{\bar y }=S/\sqrt n\)</span></td>
-<td><span class="math inline">\(Z=\frac{\bar y-\mu}{S/\sqrt
+<td><span class="math inline">\(T=\frac{\bar y-\mu}{S/\sqrt
 n}\)</span></td>
 <td><span class="math inline">\(T \rightarrow N(0,1)\)</span></td>
 </tr>
@@ -567,10 +585,29 @@ class="math inline">\(\sigma^2_{\bar y=}\sigma^2/n=1/100\)</span></p>
 {\bar Y-\mu}{\sigma/\sqrt n } \leq \frac{1.2-1.5}{1/\sqrt 100}\right
 )\]</span></p>
 <p><span class="math display">\[\Large P\left(Z \leq
-\frac{0.3}{0.1}\right )=P\left(Z \leq 3\right )=0.001\]</span> Entonces,
-la probabilidad de que 100 clientes puedan ser atendidos en menos de 2
-horas es aproximadamente 0.0013. Esta pequeña probabilidad indica que es
-prácticamente imposible atender a 100 clientes en menos de 2 horas.</p>
+\frac{-0.3}{0.1}\right )=P\left(Z \leq -3\right )=0.001\]</span>
+Entonces, la probabilidad de que 100 clientes puedan ser atendidos en
+menos de 2 horas es aproximadamente 0.0013. Esta pequeña probabilidad
+indica que es prácticamente imposible atender a 100 clientes en menos de
+2 horas.</p>
+<p><strong>Ejemplo 3</strong> <strong><span class="math inline">\(\sigma
+^2\)</span> desconocida</strong> Se está realizando un estudio sobre la
+calidad del aire en una zona. Supongamos que la variable Y: ”Número de
+medio de microgramos de partículas en suspensión por metro cúbico”, está
+normalmente distribuida. Se hacen 16 mediciones, en las que se obtiene
+una cuasidesviación típica de 10.8585 unidades. Obtener la probabilidad
+de que la media muestral no difiera de la media poblacional en más de 8
+unidades.</p>
+<p><strong>Solución</strong></p>
+<p>El estadístico es una distribución t</p>
+<p><span class="math display">\[T=\frac{\bar Y-\mu}{S/\sqrt
+n}=\frac{\bar Y-\mu}{10.8585/\sqrt 16}=\frac{\bar Y-\mu}{2.7146} \sim
+t_{n-1}\]</span> <span class="math display">\[P(|\bar Y-\mu | \leq
+8)=P(8-\mu&lt;\bar Y&lt;8-\mu)\]</span></p>
+<p><span class="math display">\[P(\frac{\mu-8-\mu}{2.7146}&lt;\frac{\bar
+Y - \mu}{2.7146} &lt;\frac{+\mu + 8 - \mu}{2.7146})\]</span> <span
+class="math display">\[P(\frac{8}{2.7146}&lt;\frac{\bar Y - \mu}{2.7146}
+&lt;\frac{8}{2.7146})\]</span></p>
 <p><strong>Ejercicio propuesto</strong></p>
 <p>Una máquina embotelladora puede ser regulada para que descargue un
 promedio de <span class="math inline">\(\mu\)</span> onzas por botella.
