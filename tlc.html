@@ -429,8 +429,9 @@ límite central</h1>
 </iframe>
 </div>
 </div>
-<div id="distribuciones-muestrales" class="section level1">
-<h1>Distribuciones muestrales</h1>
+<div id="distribuciones-muestrales-para-una-sola-muestra"
+class="section level1">
+<h1>Distribuciones muestrales para una sola muestra</h1>
 <p>Un <strong>estadístico</strong> es una función de las variables
 aleatorias observables en una muestra, como la media muestral <span
 class="math inline">\(\bar Y\)</span>, la varianza muestral <span
@@ -607,7 +608,11 @@ t_{n-1}\]</span> <span class="math display">\[P(|\bar Y-\mu | \leq
 <p><span class="math display">\[P(\frac{\mu-8-\mu}{2.7146}&lt;\frac{\bar
 Y - \mu}{2.7146} &lt;\frac{+\mu + 8 - \mu}{2.7146})\]</span> <span
 class="math display">\[P(\frac{8}{2.7146}&lt;\frac{\bar Y - \mu}{2.7146}
-&lt;\frac{8}{2.7146})\]</span></p>
+&lt;\frac{8}{2.7146})\]</span> <span
+class="math display">\[P(\frac{8}{2.7146}&lt;t_{15}
+&lt;\frac{8}{2.7146})\]</span> Recordemos que en la distribución t <span
+class="math display">\[P(t&gt;b)=\alpha \qquad
+P(t&lt;b)=\rho\]</span></p>
 <p><strong>Ejercicio propuesto</strong></p>
 <p>Una máquina embotelladora puede ser regulada para que descargue un
 promedio de <span class="math inline">\(\mu\)</span> onzas por botella.
@@ -631,7 +636,11 @@ class="math inline">\(\mu\)</span> con probabilidad de 0.95?</p></li>
 <div id="distribución-muestral-de-la-varianza" class="section level2">
 <h2>Distribución muestral de la varianza</h2>
 <p>Un buen estimador de <span class="math inline">\(\sigma^2\)</span> es
-la varianza muestral <span class="math inline">\(S^2\)</span></p>
+la varianza muestral <span class="math inline">\(S^2\)</span>, la
+distribución asociada a esta distribución es la chi cuadrado.</p>
+<p><span
+class="math display">\[P(\chi^2&gt;\chi^2_\alpha)=\alpha\]</span> <span
+class="math display">\[P(\chi^2 \leq \chi^2_\alpha)=\rho \]</span></p>
 <hr />
 <p><strong>Teorema</strong></p>
 <p>Se desea hacer una inferencia acerca de la varianza poblacional
@@ -640,14 +649,17 @@ basada en una muestra aleatoria <span class="math inline">\(Y_1, Y_2, .
 class="math inline">\(\mu\)</span> y varianza <span
 class="math inline">\(\sigma^2\)</span>. Entonces</p>
 <p><span
-class="math display">\[\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar
+class="math display">\[\chi^2=\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar
 Y)^2\]</span> tiene una distribución <span
 class="math inline">\(\chi^2\)</span> con n-1 grados de libertad.
 También <span class="math inline">\(\bar Y\)</span> y <span
 class="math inline">\(S^2\)</span> son variables aleatorias
 independientes.</p>
 <hr />
-<p><strong>Ejemplo</strong></p>
+<p>Para valores grandes de n, la distribución Chi- Cuadrado se aproxima
+a la distribución Normal. La aproximación se considera aceptable para n
+&gt; 30</p>
+<p><strong>Ejemplo 1</strong></p>
 <p>Las onzas de líquido que vierte una máquina embotelladora tienen una
 distribución normal con <span class="math inline">\(\sigma^2=1\)</span>.
 Suponga que planeamos seleccionar una muestra aleatoria de diez botellas
@@ -657,7 +669,53 @@ Especifique un intervalo de valores que incluyan <span
 class="math inline">\(S^2\)</span> con una probabilidad 0.9. Encuentre
 números b1 y b2 tales que.</p>
 <p><span class="math display">\[P(b_1 \leq S^2 \leq b_2)=0.9\]</span>
-<strong>Solución</strong></p>
+<strong>Solución</strong> Estandarizar</p>
+<p><span class="math display">\[P  \left ( \frac{(n-1) S^2}{\sigma^2}
+\leq \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) b_2
+}{\sigma^2}\right)=0.9\]</span> como <span
+class="math inline">\(\sigma^2=1\)</span> entonces</p>
+<p><span class="math display">\[P\left((n-1) b_1 \leq \chi^2 \leq (n-1)
+b_2\right)=0.9\]</span></p>
+<p>Podemos usar la Tabla 6 para hallar dos números <span
+class="math inline">\(a_1\)</span> y <span
+class="math inline">\(a_2\)</span> tales que <span
+class="math display">\[P(a_1 \leq  \chi^2\leq a_2)=0.9\]</span></p>
+<p>Se debe encontrar un valor <span class="math inline">\(a_2\)</span>
+que delimite un área de 0.05 en la cola superior y el valor de <span
+class="math inline">\(a_1\)</span> que delimite 0.05 en la cola inferior
+(0.95 en la cola superior). Como hay n − 1 = 9 grados de libertad, la
+Tabla indica que <span class="math inline">\(a_2=16.919\)</span> y <span
+class="math inline">\(a_1 = 3.325\)</span></p>
+<p><span class="math display">\[16.919=\frac{(n-1)
+b_2}{\sigma^2}\]</span> <span class="math display">\[16.919=\frac{(9)
+b_2}{\sigma^2}\]</span> como <span
+class="math inline">\(\sigma^2=1\)</span> entonces</p>
+<p><span class="math display">\[ 16.919 = 9*b_2\]</span> <span
+class="math display">\[b_2=\frac{16.919}{9}\]</span></p>
+<p>encuentre el otro valor b1.</p>
+<p>Por tanto, si deseamos tener un intervalo que incluya <span
+class="math inline">\(S^2\)</span> con probabilidad 0.90, uno de estos
+intervalos es (0.369, 1.880).</p>
+<p><strong>Ejemplo 2</strong></p>
+<p>Se considera una medición física realizada con un instrumento de
+precisión, donde el interés se centra en la variabilidad de la lectura.
+Se sabe que la medición es una v.a. con distribución Normal y desviación
+típica 4 unidades. Se toma una m.a.s. de tamaño 25.Obtener la
+probabilidad de que el valor de la varianza muestral sea mayor de 12.16
+unidades cuadradas</p>
+<p><span class="math inline">\(X_i\)</span> corresponde las mediciones $
+N(;4^2)$ con n=25.</p>
+<p><span
+class="math display">\[\chi^2=\frac{(n-1)S^2}{\sigma^2}\]</span> <span
+class="math display">\[P(S^2\geq 12.16)\]</span> Estandarizamos. <span
+class="math display">\[P \left (\frac{(n-1)S^2}{\sigma^2}\geq
+\frac{(24)*12.16}{16} \right )\]</span></p>
+<p><span class="math display">\[P \left (\chi^2\geq 18.24 \right )=79.12
+\%\]</span></p>
+<pre class="r"><code>#lower.tail=FALSE
+#cola derecha P(x&gt;alfa)
+pchisq(18.24, df=24, lower.tail=FALSE)</code></pre>
+<pre><code>## [1] 0.7912132</code></pre>
 </div>
 <div id="distribución-muestral-de-proporciones" class="section level2">
 <h2>Distribución muestral de Proporciones</h2>
@@ -685,10 +743,115 @@ proporción de la muestra de la gente que fuma cigarrillos sea menor que
 <p><img src="imagen/ejemplo.png" width="433" style="display: block; margin: auto;" /></p>
 <p><span class="math display">\[P(\hat p\leq 0.5493)=P\left(\frac{\hat
 p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92\]</span>
-<span class="math display">\[P\left(z\leq -2.92 \right)=0.0018\]</span>
-## Taller</p>
-<div id="ejercicios-teorema-central-del-límite" class="section level3">
-<h3>Ejercicios teorema central del límite</h3>
+<span class="math display">\[P\left(z\leq -2.92
+\right)=0.0018\]</span></p>
+</div>
+</div>
+<div id="distribuciones-muestrales-para-dos-muestras"
+class="section level1">
+<h1>Distribuciones muestrales para dos muestras</h1>
+<p><img src="imagen/difmed.png" width="408" style="display: block; margin: auto;" /></p>
+<div id="distribución-de-la-diferencia-de-medias-muestrales"
+class="section level2">
+<h2>Distribución de la diferencia de medias muestrales</h2>
+</div>
+<div id="varianzas-poblacionales-conocidas" class="section level2">
+<h2>1. Varianzas poblacionales conocidas</h2>
+<p><span class="math display">\[(\bar X - \bar Y) \sim N \left (
+(\mu_x-\mu_y), \frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}\right)
+\]</span></p>
+<p>El estadístico es:</p>
+<p><span class="math display">\[Z=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}}
+\longrightarrow N(0,1)\]</span></p>
+</div>
+<div id="varianzas-poblacionales-desconocidas-pero-iguales"
+class="section level2">
+<h2>2. Varianzas poblacionales desconocidas pero iguales</h2>
+<p>La condición de igualdad de varianzas debe comprobarse o
+afirmarse.</p>
+<p><span class="math display">\[\sigma^2_x=\sigma^2_y\]</span></p>
+<p>El estadístico es:</p>
+<p><span class="math display">\[T=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{S_p\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}}
+\]</span> Donde: <span
+class="math display">\[S^2_p=\frac{(n_x-1)S^2_x+(n_y-1)S^2_y}{n_x+n_y-2}\]</span></p>
+<p>Tiene una distribución t de student con <span
+class="math inline">\(n_x+n_y-2\)</span></p>
+</div>
+<div
+id="varianzas-poblacionales-desconocidas-con-tamaños-de-muestra-n_130-y-n_230"
+class="section level2">
+<h2>3. Varianzas poblacionales desconocidas con tamaños de muestra <span
+class="math inline">\(n_1&gt;30\)</span> y <span
+class="math inline">\(n_2&gt;30\)</span></h2>
+<p>El estadístico es:</p>
+<p><span class="math display">\[Z=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S_y}{n_y}}}
+\longrightarrow N(0,1)\]</span></p>
+<p><strong>Ejercicio diferencia de medias con Varianzas poblacionales
+conocidas</strong></p>
+<p>Los niveles de radiación latente en dos regiones A y B siguen
+distribuciones Normales independientes de medias 0.48 y 0.4663 y
+varianzas 0.2 y 0.01 rem por año, respectivamente. Se realizan 25
+mediciones en la región A y 100 en la B.</p>
+<p>X: “Nivel radiación latente en A” Y: “Nivel radiación latente en
+B”</p>
+<p>Obtener la probabilidad de que la media de la muestra A sea como
+máximo 0.2 rem superior a la media de la muestra B.</p>
+<p><span class="math display">\[P(\bar X \leq \bar Y+0.2) \]</span>
+<strong>Ejercicio diferencia de medias con Varianzas poblacionales
+desconocidas pero iguales</strong></p>
+<p>Se está realizando un estudio sobre la calidad del aire en dos zonas
+A y B. Un indicador de la calidad es el número de microgr. de partículas
+en suspensión por m3 de aire, que suponemos siguen distribuciones
+Normales independientes de media 62.237 en A, 61.022 en B y varianzas
+iguales. En la zona A se realizan 12 mediciones, obteniéndose una
+varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de
+9.44 microgr2.</p>
+<p>Obtener la probabilidad de que la media muestral de A sea como mínimo
+tres unidades superior a la media muestral de B.</p>
+<p><span class="math display">\[P(\bar X \geq \bar Y+3)\]</span></p>
+<p><strong>Ejercicio propuesto</strong> Se estudia el efecto de un
+vertido tóxico en un río, comparando el índice de biodiversidad I.B-D.
+antes y después del vertido. Supongamos que los I.B-D. siguen
+distribuciones Normales. Antes del vertido se habían realizado 35
+pruebas y se obtuvo una media de 1.9 y una desviación típica de 0.4.
+Después del vertido se realizan 40 pruebas y se obtiene una media de 1.7
+y una desviación típica de 0.7.</p>
+<p>x: “I.B-D después del vertido” Y: “I.B-D antes del vertido”</p>
+<p>Obtener la probabilidad de que la media poblacional antes del vertido
+sea como máximo 0.5 unidades inferior a la media poblacional después del
+vertido.</p>
+<p><span class="math display">\[P(\bar X \leq \bar Y+0.5) \]</span></p>
+</div>
+<div
+id="distribución-del-cociente-de-varianzas-muestrales-de-dos-poblaciones-normales-independientes"
+class="section level2">
+<h2>Distribución del cociente de varianzas muestrales de dos poblaciones
+Normales independientes</h2>
+<p>El estadístico F, definido como:</p>
+<p><span
+class="math display">\[F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2}
+\longrightarrow F_{n_x-1,n_y-1}\]</span> <strong>Ejemplo</strong> Se
+está comparando la variabilidad de los I.B-D de dos ríos A y B, que
+suponemos siguen distribuciones Normales. Se realizan 16 mediciones en
+el río A y se obtiene una varianza de 9.52, y 18 mediciones en el río B
+y se obtiene una varianza de 7.</p>
+<p>X: “I.B-D en el río A Y:”I.B-D en el río B</p>
+<p>Obtener la probabilidad de que la varianza en el río B sea como
+mínimo el doble de la varianza en el río A.</p>
+<p><span class="math display">\[P(\sigma^2_Y\geq
+2\sigma^2_Y)\]</span></p>
+<p><span class="math display">\[P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq
+2)\]</span> <span class="math display">\[P(
+\frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)\]</span></p>
+</div>
+</div>
+<div id="taller" class="section level1">
+<h1>Taller</h1>
+<div id="ejercicios-teorema-central-del-límite" class="section level2">
+<h2>Ejercicios teorema central del límite</h2>
 <ol style="list-style-type: decimal">
 <li>La resistencia a la ruptura del vidrio templado promedia 14 (medida
 en miles de libras por pulgada cuadrada) y tiene una desviación estándar
@@ -798,8 +961,8 @@ muestras seleccionadas aleatoriamente exceda de 14 partes por
 millón.</p>
 </div>
 <div id="ejercicios-distribución-muestral-de-proporciones"
-class="section level3">
-<h3>Ejercicios distribución muestral de proporciones</h3>
+class="section level2">
+<h2>Ejercicios distribución muestral de proporciones</h2>
 <ol style="list-style-type: decimal">
 <li>Un medicamento para malestar estomacal tiene la advertencia de que
 algunos usuarios pueden presentar una reacción adversa a él, más aún, se
@@ -818,7 +981,6 @@ una muestra aleatoria de tamaño 60 tenga:</li>
 </ol>
 <p>Menos del 3% de los componentes defectuosos. 0.2327 Más del 1% pero
 menos del 5% de partes defectuosas 0.3290</p>
-</div>
 </div>
 </div>
 

@@ -22,7 +22,7 @@ ____________________________________________________________________________
 <iframe width="280" height="160" src="https://www.youtube.com/embed/wFwKZyvyGOg?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla F" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
-# Distribuciones muestrales 
+# Distribuciones muestrales para una sola muestra
 
 
 Un **estadístico** es una función de las variables aleatorias observables en una muestra, como la media muestral $\bar Y$, la varianza muestral $S^2$, Max, Min, la amplitud (Rango = max – min), la mediana muestral, etc. 
@@ -156,6 +156,10 @@ $$P(|\bar Y-\mu | \leq 8)=P(8-\mu<\bar Y<8-\mu)$$
 
 $$P(\frac{\mu-8-\mu}{2.7146}<\frac{\bar Y - \mu}{2.7146} <\frac{+\mu + 8 - \mu}{2.7146})$$
 $$P(\frac{8}{2.7146}<\frac{\bar Y - \mu}{2.7146} <\frac{8}{2.7146})$$
+$$P(\frac{8}{2.7146}<t_{15} <\frac{8}{2.7146})$$
+Recordemos que en la distribución t 
+$$P(t>b)=\alpha \qquad P(t<b)=\rho$$
+
 
 **Ejercicio propuesto**
 
@@ -170,8 +174,10 @@ ____________________________________________________________________________
 
 ## Distribución muestral de la varianza
 
-Un buen estimador de $\sigma^2$ es la varianza muestral $S^2$
+Un buen estimador de $\sigma^2$ es la varianza muestral $S^2$, la distribución asociada a esta distribución es la chi cuadrado.
 
+$$P(\chi^2>\chi^2_\alpha)=\alpha$$
+$$P(\chi^2 \leq \chi^2_\alpha)=\rho $$
 
 ____________________________________________________________________________
 
@@ -183,23 +189,64 @@ ____________________________________________________________________________
 Se desea hacer una inferencia acerca de la varianza poblacional basada en una muestra aleatoria $Y_1, Y_2, . . . , Y_n$ de una población normal, con media $\mu$ y varianza $\sigma^2$. Entonces
 
 
-$$\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar Y)^2$$
+$$\chi^2=\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar Y)^2$$
 tiene una distribución $\chi^2$ con n-1 grados de libertad. También $\bar Y$ y $S^2$ son variables aleatorias independientes.
 
 
 ____________________________________________________________________________
 
+Para valores grandes de n, la distribución Chi-
+Cuadrado se aproxima a la distribución Normal. La
+aproximación se considera aceptable para n > 30
 
-
-**Ejemplo**
+**Ejemplo 1**
 
 Las onzas de líquido que vierte una máquina embotelladora tienen una distribución normal con $\sigma^2=1$. Suponga que planeamos seleccionar una muestra aleatoria de diez botellas y medir la cantidad de líquido en cada una. Si estas diez observaciones se usan para calcular $S^2$. Especifique un intervalo de valores que incluyan $S^2$ con una probabilidad 0.9. Encuentre números b1 y b2 tales que.
 
 $$P(b_1 \leq S^2 \leq b_2)=0.9$$
 **Solución**
+Estandarizar
+
+$$P  \left ( \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) b_2 }{\sigma^2}\right)=0.9$$
+como $\sigma^2=1$ entonces 
+
+$$P\left((n-1) b_1 \leq \chi^2 \leq (n-1) b_2\right)=0.9$$
+
+Podemos usar la Tabla 6 para hallar dos números $a_1$ y $a_2$ tales que
+$$P(a_1 \leq  \chi^2\leq a_2)=0.9$$
+
+Se debe encontrar un valor $a_2$ que delimite un área de 0.05 en la cola superior y el valor de $a_1$ que delimite 0.05 en la cola inferior (0.95 en la cola superior). Como hay n − 1 = 9 grados de libertad, la Tabla indica que $a_2=16.919$ y $a_1 = 3.325$
+
+$$16.919=\frac{(n-1) b_2}{\sigma^2}$$
+$$16.919=\frac{(9) b_2}{\sigma^2}$$
+como $\sigma^2=1$ entonces
 
 
+$$ 16.919 = 9*b_2$$
+$$b_2=\frac{16.919}{9}$$
 
+encuentre el otro valor b1.
+
+Por tanto, si deseamos tener un intervalo que incluya $S^2$ con probabilidad 0.90, uno de estos intervalos es (0.369, 1.880).
+
+**Ejemplo 2**
+
+Se considera una medición física realizada con un instrumento de precisión, donde el interés se centra en la variabilidad de la lectura. Se sabe que la medición es una v.a. con distribución Normal y desviación típica 4 unidades. Se toma una m.a.s. de tamaño 25.Obtener la probabilidad de que el valor de la varianza muestral sea mayor de 12.16 unidades cuadradas
+
+$X_i$ corresponde las mediciones $ \sim N(\mu;4^2)$ con n=25.
+
+$$\chi^2=\frac{(n-1)S^2}{\sigma^2}$$
+$$P(S^2\geq 12.16)$$
+Estandarizamos.
+$$P \left (\frac{(n-1)S^2}{\sigma^2}\geq \frac{(24)*12.16}{16} \right )$$
+
+$$P \left (\chi^2\geq 18.24 \right )=79.12 \%$$
+```{r}
+#lower.tail=FALSE
+#cola derecha P(x>alfa)
+pchisq(18.24, df=24, lower.tail=FALSE)
+
+```
 
 
 
@@ -242,9 +289,115 @@ knitr::include_graphics("imagen/ejemplo.png")
 
 $$P(\hat p\leq 0.5493)=P\left(\frac{\hat p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92$$
 $$P\left(z\leq -2.92 \right)=0.0018$$
-## Taller
 
-### Ejercicios teorema central del límite
+# Distribuciones muestrales para dos muestras
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/difmed.png")
+```
+
+## Distribución de la diferencia de medias muestrales 
+
+## 1. Varianzas poblacionales conocidas 
+
+$$(\bar X - \bar Y) \sim N \left ( (\mu_x-\mu_y), \frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}\right) $$
+
+El estadístico es:
+
+$$Z=\frac{(\bar X - \bar Y)-(\mu_x-\mu_y)}{\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}} \longrightarrow N(0,1)$$
+
+## 2. Varianzas poblacionales desconocidas pero iguales
+
+La condición de igualdad de varianzas debe comprobarse o afirmarse.
+
+$$\sigma^2_x=\sigma^2_y$$
+
+El estadístico es:
+
+$$T=\frac{(\bar X - \bar Y)-(\mu_x-\mu_y)}{S_p\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}} $$
+Donde: 
+$$S^2_p=\frac{(n_x-1)S^2_x+(n_y-1)S^2_y}{n_x+n_y-2}$$
+
+Tiene una distribución t de student con $n_x+n_y-2$
+
+## 3. Varianzas poblacionales desconocidas con tamaños de muestra $n_1>30$ y $n_2>30$
+
+El estadístico es:
+
+$$Z=\frac{(\bar X - \bar Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S_y}{n_y}}} \longrightarrow N(0,1)$$
+
+**Ejercicio diferencia de medias con Varianzas poblacionales conocidas**
+
+Los niveles de radiación latente en dos regiones A y B
+siguen distribuciones Normales independientes de medias
+0.48 y 0.4663 y varianzas 0.2 y 0.01 rem por año,
+respectivamente. Se realizan 25 mediciones en la región A y 100 en la B. 
+
+
+X: "Nivel radiación latente en A"
+Y: "Nivel radiación latente en B"
+
+
+Obtener la probabilidad de que la media de la muestra A sea como máximo 0.2 rem superior a la media de la muestra B.
+
+
+$$P(\bar X \leq \bar Y+0.2) $$
+**Ejercicio diferencia de medias con Varianzas poblacionales desconocidas pero iguales**
+
+Se está realizando un estudio sobre la calidad del aire
+en dos zonas A y B. Un indicador de la calidad es el
+número de microgr. de partículas en suspensión por m3 de aire, que suponemos siguen distribuciones Normales
+independientes de media 62.237 en A, 61.022 en B y
+varianzas iguales. En la zona A se realizan 12 mediciones, obteniéndose una varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de 9.44 microgr2. 
+
+Obtener la probabilidad de que la media muestral de A sea como mínimo tres unidades superior a la media muestral de B.
+
+$$P(\bar X \geq \bar Y+3)$$
+
+**Ejercicio propuesto**
+Se estudia el efecto de un vertido tóxico en un río,
+comparando el índice de biodiversidad I.B-D. antes y
+después del vertido. Supongamos que los I.B-D. siguen distribuciones Normales. Antes del vertido se habían realizado 35 pruebas y se obtuvo una media de 1.9 y una desviación típica de 0.4. Después del vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una desviación típica de 0.7.
+
+
+x: "I.B-D después del vertido"
+Y: "I.B-D antes del vertido"
+
+Obtener la probabilidad de que la media poblacional
+antes del vertido sea como máximo 0.5 unidades inferior
+a la media poblacional después del vertido.
+
+
+
+$$P(\bar X \leq \bar Y+0.5) $$
+
+## Distribución del cociente de varianzas muestrales de dos poblaciones Normales independientes
+
+El estadístico F, definido como:
+
+
+$$F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2} \longrightarrow F_{n_x-1,n_y-1}$$
+**Ejemplo**
+Se está comparando la variabilidad de los I.B-D de dos
+ríos A y B, que suponemos siguen distribuciones
+Normales. Se realizan 16 mediciones en el río A y se
+obtiene una varianza de 9.52, y 18 mediciones en el río B y se obtiene una varianza de 7.
+
+
+X: "I.B-D en el río A
+Y: "I.B-D en el río B
+
+Obtener la probabilidad de que la varianza en el río B
+sea como mínimo el doble de la varianza en el río A.
+
+$$P(\sigma^2_Y\geq 2\sigma^2_Y)$$
+
+$$P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)$$
+$$P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)$$
+
+# Taller
+
+## Ejercicios teorema central del límite
 
 1. La resistencia a la ruptura del vidrio templado promedia 14 (medida en miles de libras por pulgada cuadrada) y tiene una desviación estándar de 2.
 
@@ -292,7 +445,7 @@ a ¿Cree usted que las concentraciones de monóxido de carbono en las muestras d
 
 b Encuentre la probabilidad de que la concentración promedio en 100 muestras seleccionadas aleatoriamente exceda de 14 partes por millón.
 
-### Ejercicios distribución muestral de proporciones
+## Ejercicios distribución muestral de proporciones
 
 1. Un medicamento para malestar estomacal tiene la advertencia de que algunos usuarios pueden presentar una reacción adversa a él, más aún, se piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una muestra aleatoria de 150 personas con malestar estomacal usa el medicamento, encuentre la probabilidad de que la proporción de la muestra de los usuarios que realmente presentan una reacción adversa, exceda el 4%.
 
