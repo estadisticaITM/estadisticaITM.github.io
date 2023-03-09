@@ -179,6 +179,21 @@ Un buen estimador de $\sigma^2$ es la varianza muestral $S^2$, la distribución 
 $$P(\chi^2>\chi^2_\alpha)=\alpha$$
 $$P(\chi^2 \leq \chi^2_\alpha)=\rho $$
 
+
+
+```{r}
+# computing values of 50k random values with 5 degrees of freedom
+x <- rchisq(50000, df = 5)
+  
+hist(x, 
+     freq = FALSE, 
+     xlim = c(0,16), 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 5), from = 0, to = 15, 
+      n = 5000, col= 'red', lwd=2, add = T)
+```
+
 ____________________________________________________________________________
 
 
@@ -186,7 +201,7 @@ ____________________________________________________________________________
 
 
 
-Se desea hacer una inferencia acerca de la varianza poblacional basada en una muestra aleatoria $Y_1, Y_2, . . . , Y_n$ de una población normal, con media $\mu$ y varianza $\sigma^2$. Entonces
+Se desea hacer una inferencia acerca de la varianza poblacional basada en una muestra aleatoria $Y_1, Y_2, . . . , Y_n$ de una población normal, con media $\mu$ y varianza $\sigma^2$. Entonces el estadístico corresponde a:
 
 
 $$\chi^2=\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar Y)^2$$
@@ -204,10 +219,12 @@ aproximación se considera aceptable para n > 30
 Las onzas de líquido que vierte una máquina embotelladora tienen una distribución normal con $\sigma^2=1$. Suponga que planeamos seleccionar una muestra aleatoria de diez botellas y medir la cantidad de líquido en cada una. Si estas diez observaciones se usan para calcular $S^2$. Especifique un intervalo de valores que incluyan $S^2$ con una probabilidad 0.9. Encuentre números b1 y b2 tales que.
 
 $$P(b_1 \leq S^2 \leq b_2)=0.9$$
+
 **Solución**
+
 Estandarizar
 
-$$P  \left ( \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) b_2 }{\sigma^2}\right)=0.9$$
+$$P  \left ( \frac{(n-1) b_1}{\sigma^2} \leq \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) b_2 }{\sigma^2}\right)=0.9$$
 como $\sigma^2=1$ entonces 
 
 $$P\left((n-1) b_1 \leq \chi^2 \leq (n-1) b_2\right)=0.9$$
@@ -216,6 +233,21 @@ Podemos usar la Tabla 6 para hallar dos números $a_1$ y $a_2$ tales que
 $$P(a_1 \leq  \chi^2\leq a_2)=0.9$$
 
 Se debe encontrar un valor $a_2$ que delimite un área de 0.05 en la cola superior y el valor de $a_1$ que delimite 0.05 en la cola inferior (0.95 en la cola superior). Como hay n − 1 = 9 grados de libertad, la Tabla indica que $a_2=16.919$ y $a_1 = 3.325$
+
+
+
+```{r}
+# computing values of 50k random values with 5 degrees of freedom
+x <- rchisq(50000, df = 9)
+  
+hist(x, 
+     freq = FALSE, 
+     xlim = c(0,30), 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 9), from = 0, to = 30, 
+      n = 5000, col= 'red', lwd=2, add = T)
+```
 
 $$16.919=\frac{(n-1) b_2}{\sigma^2}$$
 $$16.919=\frac{(9) b_2}{\sigma^2}$$
@@ -252,7 +284,7 @@ pchisq(18.24, df=24, lower.tail=FALSE)
 
 ## Distribución muestral de Proporciones
 
-se desea investigar la proporción de artículos defectuosos. Esta distribución se genera extrayendo muestras de la población y calculando la proporción (p=x/n en donde “x” es el número de éxitos u observaciones de interés y “n” el tamaño de la muestra).
+Se desea investigar la proporción de artículos defectuosos. Esta distribución se genera extrayendo muestras de la población y calculando la proporción (p=x/n en donde “x” es el número de éxitos u observaciones de interés y “n” el tamaño de la muestra).
 
 
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}

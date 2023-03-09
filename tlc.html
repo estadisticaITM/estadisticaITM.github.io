@@ -641,13 +641,25 @@ distribución asociada a esta distribución es la chi cuadrado.</p>
 <p><span
 class="math display">\[P(\chi^2&gt;\chi^2_\alpha)=\alpha\]</span> <span
 class="math display">\[P(\chi^2 \leq \chi^2_\alpha)=\rho \]</span></p>
+<pre class="r"><code># computing values of 50k random values with 5 degrees of freedom
+x &lt;- rchisq(50000, df = 5)
+  
+hist(x, 
+     freq = FALSE, 
+     xlim = c(0,16), 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 5), from = 0, to = 15, 
+      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+<p><img src="tlc_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <hr />
 <p><strong>Teorema</strong></p>
 <p>Se desea hacer una inferencia acerca de la varianza poblacional
 basada en una muestra aleatoria <span class="math inline">\(Y_1, Y_2, .
 . . , Y_n\)</span> de una población normal, con media <span
 class="math inline">\(\mu\)</span> y varianza <span
-class="math inline">\(\sigma^2\)</span>. Entonces</p>
+class="math inline">\(\sigma^2\)</span>. Entonces el estadístico
+corresponde a:</p>
 <p><span
 class="math display">\[\chi^2=\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum_{i=1}^n(Y_i-\bar
 Y)^2\]</span> tiene una distribución <span
@@ -668,9 +680,11 @@ se usan para calcular <span class="math inline">\(S^2\)</span>.
 Especifique un intervalo de valores que incluyan <span
 class="math inline">\(S^2\)</span> con una probabilidad 0.9. Encuentre
 números b1 y b2 tales que.</p>
-<p><span class="math display">\[P(b_1 \leq S^2 \leq b_2)=0.9\]</span>
-<strong>Solución</strong> Estandarizar</p>
-<p><span class="math display">\[P  \left ( \frac{(n-1) S^2}{\sigma^2}
+<p><span class="math display">\[P(b_1 \leq S^2 \leq
+b_2)=0.9\]</span></p>
+<p><strong>Solución</strong></p>
+<p>Estandarizar</p>
+<p><span class="math display">\[P  \left ( \frac{(n-1) b_1}{\sigma^2}
 \leq \frac{(n-1) S^2}{\sigma^2} \leq \frac{(n-1) b_2
 }{\sigma^2}\right)=0.9\]</span> como <span
 class="math inline">\(\sigma^2=1\)</span> entonces</p>
@@ -686,6 +700,17 @@ class="math inline">\(a_1\)</span> que delimite 0.05 en la cola inferior
 (0.95 en la cola superior). Como hay n − 1 = 9 grados de libertad, la
 Tabla indica que <span class="math inline">\(a_2=16.919\)</span> y <span
 class="math inline">\(a_1 = 3.325\)</span></p>
+<pre class="r"><code># computing values of 50k random values with 5 degrees of freedom
+x &lt;- rchisq(50000, df = 9)
+  
+hist(x, 
+     freq = FALSE, 
+     xlim = c(0,30), 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 9), from = 0, to = 30, 
+      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+<p><img src="tlc_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><span class="math display">\[16.919=\frac{(n-1)
 b_2}{\sigma^2}\]</span> <span class="math display">\[16.919=\frac{(9)
 b_2}{\sigma^2}\]</span> como <span
