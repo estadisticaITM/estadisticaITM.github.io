@@ -265,7 +265,7 @@ Por tanto, si deseamos tener un intervalo que incluya $S^2$ con probabilidad 0.9
 
 Se considera una medición física realizada con un instrumento de precisión, donde el interés se centra en la variabilidad de la lectura. Se sabe que la medición es una v.a. con distribución Normal y desviación típica 4 unidades. Se toma una m.a.s. de tamaño 25.Obtener la probabilidad de que el valor de la varianza muestral sea mayor de 12.16 unidades cuadradas
 
-$X_i$ corresponde las mediciones $ \sim N(\mu;4^2)$ con n=25.
+$X_i$ corresponde las mediciones $\sim N(\mu;4^2)$ con n=25.
 
 $$\chi^2=\frac{(n-1)S^2}{\sigma^2}$$
 $$P(S^2\geq 12.16)$$
@@ -311,7 +311,7 @@ p=0.55
 
 $$P(\hat p<0.55)$$
 
-Aplicando factor de corrección por continuidad
+ Aplicando factor de corrección por continuidad (0.5/n)
  
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/ejemplo.png")
@@ -321,6 +321,31 @@ knitr::include_graphics("imagen/ejemplo.png")
 
 $$P(\hat p\leq 0.5493)=P\left(\frac{\hat p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92$$
 $$P\left(z\leq -2.92 \right)=0.0018$$
+**Ejercicio 2** 
+
+El gerente de Mcdonald cree que el 30% de los clientes son nuevos. Para comprobar esta afirmación se toma una muestra aleatoria de 100 clientes. 
+
+a) Suponga que el presidente está en lo correcto y que p=0.30. ¿Cuál es la distribución muestral de p para este estudio?
+
+
+$$P\sim N(P,\frac{Pq}{n})$$
+P=0.3 n=100 
+$$P\sim N(0.3,0.021)$$
+
+b) ¿Cuál es la probabilidad de que la proporción muestral esté a ± 0.05 o menos de la proporción poblacional
+
+$$P \left (P-0.05\leq \hat P \leq P+0.05\right )$$
+$$P \left ( P \leq P+0.05\right)- P \left ( P \leq P-0.05\right)$$
+Aplicando factor de corrección
+
+$$P \left ( P \leq P+0.05+(0.5/n)\right)- P \left ( P \leq P-0.05-(0.5/n)\right)$$
+$$P \left ( P \leq P+0.05+0.005\right)- P \left ( P \leq P-0.05-0.005)\right)$$
+
+
+Estandarizando 
+$$P \left (\frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{\hat P-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}} \right)$$
+
+$$P \left (\frac{-0.055}{\sqrt{\frac{0.3*0.7}{100}}}\leq Z\leq \frac{0.055}{\sqrt{\frac{0.3*0.7}{100}}} \right)$$
 
 # Distribuciones muestrales para dos muestras
 
@@ -450,8 +475,7 @@ b) Suponga que la antropóloga desea que la diferencia entre la media muestral y
 
 a. Si el científico selecciona n = 40 muestras, encuentre la probabilidad aproximada de que la media muestral de las 40 mediciones de pH esté a 0.2 unidades del verdadero promedio de pH para el campo. [Sugerencia: vea el Ejercicio 1.17.]
 
-
-5. Suponga que al científico del Ejercicio 7.46 le gustaría que la media muestral estuviera a no más de 0.1 de la verdadera media con probabilidad .90. ¿Cuántas muestras de núcleos debe tomar?
+b. Suponga que al científico le gustaría que la media muestral estuviera a no más de 0.1 de la verdadera media con probabilidad 0.90. ¿Cuántas muestras de núcleos debe tomar?
 
 6 Un aspecto importante de un plan económico federal era que los consumidores ahorraran una parte importante de dinero que recibieran por una reducción de impuestos sobre sus ingresos. Suponga que las primeras estimaciones de la parte del total de impuesto ahorrada, con base en una muestra aleatoria de 35 economistas, tuvo media de 26% y desviación estándar de 12%. 
 
@@ -477,14 +501,48 @@ a ¿Cree usted que las concentraciones de monóxido de carbono en las muestras d
 
 b Encuentre la probabilidad de que la concentración promedio en 100 muestras seleccionadas aleatoriamente exceda de 14 partes por millón.
 
+
 ## Ejercicios distribución muestral de proporciones
 
 1. Un medicamento para malestar estomacal tiene la advertencia de que algunos usuarios pueden presentar una reacción adversa a él, más aún, se piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una muestra aleatoria de 150 personas con malestar estomacal usa el medicamento, encuentre la probabilidad de que la proporción de la muestra de los usuarios que realmente presentan una reacción adversa, exceda el 4%.
 
-Resolverlo mediante distribución binomial Rta/0.1685
-Resolverlo con la distribución muestral de proporciones
+a. Resolverlo mediante distribución binomial Rta/0.1685
+
+b. Resolverlo con la distribución muestral de proporciones
 
 2. Se sabe que la verdadera proporción de los componentes defectuosos fabricadas por una firma es de 4%, y encuentre la probabilidad de que una muestra aleatoria de tamaño 60 tenga:
 
-Menos del 3% de los componentes defectuosos. 0.2327
-Más del 1% pero menos del 5% de partes defectuosas 0.3290
+a. Menos del 3% de los componentes defectuosos. 0.2327
+
+b. Más del 1% pero menos del 5% de partes defectuosas 0.3290
+
+
+
+
+## Ejercicios distribución muestral de la varianza
+
+1. Los transistores fabricados por una compañía tienen una duración media de 2000 horas con una desviación típica de 60 horas. Si se selecciona una muestra de 10 transistores al azar de una población normal, ¿Cuál será la probabilidad que la desviación estándar muestral:
+
+a) No supere las 50 horas?
+
+b) Se encuentre entre 50 y 70 horas?
+
+2. En una determinada prueba se supone que las calificaciones se distribuyen normalmente con un promedio de 80 puntos y desviación estándar de 10 puntos. Si mañana se debe aplicar una prueba de aptitud a 12 aspirantes:
+
+a) ¿Cuál sería la probabilidad de que la desviación estándar de las calificaciones se dichos aspirantes sea mayor que 15 puntos?
+
+b) ¿Cuál debería ser el mínimo valor de la desviación estándar de las calificaciones de dichos aspirantes con una probabilidad de 0.95?
+
+3. Una máquina embotelladora puede regularse de tal manera que llene un promedio de  onzas por botella. Se ha observado que las onzas de contenido que vacía la máquina embotelladora tiene una distribución normal con  = 1 onzas.
+
+Supóngase que se selecciona una muestra aleatoria de 10 botellas y se mide el contenido de cada botella. Usando las 10 observaciones hallar los números b1 y b2 tales que  $P(b_1≤ s^2≤b_2)=0.9$
+
+(Sugerencia: Suponga que el 90% se encuentra en la parte central de la distribución a usar).
+
+4. Viva air desea adquirir dispositivos electrónicos en el cual la varianza de las resistencias no debe exceder los 0.40 ohmios2. Para evitar la aceptación de remesas que no cumplen con esta especificación, el departamento de control de calidad toma una muestra aleatoria de 25 componentes de cada remesa y mide la resistencia de cada uno.
+
+Si la varianza de la muestra es demasiado grande, el departamento rechaza el pedido. Se considera que una varianza muestral es demasiado grande si la probabilidad de que ocurra esto es superior a 0.02. Se acaba de seleccionar una muestra de una remesa y se obtiene s2 = 0.75. Debe aceptarse la remesa.
+
+
+## Ejercicios distribución muestral de la diferencia de medias
+

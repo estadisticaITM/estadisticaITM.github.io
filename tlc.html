@@ -728,8 +728,8 @@ Se sabe que la medición es una v.a. con distribución Normal y desviación
 típica 4 unidades. Se toma una m.a.s. de tamaño 25.Obtener la
 probabilidad de que el valor de la varianza muestral sea mayor de 12.16
 unidades cuadradas</p>
-<p><span class="math inline">\(X_i\)</span> corresponde las mediciones $
-N(;4^2)$ con n=25.</p>
+<p><span class="math inline">\(X_i\)</span> corresponde las mediciones
+<span class="math inline">\(\sim N(\mu;4^2)\)</span> con n=25.</p>
 <p><span
 class="math display">\[\chi^2=\frac{(n-1)S^2}{\sigma^2}\]</span> <span
 class="math display">\[P(S^2\geq 12.16)\]</span> Estandarizamos. <span
@@ -744,7 +744,7 @@ pchisq(18.24, df=24, lower.tail=FALSE)</code></pre>
 </div>
 <div id="distribución-muestral-de-proporciones" class="section level2">
 <h2>Distribución muestral de Proporciones</h2>
-<p>se desea investigar la proporción de artículos defectuosos. Esta
+<p>Se desea investigar la proporción de artículos defectuosos. Esta
 distribución se genera extrayendo muestras de la población y calculando
 la proporción (p=x/n en donde “x” es el número de éxitos u observaciones
 de interés y “n” el tamaño de la muestra).</p>
@@ -764,12 +764,40 @@ proporción de la muestra de la gente que fuma cigarrillos sea menor que
 <p><strong>Ejemplo</strong></p>
 <p>n=800 est P=0.6 p=0.55</p>
 <p><span class="math display">\[P(\hat p&lt;0.55)\]</span></p>
-<p>Aplicando factor de corrección por continuidad</p>
+<p>Aplicando factor de corrección por continuidad (0.5/n)</p>
 <p><img src="imagen/ejemplo.png" width="433" style="display: block; margin: auto;" /></p>
 <p><span class="math display">\[P(\hat p\leq 0.5493)=P\left(\frac{\hat
 p-P}{\sqrt{\frac{Pq}{n}}}\leq\frac{0.5493-0.6}{\sqrt{\frac{0.6*0.4}{800}}}\right)=-2.92\]</span>
-<span class="math display">\[P\left(z\leq -2.92
-\right)=0.0018\]</span></p>
+<span class="math display">\[P\left(z\leq -2.92 \right)=0.0018\]</span>
+<strong>Ejercicio 2</strong></p>
+<p>El gerente de Mcdonald cree que el 30% de los clientes son nuevos.
+Para comprobar esta afirmación se toma una muestra aleatoria de 100
+clientes.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Suponga que el presidente está en lo correcto y que p=0.30. ¿Cuál es
+la distribución muestral de p para este estudio?</li>
+</ol>
+<p><span class="math display">\[P\sim N(P,\frac{Pq}{n})\]</span> P=0.3
+n=100 <span class="math display">\[P\sim N(0.3,0.021)\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad de que la proporción muestral esté a ± 0.05
+o menos de la proporción poblacional</li>
+</ol>
+<p><span class="math display">\[P \left (P-0.05\leq \hat P \leq
+P+0.05\right )\]</span> <span class="math display">\[P \left ( P \leq
+P+0.05\right)- P \left ( P \leq P-0.05\right)\]</span> Aplicando factor
+de corrección</p>
+<p><span class="math display">\[P \left ( P \leq P+0.05+(0.5/n)\right)-
+P \left ( P \leq P-0.05-(0.5/n)\right)\]</span> <span
+class="math display">\[P \left ( P \leq P+0.05+0.005\right)- P \left ( P
+\leq P-0.05-0.005)\right)\]</span></p>
+<p>Estandarizando <span class="math display">\[P \left
+(\frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{\hat
+P-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}}
+\right)\]</span></p>
+<p><span class="math display">\[P \left
+(\frac{-0.055}{\sqrt{\frac{0.3*0.7}{100}}}\leq Z\leq
+\frac{0.055}{\sqrt{\frac{0.3*0.7}{100}}} \right)\]</span></p>
 </div>
 </div>
 <div id="distribuciones-muestrales-para-dos-muestras"
@@ -921,15 +949,13 @@ pH no se conoce, la experiencia del pasado indica que casi todos los
 suelos tienen un valor de pH de entre 5 y 8.</p></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Si el científico selecciona n = 40 muestras, encuentre la
+<li><p>Si el científico selecciona n = 40 muestras, encuentre la
 probabilidad aproximada de que la media muestral de las 40 mediciones de
 pH esté a 0.2 unidades del verdadero promedio de pH para el campo.
-[Sugerencia: vea el Ejercicio 1.17.]</li>
-</ol>
-<ol start="5" style="list-style-type: decimal">
-<li>Suponga que al científico del Ejercicio 7.46 le gustaría que la
-media muestral estuviera a no más de 0.1 de la verdadera media con
-probabilidad .90. ¿Cuántas muestras de núcleos debe tomar?</li>
+[Sugerencia: vea el Ejercicio 1.17.]</p></li>
+<li><p>Suponga que al científico le gustaría que la media muestral
+estuviera a no más de 0.1 de la verdadera media con probabilidad 0.90.
+¿Cuántas muestras de núcleos debe tomar?</p></li>
 </ol>
 <p>6 Un aspecto importante de un plan económico federal era que los
 consumidores ahorraran una parte importante de dinero que recibieran por
@@ -997,15 +1023,76 @@ medicamento, encuentre la probabilidad de que la proporción de la
 muestra de los usuarios que realmente presentan una reacción adversa,
 exceda el 4%.</li>
 </ol>
-<p>Resolverlo mediante distribución binomial Rta/0.1685 Resolverlo con
-la distribución muestral de proporciones</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Resolverlo mediante distribución binomial Rta/0.1685</p></li>
+<li><p>Resolverlo con la distribución muestral de proporciones</p></li>
+</ol>
 <ol start="2" style="list-style-type: decimal">
 <li>Se sabe que la verdadera proporción de los componentes defectuosos
 fabricadas por una firma es de 4%, y encuentre la probabilidad de que
 una muestra aleatoria de tamaño 60 tenga:</li>
 </ol>
-<p>Menos del 3% de los componentes defectuosos. 0.2327 Más del 1% pero
-menos del 5% de partes defectuosas 0.3290</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Menos del 3% de los componentes defectuosos. 0.2327</p></li>
+<li><p>Más del 1% pero menos del 5% de partes defectuosas
+0.3290</p></li>
+</ol>
+</div>
+<div id="ejercicios-distribución-muestral-de-la-varianza"
+class="section level2">
+<h2>Ejercicios distribución muestral de la varianza</h2>
+<ol style="list-style-type: decimal">
+<li>Los transistores fabricados por una compañía tienen una duración
+media de 2000 horas con una desviación típica de 60 horas. Si se
+selecciona una muestra de 10 transistores al azar de una población
+normal, ¿Cuál será la probabilidad que la desviación estándar
+muestral:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>No supere las 50 horas?</p></li>
+<li><p>Se encuentre entre 50 y 70 horas?</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>En una determinada prueba se supone que las calificaciones se
+distribuyen normalmente con un promedio de 80 puntos y desviación
+estándar de 10 puntos. Si mañana se debe aplicar una prueba de aptitud a
+12 aspirantes:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál sería la probabilidad de que la desviación estándar de las
+calificaciones se dichos aspirantes sea mayor que 15 puntos?</p></li>
+<li><p>¿Cuál debería ser el mínimo valor de la desviación estándar de
+las calificaciones de dichos aspirantes con una probabilidad de
+0.95?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Una máquina embotelladora puede regularse de tal manera que llene un
+promedio de  onzas por botella. Se ha observado que las onzas de
+contenido que vacía la máquina embotelladora tiene una distribución
+normal con  = 1 onzas.</li>
+</ol>
+<p>Supóngase que se selecciona una muestra aleatoria de 10 botellas y se
+mide el contenido de cada botella. Usando las 10 observaciones hallar
+los números b1 y b2 tales que <span class="math inline">\(P(b_1≤
+s^2≤b_2)=0.9\)</span></p>
+<p>(Sugerencia: Suponga que el 90% se encuentra en la parte central de
+la distribución a usar).</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Viva air desea adquirir dispositivos electrónicos en el cual la
+varianza de las resistencias no debe exceder los 0.40 ohmios2. Para
+evitar la aceptación de remesas que no cumplen con esta especificación,
+el departamento de control de calidad toma una muestra aleatoria de 25
+componentes de cada remesa y mide la resistencia de cada uno.</li>
+</ol>
+<p>Si la varianza de la muestra es demasiado grande, el departamento
+rechaza el pedido. Se considera que una varianza muestral es demasiado
+grande si la probabilidad de que ocurra esto es superior a 0.02. Se
+acaba de seleccionar una muestra de una remesa y se obtiene s2 = 0.75.
+Debe aceptarse la remesa.</p>
+</div>
+<div id="ejercicios-distribución-muestral-de-la-diferencia-de-medias"
+class="section level2">
+<h2>Ejercicios distribución muestral de la diferencia de medias</h2>
 </div>
 </div>
 
