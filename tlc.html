@@ -780,8 +780,8 @@ la distribución muestral de p para este estudio?</li>
 <p><span class="math display">\[P\sim N(P,\frac{Pq}{n})\]</span> P=0.3
 n=100 <span class="math display">\[P\sim N(0.3,0.021)\]</span></p>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>¿Cuál es la probabilidad de que la proporción muestral esté a ± 0.05
-o menos de la proporción poblacional</li>
+<li>¿Cuál es la probabilidad de que la proporción muestral esté a mas o
+menos 0.05 de la proporción poblacional</li>
 </ol>
 <p><span class="math display">\[P \left (P-0.05\leq \hat P \leq
 P+0.05\right )\]</span> <span class="math display">\[P \left ( P \leq
@@ -791,13 +791,25 @@ de corrección</p>
 P \left ( P \leq P-0.05-(0.5/n)\right)\]</span> <span
 class="math display">\[P \left ( P \leq P+0.05+0.005\right)- P \left ( P
 \leq P-0.05-0.005)\right)\]</span></p>
-<p>Estandarizando <span class="math display">\[P \left
-(\frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{\hat
-P-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}}
-\right)\]</span></p>
-<p><span class="math display">\[P \left
-(\frac{-0.055}{\sqrt{\frac{0.3*0.7}{100}}}\leq Z\leq
-\frac{0.055}{\sqrt{\frac{0.3*0.7}{100}}} \right)\]</span></p>
+<p>Estandarizando</p>
+<p><span class="math display">\[P \left ( \hat P \leq P+0.055\right)- P
+\left ( \hat P \leq P-0.055\right)\]</span></p>
+<p><span class="math display">\[P \left (\frac{\hat
+P-P}{\sqrt{\frac{Pq}{n}}} \leq
+\frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}}\right)- P \left ( \frac{\hat
+P-P}{\sqrt{\frac{Pq}{n}}} \leq
+\frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\right)\]</span> <span
+class="math display">\[ P \left (z \leq
+\frac{P+0.055-P}{\sqrt{\frac{0.3*0.7}{100}}}\right)- P \left ( z \leq
+\frac{P-0.055-P}{\sqrt{\frac{0.3*0.7}{100}}}\right)\]</span> <span
+class="math display">\[ P \left (z \leq \frac{0.055}{0.046}\right)- P
+\left ( z \leq \frac{-0.055}{0.046}\right)\]</span> <span
+class="math display">\[ P \left (z \leq 1.19\right)- P \left ( z \leq
+\frac{-0.055}{0.046}\right)\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad de que la proporción muestral sea mas de
+0.4?</li>
+</ol>
 </div>
 </div>
 <div id="distribuciones-muestrales-para-dos-muestras"
@@ -845,38 +857,43 @@ Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S_y}{n_y}}}
 <p><strong>Ejercicio diferencia de medias con Varianzas poblacionales
 conocidas</strong></p>
 <p>Los niveles de radiación latente en dos regiones A y B siguen
-distribuciones Normales independientes de medias 0.48 y 0.4663 y
-varianzas 0.2 y 0.01 rem por año, respectivamente. Se realizan 25
-mediciones en la región A y 100 en la B.</p>
-<p>X: “Nivel radiación latente en A” Y: “Nivel radiación latente en
-B”</p>
+distribuciones Normales independientes de medias 0.48 y 0.46 y varianzas
+0.2 y 0.01 rem por año, respectivamente. Se realizan 25 mediciones en la
+región A y 100 en la B.</p>
+<p>X: “Nivel radiación latente en A”</p>
+<p>Y: “Nivel radiación latente en B”</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Regiones</th>
+<th>media</th>
+<th>var</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>A</td>
+<td>0.48</td>
+<td>0.2</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>B</td>
+<td>0.46</td>
+<td>0.01</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
 <p>Obtener la probabilidad de que la media de la muestra A sea como
 máximo 0.2 rem superior a la media de la muestra B.</p>
-<p><span class="math display">\[P(\bar X \leq \bar Y+0.2) \]</span>
-<strong>Ejercicio diferencia de medias con Varianzas poblacionales
-desconocidas pero iguales</strong></p>
-<p>Se está realizando un estudio sobre la calidad del aire en dos zonas
-A y B. Un indicador de la calidad es el número de microgr. de partículas
-en suspensión por m3 de aire, que suponemos siguen distribuciones
-Normales independientes de media 62.237 en A, 61.022 en B y varianzas
-iguales. En la zona A se realizan 12 mediciones, obteniéndose una
-varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de
-9.44 microgr2.</p>
-<p>Obtener la probabilidad de que la media muestral de A sea como mínimo
-tres unidades superior a la media muestral de B.</p>
-<p><span class="math display">\[P(\bar X \geq \bar Y+3)\]</span></p>
-<p><strong>Ejercicio propuesto</strong> Se estudia el efecto de un
-vertido tóxico en un río, comparando el índice de biodiversidad I.B-D.
-antes y después del vertido. Supongamos que los I.B-D. siguen
-distribuciones Normales. Antes del vertido se habían realizado 35
-pruebas y se obtuvo una media de 1.9 y una desviación típica de 0.4.
-Después del vertido se realizan 40 pruebas y se obtiene una media de 1.7
-y una desviación típica de 0.7.</p>
-<p>x: “I.B-D después del vertido” Y: “I.B-D antes del vertido”</p>
-<p>Obtener la probabilidad de que la media poblacional antes del vertido
-sea como máximo 0.5 unidades inferior a la media poblacional después del
-vertido.</p>
-<p><span class="math display">\[P(\bar X \leq \bar Y+0.5) \]</span></p>
+<p><span class="math display">\[P(\bar X \leq \bar Y+0.2) \]</span></p>
+<p><span class="math display">\[P(\bar X - \bar Y \leq 0.2)
+\]</span></p>
 </div>
 <div
 id="distribución-del-cociente-de-varianzas-muestrales-de-dos-poblaciones-normales-independientes"
@@ -887,18 +904,44 @@ Normales independientes</h2>
 <p><span
 class="math display">\[F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2}
 \longrightarrow F_{n_x-1,n_y-1}\]</span> <strong>Ejemplo</strong> Se
-está comparando la variabilidad de los I.B-D de dos ríos A y B, que
-suponemos siguen distribuciones Normales. Se realizan 16 mediciones en
-el río A y se obtiene una varianza de 9.52, y 18 mediciones en el río B
-y se obtiene una varianza de 7.</p>
-<p>X: “I.B-D en el río A Y:”I.B-D en el río B</p>
+está comparando la variabilidad de los índice de biodiversidad (I.B.D)
+de dos ríos A y B, que suponemos siguen distribuciones Normales. Se
+realizan 16 mediciones en el río A y se obtiene una varianza de 9.52, y
+18 mediciones en el río B y se obtiene una varianza de 7.</p>
+<p>X: “I.B-D en el río A</p>
+<p>Y: “I.B-D en el río B</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Rio</th>
+<th>var</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>A</td>
+<td>0.2</td>
+<td>16</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>B</td>
+<td>0.01</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
 <p>Obtener la probabilidad de que la varianza en el río B sea como
 mínimo el doble de la varianza en el río A.</p>
 <p><span class="math display">\[P(\sigma^2_Y\geq
-2\sigma^2_Y)\]</span></p>
-<p><span class="math display">\[P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq
-2)\]</span> <span class="math display">\[P(
-\frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)\]</span></p>
+2\sigma^2_x)\]</span></p>
+<p><span class="math display">\[P \left (
+\frac{\sigma^2_Y}{\sigma^2_x}\geq 2 \right)\]</span> Estandarizando</p>
+<p><span class="math display">\[P \left (
+\frac{S^2_x\sigma^2_Y}{\sigma^2_Y}\geq 2\right )\]</span></p>
 </div>
 </div>
 <div id="taller" class="section level1">
@@ -1093,6 +1136,34 @@ Debe aceptarse la remesa.</p>
 <div id="ejercicios-distribución-muestral-de-la-diferencia-de-medias"
 class="section level2">
 <h2>Ejercicios distribución muestral de la diferencia de medias</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Distribución de la diferencia de medias Varianzas
+poblacionales desconocidas. Muestras grandes</strong></li>
+</ol>
+<p>Se estudia el efecto de un vertido tóxico en un río,comparando el
+índice de biodiversidad I.B-D. antes y después del vertido. Los I.B-D.
+siguen distribuciones Normales. Antes del vertido se habían realizado 35
+pruebas y se obtuvo una media de 1.9 y una sd de 0.4. Después del
+vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una sd de
+0.7.</p>
+<p>Obtener la probabilidad de que la media poblacional antes del vertido
+sea como máximo 0.5 unidades inferior a la media poblacional después del
+vertido.</p>
+<p><span class="math display">\[P(\bar X \leq \bar Y+0.5) \]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Ejercicio diferencia de medias con Varianzas poblacionales
+desconocidas pero iguales</strong></li>
+</ol>
+<p>Se está realizando un estudio sobre la calidad del aire en dos zonas
+A y B. Un indicador de la calidad es el número de microgr. de partículas
+en suspensión por m3 de aire, que suponemos siguen distribuciones
+Normales independientes de media 62.237 en A, 61.022 en B y varianzas
+iguales. En la zona A se realizan 12 mediciones, obteniéndose una
+varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de
+9.44 microgr2.</p>
+<p>Obtener la probabilidad de que la media muestral de A sea como mínimo
+tres unidades superior a la media muestral de B.</p>
+<p><span class="math display">\[P(\bar X \geq \bar Y+3)\]</span></p>
 </div>
 </div>
 

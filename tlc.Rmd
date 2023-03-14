@@ -332,7 +332,7 @@ $$P\sim N(P,\frac{Pq}{n})$$
 P=0.3 n=100 
 $$P\sim N(0.3,0.021)$$
 
-b) ¿Cuál es la probabilidad de que la proporción muestral esté a ± 0.05 o menos de la proporción poblacional
+b) ¿Cuál es la probabilidad de que la proporción muestral esté a mas o menos 0.05 de la proporción poblacional
 
 $$P \left (P-0.05\leq \hat P \leq P+0.05\right )$$
 $$P \left ( P \leq P+0.05\right)- P \left ( P \leq P-0.05\right)$$
@@ -343,9 +343,15 @@ $$P \left ( P \leq P+0.05+0.005\right)- P \left ( P \leq P-0.05-0.005)\right)$$
 
 
 Estandarizando 
-$$P \left (\frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{\hat P-P}{\sqrt{\frac{Pq}{n}}}\leq \frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}} \right)$$
 
-$$P \left (\frac{-0.055}{\sqrt{\frac{0.3*0.7}{100}}}\leq Z\leq \frac{0.055}{\sqrt{\frac{0.3*0.7}{100}}} \right)$$
+$$P \left ( \hat P \leq P+0.055\right)- P \left ( \hat P \leq P-0.055\right)$$
+
+$$P \left (\frac{\hat P-P}{\sqrt{\frac{Pq}{n}}} \leq \frac{P+0.055-P}{\sqrt{\frac{Pq}{n}}}\right)- P \left ( \frac{\hat P-P}{\sqrt{\frac{Pq}{n}}} \leq \frac{P-0.055-P}{\sqrt{\frac{Pq}{n}}}\right)$$
+$$ P \left (z \leq \frac{P+0.055-P}{\sqrt{\frac{0.3*0.7}{100}}}\right)- P \left ( z \leq \frac{P-0.055-P}{\sqrt{\frac{0.3*0.7}{100}}}\right)$$
+$$ P \left (z \leq \frac{0.055}{0.046}\right)- P \left ( z \leq \frac{-0.055}{0.046}\right)$$
+$$ P \left (z \leq 1.19\right)- P \left ( z \leq \frac{-0.055}{0.046}\right)$$
+
+b) ¿Cuál es la probabilidad de que la proporción muestral sea mas de 0.4?
 
 # Distribuciones muestrales para dos muestras
 
@@ -385,48 +391,27 @@ $$Z=\frac{(\bar X - \bar Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S_y}{n_
 
 **Ejercicio diferencia de medias con Varianzas poblacionales conocidas**
 
-Los niveles de radiación latente en dos regiones A y B
-siguen distribuciones Normales independientes de medias
-0.48 y 0.4663 y varianzas 0.2 y 0.01 rem por año,
-respectivamente. Se realizan 25 mediciones en la región A y 100 en la B. 
+Los niveles de radiación latente en dos regiones A y B siguen distribuciones Normales independientes de medias 0.48 y 0.46 y varianzas 0.2 y 0.01 rem por año, respectivamente. Se realizan 25 mediciones en la región A y 100 en la B. 
 
 
 X: "Nivel radiación latente en A"
+
 Y: "Nivel radiación latente en B"
+
+
+|Variable|Regiones|media|var |n  |
+|--------|--------|-----|----|---|
+| X      | A      |0.48 |0.2 |25 |  
+|Y       | B      |0.46 |0.01|100|
+ 
 
 
 Obtener la probabilidad de que la media de la muestra A sea como máximo 0.2 rem superior a la media de la muestra B.
 
 
 $$P(\bar X \leq \bar Y+0.2) $$
-**Ejercicio diferencia de medias con Varianzas poblacionales desconocidas pero iguales**
 
-Se está realizando un estudio sobre la calidad del aire
-en dos zonas A y B. Un indicador de la calidad es el
-número de microgr. de partículas en suspensión por m3 de aire, que suponemos siguen distribuciones Normales
-independientes de media 62.237 en A, 61.022 en B y
-varianzas iguales. En la zona A se realizan 12 mediciones, obteniéndose una varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de 9.44 microgr2. 
-
-Obtener la probabilidad de que la media muestral de A sea como mínimo tres unidades superior a la media muestral de B.
-
-$$P(\bar X \geq \bar Y+3)$$
-
-**Ejercicio propuesto**
-Se estudia el efecto de un vertido tóxico en un río,
-comparando el índice de biodiversidad I.B-D. antes y
-después del vertido. Supongamos que los I.B-D. siguen distribuciones Normales. Antes del vertido se habían realizado 35 pruebas y se obtuvo una media de 1.9 y una desviación típica de 0.4. Después del vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una desviación típica de 0.7.
-
-
-x: "I.B-D después del vertido"
-Y: "I.B-D antes del vertido"
-
-Obtener la probabilidad de que la media poblacional
-antes del vertido sea como máximo 0.5 unidades inferior
-a la media poblacional después del vertido.
-
-
-
-$$P(\bar X \leq \bar Y+0.5) $$
+$$P(\bar X - \bar Y \leq 0.2) $$
 
 ## Distribución del cociente de varianzas muestrales de dos poblaciones Normales independientes
 
@@ -435,22 +420,28 @@ El estadístico F, definido como:
 
 $$F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2} \longrightarrow F_{n_x-1,n_y-1}$$
 **Ejemplo**
-Se está comparando la variabilidad de los I.B-D de dos
-ríos A y B, que suponemos siguen distribuciones
-Normales. Se realizan 16 mediciones en el río A y se
-obtiene una varianza de 9.52, y 18 mediciones en el río B y se obtiene una varianza de 7.
+Se está comparando la variabilidad de los índice de biodiversidad (I.B.D) de dos
+ríos A y B, que suponemos siguen distribuciones Normales. Se realizan 16 mediciones en el río A y se obtiene una varianza de 9.52, y 18 mediciones en el río B y se obtiene una varianza de 7.
 
 
 X: "I.B-D en el río A
+
 Y: "I.B-D en el río B
 
-Obtener la probabilidad de que la varianza en el río B
-sea como mínimo el doble de la varianza en el río A.
 
-$$P(\sigma^2_Y\geq 2\sigma^2_Y)$$
+|Variable|Rio|var |n  |
+|--------|---|----|---|
+| X      | A |0.2 |16 |  
+|Y       | B |0.01|18|
 
-$$P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)$$
-$$P( \frac{\sigma^2_Y}{\sigma^2_Y}\geq 2)$$
+Obtener la probabilidad de que la varianza en el río B sea como mínimo el doble de la varianza en el río A.
+
+$$P(\sigma^2_Y\geq 2\sigma^2_x)$$
+
+$$P \left ( \frac{\sigma^2_Y}{\sigma^2_x}\geq 2 \right)$$
+Estandarizando 
+
+$$P \left ( \frac{S^2_x\sigma^2_Y}{\sigma^2_Y}\geq 2\right )$$
 
 # Taller
 
@@ -546,3 +537,20 @@ Si la varianza de la muestra es demasiado grande, el departamento rechaza el ped
 
 ## Ejercicios distribución muestral de la diferencia de medias
 
+1. **Distribución de la diferencia de medias Varianzas poblacionales desconocidas. Muestras grandes** 
+
+Se estudia el efecto de un vertido tóxico en un río,comparando el índice de biodiversidad I.B-D. antes y después del vertido. Los I.B-D. siguen distribuciones Normales. Antes del vertido se habían realizado 35 pruebas y se obtuvo una media de 1.9 y una sd de 0.4. Después del vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una sd de 0.7.
+
+Obtener la probabilidad de que la media poblacional antes del vertido sea como máximo 0.5 unidades inferior a la media poblacional después del vertido.
+
+$$P(\bar X \leq \bar Y+0.5) $$
+
+
+
+2. **Ejercicio diferencia de medias con Varianzas poblacionales desconocidas pero iguales**
+
+Se está realizando un estudio sobre la calidad del aire en dos zonas A y B. Un indicador de la calidad es el número de microgr. de partículas en suspensión por m3 de aire, que suponemos siguen distribuciones Normales independientes de media 62.237 en A, 61.022 en B y varianzas iguales. En la zona A se realizan 12 mediciones, obteniéndose una varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de 9.44 microgr2. 
+
+Obtener la probabilidad de que la media muestral de A sea como mínimo tres unidades superior a la media muestral de B.
+
+$$P(\bar X \geq \bar Y+3)$$
