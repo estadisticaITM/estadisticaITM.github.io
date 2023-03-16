@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Taller Distribuciones de muestreo</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de exp
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-pie-chart"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Semillero de R
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Taller Distribuciones de muestreo</h1>
+
+</div>
+
+
+<div id="teorema-central-del-límite" class="section level2">
+<h2>Teorema central del límite</h2>
+<ol style="list-style-type: decimal">
+<li>La resistencia a la ruptura del vidrio templado promedia 14 (medida
+en miles de libras por pulgada cuadrada) y tiene una desviación estándar
+de 2.</li>
+</ol>
+<p>a ¿Cuál es la probabilidad de que el promedio de resistencia a la
+ruptura de 100 piezas seleccionadas aleatoriamente de este vidrio exceda
+de 14.5?</p>
+<p>b Encuentre un intervalo que incluya, con probabilidad 0.95, el
+promedio de resistencia a la ruptura de 100 piezas de este vidrio
+seleccionadas aleatoriamente.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Una antropóloga desea calcular el promedio de estatura de los
+hombres de cierta raza. Si se supone que la desviación estándar
+poblacional es de 2.5 pulgadas y si ella muestrea 100 hombres
+aleatoriamente,</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>encuentre la probabilidad de que la diferencia entre la media
+muestral y la verdadera media poblacional no exceda de 0.5 pulgada.
+Rta/0.9544</p></li>
+<li><p>Suponga que la antropóloga desea que la diferencia entre la media
+muestral y la mediapoblacional sea menor que 0.4 pulgada, con
+probabilidad de 0.95. ¿Cuántos hombres debe tomar como muestra para
+lograr este objetivo?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Trabajadores de una gran empresa de servicios tienen un salario
+promedio de 7% por hora con una desviación estándar de 0.5. La industria
+tiene 64 trabajadores de cierto grupo étnico que tienen un salario
+promedio de <span class="math inline">\(6.9\)</span> por hora. ¿Es
+razonable suponer que la tasa salarial del grupo étnico es equivalente a
+la de una muestra aleatoria de trabajadores tomada de los empleados en
+la industria militar? [Sugerencia: calcule la probabilidad de obtener
+una media muestral menor o igual que $6.9 por hora.Rta/0.0548]</p></li>
+<li><p>La acidez de los suelos se mide mediante una cantidad llamada pH,
+que varía de 0 (acidez alta) a 14 (alcalinidad alta). Un edafólogo desea
+calcular el promedio de pH para un campo de grandes dimensiones al
+seleccionar aleatoriamente n muestras de núcleos y medir el pH de cada
+muestra. Aun cuando la desviación estándar poblacional de mediciones de
+pH no se conoce, la experiencia del pasado indica que casi todos los
+suelos tienen un valor de pH de entre 5 y 8.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Si el científico selecciona n = 40 muestras, encuentre la
+probabilidad aproximada de que la media muestral de las 40 mediciones de
+pH esté a 0.2 unidades del verdadero promedio de pH para el campo.
+[Sugerencia: vea el Ejercicio 1.17.]</p></li>
+<li><p>Suponga que al científico le gustaría que la media muestral
+estuviera a no más de 0.1 de la verdadera media con probabilidad 0.90.
+¿Cuántas muestras de núcleos debe tomar?</p></li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>Un aspecto importante de un plan económico federal era que los
+consumidores ahorraran una parte importante de dinero que recibieran por
+una reducción de impuestos sobre sus ingresos. Suponga que las primeras
+estimaciones de la parte del total de impuesto ahorrada, con base en una
+muestra aleatoria de 35 economistas, tuvo media de 26% y desviación
+estándar de 12%.</li>
+</ol>
+<p>a ¿Cuál es la probabilidad aproximada de que la estimación de la
+media muestral, basada en una muestra aleatoria de n = 35 economistas,
+se encuentre a no más de 1% de la media de la población de las
+estimaciones de todos los economistas?</p>
+<p>b ¿Es necesariamente verdadero que la media de la población de las
+estimaciones de todos los economistas sea igual al porcentaje de ahorro
+en impuestos que en realidad se logrará?</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>El tiempo necesario para el mantenimiento periódico de un
+automóvil u otra máquina tiene por lo general una distribución de
+probabilidad en forma de campana. Debido a que se presentarán algunos
+alargamientos en los tiempos de servicio, la distribución tiende a estar
+sesgada a la derecha. Suponga que el tiempo necesario para dar servicio
+a un automóvil que ha recorrido 5000 millas tiene una media de 1.4 horas
+y desviación estándar de 0.7 horas. Suponga también que el departamento
+de servicio planea atender a 50 automóviles por jornada de 8 horas y
+que, para hacerlo, puede dedicar un tiempo promedio máximo de sólo 1.6
+horas por automóvil. ¿Cuántos días tendrá que trabajar tiempo extra el
+departamento de servicio?</p></li>
+<li><p>Se ha encontrado que las mediciones de resistencia al corte en
+soldaduras por puntos tienen una desviación estándar de 10 libras por
+pulgada cuadrada (psi). Si se han de medir 100 soldaduras de prueba,
+¿cuál es la probabilidad aproximada de que la media muestral se
+encuentre a no más de 1 psi de la verdadera media poblacional?</p></li>
+</ol>
+<p>Si la desviación estándar de mediciones de resistencia al corte en
+soldaduras por puntos es 10 psi, ¿cuántas soldaduras de prueba deben
+muestrearse si deseamos que la media muestral se encuentre a no más de 1
+psi de la verdadera media con probabilidad aproximada de 0.99?</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Los resistores que se han de usar en un circuito tienen un promedio
+de resistencia de 200 ohms y desviación estándar de 10 ohms. Suponga que
+25 de estos resistores se seleccionan aleatoriamente para usarse en un
+circuito. a ¿Cuál es la probabilidad de que la resistencia promedio para
+los 25 resistores esté entre 199 y 202 ohms?</li>
+</ol>
+<p>b Encuentre la probabilidad de que la resistencia total no exceda de
+5100 ohms.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Concentraciones de monóxido de carbono de cierta hora en muestras de
+aire de una gran ciudad promedian 12 ppm (partes por millón) con
+desviación estándar de 9 partes por millón.</li>
+</ol>
+<p>a ¿Cree usted que las concentraciones de monóxido de carbono en las
+muestras de aire de esta ciudad están distribuidas normalmente? ¿Por qué
+sí o por qué no?</p>
+<p>b Encuentre la probabilidad de que la concentración promedio en 100
+muestras seleccionadas aleatoriamente exceda de 14 partes por
+millón.</p>
+</div>
+<div id="distribución-muestral-de-proporciones" class="section level2">
+<h2>Distribución muestral de proporciones</h2>
+<ol style="list-style-type: decimal">
+<li>Un medicamento para malestar estomacal tiene la advertencia de que
+algunos usuarios pueden presentar una reacción adversa a él, más aún, se
+piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una
+muestra aleatoria de 150 personas con malestar estomacal usa el
+medicamento, encuentre la probabilidad de que la proporción de la
+muestra de los usuarios que realmente presentan una reacción adversa,
+exceda el 4%.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Resolverlo mediante distribución binomial Rta/0.1685</p></li>
+<li><p>Resolverlo con la distribución muestral de proporciones</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Se sabe que la verdadera proporción de los componentes defectuosos
+fabricadas por una firma es de 4%, y encuentre la probabilidad de que
+una muestra aleatoria de tamaño 60 tenga:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Menos del 3% de los componentes defectuosos. 0.2327</p></li>
+<li><p>Más del 1% pero menos del 5% de partes defectuosas
+0.3290</p></li>
+</ol>
+</div>
+<div id="distribución-muestral-de-la-varianza" class="section level2">
+<h2>Distribución muestral de la varianza</h2>
+<ol style="list-style-type: decimal">
+<li>Los transistores fabricados por una compañía tienen una duración
+media de 2000 horas con una desviación típica de 60 horas. Si se
+selecciona una muestra de 10 transistores al azar de una población
+normal, ¿Cuál será la probabilidad que la desviación estándar
+muestral:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>No supere las 50 horas?</p></li>
+<li><p>Se encuentre entre 50 y 70 horas?</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>En una determinada prueba se supone que las calificaciones se
+distribuyen normalmente con un promedio de 80 puntos y desviación
+estándar de 10 puntos. Si mañana se debe aplicar una prueba de aptitud a
+12 aspirantes:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuál sería la probabilidad de que la desviación estándar de las
+calificaciones se dichos aspirantes sea mayor que 15 puntos?</p></li>
+<li><p>¿Cuál debería ser el mínimo valor de la desviación estándar de
+las calificaciones de dichos aspirantes con una probabilidad de
+0.95?</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Una máquina embotelladora puede regularse de tal manera que llene un
+promedio de  onzas por botella. Se ha observado que las onzas de
+contenido que vacía la máquina embotelladora tiene una distribución
+normal con  = 1 onzas.</li>
+</ol>
+<p>Supóngase que se selecciona una muestra aleatoria de 10 botellas y se
+mide el contenido de cada botella. Usando las 10 observaciones hallar
+los números b1 y b2 tales que <span class="math inline">\(P(b_1≤
+s^2≤b_2)=0.9\)</span></p>
+<p>(Sugerencia: Suponga que el 90% se encuentra en la parte central de
+la distribución a usar).</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Viva air desea adquirir dispositivos electrónicos en el cual la
+varianza de las resistencias no debe exceder los 0.40 ohmios2. Para
+evitar la aceptación de remesas que no cumplen con esta especificación,
+el departamento de control de calidad toma una muestra aleatoria de 25
+componentes de cada remesa y mide la resistencia de cada uno.</li>
+</ol>
+<p>Si la varianza de la muestra es demasiado grande, el departamento
+rechaza el pedido. Se considera que una varianza muestral es demasiado
+grande si la probabilidad de que ocurra esto es superior a 0.02. Se
+acaba de seleccionar una muestra de una remesa y se obtiene s2 = 0.75.
+Debe aceptarse la remesa.</p>
+</div>
+<div id="distribución-muestral-de-la-diferencia-de-medias"
+class="section level2">
+<h2>Distribución muestral de la diferencia de medias</h2>
+<ol style="list-style-type: decimal">
+<li><strong>DM para la diferencia de medias con Varianzas poblacionales
+desconocidas. Muestras grandes</strong></li>
+</ol>
+<p>1.1 Se estudia el efecto de un vertido tóxico en un río,comparando el
+índice de biodiversidad I.B-D. antes y después del vertido. Los I.B-D.
+siguen distribuciones Normales. Antes del vertido se habían realizado 35
+pruebas y se obtuvo una media de 1.9 y una sd de 0.4. Después del
+vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una sd de
+0.7.</p>
+<p>Obtener la probabilidad de que la media poblacional antes del vertido
+sea como máximo 0.5 unidades inferior a la media poblacional después del
+vertido.</p>
+<p><span class="math display">\[P(\bar X \leq \bar Y+0.5) \]</span></p>
+<p>1.2 En un estudio para comparar los pesos promedio de niños y niñas
+de sexto grado en una escuela primaria se usará una muestra aleatoria de
+20 niños y otra de 25 niñas. Se sabe que tanto para niños como para
+niñas los pesos siguen una distribución normal. El promedio de los pesos
+de todos los niños de sexto grado de esa escuela es de 100 libras y su
+desviación estándar es de 14.142, mientras que el promedio de los pesos
+de todas las niñas del sexto grado de esa escuela es de 85 libras y su
+desviación estándar es de 12.247 libras. Si <span
+class="math inline">\(X_1\)</span> representa el promedio de los pesos
+de 20 niños y <span class="math inline">\(X_2\)</span>es el promedio de
+los pesos de una muestra de 25 niñas.</p>
+<p>Encuentre la probabilidad de que el promedio de los pesos de los 20
+niños sea al menos 20 libras más grande que el de las 25 niñas.</p>
+<p>1.3 Se prueba el rendimiento en km/L de 2 tipos de gasolina,
+encontrándose una desviación estándar de 1.23km/L para la primera
+gasolina y una desviación estándar de 1.37km/L para la segunda gasolina;
+se prueba la primera gasolina en 35 autos y la segunda en 42 autos.</p>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad de que la primera gasolina de un
+rendimiento promedio mayor de 0.45km/L que la segunda gasolina?</li>
+</ol>
+<p>b.¿Cuál es la probabilidad de que la diferencia en rendimientos
+promedio se encuentre entre 0.65 y 0.83km/L a favor de la gasolina
+1?.</p>
+<p>1.4 Una muestra de tamaño 25 se toma de una población normal con
+media de 80 y desviación estándar 5; una segunda muestra de tamaño 36 se
+toma de una población normal con media 75 y desviación estándar de 3.
+Hallar la probabilidad de que la media de la muestra de tamaño 25 exceda
+a la media de la muestra de tamaño 36 en por lo menos 3.4 pero menos de
+5.9.</p>
+<p>1.5 Suponga que en el Ministerio de Trabajo se tiene registrado 20
+mil trabajadores de construcción civil (C) y 15 mil trabajadores mineros
+(M).</p>
+<p>El ingreso promedio mensual de los primeros es 900 soles con
+desviación estándar de 300 soles mientras que en el segundo, el ingreso
+promedio es de 1200 soles con un coeficiente de variación de 15%. El
+gobierno otorga un aumento general de 120 soles por costo de vida y 30
+por movilidad.</p>
+<p>Si luego del aumento se realiza un muestreo de 45 trabajadores de
+construcción civil y 64 mineros, ¿Cuál es la probabilidad de observar
+una diferencia de a lo más 350 soles entre las medias de ambas
+muestras?</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>DM para la diferencia de medias con Varianzas poblacionales
+desconocidas pero iguales</strong></li>
+</ol>
+<p>2.1 Según los registros históricos de ONER las bombillas fabricadas
+por la empresa PHIL, tiene una duración media de 6000 horas, mientras
+que las bombillas fabricadas por la empresa NATI tienen una duración de
+8000 horas.</p>
+<p>En una investigación de control de calidad de bombillas se encuentra
+que una muestra de 20 bombillas fabricadas por PHIL se encontró una
+desviación estándar de la vida útil de 1600 horas. Otra muestra
+aleatoria de 16 bombillas fabricada por la compañía NATI se encontró que
+la desviación estándar de la vida útil fue de 2600 horas.</p>
+<p>¿Cuál es la probabilidad de que el promedio de vida útil de las
+bombillas fabricadas por NATI no difiera en más de 800 horas del
+promedio de vida útil de las bombillas fabricadas por PHIL?</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><strong>DM para la diferencia de medias con Varianzas
+poblacionales conocidas</strong></p></li>
+<li><p><strong>Varianzas poblacionales desconocidas y
+diferentes</strong></p></li>
+</ol>
+</div>
+<div id="ejercicios-distribución-muestral-para-la-razón-de-varianzas"
+class="section level2">
+<h2>Ejercicios distribución muestral para la razón de varianzas</h2>
+<ol style="list-style-type: decimal">
+<li>Estudios anteriores plantearon que la heterogeneidad en el nivel
+alcanzado por el PBI en América Latina, medida a través de la
+variabilidad de esta variable al interior de la región latinoamericana,
+siempre ha existido; esto es, de un año a otro puede esperarse que
+exista una similar variabilidad en el nivel del PBI registrado por los
+países latinos.</li>
+</ol>
+<p>Partiéndose del PBI, expresado en millones de dólares, se obtuvieron
+los siguientes resultados: Que la desviación estándar del PBI registrado
+para el 2003 en una muestra de 16 países latinos fue de 67,803 mientras
+que para 2004 fue de 95,136.09.</p>
+<p>Cuál es la probabilidad de que exista una mayor variabilidad en el
+año 2004 respecto a 203? Plantee los supuestos necesarios e interpreta
+los resultados.</p>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

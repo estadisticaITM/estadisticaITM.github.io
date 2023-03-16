@@ -815,10 +815,10 @@ class="math display">\[ P \left (z \leq 1.19\right)- P \left ( z \leq
 <div id="distribuciones-muestrales-para-dos-muestras"
 class="section level1">
 <h1>Distribuciones muestrales para dos muestras</h1>
-<p><img src="imagen/difmed.png" width="408" style="display: block; margin: auto;" /></p>
 <div id="distribución-de-la-diferencia-de-medias-muestrales"
 class="section level2">
 <h2>Distribución de la diferencia de medias muestrales</h2>
+<p><img src="imagen/difmed.png" width="408" style="display: block; margin: auto;" /></p>
 </div>
 <div id="varianzas-poblacionales-conocidas" class="section level2">
 <h2>1. Varianzas poblacionales conocidas</h2>
@@ -828,34 +828,7 @@ class="section level2">
 <p>El estadístico es:</p>
 <p><span class="math display">\[Z=\frac{(\bar X - \bar
 Y)-(\mu_x-\mu_y)}{\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}}
-\longrightarrow N(0,1)\]</span></p>
-</div>
-<div id="varianzas-poblacionales-desconocidas-pero-iguales"
-class="section level2">
-<h2>2. Varianzas poblacionales desconocidas pero iguales</h2>
-<p>La condición de igualdad de varianzas debe comprobarse o
-afirmarse.</p>
-<p><span class="math display">\[\sigma^2_x=\sigma^2_y\]</span></p>
-<p>El estadístico es:</p>
-<p><span class="math display">\[T=\frac{(\bar X - \bar
-Y)-(\mu_x-\mu_y)}{S_p\sqrt{\frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}}}
-\]</span> Donde: <span
-class="math display">\[S^2_p=\frac{(n_x-1)S^2_x+(n_y-1)S^2_y}{n_x+n_y-2}\]</span></p>
-<p>Tiene una distribución t de student con <span
-class="math inline">\(n_x+n_y-2\)</span></p>
-</div>
-<div
-id="varianzas-poblacionales-desconocidas-con-tamaños-de-muestra-n_130-y-n_230"
-class="section level2">
-<h2>3. Varianzas poblacionales desconocidas con tamaños de muestra <span
-class="math inline">\(n_1&gt;30\)</span> y <span
-class="math inline">\(n_2&gt;30\)</span></h2>
-<p>El estadístico es:</p>
-<p><span class="math display">\[Z=\frac{(\bar X - \bar
-Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S_y}{n_y}}}
-\longrightarrow N(0,1)\]</span></p>
-<p><strong>Ejercicio diferencia de medias con Varianzas poblacionales
-conocidas</strong></p>
+\longrightarrow N(0,1)\]</span> <strong>Ejemplo</strong></p>
 <p>Los niveles de radiación latente en dos regiones A y B siguen
 distribuciones Normales independientes de medias 0.48 y 0.46 y varianzas
 0.2 y 0.01 rem por año, respectivamente. Se realizan 25 mediciones en la
@@ -865,7 +838,6 @@ región A y 100 en la B.</p>
 <table>
 <thead>
 <tr class="header">
-<th>Variable</th>
 <th>Regiones</th>
 <th>media</th>
 <th>var</th>
@@ -874,26 +846,172 @@ región A y 100 en la B.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td>X</td>
 <td>A</td>
 <td>0.48</td>
 <td>0.2</td>
 <td>25</td>
 </tr>
 <tr class="even">
-<td>Y</td>
 <td>B</td>
 <td>0.46</td>
 <td>0.01</td>
 <td>100</td>
 </tr>
+<tr class="odd">
+<td>A-B</td>
+<td>0.02</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <p>Obtener la probabilidad de que la media de la muestra A sea como
 máximo 0.2 rem superior a la media de la muestra B.</p>
-<p><span class="math display">\[P(\bar X \leq \bar Y+0.2) \]</span></p>
+<p><span class="math display">\[P(\bar X_A \leq \bar Y_B+0.2)
+\]</span></p>
 <p><span class="math display">\[P(\bar X - \bar Y \leq 0.2)
 \]</span></p>
+</div>
+<div id="varianzas-poblacionales-desconocidas-pero-iguales"
+class="section level2">
+<h2>2. Varianzas poblacionales desconocidas pero iguales</h2>
+<p>La condición de igualdad de varianzas debe comprobarse o
+afirmarse.</p>
+<p><span class="math display">\[\sigma^2_x=\sigma^2_y\]</span></p>
+<p><span class="math display">\[(\bar X - \bar Y) \sim t_{n_x,n_y,2}
+\]</span></p>
+<p><span class="math display">\[\mu= (\mu_x-\mu_y)\]</span> <span
+class="math display">\[var=S_p^2 \left (\frac{1}{n_x}+\frac{1}{n_y}
+\right )\]</span></p>
+<p>El estadístico es:</p>
+<p><span class="math display">\[T=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{S_p\sqrt{\frac{1}{n_x}+\frac{1}{n_y}}} \longrightarrow
+t_{(n_x,n_y,2)}\]</span> Donde: <span
+class="math display">\[S^2_p=\frac{(n_x-1)S^2_x+(n_y-1)S^2_y}{n_x+n_y-2}\]</span></p>
+<p>Tiene una distribución t de student con <span
+class="math inline">\(n_x+n_y-2\)</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se está realizando un estudio sobre la calidad del aire en dos zonas
+A y B. Un indicador de la calidad es el número de microgr de partículas
+en suspensión por <span class="math inline">\(m^3\)</span> de aire, que
+suponemos siguen distribuciones Normales independientes de media 62.237
+en A, 61.022 en B y varianzas iguales. En la zona A se realizan 12
+mediciones, obteniéndose una varianza de 8.44 microgr2 y en la B 15
+mediciones, con una varianza de 9.44 microgr2.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Zona</th>
+<th>media</th>
+<th>var</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>62.24</td>
+<td>8.44</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>61.02</td>
+<td>9.44</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>A-B</td>
+<td>1.22</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Obtener la probabilidad de que la media muestral de A sea como mínimo
+tres unidades superior a la media muestral de B.</p>
+<p><span class="math display">\[P(\bar X_A \geq3+\bar Y_b) \]</span></p>
+<pre class="r"><code>pt(1.53, 25, lower.tail = F)</code></pre>
+<pre><code>## [1] 0.06928652</code></pre>
+</div>
+<div
+id="varianzas-poblacionales-desconocidas-o-no-con-tamaños-de-muestra-n_130-y-n_230"
+class="section level2">
+<h2>3. Varianzas poblacionales desconocidas o no con tamaños de muestra
+<span class="math inline">\(n_1&gt;30\)</span> y <span
+class="math inline">\(n_2&gt;30\)</span></h2>
+<p><span class="math display">\[(\bar X - \bar Y) \sim N \left (
+(\mu_x-\mu_y), \frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}\right) \]</span> El
+estadístico es:</p>
+<p><span class="math display">\[Z=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}}}
+\longrightarrow N(0,1)\]</span></p>
+</div>
+<div id="varianzas-poblacionales-desconocidas-y-diferentes"
+class="section level2">
+<h2>4. Varianzas poblacionales desconocidas y diferentes</h2>
+<p>El estadístico es:</p>
+<p><span class="math display">\[T=\frac{(\bar X - \bar
+Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}}}
+\longrightarrow t_g\]</span> los grados de libertad están dados por:</p>
+<p><span
+class="math display">\[g=\frac{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{\left(\frac{s_1^2}{n_1}\right)^2}{n_1+1}+\frac{\left(\frac{s_2^2}{n_2}\right)^2}{n_2+1}}-2\]</span></p>
+</div>
+<div id="distribución-de-la-diferencia-de-proporciones-muestrales"
+class="section level2">
+<h2>Distribución de la diferencia de proporciones muestrales</h2>
+<p><img src="imagen/difprop.png" width="393" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[(P_X - P_Y) \sim N \left ( P_x-P_y,
+\frac{P_xq_x}{n_x}+\frac{P_yq_y}{n_y}\right) \]</span></p>
+<p>El estadístico es:</p>
+<p><span class="math display">\[Z=\frac{(\hat P_X -\hat P_y)-(P_x-P_y)}
+{\sqrt{\frac{P_xq_x}{n_x}+\frac{P_yq_y}{n_y}}} \longrightarrow
+N(0,1)\]</span> <strong>Ejemplo </strong></p>
+<p>Se sabe que en una población el 28% de las mujeres y el 25% de los
+hombres son fumadores. Se extraen muestras de 42 mujeres y 40 hombres.
+Determinar la probabilidad de que las mujeres fumadoras superen a los
+hombres fumadores en al menos el 4%.</p>
+<p><span class="math inline">\(p_M:\)</span> Proporción de mujeres
+fumadoras en la población 0.28</p>
+<p><span class="math inline">\(p_H:\)</span> Proporción de mujeres
+fumadoras en la población 0.25</p>
+<p><span class="math inline">\(\hat p_M:\)</span> Proporción de mujeres
+fumadoras en la muestra</p>
+<p><span class="math inline">\(\hat p_H\)</span>“Proporción de mujeres
+fumadoras en la muestra</p>
+<table>
+<thead>
+<tr class="header">
+<th>Genero</th>
+<th>P</th>
+<th>q</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mujer</td>
+<td>0.28</td>
+<td>0.72</td>
+<td>42</td>
+</tr>
+<tr class="even">
+<td>Hombre</td>
+<td>0.25</td>
+<td>0.75</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>Dif</td>
+<td>0.03</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>la pregunta es:</p>
+<p><span class="math display">\[P(\hat p_M \geq \hat p_H+0.04)\]</span>
+<span class="math display">\[P(\hat p_M -\hat p_H\geq 0.04)\]</span></p>
 </div>
 <div
 id="distribución-del-cociente-de-varianzas-muestrales-de-dos-poblaciones-normales-independientes"
@@ -903,11 +1021,11 @@ Normales independientes</h2>
 <p>El estadístico F, definido como:</p>
 <p><span
 class="math display">\[F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2}
-\longrightarrow F_{n_x-1,n_y-1}\]</span> <strong>Ejemplo</strong> Se
-está comparando la variabilidad de los índice de biodiversidad (I.B.D)
-de dos ríos A y B, que suponemos siguen distribuciones Normales. Se
-realizan 16 mediciones en el río A y se obtiene una varianza de 9.52, y
-18 mediciones en el río B y se obtiene una varianza de 7.</p>
+\longrightarrow F_{n_x-1,n_y-1}\]</span> <strong>Ejemplo</strong></p>
+<p>Se está comparando la variabilidad de los índice de biodiversidad
+(I.B.D) de dos ríos A y B, que suponemos siguen distribuciones Normales.
+Se realizan 16 mediciones en el río A y se obtiene una varianza de 9.52,
+y 18 mediciones en el río B y se obtiene una varianza de 7.</p>
 <p>X: “I.B-D en el río A</p>
 <p>Y: “I.B-D en el río B</p>
 <table>
@@ -942,228 +1060,6 @@ mínimo el doble de la varianza en el río A.</p>
 \frac{\sigma^2_Y}{\sigma^2_x}\geq 2 \right)\]</span> Estandarizando</p>
 <p><span class="math display">\[P \left (
 \frac{S^2_x\sigma^2_Y}{\sigma^2_Y}\geq 2\right )\]</span></p>
-</div>
-</div>
-<div id="taller" class="section level1">
-<h1>Taller</h1>
-<div id="ejercicios-teorema-central-del-límite" class="section level2">
-<h2>Ejercicios teorema central del límite</h2>
-<ol style="list-style-type: decimal">
-<li>La resistencia a la ruptura del vidrio templado promedia 14 (medida
-en miles de libras por pulgada cuadrada) y tiene una desviación estándar
-de 2.</li>
-</ol>
-<p>a ¿Cuál es la probabilidad de que el promedio de resistencia a la
-ruptura de 100 piezas seleccionadas aleatoriamente de este vidrio exceda
-de 14.5?</p>
-<p>b Encuentre un intervalo que incluya, con probabilidad 0.95, el
-promedio de resistencia a la ruptura de 100 piezas de este vidrio
-seleccionadas aleatoriamente.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Una antropóloga desea calcular el promedio de estatura de los
-hombres de cierta raza. Si se supone que la desviación estándar
-poblacional es de 2.5 pulgadas y si ella muestrea 100 hombres
-aleatoriamente,</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>encuentre la probabilidad de que la diferencia entre la media
-muestral y la verdadera media poblacional no exceda de 0.5 pulgada.
-Rta/0.9544</p></li>
-<li><p>Suponga que la antropóloga desea que la diferencia entre la media
-muestral y la mediapoblacional sea menor que 0.4 pulgada, con
-probabilidad de 0.95. ¿Cuántos hombres debe tomar como muestra para
-lograr este objetivo?</p></li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Trabajadores de una gran empresa de servicios tienen un salario
-promedio de 7% por hora con una desviación estándar de 0.5. La industria
-tiene 64 trabajadores de cierto grupo étnico que tienen un salario
-promedio de <span class="math inline">\(6.9\)</span> por hora. ¿Es
-razonable suponer que la tasa salarial del grupo étnico es equivalente a
-la de una muestra aleatoria de trabajadores tomada de los empleados en
-la industria militar? [Sugerencia: calcule la probabilidad de obtener
-una media muestral menor o igual que $6.9 por hora.Rta/0.0548]</p></li>
-<li><p>La acidez de los suelos se mide mediante una cantidad llamada pH,
-que varía de 0 (acidez alta) a 14 (alcalinidad alta). Un edafólogo desea
-calcular el promedio de pH para un campo de grandes dimensiones al
-seleccionar aleatoriamente n muestras de núcleos y medir el pH de cada
-muestra. Aun cuando la desviación estándar poblacional de mediciones de
-pH no se conoce, la experiencia del pasado indica que casi todos los
-suelos tienen un valor de pH de entre 5 y 8.</p></li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>Si el científico selecciona n = 40 muestras, encuentre la
-probabilidad aproximada de que la media muestral de las 40 mediciones de
-pH esté a 0.2 unidades del verdadero promedio de pH para el campo.
-[Sugerencia: vea el Ejercicio 1.17.]</p></li>
-<li><p>Suponga que al científico le gustaría que la media muestral
-estuviera a no más de 0.1 de la verdadera media con probabilidad 0.90.
-¿Cuántas muestras de núcleos debe tomar?</p></li>
-</ol>
-<p>6 Un aspecto importante de un plan económico federal era que los
-consumidores ahorraran una parte importante de dinero que recibieran por
-una reducción de impuestos sobre sus ingresos. Suponga que las primeras
-estimaciones de la parte del total de impuesto ahorrada, con base en una
-muestra aleatoria de 35 economistas, tuvo media de 26% y desviación
-estándar de 12%.</p>
-<p>a ¿Cuál es la probabilidad aproximada de que la estimación de la
-media muestral, basada en una muestra aleatoria de n = 35 economistas,
-se encuentre a no más de 1% de la media de la población de las
-estimaciones de todos los economistas?</p>
-<p>b ¿Es necesariamente verdadero que la media de la población de las
-estimaciones de todos los economistas sea igual al porcentaje de ahorro
-en impuestos que en realidad se logrará?</p>
-<ol start="7" style="list-style-type: decimal">
-<li><p>El tiempo necesario para el mantenimiento periódico de un
-automóvil u otra máquina tiene por lo general una distribución de
-probabilidad en forma de campana. Debido a que se presentarán algunos
-alargamientos en los tiempos de servicio, la distribución tiende a estar
-sesgada a la derecha. Suponga que el tiempo necesario para dar servicio
-a un automóvil que ha recorrido 5000 millas tiene una media de 1.4 horas
-y desviación estándar de 0.7 horas. Suponga también que el departamento
-de servicio planea atender a 50 automóviles por jornada de 8 horas y
-que, para hacerlo, puede dedicar un tiempo promedio máximo de sólo 1.6
-horas por automóvil. ¿Cuántos días tendrá que trabajar tiempo extra el
-departamento de servicio?</p></li>
-<li><p>Se ha encontrado que las mediciones de resistencia al corte en
-soldaduras por puntos tienen una desviación estándar de 10 libras por
-pulgada cuadrada (psi). Si se han de medir 100 soldaduras de prueba,
-¿cuál es la probabilidad aproximada de que la media muestral se
-encuentre a no más de 1 psi de la verdadera media poblacional?</p></li>
-</ol>
-<p>Si la desviación estándar de mediciones de resistencia al corte en
-soldaduras por puntos es 10 psi, ¿cuántas soldaduras de prueba deben
-muestrearse si deseamos que la media muestral se encuentre a no más de 1
-psi de la verdadera media con probabilidad aproximada de 0.99?</p>
-<ol start="9" style="list-style-type: decimal">
-<li>Los resistores que se han de usar en un circuito tienen un promedio
-de resistencia de 200 ohms y desviación estándar de 10 ohms. Suponga que
-25 de estos resistores se seleccionan aleatoriamente para usarse en un
-circuito. a ¿Cuál es la probabilidad de que la resistencia promedio para
-los 25 resistores esté entre 199 y 202 ohms?</li>
-</ol>
-<p>b Encuentre la probabilidad de que la resistencia total no exceda de
-5100 ohms.</p>
-<p>10 Concentraciones de monóxido de carbono de cierta hora en muestras
-de aire de una gran ciudad promedian 12 ppm (partes por millón) con
-desviación estándar de 9 partes por millón.</p>
-<p>a ¿Cree usted que las concentraciones de monóxido de carbono en las
-muestras de aire de esta ciudad están distribuidas normalmente? ¿Por qué
-sí o por qué no?</p>
-<p>b Encuentre la probabilidad de que la concentración promedio en 100
-muestras seleccionadas aleatoriamente exceda de 14 partes por
-millón.</p>
-</div>
-<div id="ejercicios-distribución-muestral-de-proporciones"
-class="section level2">
-<h2>Ejercicios distribución muestral de proporciones</h2>
-<ol style="list-style-type: decimal">
-<li>Un medicamento para malestar estomacal tiene la advertencia de que
-algunos usuarios pueden presentar una reacción adversa a él, más aún, se
-piensa que alrededor del 3% de los usuarios tienen tal reacción. Si una
-muestra aleatoria de 150 personas con malestar estomacal usa el
-medicamento, encuentre la probabilidad de que la proporción de la
-muestra de los usuarios que realmente presentan una reacción adversa,
-exceda el 4%.</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>Resolverlo mediante distribución binomial Rta/0.1685</p></li>
-<li><p>Resolverlo con la distribución muestral de proporciones</p></li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
-<li>Se sabe que la verdadera proporción de los componentes defectuosos
-fabricadas por una firma es de 4%, y encuentre la probabilidad de que
-una muestra aleatoria de tamaño 60 tenga:</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>Menos del 3% de los componentes defectuosos. 0.2327</p></li>
-<li><p>Más del 1% pero menos del 5% de partes defectuosas
-0.3290</p></li>
-</ol>
-</div>
-<div id="ejercicios-distribución-muestral-de-la-varianza"
-class="section level2">
-<h2>Ejercicios distribución muestral de la varianza</h2>
-<ol style="list-style-type: decimal">
-<li>Los transistores fabricados por una compañía tienen una duración
-media de 2000 horas con una desviación típica de 60 horas. Si se
-selecciona una muestra de 10 transistores al azar de una población
-normal, ¿Cuál será la probabilidad que la desviación estándar
-muestral:</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>No supere las 50 horas?</p></li>
-<li><p>Se encuentre entre 50 y 70 horas?</p></li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
-<li>En una determinada prueba se supone que las calificaciones se
-distribuyen normalmente con un promedio de 80 puntos y desviación
-estándar de 10 puntos. Si mañana se debe aplicar una prueba de aptitud a
-12 aspirantes:</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál sería la probabilidad de que la desviación estándar de las
-calificaciones se dichos aspirantes sea mayor que 15 puntos?</p></li>
-<li><p>¿Cuál debería ser el mínimo valor de la desviación estándar de
-las calificaciones de dichos aspirantes con una probabilidad de
-0.95?</p></li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li>Una máquina embotelladora puede regularse de tal manera que llene un
-promedio de  onzas por botella. Se ha observado que las onzas de
-contenido que vacía la máquina embotelladora tiene una distribución
-normal con  = 1 onzas.</li>
-</ol>
-<p>Supóngase que se selecciona una muestra aleatoria de 10 botellas y se
-mide el contenido de cada botella. Usando las 10 observaciones hallar
-los números b1 y b2 tales que <span class="math inline">\(P(b_1≤
-s^2≤b_2)=0.9\)</span></p>
-<p>(Sugerencia: Suponga que el 90% se encuentra en la parte central de
-la distribución a usar).</p>
-<ol start="4" style="list-style-type: decimal">
-<li>Viva air desea adquirir dispositivos electrónicos en el cual la
-varianza de las resistencias no debe exceder los 0.40 ohmios2. Para
-evitar la aceptación de remesas que no cumplen con esta especificación,
-el departamento de control de calidad toma una muestra aleatoria de 25
-componentes de cada remesa y mide la resistencia de cada uno.</li>
-</ol>
-<p>Si la varianza de la muestra es demasiado grande, el departamento
-rechaza el pedido. Se considera que una varianza muestral es demasiado
-grande si la probabilidad de que ocurra esto es superior a 0.02. Se
-acaba de seleccionar una muestra de una remesa y se obtiene s2 = 0.75.
-Debe aceptarse la remesa.</p>
-</div>
-<div id="ejercicios-distribución-muestral-de-la-diferencia-de-medias"
-class="section level2">
-<h2>Ejercicios distribución muestral de la diferencia de medias</h2>
-<ol style="list-style-type: decimal">
-<li><strong>Distribución de la diferencia de medias Varianzas
-poblacionales desconocidas. Muestras grandes</strong></li>
-</ol>
-<p>Se estudia el efecto de un vertido tóxico en un río,comparando el
-índice de biodiversidad I.B-D. antes y después del vertido. Los I.B-D.
-siguen distribuciones Normales. Antes del vertido se habían realizado 35
-pruebas y se obtuvo una media de 1.9 y una sd de 0.4. Después del
-vertido se realizan 40 pruebas y se obtiene una media de 1.7 y una sd de
-0.7.</p>
-<p>Obtener la probabilidad de que la media poblacional antes del vertido
-sea como máximo 0.5 unidades inferior a la media poblacional después del
-vertido.</p>
-<p><span class="math display">\[P(\bar X \leq \bar Y+0.5) \]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Ejercicio diferencia de medias con Varianzas poblacionales
-desconocidas pero iguales</strong></li>
-</ol>
-<p>Se está realizando un estudio sobre la calidad del aire en dos zonas
-A y B. Un indicador de la calidad es el número de microgr. de partículas
-en suspensión por m3 de aire, que suponemos siguen distribuciones
-Normales independientes de media 62.237 en A, 61.022 en B y varianzas
-iguales. En la zona A se realizan 12 mediciones, obteniéndose una
-varianza de 8.44 microgr2 y en la B 15 mediciones, con una varianza de
-9.44 microgr2.</p>
-<p>Obtener la probabilidad de que la media muestral de A sea como mínimo
-tres unidades superior a la media muestral de B.</p>
-<p><span class="math display">\[P(\bar X \geq \bar Y+3)\]</span></p>
 </div>
 </div>
 
