@@ -961,8 +961,8 @@ class="math display">\[g=\frac{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^
 class="section level2">
 <h2>Distribución de la diferencia de proporciones muestrales</h2>
 <p><img src="imagen/difprop.png" width="393" style="display: block; margin: auto;" /></p>
-<p><span class="math display">\[(P_X - P_Y) \sim N \left ( P_x-P_y,
-\frac{P_xq_x}{n_x}+\frac{P_yq_y}{n_y}\right) \]</span></p>
+<p><span class="math display">\[\hat P_X - \hat P_Y \sim N \left (
+P_x-P_y, \frac{P_xq_x}{n_x}+\frac{P_yq_y}{n_y}\right) \]</span></p>
 <p>El estadístico es:</p>
 <p><span class="math display">\[Z=\frac{(\hat P_X -\hat P_y)-(P_x-P_y)}
 {\sqrt{\frac{P_xq_x}{n_x}+\frac{P_yq_y}{n_y}}} \longrightarrow
@@ -1031,7 +1031,6 @@ y 18 mediciones en el río B y se obtiene una varianza de 7.</p>
 <table>
 <thead>
 <tr class="header">
-<th>Variable</th>
 <th>Rio</th>
 <th>var</th>
 <th>n</th>
@@ -1039,27 +1038,30 @@ y 18 mediciones en el río B y se obtiene una varianza de 7.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td>X</td>
 <td>A</td>
-<td>0.2</td>
+<td>9.52</td>
 <td>16</td>
 </tr>
 <tr class="even">
-<td>Y</td>
 <td>B</td>
-<td>0.01</td>
+<td>7</td>
 <td>18</td>
 </tr>
 </tbody>
 </table>
 <p>Obtener la probabilidad de que la varianza en el río B sea como
 mínimo el doble de la varianza en el río A.</p>
-<p><span class="math display">\[P(\sigma^2_Y\geq
-2\sigma^2_x)\]</span></p>
+<p><span class="math display">\[P(S^2_B\geq 2S^2_A)\]</span></p>
+<p><span class="math display">\[P\left ( \frac{S^2_B}{S^2_A}\geq 2
+\right)\]</span> Estandarizando</p>
 <p><span class="math display">\[P \left (
-\frac{\sigma^2_Y}{\sigma^2_x}\geq 2 \right)\]</span> Estandarizando</p>
-<p><span class="math display">\[P \left (
-\frac{S^2_x\sigma^2_Y}{\sigma^2_Y}\geq 2\right )\]</span></p>
+\frac{S^2_B\sigma^2_A}{S^2_A\sigma^2_B}\geq 2
+\frac{\sigma^2_A}{\sigma^2_B}\right )\]</span></p>
+<p><span class="math display">\[P \left ( F_{15,17}\geq 2
+*\frac{9.57}{7}\right )\]</span> <span class="math display">\[P \left (
+F_{15,17}\geq 2.73 \right )\]</span></p>
+<pre class="r"><code>pf(q=2.73, df1=15,df2=17, lower.tail=FALSE)</code></pre>
+<pre><code>## [1] 0.02471903</code></pre>
 </div>
 </div>
 
