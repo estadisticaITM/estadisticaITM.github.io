@@ -1,6 +1,12 @@
 ---
 title: "**Regresión lineal**"
-
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
 ---
 
 
@@ -12,9 +18,65 @@ knitr::opts_chunk$set(
 ```
 
 
+## **Gráfico de dispersión**
+
+Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.
+
+
+
+En el siguiente diagrama se ilustra la presión atmosférica en relación a la temperatura
+
+```{r pressure, echo = TRUE}
+plot(pressure)
+
+```
+
+
+
+
+En el siguiente diagrama se ilustra el ancho y el largo de la hoja en relación al tipo de planta.
+
+```{r}
+library(ggplot2)
+p <- ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species))
+
+p <- p + geom_point()
+p
+
+
+```
+
+
+ **Actividad**
+
+Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, identificando con colores diferentes  el tipo de tapa.
+
+|Hojas  |Peso|Tipo de tapa|
+|-------|----|------------|
+|885 |800 | dura |
+|1016|950 | dura |
+|1125|1050| dura |
+|239 |350 |dura  |
+|701 |750 |dura  |
+|641 |600 |dura  |
+|1228|1075|dura  |
+|412 |250 |blanda|
+|953 |700 |blanda|
+|929 |650 |blanda|
+|1492|975 |blanda|
+|419 |350 |blanda|
+|1010|950 |blanda|
+|595 |425 |blanda|
+|1034|725 |blanda|
+
+
+
+
+## **Regresión lineal simple**
+
+
 Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto. El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
 
-## Modelo de regresión lineal básico
 
 El modelo más simple de regresión corresponde a: 
 $$\Large y_i=\beta_0 +\beta_1 X_i+\varepsilon_i$$
@@ -40,7 +102,7 @@ $\Large \varepsilon_i$ Error aleatorio para la i-ésima observación\
 $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 
 
-## Objetivos de la regresión lineal
+ **Objetivos de la regresión lineal**
 
 - Construir un modelo que describa el efecto o relación entre una variable X sobre otra variable Y. 
 
@@ -50,7 +112,7 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 
 - Predecir futuros de la variable respuesta Y
 
-## Algunos ejemplos
+**Ejemplos**
 
 - Estudiar cómo influye la estatura del padre sobre la estatura del hijo. 
 
@@ -58,91 +120,9 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 
 - Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
 
-##Diagrama de dispersión
 
-Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos.
+## **Estimador de mínimos cuadrados**
 
-
-```{r pressure}
-plot(pressure)
-```
-
-
-
-#**Medidas de dependencia lineal**
-
-##**Covarianza**
-
-La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
-
-$$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
-- Si hay relación lineal positiva, la covarianza será positiva y grande.
-
-- Si hay relación lineal negativa, la covarianza será negativa y grande en valor absoluto.
-
-- Si no hay relación entre las variables la covarianza será próxima a cero.
-
-- La covarianza depende de las unidades de medida de las variables.
-
-## **Coeficiente de correlación**
-
-Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
-
-
-$$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
-{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$
-
-
-##Características del coeficiente de correlación
-
-- Rango entre -1 y 1
-
-- Valores cercanos a -1 la relación es fuertemente negativa.
-
-- Valores cercanos a 1 la relación es fuertemente positiva.
-
-- Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal
-
-
-```{r fig.asp=0.3, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("corre.png")
-grid.raster(IM)
-```
-
-
-##Prueba de significancia de la correlación 
-
-Podemos chequear la significancia de la correlación a través del siguiente juego de hipótesis.
-
-$$\Large H_0:  r=0$$
-$$\Large H_1:  r\not=0$$
-
-
-En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.
-
-
-## **Medida de bondad de ajuste R^2**
-
-Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
-Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:
-
-
-$$\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}$$
-Donde
-
-SSE: es la suma de cuadrados del error
-SST: suma de cuadrados totales
-
-## **Error de pronóstico medio MAPE**
-Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
-
-$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
-
-
-
-##**Estimador de mínimos cuadrados**
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
 $$\Large y_i=\beta_0+\beta_1x_i+\varepsilon_i$$
@@ -172,7 +152,7 @@ grid.raster(IM3)
 ```
 
 
-##**Residuales**
+### Residuales
 
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
 $$\Large e_i= y_i- \hat{y_i}$$
@@ -186,6 +166,92 @@ library(grid)
 IM4 <- readPNG("img4.png")
 grid.raster(IM4)
 ```
+
+## **Medidas de dependencia lineal**
+
+### Covarianza
+
+La covarianza indica el grado de variación conjunta de dos variables aleatorias respecto a sus medias
+
+$$\Large cov(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{(n-1)}$$
+- Si hay relación lineal positiva, la covarianza será positiva y grande.
+
+- Si hay relación lineal negativa, la covarianza será negativa y grande en valor absoluto.
+
+- Si no hay relación entre las variables la covarianza será próxima a cero.
+
+- La covarianza depende de las unidades de medida de las variables.
+
+### Coeficiente de correlación
+
+Indica la fuerza y la dirección de una relación lineal y proporcionalidad entre dos variables cuantitativas estadísticas.
+
+
+$$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2 }}$$
+
+
+**Características del coeficiente de correlación**
+
+- Rango entre -1 y 1
+
+- Valores cercanos a -1 la relación es fuertemente negativa.
+
+- Valores cercanos a 1 la relación es fuertemente positiva.
+
+- Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal
+
+
+```{r fig.asp=0.3, fig.align='right', echo=FALSE}
+library(png)
+library(grid)
+IM <- readPNG("corre.png")
+grid.raster(IM)
+```
+
+
+**Prueba de significancia de la correlación**
+
+Podemos chequear la significancia de la correlación a través del siguiente juego de hipótesis.
+
+$$\Large H_0:  r=0$$
+$$\Large H_1:  r\not=0$$
+
+
+En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.
+
+
+### Medida de bondad de ajuste $R^2$
+
+Mide la proporción de la variabilidad total observada en la respuesta que es explicada por la asociación lineal.
+Por ser una proporción, esta cantidad varía entre 0 y 1, siendo igual a 0 cuando todos los coeficientes de regresión ajustados son iguales a cero, y es igual a 1 si todas las observaciones caen sobre la superficie de regresión ajustada. Definido como:
+
+
+$$\Large R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n (y_i-\hat{y_i})^2}{\sum_{i=1}^n (y_i-\bar{y_i})^2}$$
+Donde
+
+SSE: es la suma de cuadrados del error
+
+
+SST: suma de cuadrados totales
+
+### Error de pronóstico medio MAPE
+
+Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
+
+$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
+
+
+**Significado de $\beta_0$ y $\beta_1$**
+
+- $\Large \beta_0$ es el intercepto
+
+- $\Large \beta_1$ es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta $\beta_1$ unidades
+
+
+
+## Cómo obtener un modelo de regresión lineal simple en la calculadora
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## **Test lineal general**
@@ -204,12 +270,14 @@ $$\Large \sigma^2=MSE$$
 Además
 $$\Large E(MSE)=\sigma$$
 
-###Suma total de cuadrados
+
+**Suma total de cuadrados**
 
 La medida de variación de y alrededor de la la media muestral $\bar{y}$ es:
 $$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
 
-## Suma cuadrática de regresión
+**Suma cuadrática de regresión**
+
 La diferencia entre la SST y la SSE se denota por:
 
 $$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$
@@ -227,7 +295,10 @@ SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tie
 
 SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.
 
-## Medias cuadráticas 
+
+
+**Medias cuadráticas**
+
 Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:
 
 $\Large MST=\frac{SST}{n-1}$: Cuadrado medio total
@@ -238,7 +309,7 @@ $\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
 
 
 
-##Tabla de resumen del análisis de varianza
+Tabla de resumen del análisis de varianza
 
 |Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
 |---------|------------------|-----------------|------------------|-----------|
@@ -247,13 +318,19 @@ $\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
 |Total    |n-1               |SST              |MST               |           |
 
 
-##Prueba de significancia de la regresión
+### Prueba de significancia de la regresión
 
 Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
 
-Hipótesis nula:   $\Large H_0: \beta_i=0$ el parámetro no es significativo
+Hipótesis nula:   
 
-Hipótesis alternativa:  $\Large H_1: \beta_i \not= 0$: el parámeto es significativo
+
+$\Large H_0: \beta_i=0$ el parámetro no es significativo
+
+
+Hipótesis alternativa:  
+
+$\Large H_1: \beta_i \not= 0$: el parámeto es significativo
 
 El estadístico de prueba corresponde a 
 
@@ -262,76 +339,13 @@ $$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
 
 
 
-## Significado de $\beta_0$ y $\beta_1$
-
-- $\Large \beta_0$ es el intercepto
-
-- $\Large \beta_1$ es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta $\beta_1$ unidades
-
-
-##Ejemplo
-Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros
-
-```{r echo = TRUE}
-head(cars)
-```
-
-En este caso ¿Cuál es la variable dependiente e independiente?
-
-## Diagrama de dispersión
-```{r echo=TRUE}
-plot(cars$speed,cars$dist)
-```
-
-
-## Modelo de regresión lineal
-
-Para este modelo el modelo de regresión lineal es
-
-$$\Large \hat{y}=-17.57+3.93x$$
-
-Donde 
-
-- X representa la velocidad en metros por segundo
-
-- y es la distancia de frenado en metros
-
-- Por cada unidad que aumenta la velocidad la distancia de frenado aumenta 3.93 unidades
-
-## Resultados del modelo en R
-
-```{r echo=TRUE}
-plot(cars$speed,cars$dist)
-cor.test(cars$speed,cars$dist)
-md=lm(cars$dist~cars$speed)
-summary(md)
-j=fitted(md)
-lines(cars$speed,j, col=2, lwd=2)
-```
-
-###anova del modelo
-
-```{r}
-md=lm(cars$dist~cars$speed)
-anova(md)
-```
-
-
-
-
-## Modelo de regresión lineal simple en la calculadora
-
-
-
-## Cómo obtener un modelo de regresión lineal simple en la calculadora
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
 ## **Análisis de residuales para la validación de los supuestos**
+
 A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
 
 
-###Normalidad en los residuales
+### Normalidad en los residuales
+
 Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:
 
 $H_o:$Los residuos son normales
@@ -339,10 +353,15 @@ $H_o:$Los residuos son normales
 $H_1:$Los residuos no son normales
 
 
-###Varianza constante
-Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. Si se observa una tendencia, estaríamos violando el supuesto de linealidad, y si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
+### Varianza constante
 
-###Otros diagnósticos
+Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. 
+
+- Si se observa una tendencia, estaríamos violando el supuesto de linealidad, 
+
+- si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
+
+**Otros diagnósticos**
 
 Además de la validación de supuestos debemos chequear la presencia de:
 
@@ -353,8 +372,10 @@ Además de la validación de supuestos debemos chequear la presencia de:
 
 Para detectar observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
 
-#### Tipos de residuales escalados
-#####Residuales estandarizados $d_i$
+## **Residuales escalados**
+
+### Residuales estandarizados $d_i$
+
 El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen
 media cero y varianza aproximada de 1:
 
@@ -363,13 +384,65 @@ $$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}$$
 
 Un $d_i$ grande $(|di| > 3)$ es indicio de una observación atípica potencial.
 
-##### Residuales estudentizados $r_i$
-Si estandarizamos un residual usando su varianza exacta,obtenemos un residual estudentizado
+### Residuales estudentizados $r_i$
+Si estandarizamos un residual usando su varianza exacta, obtenemos un residual estudentizado
 
 $$\large r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
 Donde $h_{ii}$ es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.
 
 Se considera potencialmente atÍpica aquella observaci´on con $r_i$ grande $(|ri| > 3)$
+
+
+**Ejemplo**
+
+Los siguientes datos proveen las velocidades en metros por segundo y las distancias necesarias para frenar en metros
+
+```{r echo = TRUE}
+head(cars)
+```
+
+En este caso ¿Cuál es la variable dependiente e independiente?
+
+
+
+```{r echo=TRUE}
+plot(cars$speed,cars$dist)
+```
+
+Para este modelo el modelo de regresión lineal simple es:
+
+$$\Large \hat{y}=-17.57+3.93x$$
+Donde 
+
+- X representa la velocidad en metros por segundo
+
+- y es la distancia de frenado en metros
+
+- Por cada unidad que aumenta la velocidad la distancia de frenado aumenta 3.93 unidades
+
+**Resultados del modelo en R**
+
+```{r echo=TRUE}
+plot(cars$speed,cars$dist)
+cor.test(cars$speed,cars$dist)
+md=lm(cars$dist~cars$speed)
+summary(md)
+j=fitted(md)
+lines(cars$speed,j, col=2, lwd=2)
+```
+
+**anova del modelo**
+
+```{r}
+md=lm(cars$dist~cars$speed)
+anova(md)
+```
+
+
+
+**Análisis de residuales**
+
+
 ```{r }
 md=lm(cars$dist~cars$speed)
 rr=residuals(md)
@@ -380,123 +453,32 @@ shapiro.test(rr)
 
 
 
-### **Transformaciones**
+## **Transformaciones**
 
-En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras. 
+En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras, como por ejemplo el logaritmo de la variable respuesta.
 
-Se debe tener cuidado cuando se transforma la variable respuesta,ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
+Se debe tener cuidado cuando se transforma la variable respuesta, ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
 
 Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna transformación resulta útil y/o interpretable, existe otra alternativa, los llamados modelos lineales generalizados con los cuales se pueden modelar respuestas que no se distribuyen normales; sin embargo, tales modelos están más allá del alcance de este curso.
 
 
 
-##Regresión lineal múltiple
+## **Regresión lineal múltiple**
 
-Considere el caso en el cual se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, formuladas simultáneamente en un único modelo. Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
+Se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, cuantitativas y cualitatiivas, formuladas simultáneamente en un único modelo. 
+
+Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
 
 $$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$
 
 
-###**Regresión lineal con efectos de interacción**
 
 
-Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
-
-Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo
-corresponde a:
-
-$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
-
- El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el
-modelo como:
-
-$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
-
-## Tipos de variables y de efectos en los modelos
-
-Las variables predictoras pueden ser:
-
- Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).
-
- Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
+## **Regresión lineal con variables indicadoras**
 
 
 
 
-## **Procedimientos de reducción de variables mediante selección automática**
-Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
-
-- **Forward o selección hacia delante**
-Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.
-
-- **Backward o selección hacia atrás**
-El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.
-
-- **Stepwise, una combinación de los dos anteriores**
-La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
-
-###**Regresión lineal con variables continuas**
-
-#### Ejemplo en R
-
-Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
-
-
-HT = altura en pies
-
-DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
-
-D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
-
-VOL = volumen de madera obtenida (en pies cúbicos).
-
-El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
-
-```{r}
-DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
-D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
-HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
-VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
-bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
-plot(bosque)
-###correlaciones entre variables
-#install.packages(ppcor)
-library(ppcor)
-pcor(bosque)
-```
-
-
-El modelo inicial ajustado corresponde a:
-
-
-
-```{r}
-m1=lm(VOL~D16+HT+DBH)
-summary(m1)
-anova(m1)
-```
-
-Al quitar la variable no significativa del modelo queda: 
-
-
-```{r}
-m1=lm(VOL~D16+HT)
-summary(m1)
-par(mfrow=c(2,2))
-plot(m1)
-```
-el modelo ajustado corresponde a:
-
-$$\hat y=-105.9027+7.41D16+0.67HT$$
-
-Al evaluar la significancia de los parámetros del modelo se tiene:
-
-```{r}
-anova(m1)
-```
-
-
-###**Regresión lineal con variables indicadoras**
 Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:
 
 
@@ -543,17 +525,17 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eG5tI6aYgos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-##**Casos de regresión lineal con variables indicadoras**
+**Casos de regresión lineal con variables indicadoras**
 
 Se desea modelar por regresión lineal la relación de una variable respuesta
 cuantitativa $Y$ vs. $X_1$, siendo $X_1$ cuantitativa, en presencia de una variable categórica $X_2$. Es decir, se quiere determinar si la relación lineal entre $Y$ vs. $X_1$ depende de la variable categórica $X_2$. Asumiendo que $X_2$ es observada en c categorías.
 
 
-
-
 Podemos considerar las dos siguientes situaciones:
 
-###Caso 1 Intercepto y pendiente diferente
+
+
+### Caso 1 Intercepto y pendiente diferente
 
 El efecto promedio de $X_1$ sobre la respuesta $Y$ cambia según la categoría en que $X_2$ sea observada, para lo cual es necesario considerar la interacción entre $X_1$ y $X_2$ en el modelo de regresión, y sólo utilizamos c−1 de las posibles variables indicadoras de las categorías de la variable $X_2$, quedando el modelo:
 
@@ -563,18 +545,27 @@ Observe que la ecuación anterior define c rectas de regresión simple de Y vs $
 
 
 - Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
-$$\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1}X_1)+\varepsilon$$
-- Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
-$$\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2}X_1)+\varepsilon$$
-- Finalmente, si $I_1 = I_2 = · · · I_{c−1} = 0$, necesariamente, la indicadora $I_c$ no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente
-cero, obtenemos la recta de regresión de Y vs. $X_1$, en la categoría c de la variable categórica X2, de la forma:
-     $$\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i$$
+$$\large Y=(\beta_0 +\beta_2)+(\beta_1+\beta_{1,1})X_1+\varepsilon$$
 
-###caso 2 Intercepto aleatorio
+- Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
+$$\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2})X_1+\varepsilon$$
+
+- Finalmente, si $I_1 = I_2 = · · · I_{c−1} = 0$, necesariamente, la indicadora $I_c$ no incluida en el modelo, debe ser igual a 1, así, cuando todas la indicadoras del modelo son simultáneamente cero, obtenemos la recta de regresión de Y vs. $X_1$, en la categoría c de la variable categórica X2, de la forma:
+
+$$\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i$$
+     
+
+###   Caso 2 Intercepto aleatorio
+
+
+
 El efecto promedio de $X_1$ sobre la respuesta Y es el mismo en todas las categorías de $X_2$ pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:
 
 
 $$\large Y=\beta_0 +\beta_1X_1+\beta_2I_2+\beta_3I_3+ ...\beta_cI_{c−1}+\varepsilon_i$$
+
+
+
 donde el efecto promedio de $X_1$ sobre la respuesta es el mismo sin importar la categoría en que sea observada $X_2$, sin embargo la media de Y no es la misma en todas las categorías, dado que las c ecuaciones resultantes, serían las de c rectas paralelas, que pueden diferir en el intercepto,
 
 - Si $I_1=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
@@ -582,11 +573,13 @@ $$\large Y=(\beta_0+\beta_2)+\beta_1X_1+\varepsilon_i$$
 
 - Si $I_2=1$, entonces el resto de indicadoras son iguales a cero y obtenemos,
 $$\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon$$
+
+
 - Cuando  $I_1 = I_2 = · · · I_{c−1} = 0$, es decir, $I_c$ = 1, tenemos
 
 $$\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i$$
 
-##Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:
+**Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:**
 
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
@@ -824,3 +817,103 @@ miscoeficientes(m1,bosque)
 ```
 
 Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
+
+### Regresión lineal con efectos de interacción
+
+
+Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
+
+Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo
+corresponde a:
+
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
+
+ El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el
+modelo como:
+
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
+
+## Tipos de variables y de efectos en los modelos
+
+Las variables predictoras pueden ser:
+
+ Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).
+
+ Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
+
+
+
+
+## **Procedimientos de reducción de variables mediante selección automática**
+Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
+
+- **Forward o selección hacia delante**
+Agrega variables, una por vez, buscando reducir en forma significativa la suma de cuadrados de los errores.
+
+- **Backward o selección hacia atrás**
+El método backward, parte del modelo con todas las variables y elimina secuencialmente de a una variable, buscando reducir el SSE.
+
+- **Stepwise, una combinación de los dos anteriores**
+La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
+
+## **Regresión lineal con variables continuas**
+
+#### Ejemplo en R
+
+Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
+
+
+HT = altura en pies
+
+DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+
+D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+
+VOL = volumen de madera obtenida (en pies cúbicos).
+
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
+
+```{r}
+DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+plot(bosque)
+###correlaciones entre variables
+#install.packages(ppcor)
+library(ppcor)
+pcor(bosque)
+```
+
+
+El modelo inicial ajustado corresponde a:
+
+
+
+```{r}
+m1=lm(VOL~D16+HT+DBH)
+summary(m1)
+anova(m1)
+```
+
+Al quitar la variable no significativa del modelo queda: 
+
+
+```{r}
+m1=lm(VOL~D16+HT)
+summary(m1)
+par(mfrow=c(2,2))
+plot(m1)
+```
+el modelo ajustado corresponde a:
+
+$$\hat y=-105.9027+7.41D16+0.67HT$$
+
+Al evaluar la significancia de los parámetros del modelo se tiene:
+
+```{r}
+anova(m1)
+```
+
+

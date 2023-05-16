@@ -199,7 +199,13 @@ Calcule la probabilidad de que el tiempo hasta la próxima falla sea al menos de
 $$P(t>1.5)=1-p(t\leq 1.5)=0.95$$
 $$P(t>1.5)=1-F(1.5)=0.95$$
 $$P(t>1.5)=1-(1-e^{-3*1.5})=e^{-4.5}$$
+
+
+
 ## Propiedad de pérdida de memoria de la distribución exponencial
+
+
+
 
 En el análisis del comportamiento de las líneas de Espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30. 
 
