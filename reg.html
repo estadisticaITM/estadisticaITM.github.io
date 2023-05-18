@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -591,28 +673,27 @@ class="section level2">
 <h2>Regresión lineal múltiple</h2>
 <p>Considere el caso en el cual se desea modelar la variabilidad total
 de una variable respuesta de interés, en función de relaciones lineales
-con dos o más variables predictoras, formuladas simultáneamente en un
-único modelo. Suponemos en principio que las variables predictoras
-guardan poca asociación lineal entre sí, es decir, cada variable
-predictora aporta información independiente de las demás predictoras
-presentes en el modelo (hasta cierto grado, la información aportada por
-cada una no es redundante). La ecuación del modelo de regresión en este
-caso es:</p>
+con dos o más variables predictoras, cuantitativas o cualitativas,
+formuladas simultáneamente en un único modelo. Suponemos en principio
+que las variables predictoras guardan poca asociación lineal entre sí,
+es decir, cada variable predictora aporta información independiente de
+las demás predictoras presentes en el modelo (hasta cierto grado, la
+información aportada por cada una no es redundante). La ecuación del
+modelo de regresión en este caso es:</p>
 <p><span class="math display">\[\Large
 y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
 </div>
 <div id="tipos-de-variables-y-de-efectos-en-los-modelos"
 class="section level2">
 <h2>Tipos de variables y de efectos en los modelos</h2>
-<p>Las variables predictoras pueden ser:  Cuantitativas, caso en el
-cual se supone se miden sin error (o el error es despreciable).</p>
-<p> Cualitativas o categóricas, en este caso su manejo en el modelo se
-realiza a través de la definición de variables indicadoras, las cuales
-toman valores de 0 ó 1.</p>
-<p>Por ejemplo, suponga que en un modelo de regresión para el gasto
-mensual por familia en actividades recreativas, se tiene entre las
-variables predictoras el estrato socioeconómico, definido en cinco
-niveles, luego, para cada nivel se define una variable indicadora.</p>
+<p>Las variables predictoras pueden ser:</p>
+<ul>
+<li><p>Cuantitativas, caso en el cual se supone se miden sin error (o el
+error es despreciable).</p></li>
+<li><p>Cualitativas o categóricas, en este caso su manejo en el modelo
+se realiza a través de la definición de variables indicadoras, las
+cuales toman valores de 0 ó 1.</p></li>
+</ul>
 <p>Por ejemplo, suponga que en un modelo de regresión para el gasto
 mensual por familia en actividades recreativas, se tiene entre las
 variables predictoras el estrato socioeconómico, definido en cinco
@@ -656,8 +737,7 @@ ejemplo anterior basta definir las primeras cuatro indicadoras.</p>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5
 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)</code></pre>
-<pre><code>## Grouped Data: circumference ~ age | Tree
-##   Tree  age circumference
+<pre><code>##   Tree  age circumference
 ## 1    1  118            30
 ## 2    1  484            58
 ## 3    1  664            87
@@ -762,6 +842,8 @@ y_i=9.14+0.1x_{i}\]</span> Arbol 5: <span class="math display">\[\Large
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -794,6 +876,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

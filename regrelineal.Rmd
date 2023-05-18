@@ -121,7 +121,7 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 - Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
 
 
-## **Estimador de mínimos cuadrados**
+### Estimador de mínimos cuadrados
 
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
@@ -250,7 +250,8 @@ $$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
 
 
-## Cómo obtener un modelo de regresión lineal simple en la calculadora
+ **Cómo obtener un modelo de regresión lineal simple en la calculadora**
+ 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
@@ -359,7 +360,12 @@ Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los 
 
 - Si se observa una tendencia, estaríamos violando el supuesto de linealidad, 
 
-- si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homocedasticidad de varianzas.
+- Si se observa una nube de puntos en forma de embudo, podemos tener problemas con el supuesto de homogeneidad de varianzas, también conocido como supuesto de homocedasticidad.
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/residuals.png")
+```
+
 
 **Otros diagnósticos**
 
@@ -369,8 +375,9 @@ Además de la validación de supuestos debemos chequear la presencia de:
 - Puntos de balanceo
 - Observaciones influyentes
 
+Que corresponden a observaciones alejadas del resto de la muestra, que afectan los coeficientes de regresión estimados $\beta_0, \beta_1$, y las medidas de bondad de ajuste como o sı el $R^2$.
 
-Para detectar observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
+Para detectar estas observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
 
 ## **Residuales escalados**
 
@@ -390,8 +397,29 @@ Si estandarizamos un residual usando su varianza exacta, obtenemos un residual e
 $$\large r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
 Donde $h_{ii}$ es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.
 
-Se considera potencialmente atÍpica aquella observaci´on con $r_i$ grande $(|ri| > 3)$
+Se considera potencialmente atípica aquella observación con $r_i$ grande $(|ri| > 3)$
 
+
+
+_____________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+**En R**
+
+Sea *modelo* un objeto de regresión del tipo lm(), las medidas de observaciones influenciales y de balanceo pueden obtenerse mediante la siguiente función:
+
+influence.measures(modelo)
+
+
+
+Los residuales estandarizados y los estudentizados pueden obtenerse, respectivamente,mediante las funciones:
+
+
+rstandard(modelo)
+
+rstudent(modelo)
+
+________________________________________________________________________________________
 
 **Ejemplo**
 
@@ -423,12 +451,14 @@ Donde
 **Resultados del modelo en R**
 
 ```{r echo=TRUE}
+
 plot(cars$speed,cars$dist)
 cor.test(cars$speed,cars$dist)
 md=lm(cars$dist~cars$speed)
 summary(md)
 j=fitted(md)
-lines(cars$speed,j, col=2, lwd=2)
+plot(cars$speed,j, col=2, lwd=2)
+
 ```
 
 **anova del modelo**
@@ -436,6 +466,12 @@ lines(cars$speed,j, col=2, lwd=2)
 ```{r}
 md=lm(cars$dist~cars$speed)
 anova(md)
+
+influence.measures(md)
+rstandard(md)
+rstudent(md)
+
+
 ```
 
 
@@ -455,7 +491,22 @@ shapiro.test(rr)
 
 ## **Transformaciones**
 
-En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras, como por ejemplo el logaritmo de la variable respuesta.
+En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras, como por ejemplo:
+
+
+Modelo 1:
+$$log(Y_i)=\beta_0*+\beta_1 X_i+\varepsilon_i*$$
+Modelo 2:
+$$log(Y_i)=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
+Modelo 2:
+$$log(Y_i)=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
+Modelo 3:
+$$Y_i=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
+Modelo 4:
+$$log(Y_i)=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$$
+Modelo 5:
+$$log(Y_i)=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$$
+el logaritmo de la variable respuesta.
 
 Se debe tener cuidado cuando se transforma la variable respuesta, ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
 
@@ -467,17 +518,38 @@ Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna tr
 
 Se desea modelar la variabilidad total de una variable respuesta de interés, en función de relaciones lineales con dos o más variables predictoras, cuantitativas y cualitatiivas, formuladas simultáneamente en un único modelo. 
 
+Las variables predictoras pueden ser:
+
+- Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).
+
+- Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
+
+
 Suponemos en principio que las variables predictoras guardan poca asociación lineal entre sí, es decir, cada variable predictora aporta información independiente de las demás predictoras presentes en el modelo (hasta cierto grado, la información aportada por cada una no es redundante). La ecuación del modelo de regresión en este caso es:
 
 $$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$
 
 
+## **Regresión lineal con efectos de interacción**
+
+
+Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
+
+Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo corresponde a:
+
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
+
+
+El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el modelo como:
+
+$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
+
+
+
+
 
 
 ## **Regresión lineal con variables indicadoras**
-
-
-
 
 Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:
 
@@ -579,7 +651,7 @@ $$\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon$$
 
 $$\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i$$
 
-**Ejemplo modelo de regresión de intercepto aleatorio conservando la misma pendiente:**
+**Ejemplo 1 modelo de regresión de intercepto aleatorio conservando la misma pendiente:**
 
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
@@ -588,13 +660,7 @@ La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arb
 head (Orange)
 ```
 
-El diagrama de dispersión simple es:
-
-```{r echo = TRUE}
-plot(Orange$age,Orange$circumference,lwd=3)
-```
-
-El modelo de regresión lineal simple corresponde a:
+El ajuste del modelo de regresión lineal simple corresponde a:
 
 ```{r echo = TRUE}
 model=lm(Orange$circumference~Orange$age)
@@ -604,10 +670,13 @@ summary(model)
 La ecuación del modelo de regresión general es:
 
 $$\Large \hat y_i=17.4+0.1x_{i}$$
-Donde $y_i$ es la varaible respuesta
+Donde 
+
+$y_i$ es la variable respuesta
+
 $x_i$ es la edad del árbol, por cada unidad que aumente en edad el árbol, el diametro de la circunferencia aumenta 0.1.
 
-La linea de regresión ajustada corresponde a
+El diagrama de dispersión con la linea de regresión ajustada corresponde a:
 
 ```{r echo = TRUE}
 model=lm(Orange$circumference~Orange$age)
@@ -617,23 +686,15 @@ lines(Orange$age,yest,col=2)
 abline(coef(model))
 ```
 
-## Significado de la pendiente y el intercepto
+**Significado de los parámetros estimados**
 
 El intercepto es la respuesta media observada en el crecimiento de los arboles.
 
 La  péndiente indica que por cada mes que pasa la circunferencia del arbol aumenta 0.1 unidades
 
 
-El diagrama de dispersión discriminando por los niveles de la variables factor es:
 
-```{r echo = TRUE}
-plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
-abline(a=17.4,b=0.1,col=1,lwd=3)
-abline(a=57.33,b=0.1,col=2,lwd=3)
-abline(a=19.92,b=0.1,col=3,lwd=3)
-abline(a=9.14,b=0.1,col=4,lwd=3)
-abline(a=12.71,b=0.1,col=5,lwd=3)
-```
+**Modelo de regresión lineal incluyendo un factor**
 
 El modelo de regresión lineal con factores corresponde a 
 ```{r echo = TRUE}
@@ -660,15 +721,25 @@ Arbol 2:
 Arbol 3:
      $$\Large \hat y_i=19.92+0.1x_{i}$$
 
-
 Arbol 4:
           $$\Large \hat y_i=9.14+0.1x_{i}$$
-          
-     
-     
+
 Arbol 5:
      $$\Large \hat y_i=12.71+0.1x_{i}$$
      
+     
+     
+El diagrama de dispersión discriminando por los niveles de la variables factor es:
+
+```{r echo = TRUE}
+plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
+abline(a=17.4,b=0.1,col=1,lwd=3)
+abline(a=57.33,b=0.1,col=2,lwd=3)
+abline(a=19.92,b=0.1,col=3,lwd=3)
+abline(a=9.14,b=0.1,col=4,lwd=3)
+abline(a=12.71,b=0.1,col=5,lwd=3)
+```
+
      
 Con base en la tabla ANOVA, y bajo los supuestos de los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:
 
@@ -679,15 +750,15 @@ $H_1=Algún\ \beta_k \not=0$ Existe una relación de regresión significativa co
 
 Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.
 
-
-
-
 ```{r}
 model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
 anova(model)
 ```
 
-### Otro ejemplo Considerando pendiente e intercepto diferentes
+
+**Ejemplo 2 con pendiente e intercepto diferentes**
+
+Se tienen los datos de las ventas y publicidad invertidos en cada una de las secciones
 
 
 ```{r}
@@ -714,7 +785,7 @@ abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)
 ```
 
-###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO
+**MODELO CON INTERCEPTO diferente**
 
 
 ```{r}
@@ -729,122 +800,9 @@ legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
 
 
 
+## **Regresión lineal con variables continuas**
 
-
-###**COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD**
-
-Considere el MRLM 
-
-$$\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i$$
-
-Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de $\beta_j$􀟚􀯝 refleja las unidades de la variable $X_j$.
-
-Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.
-
-**Escalonamiento normal unitario**
-  
-  Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
-  
-  $$\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
-  
-  
-  
-  $$\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
-  
-Ajustamos el modelo de regresión sin intercepto
-$$\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
-Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
-
-NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.
-
-DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.
-
-Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.
-
-
-##Ejemplo retomando el ejemplo de los arboles
-
-Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
-
-
-HT = altura en pies
-
-DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
-
-D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
-
-VOL = volumen de madera obtenida (en pies cúbicos).
-
-El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
-
-```{r}
-
-library(car)
-#library(rgl)
-library(perturbR)
-library(leaps)
-library(scatterplot3d)
-
-
-DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
-
-D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
-
-HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
-
-VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
-
-bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
-
-##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
-miscoeficientes=function(modeloreg,datosreg){
-  coefi=coef(modeloreg)
-  datos2=as.data.frame(scale(datosreg))
-  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
-  limites=confint(modeloreg,level=0.95)
-  vifs=c(0,vif(modeloreg))
-  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
-  cat("Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados","\n")
-  resul
-}
-
-
-m1=lm(VOL~D16+HT+DBH)
-
-summary(m1)
-miscoeficientes(m1,bosque)
-
-```
-
-Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
-
-### Regresión lineal con efectos de interacción
-
-
-Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
-
-Por ejemplo, suponga un modelo de regresión con las variables predictoras$X_1$ y $X_2$, que incluye tanto los efectos principales como el de interacción de estas dos variables. Este modelo
-corresponde a:
-
-$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{1}X_2+\varepsilon_i$$
-
- El término de interacción es representado por $\beta_3X_{1}X_2$. Para expresar el anterior modelo en términos del modelo lineal general, definimos simplemente $X_3=X_{1}X_2$ y rescribimos el
-modelo como:
-
-$$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
-
-## Tipos de variables y de efectos en los modelos
-
-Las variables predictoras pueden ser:
-
- Cuantitativas, caso en el cual se supone se miden sin error (o el error es despreciable).
-
- Cualitativas o categóricas, en este caso su manejo en el modelo se realiza a través de la definición de variables  indicadoras, las cuales toman valores de 0 ó 1. 
-
-
-
-
-## **Procedimientos de reducción de variables mediante selección automática**
+### Procedimientos para la selección de variables significativas**
 Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:
 
 - **Forward o selección hacia delante**
@@ -856,9 +814,7 @@ El método backward, parte del modelo con todas las variables y elimina secuenci
 - **Stepwise, una combinación de los dos anteriores**
 La variable que se elimina en cada paso, es aquella que no resulta significativa en presencia de las demás variables del modelo de regresión que se tiene en ese momento. El algoritmo se detiene cuando todas las variables que aún permanecen en el modelo son significativas en presencia de las demás.
 
-## **Regresión lineal con variables continuas**
-
-#### Ejemplo en R
+**Ejemplo**
 
 Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
 
@@ -912,8 +868,70 @@ $$\hat y=-105.9027+7.41D16+0.67HT$$
 
 Al evaluar la significancia de los parámetros del modelo se tiene:
 
+
 ```{r}
+
+library(car)
+#library(rgl)
+library(perturbR)
+library(leaps)
+library(scatterplot3d)
+
 anova(m1)
+##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
+miscoeficientes=function(modeloreg,datosreg){
+  coefi=coef(modeloreg)
+  datos2=as.data.frame(scale(datosreg))
+  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
+  limites=confint(modeloreg,level=0.95)
+  vifs=c(0,vif(modeloreg))
+  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
+  cat("Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados","\n")
+  resul
+}
+
+
+m1=lm(VOL~D16+HT+DBH)
+
+summary(m1)
+miscoeficientes(m1,bosque)
+
 ```
+
+Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
+
+
+###**COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD**
+
+Considere el MRLM 
+
+$$\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i$$
+
+Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de $\beta_j$􀟚􀯝 refleja las unidades de la variable $X_j$.
+
+Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.
+
+**Escalonamiento normal unitario**
+  
+  Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
+  
+  $$\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
+  
+  
+  
+  $$\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
+  
+Ajustamos el modelo de regresión sin intercepto
+$$\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
+Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
+
+NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.
+
+DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.
+
+Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.
+
+
+
 
 
