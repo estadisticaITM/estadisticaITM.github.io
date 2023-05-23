@@ -487,7 +487,71 @@ plot(md)
 shapiro.test(rr)
 ```
 
+## **Test de carencia de ajuste**
 
+Sirve para Verificar si el modelo lineal ajusta adecuadamente a los datos. El test asume que los valores de Y dado X son:
+
+- Independientes,   
+- Se distribuyen en forma normal
+- Tienen varianza constante
+
+Esta prueba *requiere que en uno o más valores de X haya más de una observación de Y*. Los ensayos repetidos de manera independiente para el mismo nivel de la variable predictora son denominados replicaciones.
+
+Para explicar en qué consiste esta prueba, es necesario modificar la notación usada de la siguiente manera, asumiendo que tenemos réplicas de la respuesta en un valor o nivel dado de X:
+
+$Y_{ij}$ La respuesta i-ésima en el j –ésimo nivel de X.
+
+$X_j$ El j-ésimo nivel de valores de X, supondremos j=1, 2,…, k
+
+$n_j$ Número de observaciones de Y tomadas en el j-esimo nivel de X.
+
+
+Se define primero un modelo lineal general (**modelo completo**) que corresponde a
+
+$$ Y_{ij}=\mu_j+\varepsilon_{ij}$$ 
+
+donde $\mu_j=E(y_{ij})$, es decir, es la media de la variable respuesta en el j-ésimo nivel de X.
+
+Para el anterior modelo, los estimadores de máxima verosimilitud corresponden a $\hat \mu=\bar Y_j$, es decir, la media muestral de Y en el nivel j de X. Esta cantidad también corresponde al valor predicho para Y en el nivel j de X. Por tanto, la suma de cuadrados del error del modelo general o **suma de cuadrados del error puro** cuyos grados de libertad son n-k, es dada por:
+
+$$SSPE=\sum_{j=1}^k\sum_{i=1}^{n_j}({Y_{ij}-\bar Y_j})^2$$
+Se define ahora el **modelo lineal reducido** para la hipótesis nula de la prueba, el cual, para el caso de la regresión lineal es $E(Y|X)=\beta_0+\beta_1 X$ luego la prueba formula que:
+
+$$H_0=E(Y|X)=\beta_0+\beta_1 X $$
+$$H_1=E(Y|X)\neq \beta_0+\beta_1 X $$
+
+
+La suma de cuadrados del error:
+
+$$SSE:\sum_{i=1}^{n}\sum_{j=1}^{k}(y_{ij}-\hat{y_j})^2$$
+se puede descomponer en:
+
+$$SSE=SSPE+SSLOF$$
+
+suma de cuadrados del error=suma de cuadrados del error puro + suma de cuadrados de carencia de ajuste 
+
+$$SSLOF=SSE-SSPE$$
+
+El estadístico de prueba es:
+
+$$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}$$
+
+En la tabla ANOVA puede presentarse el test de carencia de ajuste descomponiendo el SSE del modelo:
+
+
+|Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
+|-------------------|------------------|-----------------|------------------|-----------|
+|Regresión          |1                 |SSR              |MSR               |Fc         |
+|Error              |n-2               |SSE              |MSE               |           |
+|carencia de ajuste |k-2               |SSLOF            |MSLOF             | FO        |
+|Error puro         |n-k               |SSPE             |                  |           |
+|Total              |n-1               |SST              |                  |           |
+
+
+
+En general, la prueba de carencia de ajuste puede aplicarse a otras funciones de regresión, sólo se requiere modificar
+los grados de libertad del SSLOF, que en general corresponden a k-p , donde p es el número de parámetros en la
+función de regresión. Para el caso específico de la regresión lineal simple, p=2.
 
 ## **Transformaciones**
 
@@ -651,8 +715,9 @@ $$\large Y=(\beta_0 +\beta_3)+\beta_1X_1+\varepsilon$$
 
 $$\large Y_i=\beta_0 +\beta_1X_1+\varepsilon_i$$
 
-**Ejemplo 1 modelo de regresión de intercepto aleatorio conservando la misma pendiente:**
+**Ejemplo 1 Modelo de circunferencia de los arboles**
 
+**Modelo de regresión lineal simple**
 
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
@@ -684,6 +749,8 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))
+plot(model)
+shapiro.test(residuals(model))
 ```
 
 **Significado de los parámetros estimados**
@@ -694,7 +761,7 @@ La  péndiente indica que por cada mes que pasa la circunferencia del arbol aume
 
 
 
-**Modelo de regresión lineal incluyendo un factor**
+**Modelo de regresión lineal de intercepto aleatorio con la misma pendiente:**
 
 El modelo de regresión lineal con factores corresponde a 
 ```{r echo = TRUE}
@@ -707,7 +774,7 @@ La recta general del modelo es:
 
 $$\Large \hat y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i$$
 
-Las rectas ajustadas para cada arbol son:
+Las rectas ajustadas para cada árbol son:
 
 
 
@@ -756,7 +823,74 @@ anova(model)
 ```
 
 
-**Ejemplo 2 con pendiente e intercepto diferentes**
+
+**Modelo de regresión lineal con pendiente e intercepto diferentes**
+
+
+El modelo de regresión lineal con factores corresponde a 
+
+```{r echo = TRUE}
+model=lm(Orange$circumference~Orange$age*as.factor(Orange$Tree))
+summary(model)
+```
+
+
+La recta general del modelo es:
+
+$$\Large \hat y_i=17.4+0.1x_{i}-4.3arbol_2+1.51arbol_3+1.4arbol_4-10.9arbol_5+
+0.05arbol_2*x_i+0.001arbol_3*x_i-0.01arbol_4*x_i+0.006arbol_5*x_i$$
+
+Las rectas ajustadas para cada árbol son:
+
+
+
+Arbol 1:
+
+$$\Large \hat y_i=17.4+0.1x_{i}$$
+
+Arbol 2:
+     $$\Large \hat y_i=13.1+0.15x_{i}$$
+     
+Arbol 3:
+     $$\Large \hat y_i=18.9+0.101x_{i}$$
+
+Arbol 4:
+          $$\Large \hat y_i=18.8+0.1x_{i}$$
+
+Arbol 5:
+     $$\Large \hat y_i=6.5+0.106x_{i}$$
+     
+     
+     
+El diagrama de dispersión discriminando por los niveles de la variables factor es:
+
+```{r echo = TRUE}
+plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
+abline(a=17.4,b=0.1,col=1,lwd=3)
+abline(a=13.1,b=0.15,col=2,lwd=3)
+abline(a=18.9,b=0.1,col=3,lwd=3)
+abline(a=18.8,b=0.1,col=4,lwd=3)
+abline(a=6.1,b=0.1,col=5,lwd=3)
+```
+
+     
+Con base en la tabla ANOVA, y bajo los supuestos de los errores, se realiza el test de significancia de la regresión el cual se enuncia de la siguiente manera:
+
+$H_0= \beta_1=\beta_2=...\beta_k$ El modelo de regresión no es significativo.
+
+$H_1=Algún\ \beta_k \not=0$ Existe una relación de regresión significativa con al menos una de las variables.
+
+
+Es decir, se prueba que existe una relación de regresión, sin embargo esto no garantiza que el modelo resulte útil para hacer predicciones.
+
+```{r}
+model=lm(Orange$circumference~Orange$age*as.factor(Orange$Tree))
+anova(model)
+```
+
+**Ejemplo 2**
+
+**Modelo de pendiente e intercepto diferentes**
 
 Se tienen los datos de las ventas y publicidad invertidos en cada una de las secciones
 
@@ -770,6 +904,8 @@ datos=data.frame(Seccion,Publicidad,Ventas)
 attach(datos)
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
+
+
 #USANDO POR DEFECTO COMO SECCIÓN REFERENCIA LA A
 ###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
 #Con interacción entre la variable publicidad y sección
