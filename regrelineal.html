@@ -1174,6 +1174,131 @@ funciones de regresión, sólo se requiere modificar los grados de
 libertad del SSLOF, que en general corresponden a k-p , donde p es el
 número de parámetros en la función de regresión. Para el caso específico
 de la regresión lineal simple, p=2.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Los siguientes datos se recolectaron con el fin de determinar la
+relación existente entre el peso corporal del ganado vacuno (X) y la
+rapidez de eliminación metabólica/peso corporal (Y). Los datos que
+aparecen a continuación son el resultado de varias realizaciones del
+experimento, en distintos niveles del peso.</p>
+<pre class="r"><code>
+peso=c(110,110,110,230,230,230,360,360,360,360,505,505,505,505)
+elimina=c(235,198,173,174,149,124,115,130,102,95,122,112,98,96)
+
+datos=data.frame(peso, elimina)
+
+
+#ajusta el modelo lineal
+
+regre=lm(elimina~peso)
+summary(regre)
+#&gt; 
+#&gt; Call:
+#&gt; lm(formula = elimina ~ peso)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -34.553 -13.595   2.138  14.381  48.185 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 212.72093   15.78406   13.48 1.31e-08 ***
+#&gt; peso         -0.23551    0.04486   -5.25 0.000204 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 24.56 on 12 degrees of freedom
+#&gt; Multiple R-squared:  0.6967, Adjusted R-squared:  0.6714 
+#&gt; F-statistic: 27.57 on 1 and 12 DF,  p-value: 0.0002043
+anova(regre)
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: elimina
+#&gt;           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+#&gt; peso       1  16634 16634.2  27.567 0.0002043 ***
+#&gt; Residuals 12   7241   603.4                      
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+
+plot(peso,elimina)
+abline(a=212.72,b=-0.23,col=2)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>
+
+## residuales del modelo
+
+res=residuals(regre)
+shapiro.test(res)
+#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  res
+#&gt; W = 0.97124, p-value = 0.8928
+
+
+#prueba de carencia de ajuste
+
+regres1=lm(elimina~peso) #Ajusta modelo de regresión y da el error total SSE
+regres2=lm(elimina~factor(peso)) #Ajusta modelo lineal general o completo y da su error puro
+#SSPE
+anova(regres1,regres2) #Compara los dos modelos anteriores y obtenemos el SSLOF, los grados
+#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Model 1: elimina ~ peso
+#&gt; Model 2: elimina ~ factor(peso)
+#&gt;   Res.Df  RSS Df Sum of Sq     F  Pr(&gt;F)  
+#&gt; 1     12 7241                             
+#&gt; 2     10 4361  2      2880 3.302 0.07924 .
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#de libertad correspondientes,
+</code></pre>
+<p>Observe que la variable explicatoria X fue observada en cuatro
+niveles: 110, 230, 360 y 505, es decir, tenemos réplicas de la variable
+respuesta en al menos un nivel de X.</p>
+<ol style="list-style-type: decimal">
+<li>Indique qué información nos proporciona el análisis del gráfico de Y
+vs. X acerca de:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>El tipo de relación funcional entre Y vs. X (¿lineal o no
+lineal?)</p></li>
+<li><p>El comportamiento de la varianza de Y en cada nivel de X
+observado ¿Es constante o no? ¿Si no es constante, cómo cambia?</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Ajuste el modelo de regresión lineal simple y determine lo
+siguiente</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Interprete los valores ajustados de los parámetros.</p></li>
+<li><p>Realice la prueba de significancia de la regresión (mediante la
+tabla ANOVA)</p></li>
+<li><p>Realice los test de significancia de cada parámetros (pruebas
+t).</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Calcule los residuales y responda lo siguiente:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>De acuerdo a los gráficos de residuales, determine si el supuesto
+de varianza constante para los respectivos errores se cumple o
+no.</p></li>
+<li><p>Ahora realice los test de normalidad sobre los errores del
+modelo, use e interprete los resultados del test de Shapiro Wilk y el
+gráfico de probabilidad.</p></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>Considere de nuevo los gráficos de residuales vs. X, calcule la
+ANOVA para el test de carencia de ajuste del modelo y determine si</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Hay carencia de ajuste del modelo postulado para la respectiva
+respuesta media? (Formule completamente el test de hipótesis, el
+estadístico de prueba y los resultados)</p></li>
+<li><p>Caso que exista carencia de ajuste ¿Qué modelos serían más
+apropiados? ¿Por qué?</p></li>
+</ol>
 </div>
 <div id="transformaciones" class="section level2">
 <h2><strong>Transformaciones</strong></h2>
@@ -1418,9 +1543,9 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre class="r"><code>plot(model)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-13-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-13-4.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-13-5.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-4.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-5.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(residuals(model))
 #&gt; 
 #&gt;  Shapiro-Wilk normality test
@@ -1482,7 +1607,7 @@ abline(a=57.33,b=0.1,col=2,lwd=3)
 abline(a=19.92,b=0.1,col=3,lwd=3)
 abline(a=9.14,b=0.1,col=4,lwd=3)
 abline(a=12.71,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1560,7 +1685,7 @@ abline(a=13.1,b=0.15,col=2,lwd=3)
 abline(a=18.9,b=0.1,col=3,lwd=3)
 abline(a=18.8,b=0.1,col=4,lwd=3)
 abline(a=6.1,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1653,7 +1778,7 @@ abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 #Recta para la sección c
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p><strong>MODELO CON INTERCEPTO diferente</strong></p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
@@ -1696,7 +1821,7 @@ confint(modelo2)
 #&gt; SeccionC     2.7767893 5.7133597
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 </div>
 <div id="regresión-lineal-con-variables-continuas"
@@ -1742,7 +1867,7 @@ HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95
 VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
 bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(ppcor)
@@ -1835,7 +1960,7 @@ summary(m1)
 #&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
 par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 el modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat
 y=-105.9027+7.41D16+0.67HT\]</span></p>

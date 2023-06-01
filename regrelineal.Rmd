@@ -553,6 +553,87 @@ En general, la prueba de carencia de ajuste puede aplicarse a otras funciones de
 los grados de libertad del SSLOF, que en general corresponden a k-p , donde p es el número de parámetros en la
 función de regresión. Para el caso específico de la regresión lineal simple, p=2.
 
+**Ejemplo**
+
+Los siguientes datos se recolectaron con el fin de determinar la relación existente entre el peso corporal del ganado vacuno (X)
+y la rapidez de eliminación metabólica/peso corporal (Y). Los datos que aparecen a continuación son el resultado de varias
+realizaciones del experimento, en distintos niveles del peso.
+
+```{r}
+
+peso=c(110,110,110,230,230,230,360,360,360,360,505,505,505,505)
+elimina=c(235,198,173,174,149,124,115,130,102,95,122,112,98,96)
+
+datos=data.frame(peso, elimina)
+
+
+#ajusta el modelo lineal
+
+regre=lm(elimina~peso)
+summary(regre)
+anova(regre)
+
+
+plot(peso,elimina)
+abline(a=212.72,b=-0.23,col=2)
+
+
+## residuales del modelo
+
+res=residuals(regre)
+shapiro.test(res)
+
+
+#prueba de carencia de ajuste
+
+regres1=lm(elimina~peso) #Ajusta modelo de regresión y da el error total SSE
+regres2=lm(elimina~factor(peso)) #Ajusta modelo lineal general o completo y da su error puro
+#SSPE
+anova(regres1,regres2) #Compara los dos modelos anteriores y obtenemos el SSLOF, los grados
+#de libertad correspondientes,
+
+
+```
+
+Observe que la variable explicatoria X fue observada en cuatro niveles: 110, 230, 360 y 505, es decir, tenemos réplicas de la
+variable respuesta en al menos un nivel de X.
+
+
+1. Indique qué información nos proporciona el análisis del gráfico de Y vs. X acerca de:
+a) El tipo de relación funcional entre Y vs. X (¿lineal o no lineal?)
+
+b) El comportamiento de la varianza de Y en cada nivel de X observado ¿Es constante o no? ¿Si no es constante,
+cómo cambia?
+
+2. Ajuste el modelo de regresión lineal simple y determine lo siguiente
+a) Interprete los valores ajustados de los parámetros.
+
+b) Realice la prueba de significancia de la regresión (mediante la tabla ANOVA)
+
+c) Realice los test de significancia de cada parámetros (pruebas t).
+
+
+3. Calcule los residuales y responda lo siguiente:
+
+a) De acuerdo a los gráficos de residuales, determine si el supuesto de varianza constante para los respectivos
+errores se cumple o no.
+
+b) Ahora realice los test de normalidad sobre los errores del modelo, use e interprete los resultados del test de
+Shapiro Wilk y el gráfico de probabilidad.
+
+4. Considere de nuevo los gráficos de residuales vs. X, calcule la ANOVA para el test de carencia de ajuste del modelo y
+determine si
+
+a) ¿Hay carencia de ajuste del modelo postulado para la respectiva respuesta media? (Formule completamente el
+test de hipótesis, el estadístico de prueba y los resultados)
+
+b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿Por qué?
+
+
+
+
+
+
 ## **Transformaciones**
 
 En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras, como por ejemplo:
