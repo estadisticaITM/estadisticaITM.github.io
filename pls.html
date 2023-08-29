@@ -644,12 +644,12 @@ summary(gas1)</code></pre>
 ## 
 ## VALIDATION: RMSEP
 ## Cross-validated using 50 leave-one-out segments.
-##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-## CV           1.545    1.357   0.2966   0.2524   0.2476   0.2398   0.2319
-## adjCV        1.545    1.356   0.2947   0.2521   0.2478   0.2388   0.2313
-##        7 comps  8 comps  9 comps  10 comps
-## CV      0.2386   0.2316   0.2449    0.2673
-## adjCV   0.2377   0.2308   0.2438    0.2657
+##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps
+## CV           1.545    1.357   0.2966   0.2524   0.2476   0.2398
+## adjCV        1.545    1.356   0.2947   0.2521   0.2478   0.2388
+##        6 comps  7 comps  8 comps  9 comps  10 comps
+## CV      0.2319   0.2386   0.2316   0.2449    0.2673
+## adjCV   0.2313   0.2377   0.2308   0.2438    0.2657
 ## 
 ## TRAINING: % variance explained
 ##         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -678,10 +678,10 @@ estimaciones.</p>
 <p>La varianza eplicada por cada una de las componentes puede ser
 extraida mediante:</p>
 <pre class="r"><code>explvar(gas1)</code></pre>
-<pre><code>##     Comp 1     Comp 2     Comp 3     Comp 4     Comp 5     Comp 6     Comp 7 
-## 78.1707683  7.4122245  7.8241556  2.6577773  0.8768214  0.9466384  0.4921537 
-##     Comp 8     Comp 9    Comp 10 
-##  0.4723207  0.1688272  0.1693770</code></pre>
+<pre><code>##     Comp 1     Comp 2     Comp 3     Comp 4     Comp 5     Comp 6 
+## 78.1707683  7.4122245  7.8241556  2.6577773  0.8768214  0.9466384 
+##     Comp 7     Comp 8     Comp 9    Comp 10 
+##  0.4921537  0.4723207  0.1688272  0.1693770</code></pre>
 <p>La grafica de las dos primeras componente estimadas es</p>
 <pre class="r"><code>plot(gas1, &quot;loadings&quot;, comps = 1:3, legendpos = &quot;topleft&quot;,
  labels = &quot;numbers&quot;, xlab = &quot;nm&quot;)
@@ -704,10 +704,12 @@ es:</p>
 ## 59 89.18925
 ## 60 87.09116</code></pre>
 <pre class="r"><code>RMSEP(gas1, newdata = gasTest)</code></pre>
-<pre><code>## (Intercept)      1 comps      2 comps      3 comps      4 comps      5 comps  
-##      1.5369       1.1696       0.2445       0.2341       0.3287       0.2780  
-##     6 comps      7 comps      8 comps      9 comps     10 comps  
-##      0.2703       0.3301       0.3571       0.4090       0.6116</code></pre>
+<pre><code>## (Intercept)      1 comps      2 comps      3 comps      4 comps  
+##      1.5369       1.1696       0.2445       0.2341       0.3287  
+##     5 comps      6 comps      7 comps      8 comps      9 comps  
+##      0.2780       0.2703       0.3301       0.3571       0.4090  
+##    10 comps  
+##      0.6116</code></pre>
 </div>
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>

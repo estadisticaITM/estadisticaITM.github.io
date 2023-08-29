@@ -10,12 +10,7 @@ ____________________________________________________________________________
 
 # Distribuciones asociadas al muestreo
 
-## Distribución t
 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/wGSutshZDiA?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla t-student" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-## Distribución Chi cuadrado
-<iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Distribución F
@@ -90,7 +85,7 @@ ____________________________________________________________________________
 |Variables aleatorias $Y_1, Y_2, . . . , Y_n$|$\sigma^2$|$\sigma$|$Z=\frac{y-\mu}{\sigma}$|$N(\mu,\sigma^2)$ |$N(\mu,\sigma^2)$|
 |Distribución muestral $\bar Y_i$, $\sigma^2$ conocida|$\sigma^2_{\bar y }=\sigma^2/n$|$\sigma_{\bar y }=\sigma/\sqrt n$|$Z=\frac{\bar y-\mu}{S/\sqrt n}$|$N(\mu,\sigma^2)$ |$N(\mu,\sigma^2)$|
 |Distribución muestral $\bar Y_i$, $\sigma^2$ desconocida|$S^2_{\bar y }=S^2/n$|$S_{\bar y }=S/\sqrt n$|$T=\frac{\bar y-\mu}{S/\sqrt n}$|$t_{n-1}$|
-|Distribución muestral $\bar Y_i$, $\sigma^2$ desconocida con n>30|$S^2_{\bar y }=S^2/n$|$S_{\bar y }=S/\sqrt n$|$T=\frac{\bar y-\mu}{S/\sqrt n}$|$T \rightarrow N(0,1)$|
+|Distribución muestral $\bar Y_i$, $\sigma^2$ desconocida con n>30|$\sigma^2_{\bar y }=\sigma^2/n$|$\sigma_{\bar y }=\sigma/\sqrt n$|$Z=\frac{\bar y-\mu}{S/\sqrt n}$|$N(\mu,\sigma^2)$ |$N(\mu,\sigma^2)$|
 
 
 
@@ -141,6 +136,14 @@ $$\Large P\left(Z \leq \frac{-0.3}{0.1}\right )=P\left(Z \leq -3\right )=0.001$$
 Entonces, la probabilidad de que 100 clientes puedan ser atendidos en menos de 2 horas es aproximadamente 0.0013. Esta pequeña probabilidad indica que es prácticamente imposible atender a 100 clientes en menos de 2 horas.
 
 **Ejemplo 3**
+## Distribución t
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/wGSutshZDiA?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla t-student" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+Recordemos que en la distribución t 
+$$P(t>b)=\alpha \qquad P(t<b)=\rho$$
+
 **$\sigma ^2$ desconocida**
 Se está realizando un estudio sobre la calidad del aire en una zona. 
 Supongamos que la variable Y: ”Número de medio de microgramos de partículas en suspensión por metro cúbico”, está normalmente distribuida.
@@ -151,14 +154,13 @@ Se hacen 16 mediciones, en las que se obtiene una cuasidesviación típica de 10
 El estadístico es una distribución t 
 
 $$T=\frac{\bar Y-\mu}{S/\sqrt n}=\frac{\bar Y-\mu}{10.8585/\sqrt 16}=\frac{\bar Y-\mu}{2.7146} \sim t_{n-1}$$
-$$P(|\bar Y-\mu | \leq 8)=P(8-\mu<\bar Y<8-\mu)$$
+$$P(|\bar Y-\mu | \leq 8)=P(\mu - 8 <\bar Y<\mu+8)$$
 
 
-$$P(\frac{\mu-8-\mu}{2.7146}<\frac{\bar Y - \mu}{2.7146} <\frac{+\mu + 8 - \mu}{2.7146})$$
+$$P\left (\frac{\mu-8-\mu}{2.7146}<\frac{\bar Y - \mu}{2.7146} <\frac{+\mu + 8 - \mu}{2.7146}\right)$$
 $$P(\frac{8}{2.7146}<\frac{\bar Y - \mu}{2.7146} <\frac{8}{2.7146})$$
 $$P(\frac{8}{2.7146}<t_{15} <\frac{8}{2.7146})$$
-Recordemos que en la distribución t 
-$$P(t>b)=\alpha \qquad P(t<b)=\rho$$
+
 
 
 **Ejercicio propuesto**
@@ -173,6 +175,15 @@ que Y se encuentre a no más de 0.3 onza de $\mu$ con probabilidad de 0.95?
 ____________________________________________________________________________
 
 ## Distribución muestral de la varianza
+
+## Distribución Chi cuadrado
+<iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+
+
+
+
 
 Un buen estimador de $\sigma^2$ es la varianza muestral $S^2$, la distribución asociada a esta distribución es la chi cuadrado.
 
