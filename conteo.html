@@ -11,7 +11,7 @@
 
 
 
-<title>Probabilidades</title>
+<title>Técnicas de conteo</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -322,29 +404,111 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Probabilidades</h1>
+<h1 class="title toc-ignore">Técnicas de conteo</h1>
 
 </div>
 
 
+<div id="técnica-de-la-multiplicación" class="section level2">
+<h2>Técnica de la multiplicación</h2>
+<p>Si hay m formas de hacer una cosa y hay n formas de hacer otra cosa,
+hay mxn formas de hacer ambas cosas.</p>
+<p>Número total de arreglos= m x n</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/mul.png" alt="imagen" width="806" />
+<p class="caption">
+imagen
+</p>
+</div>
+<p><em>Regla de la multiplicación</em></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/OuZioEJruUg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="permutación" class="section level2">
+<h2>Permutación</h2>
+<p>Importa el orden, por ejemplo con las letras ABC escoja pares de
+letras, el resultado sería:</p>
+<p>AB BA BC CB AC CA</p>
+<p>La fórmula usada para la estimación de los parámetros es <span
+class="math display">\[nPr=\frac{n!}{(n-r)!}\]</span></p>
+<p>Donde:</p>
 <ul>
-<li><p><a href="conteo.html" target="_blank"> Técnicas de
-conteo</a></p></li>
-<li><p><a
-href="https://github.com/estadisticaITM/repositorioprueba/blob/master/Probabilidad.pdf">Clase
-de probabilidad</a></p></li>
-<li><p><a href="tallerprob.html" target="_blank"> Taller de
-probabilidad</a></p></li>
+<li><p>nPr Número de permutaciones posible</p></li>
+<li><p>n Numero total de objetos</p></li>
+<li><p>r numero de objetos utilizados en un mismo momento</p></li>
 </ul>
-<p><em>Independencia de eventos</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/d4yIg-nEk-M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<p><span
+class="math display">\[n!=n*(n-1)*(n-2)*(n-3)*...*3*2*1\]</span> <span
+class="math display">\[5!=5*4*3*2*1\]</span> Si n=r para calcular el
+total de permutaciones se utiliza la fórmula <span
+class="math inline">\(P_n=n!\)</span></p>
+<div class="figure" style="text-align: center">
+<img src="imagen/permu.png" alt="imagen" width="161" />
+<p class="caption">
+imagen
+</p>
+</div>
+<p>¿CUANTAS PAREJAS ordenadas SE PUEDEN OBTENER DE LA MESA?</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/mesa.png" alt="imagen" width="247" />
+<p class="caption">
+imagen
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Maria - Pedro</li>
+<li>Pedro - Maria</li>
+<li>Ana - Maria</li>
+<li>Maria - Ana</li>
+<li>Pedro - miguel</li>
+<li>Miguel - pedro</li>
+<li>Maria - Miguel</li>
+<li>Miguel - Maria</li>
+<li>Ana - Miguel</li>
+<li>Miguel - Ana</li>
+<li>Ana - Pedro</li>
+<li>Pedro - Ana</li>
+</ol>
+<p><span class="math display">\[4P2=\frac{4!}{(4-2)!}=12\]</span></p>
+<p><strong>Vídeo de la permutación</strong></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/GSldM3plWD8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p><em>Probabilidad condicional</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/iRvdGXnMqeQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</div>
+<div id="combinación" class="section level2">
+<h2>Combinación</h2>
+<p>Considere las letras ABC, para este conjunto los posibles resultados
+son:</p>
+<p>AB BC AC</p>
+<p>Para la combinación AB es lo mismo BA</p>
+<p>¿Cuantos subconjuntos de tamaño r se pueden obtener de un conjunto de
+tamaño n?</p>
+<p><span
+class="math display">\[nCr=\binom{n}{r}=\frac{n!}{r!(n-r)!}\]</span>
+¿CUANTAS PAREJAS ordenadas SE PUEDEN OBTENER DE LA MESA?</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/mesa.png" alt="imagen" width="247" />
+<p class="caption">
+imagen
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Maria - Pedro</li>
+<li>Ana - Maria</li>
+<li>Pedro - miguel</li>
+<li>Maria - Miguel</li>
+<li>Ana - Miguel</li>
+<li>Ana - Pedro</li>
+</ol>
+<p><span class="math display">\[4C2= \binom{4}{2}=\frac{4!}{2!(4-2)!}= 6
+\]</span></p>
+<p><strong>Vídeo ejemplo de la combinación</strong></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/ACy6TerY6Xw" title="Combinación - Ejemplo 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
-<p><em>Teorema de Bayes</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/yWUTaQOwjxU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<p><em>Cómo estimar combinatorias y permutaciones en la
+calculadora</em></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/q0TNGY2xMrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
 
 <br>
 <hr>
@@ -353,6 +517,8 @@ probabilidad</a></p></li>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -385,6 +551,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
