@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -328,12 +410,82 @@ discretas</h1>
 </div>
 
 
+<p><strong>Variable aleatoria discreta</strong></p>
+<p>En cualquier experimento, existen numerosas características que
+pueden ser observadas, cada resultado de un experimento puede ser
+asociado con un número, especificando una regla de asociación llamada
+variable aleatoria.</p>
+<p>Una variable aleatoria le corresponde una función, cuyo dominio es el
+espacio muestral y cuyo rango es el conjunto de números reales, cada
+elemento del rango tiene una probabilidad de ocurrencia.</p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="34%" />
+<col width="46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Experimento</th>
+<th>Variable aleatoria</th>
+<th>Posibles valores (rango)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tirar al aire dos monedas</td>
+<td>Nro de caras observadas al lanzar las dos monedas</td>
+<td>0,1,2</td>
+</tr>
+<tr class="even">
+<td>Seleccionar 5 clientes</td>
+<td>Nro clientes al día</td>
+<td>0,1,2,3,4,5</td>
+</tr>
+<tr class="odd">
+<td>venta de un automovil</td>
+<td>genero cliente</td>
+<td>0 hombre, 1 mujer</td>
+</tr>
+<tr class="even">
+<td>Tirar al aire dos dados</td>
+<td>Numero al Sumar los dos dados</td>
+<td>2,3,4,5,6,7,8,9,10,11,12</td>
+</tr>
+</tbody>
+</table>
+<div id="función-de-distribución-de-probabilidad"
+class="section level2">
+<h2>FUnción de distribución de probabilidad</h2>
+<p>Es un gráfico tabla o formula que especifica la probabilidad asociada
+con cada posible salida de la variable aleatoria.</p>
+<p><strong>Propiedades</strong></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(0\leq f(x_i)\leq1\)</span></li>
+<li><span class="math display">\[\sum_{i=1}^nf(x_i)=1\]</span></li>
+<li><span class="math inline">\(f(x_i)=P(x=x_i)\)</span></li>
+</ol>
+<hr />
+<p>Ejemplo</p>
+<p>Se lanzan dos dados, Sea x la variable aleatoria obtenida al sumar el
+par de números de los dados.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/dados.png" alt="Probabilidad" width="444" />
+<p class="caption">
+Probabilidad
+</p>
+</div>
+<p>En total se tienen 36 opciones diferentes</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/barra.png" alt="Probabilidad" width="212" />
+<p class="caption">
+Probabilidad
+</p>
+</div>
 <ul>
-<li><p><a
+<li><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase
-de Distribuciones discretas</a></p></li>
-<li><p><a href="taller-distri.html" target="_blank"> Taller de
-probabilidad</a></p></li>
+de Distribuciones discretas</a></li>
 </ul>
 <p><strong>Videos de interés</strong></p>
 <p><em>Variable aleatoria discreta</em></p>
@@ -350,21 +502,6 @@ probabilidad</a></p></li>
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="distribuciones-de-probabilidad-discretas"
-class="section level3">
-<h3>Distribuciones de probabilidad discretas</h3>
-<ul>
-<li><p><a href="poisson.html" target="_blank"> Distribución poisson
-</a></p></li>
-<li><p><a href="binom.html" target="_blank"> Distribución binomial
-</a></p></li>
-<li><p><a href="hiper.html" target="_blank"> Distribución
-hipergeométrica </a></p></li>
-</ul>
-<p><strong>Aplicativo de distribuciones de probabilidad
-discretas</strong></p>
-<iframe src="https://jtrochezg.shinyapps.io/apppoison/?showcase=0" width="672" height="1000px" data-external="1">
-</iframe>
 </div>
 
 <br>
@@ -374,6 +511,8 @@ discretas</strong></p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -406,6 +545,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
