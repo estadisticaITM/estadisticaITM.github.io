@@ -465,8 +465,10 @@ con cada posible salida de la variable aleatoria.</p>
 <li><span class="math display">\[\sum_{i=1}^nf(x_i)=1\]</span></li>
 <li><span class="math inline">\(f(x_i)=P(x=x_i)\)</span></li>
 </ol>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <hr />
-<p>Ejemplo</p>
+<p><strong>Ejemplo</strong></p>
 <p>Se lanzan dos dados, Sea x la variable aleatoria obtenida al sumar el
 par de números de los dados.</p>
 <div class="figure" style="text-align: center">
@@ -475,33 +477,294 @@ par de números de los dados.</p>
 Probabilidad
 </p>
 </div>
-<p>En total se tienen 36 opciones diferentes</p>
+<p>En total se tienen 36 opciones diferentes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Vble aleatoria</th>
+<th align="center">veces observado</th>
+<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1/36</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2/36</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">3/36</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">4/36</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5/36</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">6</td>
+<td align="center">6/36</td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">5</td>
+<td align="center">5/36</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">4</td>
+<td align="center">4/36</td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">3</td>
+<td align="center">3/36</td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="center">2</td>
+<td align="center">2/36</td>
+</tr>
+<tr class="odd">
+<td align="center">12</td>
+<td align="center">1</td>
+<td align="center">1/36</td>
+</tr>
+<tr class="even">
+<td align="center">12</td>
+<td align="center">1</td>
+<td align="center">1/36</td>
+</tr>
+</tbody>
+</table>
 <div class="figure" style="text-align: center">
-<img src="imagen/barra.png" alt="Probabilidad" width="212" />
+<img src="imagen/barra.png" alt="Probabilidad" width="514" />
 <p class="caption">
 Probabilidad
 </p>
 </div>
-<ul>
-<li><a
-href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase
-de Distribuciones discretas</a></li>
-</ul>
-<p><strong>Videos de interés</strong></p>
-<p><em>Variable aleatoria discreta</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p><em>Propiedades de la esperanza y de la varianza</em></p>
+<p>Cuál es la probabilidad de que:</p>
+<p>La suma sea al menos 8:</p>
+<p><span class="math display">\[P(X\geq 8)=15/36\]</span></p>
+<p>La suma sea como máximo 5</p>
+<p><span class="math display">\[P(X\leq 8)=10/36\]</span> La suma este
+entre 5 y 10 inclusive</p>
+<p><span class="math display">\[P(5\leq X\leq 10)=27/36\]</span></p>
+</div>
+<div id="esperanza-y-varianza-de-una-variable-aleatoria-discreta"
+class="section level2">
+<h2>Esperanza y varianza de una variable aleatoria discreta</h2>
+<p><strong>Media o valor esperado</strong></p>
+<p><span class="math display">\[E(X)=\mu=\sum_{i=1}^nx_if(x_i)
+\]</span></p>
+<p><strong>Esperanza de <span
+class="math inline">\(X^2\)</span></strong></p>
+<p><span class="math display">\[E(X^2)=\sum_{i=1}^nx_i^2f(x_i) \]</span>
+<strong>Varianza y desviación estándar</strong></p>
+<p><span class="math display">\[V(x)=E(X^2)-\mu^2\]</span> <span
+class="math display">\[sd=\sqrt{v(x)}\]</span> <em>Propiedades de la
+esperanza y de la varianza</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/0kowS0mEOcU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/YiHzJgg0OB8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+<p><strong>continuación del ejemplo</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Vble aleatoria</th>
+<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
+<th align="center"><span class="math inline">\(xf(x)\)</span></th>
+<th align="center"><span class="math inline">\(x^2f(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1/36</td>
+<td align="center">2/36</td>
+<td align="center">4/36</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">2/36</td>
+<td align="center">6/36</td>
+<td align="center">18/36</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">3/36</td>
+<td align="center">12/36</td>
+<td align="center">48/36</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">4/36</td>
+<td align="center">20/36</td>
+<td align="center">100/36</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">5/36</td>
+<td align="center">30/36</td>
+<td align="center">180/36</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">6/36</td>
+<td align="center">42/36</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">5/36</td>
+<td align="center">40/36</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">4/36</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">3/36</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="center">2/36</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">12</td>
+<td align="center">1/36</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Total</td>
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(E(X)=\)</span></td>
+<td align="center"><span class="math inline">\(E(X^2)=\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="función-de-densidad-de-probabilidad-acumulada-fx"
+class="section level2">
+<h2>Función de densidad de probabilidad acumulada F(x)</h2>
+<p>La función de distribución acumulativa (fda) F(x) de una variable
+aleatoria discreta X con función masa de probabilidad f(x) se define
+para cada número x como</p>
+<p><span class="math display">\[F(X)=P(X\leq x)=\sum_{i=1}^nf(x_i)
+\]</span></p>
+<p>Para cualquier número x, F(x) es la probabilidad de que el valor
+observado de X será cuando mucho x.</p>
+<p>Para una variable aleatoria discreta X, la gráfica de F(x) mostrará
+un salto con cada valor posible de X y será plana entre los valores
+posibles. Tal gráfica se conoce como función escalonada.</p>
+<p><strong>continuación del ejemplo</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Vble aleatoria x</th>
+<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
+<th align="center"><span class="math inline">\(F(x)=P(x\leq
+x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1/36</td>
+<td align="center">1/36</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">2/36</td>
+<td align="center">3/36</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">3/36</td>
+<td align="center">6/36</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">4/36</td>
+<td align="center">10/36</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">5/36</td>
+<td align="center">15/36</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">6/36</td>
+<td align="center">21/36</td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">5/36</td>
+<td align="center">26/36</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">4/36</td>
+<td align="center">30/36</td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">3/36</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="center">2/36</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">12</td>
+<td align="center">1/36</td>
+<td align="center">36/36</td>
+</tr>
+<tr class="even">
+<td align="center">Total</td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Videos de interés</strong></p>
+<p><em>Variable aleatoria discreta</em></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<ul>
+<li><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase
+de Distribuciones discretas</a></li>
+</ul>
 </div>
 
 <br>

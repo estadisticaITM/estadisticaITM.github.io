@@ -34,9 +34,16 @@ Es un gráfico tabla o formula que especifica la probabilidad asociada con cada 
 2. $$\sum_{i=1}^nf(x_i)=1$$
 3. $f(x_i)=P(x=x_i)$
 
+
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
 ___________________________________________________________________________________
 
-Ejemplo
+**Ejemplo**
 
 Se lanzan dos dados, Sea x la variable aleatoria obtenida al sumar el par de números de los dados.
 
@@ -47,27 +54,60 @@ knitr::include_graphics("imagen/dados.png")
 
 
 
-En total se tienen 36 opciones diferentes
+En total se tienen 36 opciones diferentes:
+
+
+|Vble aleatoria|veces observado|$P(X=x)$ |
+|:--------:|:----------------:|:----------:|
+|2       |1                 |1/36        |
+|3       |2                 |     2/36   | 
+| 4      |3                 |     3/36   | 
+|5       |4                 |     4/36   |
+|6       |5                 |     5/36   |
+|7       |6                 |     6/36   |       
+|8       |5                 |     5/36   |     
+|9       |  4               | 4/36       |       
+|10      |  3               |3/36        |
+|11      |   2              |2/36        |
+|12      |     1            |1/36        |
+|12      |     1            |1/36        |
 
 
 ```{r, echo=F, fig.cap='Probabilidad', fig.asp=0.3, fig.align='center'}
 knitr::include_graphics("imagen/barra.png")
 ```
 
-- [Clase de Distribuciones discretas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx)
+
+Cuál es la probabilidad de que:
+
+La suma sea al menos 8:
+
+$$P(X\geq 8)=15/36$$
+
+La suma sea como máximo 5
+
+$$P(X\leq 8)=10/36$$
+La suma este entre 5 y 10 inclusive
+
+$$P(5\leq X\leq 10)=27/36$$
 
 
+## Esperanza y varianza de una variable aleatoria discreta
 
-**Videos de interés**
+**Media o valor esperado**
 
-*Variable aleatoria discreta*
 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+$$E(X)=\mu=\sum_{i=1}^nx_if(x_i) $$
 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/cfNqJcNU7aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+**Esperanza de $X^2$**
 
+
+$$E(X^2)=\sum_{i=1}^nx_i^2f(x_i) $$
+**Varianza y desviación estándar**
+
+$$V(x)=E(X^2)-\mu^2$$
+$$sd=\sqrt{v(x)}$$
 *Propiedades de la esperanza y de la varianza*
 
 
@@ -78,3 +118,67 @@ knitr::include_graphics("imagen/barra.png")
 <iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
+
+**continuación del ejemplo**
+
+
+|Vble aleatoria|$P(X=x)$ |$xf(x)$|$x^2f(x)$|
+|:--------:|:--------:|:-----:|:-------:|
+|2       |1/36        |2/36   |4/36     |
+|3       |     2/36   | 6/36  |18/36    |
+| 4      |     3/36   | 12/36 |48/36    |
+|5       |     4/36   |20/36  |100/36   |
+|6       |     5/36   |30/36  |180/36  |
+|7       |     6/36   | 42/36 |        |     
+|8       |     5/36   |  40/36|        | 
+|9       |   4/36     |       |        | 
+|10      | 3/36       |       |        |
+|11      |   2/36     |       |        |
+|12      |    1/36    |       |        |
+|Total   |      1     |$E(X)=$|$E(X^2)=$|
+
+
+## Función de densidad de probabilidad acumulada F(x)
+
+La función de distribución acumulativa (fda) F(x) de una variable aleatoria discreta X con función masa de probabilidad f(x) se define para cada número x como
+
+
+$$F(X)=P(X\leq x)=\sum_{i=1}^nf(x_i) $$
+
+
+Para cualquier número x, F(x) es la probabilidad de que el valor observado de X será cuando mucho x.
+
+Para una variable aleatoria discreta X, la gráfica de F(x) mostrará un salto con cada valor posible de X y será plana entre los valores posibles. Tal gráfica se conoce como función escalonada.
+
+
+**continuación del ejemplo**
+
+
+|Vble aleatoria x|$P(X=x)$ |$F(x)=P(x\leq x)$|
+|:--------:|:--------:|:-----:|
+|2       |1/36        |1/36   |
+|3       |     2/36   | 3/36  |
+| 4      |     3/36   | 6/36 |
+|5       |     4/36   |10/36  |
+|6       |     5/36   |15/36  |
+|7       |     6/36   | 21/36         |     
+|8       |     5/36   |  26/36        | 
+|9       |   4/36     |    30/36           | 
+|10      | 3/36       |               |
+|11      |   2/36     |               |
+|12      |    1/36    |         36/36      |
+|Total   |      1     |      |
+
+
+**Videos de interés**
+
+*Variable aleatoria discreta*
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/MMNVst-cEOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+- [Clase de Distribuciones discretas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx)
