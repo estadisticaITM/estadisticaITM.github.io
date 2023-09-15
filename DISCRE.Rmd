@@ -170,6 +170,65 @@ Para una variable aleatoria discreta X, la gráfica de F(x) mostrará un salto c
 |Total   |      1     |      |
 
 
+
+
+
+$$
+F(x)=\begin{cases}
+0
+& \mbox{ $x<2$,}\\
+1/36 
+& \mbox{ $2\leq x<3$.}\\
+3/36 
+& \mbox{ $3\leq x<4$.}\\
+6/36 
+& \mbox{ $4\leq x<5$.}\\
+10/36 
+& \mbox{ $5\leq x<6$.}\\
+15/36 
+& \mbox{ $6\leq x<7$.}\\
+21/36 
+& \mbox{ $7\leq x<8$.}\\
+26/36 
+& \mbox{ $8\leq x<9$.}\\
+30/36 
+& \mbox{ $9\leq x<10$.}\\
+33/36 
+& \mbox{ $10\leq x<11$.}\\
+36/36 
+& \mbox{ $11\leq x<12$.}\\
+\end{cases}
+$$
+```{r echo=FALSE}
+
+library(ggplot2)
+
+
+Asignaturas=c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+solF=c(0,1/36,3/36,6/36,10/36,15/36,21/36,26/36,30/36,33/36,35/36,1,1,1)
+
+solF=round(solF,2)
+
+df <- data.frame(x=Asignaturas,y=`solF`)
+df$xend <- c(df$x[2:nrow(df)],NA)
+df$yend <- df$y
+p <- (ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) +
+        geom_vline(aes(xintercept=x),linetype=2,color="grey") +
+        geom_hline(aes(yintercept=y), linetype=2,color="grey") +
+        geom_point() +  # Solid points to left
+        geom_point(aes(x=xend, y=y), shape=1) +  # Open points to right
+        geom_segment() +
+        scale_x_continuous(breaks = Asignaturas)+
+        geom_text(aes(label = paste0(solF,''),vjust = -0.5),color="black")+ylab("Función de
+distribución")+ xlab("Variable aleatoria")+
+geom_segment(aes(x = 0, y = 0, xend=2, yend = 0), color="red") + 
+  geom_segment(aes(x = 12, y = 1, xend =14,yend = 1), color="red") )
+
+p
+
+
+```
+
 **Videos de interés**
 
 *Variable aleatoria discreta*
