@@ -574,15 +574,40 @@ class="math inline">\(X^2\)</span></strong></p>
 <p><span class="math display">\[E(X^2)=\sum_{i=1}^nx_i^2f(x_i) \]</span>
 <strong>Varianza y desviación estándar</strong></p>
 <p><span class="math display">\[V(x)=E(X^2)-\mu^2\]</span> <span
-class="math display">\[sd=\sqrt{v(x)}\]</span> <em>Propiedades de la
-esperanza y de la varianza</em></p>
+class="math display">\[sd=\sqrt{v(x)}\]</span></p>
+<p><strong>Propiedades del operador esperanza</strong></p>
+<p>Sean x y y dos variables aleatorias con esperanza finita y sea c una
+constante. Entonces</p>
+<ul>
+<li><p>E(c)=c</p></li>
+<li><p>E(cx)=cE(x)</p></li>
+<li><p>Si <span class="math inline">\(x\geq 0\)</span> entonces <span
+class="math inline">\(E(x)\geq 0\)</span></p></li>
+<li><p>E(x+y)=E(x)+E(y)</p></li>
+<li><p>Si x y y son independientes entonces</p></li>
+</ul>
+<p><span class="math display">\[E(xy)=E(x)E(y)\]</span> - <span
+class="math display">\[\Large E(a+bx)=a+bE(x)\]</span></p>
+<p><strong>Propiedades de la varianza</strong></p>
+<ul>
+<li><p><span class="math inline">\(var(x)\geq0\)</span></p></li>
+<li><p>var(c)=0</p></li>
+<li><p><span class="math inline">\(Var(cx)=c^2 Var(x)\)</span></p></li>
+<li><p>var (x+c)=var(x)</p></li>
+<li><p><span class="math inline">\(var(x)=E(x^2)-\mu^2\)</span></p></li>
+<li><p><span class="math inline">\(var(x+y) \neq
+var(x)+var(y)\)</span></p></li>
+</ul>
+<p><em>Propiedades de la esperanza y de la varianza</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/0kowS0mEOcU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/YiHzJgg0OB8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/I6Gcr5BUJt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p><strong>continuación del ejemplo</strong></p>
+<p><strong>continuación del ejemplo</strong> 1. Cual es la suma esperada
+al lanzar los dos dados? 2. Cual es la varianza y desviación estándar de
+la distribución?</p>
 <table>
 <thead>
 <tr class="header">
@@ -776,8 +801,10 @@ F(x)=\begin{cases}
 &amp; \mbox{ $9\leq x&lt;10$.}\\
 33/36
 &amp; \mbox{ $10\leq x&lt;11$.}\\
-36/36
+35/36
 &amp; \mbox{ $11\leq x&lt;12$.}\\
+36/36
+&amp; \mbox{ $ x\geq 12$.}\\
 \end{cases}
 \]</span></p>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
@@ -789,11 +816,16 @@ F(x)=\begin{cases}
 </iframe>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<ul>
-<li><a
+</div>
+<div id="valor-esperado-y-varianza-de-una-función-lineal"
+class="section level2">
+<h2>Valor esperado y varianza de una función lineal</h2>
+<p>Si x es una variable aleatoria continua con pdf f(x) con a, b, c
+constantes:</p>
+<p>$$$$</p>
+<p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase
-de Distribuciones discretas</a></li>
-</ul>
+de Distribuciones discretas</a></p>
 </div>
 
 <br>

@@ -108,6 +108,44 @@ $$E(X^2)=\sum_{i=1}^nx_i^2f(x_i) $$
 
 $$V(x)=E(X^2)-\mu^2$$
 $$sd=\sqrt{v(x)}$$
+
+
+**Propiedades del operador esperanza**
+
+Sean x y y dos variables aleatorias con esperanza finita y sea c una constante. Entonces
+
+- E(c)=c
+
+- E(cx)=cE(x)
+
+- Si $x\geq 0$ entonces $E(x)\geq 0$
+
+- E(x+y)=E(x)+E(y)
+
+- Si x y y son independientes entonces 
+
+$$E(xy)=E(x)E(y)$$
+- $$\Large E(a+bx)=a+bE(x)$$
+
+
+**Propiedades de la varianza**
+
+- $var(x)\geq0$
+
+- var(c)=0 
+
+- $Var(cx)=c^2 Var(x)$
+
+- var (x+c)=var(x)
+
+- $var(x)=E(x^2)-\mu^2$
+
+- $var(x+y) \neq var(x)+var(y)$
+
+
+
+
+
 *Propiedades de la esperanza y de la varianza*
 
 
@@ -120,7 +158,8 @@ $$sd=\sqrt{v(x)}$$
 
 
 **continuación del ejemplo**
-
+1. Cual es la suma esperada al lanzar los dos dados?
+2. Cual es la varianza y desviación estándar de la distribución?
 
 |Vble aleatoria|$P(X=x)$ |$xf(x)$|$x^2f(x)$|
 |:--------:|:--------:|:-----:|:-------:|
@@ -195,8 +234,10 @@ F(x)=\begin{cases}
 & \mbox{ $9\leq x<10$.}\\
 33/36 
 & \mbox{ $10\leq x<11$.}\\
-36/36 
+35/36 
 & \mbox{ $11\leq x<12$.}\\
+36/36 
+& \mbox{ $ x\geq 12$.}\\
 \end{cases}
 $$
 ```{r echo=FALSE}
@@ -239,5 +280,11 @@ p
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+## Valor esperado y varianza de una función lineal
 
-- [Clase de Distribuciones discretas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx)
+Si x es una variable aleatoria continua con pdf f(x) con a, b, c constantes:
+
+
+$$$$
+
+[Clase de Distribuciones discretas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx)
