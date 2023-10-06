@@ -11,7 +11,7 @@
 
 
 
-<title>Distribuciones de probabilidad continuas</title>
+<title>Distribuciones de Probabilidad continuas</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -322,56 +322,72 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Distribuciones de probabilidad
+<h1 class="title toc-ignore">Distribuciones de Probabilidad
 continuas</h1>
 
 </div>
 
 
+<p><strong>Variable aleatoria Continua</strong></p>
+<p>Es una variable aleatoria que puede tomar cualquier valor en un
+intervalo dado, son incontables y están relacionados con números
+reales.</p>
+<p><strong>Ejemplo</strong></p>
 <ul>
-<li><p><a href="conn.html" target="_blank"> Distribución continuas
-</a></p></li>
-<li><p><a
-href="https://github.com/estadisticaITM/repositorioprueba/blob/master/FUNCIONES%20DE%20DISTRIBUCI%C3%93N%20DE%20PROBABILIDAD%20CONTINUAS.pdf">Distribuciones
-continuas</a></p></li>
-<li><p><a
-href="https://github.com/estadisticaITM/repositorioprueba/blob/master/taller%20de%20distribuciones%20continuas.pdf">Taller
-de distribuciones continuas</a></p></li>
+<li><p>El tiempo que lleva completar un examen para una prueba de 60
+minutos Valores posibles = todos los números reales en el intervalo
+[0,60]</p></li>
+<li><p>Edad de un fósil Valores posibles = todos los números reales en
+el intervalo [edad mínima, edad máxima]</p></li>
+<li><p>Millas por galón para un Toyota Valores Posibles = todos los
+números reales del intervalo [MPG mínimo, MPG máximo]</p></li>
 </ul>
-<div id="videos-de-funciones-de-distribución-de-probabilidad-continuas"
-class="section level3">
-<h3><strong>Videos de funciones de distribución de probabilidad
-continuas</strong></h3>
-<p><em>Función de distribución de probabilidad continua</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/wmgia4DoqOk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p><em>Comparación de distribuciones acumuladas de funciones discretas y
-continuas</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/RLfeCcL_VRE?list=RDCMUCgIxQrfuRANSttW8Dd85j9g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p><em>Comparación de la esperanza de funciones discretas y
-continuas</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/WZ0BSrPsEzk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<p>La principal diferencia entre las variables aleatorias continuas y
+discretas es que la probabilidad continua se mide a lo largo de
+intervalos, mientras que la probabilidad discreta se calcula en puntos
+exactos.</p>
+<p>como son tantos valores posibles, ningún valor posible de la variable
+aleatoria tiene probabilidad positiva, esto es, P(X=c)=0 con cualquier
+valor posible de c</p>
+<div id="función-de-densidad-de-probabilidad" class="section level2">
+<h2>Función de densidad de probabilidad</h2>
+<p>Sea X una variable aleatoria continua Entonces, una distribución de
+probabilidad fdp de X es una función f(x) tal que para dos números
+cualesquiera a y b con a&lt;b</p>
+<p><span
+class="math display">\[P(a&lt;X&lt;b)=\int_a^bf(x)dx\]</span></p>
+<p>Es decir, la probabilidad de que X asuma un valor en el intervalo
+[a,b] es el área sobre este intervalo y bajo la gráfica de la función de
+densidad</p>
+<p><img src="conn_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
-<div id="distribución-de-probabilidad-normal" class="section level3">
-<h3><strong>Distribución de probabilidad normal</strong></h3>
-<ul>
-<li><a href="normal.html" target="_blank"> Distribución normal </a></li>
-</ul>
+<div id="propiedades" class="section level2">
+<h2>Propiedades</h2>
+<ol style="list-style-type: decimal">
+<li><p><span class="math display">\[0\leq f(x) \leq 1\]</span></p></li>
+<li><p><span class="math display">\[\int_{lim
+inf}^{limsup}f(x)dx=1\]</span></p></li>
+<li><p>Para cualquier valor posible de c <span
+class="math display">\[P(X=c)=0\]</span></p></li>
+</ol>
 </div>
-<div id="familia-de-la-distribución-de-probabilidad-gama"
-class="section level3">
-<h3><strong>Familia de la distribución de probabilidad
-Gama</strong></h3>
-<ul>
-<li><a href="exponn.html" target="_blank"> Distribución gama y
-exponencial </a></li>
-</ul>
-<p><strong>Aplicativo de distribuciones de probabilidad
-continuas</strong></p>
-<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
-</iframe>
+<div id="función-de-distribución-acumulada" class="section level2">
+<h2>Función de distribución acumulada</h2>
+<p><span class="math display">\[F(x)=P(x\leq x)=\int_{lim
+inf}^{x}f(x)dx\]</span> <strong>Ejemplo</strong></p>
+<p>x denota el diámetro del agujero perforado en una hoja de metal, el
+diámetro objetivo es de 12.5 mm, perturbaciones aleatorias ocasionan
+agujeros más grandes.La distribución de x es:</p>
+<p><span class="math display">\[f(x)=20e^{-20(x-12.5)}\quad x&gt;12.5
+mm\]</span></p>
+<p>grafica de la función</p>
+<pre class="r"><code> x= seq(12.5,14, length =50) 
+ y=20*2.71828^(-20*(x-12.5))
+
+plot(x,y,type=&quot;lines&quot;)</code></pre>
+<pre><code>## Warning in plot.xy(xy, type, ...): plot type &#39;lines&#39; will be truncated to first
+## character</code></pre>
+<p><img src="conn_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 
 <br>

@@ -1,0 +1,98 @@
+---
+title: "Distribuciones de Probabilidad continuas"
+output: html_document
+
+---
+
+
+**Variable aleatoria Continua**
+
+Es una variable aleatoria que puede tomar cualquier valor en un intervalo dado, son incontables y están relacionados con números reales.
+
+
+
+**Ejemplo**
+
+- El tiempo que lleva completar un examen para una prueba de 60 minutos 
+   Valores posibles = todos los números reales en el intervalo [0,60]
+   
+- Edad de un fósil 
+  Valores posibles = todos los números reales en el intervalo [edad mínima, edad máxima]
+  
+- Millas por galón para un Toyota 
+  Valores Posibles = todos los números reales del intervalo [MPG mínimo, MPG máximo]
+ 
+La principal diferencia entre las variables aleatorias continuas y discretas es que la probabilidad continua se mide a lo largo de intervalos, mientras que la probabilidad discreta se calcula en puntos exactos.
+
+como son tantos valores posibles, ningún valor posible de la variable aleatoria tiene probabilidad positiva, esto es, P(X=c)=0 con cualquier valor posible de c
+
+
+## Función de densidad de probabilidad
+
+Sea X una variable aleatoria continua Entonces, una distribución de probabilidad fdp de X es una función f(x) tal que para dos números cualesquiera a y b con a<b
+
+$$P(a<X<b)=\int_a^bf(x)dx$$
+
+Es decir, la probabilidad de que X asuma un valor en el intervalo [a,b] es el área sobre este intervalo y bajo la gráfica de la función de densidad
+
+```{r echo=FALSE}
+
+normal_area <- function(mean = 0, sd = 1, lb, ub, acolor = "lightgray", ...) {
+  x <- seq(mean - 3 * sd, mean + 3 * sd, length = 100) 
+  
+  if (missing(lb)) {
+    lb <- min(x)
+  }
+  if (missing(ub)) {
+    ub <- max(x)
+  }
+  
+  x2 <- seq(lb, ub, length = 100)    
+  plot(x, dnorm(x, mean, sd),lwd=2,type="n", ylab = "")
+  
+  y <- dnorm(x2, mean, sd)
+  polygon(c(lb, x2, ub), c(0, y, 0), col = acolor)
+  lines(x, dnorm(x, mean, sd), type = "l", ...)
+}
+
+normal_area(mean = 0, sd = 1, lb = -1, ub = 0,
+            acolor = rgb(0, 0, 1, alpha = 0.5))
+
+
+
+```
+
+
+## Propiedades
+
+1. $$0\leq f(x) \leq 1$$
+
+2. $$\int_{lim inf}^{limsup}f(x)dx=1$$
+
+3. Para cualquier valor posible de c
+$$P(X=c)=0$$
+
+
+## Función de distribución acumulada
+
+$$F(x)=P(x\leq x)=\int_{lim inf}^{x}f(x)dx$$
+**Ejemplo**
+
+x denota el diámetro del agujero perforado en una hoja de metal, el diámetro objetivo es de 12.5 mm, perturbaciones aleatorias ocasionan agujeros más
+grandes.La distribución de x es:
+
+$$f(x)=20e^{-20(x-12.5)}\quad x>12.5 mm$$
+
+grafica de la función
+
+
+```{r}
+ x= seq(12.5,14, length =50) 
+ y=20*2.71828^(-20*(x-12.5))
+
+plot(x,y,type="lines")
+
+
+```
+
+
