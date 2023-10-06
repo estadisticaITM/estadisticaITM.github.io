@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -335,18 +417,21 @@ reales.</p>
 <p><strong>Ejemplo</strong></p>
 <ul>
 <li><p>El tiempo que lleva completar un examen para una prueba de 60
-minutos Valores posibles = todos los números reales en el intervalo
+minutos</p>
+<p>Valores posibles = todos los números reales en el intervalo
 [0,60]</p></li>
-<li><p>Edad de un fósil Valores posibles = todos los números reales en
-el intervalo [edad mínima, edad máxima]</p></li>
-<li><p>Millas por galón para un Toyota Valores Posibles = todos los
-números reales del intervalo [MPG mínimo, MPG máximo]</p></li>
+<li><p>Edad de un fósil</p>
+<p>Valores posibles = todos los números reales en el intervalo [edad
+mínima, edad máxima]</p></li>
+<li><p>Millas por galón para un Toyota</p>
+<p>Valores Posibles = todos los números reales del intervalo [MPG
+mínimo, MPG máximo]</p></li>
 </ul>
 <p>La principal diferencia entre las variables aleatorias continuas y
 discretas es que la probabilidad continua se mide a lo largo de
 intervalos, mientras que la probabilidad discreta se calcula en puntos
 exactos.</p>
-<p>como son tantos valores posibles, ningún valor posible de la variable
+<p>Como son tantos valores posibles, ningún valor posible de la variable
 aleatoria tiene probabilidad positiva, esto es, P(X=c)=0 con cualquier
 valor posible de c</p>
 <div id="función-de-densidad-de-probabilidad" class="section level2">
@@ -365,8 +450,8 @@ densidad</p>
 <h2>Propiedades</h2>
 <ol style="list-style-type: decimal">
 <li><p><span class="math display">\[0\leq f(x) \leq 1\]</span></p></li>
-<li><p><span class="math display">\[\int_{lim
-inf}^{limsup}f(x)dx=1\]</span></p></li>
+<li><p><span class="math display">\[\int_{lim inf}^{lim
+sup}f(x)dx=1\]</span></p></li>
 <li><p>Para cualquier valor posible de c <span
 class="math display">\[P(X=c)=0\]</span></p></li>
 </ol>
@@ -374,20 +459,63 @@ class="math display">\[P(X=c)=0\]</span></p></li>
 <div id="función-de-distribución-acumulada" class="section level2">
 <h2>Función de distribución acumulada</h2>
 <p><span class="math display">\[F(x)=P(x\leq x)=\int_{lim
-inf}^{x}f(x)dx\]</span> <strong>Ejemplo</strong></p>
+inf}^{x}f(x)dx\]</span> <strong>Proposición</strong></p>
+<p>Sea X una variable aleatoria continua con función de densidad de
+probabilidad f(x) y función acumulada F(x) entonces para un numero
+a:</p>
+<p><span class="math display">\[P(X&gt;a)=1-P(x\leq a) =1-F(a)\]</span>
+Para dos numeros cualesquiera a y b con b&gt;a</p>
+<p><span class="math display">\[P(a\leq x \leq b)=P(x\leq b)- P(x\leq
+a)= F(b)-F(a)\]</span></p>
+<p><strong>Ejemplo</strong></p>
 <p>x denota el diámetro del agujero perforado en una hoja de metal, el
 diámetro objetivo es de 12.5 mm, perturbaciones aleatorias ocasionan
 agujeros más grandes.La distribución de x es:</p>
 <p><span class="math display">\[f(x)=20e^{-20(x-12.5)}\quad x&gt;12.5
 mm\]</span></p>
-<p>grafica de la función</p>
-<pre class="r"><code> x= seq(12.5,14, length =50) 
+<ol style="list-style-type: decimal">
+<li>Grafique la función fdp</li>
+</ol>
+<pre class="r"><code> x= seq(12.5,13, length =50) 
  y=20*2.71828^(-20*(x-12.5))
 
-plot(x,y,type=&quot;lines&quot;)</code></pre>
+plot(x,y,type=&quot;lines&quot;,col=&quot;blue&quot;,lwd=2)</code></pre>
 <pre><code>## Warning in plot.xy(xy, type, ...): plot type &#39;lines&#39; will be truncated to first
 ## character</code></pre>
 <p><img src="conn_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>2.Obtenga la función acumulada</p>
+<p><span class="math display">\[F(x)=P(x\leq x)=\int_{lim
+inf}^{x}f(x)dx\]</span></p>
+<p><span
+class="math display">\[F(x)=\int_{12.5}^{x}20e^{-20(x-12.5)}dx\]</span>
+<span class="math display">\[F(X)=
+\left\{ \begin{array}{c}
+\displaystyle 1-e^{-20(x-12.5)} \quad  x\geq12.5
+\\
+0 \qquad x&lt;12.5
+\end{array} \right.
+\]</span> 3. Grafique la función acumulada</p>
+<pre><code>## Warning in plot.xy(xy, type, ...): plot type &#39;lines&#39; will be truncated to first
+## character</code></pre>
+<p><img src="conn_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Si una parte con diámetro es más grande que 12.6 mm se desecha, ¿Qué
+proporción de partes se desecha?</p>
+<p><strong>dos caminos</strong> - Realizando la integral</p>
+<p><span
+class="math display">\[F(x)=\int_{12.6}^{\infty}20e^{-20(x-12.5)}dx\]</span>
+- Evaluando en la función acumulada <span
+class="math display">\[p(x\geq12.6)=1-p(x&lt;12.6)\]</span> <span
+class="math display">\[=1-(1-e^{-20*(x-12.5)})\]</span> <span
+class="math display">\[=e^{-2}=13.5\]</span></p>
+<pre><code>## Warning in plot.xy(xy, type, ...): plot type &#39;lines&#39; will be truncated to first
+## character</code></pre>
+<p><img src="conn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="figure" style="text-align: center">
+<img src="imagen/ff.png" alt="Probabilidad es un valor entre 0 y 1" width="343" />
+<p class="caption">
+Probabilidad es un valor entre 0 y 1
+</p>
+</div>
 </div>
 
 <br>
@@ -397,6 +525,8 @@ plot(x,y,type=&quot;lines&quot;)</code></pre>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -429,6 +559,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
