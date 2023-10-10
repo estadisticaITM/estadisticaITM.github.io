@@ -159,8 +159,55 @@ plot(x,y,type="lines",col="blue",lwd=2)
 
 ```
 
+
+
+## Relación entre f(x) y F(x)
+
 ```{r, echo=F, fig.cap='Probabilidad es un valor entre 0 y 1', fig.asp=0.3, fig.align='center'}
 knitr::include_graphics("imagen/ff.png")
 ```
 
 
+## Valor esperado y varianza
+
+$$E(x)=\mu_x= \int_{lim inf}^{limsup}xf(x)dx$$
+$$E(x^2)= \int_{lim inf}^{limsup}x^2f(x)dx$$
+
+$$V(x)=E(x^2)-\mu^2$$
+
+**Ejemplo**
+
+Sea x la cantidad de espacio ocupado por un artículo en un contenedor, la pdf de x es:
+
+$$ f(x)=
+\left\{ \begin{array}{c}
+90x^8(1-x) \quad 0<x<1
+\\
+0 \quad eoc
+\end{array} \right.
+$$
+
+1. Grafique la función
+
+```{r}
+ x= seq(0,1,length=100) 
+ y=90*x^8*(1-x)
+plot(x,y,type="lines",col="blue",lwd=2)
+
+```
+
+2. Obtenga la función acumulada
+
+$$ f(x)=
+\left\{ \begin{array}{c}
+0 \quad x<0\\
+x^9(10-9x) \quad 0<x<1
+\\
+1 \quad x>1
+\end{array} \right.
+$$
+3. Cual es la probabilidad
+
+$$P(x\leq 0.7)$$
+$$P(x>0.8)$$
+4. Halle E(x), v(x)
