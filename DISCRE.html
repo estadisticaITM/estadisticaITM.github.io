@@ -817,15 +817,97 @@ F(x)=\begin{cases}
 <iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+<div id="cómo-hallar-probabilidades-a-partir-de-la-función-acumulada"
+class="section level2">
+<h2>Cómo hallar probabilidades a partir de la función acumulada</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math display">\[P(a \leq x\leq b)=F(b)-F(a) \]</span>
+<span class="math display">\[P(a \leq x\leq b)=P(x\leq b)-P(x\leq
+a-1)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math display">\[P(X=a)=F(a)-F(a-1)\]</span></p>
+<p><span class="math display">\[P(X=a)=P(x\leq a)-P(x\leq
+a-1)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math display">\[𝑃(𝑥&gt;𝑎)=1−F(a)\]</span></p>
+<p><span class="math display">\[𝑃(𝑥&gt;𝑎)=1−𝑃(𝑥≤𝑎)\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p><span class="math display">\[ 𝑃(𝑥≥𝑎)=1−𝑃(𝑥≤𝑎−1)\]</span> <span
+class="math display">\[𝑃(𝑥≥𝑎)=1−𝐹(𝑎−1)\]</span></p></li>
+<li><p><span class="math display">\[𝑃(𝑥&lt;𝑎)=𝑃(𝑥≤𝑎−1)\]</span> <span
+class="math display">\[𝑃(𝑥&lt;𝑎)=𝐹(𝑎−1)\]</span></p></li>
+</ol>
+<pre class="r"><code>x= rnorm(50,2,5) 
+hist(x,main=&quot;&quot;)</code></pre>
+<p><img src="DISCRE_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
 <div id="valor-esperado-y-varianza-de-una-función-lineal"
 class="section level2">
 <h2>Valor esperado y varianza de una función lineal</h2>
-<p>Si x es una variable aleatoria continua con pdf f(x) con a, b, c
-constantes:</p>
-<p>$$$$</p>
-<p><a
-href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx">Clase
-de Distribuciones discretas</a></p>
+<p>Sea x es una variable aleatoria continua con pdf f(x) con a, b, c
+constantes, y la función lineal de la forma</p>
+<p><span class="math display">\[Y=a+bx\]</span> su esperanza es :</p>
+<p><span class="math display">\[E(y)=E(a+bx)\]</span> <span
+class="math display">\[E(y)=E(a)+bE(x)\]</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Un distribuidor de enseres para el hogar vende tres modelos de
+congeladores verticales de 13.5, 15.9 y 19.1 pies cúbicos de espacio de
+almacenamiento, respectivamente. Sea X la cantidad de espacio de
+almacenamiento adquirido por el siguiente cliente que compre un
+congelador. Suponga que X tiene la función masa de probabilidad</p>
+<table>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>13.5</th>
+<th>15.9</th>
+<th>19.1</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>f(x)</td>
+<td>0.2</td>
+<td>0.5</td>
+<td>0.3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>xf(x)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x^2f(x)\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule <span class="math inline">\(E(X), 𝐸(𝑥^2)\)</span> y <span
+class="math inline">\(V(X)\)</span>.</p></li>
+<li><p>Si el precio de un congelador de X pies cúbicos de capacidad es
+25X - 8.5, ¿cuál es el precio esperado pagado por el siguiente cliente
+que compre un congelador?</p></li>
+<li><p>¿Cuál es la varianza del precio 25X - 8.5 pagado por el siguiente
+cliente?</p></li>
+<li><p>Suponga que aunque la capacidad nominal de un congelador X, la
+real es <span class="math inline">\(h(X)=X-0.01X^2\)</span>. ¿Cuál es la
+capacidad real esperada del congelador adquirido por el siguiente
+cliente?</p></li>
+</ol>
 </div>
 
 <br>

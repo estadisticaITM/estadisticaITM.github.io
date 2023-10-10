@@ -22,13 +22,28 @@ Existen diferentes pruebas para evaluar la normalidad, todas son de fácil imple
 
 ## Test de Kolmogorov-Smirnov K-S
 
-Se emplea para saber si dos distribuciones son distintas o si una distribución de probabilidad subyacente difiere de una distribución hipotética, por lo general la distribución normal. Es decir permite contrastar si un conjunto de datos muestrales proviene de una población normal. 
+Se emplea para saber si una distribución de probabilidad acumulada difiere de una distribución hipotética, por lo general la distribución normal,la uniforme, la de Poisson o la exponencial.Es decir permite contrastar si un conjunto de datos muestrales proviene de un tipo de distribución. 
+
+
+
+
 
 Cuando K-S se aplica para contrastar la hipótesis de normalidad de la población, el estadístico de prueba es la máxima diferencia entre las funciones de distribución de probabilidad muestral y la teórica:
 
 $$D=max|F_n-F_0(x)|$$
 
 Siendo $F_n (x)$ la función de distribución muestral y $F_0(x)$ es la función teórica (normal) especificada en la hipotesis nula $H_0$
+
+
+**Pruebas de hipótesis**
+
+
+
+$H_0:$ Los datos analizados siguen una distribución M.
+$H_1:$ Los datos analizados no siguen una distribución M
+
+
+
 
 **Ejemplo en R**
 
@@ -42,6 +57,23 @@ ks.test(x, "pnorm",170,8)
 
 ```
 ¿Según los criterios vistos en clase cuál es la desición apropiada?
+
+```{r}
+x <- rnorm(50)
+y <- runif(30)
+# Do x and y come from the same distribution?
+ks.test(x, y)
+# Does x come from a shifted gamma distribution with shape 3 and rate 2?
+ks.test(x+2, "pgamma", 3, 2) # two-sided, exact
+ks.test(x+2, "pgamma", 3, 2, exact = FALSE)
+ks.test(x+2, "pgamma", 3, 2, alternative = "gr")
+
+
+```
+
+
+
+
 
 ## Test de Shapiro-Wilk
 

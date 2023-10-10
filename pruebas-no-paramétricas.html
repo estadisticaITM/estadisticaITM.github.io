@@ -424,11 +424,11 @@ distribuyen \quad normal\]</span> Existen diferentes pruebas para
 evaluar la normalidad, todas son de fácil implementación en R.</p>
 <div id="test-de-kolmogorov-smirnov-k-s" class="section level2">
 <h2>Test de Kolmogorov-Smirnov K-S</h2>
-<p>Se emplea para saber si dos distribuciones son distintas o si una
-distribución de probabilidad subyacente difiere de una distribución
-hipotética, por lo general la distribución normal. Es decir permite
-contrastar si un conjunto de datos muestrales proviene de una población
-normal.</p>
+<p>Se emplea para saber si una distribución de probabilidad acumulada
+difiere de una distribución hipotética, por lo general la distribución
+normal,la uniforme, la de Poisson o la exponencial.Es decir permite
+contrastar si un conjunto de datos muestrales proviene de un tipo de
+distribución.</p>
 <p>Cuando K-S se aplica para contrastar la hipótesis de normalidad de la
 población, el estadístico de prueba es la máxima diferencia entre las
 funciones de distribución de probabilidad muestral y la teórica:</p>
@@ -437,6 +437,10 @@ funciones de distribución de probabilidad muestral y la teórica:</p>
 distribución muestral y <span class="math inline">\(F_0(x)\)</span> es
 la función teórica (normal) especificada en la hipotesis nula <span
 class="math inline">\(H_0\)</span></p>
+<p><strong>Pruebas de hipótesis</strong></p>
+<p><span class="math inline">\(H_0:\)</span> Los datos analizados siguen
+una distribución M. <span class="math inline">\(H_1:\)</span> Los datos
+analizados no siguen una distribución M</p>
 <p><strong>Ejemplo en R</strong></p>
 <p>Se generan 100 observaciones de una población normal con media 170 y
 desviación estándar 8. Note que estas pueden ser muestras de estaturas
@@ -450,7 +454,7 @@ plot(density(x))</code></pre>
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
-## D = 0.041986, p-value = 0.9945
+## D = 0.080257, p-value = 0.54
 ## alternative hypothesis: two-sided</code></pre>
 <p>¿Según los criterios vistos en clase cuál es la desición
 apropiada?</p>

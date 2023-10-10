@@ -280,6 +280,41 @@ p
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/ip-y-YW5Kg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+
+## Cómo hallar probabilidades a partir de la función acumulada
+
+1. 
+
+$$P(a \leq x\leq b)=F(b)-F(a) $$
+$$P(a \leq x\leq b)=P(x\leq b)-P(x\leq a-1)$$
+
+2. 
+
+$$P(X=a)=F(a)-F(a-1)$$
+
+$$P(X=a)=P(x\leq a)-P(x\leq a-1)$$
+
+3. 
+
+$$𝑃(𝑥>𝑎)=1−F(a)$$
+
+$$𝑃(𝑥>𝑎)=1−𝑃(𝑥≤𝑎)$$
+
+4. $$ 𝑃(𝑥≥𝑎)=1−𝑃(𝑥≤𝑎−1)$$
+$$𝑃(𝑥≥𝑎)=1−𝐹(𝑎−1)$$
+
+5. 
+$$𝑃(𝑥<𝑎)=𝑃(𝑥≤𝑎−1)$$
+$$𝑃(𝑥<𝑎)=𝐹(𝑎−1)$$
+
+
+```{r}
+x= rnorm(50,2,5) 
+hist(x,main="")
+```
+
+
 ## Valor esperado y varianza de una función lineal
 
 Sea x es una variable aleatoria continua con pdf f(x) con a, b, c constantes, y la función lineal de la forma
@@ -287,10 +322,24 @@ Sea x es una variable aleatoria continua con pdf f(x) con a, b, c constantes, y 
 $$Y=a+bx$$
 su esperanza es :
 
-$$E(y)=E(a+bx)=$$
+$$E(y)=E(a+bx)$$
 $$E(y)=E(a)+bE(x)$$
 
+**Ejemplo**
+
+Un distribuidor de enseres para el hogar vende tres modelos de congeladores verticales de 13.5, 15.9 y 19.1 pies cúbicos de espacio de almacenamiento, respectivamente. Sea X  la cantidad de espacio de almacenamiento adquirido por el siguiente cliente que compre un congelador. Suponga que X tiene la función masa de probabilidad
+
+|  x      |13.5|15.9|19.1|total|
+|---------|----|----|----|-----|
+|f(x)     |0.2 |0.5 |0.3 |   1 |
+|xf(x)    |    |    |    |     |
+|$x^2f(x)$|    |    |    |     |
+ 
+a. Calcule $E(X), 𝐸(𝑥^2)$ y $V(X)$.
 
 
+b. Si el precio de un congelador de X pies cúbicos de capacidad es 25X - 8.5, ¿cuál es el precio esperado pagado por el siguiente cliente que compre un congelador?
 
-[Clase de Distribuciones discretas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ITM_discretas.pptx)
+c. ¿Cuál es la varianza del precio 25X - 8.5 pagado por el siguiente cliente?
+
+d. Suponga que aunque la capacidad nominal de un congelador  X, la real es $h(X)=X-0.01X^2$. ¿Cuál es la capacidad real esperada del congelador adquirido por el siguiente cliente?
