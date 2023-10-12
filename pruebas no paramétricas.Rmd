@@ -15,59 +15,97 @@ Gran parte de los procedimientos descritos anteriormente de pruebas de hipótesi
 
 La hipotesis nula y alternativa de normalidad son las siguientes:
 
- $$ H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal$$
+ $$H_0:  \quad Los\quad datos\quad se\quad distribuyen \quad normal$$
+ 
 $$H_1:  \quad Los\quad datos\quad no \quad se\quad distribuyen \quad normal$$
 Existen diferentes pruebas para evaluar la normalidad, todas son de fácil implementación en R.
 
 
 ## Test de Kolmogorov-Smirnov K-S
 
-Se emplea para saber si una distribución de probabilidad acumulada difiere de una distribución hipotética, por lo general la distribución normal,la uniforme, la de Poisson o la exponencial.Es decir permite contrastar si un conjunto de datos muestrales proviene de un tipo de distribución. 
+Se emplea para saber si una distribución de probabilidad acumulada difiere de una distribución hipotética, por lo general la distribución normal, la uniforme, la de Poisson o la exponencial. Es decir permite contrastar si un conjunto de datos muestrales proviene de un tipo de distribución. 
 
 
 
-
+**Estadístico**
 
 Cuando K-S se aplica para contrastar la hipótesis de normalidad de la población, el estadístico de prueba es la máxima diferencia entre las funciones de distribución de probabilidad muestral y la teórica:
 
 $$D=max|F_n-F_0(x)|$$
 
-Siendo $F_n (x)$ la función de distribución muestral y $F_0(x)$ es la función teórica (normal) especificada en la hipotesis nula $H_0$
+Siendo $F_n(x)$ la función de distribución muestral y $F_0(x)$ es la función teórica (normal) especificada en la hipotesis nula $H_0$
 
 
 **Pruebas de hipótesis**
 
-
-
 $H_0:$ Los datos analizados siguen una distribución M.
+
+
 $H_1:$ Los datos analizados no siguen una distribución M
 
 
 
+**Ejemplo probando la distribución exponencial**
 
-**Ejemplo en R**
 
-Se generan 100 observaciones de una población normal con media 170 y desviación estándar 8. Note que estas pueden ser muestras de estaturas de individuos. Veamos si los datos generados realmente provienen de una normal.
 
-```{r echo=TRUE}
 
-x=rnorm(100,170,8)
-plot(density(x))
-ks.test(x, "pnorm",170,8)
+Celia quiere medir el tiempo de atención a los usuarios. Se seleccionaron 20 personas y los tiempos de atención en minutos.
 
-```
-¿Según los criterios vistos en clase cuál es la desición apropiada?
+
 
 ```{r}
+require(car)
+tiempo<-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
+          12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
+
+par(mfrow=c(1,3))
+hist(tiempo, xlab = "Tiempo", ylab = "Frecuencia", las=1, main = "", col = "gray")
+qqPlot(tiempo, col = "gray", ylab="Tiempo")
+plot(density(tiempo), xlab = "Tiempo", ylab = "Densidad", las=1, main = "")
+
+
+```
+
+Se procede a revisar el ajuste con respecto a una distribución exponencial con un α=0.05
+
+Sea X el tiempo entre llegadas a Celia Express.
+
+$$H_0:X∼exp$$
+
+$$H_1:X≁exp$$
+la siguiente función ayuda a estimar los parámetros del modelo
+
+```{r}
+library(MASS)
+Ajustex <- fitdistr(tiempo,"exponential")
+Ajustex
+
+Ks<- ks.test(tiempo, "pexp", rate=Ajustex$estimate[1])
+Ks
+
+```
+
+Según las pruebas realizadas, no se rechaza la hipótesis nula y por tanto, se asume la distribución exponencial.
+
+
+**Ejemplo comparando dos distribuciones**
+
+x y y provienen de la misma distribución
+
+$$H_0:X∼y$$
+
+$$H_1:X≁y$$
+
+```{r}
+
 x <- rnorm(50)
 y <- runif(30)
-# Do x and y come from the same distribution?
-ks.test(x, y)
-# Does x come from a shifted gamma distribution with shape 3 and rate 2?
-ks.test(x+2, "pgamma", 3, 2) # two-sided, exact
-ks.test(x+2, "pgamma", 3, 2, exact = FALSE)
-ks.test(x+2, "pgamma", 3, 2, alternative = "gr")
 
+par(mfrow=c(1,2))
+hist(x)
+hist(y)
+ks.test(x, y)
 
 ```
 
@@ -79,12 +117,54 @@ ks.test(x+2, "pgamma", 3, 2, alternative = "gr")
 
 También se usa para contrastar normalidad de un conjunto de datos, cuando la muestra es como máximo de tamaño 50. Es una alternativa más potente que la prueba de K-S. 
 
-Para efectuarla se calcula la media y la varianza muestral $S^2$, y se ordenan las observaciones de menor a mayor, luego se calculan las diferencias entre: el primero y el último; el segundo y el penúltimo; el tercero y el antepenúltimo, etc. y se corrigen con unos coeficientes tabulados por Shapiro y Wilk. El estadístico de prueba es:
+Para efectuarla se calcula la media y la varianza muestral $S^2$, y se ordenan las observaciones de menor a mayor, luego se calculan las diferencias entre: el primero y el último; el segundo y el penúltimo; el tercero y el antepenúltimo, etc. y se corrigen con unos coeficientes tabulados por Shapiro-Wilk. 
+
+
+El estadístico de prueba es:
 
 $$W=\frac{D^2}{nS^2}$$
 
 
 donde D es la suma de las diferencias corregidas.
+
+
+**Ejemplo en R probando normalidad**
+
+
+Se necesita verificar si es correcto suponer que el volumen de llenado (en onzas) de una máquina dispensadora de jugos sigue una distribución normal, por lo que se toman 25 botellas de forma aleatoria. Los datos del volumen de llenado obtenidos de la muestra se encuentran almacenados en el vector volumen.
+
+**Hipótesis**
+
+$H_0:$ el volumen de llenado (en onzas) sigue una distribución normal.
+
+$H_1:$ el volumen de llenado (en onzas) no sigue una distribución normal.
+
+Nivel de significancia: 0.05 (Hipotético).
+
+**Analisis descriptivo**
+
+
+```{r}
+
+volumen <-c(8.39,12.14, 11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1, 11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
+
+mean(volumen)
+sd(volumen)
+
+require(car)
+library(MASS)
+par(mfrow=c(1,3))
+hist(volumen, xlab = "Volumen de llenado", ylab = "Frecuencia", las=1, main = "", col = "gray")
+
+plot(density(volumen), xlab = "Volumen de llenado", ylab = "Densidad", las=1, main = "")
+
+qqPlot(volumen, xlab="Cuantiles teóricos", ylab="Cuantiles muestrales", las=1,main="")
+
+ks.test(volumen, "pnorm", mean =11.81, sd=1.4)
+
+shapiro.test(volumen)
+
+```
 
 **Ejemplo en R**
 
@@ -110,13 +190,23 @@ grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)
 shapiro.test(grupo1)
 shapiro.test(grupo2)
 
+#prueba para saber si provienen de la misma distribución 
+ks.test(grupo1,grupo2)
+
 ## Prueba de igualdad entre varinzas
 var.test(grupo1,grupo2)
 
 ## prueba de diferencias entre medias
 t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
+
+
          
 ```
+
+$$H_0:grupo1∼grupo2$$
+
+$$H_1:grupo1≁grupo2$$
+
 
 
 # Prueba no paramétrica para la diferencias entre dos poblaciones
@@ -159,6 +249,44 @@ shapiro.test(y)
 
 
 ```
+
+### Prueba de bondad de ajuste para datos discretos
+
+Para estimar los parámetros de una distribución de probabilidad discreta (poisson y bonimial), se requiere la función goodfit del paquete vcd. Esta función también realiza la prueba de bondad y ajuste y sus argumentos son: variable de interés, tipo de distribución y método. Se usará el test de Chi-cuadradado a través del argumento “MinChisq”
+
+
+En el supermercado doña Celia, se está estudiando el comportamiento del número de personas que llegan cada hora. Se analizaron 20 horas, cuyos datos se consignan a continuación:
+
+
+**Análisis exploratorio**
+Se analiza los gráficos para determinar una distribución hipotética.
+
+```{r}
+
+personas<-c(13, 14, 14, 19, 17, 14, 13,  9, 16, 16,13, 13, 15, 13,  7, 14, 14, 13, 20, 15)
+
+par(mfrow=c(1,2))
+hist(personas, xlab = "personas", ylab = "Frecuencia", las=1, main = "", col = "gray")
+plot(density(personas), xlab = "personas", ylab = "Densidad", las=1, main = "")
+
+```
+
+En este caso, la variable de interés registra un número de eventos por unidad de tiempo, por lo que se sugiere analizar el ajuste a una distribución poisson. Se muestra la respectiva prueba de hipótesis. Sea X el número de clientes que visitan Celia Express.
+
+$H_0:$X∼Poisson
+
+$H_1:$X≁Poisson
+
+Se realizará el análisis con un α=0.01
+
+```{r}
+require(vcd)
+gf<-goodfit(personas, type = "poisson", method = "MinChisq")
+gf$par
+
+summary(gf)
+```
+
 
 
 ### Prueba t-Student en R
@@ -225,7 +353,7 @@ Se usan los datos de la base survey de la librería MASS de R, que corresponden 
 
 1. Valide la hipótesis de si el hábito de fumar es independiente del nivel de ejercicios de los estudiantes usando un nivel de significancia del 0.05.
 
-```{r echo=TRUE, results='hide'}
+```{r }
 ## Para inst lar librerías use
 
 # install.packages("MASS")
