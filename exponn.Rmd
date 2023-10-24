@@ -10,13 +10,11 @@ output:
 
 ---
 
-# Función de distribución de probabilidad Gama 
+## Función gama
 
 La distribución normal es simétrica. Existen muchas situaciones de interés en que la  distribución es asimétrica. Una familia de distribuciones que tiene esta propiedad es la familia gama. 
 
-Si se está interesado en la ocurrencia de un evento generado por un proceso de Poisson de media $\lambda$, la variable que mide el tiempo transcurrido hasta obtener n ocurrencias del evento, sigue una distribución gamma, por ejemplo cuando se realiza el estudio de la duración de elementos físicos (tiempo de vida).
 
-## Función gama
 
 Con $\alpha>0$, la función gama $\Gamma(\alpha)$ se define como:
 
@@ -31,6 +29,9 @@ Las propiedades más importantes de la función gama son las siguientes:
 3. $\Gamma(\frac{1}{2})=\sqrt \pi$
 
 ## Función de distribución de probabilidad gama
+
+
+Si se está interesado en la ocurrencia de un evento generado por un proceso de Poisson de media $\lambda$, la variable que mide el tiempo transcurrido hasta obtener n ocurrencias del evento, sigue una distribución gamma, por ejemplo cuando se realiza el estudio de la duración de elementos físicos (tiempo de vida).
 
 Una variable aleatoria continua X tiene una distribución gama si la función de densidad de probabilidad de X es:
 
@@ -168,7 +169,12 @@ $$V(X)=E(X^2)-\mu^2 $$
 $$V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 $$
 al resolver las integrales se obtiene que  
 $$Var(x)=\frac{1}{λ^2}$$
-## Función acumulada
+
+
+
+## Función de distribución acumulada
+
+
 
 
 La función de distribución acumulada es 
@@ -223,7 +229,35 @@ $$e^{-\lambda x}=P(X>x)$$
 La distribución exponencial se utiliza con frecuencia como modelo de la distribución
 de tiempos entre la ocurrencia de eventos sucesivos, tales como clientes que llegan a una instalación de servicio o llamadas que entran a un conmutador. La razón de esto es que la distribución exponencial está estrechamente relacionada con el proceso de Poisson.
 
+Suponga que el número de eventos que ocurren en cualquier intervalo de tiempo de duración t tiene una distribución de Poisson con parámetro $\alpha t$ (donde  $\alpha$, la razón del proceso de eventos, es el número esperado de eventos que ocurren en una unidad de
+tiempo) y que los números de ocurrencias en intervalos no traslapantes son independientes uno de otro. Entonces la distribución del tiempo transcurrido entre la ocurrencia de dos eventos sucesivos es exponencial con parámetro $\lambda=\alpha$.
+
 ### Ejercicios
+
+**Ejercicios GAMA**
+1.  Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas.
+a. ¿Cuál es la probabilidad de que un transistor dure entre 12 y 24 semanas?
+b. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 24 semanas? ¿Es la mediana de la distribución de duración menor que 24? ¿Por qué si o por qué no?
+c. ¿Cuál es el 99o percentil de la distribución de duración?
+d. Suponga que la prueba termina en realidad después de t semanas. ¿Qué valor de t es tal que sólo el 0.5% de todos los transistores continuarán funcionando al término de la prueba?
+
+a. 0.424 b. 0.567,$ \mu < 24$ c. 60 d. 66
+
+2. En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 
+2.1. Insuficiente en un día cualquiera? 
+2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 
+2.3 Encuentre E(x) y V(x)
+
+3. Si X tiene una distribución gama estándar con $\alpha=7$ evalúe lo siguiente:
+$$a. P(X \leq 5)$$
+$$b.P(X< 5)$$
+$$c. P(X>8)$$
+$$d. P(3 \leq X \leq 8)$$
+$$ e. P(3 < X < 8)$$
+$$f. P(X <4 o X > 6)$$
+
+**Ejercicios exponencial**
+
 
 1. Sea X el tiempo entre dos llegadas sucesivas a la ventanilla de autopago de un banco local. Si X tiene una distribución exponencial con λ=1 (la cual es idéntica a una distribución gama estándar con λ= 1), calcule lo siguiente:
 a.	El tiempo esperado entre dos llegadas sucesivas
@@ -308,24 +342,155 @@ a Encuentre la probabilidad de que la planta use más de 4 toneladas en un día 
 b ¿Cuánto del producto a granel debe haber en existencia para que la probabilidad de que la planta
 agote el producto sea de sólo .05?
 
-**Ejercicios GAMA**
-1.  Suponga que cuando un transistor de cierto tipo se somete a una prueba de duración acelerada, la duración X (en semanas) tiene una distribución gama acelerada con media de 24 semanas y desviación estándar de 12 semanas.
-a. ¿Cuál es la probabilidad de que un transistor dure entre 12 y 24 semanas?
-b. ¿Cuál es la probabilidad de que un transistor dure cuando mucho 24 semanas? ¿Es la mediana de la distribución de duración menor que 24? ¿Por qué si o por qué no?
-c. ¿Cuál es el 99o percentil de la distribución de duración?
-d. Suponga que la prueba termina en realidad después de t semanas. ¿Qué valor de t es tal que sólo el 0.5% de todos los transistores continuarán funcionando al término de la prueba?
 
-a. 0.424 b. 0.567,$ \mu < 24$ c. 60 d. 66
 
-2. En cierta ciudad el consumo diario de energía eléctrica, en millones de kilovatios por hora, puede considerarse como una variable aleatoria con distribución gama de parámetros α= 3 y β=2. La planta de energía de esta ciudad tiene una capacidad diaria de 10 millones de KW/hora ¿Cuál es la probabilidad de que este abastecimientos sea: 
-2.1. Insuficiente en un día cualquiera? 
-2.2 Se consuman entre 3 y 8 millones de K. W./Hora? 
-2.3 Encuentre E(x) y V(x)
 
-3. Si X tiene una distribución gama estándar con $\alpha=7$ evalúe lo siguiente:
-$$a. P(X \leq 5)$$
-$$b.P(X< 5)$$
-$$c. P(X>8)$$
-$$d. P(3 \leq X \leq 8)$$
-$$ e. P(3 < X < 8)$$
-$$f. P(X <4 o X > 6)$$
+**Relación exponencial-poisson**
+
+El número de autos que corren a una alta velocidad (detectada por cámaras) durante un lapso de una hora es una v.a.  poisson con μ=8.4 . ¿Cuál es la probabilidad de esperar menos de 10 minutos entre dos autos veloces?
+Solución:
+
+
+X~p (8.4) / hora
+µ=60/8.4 minuto/auto  
+µ=7.1428
+X~Exp con media de 7.1428
+λ =1/µ donde λ =1/7.1428   λ =0.14
+X~Exp (0.14)
+a p.(x <10hora)=1-  e^(-0.14*10) =0.7534
+
+
+
+2. A una estación de servicio llegan en promedio 5 clientes por hora ¿Cuál es la probabilidad de que entre dos llegadas consecutivas: transcurra mínimo 20 minutos?
+Solución:
+X~p (5) / hora
+µ=60/5 minuto/cliente  
+µ=12
+X~Exp con media de 12minutos
+λ =1/µ donde λ =1/12   λ =0.083
+X~Exp (1/12)
+a p.(x >20)=  e^(-0.083*20) =0.1888
+
+
+
+
+
+3. Suponga que las llamadas telefónicas que llegan a un conmutador particular siguen un proceso de poisson con un promedio de 5 llamadas  que llegan por minuto. ¿Cuál es la probabilidad de que pase más de un minuto entre dos llegadas consecutivas?
+Solución:
+
+
+X~p (5) / minuto
+Tiempo entre llamadas µ=1/5 minuto/cliente  
+µ=0.2
+X~Exp con media de 0.2 minutos
+λ =1/µ donde λ =1/0.2   λ =5
+X~Exp (5)
+a p.(x>1)=  e^(-5*1) =0.006737
+
+4.Se realiza un estudio de la cantidad de automóviles que llegan a un auto lavado durante una hora se describe una distribución de poisson con una media de 10 automóviles por hora. 
+a. ¿Cuál es la probabilidad de que el próximo carro en la fila tenga que esperar más de 10 minutos para ser atendido?
+Solución:
+
+
+X~p (10) / hora
+Tiempo entre llegadas µ=60/10 
+µ=6 minutos
+X~Exp con media de 6 minutos.
+λ =1/µ donde λ =1/6   λ =0.1666
+X~Exp (0.1666)
+a p.(x >10)= e^(-1*10) =0.000045
+
+
+
+
+
+
+5.El tiempo entre llegadas de barcos a un determinado puerto siguen un proceso de poisson con un promedio de 6 barcos por minuto. ¿Cuál es la probabilidad de que pase más de tres minutos entre dos llegadas consecutivas de barcos?
+
+Solución:
+X~p (6) / minuto
+Tiempo entre llamadas µ=1/6 minuto/barco
+µ=0.166
+X~Exp con media de 0.1666 minutos
+λ =1/µ donde λ =1/0.1666   λ =6
+X~Exp (6)
+a p.(x>3)=  e^(-6*1) =0.002478
+
+**Selección múltiple**
+
+Suponga que se reciben llamadas durante las 24 horas en una “línea de emergencia para prevención del suicidio” de acuerdo con un proceso de Poisson a razón α= 0.5 llamadas por día. Halle la probabilidad de que transcurran más de dos días entre llamadas es
+
+Solución:
+
+
+Entonces el número de días X entre llamadas sucesivas tiene una distribución exponencial con valor de parámetro 0.5
+
+X~p (0.5 llamadas/día)
+El tiempo esperado entre llamadas sucesivas es 1/0.5= 2 días.
+µ=2
+X~Exp con media de 0.5
+λ =1/µ donde λ =1/2   λ =0.5
+X~Exp (0.5)
+
+P(X>2)=1-P(x≤2)=1-(1-e^(0.5*2) )= e^(0.5*2)=0.368 
+
+
+2. históricamente llegan 10 clientes a las filas de espera en las cajas registradoras cada hora. Halle la probabilidad de que una persona tarde 9 minutos o menos en pasar por caja registradora.
+
+X~p (10 clientes) / hora
+Tiempo entre llegadas          µ=1/10         0.1 clientes/hora 
+µ=0.1
+X~Exp con media de 0.1 minutos
+λ =1/µ donde λ =1/0.1   λ =10
+X~Exp (10)
+Pasamos 9 minutos a horas
+9 min*(1 hora)/(60 min)=0.15 horas
+
+P(x≤0.15)=1-e^(-10*0.15)=0,7769
+
+
+
+
+3. La amplia experiencia con ventiladores de un tipo utilizados en motores diesel ha sugerido que la distribución exponencial proporciona un buen modelo del tiempo hasta la falla. Suponga que el tiempo medio hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que Un ventilador seleccionado al azar dure por lo menos 20.000 horas? 
+
+Tiempo entre fallas        
+µ=25000 horas hasta la falla         
+0.1 clientes/hora 
+µ=1/ λ    λ=1/25000=0.00004
+X~Exp con media de 25000 horas
+X~Exp (0.00004)
+P(x≥20000)=e^(-20000*0.00004)=0,449
+
+
+
+4. Si entran llamadas a un centro policial de emergencia a razón de diez por hora, ¿cuál es la probabilidad de que transcurran más de 15 minutos entre las dos llamadas siguientes?
+X~p (10) / hora
+Tiempo entre llamadas µ=1/10   0.1 horas
+µ=0.1
+X~Exp con media de 0.1 minutos
+λ =1/µ donde λ =1/0.1  λ =10
+X~Exp (10)
+
+Pasamos 15 minutos a horas
+15 min*(1 hora)/(60 min)=0.25 horas
+
+P(x≥0.25)=e^(-10*0.25)=0,082
+
+
+
+
+
+5. Durante el año 2020, el Centro Sismológico Nacional (CSN) de la Universidad de Chile, procesó 21 sismos por día. ¿cuál es la probabilidad de que se reporte más de dos horas entre sismos?
+X~p (21 sismos) / día
+Tiempo medio entre sismos µ=1/21   0.0476 días
+µ=0.0476
+X~Exp con media de 0.04762 días
+λ =1/µ                          donde λ =1/0.1                         λ =10
+X~Exp (21)
+Pasamos 2 horas a dias
+2 horas*(1 dia)/(24 horas)=0.0833 horas
+
+P(x≥0.0833)=e^(-21*0833)=0,1737
+
+
+
