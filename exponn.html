@@ -617,21 +617,46 @@ x}=P(X&gt;x)\]</span></p>
 <div id="relación-entre-la-distribución-exponencial-y-la-poisson"
 class="section level2">
 <h2>Relación entre la distribución exponencial y la poisson</h2>
-<p>La distribución exponencial se utiliza con frecuencia como modelo de
-la distribución de tiempos entre la ocurrencia de eventos sucesivos,
-tales como clientes que llegan a una instalación de servicio o llamadas
-que entran a un conmutador. La razón de esto es que la distribución
-exponencial está estrechamente relacionada con el proceso de
-Poisson.</p>
-<p>Suponga que el número de eventos que ocurren en cualquier intervalo
-de tiempo de duración t tiene una distribución de Poisson con parámetro
-<span class="math inline">\(\alpha t\)</span> (donde <span
-class="math inline">\(\alpha\)</span>, la razón del proceso de eventos,
-es el número esperado de eventos que ocurren en una unidad de tiempo) y
-que los números de ocurrencias en intervalos no traslapantes son
-independientes uno de otro. Entonces la distribución del tiempo
-transcurrido entre la ocurrencia de dos eventos sucesivos es exponencial
-con parámetro <span class="math inline">\(\lambda=\alpha\)</span>.</p>
+<p>La distribución exponencial está estrechamente relacionada con el
+proceso Poisson.</p>
+<div class="figure" style="text-align: center">
+<img src="imagen/REP.png" alt="Probabilidad es un valor entre 0 y 1" width="446" />
+<p class="caption">
+Probabilidad es un valor entre 0 y 1
+</p>
+</div>
+<p>La v.a Poisson es discreta, cuenta los eventos durante un periodo de
+tiempo, calcula la probabilidad de que se produzca un número de
+eventos.Las preguntas clásicas de la distribución de Poisson son
+“¿cuántas personas llegarán a mi caja en la próxima hora?”.</p>
+<p>La v.a exponencial es continua, calcula las probabilidades del paso
+del tiempo, las preguntas clásicas de la distribución exponencial son
+“¿cuánto tiempo pasará hasta que llegue la siguiente persona?”, o una
+variante, “¿cuánto tiempo permanecerá la persona una vez que haya
+llegado?”.</p>
+<p><strong>Ejemplo</strong></p>
+<p><strong>VA poisson:</strong> Cuál es la probabilidad de que en
+colombia en el año sucedan 20 temblores</p>
+<p><strong>VA exponencial:</strong> Cuanto tiempo transcurre entre un
+temblor y otro</p>
+<p>El número de eventos que ocurren en cualquier intervalo de tiempo de
+duración t tiene una distribución de Poisson con parámetro <span
+class="math inline">\(\alpha t\)</span> (donde <span
+class="math inline">\(\alpha\)</span>,es el número esperado de eventos
+que ocurren en una unidad de tiempo) y que las ocurrencias entre eventos
+son independientes. Entonces la distribución del tiempo transcurrido
+entre la ocurrencia de dos eventos sucesivos es exponencial con
+parámetro <span class="math inline">\(\lambda=\alpha\)</span>.</p>
+<p>El número de autos que corren a una alta velocidad (detectada por
+cámaras) durante un lapso de una hora es una v.a. poisson con μ=8.4 .
+¿Cuál es la probabilidad de esperar menos de 10 minutos entre dos autos
+veloces? Solución:</p>
+<p>X~p (8.4) autos / hora</p>
+<p>µ=60/8.4 minuto/auto =7.1428</p>
+<p>X~Exp con media de 7.1428</p>
+<p>λ =1/µ donde λ =1/7.1428=0.14</p>
+<p>X~Exp (0.14)</p>
+<p>P(x &lt;10)=1- e^(-0.14*10) =0.7534</p>
 <div id="ejercicios" class="section level3">
 <h3>Ejercicios</h3>
 <p><strong>Ejercicios GAMA</strong> 1. Suponga que cuando un transistor
@@ -779,13 +804,6 @@ determinado. b ¿Cuánto del producto a granel debe haber en existencia
 para que la probabilidad de que la planta agote el producto sea de sólo
 .05?</p>
 <p><strong>Relación exponencial-poisson</strong></p>
-<p>El número de autos que corren a una alta velocidad (detectada por
-cámaras) durante un lapso de una hora es una v.a. poisson con μ=8.4 .
-¿Cuál es la probabilidad de esperar menos de 10 minutos entre dos autos
-veloces? Solución:</p>
-<p>X~p (8.4) / hora µ=60/8.4 minuto/auto<br />
-µ=7.1428 X~Exp con media de 7.1428 λ =1/µ donde λ =1/7.1428 λ =0.14
-X~Exp (0.14) a p.(x &lt;10hora)=1- e^(-0.14*10) =0.7534</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>A una estación de servicio llegan en promedio 5 clientes por hora
 ¿Cuál es la probabilidad de que entre dos llegadas consecutivas:
@@ -846,9 +864,11 @@ hasta la falla es de 25000 horas. ¿Cuál es la probabilidad de que Un
 ventilador seleccionado al azar dure por lo menos 20.000 horas?</li>
 </ol>
 <p>Tiempo entre fallas<br />
-µ=25000 horas hasta la falla<br />
-0.1 clientes/hora µ=1/ λ λ=1/25000=0.00004 X~Exp con media de 25000
-horas X~Exp (0.00004) P(x≥20000)=e^(-20000*0.00004)=0,449</p>
+µ=25000 horas hasta la falla</p>
+<p>µ=1/ λ λ=1/25000=0.00004</p>
+<p>X~Exp con media de 25000 horas</p>
+<p>X~Exp (0.00004)</p>
+<p>P(x≥20000)=e^(-20000*0.00004)=0,449</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Si entran llamadas a un centro policial de emergencia a razón de
 diez por hora, ¿cuál es la probabilidad de que transcurran más de 15

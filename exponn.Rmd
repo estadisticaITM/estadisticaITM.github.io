@@ -226,11 +226,52 @@ $$\frac{e^{-\lambda(x+y)}}{e^{-\lambda y}}$$
 $$e^{-\lambda x}=P(X>x)$$
 
 ## Relación entre la distribución exponencial y la poisson
-La distribución exponencial se utiliza con frecuencia como modelo de la distribución
-de tiempos entre la ocurrencia de eventos sucesivos, tales como clientes que llegan a una instalación de servicio o llamadas que entran a un conmutador. La razón de esto es que la distribución exponencial está estrechamente relacionada con el proceso de Poisson.
+La distribución exponencial está estrechamente relacionada con el proceso  Poisson. 
 
-Suponga que el número de eventos que ocurren en cualquier intervalo de tiempo de duración t tiene una distribución de Poisson con parámetro $\alpha t$ (donde  $\alpha$, la razón del proceso de eventos, es el número esperado de eventos que ocurren en una unidad de
-tiempo) y que los números de ocurrencias en intervalos no traslapantes son independientes uno de otro. Entonces la distribución del tiempo transcurrido entre la ocurrencia de dos eventos sucesivos es exponencial con parámetro $\lambda=\alpha$.
+```{r, echo=F, fig.cap='Probabilidad es un valor entre 0 y 1', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/REP.png")
+```
+
+La v.a Poisson es discreta, cuenta los eventos durante un periodo de tiempo, calcula la probabilidad de que se produzca un número de eventos.Las preguntas clásicas de la distribución de Poisson son "¿cuántas personas llegarán a mi caja en la próxima hora?".
+
+La v.a exponencial es continua, calcula las probabilidades del paso del tiempo, las preguntas clásicas de la distribución exponencial son "¿cuánto tiempo pasará hasta que llegue la siguiente persona?", o una variante, "¿cuánto tiempo permanecerá la persona una vez que haya llegado?".
+
+**Ejemplo**
+
+
+
+**VA poisson:** Cuál es la probabilidad de que en colombia en el año sucedan 20 temblores
+
+
+
+**VA exponencial:** Cuanto tiempo transcurre entre un temblor y otro
+
+El número de eventos que ocurren en cualquier intervalo de tiempo de duración t tiene una distribución de Poisson con parámetro $\alpha t$ (donde  $\alpha$,es el número esperado de eventos que ocurren en una unidad de tiempo) y que las ocurrencias entre eventos son independientes. Entonces la distribución del tiempo transcurrido entre la ocurrencia de dos eventos sucesivos es exponencial con parámetro $\lambda=\alpha$.
+
+
+
+El número de autos que corren a una alta velocidad (detectada por cámaras) durante un lapso de una hora es una v.a.  poisson con μ=8.4 . ¿Cuál es la probabilidad de esperar menos de 10 minutos entre dos autos veloces?
+Solución:
+
+
+X~p (8.4) autos / hora
+
+
+µ=60/8.4 minuto/auto =7.1428
+
+
+X~Exp con media de 7.1428
+
+
+λ =1/µ donde λ =1/7.1428=0.14
+
+
+X~Exp (0.14)
+
+P(x <10)=1-  e^(-0.14*10) =0.7534
+
+
+
 
 ### Ejercicios
 
@@ -347,19 +388,6 @@ agote el producto sea de sólo .05?
 
 **Relación exponencial-poisson**
 
-El número de autos que corren a una alta velocidad (detectada por cámaras) durante un lapso de una hora es una v.a.  poisson con μ=8.4 . ¿Cuál es la probabilidad de esperar menos de 10 minutos entre dos autos veloces?
-Solución:
-
-
-X~p (8.4) / hora
-µ=60/8.4 minuto/auto  
-µ=7.1428
-X~Exp con media de 7.1428
-λ =1/µ donde λ =1/7.1428   λ =0.14
-X~Exp (0.14)
-a p.(x <10hora)=1-  e^(-0.14*10) =0.7534
-
-
 
 2. A una estación de servicio llegan en promedio 5 clientes por hora ¿Cuál es la probabilidad de que entre dos llegadas consecutivas: transcurra mínimo 20 minutos?
 Solución:
@@ -455,10 +483,14 @@ P(x≤0.15)=1-e^(-10*0.15)=0,7769
 
 Tiempo entre fallas        
 µ=25000 horas hasta la falla         
-0.1 clientes/hora 
+
+ 
 µ=1/ λ    λ=1/25000=0.00004
+
 X~Exp con media de 25000 horas
+
 X~Exp (0.00004)
+
 P(x≥20000)=e^(-20000*0.00004)=0,449
 
 
