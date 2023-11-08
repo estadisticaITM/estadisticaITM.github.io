@@ -628,7 +628,7 @@ positiva.</p></li>
 <li><p>Valores cercanos a 0 la relación es débil, es decir no hay una
 relación lineal</p></li>
 </ul>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="imagen/cor.png" width="726" style="display: block; margin: auto;" /></p>
 <p><strong>Prueba de significancia de la correlación</strong></p>
 <p>Podemos chequear la significancia de la correlación a través del
 siguiente juego de hipótesis.</p>
@@ -637,6 +637,69 @@ class="math display">\[\Large H_1:  r\not=0\]</span></p>
 <p>En R usamos la función cor.test() para estudiar la significación
 estadística del coeficiente y concluir sobre la posible existencia de
 relación lineal entre las variables.</p>
+<p><strong>Ejemplo</strong> Retomando el ejemplo de las flores, la base
+de datos iris contiene diferentes variables cuantitativas, largo y ancho
+del sépalo y largo y ancho del pétalo, asi como de las especies</p>
+<p><img src="imagen/iris.png" width="534" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>head(iris)
+#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1          5.1         3.5          1.4         0.2  setosa
+#&gt; 2          4.9         3.0          1.4         0.2  setosa
+#&gt; 3          4.7         3.2          1.3         0.2  setosa
+#&gt; 4          4.6         3.1          1.5         0.2  setosa
+#&gt; 5          5.0         3.6          1.4         0.2  setosa
+#&gt; 6          5.4         3.9          1.7         0.4  setosa
+
+library(PerformanceAnalytics)
+#&gt; Loading required package: xts
+#&gt; Loading required package: zoo
+#&gt; 
+#&gt; Attaching package: &#39;zoo&#39;
+#&gt; The following objects are masked from &#39;package:base&#39;:
+#&gt; 
+#&gt;     as.Date, as.Date.numeric
+#&gt; 
+#&gt; Attaching package: &#39;PerformanceAnalytics&#39;
+#&gt; The following object is masked from &#39;package:graphics&#39;:
+#&gt; 
+#&gt;     legend
+library(ppcor)
+#&gt; Loading required package: MASS
+#matriz de correlaciones
+pcor(iris[1:4])
+#&gt; $estimate
+#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length    1.0000000   0.6285707    0.7190656  -0.3396174
+#&gt; Sepal.Width     0.6285707   1.0000000   -0.6152919   0.3526260
+#&gt; Petal.Length    0.7190656  -0.6152919    1.0000000   0.8707698
+#&gt; Petal.Width    -0.3396174   0.3526260    0.8707698   1.0000000
+#&gt; 
+#&gt; $p.value
+#&gt;              Sepal.Length  Sepal.Width Petal.Length  Petal.Width
+#&gt; Sepal.Length 0.000000e+00 1.199846e-17 7.656980e-25 2.412876e-05
+#&gt; Sepal.Width  1.199846e-17 0.000000e+00 8.753029e-17 1.104958e-05
+#&gt; Petal.Length 7.656980e-25 8.753029e-17 0.000000e+00 7.332477e-47
+#&gt; Petal.Width  2.412876e-05 1.104958e-05 7.332477e-47 0.000000e+00
+#&gt; 
+#&gt; $statistic
+#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; Sepal.Length     0.000000    9.765380    12.502483   -4.362929
+#&gt; Sepal.Width      9.765380    0.000000    -9.431189    4.553279
+#&gt; Petal.Length    12.502483   -9.431189     0.000000   21.398708
+#&gt; Petal.Width     -4.362929    4.553279    21.398708    0.000000
+#&gt; 
+#&gt; $n
+#&gt; [1] 150
+#&gt; 
+#&gt; $gp
+#&gt; [1] 2
+#&gt; 
+#&gt; $method
+#&gt; [1] &quot;pearson&quot;
+
+#matriz con grafico de dispersión 
+chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species))</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level3">
 <h3>Medida de bondad de ajuste <span
@@ -672,7 +735,7 @@ class="math inline">\(\beta_1\)</span> unidades</p></li>
 </ul>
 <p><strong>Cómo obtener un modelo de regresión lineal simple en la
 calculadora</strong></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
 </div>
@@ -887,7 +950,7 @@ las distancias necesarias para frenar en metros</p>
 #&gt; 6     9   10</code></pre>
 <p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
 <pre class="r"><code>plot(cars$speed,cars$dist)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Para este modelo el modelo de regresión lineal simple es:</p>
 <p><span class="math display">\[\Large \hat{y}=-17.57+3.93x\]</span>
 Donde</p>
@@ -900,7 +963,7 @@ aumenta 3.93 unidades</p></li>
 <p><strong>Resultados del modelo en R</strong></p>
 <pre class="r"><code>
 plot(cars$speed,cars$dist)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>cor.test(cars$speed,cars$dist)
 #&gt; 
 #&gt;  Pearson&#39;s product-moment correlation
@@ -935,7 +998,7 @@ summary(md)
 #&gt; F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
 j=fitted(md)
 plot(cars$speed,j, col=2, lwd=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
 <p><strong>anova del modelo</strong></p>
 <pre class="r"><code>md=lm(cars$dist~cars$speed)
 anova(md)
@@ -948,109 +1011,27 @@ anova(md)
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-influence.measures(md)
-#&gt; Influence measures of
-#&gt;   lm(formula = cars$dist ~ cars$speed) :
-#&gt; 
-#&gt;      dfb.1_ dfb.crs.    dffit cov.r   cook.d    hat inf
-#&gt; 1   0.09440 -0.08625  0.09490 1.175 4.59e-03 0.1149   *
-#&gt; 2   0.29242 -0.26716  0.29398 1.146 4.35e-02 0.1149   *
-#&gt; 3  -0.10750  0.09369 -0.11040 1.116 6.20e-03 0.0715    
-#&gt; 4   0.21898 -0.19085  0.22488 1.093 2.55e-02 0.0715    
-#&gt; 5   0.03408 -0.02901  0.03554 1.109 6.45e-04 0.0600    
-#&gt; 6  -0.11101  0.09174 -0.11852 1.085 7.13e-03 0.0499    
-#&gt; 7  -0.04618  0.03669 -0.05110 1.085 1.33e-03 0.0413    
-#&gt; 8   0.05248 -0.04170  0.05807 1.084 1.72e-03 0.0413    
-#&gt; 9   0.15209 -0.12083  0.16827 1.058 1.43e-02 0.0413    
-#&gt; 10 -0.09168  0.06895 -0.10716 1.065 5.82e-03 0.0341    
-#&gt; 11  0.02446 -0.01840  0.02859 1.079 4.17e-04 0.0341    
-#&gt; 12 -0.13849  0.09602 -0.17628 1.027 1.55e-02 0.0284    
-#&gt; 13 -0.08467  0.05870 -0.10777 1.056 5.88e-03 0.0284    
-#&gt; 14 -0.04929  0.03417 -0.06274 1.067 2.00e-03 0.0284    
-#&gt; 15 -0.01413  0.00979 -0.01798 1.073 1.65e-04 0.0284    
-#&gt; 16 -0.05330  0.03233 -0.07757 1.058 3.06e-03 0.0242    
-#&gt; 17  0.00323 -0.00196  0.00470 1.069 1.13e-05 0.0242    
-#&gt; 18  0.00323 -0.00196  0.00470 1.069 1.13e-05 0.0242    
-#&gt; 19  0.08843 -0.05364  0.12870 1.039 8.34e-03 0.0242    
-#&gt; 20 -0.06172  0.02871 -0.11111 1.041 6.23e-03 0.0214    
-#&gt; 21 -0.00789  0.00367 -0.01419 1.065 1.03e-04 0.0214    
-#&gt; 22  0.12329 -0.05734  0.22194 0.971 2.40e-02 0.0214    
-#&gt; 23  0.24851 -0.11558  0.44734 0.747 8.56e-02 0.0214   *
-#&gt; 24 -0.08002  0.01551 -0.20360 0.979 2.03e-02 0.0201    
-#&gt; 25 -0.05700  0.01105 -0.14504 1.019 1.05e-02 0.0201    
-#&gt; 26  0.04643 -0.00900  0.11812 1.034 7.02e-03 0.0201    
-#&gt; 27 -0.02664 -0.01432 -0.12571 1.031 7.94e-03 0.0203    
-#&gt; 28 -0.01059 -0.00569 -0.04998 1.059 1.27e-03 0.0203    
-#&gt; 29 -0.00528 -0.04978 -0.17031 1.010 1.44e-02 0.0219    
-#&gt; 30 -0.00281 -0.02647 -0.09054 1.050 4.15e-03 0.0219    
-#&gt; 31  0.00022  0.00207  0.00708 1.066 2.56e-05 0.0219    
-#&gt; 32  0.01561 -0.05223 -0.11741 1.046 6.96e-03 0.0249    
-#&gt; 33 -0.00387  0.01296  0.02914 1.068 4.33e-04 0.0249    
-#&gt; 34 -0.03235  0.10823  0.24330 0.972 2.88e-02 0.0249    
-#&gt; 35 -0.04462  0.14928  0.33557 0.894 5.26e-02 0.0249    
-#&gt; 36  0.06663 -0.13914 -0.24553 0.989 2.95e-02 0.0295    
-#&gt; 37  0.03458 -0.07221 -0.12744 1.051 8.20e-03 0.0295    
-#&gt; 38 -0.03372  0.07042  0.12428 1.052 7.80e-03 0.0295    
-#&gt; 39  0.14564 -0.25086 -0.38002 0.921 6.81e-02 0.0354    
-#&gt; 40  0.06340 -0.10920 -0.16542 1.048 1.38e-02 0.0354    
-#&gt; 41  0.04382 -0.07547 -0.11432 1.065 6.62e-03 0.0354    
-#&gt; 42  0.02443 -0.04207 -0.06373 1.076 2.07e-03 0.0354    
-#&gt; 43 -0.01411  0.02431  0.03682 1.080 6.92e-04 0.0354    
-#&gt; 44  0.02456 -0.03551 -0.04533 1.098 1.05e-03 0.0518    
-#&gt; 45  0.19602 -0.27032 -0.32823 1.039 5.32e-02 0.0622    
-#&gt; 46  0.08260 -0.11000 -0.12877 1.116 8.43e-03 0.0740    
-#&gt; 47 -0.18634  0.24815  0.29050 1.077 4.21e-02 0.0740    
-#&gt; 48 -0.19890  0.26488  0.31008 1.071 4.79e-02 0.0740    
-#&gt; 49 -0.57747  0.76902  0.90027 0.762 3.40e-01 0.0740   *
-#&gt; 50 -0.06025  0.07812  0.08898 1.139 4.04e-03 0.0873   *
-rstandard(md)
-#&gt;           1           2           3           4           5 
-#&gt;  0.26604155  0.81893273 -0.40134618  0.81326629  0.14216236 
-#&gt;           6           7           8           9          10 
-#&gt; -0.52115255 -0.24869180  0.28256008  0.81381197 -0.57409795 
-#&gt;          11          12          13          14          15 
-#&gt;  0.15366341 -1.02971654 -0.63392061 -0.37005667 -0.10619272 
-#&gt;          16          17          18          19          20 
-#&gt; -0.49644946  0.03013240  0.03013240  0.82000518 -0.75422016 
-#&gt;          21          22          23          24          25 
-#&gt; -0.09692637  1.48057874  2.79516632 -1.40612757 -1.01201579 
-#&gt;          26          27          28          29          30 
-#&gt;  0.82717256 -0.87627072 -0.35074918 -1.13552237 -0.60956963 
-#&gt;          31          32          33          34          35 
-#&gt;  0.04787130 -0.73777117  0.18409193  1.50103921  2.02781813 
-#&gt;          36          37          38          39          40 
-#&gt; -1.39503525 -0.73502818  0.71698735 -1.92452335 -0.86524066 
-#&gt;          41          42          43          44          45 
-#&gt; -0.60041999 -0.33559931  0.19404203 -0.19590672 -1.26671228 
-#&gt;          46          47          48          49          50 
-#&gt; -0.45938126  1.02713306  1.09470190  2.91906038  0.29053451
-rstudent(md)
-#&gt;           1           2           3           4           5 
-#&gt;  0.26345000  0.81607841 -0.39781154  0.81035256  0.14070334 
-#&gt;           6           7           8           9          10 
-#&gt; -0.51716052 -0.24624632  0.27983408  0.81090388 -0.57004675 
-#&gt;          11          12          13          14          15 
-#&gt;  0.15209173 -1.03037790 -0.62992492 -0.36670509 -0.10509307 
-#&gt;          16          17          18          19          20 
-#&gt; -0.49251696  0.02981715  0.02981715  0.81716230 -0.75078438 
-#&gt;          21          22          23          24          25 
-#&gt; -0.09592079  1.49972043  3.02282876 -1.42097720 -1.01227617 
-#&gt;          26          27          28          29          30 
-#&gt;  0.82440767 -0.87411459 -0.34752195 -1.13903469 -0.60553485 
-#&gt;          31          32          33          34          35 
-#&gt;  0.04737114 -0.73422040  0.18222855  1.52145888  2.09848208 
-#&gt;          36          37          38          39          40 
-#&gt; -1.40929208 -0.73145948  0.71330941 -1.98238877 -0.86293622 
-#&gt;          41          42          43          44          45 
-#&gt; -0.59637646 -0.33247538  0.19208548 -0.19393283 -1.27493857 
-#&gt;          46          47          48          49          50 
-#&gt; -0.45557342  1.02773460  1.09701943  3.18499284  0.28774529</code></pre>
+y=influence.measures(md)
+head(y$infmat)
+#&gt;        dfb.1_    dfb.crs$       dffit    cov.r       cook.d        hat
+#&gt; 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121 0.11486131
+#&gt; 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907 0.11486131
+#&gt; 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503 0.07150365
+#&gt; 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384 0.07150365
+#&gt; 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705 0.05997080
+#&gt; 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931 0.04989781
+head(rstandard(md))
+#&gt;          1          2          3          4          5          6 
+#&gt;  0.2660415  0.8189327 -0.4013462  0.8132663  0.1421624 -0.5211526
+head(rstudent(md))
+#&gt;          1          2          3          4          5          6 
+#&gt;  0.2634500  0.8160784 -0.3978115  0.8103526  0.1407033 -0.5171605</code></pre>
 <p><strong>Análisis de residuales</strong></p>
 <pre class="r"><code>md=lm(cars$dist~cars$speed)
 rr=residuals(md)
 par(mfrow=c(2,2))
 plot(md)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(rr)
 #&gt; 
 #&gt;  Shapiro-Wilk normality test
@@ -1226,7 +1207,7 @@ anova(regre)
 
 plot(peso,elimina)
 abline(a=212.72,b=-0.23,col=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>
 
 ## residuales del modelo
@@ -1505,7 +1486,6 @@ arboles</strong></p>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5
 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
 <pre class="r"><code>head (Orange)
-#&gt; Grouped Data: circumference ~ age | Tree
 #&gt;   Tree  age circumference
 #&gt; 1    1  118            30
 #&gt; 2    1  484            58
@@ -1548,9 +1528,11 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<pre class="r"><code>plot(model)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-2.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-3.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-4.png" width="672" /><img src="regrelineal_files/figure-html/unnamed-chunk-14-5.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>
+par(mfrow=c(2,2))
+plot(model)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(residuals(model))
 #&gt; 
 #&gt;  Shapiro-Wilk normality test
@@ -1612,7 +1594,7 @@ abline(a=57.33,b=0.1,col=2,lwd=3)
 abline(a=19.92,b=0.1,col=3,lwd=3)
 abline(a=9.14,b=0.1,col=4,lwd=3)
 abline(a=12.71,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1649,28 +1631,17 @@ summary(model)
 #&gt; -18.061  -6.639  -1.482   8.069  16.649 
 #&gt; 
 #&gt; Coefficients:
-#&gt;                                       Estimate Std. Error t value
-#&gt; (Intercept)                          17.399650   3.782659   4.600
-#&gt; Orange$age                            0.106770   0.003631  29.406
-#&gt; as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509
-#&gt; as.factor(Orange$Tree).Q              1.541262   8.458282   0.182
-#&gt; as.factor(Orange$Tree).C              1.387598   8.458282   0.164
-#&gt; as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289
-#&gt; Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909
-#&gt; Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131
-#&gt; Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290
-#&gt; Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829
-#&gt;                                     Pr(&gt;|t|)    
-#&gt; (Intercept)                         0.000105 ***
-#&gt; Orange$age                           &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L            0.615362    
-#&gt; as.factor(Orange$Tree).Q            0.856880    
-#&gt; as.factor(Orange$Tree).C            0.871009    
-#&gt; as.factor(Orange$Tree)^4            0.209271    
-#&gt; Orange$age:as.factor(Orange$Tree).L 3.63e-06 ***
-#&gt; Orange$age:as.factor(Orange$Tree).Q 0.897047    
-#&gt; Orange$age:as.factor(Orange$Tree).C 0.209002    
-#&gt; Orange$age:as.factor(Orange$Tree)^4 0.415032    
+#&gt;                                       Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)                          17.399650   3.782659   4.600 0.000105 ***
+#&gt; Orange$age                            0.106770   0.003631  29.406  &lt; 2e-16 ***
+#&gt; as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509 0.615362    
+#&gt; as.factor(Orange$Tree).Q              1.541262   8.458282   0.182 0.856880    
+#&gt; as.factor(Orange$Tree).C              1.387598   8.458282   0.164 0.871009    
+#&gt; as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289 0.209271    
+#&gt; Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909 3.63e-06 ***
+#&gt; Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131 0.897047    
+#&gt; Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290 0.209002    
+#&gt; Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829 0.415032    
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
@@ -1701,7 +1672,7 @@ abline(a=13.1,b=0.15,col=2,lwd=3)
 abline(a=18.9,b=0.1,col=3,lwd=3)
 abline(a=18.8,b=0.1,col=4,lwd=3)
 abline(a=6.1,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1718,16 +1689,11 @@ anova(model)
 #&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Response: Orange$circumference
-#&gt;                                   Df Sum Sq Mean Sq  F value    Pr(&gt;F)
-#&gt; Orange$age                         1  93772   93772 864.7348 &lt; 2.2e-16
-#&gt; as.factor(Orange$Tree)             4  11841    2960  27.2983 8.428e-09
-#&gt; Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206 9.402e-05
-#&gt; Residuals                         25   2711     108                   
-#&gt;                                      
-#&gt; Orange$age                        ***
-#&gt; as.factor(Orange$Tree)            ***
-#&gt; Orange$age:as.factor(Orange$Tree) ***
-#&gt; Residuals                            
+#&gt;                                   Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+#&gt; Orange$age                         1  93772   93772 864.7348 &lt; 2.2e-16 ***
+#&gt; as.factor(Orange$Tree)             4  11841    2960  27.2983 8.428e-09 ***
+#&gt; Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206 9.402e-05 ***
+#&gt; Residuals                         25   2711     108                       
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Ejemplo 2</strong></p>
@@ -1799,7 +1765,7 @@ abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 #Recta para la sección c
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><strong>MODELO CON INTERCEPTO diferente</strong></p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
@@ -1842,7 +1808,7 @@ confint(modelo2)
 #&gt; SeccionC     2.7767893 5.7133597
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 </div>
 <div id="regresión-lineal-con-variables-continuas"
@@ -1888,9 +1854,10 @@ HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95
 VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
 bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
+library(PerformanceAnalytics)
 library(ppcor)
 pcor(bosque)
 #&gt; $estimate
@@ -1921,7 +1888,9 @@ pcor(bosque)
 #&gt; [1] 2
 #&gt; 
 #&gt; $method
-#&gt; [1] &quot;pearson&quot;</code></pre>
+#&gt; [1] &quot;pearson&quot;
+chart.Correlation(bosque, histogram = F, pch = 19)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 <p>El modelo inicial ajustado corresponde a:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT+DBH)
 summary(m1)
@@ -1980,14 +1949,15 @@ summary(m1)
 #&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
 par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" />
-el modelo ajustado corresponde a:</p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>El modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat
 y=-105.9027+7.41D16+0.67HT\]</span></p>
 <p>Al evaluar la significancia de los parámetros del modelo se
 tiene:</p>
 <pre class="r"><code>
 library(car)
+#&gt; Loading required package: carData
 #library(rgl)
 library(perturbR)
 library(leaps)
@@ -2041,16 +2011,11 @@ summary(m1)
 #&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
 miscoeficientes(m1,bosque)
 #&gt; Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados
-#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif
-#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000
-#&gt; D16            5.6713954     3.1227268       8.220064 7.470209
-#&gt; HT             0.6937702     0.3480719       1.039469 1.234397
-#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104
-#&gt;              Coef.Std
-#&gt; (Intercept) 0.0000000
-#&gt; D16         0.6522030
-#&gt; HT          0.2391034
-#&gt; DBH         0.2133976</code></pre>
+#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
+#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
+#&gt; D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
+#&gt; HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
+#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
 <p>Examinando los valores en la columna “Standarized Estimate”, vemos
 que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el
 volumen de madera en función de las variables estandarizadas: el

@@ -202,13 +202,10 @@ $$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 - Valores cercanos a 0 la relación es débil, es decir no hay una relación lineal
 
 
-```{r fig.asp=0.3, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM <- readPNG("corre.png")
-grid.raster(IM)
-```
 
+```{r echo=F, fig.asp=1, fig.align='center'}
+knitr::include_graphics("imagen/cor.png")
+```
 
 **Prueba de significancia de la correlación**
 
@@ -219,6 +216,27 @@ $$\Large H_1:  r\not=0$$
 
 
 En R usamos la función cor.test() para estudiar la significación estadística del coeficiente y concluir sobre la posible existencia de relación lineal entre las variables.
+
+**Ejemplo**
+Retomando el ejemplo de las flores, la base de datos iris contiene diferentes variables cuantitativas, largo y ancho del sépalo y largo y ancho del pétalo, asi como de las especies 
+
+```{r echo=F, fig.asp=1, fig.align='center'}
+knitr::include_graphics("imagen/iris.png")
+```
+
+
+```{r}
+head(iris)
+
+library(PerformanceAnalytics)
+library(ppcor)
+#matriz de correlaciones
+pcor(iris[1:4])
+
+#matriz con grafico de dispersión 
+chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species))
+
+```
 
 
 ### Medida de bondad de ajuste $R^2$
@@ -252,7 +270,7 @@ $$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
  **Cómo obtener un modelo de regresión lineal simple en la calculadora**
  
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## **Test lineal general**
@@ -467,9 +485,10 @@ plot(cars$speed,j, col=2, lwd=2)
 md=lm(cars$dist~cars$speed)
 anova(md)
 
-influence.measures(md)
-rstandard(md)
-rstudent(md)
+y=influence.measures(md)
+head(y$infmat)
+head(rstandard(md))
+head(rstudent(md))
 
 
 ```
@@ -830,6 +849,8 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))
+
+par(mfrow=c(2,2))
 plot(model)
 shapiro.test(residuals(model))
 ```
@@ -1055,8 +1076,10 @@ bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)
 ###correlaciones entre variables
 #install.packages(ppcor)
+library(PerformanceAnalytics)
 library(ppcor)
 pcor(bosque)
+chart.Correlation(bosque, histogram = F, pch = 19)
 ```
 
 
@@ -1079,7 +1102,8 @@ summary(m1)
 par(mfrow=c(2,2))
 plot(m1)
 ```
-el modelo ajustado corresponde a:
+
+El modelo ajustado corresponde a:
 
 $$\hat y=-105.9027+7.41D16+0.67HT$$
 
