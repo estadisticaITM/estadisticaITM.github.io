@@ -377,10 +377,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="about.html">
+  <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Semillero de R
+    Medición
   </a>
 </li>
 <li>
@@ -699,12 +699,34 @@ library(PerformanceAnalytics)
 #&gt; 
 #&gt;     as.Date, as.Date.numeric
 #&gt; 
+#&gt; ######################### Warning from &#39;xts&#39; package ##########################
+#&gt; #                                                                             #
+#&gt; # The dplyr lag() function breaks how base R&#39;s lag() function is supposed to  #
+#&gt; # work, which breaks lag(my_xts). Calls to lag(my_xts) that you type or       #
+#&gt; # source() into this session won&#39;t work correctly.                            #
+#&gt; #                                                                             #
+#&gt; # Use stats::lag() to make sure you&#39;re not using dplyr::lag(), or you can add #
+#&gt; # conflictRules(&#39;dplyr&#39;, exclude = &#39;lag&#39;) to your .Rprofile to stop           #
+#&gt; # dplyr from breaking base R&#39;s lag() function.                                #
+#&gt; #                                                                             #
+#&gt; # Code in packages is not affected. It&#39;s protected by R&#39;s namespace mechanism #
+#&gt; # Set `options(xts.warn_dplyr_breaks_lag = FALSE)` to suppress this warning.  #
+#&gt; #                                                                             #
+#&gt; ###############################################################################
+#&gt; 
+#&gt; Attaching package: &#39;xts&#39;
+#&gt; The following objects are masked from &#39;package:dplyr&#39;:
+#&gt; 
+#&gt;     first, last
+#&gt; 
 #&gt; Attaching package: &#39;PerformanceAnalytics&#39;
+#&gt; The following object is masked from &#39;package:vcd&#39;:
+#&gt; 
+#&gt;     Kappa
 #&gt; The following object is masked from &#39;package:graphics&#39;:
 #&gt; 
 #&gt;     legend
 library(ppcor)
-#&gt; Loading required package: MASS
 #matriz de correlaciones
 pcor(iris[1:4])
 #&gt; $estimate
@@ -738,7 +760,10 @@ pcor(iris[1:4])
 #&gt; [1] &quot;pearson&quot;
 
 #matriz con grafico de dispersión 
-chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species))</code></pre>
+chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species))
+#&gt; Warning in if (histogram) pairs(x, gap = 0, lower.panel =
+#&gt; panel.smooth, : the condition has length &gt; 1 and only the first
+#&gt; element will be used</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code># install.packages(&quot;GGally&quot;)
 library(GGally)
@@ -747,7 +772,24 @@ library(GGally)
 #&gt;   +.gg   ggplot2
 
 ggpairs(iris, columns = 1:4, aes(color = Species, alpha = 0.5),
-        lower = list(continuous = &quot;smooth&quot;)) </code></pre>
+        lower = list(continuous = &quot;smooth&quot;)) 
+#&gt; 
+#&gt; plot: [1,1] [=&gt;--------------------------------------] 6% est: 0s
+#&gt; plot: [1,2] [====&gt;-----------------------------------] 12% est: 1s
+#&gt; plot: [1,3] [=======&gt;--------------------------------] 19% est: 1s
+#&gt; plot: [1,4] [=========&gt;------------------------------] 25% est: 1s
+#&gt; plot: [2,1] [===========&gt;----------------------------] 31% est: 1s
+#&gt; plot: [2,2] [==============&gt;-------------------------] 38% est: 1s
+#&gt; plot: [2,3] [=================&gt;----------------------] 44% est: 1s
+#&gt; plot: [2,4] [===================&gt;--------------------] 50% est: 1s
+#&gt; plot: [3,1] [=====================&gt;------------------] 56% est: 1s
+#&gt; plot: [3,2] [========================&gt;---------------] 62% est: 1s
+#&gt; plot: [3,3] [===========================&gt;------------] 69% est: 0s
+#&gt; plot: [3,4] [=============================&gt;----------] 75% est: 0s
+#&gt; plot: [4,1] [===============================&gt;--------] 81% est: 0s
+#&gt; plot: [4,2] [==================================&gt;-----] 88% est: 0s
+#&gt; plot: [4,3] [=====================================&gt;--] 94% est: 0s
+#&gt; plot: [4,4] [========================================]100% est: 0s</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level3">
@@ -1052,13 +1094,20 @@ anova(md)
 
 y=influence.measures(md)
 head(y$infmat)
-#&gt;        dfb.1_    dfb.crs$       dffit    cov.r       cook.d        hat
-#&gt; 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121 0.11486131
-#&gt; 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907 0.11486131
-#&gt; 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503 0.07150365
-#&gt; 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384 0.07150365
-#&gt; 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705 0.05997080
-#&gt; 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931 0.04989781
+#&gt;        dfb.1_    dfb.crs$       dffit    cov.r       cook.d
+#&gt; 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121
+#&gt; 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907
+#&gt; 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503
+#&gt; 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384
+#&gt; 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705
+#&gt; 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931
+#&gt;          hat
+#&gt; 1 0.11486131
+#&gt; 2 0.11486131
+#&gt; 3 0.07150365
+#&gt; 4 0.07150365
+#&gt; 5 0.05997080
+#&gt; 6 0.04989781
 head(rstandard(md))
 #&gt;          1          2          3          4          5          6 
 #&gt;  0.2660415  0.8189327 -0.4013462  0.8132663  0.1421624 -0.5211526
@@ -1671,17 +1720,28 @@ summary(model)
 #&gt; -18.061  -6.639  -1.482   8.069  16.649 
 #&gt; 
 #&gt; Coefficients:
-#&gt;                                       Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)                          17.399650   3.782659   4.600 0.000105 ***
-#&gt; Orange$age                            0.106770   0.003631  29.406  &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509 0.615362    
-#&gt; as.factor(Orange$Tree).Q              1.541262   8.458282   0.182 0.856880    
-#&gt; as.factor(Orange$Tree).C              1.387598   8.458282   0.164 0.871009    
-#&gt; as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289 0.209271    
-#&gt; Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909 3.63e-06 ***
-#&gt; Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131 0.897047    
-#&gt; Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290 0.209002    
-#&gt; Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829 0.415032    
+#&gt;                                       Estimate Std. Error t value
+#&gt; (Intercept)                          17.399650   3.782659   4.600
+#&gt; Orange$age                            0.106770   0.003631  29.406
+#&gt; as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509
+#&gt; as.factor(Orange$Tree).Q              1.541262   8.458282   0.182
+#&gt; as.factor(Orange$Tree).C              1.387598   8.458282   0.164
+#&gt; as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289
+#&gt; Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909
+#&gt; Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131
+#&gt; Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290
+#&gt; Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829
+#&gt;                                     Pr(&gt;|t|)    
+#&gt; (Intercept)                         0.000105 ***
+#&gt; Orange$age                           &lt; 2e-16 ***
+#&gt; as.factor(Orange$Tree).L            0.615362    
+#&gt; as.factor(Orange$Tree).Q            0.856880    
+#&gt; as.factor(Orange$Tree).C            0.871009    
+#&gt; as.factor(Orange$Tree)^4            0.209271    
+#&gt; Orange$age:as.factor(Orange$Tree).L 3.63e-06 ***
+#&gt; Orange$age:as.factor(Orange$Tree).Q 0.897047    
+#&gt; Orange$age:as.factor(Orange$Tree).C 0.209002    
+#&gt; Orange$age:as.factor(Orange$Tree)^4 0.415032    
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 #&gt; 
@@ -1729,11 +1789,16 @@ anova(model)
 #&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Response: Orange$circumference
-#&gt;                                   Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
-#&gt; Orange$age                         1  93772   93772 864.7348 &lt; 2.2e-16 ***
-#&gt; as.factor(Orange$Tree)             4  11841    2960  27.2983 8.428e-09 ***
-#&gt; Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206 9.402e-05 ***
-#&gt; Residuals                         25   2711     108                       
+#&gt;                                   Df Sum Sq Mean Sq  F value
+#&gt; Orange$age                         1  93772   93772 864.7348
+#&gt; as.factor(Orange$Tree)             4  11841    2960  27.2983
+#&gt; Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206
+#&gt; Residuals                         25   2711     108         
+#&gt;                                      Pr(&gt;F)    
+#&gt; Orange$age                        &lt; 2.2e-16 ***
+#&gt; as.factor(Orange$Tree)            8.428e-09 ***
+#&gt; Orange$age:as.factor(Orange$Tree) 9.402e-05 ***
+#&gt; Residuals                                      
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Ejemplo 2</strong></p>
@@ -1997,7 +2062,6 @@ y=-105.9027+7.41D16+0.67HT\]</span></p>
 tiene:</p>
 <pre class="r"><code>
 library(car)
-#&gt; Loading required package: carData
 #library(rgl)
 library(perturbR)
 library(leaps)
@@ -2051,11 +2115,16 @@ summary(m1)
 #&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
 miscoeficientes(m1,bosque)
 #&gt; Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados
-#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
-#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
-#&gt; D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
-#&gt; HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
-#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
+#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif
+#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000
+#&gt; D16            5.6713954     3.1227268       8.220064 7.470209
+#&gt; HT             0.6937702     0.3480719       1.039469 1.234397
+#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104
+#&gt;              Coef.Std
+#&gt; (Intercept) 0.0000000
+#&gt; D16         0.6522030
+#&gt; HT          0.2391034
+#&gt; DBH         0.2133976</code></pre>
 <p>Examinando los valores en la columna “Standarized Estimate”, vemos
 que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el
 volumen de madera en función de las variables estandarizadas: el

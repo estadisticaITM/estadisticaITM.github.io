@@ -384,10 +384,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="about.html">
+  <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Semillero de R
+    Medición
   </a>
 </li>
 <li>
@@ -674,8 +674,10 @@ tabla</code></pre>
 Tab=addmargins(tabla)
 Tab</code></pre>
 <pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##          35          13          10          10          78         146</code></pre>
+## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+##          35          13          10          10          78 
+##         Sum 
+##         146</code></pre>
 <pre class="r"><code>kable(Tab,booktabs = TRUE)</code></pre>
 <table>
 <thead>
@@ -722,8 +724,10 @@ Tab1</code></pre>
 Tab2=addmargins(Tab1)
 Tab2</code></pre>
 <pre><code>## fuma
-## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
-##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000</code></pre>
+## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA 
+##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658 
+##         Sum 
+##  1.00000000</code></pre>
 <pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
 <table>
 <thead>
@@ -986,9 +990,13 @@ del diseño y rendimiento para 32 automóviles (modelos 1973–74).</p>
 <p>A continuación se ilustra un resumen del número de cilindros que cada
 uno de los automoviles mostró</p>
 <pre class="r"><code>library(knitr)
-library(ggplot2)
-
-#Base de datos
+library(ggplot2)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggplot2&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     mpg</code></pre>
+<pre class="r"><code>#Base de datos
 head(mtcars)</code></pre>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
@@ -1056,8 +1064,10 @@ bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
   geom_text(aes(label=porcentajes*100),
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar</code></pre>
-<pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
-## Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+<pre><code>## Warning: Use of `m$cilindros` is discouraged.
+## i Use `cilindros` instead.
+## Use of `m$cilindros` is discouraged.
+## i Use `cilindros` instead.</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de donas
 
@@ -1069,8 +1079,10 @@ bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
   geom_text(aes(label=porcentajes*100),
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar1</code></pre>
-<pre><code>## Warning: Use of `m$cilindros` is discouraged. Use `cilindros` instead.
-## Use of `m$cilindros` is discouraged. Use `cilindros` instead.</code></pre>
+<pre><code>## Warning: Use of `m$cilindros` is discouraged.
+## i Use `cilindros` instead.
+## Use of `m$cilindros` is discouraged.
+## i Use `cilindros` instead.</code></pre>
 <p><img src="descriptiva_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
 <p><strong>Algunos videos que sirven de ejemplo</strong></p>
 <p><strong>Ejemplo 1</strong></p>
@@ -1178,8 +1190,8 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-bfee908c50dbc666540b" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bfee908c50dbc666540b">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4ef87a475bba":{"x":{},"y":{},"colour":{},"type":"scatter"},"4ef838b85f7d":{"x":{},"y":{},"colour":{}}},"cur_data":"4ef87a475bba","visdat":{"4ef87a475bba":["function (y) ","x"],"4ef838b85f7d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8c239d48d424138470d8" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c239d48d424138470d8">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"252078f1749":{"x":{},"y":{},"colour":{},"type":"scatter"},"252060914712":{"x":{},"y":{},"colour":{}}},"cur_data":"252078f1749","visdat":{"252078f1749":["function (y) ","x"],"252060914712":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Ejemplo en excel</strong></p>
 <p>Se tienen los precios de la zanahoria en las plazas de mercado de 3
 ciudades diferentes</p>
@@ -2148,7 +2160,7 @@ iris %&gt;%
 ##  8                 5          10
 ##  9                 5.1         9
 ## 10                 5.2         4
-## # ... with 25 more rows</code></pre>
+## # i 25 more rows</code></pre>
 <p>La salida de R no muestra todas las entradas, porque son 35 valores
 diferentes, conviene agruparlos, por intervalos de frecuencias.</p>
 <pre class="r"><code>iris %&gt;% 

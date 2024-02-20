@@ -377,10 +377,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="about.html">
+  <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Semillero de R
+    Medición
   </a>
 </li>
 <li>
@@ -411,14 +411,6 @@ límite central</h1>
 
 
 <hr />
-<div id="distribuciones-asociadas-al-muestreo" class="section level1">
-<h1>Distribuciones asociadas al muestreo</h1>
-<div id="distribución-f" class="section level2">
-<h2>Distribución F</h2>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/wFwKZyvyGOg?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla F" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-</div>
-</div>
 <div id="distribuciones-muestrales-para-una-sola-muestra"
 class="section level1">
 <h1>Distribuciones muestrales para una sola muestra</h1>
@@ -649,11 +641,11 @@ x &lt;- rchisq(50000, df = 5)
 hist(x, 
      freq = FALSE, 
      xlim = c(0,16), 
-     ylim = c(0,0.2))
-  
-curve(dchisq(x, df = 5), from = 0, to = 15, 
-      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+     ylim = c(0,0.2))</code></pre>
 <p><img src="tlc_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>curve(dchisq(x, df = 5), from = 0, to = 15, 
+      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+<p><img src="tlc_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 <hr />
 <p><strong>Teorema</strong></p>
 <p>Se desea hacer una inferencia acerca de la varianza poblacional
@@ -708,11 +700,11 @@ x &lt;- rchisq(50000, df = 9)
 hist(x, 
      freq = FALSE, 
      xlim = c(0,30), 
-     ylim = c(0,0.2))
-  
-curve(dchisq(x, df = 9), from = 0, to = 30, 
-      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+     ylim = c(0,0.2))</code></pre>
 <p><img src="tlc_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>curve(dchisq(x, df = 9), from = 0, to = 30, 
+      n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
+<p><img src="tlc_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <p><span class="math display">\[16.919=\frac{(n-1)
 b_2}{\sigma^2}\]</span> <span class="math display">\[16.919=\frac{(9)
 b_2}{\sigma^2}\]</span> como <span
@@ -1020,6 +1012,9 @@ id="distribución-del-cociente-de-varianzas-muestrales-de-dos-poblaciones-normal
 class="section level2">
 <h2>Distribución del cociente de varianzas muestrales de dos poblaciones
 Normales independientes</h2>
+<p><strong>Distribución F</strong></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/wFwKZyvyGOg?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla F" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 <p>El estadístico F, definido como:</p>
 <p><span
 class="math display">\[F=\frac{S^2_x*\sigma_y^2}{S^2_y*\sigma_x^2}
