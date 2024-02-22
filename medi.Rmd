@@ -16,19 +16,18 @@ knitr::include_graphics("imagen/metro.png")
 ## ¿cómo identificar y reducir la incertidumbre?
 
 
-La ciencia **estadística** busca reducir el error, resultante de una estimación con su valor verdadero, con el objeto de tener valoraciones confiables para diferentes áreas de estudio como, por ejemplo:
+La ciencia **estadística** busca reducir el error, resultante de una estimación con su valor verdadero, con el objeto de tener valoraciones confiables para diferentes áreas de estudio como por ejemplo:
 
-- En economía predecir con exactitud el precio futuro de una divisa o acción
+- En economía predecir el precio futuro de una divisa o acción
 
 - Predecir la temperatura de un día
 
 - Obtener una estimación fiable de niveles traza de contaminantes alimentarios como el mercurio en el pescado
 
-- En el campo de la medicina tener la precisión en las mediciones de la presión arterial reduce el riesgo de diagnósticos erróneos
+- En el campo de la medicina tener mediciones de la presión arterial para el diagnostico de enfermedades.
 
 
-
-En la vida cotidiana se realizan muchas mediciones, como por ejemplo:
+En la vida cotidiana:
 
 - El tiempo que debemos hervir un huevo
 
@@ -37,9 +36,24 @@ En la vida cotidiana se realizan muchas mediciones, como por ejemplo:
 - El peso del equipaje permitido en un avión 
 
 
+
 ~~~
 Una medición cuidadosa puede significar, por ejemplo, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.
 ~~~
+
+Sin embargo estas medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
+
+$$medida ± incertidumbre $$
+
+
+En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
+
+-  no se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
+
+- se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
+
+
+
 
 La ciencia de la **metrología** se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo,
 
@@ -49,9 +63,85 @@ La ciencia de la **metrología** se ocupa de mantener y aumentar la precisión d
 knitr::include_graphics("imagen/balanza.png")
 ```
 
+```{r}
+library(DiagrammeR) 
+library(DiagrammeRsvg) 
+library(rsvg) 
+
+grViz("digraph{
+ 
+      graph[rankdir = LR]
+  
+      node[shape = rectangle, style = filled]
+  
+    
+      node[fillcolor = Violet, margin = 0.2]
+      D[label = 'Evitables']
+      E[label = 'Inevitables']
+  
+      subgraph cluster_0 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'Sistematicas'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+        F[label = 'Aparatos mal calibrados,
+        vidrios dilatados por calentamiento, 
+        equipos mal cuidados, 
+        errores de método, etc.']
+      }
+      
+      subgraph cluster_2 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'Personales'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         G[label = 'Inexperiencia del operador,
+        equivocación de un reactivo,
+        lecturas erróneas,
+        brusquedad en el uso de aparatos']
+      }
+  
+      subgraph cluster_1 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'Aleatorias'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         I[label = 'Reflejan la dispersión de la
+         magnitud al repetir su medida']
+      }
+  
+  
+  
+  
+  subgraph cluster_3 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'instrumentales'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         H[label = 'Debido a la sensibilidad de los
+dispositivos de medida.']
+         
+      }
+      edge[color = black, arrowhead = vee, arrowsize = 1.25]
+      
+      D -> F    D -> G
+      E -> H    E -> I 
+      
+      }")
+```
+
+## fuentes de incertidumbre en las
 
 
-## ¿Cómo medir la incertidumbre de una medida?##
+## ¿Cómo medir la incertidumbre de una medida?
 
 El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. Entre ellas tenemos:
 
@@ -63,13 +153,12 @@ El resultado de una medición suele ser un número expresado como múltiplo de u
 
 - La velocidad en kilómetros por hora
 
-En algunos casos el valor es independiente de la unidad, esto sucede cuando una cantidad se define como una relación entre otras dos cantidades, las cuales pueden medirse en términos de la misma unidad. Por ejemplo, el coeficiente de fricción estática, μs, se define como la relación de dos fuerzas y, por tanto, μs es un número adimensional; para vidrio sobre vidrio, μs ≃ 0,94.
-
 
 Para la cuantificación de las medidas la organización internacional de estandarización (ISO International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
 
-**Sistema internacional de medida (SI)** 
-Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acoron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
+### **Sistema internacional de medida (SI)**
+
+Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acordaron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
 
 |Cantidad|   Unidad|Simbolo|Definición |
 |:------ |:-------:|:-----:|----------	|
@@ -91,7 +180,7 @@ $$\frac{N}{m}=\frac{kg*m*s^{-2}}{m}=kg*s^{-2}$$
 También existen los **prefijos**, que expresan con abreviaturas cantidades muy pequeñas o muy grandes
 **Ejemplo**
 $$3.4*10^{-3} A$$
-podría escribirse como  3.4mA
+podría escribirse como  3.4 mA
 
 **Ejercicio**
 1. Escriba la medida con las unidades de cantidad  base
@@ -111,30 +200,80 @@ podría escribirse como  3.4mA
 
 - $ 3.5 × 10^5 \Omega*m$
 
+
+
+
+**Incertidumbre absoluta**
+
+Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $ua$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
+
+
+
+ a+ ua ≥ A ≥ a- ua ( | )
+ a- ua a
+ a+ ua
+
+**Incertidumbre relativa**
+
+Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje. 
+
+
+
+
+
+
+
 ## Redondeo y cifras significativas
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/W1-LgkocIfs" title="⭐ Cifras significativas y REDONDEO de la Incertidumbre de medición - CON EJEMPLOS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Se ha medido una distancia como 1,1451 m, se consideran suficientes  3 cifras significativas, cual es el valor al que se debe redondear?
 
-1.14 ó 1.15?
-cual es mas cercano?
+¿1.14 ó 1.15?       ¿Cuál es mas cercano?
 
 Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los instrumentos modernos son capaces de mostrar valores de muchas cifras. Como ejemplo, un multímetro digital?
 
+
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/multimetro.png")
+```
+
 Aveces es prudente registrar todas las cifras proporcionadas por un instrumento, en muchos casos todas las cifras carecen de significado.
 
-**Reglas**
-En ausencia de una declaración explícita sobre la incertidumbre de un valor cotizado, la incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores con un decimal adicional que sean todos consistentes, después del redondeo, con el valor cotizado.
-
-Supongamos que una distancia, d, se indica como 25,1 m. Esto implica una distancia posible en cualquier lugar del intervalo aproximado de 25,05 ma 25,15 m. Este intervalo comprende un número infinito de valores, todos los cuales (excepto el primero y el último, siguiendo el consejo de redondeo anterior) se “redondearían” a los 25,1 m citados y, por lo tanto, son consistentes con 25,1 m. El intervalo que contiene estos valores es (25,15 − 25,05)m=
-0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces inferimos del valor citado de la distancia d = 25,1 m que la incertidumbre es de 0,05 m. La incertidumbre proporcional es entonces 0,05/25,1 o aproximadamente cinco partes en 2500 o 0,2%.
 
 
 
 
+**Regla 1**
+La incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores.
+
+Por ejemplo supongamos una distancia se encuentra entre los valores (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre proporcional es:
+
+$$\frac{0,05}{25,1}=0.2%$$
+
+
+**Regla 2**
+
+Cuando se multiplican, dividen, suman o restan valores, la incertidumbre resultante es la más cercana a la mayor de las incertidumbres proporcionales de las componentes.
+
+Por ejemplo, supongamos una velocidad v,  cuando la distancia d = 25,1 m y el tiempo necesario es t = 3,4 s. La distancia d tiene una incertidumbre  de 0,2%, mientras que el tiempo t tiene una incertidumbre de 1,7%. Escribimos, provisionalmente, la velocidad resultante es:
+
+$$v=\frac{d}{t}=\frac{25.1 m}{3.4 s}=7.382 353 m/s $$
+
+La mayor de las incertidumbres de los componentes es 1,7%.Las incertidumbres proporcionales implícitas resultantes., se muestran en las siguiente tabla
 
 
 
+|Valor aproximado|Diferencia|Incertidumbre|
+|:--------------:|:---------|:-----------:|
+|     7.38       |  0.002   |0.032% |
+|7.4             |0.018     |0.238% |
+|7               |0.382353  | 5.4%|
 
+
+De estas posibilidades, deberíamos elegir el 0,2% como el más cercano al 1,7% requerido, por lo que citamos la velocidad como 7,4 m/s.
 
 
 

@@ -45,6 +45,11 @@ $$b = 2 \sigma _{\hat \theta}$$
 
 Es un buen **límite para el error de estimación** 
 
+~~~
+Un estimador es una regla, a menudo expresada como una fórmula, que indica cómo calcular el valor de una estimación con base en las mediciones contenidas en una muestra.
+~~~
+
+
 
 ## Propiedades de los estimadores
 
@@ -68,7 +73,7 @@ es
 **Valores esperados y errores estándar de algunos estimadores puntuales comunes**
 
 |Parámetro objetivo| tamaño de muestra|Estimador puntual $\hat \theta$|$E(\hat \theta)$|Error estándar $\sigma_{\hat \theta}$|
-|---------------|------------|------------------|-------|---------------------|
+|:---------------:|:------------:|:------------------:|:-------:|:---------------------:|
 |$\mu$  |n         |$\bar Y$         |$\mu$  |$\frac{\sigma}{\sqrt n}$|
 |p      | n        |$\hat p=\frac{Y}{n}$| p   |$\sqrt{\frac{pq}{n}}$   |
 |$\mu_1-\mu_2$|$n_1,n_2$|$\bar Y_1-\bar Y_2$|$\mu_1-\mu_2$| $\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$|
