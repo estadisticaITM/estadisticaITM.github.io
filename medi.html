@@ -417,32 +417,41 @@ incertidumbre</h1>
 <div id="fundamentos-de-medición" class="section level1">
 <h1>Fundamentos de medición</h1>
 <p><img src="imagen/metro.png" width="40%" style="display: block; margin: auto;" /></p>
-<div id="cómo-identificar-y-reducir-la-incertidumbre"
-class="section level2">
-<h2>¿cómo identificar y reducir la incertidumbre?</h2>
 <p>La ciencia <strong>estadística</strong> busca reducir el error,
 resultante de una estimación con su valor verdadero, con el objeto de
-tener valoraciones confiables para diferentes áreas de estudio como por
-ejemplo:</p>
+tener valoraciones confiables como por ejemplo:</p>
 <ul>
 <li><p>En economía predecir el precio futuro de una divisa o
 acción</p></li>
 <li><p>Predecir la temperatura de un día</p></li>
-<li><p>Obtener una estimación fiable de niveles traza de contaminantes
-alimentarios como el mercurio en el pescado</p></li>
-<li><p>En el campo de la medicina tener mediciones de la presión
-arterial para el diagnostico de enfermedades.</p></li>
 </ul>
-<p>En la vida cotidiana:</p>
+<p>En la vida cotidiana, nos interesan muchas medidas como:</p>
 <ul>
 <li><p>El tiempo que debemos hervir un huevo</p></li>
 <li><p>El límite máximo de velocidad</p></li>
 <li><p>El peso del equipaje permitido en un avión</p></li>
 </ul>
-<pre><code>Una medición cuidadosa puede significar, por ejemplo, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.</code></pre>
+<p>Mientras que en la ciencia de la <strong>metrología</strong> se ocupa
+de mantener y aumentar la precisión de las mediciones, en cualquier
+campo, por ejemplo</p>
+<ul>
+<li><p>Obtener una estimación fiable de niveles traza de contaminantes
+alimentarios como el mercurio en el pescado</p></li>
+<li><p>En el campo de la medicina tener mediciones de la presión
+arterial para el diagnostico de enfermedades.</p></li>
+</ul>
+<pre><code>Una medición cuidadosa puede significar, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.</code></pre>
+<div id="incertidumbre-en-las-medidas" class="section level2">
+<h2>Incertidumbre en las medidas</h2>
 <p>Sin embargo estas medidas llevan asociado un error desconocido; al
 que se le asigna una cota superior, llamada incertidumbre.</p>
 <p><span class="math display">\[medida ± incertidumbre \]</span></p>
+<p><strong>Definicion 1</strong> Parámetro asociado al resultado de una
+medición que caracteriza la dispersión de los valores que podrían ser
+atribuidos al mensurando, (ISP, 2010)</p>
+<p><strong>Mensurando:</strong> Cantidad destinada a la medida.
+(VIM)</p>
+<p><strong>Ejemplo</strong></p>
 <p>En un experimento se ha medido la gravedad, obteniendo como resultado
 <span class="math inline">\((9,51 ± 0,45) m/s^2\)</span>, esto da a
 entender que:</p>
@@ -453,106 +462,19 @@ class="math inline">\(9,51 m/s^2\)</span></p></li>
 class="math inline">\(0,45 m/s^2\)</span>, ya sea por exceso o por
 defecto.</p></li>
 </ul>
-<p>La ciencia de la <strong>metrología</strong> se ocupa de mantener y
-aumentar la precisión de las mediciones, en cualquier campo,</p>
-<ul>
-<li>las mediciones precisas garantizan la confiabilidad de los procesos,
-sin embargo la precisión depende del contexto</li>
-</ul>
+<p>Las mediciones precisas garantizan la confiabilidad de los procesos,
+sin embargo la precisión depende del contexto</p>
 <p><img src="imagen/balanza.png" width="513" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>library(DiagrammeR) 
-library(DiagrammeRsvg) 
-library(rsvg) </code></pre>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<pre class="r"><code>grViz(&quot;digraph{
- 
-      graph[rankdir = LR]
-  
-      node[shape = rectangle, style = filled]
-  
-    
-      node[fillcolor = Violet, margin = 0.2]
-      D[label = &#39;Evitables&#39;]
-      E[label = &#39;Inevitables&#39;]
-  
-      subgraph cluster_0 {
-        graph[shape = rectangle]
-        style = rounded
-        bgcolor = Gold
-    
-         label = &#39;Sistematicas&#39;
-        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-        F[label = &#39;Aparatos mal calibrados,
-        vidrios dilatados por calentamiento, 
-        equipos mal cuidados, 
-        errores de método, etc.&#39;]
-      }
-      
-      subgraph cluster_2 {
-        graph[shape = rectangle]
-        style = rounded
-        bgcolor = Gold
-    
-         label = &#39;Personales&#39;
-        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         G[label = &#39;Inexperiencia del operador,
-        equivocación de un reactivo,
-        lecturas erróneas,
-        brusquedad en el uso de aparatos&#39;]
-      }
-  
-      subgraph cluster_1 {
-         graph[shape = rectangle]
-         style = rounded
-         bgcolor = Gold
-    
-         label = &#39;Aleatorias&#39;
-         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         I[label = &#39;Reflejan la dispersión de la
-         magnitud al repetir su medida&#39;]
-      }
-  
-  
-  
-  
-  subgraph cluster_3 {
-         graph[shape = rectangle]
-         style = rounded
-         bgcolor = Gold
-    
-         label = &#39;instrumentales&#39;
-         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         H[label = &#39;Debido a la sensibilidad de los
-dispositivos de medida.&#39;]
-         
-      }
-      edge[color = black, arrowhead = vee, arrowsize = 1.25]
-      
-      D -&gt; F    D -&gt; G
-      E -&gt; H    E -&gt; I 
-      
-      }&quot;)</code></pre>
-<div id="htmlwidget-9a9f05f4a69e54272df6" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9a9f05f4a69e54272df6">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistematicas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="fuentes-de-incertidumbre-en-las" class="section level2">
-<h2>fuentes de incertidumbre en las</h2>
 </div>
 <div id="cómo-medir-la-incertidumbre-de-una-medida"
 class="section level2">
 <h2>¿Cómo medir la incertidumbre de una medida?</h2>
 <p>El resultado de una medición suele ser un número expresado como
-múltiplo de una unidad de medida. Entre ellas tenemos:</p>
-<ul>
-<li><p>El peso en kilogramos</p></li>
-<li><p>La temperatura en grados centígrados</p></li>
-<li><p>La longitud en milímetros</p></li>
-<li><p>La velocidad en kilómetros por hora</p></li>
-</ul>
-<p>Para la cuantificación de las medidas la organización internacional
-de estandarización (ISO International Standardisation Organisation) creo
-la guia para la expresión de la incertidumbre de las medidas.
-<strong>(GUM)</strong>, actualizada en el año 1995.</p>
+múltiplo de una unidad de medida. Para la cuantificación de las medidas
+la organización internacional de estandarización (ISO International
+Standardisation Organisation) creo la guia para la expresión de la
+incertidumbre de las medidas. <strong>(GUM)</strong>, actualizada en el
+año 1995.</p>
 <div id="sistema-internacional-de-medida-si" class="section level3">
 <h3><strong>Sistema internacional de medida (SI)</strong></h3>
 <p>Para comunicar los resultados de las mediciones de manera efectiva y
@@ -676,6 +598,14 @@ cantidad base</p>
 <li><p><span class="math inline">\(1.8 × 10^{10} Pa\)</span></p></li>
 <li><p>$ 3.5 × 10^5 m$</p></li>
 </ul>
+</div>
+</div>
+<div id="fuentes-de-incertidumbre-en-las-medidas"
+class="section level2">
+<h2>fuentes de incertidumbre en las medidas</h2>
+<pre><code>## Linking to librsvg 2.48.8</code></pre>
+<div id="htmlwidget-a3d917160f3326609529" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a3d917160f3326609529">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Incertidumbre absoluta</strong></p>
 <p>Dada una medida experimental de una magnitud, a, y una incertidumbre
 absoluta, <span class="math inline">\(ua\)</span>; el valor verdadero,
@@ -687,7 +617,6 @@ intervalo:</p>
 medida, es una cantidad adimensional que nos informa de la precisión de
 la medida. Suele expresarse (multiplicándola por 100) como
 porcentaje.</p>
-</div>
 </div>
 <div id="redondeo-y-cifras-significativas" class="section level2">
 <h2>Redondeo y cifras significativas</h2>
@@ -755,20 +684,6 @@ al 1,7% requerido, por lo que citamos la velocidad como 7,4 m/s.</p>
 <div id="vocabulario-internacional-de-metrología-vim"
 class="section level2">
 <h2>Vocabulario internacional de metrología VIM</h2>
-<p><strong>Mensurando:</strong> Cantidad destinada a la medida.
-(VIM)</p>
-<p><strong>Incertidumbre</strong>: Diferentes autores han dado
-diferentes definiciones de este concepto</p>
-<p><strong>Definicion 1</strong> Parámetro asociado al resultado de una
-medición que caracteriza la dispersión de los valores que podrían
-razonablemente ser atribuidos al mensurando, (ISP, 2010)</p>
-<p><strong>Incertidumbre de la medición:</strong> Parámetro no negativo
-que caracteriza la dispersión de los valores que se atribuyen a una
-mensurando, basándose en la información utilizada. (VIM, JCGM
-200:2008)</p>
-<p>Nota: La incertidumbre de medición comprende muchos componentes.
-Algunos pueden ser evaluados por el tipo de distribución estadística de
-los valores de las mediciones, como promedios y desviaciones.</p>
 <p><strong>Tipos de incertidumbre</strong></p>
 <p><strong>Incertidumbre típica o estándar <span
 class="math inline">\(u\)</span></strong> Obtenida a partir de las

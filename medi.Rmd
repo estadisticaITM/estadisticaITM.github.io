@@ -13,21 +13,16 @@ output:
 knitr::include_graphics("imagen/metro.png")
 ```
 
-## ¿cómo identificar y reducir la incertidumbre?
 
 
-La ciencia **estadística** busca reducir el error, resultante de una estimación con su valor verdadero, con el objeto de tener valoraciones confiables para diferentes áreas de estudio como por ejemplo:
+La ciencia **estadística** busca reducir el error, resultante de una estimación con su valor verdadero, con el objeto de tener valoraciones confiables como por ejemplo:
 
 - En economía predecir el precio futuro de una divisa o acción
 
 - Predecir la temperatura de un día
 
-- Obtener una estimación fiable de niveles traza de contaminantes alimentarios como el mercurio en el pescado
 
-- En el campo de la medicina tener mediciones de la presión arterial para el diagnostico de enfermedades.
-
-
-En la vida cotidiana:
+En la vida cotidiana, nos interesan muchas medidas como:
 
 - El tiempo que debemos hervir un huevo
 
@@ -35,15 +30,32 @@ En la vida cotidiana:
 
 - El peso del equipaje permitido en un avión 
 
+Mientras que en la ciencia de la **metrología** se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo, por ejemplo
 
+- Obtener una estimación fiable de niveles traza de contaminantes alimentarios como el mercurio en el pescado
+
+- En el campo de la medicina tener mediciones de la presión arterial para el diagnostico de enfermedades.
 
 ~~~
-Una medición cuidadosa puede significar, por ejemplo, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.
+Una medición cuidadosa puede significar, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.
 ~~~
+
+
+## Incertidumbre en las medidas
+
 
 Sin embargo estas medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
 
 $$medida ± incertidumbre $$
+
+
+**Definicion 1** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+
+
+**Mensurando:** Cantidad destinada a la medida. (VIM)
+
+
+**Ejemplo**
 
 
 En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
@@ -55,15 +67,68 @@ En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 
 
 
 
-La ciencia de la **metrología** se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo,
 
-- las mediciones precisas garantizan la confiabilidad de los procesos, sin embargo la precisión depende del contexto
+
+Las mediciones precisas garantizan la confiabilidad de los procesos, sin embargo la precisión depende del contexto
 
 ```{r fig.asp=0.5, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/balanza.png")
 ```
 
-```{r}
+
+
+## ¿Cómo medir la incertidumbre de una medida?
+
+El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
+Para la cuantificación de las medidas la organización internacional de estandarización (ISO International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
+
+### **Sistema internacional de medida (SI)**
+
+Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acordaron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
+
+|Cantidad|   Unidad|Simbolo|Definición |
+|:------ |:-------:|:-----:|----------	|
+| Masa   |Kilogramo|  kg   |El kilogramo es igual a la masa del prototipo internacional del kilogramo, hecho de una aleación de platino e iridio y se conserva en condiciones ambientales cuidadosamente controladas cerca de París.|
+| Tiempo |Segundo  |s    	|   El segundo es la duración de 9.192.631.770 períodos de radiación correspondientes a la transición entre los dos niveles hiperfinos del estado fundamental del átomo de cesio-133.	    	|
+|Longitud	|Metro|m     	|El metro es la longitud del camino recorrido por la luz en el vacío. durante un intervalo de tiempo de 1/299792458 de segundo|
+| Temperatura termodinamica|Kelvin|k|El kelvin es la fracción 1/273,16 de la temperatura termodinámica del punto triple del agua|
+|Corriente electrica|Amperio|A|El amperio es la corriente que se genera si se ubican dos conductores a un metro de distancia, de forma paralela, rectilíneos, de longitud infinita, de sección despreciable, produciría entre estos c una fuerza de $2×10^{−7}$ newton por metro de longitud|
+|Intensidad luminosa|Candela|sd|La candela es la intensidad luminosa, en una dirección determinada, de una fuente que emite radiación monocromática de frecuencia 540×1012 hercios y que tiene una intensidad radiante en esa dirección de 1/683 vatio por teradián|
+|Cantidad de sustancia|mole|mol|El mol es la cantidad de sustancia de un sistema que contiene como tantas entidades elementales como átomos hay en 0,012 kilogramo de carbono 12.|
+
+Existen otras medidas derivadas de las anteriores.
+
+**Ejemplo**
+Muestre que la unidad derivada de N/m , la cual es la medida de la tensión sobre una superficie puede ser expresada como $kg*s^{-2}$
+
+$$\frac{N}{m}=\frac{kg*m*s^{-2}}{m}=kg*s^{-2}$$
+
+También existen los **prefijos**, que expresan con abreviaturas cantidades muy pequeñas o muy grandes
+**Ejemplo**
+$$3.4*10^{-3} A$$
+podría escribirse como  3.4 mA
+
+**Ejercicio**
+1. Escriba la medida con las unidades de cantidad  base
+
+|$F/m$       |$W/m^2$      |$J/m^3$|$J/K$        |$\Omega*m$|
+|:----------:|:-----------:|:-----:|:-----------:|:--------:|
+|$\Omega/m^2$|$W/(m^2·K^4)$| $N*m$ |$C^2/(N·m^2)$|$N/A^2$   |
+
+
+2. Escriba las siguientes cantidades con los prefijos
+
+- $6.4 × 10^{−5} m^2/s$
+
+- $7.5 × 10^8\Omega$ 
+
+- $1.8 × 10^{10} Pa$
+
+- $ 3.5 × 10^5 \Omega*m$
+
+## fuentes de incertidumbre en las medidas
+
+```{r echo=FALSE}
 library(DiagrammeR) 
 library(DiagrammeRsvg) 
 library(rsvg) 
@@ -84,7 +149,7 @@ grViz("digraph{
         style = rounded
         bgcolor = Gold
     
-         label = 'Sistematicas'
+         label = 'Sistemáticas'
         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
         F[label = 'Aparatos mal calibrados,
         vidrios dilatados por calentamiento, 
@@ -137,69 +202,6 @@ dispositivos de medida.']
       
       }")
 ```
-
-## fuentes de incertidumbre en las
-
-
-## ¿Cómo medir la incertidumbre de una medida?
-
-El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. Entre ellas tenemos:
-
-- El peso en kilogramos
-
-- La temperatura en grados centígrados
-
-- La longitud en milímetros
-
-- La velocidad en kilómetros por hora
-
-
-Para la cuantificación de las medidas la organización internacional de estandarización (ISO International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
-
-### **Sistema internacional de medida (SI)**
-
-Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acordaron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
-
-|Cantidad|   Unidad|Simbolo|Definición |
-|:------ |:-------:|:-----:|----------	|
-| Masa   |Kilogramo|  kg   |El kilogramo es igual a la masa del prototipo internacional del kilogramo, hecho de una aleación de platino e iridio y se conserva en condiciones ambientales cuidadosamente controladas cerca de París.|
-| Tiempo |Segundo  |s    	|   El segundo es la duración de 9.192.631.770 períodos de radiación correspondientes a la transición entre los dos niveles hiperfinos del estado fundamental del átomo de cesio-133.	    	|
-|Longitud	|Metro|m     	|El metro es la longitud del camino recorrido por la luz en el vacío. durante un intervalo de tiempo de 1/299792458 de segundo|
-| Temperatura termodinamica|Kelvin|k|El kelvin es la fracción 1/273,16 de la temperatura termodinámica del punto triple del agua|
-|Corriente electrica|Amperio|A|El amperio es la corriente que se genera si se ubican dos conductores a un metro de distancia, de forma paralela, rectilíneos, de longitud infinita, de sección despreciable, produciría entre estos c una fuerza de $2×10^{−7}$ newton por metro de longitud|
-|Intensidad luminosa|Candela|sd|La candela es la intensidad luminosa, en una dirección determinada, de una fuente que emite radiación monocromática de frecuencia 540×1012 hercios y que tiene una intensidad radiante en esa dirección de 1/683 vatio por teradián|
-|Cantidad de sustancia|mole|mol|El mol es la cantidad de sustancia de un sistema que contiene como tantas entidades elementales como átomos hay en 0,012 kilogramo de carbono 12.|
-
-Existen otras medidas derivadas de las anteriores.
-
-**Ejemplo**
-Muestre que la unidad derivada de N/m , la cual es la medida de la tensión sobre una superficie puede ser expresada como $kg*s^{-2}$
-
-$$\frac{N}{m}=\frac{kg*m*s^{-2}}{m}=kg*s^{-2}$$
-
-También existen los **prefijos**, que expresan con abreviaturas cantidades muy pequeñas o muy grandes
-**Ejemplo**
-$$3.4*10^{-3} A$$
-podría escribirse como  3.4 mA
-
-**Ejercicio**
-1. Escriba la medida con las unidades de cantidad  base
-
-|$F/m$       |$W/m^2$      |$J/m^3$|$J/K$        |$\Omega*m$|
-|:----------:|:-----------:|:-----:|:-----------:|:--------:|
-|$\Omega/m^2$|$W/(m^2·K^4)$| $N*m$ |$C^2/(N·m^2)$|$N/A^2$   |
-
-
-2. Escriba las siguientes cantidades con los prefijos
-
-- $6.4 × 10^{−5} m^2/s$
-
-- $7.5 × 10^8\Omega$ 
-
-- $1.8 × 10^{10} Pa$
-
-- $ 3.5 × 10^5 \Omega*m$
-
 
 
 
@@ -279,18 +281,7 @@ De estas posibilidades, deberíamos elegir el 0,2% como el más cercano al 1,7% 
 
 ## Vocabulario internacional de metrología VIM
 
-**Mensurando:** Cantidad destinada a la medida. (VIM)
 
-
-**Incertidumbre**: Diferentes autores han dado diferentes definiciones de este concepto
-
-
-**Definicion 1** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían razonablemente ser atribuidos al mensurando, (ISP, 2010)
-
-
-**Incertidumbre de la medición:** Parámetro no negativo que caracteriza la dispersión de los valores que se atribuyen a una mensurando, basándose en la información utilizada. (VIM, JCGM 200:2008)
-
-Nota: La incertidumbre de medición comprende muchos componentes. Algunos pueden ser evaluados por el tipo de distribución estadística de los valores de las mediciones, como promedios y desviaciones.
 
 
 **Tipos de incertidumbre**
