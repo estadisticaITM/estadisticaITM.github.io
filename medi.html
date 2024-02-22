@@ -431,9 +431,9 @@ acción</p></li>
 <li><p>El límite máximo de velocidad</p></li>
 <li><p>El peso del equipaje permitido en un avión</p></li>
 </ul>
-<p>Mientras que en la ciencia de la <strong>metrología</strong> se ocupa
-de mantener y aumentar la precisión de las mediciones, en cualquier
-campo, por ejemplo</p>
+<p>Mientras la ciencia <strong>metrología</strong> se ocupa de mantener
+y aumentar la precisión de las mediciones, en cualquier campo, por
+ejemplo</p>
 <ul>
 <li><p>Obtener una estimación fiable de niveles traza de contaminantes
 alimentarios como el mercurio en el pescado</p></li>
@@ -465,6 +465,18 @@ defecto.</p></li>
 <p>Las mediciones precisas garantizan la confiabilidad de los procesos,
 sin embargo la precisión depende del contexto</p>
 <p><img src="imagen/balanza.png" width="513" style="display: block; margin: auto;" /></p>
+<p><strong>Precisión de medida (VIM)</strong> ¿Qué tan cercanas están
+las medidas?</p>
+<p>Proximidad entre los valores medidos obtenidos en mediciones
+repetidas de un mismo objeto bajo condiciones especificas como de
+repetibilidad, de precisión intermedia, o de reproducibilidad</p>
+<p>La precisión de una medida se expresa mediante medidas de dispersión
+tales como la desviación típica, la varianza o el coeficiente de
+variación bajo las condiciones especificadas.</p>
+<p><strong>Exactitud de medida</strong></p>
+<p>¿Que tan cercano esta al valor verdadero? Proximidad entre un valor
+medido y un valor verdadero de un mensurando</p>
+<p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="cómo-medir-la-incertidumbre-de-una-medida"
 class="section level2">
@@ -604,8 +616,8 @@ cantidad base</p>
 class="section level2">
 <h2>fuentes de incertidumbre en las medidas</h2>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-a3d917160f3326609529" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a3d917160f3326609529">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a4dd04e42b20b55265da" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a4dd04e42b20b55265da">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Incertidumbre absoluta</strong></p>
 <p>Dada una medida experimental de una magnitud, a, y una incertidumbre
 absoluta, <span class="math inline">\(ua\)</span>; el valor verdadero,
