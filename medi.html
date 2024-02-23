@@ -446,7 +446,7 @@ arterial para el diagnostico de enfermedades.</p></li>
 <p>Sin embargo estas medidas llevan asociado un error desconocido; al
 que se le asigna una cota superior, llamada incertidumbre.</p>
 <p><span class="math display">\[medida ± incertidumbre \]</span></p>
-<p><strong>Definicion 1</strong> Parámetro asociado al resultado de una
+<p><strong>Incertidumbre</strong> Parámetro asociado al resultado de una
 medición que caracteriza la dispersión de los valores que podrían ser
 atribuidos al mensurando, (ISP, 2010)</p>
 <p><strong>Mensurando:</strong> Cantidad destinada a la medida.
@@ -465,25 +465,47 @@ defecto.</p></li>
 <p>Las mediciones precisas garantizan la confiabilidad de los procesos,
 sin embargo la precisión depende del contexto</p>
 <p><img src="imagen/balanza.png" width="513" style="display: block; margin: auto;" /></p>
-<p><strong>Precisión de medida (VIM)</strong> ¿Qué tan cercanas están
-las medidas?</p>
+<p><strong>Exactitud de medida</strong></p>
+<p>¿Que tan cercano esta al valor verdadero?</p>
+<p>Proximidad entre un valor medido y un valor verdadero de un
+mensurando</p>
+<p><strong>Precisión de medida (VIM)</strong></p>
+<p>¿Qué tan cercanas están las medidas entre ellas?</p>
 <p>Proximidad entre los valores medidos obtenidos en mediciones
-repetidas de un mismo objeto bajo condiciones especificas como de
-repetibilidad, de precisión intermedia, o de reproducibilidad</p>
+repetidas de un mismo objeto bajo condiciones específicas de
+repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <p>La precisión de una medida se expresa mediante medidas de dispersión
 tales como la desviación típica, la varianza o el coeficiente de
 variación bajo las condiciones especificadas.</p>
-<p><strong>Exactitud de medida</strong></p>
-<p>¿Que tan cercano esta al valor verdadero? Proximidad entre un valor
-medido y un valor verdadero de un mensurando</p>
+<pre><code>## Linking to librsvg 2.48.8</code></pre>
+<div id="htmlwidget-a5c3b1b878edff34a798" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a5c3b1b878edff34a798">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Calibración </strong></p>
+<ul>
+<li><p>Operación que bajo condiciones especificas establece una relación
+entre los valores y sus incertidumbres de medida
+asociadas(VIM).</p></li>
+<li><p>Comparación documentada entre el dispositivo de medición que se
+va a calibrar y otro de referencia trazable (BIPM, Bureau International
+des Poids et Mesures, es decir, la oficina internacional de pesos y
+medidas)..</p></li>
+</ul>
+<p>Una calibración puede expresarse mediante una declaración, una
+función de calibración, un diagrama de calibración, una curva de
+calibración o una tabla de calibración.</p>
+<p><strong>Trazabilidad metrológica (VIM)</strong></p>
+<p>Propiedad de un resultado de medida por la cual el resultado puede
+relacionarse con una referencia mediante una cadena ininterrumpida y
+documentada de calibraciones, cada una de las cuales contribuye a la
+incertidumbre de medida</p>
 </div>
 <div id="cómo-medir-la-incertidumbre-de-una-medida"
 class="section level2">
 <h2>¿Cómo medir la incertidumbre de una medida?</h2>
 <p>El resultado de una medición suele ser un número expresado como
 múltiplo de una unidad de medida. Para la cuantificación de las medidas
-la organización internacional de estandarización (ISO International
+la ISO (organización internacional de estandarización - International
 Standardisation Organisation) creo la guia para la expresión de la
 incertidumbre de las medidas. <strong>(GUM)</strong>, actualizada en el
 año 1995.</p>
@@ -615,20 +637,23 @@ cantidad base</p>
 <div id="fuentes-de-incertidumbre-en-las-medidas"
 class="section level2">
 <h2>fuentes de incertidumbre en las medidas</h2>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-a4dd04e42b20b55265da" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a4dd04e42b20b55265da">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b18e4dd521a01df615f4" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b18e4dd521a01df615f4">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  \n  \n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="incertidumbre-en-la-medida" class="section level2">
+<h2>Incertidumbre en la medida</h2>
 <p><strong>Incertidumbre absoluta</strong></p>
 <p>Dada una medida experimental de una magnitud, a, y una incertidumbre
-absoluta, <span class="math inline">\(ua\)</span>; el valor verdadero,
+absoluta, <span class="math inline">\(u_a\)</span>; el valor verdadero,
 A, debe estar contenido, con razonable certeza, dentro del siguiente
 intervalo:</p>
-<p>a+ ua ≥ A ≥ a- ua ( | ) a- ua a a+ ua</p>
+<p><span class="math display">\[a-u_a\leq A \leq a+ u_a \]</span></p>
 <p><strong>Incertidumbre relativa</strong></p>
 <p>Es el cociente entre la incertidumbre absoluta y el valor de la
 medida, es una cantidad adimensional que nos informa de la precisión de
 la medida. Suele expresarse (multiplicándola por 100) como
 porcentaje.</p>
+<p><span class="math display">\[\frac{u_a}{a}\]</span></p>
 </div>
 <div id="redondeo-y-cifras-significativas" class="section level2">
 <h2>Redondeo y cifras significativas</h2>
@@ -693,9 +718,62 @@ las siguiente tabla</p>
 <p>De estas posibilidades, deberíamos elegir el 0,2% como el más cercano
 al 1,7% requerido, por lo que citamos la velocidad como 7,4 m/s.</p>
 </div>
-<div id="vocabulario-internacional-de-metrología-vim"
-class="section level2">
-<h2>Vocabulario internacional de metrología VIM</h2>
+<div id="metodos-de-medición" class="section level2">
+<h2>Metodos de medición</h2>
+<p><strong>Método de medida (VIM)</strong> Descripción genérica de la
+secuencia lógica de operaciones utilizadas en una medición</p>
+<p>Los métodos de medida pueden clasificarse de varias maneras como:</p>
+<p><strong>Método de sustitución</strong></p>
+<p>Utiliza un equipo auxiliar llamado comparador, con el que se mide
+inicialmente al mensurando y luego un valor de referencia. Este método
+también es conocido como método de medición por transferencia. Por
+ejemplo la medición de la masa de una muestra o producto con pesas a
+través de una balanza analítica</p>
+<p><strong>Método diferencial</strong> La medición es la diferencia
+entre un valor conocido (referencia) y un valor desconocido.</p>
+<p>Ejemplo:</p>
+<ol style="list-style-type: lower-alpha">
+<li>El valor de la fuente bajo prueba Vtest va ser igual a la suma
+algebraica del valor de referencia +10 V y la Indicación del
+vóltimetro</li>
+</ol>
+<p>(Vtest = 10,000 0 V + 26,3 mV = 10,026 3 V )</p>
+<p><strong>Método de cero</strong> Utiliza un detector de equilibrio
+(comparador), el cual permite comprobar la igualdad (diferencia cero)
+entre el mensurando y un valor de referencia (patrón).</p>
+<p>Ejemplos: a) Medición de masa de una muestra o producto en una
+balanza de dos platillos.</p>
+<p>− método directo,</p>
+<p>En este método se obtiene un valor en unidades del mensurando,
+mediante un instrumento, cadena o sistema de medición, digital o
+analógico, en forma de: indicador, registrador, totalizador ó
+integrador. El sensor del instrumento es colocado directamente en
+contacto con el fenómeno que se mide. Ejemplos: Medición de volumen y
+densidad en base al principio de Arquímedes</p>
+<p><strong>Método indirecto</strong></p>
+<p>En este método se obtiene el valor del mensurando mediante
+transformación, conversión o cálculo de: Indicaciones, señales de
+medición, magnitudes de influencia o mediciones de las variables de
+entrada (independientes). Por ejemplo la medición de volumen, en base a
+principios geométricos de Euclides.</p>
+<p><img src="imagen/mm.png" width="446" style="display: block; margin: auto;" /></p>
+<p>Véase IEC 60050-300:2001.</p>
+<p><strong>La norma ISO/IEC 17025</strong> estable como requisito que
+los certificados de calibración y reportes de prueba, deben incluir el
+método utilizado, en términos de su origen como:</p>
+<p><strong>Métodos normalizados</strong></p>
+<p>Se pueden encontrar en normas internacionales, regionales o
+nacionales; organizaciones técnicas; revistas, textos o guías
+científicas relevantes y de acuerdo con las instrucciones del
+fabricante.</p>
+<p><strong>Métodos internos, desarrollados por el
+laboratorio,</strong></p>
+<p>Métodos desarrollados internamente por el laboratorio, cuando no se
+cuenta con métodos normalizados que cubran los servicios de medición,
+prueba o calibración requeridos.</p>
+<p><strong>Métodos no normalizados.</strong> Métodos no cubiertos por
+los métodos normalizados, los cuales son sujetos a acuerdo con el
+usuario.</p>
 <p><strong>Tipos de incertidumbre</strong></p>
 <p><strong>Incertidumbre típica o estándar <span
 class="math inline">\(u\)</span></strong> Obtenida a partir de las
@@ -735,6 +813,9 @@ MEASUREMENT USING THE GUM (GUIDE TO THE EXPRESSION OF UNCERTAINTY IN
 MEASUREMENT), Cambridge University Press New York, 2006.</p>
 <p>Lira I., Evaluating the Measurement Uncertainty Fundamentals and
 Practical Guidance, IOP Publishing Ltd, 2002.</p>
+<p>Metrologos, A. (2005). Institución Apasionada por la Metrología
+Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración:
+Somos su Relevo a la Calidad. www.metas.com.mx</p>
 <p>Patrick F.D., Measurement and Data Analysis for Engineering and
 Science, CRC Press, 2010.</p>
 <p>Rabinovich G.S., Measurement Errors and Uncertainties Theory and
@@ -755,6 +836,42 @@ terms (VIM), 200:2012.</p>
 asociada a la medición en fuentes fijas usando la guía para la expresión
 de la incertidumbre de medida y un método estocástico, Medellín.
 2018.</p>
+<table>
+<colgroup>
+<col width="41%" />
+<col width="25%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Abreviatura</th>
+<th align="left">significado</th>
+<th align="center">autor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">VIM</td>
+<td align="left">Vocabulario internacional de metrología 0.002</td>
+<td align="center">0.032%</td>
+</tr>
+<tr class="even">
+<td align="center">GUM</td>
+<td align="left">0.018</td>
+<td align="center">0.238%</td>
+</tr>
+<tr class="odd">
+<td align="center">IS</td>
+<td align="left">Sistema Internacional de Unidades</td>
+<td align="center">4%</td>
+</tr>
+<tr class="even">
+<td align="center">ICONTEC</td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

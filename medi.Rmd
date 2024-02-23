@@ -49,7 +49,7 @@ Sin embargo estas medidas llevan asociado un error desconocido; al que se le asi
 $$medida ± incertidumbre $$
 
 
-**Definicion 1** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+**Incertidumbre** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
 
 
 **Mensurando:** Cantidad destinada a la medida. (VIM)
@@ -73,20 +73,104 @@ knitr::include_graphics("imagen/balanza.png")
 ```
 
 
+
+**Exactitud de medida**
+
+
+¿Que tan cercano esta al valor verdadero?
+
+
+Proximidad entre un valor medido y un valor verdadero de un mensurando
+
+
 **Precisión de medida (VIM)**
-¿Qué tan cercanas están las medidas?
 
-Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones especificas como de repetibilidad, de
-precisión intermedia, o de reproducibilidad 
 
+¿Qué tan cercanas están las medidas entre ellas?
+
+
+Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones específicas  de repetibilidad, de precisión intermedia, o de reproducibilidad. 
 
 La precisión de una medida se expresa mediante medidas de dispersión tales como la desviación típica, la varianza o el coeficiente de variación bajo las condiciones especificadas.
 
 
-**Exactitud de medida**
 
-¿Que tan cercano esta al valor verdadero?
-Proximidad entre un valor medido y un valor verdadero de un mensurando
+
+```{r echo=FALSE}
+library(DiagrammeR) 
+library(DiagrammeRsvg) 
+library(rsvg) 
+
+grViz("digraph{
+ 
+      graph[rankdir = LR]
+  
+      node[shape = rectangle, style = filled]
+  
+    
+      node[fillcolor = Violet, margin = 0.2]
+      D[label = 'Condiciones especificas']
+      
+  
+      subgraph cluster_0 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'De Repetibilidad'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+        F[label = 'En un periodo corto de tiempo el mismo: 
+- Procedimiento de medida,      
+- Operadores
+- Sistema de medida, 
+- Condiciones de operación 
+- Lugar
+- Objeto o uno similar']
+      }
+      
+      subgraph cluster_2 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'De precisión intermedia'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         G[label = 'Mismas condiciones de repetibilidad
+         pero con algunas variaciones como nuevas:
+         - Calibraciones
+         - Patrones 
+         - Operadores 
+         - Sistemas de medida']
+      }
+  
+      subgraph cluster_3 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'De reproducibilidad'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         H[label = 'Mediciones repetidas de los mismos
+         objetos u otros similares en diferentes 
+         - Lugares
+         - Operadores
+         - Sistemas de medida ']
+         
+      }
+      edge[color = black, arrowhead = vee, arrowsize = 1.25]
+      
+      D -> F    D -> G  D -> H
+      
+      }")
+```
+
+
+
+
+
+
+
+
 
 
 ```{r out.width="80%", fig.align='center', echo=FALSE}
@@ -94,12 +178,32 @@ knitr::include_graphics("imagen/dina.png")
 ```
 
 
+**Calibración **
+
+- Operación que bajo condiciones especificas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas)..
+
+
+
+
+
+
+
+
+Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+
+**Trazabilidad metrológica (VIM)**
+
+
+Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
 
 
 ## ¿Cómo medir la incertidumbre de una medida?
 
 El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
-Para la cuantificación de las medidas la organización internacional de estandarización (ISO International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
+Para la cuantificación de las medidas la ISO (organización internacional de estandarización - International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
 
 ### **Sistema internacional de medida (SI)**
 
@@ -130,7 +234,7 @@ podría escribirse como  3.4 mA
 **Ejercicio**
 1. Escriba la medida con las unidades de cantidad  base
 
-|$F/m$       |$W/m^2$      |$J/m^3$|$J/K$        |$\Omega*m$|
+|$F/m$|$W/m^2$|$J/m^3$|$J/K$|$\Omega*m$|
 |:----------:|:-----------:|:-----:|:-----------:|:--------:|
 |$\Omega/m^2$|$W/(m^2·K^4)$| $N*m$ |$C^2/(N·m^2)$|$N/A^2$   |
 
@@ -223,25 +327,21 @@ dispositivos de medida.']
 ```
 
 
+## Incertidumbre en la medida
+
 
 **Incertidumbre absoluta**
 
-Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $ua$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
+Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $u_a$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
 
+$$a-u_a\leq A \leq a+ u_a $$
 
-
- a+ ua ≥ A ≥ a- ua ( | )
- a- ua a
- a+ ua
 
 **Incertidumbre relativa**
 
-Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje. 
+Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje.
 
-
-
-
-
+$$\frac{u_a}{a}$$
 
 
 ## Redondeo y cifras significativas
@@ -298,7 +398,91 @@ De estas posibilidades, deberíamos elegir el 0,2% como el más cercano al 1,7% 
 
 
 
-## Vocabulario internacional de metrología VIM
+## Metodos de medición 
+
+**Método de medida (VIM)**
+Descripción genérica de la secuencia lógica de operaciones utilizadas en una medición 
+
+Los métodos de medida pueden clasificarse de varias maneras como:
+
+
+
+**Método de sustitución**
+
+Utiliza un equipo auxiliar llamado comparador, con el que se mide inicialmente al mensurando y luego un valor de referencia. Este método también es conocido como método de medición por transferencia.
+Por ejemplo la medición de la masa de una muestra o producto con pesas a través de una balanza analítica 
+
+
+
+
+
+
+
+**Método diferencial**
+La medición es la diferencia entre un valor conocido (referencia) y un valor desconocido. 
+
+Ejemplo:
+
+a) El valor de la fuente bajo prueba Vtest va ser igual a la suma algebraica del valor de referencia +10 V y la Indicación del vóltimetro
+
+(Vtest = 10,000 0 V + 26,3 mV = 10,026 3 V ) 
+
+
+
+**Método de cero**
+Utiliza un detector de equilibrio (comparador), el
+cual permite comprobar la igualdad (diferencia cero) entre el mensurando y un valor de referencia (patrón).
+
+Ejemplos:
+a) Medición de masa de una muestra o producto en una balanza de dos platillos.
+
+
+
+− método directo,
+
+
+
+En este método se obtiene un valor en unidades del mensurando, mediante un instrumento, cadena o sistema de medición, digital o analógico, en forma de: indicador, registrador, totalizador ó integrador.
+El sensor del instrumento es colocado directamente en contacto con el fenómeno que se mide.
+Ejemplos: Medición de volumen y densidad en base al principio de Arquímedes
+
+
+
+**Método indirecto**
+
+En este método se obtiene el valor del mensurando mediante transformación, conversión o cálculo de: Indicaciones, señales de medición, magnitudes de influencia o mediciones de las variables de entrada (independientes).
+Por ejemplo la medición de volumen, en base a principios geométricos de Euclides.
+
+
+
+
+
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/mm.png")
+```
+
+
+
+Véase IEC 60050-300:2001.
+
+ **La norma ISO/IEC 17025** estable como requisito que los certificados de calibración y reportes de prueba, deben incluir el método utilizado, en términos de su origen como:
+
+
+**Métodos normalizados**
+
+Se pueden encontrar en normas internacionales, regionales o nacionales; organizaciones técnicas; revistas, textos o guías científicas relevantes y de acuerdo con las instrucciones del fabricante. 
+
+**Métodos internos, desarrollados por el laboratorio,**
+
+Métodos desarrollados internamente por el laboratorio,
+cuando no se cuenta con métodos normalizados que cubran los servicios de medición, prueba o calibración requeridos.
+
+**Métodos no normalizados.**
+Métodos no cubiertos por los métodos normalizados, los cuales son sujetos a acuerdo con el usuario.
+
+
+
 
 
 
@@ -347,6 +531,8 @@ KIRKUP L., FRENKEL R. B., AN INTRODUCTION TO UNCERTAINTY IN MEASUREMENT USING TH
 
 Lira I., Evaluating the Measurement Uncertainty Fundamentals and Practical Guidance, IOP Publishing Ltd, 2002.
 
+Metrologos, A. (2005). Institución Apasionada por la Metrología Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración: Somos su Relevo a la Calidad. www.metas.com.mx
+
 Patrick F.D., Measurement and Data Analysis for Engineering and Science, CRC Press, 2010.
 
 Rabinovich G.S., Measurement Errors and Uncertainties Theory and Practice, Springer Science and Media, Inc, 2005.
@@ -365,6 +551,12 @@ Cárdenas J.J., Metodología para la determinación de la incertidumbre asociada
 
 
 
+|Abreviatura|significado|autor|
+|:--------------:|:---------|:-----------:|
+|     VIM       |Vocabulario internacional de metrología  0.002   |0.032% |
+| GUM           |0.018     |0.238% |
+| IS            |Sistema Internacional de Unidades|4%  |
+|ICONTEC        |          |       |
 
 
 
