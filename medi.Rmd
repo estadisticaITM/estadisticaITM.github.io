@@ -7,7 +7,7 @@ output:
     
 ---
 
-# Fundamentos de medición 
+## Fundamentos de medición 
 
 ```{r out.width="40%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/metro.png")
@@ -30,7 +30,7 @@ En la vida cotidiana, nos interesan muchas medidas como:
 
 - El peso del equipaje permitido en un avión 
 
-Mientras la ciencia **metrología** se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo, por ejemplo
+La **metrología** es la ciencia que se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo, por ejemplo
 
 - Obtener una estimación fiable de niveles traza de contaminantes alimentarios como el mercurio en el pescado
 
@@ -40,16 +40,88 @@ Mientras la ciencia **metrología** se ocupa de mantener y aumentar la precisió
 Una medición cuidadosa puede significar, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.
 ~~~
 
+### Tipos de metrología
 
-## Incertidumbre en las medidas
 
 
-Sin embargo estas medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
+
+**Legal**
+
+Se relaciona con las actividades que se derivan de los requisitos legales que se aplican a la medición, las unidades de medida, los instrumentos de medida y los métodos de medida que se llevan a cabo por los organismos competentes.
+
+
+
+
+**Científica**
+
+
+
+se encarga de la custodia, mantenimiento y trazabilidad de los patrones, así como la investigación y desarrollo de nuevas técnicas de medición, de acuerdo al estado del arte de la ciencia.
+
+Dentro de sus funciones se encuentra
+
+- Determinaciones de las constantes físicas fundamentales 
+
+- Caracterísiticas de los fenomenos 
+
+- Busca mejorar sistemas de medición para lograr un control cada vez más rápido y más confiable de la mano con el sistema de medidas internacionales SI
+
+
+
+**Técnica o industrial**
+
+Comprende todas las actividades metrológicas que necesita la industria para cumplir con sus tareas como:
+
+– La información sobre mediciones.
+
+– Las calibraciones.
+
+– La trazabilidad.
+
+– El servicio de calibración.
+
+– El aseguramiento de la calidad.
+
+**Normas metrológicas**
+
+|Abreviatura|significado|autor|
+|:--------------:|:---------|:-----------:|
+|     VIM       |Vocabulario internacional de metrología  |0.032% |
+| GUM           |guia para la expresión de la incertidumbre de las medidas    |ISO|
+| IS            |Sistema Internacional de Unidades|4%  |
+|ICONTEC        |          |       |
+|NTC 10012 (2003)|Gestión de las mediciones|       |
+|IS| sistema internacional de las medidas|       |
+|Icontec| sistema internacional de las medidas|       |
+|ONAC| sistema internacional de las medidas|       |
+|Norma 17095| sistema internacional de las medidas|       |
+## Incertidumbre y tolerancia en las medidas
+
+Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
 
 $$medida ± incertidumbre $$
 
 
-**Incertidumbre** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+**Incertidumbre** 
+
+- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+
+- Es el intervalo de los valores posibles de una medida. 
+
+**Tolerancia (de una magnitud)** 
+
+Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
+
+
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/tol.png")
+```
+
+
+$$Intervalo \quad toleracia \geq error+incertidumbre$$
+
+
 
 
 **Mensurando:** Cantidad destinada a la medida. (VIM)
@@ -88,8 +160,11 @@ Proximidad entre un valor medido y un valor verdadero de un mensurando
 
 ¿Qué tan cercanas están las medidas entre ellas?
 
+- Capacidad que tiene un equipo de replicar  un valor, así sea el verdadero u otro diferente
 
 Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones específicas  de repetibilidad, de precisión intermedia, o de reproducibilidad. 
+
+R y R  son conocidas después de tomar las mediciones.
 
 La precisión de una medida se expresa mediante medidas de dispersión tales como la desviación típica, la varianza o el coeficiente de variación bajo las condiciones especificadas.
 
@@ -164,15 +239,6 @@ grViz("digraph{
       }")
 ```
 
-
-
-
-
-
-
-
-
-
 ```{r out.width="80%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/dina.png")
 ```
@@ -182,16 +248,61 @@ knitr::include_graphics("imagen/dina.png")
 
 - Operación que bajo condiciones especificas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
 
-- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas)..
+- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
+
+- Descalibración no existe
+
+- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+- El estado de nuevo o usado no lo excluye de la calibración 
+
+- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+
+
+
+**Cerificado de calibración**
+
+Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
 
 
 
 
+**Qué debe contener un certificado de calibración**
+
+- Incertidumbre del mensurando en cada punto calibrado.
+
+- Qué voy a medir?
+
+- Con que instrumento voy a medir
+
+- Nombre del equipo
+
+- Resolución
+
+- Rango 
+
+- Puntos a calibrar (generalmente elegidos por el cliente)
+
+- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
+
+- Patrones contrastados
+
+- Incertidumbre de medida de cada punto contrastado.
 
 
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/certi.png")
+```
+
+**Verificación metrológica**
+
+Acto administrativo siguiente después de haber calibrado un equipo, en el que se comparan las características metrologicas de un equipo de medición y los requisitos metrológicos del cliente
 
 
-Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+**Comprobación metrológica**
+Intermedio entre calibraciones
 
 
 **Trazabilidad metrológica (VIM)**
@@ -490,6 +601,8 @@ Métodos no cubiertos por los métodos normalizados, los cuales son sujetos a ac
 **Tipos de incertidumbre**
 
 **Incertidumbre típica o estándar $u$**
+
+
 Obtenida a partir de las incertidumbres típicas individuales asociadas a la magnitud de entrada de un modelo de medición (Shmid W y lazos R, 2000) Algunos ejemplos son
 
 ```{r fig.asp=0.9, fig.align='center', echo=FALSE}
@@ -551,12 +664,27 @@ Cárdenas J.J., Metodología para la determinación de la incertidumbre asociada
 
 
 
-|Abreviatura|significado|autor|
-|:--------------:|:---------|:-----------:|
-|     VIM       |Vocabulario internacional de metrología  0.002   |0.032% |
-| GUM           |0.018     |0.238% |
-| IS            |Sistema Internacional de Unidades|4%  |
-|ICONTEC        |          |       |
+
+
+**Preguntas**
+
+1. ¿Qué es la metrología?
+
+2. Tipos de metrología
+
+3. ¿Qué es calibración?
+
+4. ¿Qué es incertidumbre?
+
+5. ¿Qué es el error?
+
+6. ¿Qué es tolerancia?
+
+6. ¿Que es incertidumbre?
+
+7. Qué es verificación metrológica?
+
+8. qué normas conoces de metrología
 
 
 
