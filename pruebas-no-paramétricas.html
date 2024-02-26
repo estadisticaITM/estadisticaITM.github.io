@@ -587,8 +587,7 @@ shapiro.test(grupo1)</code></pre>
 ## W = 0.95245, p-value = 0.673</code></pre>
 <pre class="r"><code>#prueba para saber si provienen de la misma distribución 
 ks.test(grupo1,grupo2)</code></pre>
-<pre><code>## Warning in ks.test(grupo1, grupo2): cannot compute exact p-value with
-## ties</code></pre>
+<pre><code>## Warning in ks.test(grupo1, grupo2): cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
@@ -721,8 +720,7 @@ gf$par</code></pre>
 <pre><code>## $lambda
 ## [1] 13.60833</code></pre>
 <pre class="r"><code>summary(gf)</code></pre>
-<pre><code>## Warning in summary.goodfit(gf): Chi-squared approximation may be
-## incorrect</code></pre>
+<pre><code>## Warning in summary.goodfit(gf): Chi-squared approximation may be incorrect</code></pre>
 <pre><code>## 
 ##   Goodness-of-fit test for poisson distribution
 ## 
@@ -829,233 +827,233 @@ library(MASS)
 
 ##la base de datos total corresponde a 
 survey</code></pre>
-<pre><code>##       Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height
-## 1  Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00
-## 2    Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80
-## 3    Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA
-## 4    Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00
-## 5    Male   20.0   20.0 Right Neither    35   Right Some Never 165.00
-## 6  Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72
-## 7    Male   17.7   17.7 Right  L on R    83   Right Freq Never 182.88
-## 8  Female   17.0   17.3 Right  R on L    74   Right Freq Never 157.00
-## 9    Male   20.0   19.5 Right  R on L    72   Right Some Never 175.00
-## 10   Male   18.5   18.5 Right  R on L    90   Right Some Never 167.00
-## 11 Female   17.0   17.2 Right  L on R    80   Right Freq Never 156.20
-## 12   Male   21.0   21.0 Right  R on L    68    Left Freq Never     NA
-## 13 Female   16.0   16.0 Right  L on R    NA   Right Some Never 155.00
-## 14 Female   19.5   20.2 Right  L on R    66 Neither Some Never 155.00
-## 15   Male   16.0   15.5 Right  R on L    60   Right Some Never     NA
-## 16 Female   17.5   17.0 Right  R on L    NA   Right Freq Never 156.00
-## 17 Female   18.0   18.0 Right  L on R    89 Neither Freq Never 157.00
-## 18   Male   19.4   19.2  Left  R on L    74   Right Some Never 182.88
-## 19   Male   20.5   20.5 Right  L on R    NA    Left Some Never 190.50
-## 20   Male   21.0   20.9 Right  R on L    78   Right Freq Never 177.00
-## 21   Male   21.5   22.0 Right  R on L    72    Left Freq Never 190.50
-## 22   Male   20.1   20.7 Right  L on R    72   Right Freq Never 180.34
-## 23   Male   18.5   18.0 Right  L on R    64   Right Freq Never 180.34
-## 24   Male   21.5   21.2 Right  R on L    62   Right Some Never 184.00
-## 25 Female   17.0   17.5 Right  R on L    64    Left Some Never     NA
-## 26   Male   18.5   18.5 Right Neither    90 Neither Some Never     NA
-## 27   Male   21.0   20.7 Right  R on L    90   Right Some Never 172.72
-## 28   Male   20.8   21.4 Right  R on L    62 Neither Freq Never 175.26
-## 29   Male   17.8   17.8 Right  L on R    76 Neither Freq Never     NA
-## 30   Male   19.5   19.5 Right  L on R    79   Right Some Never 167.00
-## 31 Female   18.5   18.0 Right  R on L    76   Right None Occas     NA
-## 32   Male   18.8   18.2 Right  L on R    78   Right Freq Never 180.00
-## 33 Female   17.1   17.5 Right  R on L    72   Right Freq Heavy 166.40
-## 34   Male   20.1   20.0 Right  R on L    70   Right Some Never 180.00
-## 35   Male   18.0   19.0 Right  L on R    54 Neither Some Regul     NA
-## 36   Male   22.2   21.0 Right  L on R    66   Right Freq Occas 190.00
-## 37 Female   16.0   16.5 Right  L on R    NA   Right Some Never 168.00
-## 38   Male   19.4   18.5 Right  R on L    72 Neither Freq Never 182.50
-## 39   Male   22.0   22.0 Right  R on L    80   Right Some Never 185.00
-## 40   Male   19.0   19.0 Right  R on L    NA Neither Freq Occas 171.00
-## 41 Female   17.5   16.0 Right  L on R    NA   Right Some Never 169.00
-## 42 Female   17.8   18.0 Right  R on L    72   Right Some Never 154.94
-## 43   Male     NA     NA Right  R on L    60    &lt;NA&gt; Some Never 172.00
-## 44 Female   20.1   20.2 Right  L on R    80   Right Some Never 176.50
-## 45 Female   13.0   13.0  &lt;NA&gt;  L on R    70    Left Freq Never 180.34
-## 46   Male   17.0   17.5 Right  R on L    NA Neither Freq Never 180.34
-## 47   Male   23.2   22.7 Right  L on R    84    Left Freq Regul 180.00
-## 48   Male   22.5   23.0 Right  R on L    96   Right None Never 170.00
-## 49 Female   18.0   17.6 Right  R on L    60   Right Some Occas 168.00
-## 50 Female   18.0   17.9 Right  R on L    50    Left None Never 165.00
-## 51   Male   22.0   21.5  Left  R on L    55    Left Freq Never 200.00
-## 52   Male   20.5   20.0 Right  L on R    68   Right Freq Never 190.00
-## 53   Male   17.0   18.0 Right  L on R    78    Left Some Never 170.18
-## 54   Male   20.5   19.5 Right  L on R    56   Right Freq Never 179.00
-## 55   Male   22.5   22.5 Right  R on L    65   Right Freq Regul 182.00
-## 56   Male   18.5   18.5 Right  L on R    NA Neither Freq Never 171.00
-## 57 Female   15.5   15.4 Right  R on L    70 Neither None Never 157.48
-## 58   Male   19.5   19.7 Right  R on L    72   Right Freq Never     NA
-## 59   Male   19.5   19.0 Right  L on R    62   Right Freq Never 177.80
-## 60   Male   20.6   21.0  Left  L on R    NA    Left Freq Occas 175.26
-## 61   Male   22.8   23.2 Right  R on L    66 Neither Freq Never 187.00
-## 62 Female   18.5   18.2 Right  R on L    72 Neither Freq Never 167.64
-## 63 Female   19.6   19.7 Right  L on R    70   Right Freq Never 178.00
-## 64 Female   18.7   18.0  Left  L on R    NA    Left None Never 170.00
-## 65 Female   17.3   18.0 Right  L on R    64 Neither Freq Never 164.00
-## 66   Male   19.5   19.8 Right Neither    NA   Right Freq Never 183.00
-## 67 Female   19.0   19.1 Right  L on R    NA Neither Freq Never 172.00
-## 68 Female   18.5   18.0 Right  R on L    64   Right Freq Never     NA
-## 69   Male   19.0   19.0 Right  L on R    NA   Right Some Never 180.00
-## 70   Male   21.0   19.5 Right  L on R    80    Left None  &lt;NA&gt;     NA
-## 71 Female   18.0   17.5 Right  L on R    64    Left Freq Never 170.00
-## 72   Male   19.4   19.5 Right  R on L    NA   Right Freq Heavy 176.00
-## 73 Female   17.0   16.6 Right  R on L    68   Right Some Never 171.00
-## 74 Female   16.5   17.0 Right  L on R    40    Left Freq Never 167.64
-## 75 Female   15.6   15.8 Right  R on L    88    Left Some Never 165.00
-## 76 Female   17.5   17.5 Right Neither    68   Right Freq Heavy 170.00
-## 77 Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00
-## 78 Female   18.6   18.0 Right  L on R    NA Neither Freq Heavy 165.10
-## 79 Female   18.3   18.5 Right  R on L    68 Neither Some Never 165.10
-## 80   Male   20.0   20.5 Right  L on R    NA   Right Freq Never 185.42
-## 81   Male   19.5   19.5  Left  R on L    66    Left Some Never     NA
-## 82   Male   19.2   18.9 Right  R on L    76   Right Freq Never 176.50
-## 83 Female   17.5   17.5 Right  R on L    98    Left Freq Never     NA
-##         M.I    Age
-## 1    Metric 18.250
-## 2  Imperial 17.583
-## 3      &lt;NA&gt; 16.917
-## 4    Metric 20.333
-## 5    Metric 23.667
-## 6  Imperial 21.000
-## 7  Imperial 18.833
-## 8    Metric 35.833
-## 9    Metric 19.000
-## 10   Metric 22.333
-## 11 Imperial 28.500
-## 12     &lt;NA&gt; 18.250
-## 13   Metric 18.750
-## 14   Metric 17.500
-## 15     &lt;NA&gt; 17.167
-## 16   Metric 17.167
-## 17   Metric 19.333
-## 18 Imperial 18.333
-## 19 Imperial 19.750
-## 20   Metric 17.917
-## 21 Imperial 17.917
-## 22 Imperial 18.167
-## 23 Imperial 17.833
-## 24   Metric 18.250
-## 25     &lt;NA&gt; 19.167
-## 26     &lt;NA&gt; 17.583
-## 27 Imperial 17.500
-## 28 Imperial 18.083
-## 29     &lt;NA&gt; 21.917
-## 30   Metric 19.250
-## 31     &lt;NA&gt; 41.583
-## 32   Metric 17.500
-## 33 Imperial 39.750
-## 34   Metric 17.167
-## 35     &lt;NA&gt; 17.750
-## 36   Metric 18.000
-## 37   Metric 19.000
-## 38   Metric 17.917
-## 39   Metric 35.500
-## 40   Metric 19.917
-## 41   Metric 17.500
-## 42 Imperial 17.083
-## 43   Metric 28.583
-## 44 Imperial 17.500
-## 45 Imperial 17.417
-## 46 Imperial 18.500
-## 47   Metric 18.917
-## 48   Metric 19.417
-## 49   Metric 18.417
-## 50   Metric 30.750
-## 51   Metric 18.500
-## 52   Metric 17.500
-## 53 Imperial 18.333
-## 54   Metric 17.417
-## 55   Metric 20.000
-## 56   Metric 18.333
-## 57 Imperial 17.167
-## 58     &lt;NA&gt; 17.417
-## 59 Imperial 17.667
-## 60 Imperial 18.417
-## 61   Metric 20.333
-## 62 Imperial 17.333
-## 63   Metric 17.500
-## 64   Metric 19.833
-## 65   Metric 18.583
-## 66   Metric 18.000
-## 67   Metric 30.667
-## 68     &lt;NA&gt; 16.917
-## 69   Metric 19.917
-## 70     &lt;NA&gt; 18.333
-## 71   Metric 17.583
-## 72   Metric 17.833
-## 73   Metric 17.667
-## 74 Imperial 17.417
-## 75   Metric 17.750
-## 76   Metric 20.667
-## 77   Metric 23.583
-## 78 Imperial 17.167
-## 79 Imperial 17.083
-## 80 Imperial 18.750
-## 81     &lt;NA&gt; 16.750
-## 82 Imperial 20.167
-## 83     &lt;NA&gt; 17.667
+<pre><code>##       Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
+## 1  Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
+## 2    Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
+## 3    Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
+## 4    Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
+## 5    Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
+## 6  Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
+## 7    Male   17.7   17.7 Right  L on R    83   Right Freq Never 182.88 Imperial
+## 8  Female   17.0   17.3 Right  R on L    74   Right Freq Never 157.00   Metric
+## 9    Male   20.0   19.5 Right  R on L    72   Right Some Never 175.00   Metric
+## 10   Male   18.5   18.5 Right  R on L    90   Right Some Never 167.00   Metric
+## 11 Female   17.0   17.2 Right  L on R    80   Right Freq Never 156.20 Imperial
+## 12   Male   21.0   21.0 Right  R on L    68    Left Freq Never     NA     &lt;NA&gt;
+## 13 Female   16.0   16.0 Right  L on R    NA   Right Some Never 155.00   Metric
+## 14 Female   19.5   20.2 Right  L on R    66 Neither Some Never 155.00   Metric
+## 15   Male   16.0   15.5 Right  R on L    60   Right Some Never     NA     &lt;NA&gt;
+## 16 Female   17.5   17.0 Right  R on L    NA   Right Freq Never 156.00   Metric
+## 17 Female   18.0   18.0 Right  L on R    89 Neither Freq Never 157.00   Metric
+## 18   Male   19.4   19.2  Left  R on L    74   Right Some Never 182.88 Imperial
+## 19   Male   20.5   20.5 Right  L on R    NA    Left Some Never 190.50 Imperial
+## 20   Male   21.0   20.9 Right  R on L    78   Right Freq Never 177.00   Metric
+## 21   Male   21.5   22.0 Right  R on L    72    Left Freq Never 190.50 Imperial
+## 22   Male   20.1   20.7 Right  L on R    72   Right Freq Never 180.34 Imperial
+## 23   Male   18.5   18.0 Right  L on R    64   Right Freq Never 180.34 Imperial
+## 24   Male   21.5   21.2 Right  R on L    62   Right Some Never 184.00   Metric
+## 25 Female   17.0   17.5 Right  R on L    64    Left Some Never     NA     &lt;NA&gt;
+## 26   Male   18.5   18.5 Right Neither    90 Neither Some Never     NA     &lt;NA&gt;
+## 27   Male   21.0   20.7 Right  R on L    90   Right Some Never 172.72 Imperial
+## 28   Male   20.8   21.4 Right  R on L    62 Neither Freq Never 175.26 Imperial
+## 29   Male   17.8   17.8 Right  L on R    76 Neither Freq Never     NA     &lt;NA&gt;
+## 30   Male   19.5   19.5 Right  L on R    79   Right Some Never 167.00   Metric
+## 31 Female   18.5   18.0 Right  R on L    76   Right None Occas     NA     &lt;NA&gt;
+## 32   Male   18.8   18.2 Right  L on R    78   Right Freq Never 180.00   Metric
+## 33 Female   17.1   17.5 Right  R on L    72   Right Freq Heavy 166.40 Imperial
+## 34   Male   20.1   20.0 Right  R on L    70   Right Some Never 180.00   Metric
+## 35   Male   18.0   19.0 Right  L on R    54 Neither Some Regul     NA     &lt;NA&gt;
+## 36   Male   22.2   21.0 Right  L on R    66   Right Freq Occas 190.00   Metric
+## 37 Female   16.0   16.5 Right  L on R    NA   Right Some Never 168.00   Metric
+## 38   Male   19.4   18.5 Right  R on L    72 Neither Freq Never 182.50   Metric
+## 39   Male   22.0   22.0 Right  R on L    80   Right Some Never 185.00   Metric
+## 40   Male   19.0   19.0 Right  R on L    NA Neither Freq Occas 171.00   Metric
+## 41 Female   17.5   16.0 Right  L on R    NA   Right Some Never 169.00   Metric
+## 42 Female   17.8   18.0 Right  R on L    72   Right Some Never 154.94 Imperial
+## 43   Male     NA     NA Right  R on L    60    &lt;NA&gt; Some Never 172.00   Metric
+## 44 Female   20.1   20.2 Right  L on R    80   Right Some Never 176.50 Imperial
+## 45 Female   13.0   13.0  &lt;NA&gt;  L on R    70    Left Freq Never 180.34 Imperial
+## 46   Male   17.0   17.5 Right  R on L    NA Neither Freq Never 180.34 Imperial
+## 47   Male   23.2   22.7 Right  L on R    84    Left Freq Regul 180.00   Metric
+## 48   Male   22.5   23.0 Right  R on L    96   Right None Never 170.00   Metric
+## 49 Female   18.0   17.6 Right  R on L    60   Right Some Occas 168.00   Metric
+## 50 Female   18.0   17.9 Right  R on L    50    Left None Never 165.00   Metric
+## 51   Male   22.0   21.5  Left  R on L    55    Left Freq Never 200.00   Metric
+## 52   Male   20.5   20.0 Right  L on R    68   Right Freq Never 190.00   Metric
+## 53   Male   17.0   18.0 Right  L on R    78    Left Some Never 170.18 Imperial
+## 54   Male   20.5   19.5 Right  L on R    56   Right Freq Never 179.00   Metric
+## 55   Male   22.5   22.5 Right  R on L    65   Right Freq Regul 182.00   Metric
+## 56   Male   18.5   18.5 Right  L on R    NA Neither Freq Never 171.00   Metric
+## 57 Female   15.5   15.4 Right  R on L    70 Neither None Never 157.48 Imperial
+## 58   Male   19.5   19.7 Right  R on L    72   Right Freq Never     NA     &lt;NA&gt;
+## 59   Male   19.5   19.0 Right  L on R    62   Right Freq Never 177.80 Imperial
+## 60   Male   20.6   21.0  Left  L on R    NA    Left Freq Occas 175.26 Imperial
+## 61   Male   22.8   23.2 Right  R on L    66 Neither Freq Never 187.00   Metric
+## 62 Female   18.5   18.2 Right  R on L    72 Neither Freq Never 167.64 Imperial
+## 63 Female   19.6   19.7 Right  L on R    70   Right Freq Never 178.00   Metric
+## 64 Female   18.7   18.0  Left  L on R    NA    Left None Never 170.00   Metric
+## 65 Female   17.3   18.0 Right  L on R    64 Neither Freq Never 164.00   Metric
+## 66   Male   19.5   19.8 Right Neither    NA   Right Freq Never 183.00   Metric
+## 67 Female   19.0   19.1 Right  L on R    NA Neither Freq Never 172.00   Metric
+## 68 Female   18.5   18.0 Right  R on L    64   Right Freq Never     NA     &lt;NA&gt;
+## 69   Male   19.0   19.0 Right  L on R    NA   Right Some Never 180.00   Metric
+## 70   Male   21.0   19.5 Right  L on R    80    Left None  &lt;NA&gt;     NA     &lt;NA&gt;
+## 71 Female   18.0   17.5 Right  L on R    64    Left Freq Never 170.00   Metric
+## 72   Male   19.4   19.5 Right  R on L    NA   Right Freq Heavy 176.00   Metric
+## 73 Female   17.0   16.6 Right  R on L    68   Right Some Never 171.00   Metric
+## 74 Female   16.5   17.0 Right  L on R    40    Left Freq Never 167.64 Imperial
+## 75 Female   15.6   15.8 Right  R on L    88    Left Some Never 165.00   Metric
+## 76 Female   17.5   17.5 Right Neither    68   Right Freq Heavy 170.00   Metric
+## 77 Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
+## 78 Female   18.6   18.0 Right  L on R    NA Neither Freq Heavy 165.10 Imperial
+## 79 Female   18.3   18.5 Right  R on L    68 Neither Some Never 165.10 Imperial
+## 80   Male   20.0   20.5 Right  L on R    NA   Right Freq Never 185.42 Imperial
+## 81   Male   19.5   19.5  Left  R on L    66    Left Some Never     NA     &lt;NA&gt;
+## 82   Male   19.2   18.9 Right  R on L    76   Right Freq Never 176.50 Imperial
+## 83 Female   17.5   17.5 Right  R on L    98    Left Freq Never     NA     &lt;NA&gt;
+##       Age
+## 1  18.250
+## 2  17.583
+## 3  16.917
+## 4  20.333
+## 5  23.667
+## 6  21.000
+## 7  18.833
+## 8  35.833
+## 9  19.000
+## 10 22.333
+## 11 28.500
+## 12 18.250
+## 13 18.750
+## 14 17.500
+## 15 17.167
+## 16 17.167
+## 17 19.333
+## 18 18.333
+## 19 19.750
+## 20 17.917
+## 21 17.917
+## 22 18.167
+## 23 17.833
+## 24 18.250
+## 25 19.167
+## 26 17.583
+## 27 17.500
+## 28 18.083
+## 29 21.917
+## 30 19.250
+## 31 41.583
+## 32 17.500
+## 33 39.750
+## 34 17.167
+## 35 17.750
+## 36 18.000
+## 37 19.000
+## 38 17.917
+## 39 35.500
+## 40 19.917
+## 41 17.500
+## 42 17.083
+## 43 28.583
+## 44 17.500
+## 45 17.417
+## 46 18.500
+## 47 18.917
+## 48 19.417
+## 49 18.417
+## 50 30.750
+## 51 18.500
+## 52 17.500
+## 53 18.333
+## 54 17.417
+## 55 20.000
+## 56 18.333
+## 57 17.167
+## 58 17.417
+## 59 17.667
+## 60 18.417
+## 61 20.333
+## 62 17.333
+## 63 17.500
+## 64 19.833
+## 65 18.583
+## 66 18.000
+## 67 30.667
+## 68 16.917
+## 69 19.917
+## 70 18.333
+## 71 17.583
+## 72 17.833
+## 73 17.667
+## 74 17.417
+## 75 17.750
+## 76 20.667
+## 77 23.583
+## 78 17.167
+## 79 17.083
+## 80 18.750
+## 81 16.750
+## 82 20.167
+## 83 17.667
 ##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 154 rows ]</code></pre>
 <pre class="r"><code>##Para ver el encabezado de los datos
 head(survey)</code></pre>
-<pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height
-## 1 Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00
-## 2   Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80
-## 3   Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA
-## 4   Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00
-## 5   Male   20.0   20.0 Right Neither    35   Right Some Never 165.00
-## 6 Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72
-##        M.I    Age
-## 1   Metric 18.250
-## 2 Imperial 17.583
-## 3     &lt;NA&gt; 16.917
-## 4   Metric 20.333
-## 5   Metric 23.667
-## 6 Imperial 21.000</code></pre>
+<pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
+## 1 Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
+## 2   Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
+## 3   Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
+## 4   Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
+## 5   Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
+## 6 Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
+##      Age
+## 1 18.250
+## 2 17.583
+## 3 16.917
+## 4 20.333
+## 5 23.667
+## 6 21.000</code></pre>
 <pre class="r"><code>##Para ver la ultima parte de los datos
 tail(survey)</code></pre>
-<pre><code>##        Sex Wr.Hnd NW.Hnd W.Hnd   Fold Pulse  Clap Exer Smoke Height
-## 232   Male   18.0   16.0 Right R on L    NA Right Some Never 180.34
-## 233 Female   18.0   18.0 Right L on R    85 Right Some Never 165.10
-## 234 Female   18.5   18.0 Right L on R    88 Right Some Never 160.00
-## 235 Female   17.5   16.5 Right R on L    NA Right Some Never 170.00
-## 236   Male   21.0   21.5 Right R on L    90 Right Some Never 183.00
-## 237 Female   17.6   17.3 Right R on L    85 Right Freq Never 168.50
-##          M.I    Age
-## 232 Imperial 20.750
-## 233 Imperial 17.667
-## 234   Metric 16.917
-## 235   Metric 18.583
-## 236   Metric 17.167
-## 237   Metric 17.750</code></pre>
+<pre><code>##        Sex Wr.Hnd NW.Hnd W.Hnd   Fold Pulse  Clap Exer Smoke Height      M.I
+## 232   Male   18.0   16.0 Right R on L    NA Right Some Never 180.34 Imperial
+## 233 Female   18.0   18.0 Right L on R    85 Right Some Never 165.10 Imperial
+## 234 Female   18.5   18.0 Right L on R    88 Right Some Never 160.00   Metric
+## 235 Female   17.5   16.5 Right R on L    NA Right Some Never 170.00   Metric
+## 236   Male   21.0   21.5 Right R on L    90 Right Some Never 183.00   Metric
+## 237 Female   17.6   17.3 Right R on L    85 Right Freq Never 168.50   Metric
+##        Age
+## 232 20.750
+## 233 17.667
+## 234 16.917
+## 235 18.583
+## 236 17.167
+## 237 17.750</code></pre>
 <pre class="r"><code>## Para obtener un resumen de los datos
 summary(survey)</code></pre>
-<pre><code>##      Sex          Wr.Hnd          NW.Hnd        W.Hnd    
-##  Female:118   Min.   :13.00   Min.   :12.50   Left : 18  
-##  Male  :118   1st Qu.:17.50   1st Qu.:17.50   Right:218  
-##  NA&#39;s  :  1   Median :18.50   Median :18.50   NA&#39;s :  1  
-##               Mean   :18.67   Mean   :18.58              
-##               3rd Qu.:19.80   3rd Qu.:19.73              
-##               Max.   :23.20   Max.   :23.50              
-##               NA&#39;s   :1       NA&#39;s   :1                  
-##       Fold         Pulse             Clap       Exer       Smoke    
-##  L on R : 99   Min.   : 35.00   Left   : 39   Freq:115   Heavy: 11  
-##  Neither: 18   1st Qu.: 66.00   Neither: 50   None: 24   Never:189  
-##  R on L :120   Median : 72.50   Right  :147   Some: 98   Occas: 19  
-##                Mean   : 74.15   NA&#39;s   :  1              Regul: 17  
-##                3rd Qu.: 80.00                            NA&#39;s :  1  
-##                Max.   :104.00                                       
-##                NA&#39;s   :45                                           
-##      Height            M.I           Age       
-##  Min.   :150.0   Imperial: 68   Min.   :16.75  
-##  1st Qu.:165.0   Metric  :141   1st Qu.:17.67  
-##  Median :171.0   NA&#39;s    : 28   Median :18.58  
-##  Mean   :172.4                  Mean   :20.37  
-##  3rd Qu.:180.0                  3rd Qu.:20.17  
-##  Max.   :200.0                  Max.   :73.00  
-##  NA&#39;s   :28</code></pre>
+<pre><code>##      Sex          Wr.Hnd          NW.Hnd        W.Hnd          Fold    
+##  Female:118   Min.   :13.00   Min.   :12.50   Left : 18   L on R : 99  
+##  Male  :118   1st Qu.:17.50   1st Qu.:17.50   Right:218   Neither: 18  
+##  NA&#39;s  :  1   Median :18.50   Median :18.50   NA&#39;s :  1   R on L :120  
+##               Mean   :18.67   Mean   :18.58                            
+##               3rd Qu.:19.80   3rd Qu.:19.73                            
+##               Max.   :23.20   Max.   :23.50                            
+##               NA&#39;s   :1       NA&#39;s   :1                                
+##      Pulse             Clap       Exer       Smoke         Height     
+##  Min.   : 35.00   Left   : 39   Freq:115   Heavy: 11   Min.   :150.0  
+##  1st Qu.: 66.00   Neither: 50   None: 24   Never:189   1st Qu.:165.0  
+##  Median : 72.50   Right  :147   Some: 98   Occas: 19   Median :171.0  
+##  Mean   : 74.15   NA&#39;s   :  1              Regul: 17   Mean   :172.4  
+##  3rd Qu.: 80.00                            NA&#39;s :  1   3rd Qu.:180.0  
+##  Max.   :104.00                                        Max.   :200.0  
+##  NA&#39;s   :45                                            NA&#39;s   :28     
+##        M.I           Age       
+##  Imperial: 68   Min.   :16.75  
+##  Metric  :141   1st Qu.:17.67  
+##  NA&#39;s    : 28   Median :18.58  
+##                 Mean   :20.37  
+##                 3rd Qu.:20.17  
+##                 Max.   :73.00  
+## </code></pre>
 <pre class="r"><code>## se usan las variables
 ## FUMA (Smoke) con los niveles: Heavy, Regul, Occas y Never 
 ## EJERCICIO (Exer) con los niveles: Freq, Some, y None

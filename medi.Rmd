@@ -30,6 +30,8 @@ En la vida cotidiana, nos interesan muchas medidas como:
 
 - El peso del equipaje permitido en un avión 
 
+- El número de galones con que se tanquea el carro 
+
 La **metrología** es la ciencia que se ocupa de mantener y aumentar la precisión de las mediciones, en cualquier campo, por ejemplo
 
 - Obtener una estimación fiable de niveles traza de contaminantes alimentarios como el mercurio en el pescado
@@ -85,8 +87,8 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 **Normas metrológicas**
 
 |Abreviatura|significado|autor|
-|:--------------:|:---------|:-----------:|
-|     VIM       |Vocabulario internacional de metrología  |0.032% |
+|:--------------:|:--------------------|:--------------------:|
+|     VIM       |Vocabulario internacional de metrología  |JCGM* Comité Conjunto para las Guías en Metrología (JCGM por sus siglas en inglés), |
 | GUM           |guia para la expresión de la incertidumbre de las medidas    |ISO|
 | IS            |Sistema Internacional de Unidades|4%  |
 |ICONTEC        |          |       |
@@ -95,6 +97,11 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 |Icontec| sistema internacional de las medidas|       |
 |ONAC| sistema internacional de las medidas|       |
 |Norma 17095| sistema internacional de las medidas|       |
+|ISO|organización internacional de estandarización - International Standardisation Organisation)||
+*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML
+
+
+
 ## Incertidumbre y tolerancia en las medidas
 
 Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
@@ -160,13 +167,11 @@ Proximidad entre un valor medido y un valor verdadero de un mensurando
 
 ¿Qué tan cercanas están las medidas entre ellas?
 
-- Capacidad que tiene un equipo de replicar  un valor, así sea el verdadero u otro diferente
+Capacidad que tiene un equipo de replicar  un valor, así sea el verdadero u otro diferente, se expresa mediante medidas de dispersión tales como la desviación típica, la varianza o el coeficiente de variación bajo las condiciones especificadas.
 
 Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones específicas  de repetibilidad, de precisión intermedia, o de reproducibilidad. 
 
-R y R  son conocidas después de tomar las mediciones.
 
-La precisión de una medida se expresa mediante medidas de dispersión tales como la desviación típica, la varianza o el coeficiente de variación bajo las condiciones especificadas.
 
 
 
@@ -243,6 +248,9 @@ grViz("digraph{
 knitr::include_graphics("imagen/dina.png")
 ```
 
+R y R  son conocidas después de tomar las mediciones.
+
+
 
 **Calibración **
 
@@ -313,8 +321,7 @@ Propiedad de un resultado de medida, que puede relacionarse con una referencia, 
 
 ## ¿Cómo medir la incertidumbre de una medida?
 
-El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
-Para la cuantificación de las medidas la ISO (organización internacional de estandarización - International Standardisation Organisation) creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
+El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida.  Para la cuantificación de las medidas la ISO creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
 
 ### **Sistema internacional de medida (SI)**
 
