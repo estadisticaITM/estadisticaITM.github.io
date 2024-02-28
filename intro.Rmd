@@ -280,9 +280,6 @@ Documento que muestra las diferencias de medida entre el instrumento a calibrar 
 knitr::include_graphics("imagen/certi.png")
 ```
 
-**Verificación metrológica**
-
-Acto administrativo siguiente después de haber calibrado un equipo, en el que se comparan las características metrologicas de un equipo de medición y los requisitos metrológicos del cliente, (Ver Norma 10012)
 
 
 **Comprobación metrológica**
@@ -296,7 +293,9 @@ Intermedio entre calibraciones
 Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
 
 
-##**Normas y organizaciones metrológicas**
+## **Normas y organizaciones metrológicas**
+
+
 
 |Abreviatura|significado|autor|
 |:---------:|:----------------------------|:--------------------:|
@@ -310,11 +309,12 @@ Propiedad de un resultado de medida, que puede relacionarse con una referencia, 
 |ISO        |organización internacional de estandarización - International Standardisation Organisation)||
 *BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML
 
+### **Norma 10012**
 
 
+**Verificación metrológica**
 
-
-**Norma 10012**
+Acto administrativo siguiente después de haber calibrado un equipo, en el que se comparan las características metrologicas de un equipo de medición y los requisitos metrológicos del cliente, (Ver Norma 10012)
 
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
@@ -386,10 +386,7 @@ library(rsvg)
 grViz("digraph{
  
       graph[rankdir = LR]
-  
       node[shape = rectangle, style = filled]
-  
-    
       node[fillcolor = Violet, margin = 0.2]
       D[label = 'Evitables']
       E[label = 'Inevitables']
@@ -398,8 +395,7 @@ grViz("digraph{
         graph[shape = rectangle]
         style = rounded
         bgcolor = Gold
-    
-         label = 'Sistemáticas'
+        label = 'Sistemáticas'
         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
         F[label = 'Aparatos mal calibrados,
         vidrios dilatados por calentamiento, 
@@ -430,9 +426,6 @@ grViz("digraph{
          I[label = 'Reflejan la dispersión de la
          magnitud al repetir su medida']
       }
-  
-  
-  
   
   subgraph cluster_3 {
          graph[shape = rectangle]

@@ -14,7 +14,9 @@ output:
 - Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
 
 
-- Es la duda que todo resultado de medición lleva implícito, se representa por medio de un intervalo o rango de valores con una cierta probabilidad de cobertura, llamado intervalo de confianza, que suele ser del 95 %. Este factor de cobertura se representa con la letra K y para un nivel de confianza del 95 %, K es igual a 2.
+- Es la duda que todo resultado de medición lleva implícito, se representa por medio de un intervalo o rango de valores con una cierta probabilidad de cobertura, llamado intervalo de confianza, que suele ser del 95 %. Este **factor de cobertura K** es igual a 2 para un nivel de confianza del 95 %.
+
+
 
  Lo anterior se conoce como **regla empírica de la estadística** y se construye con la distribución normal.
  
@@ -52,10 +54,11 @@ knitr::include_graphics("imagen/mme.png")
 
 Dependiendo del origen de los datos la incertidumbre típica se clasifica en 
 
-Tipo A: Obtenida mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
+**Tipo A:** 
+Obtenida mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
 
-
-Tipo B: La evaluación no resulta de una serie de mediciones, si no mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
+**Tipo B:** 
+La evaluación no resulta de una serie de mediciones, si no mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
 
 
 **Incertidumbre típica combinada**
@@ -68,13 +71,12 @@ Resultado de la combinación de las contribuciones de todas las fuentes de incer
 
 **Incertidumbre expandida **
 
-magnitud que define un intervalo en torno al resultado de una medición, y en el que se espera encontrar una
+Magnitud que define un intervalo en torno al resultado de una medición, y en el que se espera encontrar una
 fracción importante de la distribución de valores que podrían ser atribuidos razonablemente al mensurando (GUM)
 
-Se obtiene multiplicando la incertidumbre típica combinada  por un factor de cobertura k, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado
+Se obtiene multiplicando la incertidumbre típica combinada por un factor de cobertura k, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado
 
-
-la incertidumbre típica combinada uc se multiplica por un factor de cobertura k, obteniéndose la denominada incertidumbre expandida U. El propósito de esta incertidumbre expandida U es proporcionar un intervalo en torno al resultado de medida, que pueda contener una gran parte de la distribución de valores que razonablemente podrían ser atribuidos al mensurando. La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo 
+El propósito de esta incertidumbre expandida es proporcionar un intervalo en torno al resultado de medida, que pueda contener una gran parte de la distribución de valores que razonablemente podrían ser atribuidos al mensurando. La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo 
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/-Zp1V8YJHgg" title="¿Qué es la INCERTIDUMBRE METROLÓGICA?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
