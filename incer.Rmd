@@ -1,0 +1,71 @@
+---
+title: "Incertidumbre"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    
+---
+
+**Tipos de incertidumbre**
+
+**Incertidumbre típica o estándar $u$**
+
+
+Obtenida a partir de las incertidumbres típicas individuales asociadas a la magnitud de entrada de un modelo de medición (Shmid W y lazos R, 2000) Algunos ejemplos son
+
+```{r fig.asp=0.9, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/mme.png")
+```
+
+Dependiendo del origen de los datos la incertidumbre típica se clasifica en 
+
+Tipo A: Es una evaluación de un componente de la incertidumbre de medida mediante un analisis estadístico de los datos 
+
+
+Tipo B: La evaluación no resulta de una serie de mediciones, si no mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
+
+**Incertidumbre combinada $u_c$**
+
+Resultado de la combinación de las constribuciones de todas las fuentes de incertidumbre 
+
+**Incertidumbre expandida $U$**
+
+Se obtiene multiplicando la incertidumbre típica combinada  por un factor de cobertura k, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado
+
+
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/-Zp1V8YJHgg" title="¿Qué es la INCERTIDUMBRE METROLÓGICA?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+```{r fig.asp=0.9, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/med.png")
+```
+
+
+
+Como estimar la incertidumbre
+
+ la incertidumbre es la duda que todo resultado de medición lleva implícito, es decir, nunca podrás conocer el valor verdadero de un resultado de medición.
+
+ 
+
+Esta duda se representa por medio de un intervalo o rango de valores con una cierta probabilidad de cobertura, llamado intervalo de confianza, que suele ser del 95 %. Este factor de cobertura se representa con la letra K y para un nivel de confianza del 95 %, K es igual a 2.
+
+ 
+
+Regla empírica de la estadística
+
+
+## Estimación de la incertidumbre
+
+Existen diferentes 2 formas principales de estimar la incertidumbre, conocidas como metodos estocásticos, que hacen alusión a distribuciones de probabilidad y metodos no estocásticos como la GUM.
+
+
+
+
+
+
+
+Para satisfacer las necesidades de determinadas aplicaciones industriales y comerciales, así como las exigencias de los campos de la salud y la seguridad, la incertidumbre típica combinada uc se multiplica por un factor de cobertura k, obteniéndose la denominada incertidumbre expandida U. El propósito de esta incertidumbre expandida U es proporcionar un intervalo en torno al resultado de medida, que pueda contener una gran parte de la distribución de valores que razonablemente podrían ser atribuidos al mensurando. La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo (véase capítulo 6).
