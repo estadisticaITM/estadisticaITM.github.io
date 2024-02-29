@@ -34,14 +34,7 @@ La **metrología** es la ciencia que se ocupa de mantener y aumentar la precisi�
 
 - En el campo de la medicina tener mediciones de la presión arterial para el diagnostico de enfermedades.
 
-~~~
-Una medición cuidadosa puede significar, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.
-~~~
-
 ### Tipos de metrología
-
-
-
 
 **Legal**
 
@@ -80,56 +73,121 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 
 – El aseguramiento de la calidad.
 
-## Incertidumbre y tolerancia en las medidas
-
-Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
-
-$$medida ± incertidumbre $$
-
-
-**Incertidumbre** 
-
-- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
-
-- Es el intervalo de los valores posibles de una medida. 
-
-**Tolerancia (de una magnitud)** 
-
-Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
 
 
 
-```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/tol.png")
+## Normas y organizaciones metrológicas
+
+
+
+|**Abreviatura**|**Significado**|**Autor**|
+|:---------:|:--------------------------------------------------|:--------------------:|
+|     VIM   |Vocabulario internacional de metrología  |JCGM* Comité Conjunto para las Guías en Metrología (JCGM por sus siglas en inglés)|
+| GUM       |Guia para la expresión de la incertidumbre de las medidas|JCGM|
+|ICONTEC    |Instituto Colombiano de Normas Técnicas y Certificación  |    |
+|Norma 10012 (2003)|**Comprobación Metrológica** Orienta los procesos y el equipo de medición utilizado para apoyar y demostrar el cumplimiento de requisitos metrológicos.|   ISO  |
+|IS         |Sistema internacional de las medidas|       |
+|ONAC       |Organismo Nacional de Acreditación  |       |
+|Norma 17025 (2006)|Establece los criterios para los laboratorios que desean demostrar su competencia técnica, que poseen un sistema de calidad efectivo y que son capaces de producir resultados técnicamente válidos|    ISO   |
+|ISO        |organización internacional de estandarización - International Standardisation Organisation)||
+*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML
+
+### Norma 10012
+
+**confirmación metrológica**
+
+Conjunto de operaciones necesarias para asegurar que el equipo de medición cumple con los requisitos para su uso previsto 
+
+
+**Verificación metrológica**
+
+Acto administrativo siguiente después de haber calibrado un equipo, en el que se comparan las características metrologicas de un equipo de medición y los requisitos metrológicos del cliente.
+
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/n10.png")
 ```
 
 
-$$Intervalo \quad toleracia \geq error+incertidumbre$$
+## Calibración
 
+- Operación que bajo condiciones especificas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+
+- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
+
+- Descalibración no existe
+
+- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+- El estado de nuevo o usado no lo excluye de la calibración 
+
+- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+
+
+
+**Certificado de calibración**
+
+Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
+
+
+
+
+**Qué debe contener un certificado de calibración**
+
+- Nombre del equipo
+
+- Resolución
+
+- Rango 
+
+- Método de calibración
+
+- Incertidumbre del mensurando 
+
+- Qué voy a medir?
+
+- Con que instrumento voy a medir
+
+- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
+
+- Patrones contrastados
+
+- Incertidumbre de medida de cada punto contrastado.
+
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/certi.png")
+```
+
+## Definiciones 
+
+
+**Metodos de medición**
+
+Descripción genérica de la secuencia lógica de operaciones utilizadas en una medición.
+
+La norma internacional ISO/IEC 17025 identifica los métodos en términos de su origen, mientras que VIM los clasifica según el fenómeno.
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/mm.png")
+```
+
+
+**Comprobación metrológica**
+
+Intermedio entre calibraciones
+
+
+**Trazabilidad metrológica (VIM)**
+
+
+Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
 
 
 
 **Mensurando:** Cantidad destinada a la medida. (VIM)
-
-
-**Ejemplo**
-
-
-En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
-
--  no se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
-
-- se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
-
-
-
-Las mediciones precisas garantizan la confiabilidad de los procesos, sin embargo la precisión depende del contexto
-
-```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/balanza.png")
-```
-
-
 
 **Exactitud de medida**
 
@@ -226,103 +284,46 @@ R y R  son conocidas después de tomar las mediciones.
 
 
 
-**Calibración **
+## Incertidumbre y tolerancia en las medidas
 
-- Operación que bajo condiciones especificas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
 
-- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
-
-- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
-
-- Descalibración no existe
-
-- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
-
-- El estado de nuevo o usado no lo excluye de la calibración 
-
-- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+$$medida ± incertidumbre $$
 
 
+**Incertidumbre** 
 
-**Cerificado de calibración**
+- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
 
-Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
+- Es el intervalo de los valores posibles de una medida. 
+
+**Tolerancia (de una magnitud)** 
+
+Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
 
 
 
-
-**Qué debe contener un certificado de calibración**
-
-- Nombre del equipo
-
-- Resolución
-
-- Rango 
-
-- Método de calibración
-
-- Incertidumbre del mensurando 
-
-- Qué voy a medir?
-
-- Con que instrumento voy a medir
-
-- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
-
--  Según **La norma ISO/IEC 17025** debe incluir el método utilizado, en términos de su origen como método directo o indirecto.
-
-- Patrones contrastados
-
-- Incertidumbre de medida de cada punto contrastado.
-
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/certi.png")
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/tol.png")
 ```
 
 
-
-**Comprobación metrológica**
-
-Intermedio entre calibraciones
-
-
-**Trazabilidad metrológica (VIM)**
-
-
-Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
-
-
-## **Normas y organizaciones metrológicas**
+$$Intervalo \quad toleracia \geq error+incertidumbre$$
 
 
 
-|Abreviatura|significado|autor|
-|:---------:|:----------------------------|:--------------------:|
-|     VIM   |Vocabulario internacional de metrología  |JCGM* Comité Conjunto para las Guías en Metrología (JCGM por sus siglas en inglés), |
-| GUM       |guia para la expresión de la incertidumbre de las medidas    |ISO|
-|ICONTEC    |          |       |
-|Norma 10012 (2003)|Gestión de las mediciones|   ISO  |
-|IS         | sistema internacional de las medidas|       |
-|ONAC       |           |       |
-|ISO/IEC 17025:2006|Establece los criterios para los laboratorios que desean demostrar su competencia técnica, que poseen un sistema de calidad efectivo y que son capaces de producir resultados técnicamente válidos (McIntyre, J. D. y Honsa., 2000).|       |
-|ISO        |organización internacional de estandarización - International Standardisation Organisation)||
-*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML
-
-### **Norma 10012**
-
-
-**Verificación metrológica**
-
-Acto administrativo siguiente después de haber calibrado un equipo, en el que se comparan las características metrologicas de un equipo de medición y los requisitos metrológicos del cliente, (Ver Norma 10012)
-
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/n10.png")
-```
 
 
 
+
+**Ejemplo**
+
+
+En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
+
+-  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
+
+- Se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
 
 ## ¿Cómo medir la incertidumbre de una medida?
 
@@ -344,37 +345,8 @@ Para comunicar los resultados de las mediciones de manera efectiva y eficiente, 
 
 Existen otras medidas derivadas de las anteriores.
 
-**Ejemplo**
-Muestre que la unidad derivada de N/m , la cual es la medida de la tensión sobre una superficie puede ser expresada como $kg*s^{-2}$
-
-$$\frac{N}{m}=\frac{kg*m*s^{-2}}{m}=kg*s^{-2}$$
-
-También existen los **prefijos**, que expresan con abreviaturas cantidades muy pequeñas o muy grandes
 
 
-**Ejemplo**
-
-
-$$3.4*10^{-3} A$$
-podría escribirse como  3.4 mA
-
-**Ejercicio**
-1. Escriba la medida con las unidades de cantidad  base
-
-|$F/m$|$W/m^2$|$J/m^3$|$J/K$|$\Omega*m$|
-|:----------:|:-----------:|:-----:|:-----------:|:--------:|
-|$\Omega/m^2$|$W/(m^2·K^4)$| $N*m$ |$C^2/(N·m^2)$|$N/A^2$   |
-
-
-2. Escriba las siguientes cantidades con los prefijos
-
-- $6.4 × 10^{−5} m^2/s$
-
-- $7.5 × 10^8\Omega$ 
-
-- $1.8 × 10^{10} Pa$
-
-- $ 3.5 × 10^5 \Omega*m$
 
 ## Fuentes de incertidumbre en las medidas
 
@@ -447,8 +419,10 @@ dispositivos de medida.']
 ```
 
 
-## Incertidumbre en la medida
 
+
+
+## Incertidumbre en la medida
 
 **Incertidumbre absoluta**
 
@@ -464,30 +438,10 @@ Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una c
 $$\frac{u_a}{a}$$
 
 
-## Redondeo y cifras significativas
-
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/W1-LgkocIfs" title="⭐ Cifras significativas y REDONDEO de la Incertidumbre de medición - CON EJEMPLOS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-Se ha medido una distancia como 1,1451 m, se consideran suficientes  3 cifras significativas, cual es el valor al que se debe redondear?
-
-¿1.14 ó 1.15?       ¿Cuál es mas cercano?
-
-Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los instrumentos modernos son capaces de mostrar valores de muchas cifras. Como ejemplo, un multímetro digital?
-
-
-
-```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/multimetro.png")
-```
-
-Aveces es prudente registrar todas las cifras proporcionadas por un instrumento, en muchos casos todas las cifras carecen de significado.
-
-
-
-
+## Incertidumbre en el redondeo de cifras significativas
 
 **Regla 1**
+
 La incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores.
 
 Por ejemplo supongamos una distancia se encuentra entre los valores (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre proporcional es:
@@ -518,25 +472,103 @@ De estas posibilidades, deberíamos elegir el 0,2% como el más cercano al 1,7% 
 
 
 
-## Metodos de medición
-
-Descripción genérica de la secuencia lógica de operaciones utilizadas en una medición.
-
-La norma internacional ISO/IEC 17025 identifica los métodos en términos de su origen, mientras que VIM los clasifica seún el fenómeno.
 
 
 
+## Redondeo y cifras significativas
+
+Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los instrumentos modernos son capaces de mostrar valores de muchas cifras. Como ejemplo, un multímetro digital?
 
 ```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/mm.png")
+knitr::include_graphics("imagen/multimetro.png")
 ```
 
+Aveces es prudente registrar todas las cifras proporcionadas por un instrumento, en muchos casos todas las cifras carecen de significado.
 
 
 
 
 
 
+
+## Redondeo de cifras significativas   
+
+- Etapa primordial dentro de la expresión de incertidumbre
+
+- Evita poner en riesgo los resultados que emite un laboratorio
+
+**Como redondear el valor de la medida y su incertidumbre**
+
+Redondea el resultado de la medicion con el mismo numero de cifras decimales que la incertidumbre 
+
+**Paso 1**
+
+
+Identificar las dos primeras cifras significativas del valor de la incertidumbre y redondearlo 
+
+$$U=0,0{\color{Red} {21}}3   \quad \rightarrow  \quad U=0.021 g$$
+Recuerda que los ceros que están al lado izquierdo de las cifras no se cuentan como cifras significativas.
+
+
+
+**Paso 2**
+
+Redondea el resultado de la medida
+
+
+$$x=1.0226 g \quad \rightarrow  \quad x=1.023 g$$
+**Resultado**
+Suponga q x es la medida de masa y que U es la incertidumbre asociada. 
+
+
+$$x=1.{\color{Red}{023}} g \quad \rightarrow \quad U=0,{\color{Red} {021}}g$$
+
+
+## Metodos de redondeo 
+
+
+Normalmente hay 5 situaciones en las que se redondea hacia arriba (de 0,5 a 0,9) pero sólo 4 para redondear hacia abajo (de 0,1 a 0,4). 
+
+
+
+### Metodos de redondeo A
+
+
+**Regla de Redondeo 1**
+
+- Cuando la cifra siguiente a la que se va a retener es inferior a cinco, se mantiene la cifra retenida sin cambios
+
+
+$$3,{\color{Red}{5}41}\quad \rightarrow \quad 3,{\color{Red} {5}}$$
+**Regla de redondeo 2**
+
+- Cuando la cifra siguiente a la que se va a retener es mayor o igual que 5,aumente la cifra retenida en 1
+
+$$3,{\color{Red}{6}53}\quad \rightarrow \quad 3,{\color{Red} {7}}$$
+
+**Regla de redondeo 3: método par/impar**
+
+
+Al utilizar el método se introduce un mayor equilibrio en los resultados finales que puede evitar el sesgo en los valores medios a largo plazo.
+
+Cuando la cifra siguiente a la que se va a retener es exactamente 5 y la cifra retenida es par, se deja sin modificar, por el contrario si la cifra es impar, se aumenta la cifra retenida en 1 (redondeo par impar)
+
+$$4,{\color{Red}{4}50}\quad \rightarrow \quad 4,{\color{Red} {4}}$$
+
+
+$$3,{\color{Red}{5}50}\quad \rightarrow \quad 3,{\color{Red} {6}}$$
+
+### Método de redondeo B
+
+Excel, generalmente redondea hacia arriba
+
+
+### Método de redondeo C
+Redondea las incertidumbres al siguiente valor mayor cuando haya algún dígito más allá del segundo dígito significativo.
+
+$$U=0.001{\color{Red}{2}3}\quad \rightarrow \quad U=0.001{\color{Red} {3}}$$
+
+No tienen en cuenta si el valor que esta al lado de la cifra significativa sea mayor o menor que 5, siempre incrementa a la 2 cifra significativa superior
 
 
 

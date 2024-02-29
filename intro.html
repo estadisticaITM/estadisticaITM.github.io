@@ -439,7 +439,6 @@ alimentarios como el mercurio en el pescado</p></li>
 <li><p>En el campo de la medicina tener mediciones de la presión
 arterial para el diagnostico de enfermedades.</p></li>
 </ul>
-<pre><code>Una medición cuidadosa puede significar, que una teoría aceptada necesita revisión o que se requiere un nuevo diseño en algún componente crítico de una aeronave.</code></pre>
 <div id="tipos-de-metrología" class="section level3">
 <h3>Tipos de metrología</h3>
 <p><strong>Legal</strong></p>
@@ -469,60 +468,88 @@ industria para cumplir con sus tareas como:</p>
 <p>– El aseguramiento de la calidad.</p>
 </div>
 </div>
-<div id="incertidumbre-y-tolerancia-en-las-medidas"
-class="section level2">
-<h2>Incertidumbre y tolerancia en las medidas</h2>
-<p>Las medidas llevan asociado un error desconocido; al que se le asigna
-una cota superior, llamada incertidumbre.</p>
-<p><span class="math display">\[medida ± incertidumbre \]</span></p>
-<p><strong>Incertidumbre</strong></p>
-<ul>
-<li><p>Parámetro asociado al resultado de una medición que caracteriza
-la dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010)</p></li>
-<li><p>Es el intervalo de los valores posibles de una medida.</p></li>
-</ul>
-<p><strong>Tolerancia (de una magnitud)</strong></p>
-<p>Es el intervalo de valores en el que debe encontrarse una magnitud
-para que se acepte como válida.</p>
-<p><img src="imagen/tol.png" width="261" style="display: block; margin: auto;" /></p>
-<p><span class="math display">\[Intervalo \quad toleracia \geq
-error+incertidumbre\]</span></p>
-<p><strong>Mensurando:</strong> Cantidad destinada a la medida.
-(VIM)</p>
-<p><strong>Ejemplo</strong></p>
-<p>En un experimento se ha medido la gravedad, obteniendo como resultado
-<span class="math inline">\((9,51 ± 0,45) m/s^2\)</span>, esto da a
-entender que:</p>
-<ul>
-<li><p>no se puede asegurar que el valor de la gravedad sea <span
-class="math inline">\(9,51 m/s^2\)</span></p></li>
-<li><p>se puede afirmar que hay un margen de error de <span
-class="math inline">\(0,45 m/s^2\)</span>, ya sea por exceso o por
-defecto.</p></li>
-</ul>
-<p>Las mediciones precisas garantizan la confiabilidad de los procesos,
-sin embargo la precisión depende del contexto</p>
-<p><img src="imagen/balanza.png" width="513" style="display: block; margin: auto;" /></p>
-<p><strong>Exactitud de medida</strong></p>
-<p>¿Que tan cercano esta al valor verdadero?</p>
-<p>Proximidad entre un valor medido y un valor verdadero de un
-mensurando</p>
-<p><strong>Precisión de medida (VIM)</strong></p>
-<p>¿Qué tan cercanas están las medidas entre ellas?</p>
-<p>Capacidad que tiene un equipo de replicar un valor, así sea el
-verdadero u otro diferente, se expresa mediante medidas de dispersión
-tales como la desviación típica, la varianza o el coeficiente de
-variación bajo las condiciones especificadas.</p>
-<p>Proximidad entre los valores medidos obtenidos en mediciones
-repetidas de un mismo objeto bajo condiciones específicas de
-repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-f00be60432aa64ba8ef4" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f00be60432aa64ba8ef4">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>R y R son conocidas después de tomar las mediciones.</p>
-<p><strong>Calibración </strong></p>
+<div id="normas-y-organizaciones-metrológicas" class="section level2">
+<h2>Normas y organizaciones metrológicas</h2>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="60%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>Abreviatura</strong></th>
+<th align="left"><strong>Significado</strong></th>
+<th align="center"><strong>Autor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">VIM</td>
+<td align="left">Vocabulario internacional de metrología</td>
+<td align="center">JCGM* Comité Conjunto para las Guías en Metrología
+(JCGM por sus siglas en inglés)</td>
+</tr>
+<tr class="even">
+<td align="center">GUM</td>
+<td align="left">Guia para la expresión de la incertidumbre de las
+medidas</td>
+<td align="center">JCGM</td>
+</tr>
+<tr class="odd">
+<td align="center">ICONTEC</td>
+<td align="left">Instituto Colombiano de Normas Técnicas y
+Certificación</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Norma 10012 (2003)</td>
+<td align="left"><strong>Comprobación Metrológica</strong> Orienta los
+procesos y el equipo de medición utilizado para apoyar y demostrar el
+cumplimiento de requisitos metrológicos.</td>
+<td align="center">ISO</td>
+</tr>
+<tr class="odd">
+<td align="center">IS</td>
+<td align="left">Sistema internacional de las medidas</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">ONAC</td>
+<td align="left">Organismo Nacional de Acreditación</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Norma 17025 (2006)</td>
+<td align="left">Establece los criterios para los laboratorios que
+desean demostrar su competencia técnica, que poseen un sistema de
+calidad efectivo y que son capaces de producir resultados técnicamente
+válidos</td>
+<td align="center">ISO</td>
+</tr>
+<tr class="even">
+<td align="center">ISO</td>
+<td align="left">organización internacional de estandarización -
+International Standardisation Organisation)</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML</p>
+<div id="norma-10012" class="section level3">
+<h3>Norma 10012</h3>
+<p><strong>confirmación metrológica</strong></p>
+<p>Conjunto de operaciones necesarias para asegurar que el equipo de
+medición cumple con los requisitos para su uso previsto</p>
+<p><strong>Verificación metrológica</strong></p>
+<p>Acto administrativo siguiente después de haber calibrado un equipo,
+en el que se comparan las características metrologicas de un equipo de
+medición y los requisitos metrológicos del cliente.</p>
+<p><img src="imagen/n10.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="calibración" class="section level2">
+<h2>Calibración</h2>
 <ul>
 <li><p>Operación que bajo condiciones especificas establece una relación
 entre los valores y sus incertidumbres de medida
@@ -543,7 +570,7 @@ calibración</p></li>
 <li><p>Previo a una calibración el equipo debe estar en óptimas
 condiciones de funcionamiento.</p></li>
 </ul>
-<p><strong>Cerificado de calibración</strong></p>
+<p><strong>Certificado de calibración</strong></p>
 <p>Documento que muestra las diferencias de medida entre el instrumento
 a calibrar (mensurando) y el patrón contra el que se contrasta.</p>
 <p><strong>Qué debe contener un certificado de calibración</strong></p>
@@ -557,94 +584,77 @@ a calibrar (mensurando) y el patrón contra el que se contrasta.</p>
 <li><p>Con que instrumento voy a medir</p></li>
 <li><p>Diferencias entre las medidas que muestra el instrumento a
 calibrar (mensurando)</p></li>
-<li><p>Según <strong>La norma ISO/IEC 17025</strong> debe incluir el
-método utilizado, en términos de su origen como método directo o
-indirecto.</p></li>
 <li><p>Patrones contrastados</p></li>
 <li><p>Incertidumbre de medida de cada punto contrastado.</p></li>
 </ul>
 <p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="definiciones" class="section level2">
+<h2>Definiciones</h2>
+<p><strong>Metodos de medición</strong></p>
+<p>Descripción genérica de la secuencia lógica de operaciones utilizadas
+en una medición.</p>
+<p>La norma internacional ISO/IEC 17025 identifica los métodos en
+términos de su origen, mientras que VIM los clasifica según el
+fenómeno.</p>
+<p><img src="imagen/mm.png" width="666" style="display: block; margin: auto;" /></p>
 <p><strong>Comprobación metrológica</strong></p>
 <p>Intermedio entre calibraciones</p>
 <p><strong>Trazabilidad metrológica (VIM)</strong></p>
 <p>Propiedad de un resultado de medida, que puede relacionarse con una
 referencia, mediante una cadena ininterrumpida y documentada de
 calibraciones, que contribuyen a la medición de la incertidumbre.</p>
+<p><strong>Mensurando:</strong> Cantidad destinada a la medida.
+(VIM)</p>
+<p><strong>Exactitud de medida</strong></p>
+<p>¿Que tan cercano esta al valor verdadero?</p>
+<p>Proximidad entre un valor medido y un valor verdadero de un
+mensurando</p>
+<p><strong>Precisión de medida (VIM)</strong></p>
+<p>¿Qué tan cercanas están las medidas entre ellas?</p>
+<p>Capacidad que tiene un equipo de replicar un valor, así sea el
+verdadero u otro diferente, se expresa mediante medidas de dispersión
+tales como la desviación típica, la varianza o el coeficiente de
+variación bajo las condiciones especificadas.</p>
+<p>Proximidad entre los valores medidos obtenidos en mediciones
+repetidas de un mismo objeto bajo condiciones específicas de
+repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
+<pre><code>## Linking to librsvg 2.48.8</code></pre>
+<div id="htmlwidget-f4e2668e7df4613cd4a3" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4e2668e7df4613cd4a3">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>R y R son conocidas después de tomar las mediciones.</p>
 </div>
-<div id="normas-y-organizaciones-metrológicas" class="section level2">
-<h2><strong>Normas y organizaciones metrológicas</strong></h2>
-<table>
-<colgroup>
-<col width="17%" />
-<col width="46%" />
-<col width="35%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Abreviatura</th>
-<th align="left">significado</th>
-<th align="center">autor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">VIM</td>
-<td align="left">Vocabulario internacional de metrología</td>
-<td align="center">JCGM* Comité Conjunto para las Guías en Metrología
-(JCGM por sus siglas en inglés),</td>
-</tr>
-<tr class="even">
-<td align="center">GUM</td>
-<td align="left">guia para la expresión de la incertidumbre de las
-medidas</td>
-<td align="center">ISO</td>
-</tr>
-<tr class="odd">
-<td align="center">ICONTEC</td>
-<td align="left"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">Norma 10012 (2003)</td>
-<td align="left">Gestión de las mediciones</td>
-<td align="center">ISO</td>
-</tr>
-<tr class="odd">
-<td align="center">IS</td>
-<td align="left">sistema internacional de las medidas</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">ONAC</td>
-<td align="left"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">ISO/IEC 17025:2006</td>
-<td align="left">Establece los criterios para los laboratorios que
-desean demostrar su competencia técnica, que poseen un sistema de
-calidad efectivo y que son capaces de producir resultados técnicamente
-válidos (McIntyre, J. D. y Honsa., 2000).</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">ISO</td>
-<td align="left">organización internacional de estandarización -
-International Standardisation Organisation)</td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
-<p>*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML</p>
-<div id="norma-10012" class="section level3">
-<h3><strong>Norma 10012</strong></h3>
-<p><strong>Verificación metrológica</strong></p>
-<p>Acto administrativo siguiente después de haber calibrado un equipo,
-en el que se comparan las características metrologicas de un equipo de
-medición y los requisitos metrológicos del cliente, (Ver Norma
-10012)</p>
-<p><img src="imagen/n10.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
+<div id="incertidumbre-y-tolerancia-en-las-medidas"
+class="section level2">
+<h2>Incertidumbre y tolerancia en las medidas</h2>
+<p>Las medidas llevan asociado un error desconocido; al que se le asigna
+una cota superior, llamada incertidumbre.</p>
+<p><span class="math display">\[medida ± incertidumbre \]</span></p>
+<p><strong>Incertidumbre</strong></p>
+<ul>
+<li><p>Parámetro asociado al resultado de una medición que caracteriza
+la dispersión de los valores que podrían ser atribuidos al mensurando,
+(ISP, 2010)</p></li>
+<li><p>Es el intervalo de los valores posibles de una medida.</p></li>
+</ul>
+<p><strong>Tolerancia (de una magnitud)</strong></p>
+<p>Es el intervalo de valores en el que debe encontrarse una magnitud
+para que se acepte como válida.</p>
+<p><img src="imagen/tol.png" width="261" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[Intervalo \quad toleracia \geq
+error+incertidumbre\]</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>En un experimento se ha medido la gravedad, obteniendo como resultado
+<span class="math inline">\((9,51 ± 0,45) m/s^2\)</span>, esto da a
+entender que:</p>
+<ul>
+<li><p>No se puede asegurar que el valor de la gravedad sea <span
+class="math inline">\(9,51 m/s^2\)</span></p></li>
+<li><p>Se puede afirmar que hay un margen de error de <span
+class="math inline">\(0,45 m/s^2\)</span>, ya sea por exceso o por
+defecto.</p></li>
+</ul>
 </div>
 <div id="cómo-medir-la-incertidumbre-de-una-medida"
 class="section level2">
@@ -707,54 +717,13 @@ periódicamente.</p>
 </tbody>
 </table>
 <p>Existen otras medidas derivadas de las anteriores.</p>
-<p><strong>Ejemplo</strong> Muestre que la unidad derivada de N/m , la
-cual es la medida de la tensión sobre una superficie puede ser expresada
-como <span class="math inline">\(kg*s^{-2}\)</span></p>
-<p><span
-class="math display">\[\frac{N}{m}=\frac{kg*m*s^{-2}}{m}=kg*s^{-2}\]</span></p>
-<p>También existen los <strong>prefijos</strong>, que expresan con
-abreviaturas cantidades muy pequeñas o muy grandes</p>
-<p><strong>Ejemplo</strong></p>
-<p><span class="math display">\[3.4*10^{-3} A\]</span> podría escribirse
-como 3.4 mA</p>
-<p><strong>Ejercicio</strong> 1. Escriba la medida con las unidades de
-cantidad base</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(F/m\)</span></th>
-<th align="center"><span class="math inline">\(W/m^2\)</span></th>
-<th align="center"><span class="math inline">\(J/m^3\)</span></th>
-<th align="center"><span class="math inline">\(J/K\)</span></th>
-<th align="center"><span class="math inline">\(\Omega*m\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(\Omega/m^2\)</span></td>
-<td align="center"><span class="math inline">\(W/(m^2·K^4)\)</span></td>
-<td align="center"><span class="math inline">\(N*m\)</span></td>
-<td align="center"><span class="math inline">\(C^2/(N·m^2)\)</span></td>
-<td align="center"><span class="math inline">\(N/A^2\)</span></td>
-</tr>
-</tbody>
-</table>
-<ol start="2" style="list-style-type: decimal">
-<li>Escriba las siguientes cantidades con los prefijos</li>
-</ol>
-<ul>
-<li><p><span class="math inline">\(6.4 × 10^{−5} m^2/s\)</span></p></li>
-<li><p><span class="math inline">\(7.5 × 10^8\Omega\)</span></p></li>
-<li><p><span class="math inline">\(1.8 × 10^{10} Pa\)</span></p></li>
-<li><p>$ 3.5 × 10^5 m$</p></li>
-</ul>
 </div>
 </div>
 <div id="fuentes-de-incertidumbre-en-las-medidas"
 class="section level2">
 <h2>Fuentes de incertidumbre en las medidas</h2>
-<div id="htmlwidget-0773d3e3b17094902e7f" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0773d3e3b17094902e7f">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e8fb7b4694a674eae714" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e8fb7b4694a674eae714">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="incertidumbre-en-la-medida" class="section level2">
 <h2>Incertidumbre en la medida</h2>
@@ -771,22 +740,12 @@ la medida. Suele expresarse (multiplicándola por 100) como
 porcentaje.</p>
 <p><span class="math display">\[\frac{u_a}{a}\]</span></p>
 </div>
-<div id="redondeo-y-cifras-significativas" class="section level2">
-<h2>Redondeo y cifras significativas</h2>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/W1-LgkocIfs" title="⭐ Cifras significativas y REDONDEO de la Incertidumbre de medición - CON EJEMPLOS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<p>Se ha medido una distancia como 1,1451 m, se consideran suficientes 3
-cifras significativas, cual es el valor al que se debe redondear?</p>
-<p>¿1.14 ó 1.15? ¿Cuál es mas cercano?</p>
-<p>Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los
-instrumentos modernos son capaces de mostrar valores de muchas cifras.
-Como ejemplo, un multímetro digital?</p>
-<p><img src="imagen/multimetro.png" width="142" style="display: block; margin: auto;" /></p>
-<p>Aveces es prudente registrar todas las cifras proporcionadas por un
-instrumento, en muchos casos todas las cifras carecen de
-significado.</p>
-<p><strong>Regla 1</strong> La incertidumbre aproximada de un valor se
-puede estimar como la mitad del rango posible de valores.</p>
+<div id="incertidumbre-en-el-redondeo-de-cifras-significativas"
+class="section level2">
+<h2>Incertidumbre en el redondeo de cifras significativas</h2>
+<p><strong>Regla 1</strong></p>
+<p>La incertidumbre aproximada de un valor se puede estimar como la
+mitad del rango posible de valores.</p>
 <p>Por ejemplo supongamos una distancia se encuentra entre los valores
 (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m.
 Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La
@@ -834,14 +793,88 @@ las siguiente tabla</p>
 <p>De estas posibilidades, deberíamos elegir el 0,2% como el más cercano
 al 1,7% requerido, por lo que citamos la velocidad como 7,4 m/s.</p>
 </div>
-<div id="metodos-de-medición" class="section level2">
-<h2>Metodos de medición</h2>
-<p>Descripción genérica de la secuencia lógica de operaciones utilizadas
-en una medición.</p>
-<p>La norma internacional ISO/IEC 17025 identifica los métodos en
-términos de su origen, mientras que VIM los clasifica seún el
-fenómeno.</p>
-<p><img src="imagen/mm.png" width="666" style="display: block; margin: auto;" /></p>
+<div id="redondeo-y-cifras-significativas" class="section level2">
+<h2>Redondeo y cifras significativas</h2>
+<p>Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los
+instrumentos modernos son capaces de mostrar valores de muchas cifras.
+Como ejemplo, un multímetro digital?</p>
+<p><img src="imagen/multimetro.png" width="142" style="display: block; margin: auto;" /></p>
+<p>Aveces es prudente registrar todas las cifras proporcionadas por un
+instrumento, en muchos casos todas las cifras carecen de
+significado.</p>
+</div>
+<div id="redondeo-de-cifras-significativas" class="section level2">
+<h2>Redondeo de cifras significativas</h2>
+<ul>
+<li><p>Etapa primordial dentro de la expresión de incertidumbre</p></li>
+<li><p>Evita poner en riesgo los resultados que emite un
+laboratorio</p></li>
+</ul>
+<p><strong>Como redondear el valor de la medida y su
+incertidumbre</strong></p>
+<p>Redondea el resultado de la medicion con el mismo numero de cifras
+decimales que la incertidumbre</p>
+<p><strong>Paso 1</strong></p>
+<p>Identificar las dos primeras cifras significativas del valor de la
+incertidumbre y redondearlo</p>
+<p><span class="math display">\[U=0,0{\color{Red} {21}}3   \quad
+\rightarrow  \quad U=0.021 g\]</span> Recuerda que los ceros que están
+al lado izquierdo de las cifras no se cuentan como cifras
+significativas.</p>
+<p><strong>Paso 2</strong></p>
+<p>Redondea el resultado de la medida</p>
+<p><span class="math display">\[x=1.0226 g \quad \rightarrow  \quad
+x=1.023 g\]</span> <strong>Resultado</strong> Suponga q x es la medida
+de masa y que U es la incertidumbre asociada.</p>
+<p><span class="math display">\[x=1.{\color{Red}{023}} g \quad
+\rightarrow \quad U=0,{\color{Red} {021}}g\]</span></p>
+</div>
+<div id="metodos-de-redondeo" class="section level2">
+<h2>Metodos de redondeo</h2>
+<p>Normalmente hay 5 situaciones en las que se redondea hacia arriba (de
+0,5 a 0,9) pero sólo 4 para redondear hacia abajo (de 0,1 a 0,4).</p>
+<div id="metodos-de-redondeo-a" class="section level3">
+<h3>Metodos de redondeo A</h3>
+<p><strong>Regla de Redondeo 1</strong></p>
+<ul>
+<li>Cuando la cifra siguiente a la que se va a retener es inferior a
+cinco, se mantiene la cifra retenida sin cambios</li>
+</ul>
+<p><span class="math display">\[3,{\color{Red}{5}41}\quad \rightarrow
+\quad 3,{\color{Red} {5}}\]</span> <strong>Regla de redondeo
+2</strong></p>
+<ul>
+<li>Cuando la cifra siguiente a la que se va a retener es mayor o igual
+que 5,aumente la cifra retenida en 1</li>
+</ul>
+<p><span class="math display">\[3,{\color{Red}{6}53}\quad \rightarrow
+\quad 3,{\color{Red} {7}}\]</span></p>
+<p><strong>Regla de redondeo 3: método par/impar</strong></p>
+<p>Al utilizar el método se introduce un mayor equilibrio en los
+resultados finales que puede evitar el sesgo en los valores medios a
+largo plazo.</p>
+<p>Cuando la cifra siguiente a la que se va a retener es exactamente 5 y
+la cifra retenida es par, se deja sin modificar, por el contrario si la
+cifra es impar, se aumenta la cifra retenida en 1 (redondeo par
+impar)</p>
+<p><span class="math display">\[4,{\color{Red}{4}50}\quad \rightarrow
+\quad 4,{\color{Red} {4}}\]</span></p>
+<p><span class="math display">\[3,{\color{Red}{5}50}\quad \rightarrow
+\quad 3,{\color{Red} {6}}\]</span></p>
+</div>
+<div id="método-de-redondeo-b" class="section level3">
+<h3>Método de redondeo B</h3>
+<p>Excel, generalmente redondea hacia arriba</p>
+</div>
+<div id="método-de-redondeo-c" class="section level3">
+<h3>Método de redondeo C</h3>
+<p>Redondea las incertidumbres al siguiente valor mayor cuando haya
+algún dígito más allá del segundo dígito significativo.</p>
+<p><span class="math display">\[U=0.001{\color{Red}{2}3}\quad
+\rightarrow \quad U=0.001{\color{Red} {3}}\]</span></p>
+<p>No tienen en cuenta si el valor que esta al lado de la cifra
+significativa sea mayor o menor que 5, siempre incrementa a la 2 cifra
+significativa superior</p>
 <p><strong>Preguntas</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>¿Qué es la metrología?</p></li>
@@ -854,6 +887,7 @@ fenómeno.</p>
 <li><p>Qué es verificación metrológica?</p></li>
 <li><p>qué normas conoces de metrología</p></li>
 </ol>
+</div>
 </div>
 
 <br>
