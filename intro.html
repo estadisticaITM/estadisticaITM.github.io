@@ -620,8 +620,9 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-08a84fdd2a9b21e6002f" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08a84fdd2a9b21e6002f">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a384a76fd9ff75926e26" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a384a76fd9ff75926e26">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
 </div>
@@ -636,16 +637,39 @@ la dispersión de los valores que podrían ser atribuidos al mensurando,
 <p><strong>Tipos de incertidumbre</strong></p>
 <p><strong>Incertidumbre</strong></p>
 <ul>
-<li><p>Parámetro asociado al resultado de una medición que caracteriza
-la dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010)</p></li>
-<li><p>Es la duda que todo resultado de medición lleva implícito, se
-representa por medio de un intervalo o rango de valores con una cierta
-probabilidad de cobertura, llamado intervalo de confianza, que suele ser
-del 95 %. Este <strong>factor de cobertura K</strong> es igual a 2 para
-un nivel de confianza del 95 %.</p></li>
+<li>Parámetro asociado al resultado de una medición que caracteriza la
+dispersión de los valores que podrían ser atribuidos al mensurando,
+(ISP, 2010)</li>
 </ul>
-<p>Lo anterior se conoce como <strong>regla empírica de la
+<p><strong>Incertidumbre típica</strong></p>
+<p>Incertidumbre del resultado de una medición, expresada en forma de
+desviación típica, dependiendo del origen de los datos la incertidumbre
+típica se clasifica en</p>
+<p><strong>Tipo A:</strong> Obtenida mediante un analisis estadístico de
+los datos, se expresan por medio de varianzas o las desviaciones y el
+número de grados de libertad.</p>
+<p><strong>Tipo B:</strong> La evaluación mediante la bibliografia, como
+evaluación del material de referencia, certificado de calibración,
+reportes de la deriva de los instrumentos ó ficha técnica del
+instrumento</p>
+<p><strong>Incertidumbre típica combinada</strong></p>
+<p>Resultado de la combinación de las contribuciones de todas las
+fuentes de incertidumbre es igual a la raíz cuadrada positiva de una
+suma de términos, siendo éstos las varianzas o covarianzas de otras
+magnitudes, ponderadas en función de la variación del resultado de
+medida con la variación de dichas magnitudes (GUM).</p>
+<p><strong>Incertidumbre expandida </strong></p>
+<p>Magnitud que define un intervalo en torno al resultado de una
+medición, y en el que se espera encontrar una fracción importante de la
+distribución de valores que podrían ser atribuidos razonablemente al
+mensurando (GUM)</p>
+<p>Se obtiene multiplicando la incertidumbre típica combinada por un
+<strong>factor de cobertura k</strong>, generalmente es con un valor de
+2 que garantiza al menos el 95% de confianza del resultado.</p>
+<p>La elección del factor k, habitualmente comprendido entre los valores
+2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido
+para el intervalo</p>
+<p>Este intervalo tiene su fundamento en la <strong>regla empírica de la
 estadística</strong> y se construye con la distribución normal.</p>
 <p>Si la distribución de la población de una variable es
 (aproximadamente) normal, entonces</p>
@@ -666,42 +690,6 @@ media.</p></li>
 \mu+3\sigma)=99.73\%\]</span></p>
 <p>Graficamente:</p>
 <p><img src="imagen/n2.png" width="40%" /></p>
-<p><strong>Incertidumbre típica</strong></p>
-<p>Incertidumbre del resultado de una medición, expresada en forma de
-desviación típica</p>
-<p><img src="imagen/mme.png" width="704" style="display: block; margin: auto;" /></p>
-<p>Dependiendo del origen de los datos la incertidumbre típica se
-clasifica en</p>
-<p><strong>Tipo A:</strong> Obtenida mediante un analisis estadístico de
-los datos, se expresan por medio de varianzas o las desviaciones y el
-número de grados de libertad.</p>
-<p><strong>Tipo B:</strong> La evaluación no resulta de una serie de
-mediciones, si no mediante la bibliografia, como evaluación del material
-de referencia, certificado de calibración, reportes de la deriva de los
-instrumentos ó ficha técnica del instrumento</p>
-<p><strong>Incertidumbre típica combinada</strong></p>
-<p>Resultado de la combinación de las contribuciones de todas las
-fuentes de incertidumbre es igual a la raíz cuadrada positiva de una
-suma de términos, siendo éstos las varianzas o covarianzas de esas otras
-magnitudes, ponderadas en función de la variación del resultado de
-medida con la variación de dichas magnitudes (GUM).</p>
-<p><strong>Incertidumbre expandida </strong></p>
-<p>Magnitud que define un intervalo en torno al resultado de una
-medición, y en el que se espera encontrar una fracción importante de la
-distribución de valores que podrían ser atribuidos razonablemente al
-mensurando (GUM)</p>
-<p>Se obtiene multiplicando la incertidumbre típica combinada por un
-factor de cobertura k, generalmente es con un valor de 2 que garantiza
-al menos el 95% de confianza del resultado</p>
-<p>El propósito de esta incertidumbre expandida es proporcionar un
-intervalo en torno al resultado de medida, que pueda contener una gran
-parte de la distribución de valores que razonablemente podrían ser
-atribuidos al mensurando. La elección del factor k, habitualmente
-comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o
-nivel de confianza requerido para el intervalo</p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/-Zp1V8YJHgg" title="¿Qué es la INCERTIDUMBRE METROLÓGICA?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<p><img src="imagen/med.png" width="371" style="display: block; margin: auto;" /></p>
 </div>
 <div id="incertidumbre-y-tolerancia-en-las-medidas"
 class="section level2">

@@ -279,6 +279,8 @@ grViz("digraph{
       }")
 ```
 
+**Relación entre precisión y exactitud**
+
 ```{r out.width="80%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/dina.png")
 ```
@@ -299,11 +301,35 @@ R y R  son conocidas después de tomar las mediciones.
 - Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
 
 
-- Es la duda que todo resultado de medición lleva implícito, se representa por medio de un intervalo o rango de valores con una cierta probabilidad de cobertura, llamado intervalo de confianza, que suele ser del 95 %. Este **factor de cobertura K** es igual a 2 para un nivel de confianza del 95 %.
+
+**Incertidumbre típica $u$**
+
+Incertidumbre del resultado de una medición, expresada en forma de desviación típica, dependiendo del origen de los datos la incertidumbre típica se clasifica en 
+
+**Tipo A:** 
+Obtenida mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
+
+**Tipo B:** 
+La evaluación mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
+
+
+**Incertidumbre típica combinada $u_c$**
+
+Resultado de la combinación de las contribuciones de todas las fuentes de incertidumbre es igual a la raíz cuadrada positiva de una suma de términos, siendo éstos las varianzas o covarianzas de otras magnitudes, ponderadas en función de la variación del resultado de medida con la variación de dichas magnitudes (GUM).
 
 
 
- Lo anterior se conoce como **regla empírica de la estadística** y se construye con la distribución normal.
+
+
+**Incertidumbre expandida $U$ **
+
+Magnitud que define un intervalo en torno al resultado de una medición, y en el que se espera encontrar una fracción importante de la distribución de valores que podrían ser atribuidos razonablemente al mensurando (GUM)
+
+Se obtiene multiplicando la incertidumbre típica combinada por un **factor de cobertura k**, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado.
+
+La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo 
+
+Este intervalo tiene su fundamento en la **regla empírica de la estadística** y se construye con la distribución normal.
  
  Si la distribución de la población de una variable es (aproximadamente) normal, entonces
 
@@ -321,58 +347,11 @@ $$\LARGE P(\mu-3\sigma\leq x \leq \mu+3\sigma)=99.73\%$$
 Graficamente:
 
 
-```{r echo=F, out.width="40%"}
+```{r echo=F, out.width="40%",fig.align='center'}
 knitr::include_graphics("imagen/n2.png")
 ```
 
  
-
-
-
-**Incertidumbre típica**
-
-Incertidumbre del resultado de una medición, expresada en forma de desviación típica
-
-```{r fig.asp=0.9, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/mme.png")
-```
-
-Dependiendo del origen de los datos la incertidumbre típica se clasifica en 
-
-**Tipo A:** 
-Obtenida mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
-
-**Tipo B:** 
-La evaluación no resulta de una serie de mediciones, si no mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
-
-
-**Incertidumbre típica combinada**
-
-Resultado de la combinación de las contribuciones de todas las fuentes de incertidumbre es igual a la raíz cuadrada positiva de una suma de términos, siendo éstos las varianzas o covarianzas de esas otras magnitudes, ponderadas en función de la variación del resultado de medida con la variación de dichas magnitudes (GUM).
-
-
-
-
-
-**Incertidumbre expandida **
-
-Magnitud que define un intervalo en torno al resultado de una medición, y en el que se espera encontrar una
-fracción importante de la distribución de valores que podrían ser atribuidos razonablemente al mensurando (GUM)
-
-Se obtiene multiplicando la incertidumbre típica combinada por un factor de cobertura k, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado
-
-El propósito de esta incertidumbre expandida es proporcionar un intervalo en torno al resultado de medida, que pueda contener una gran parte de la distribución de valores que razonablemente podrían ser atribuidos al mensurando. La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo 
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/-Zp1V8YJHgg" title="¿Qué es la INCERTIDUMBRE METROLÓGICA?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-```{r fig.asp=0.9, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/med.png")
-```
-
-
-
-
 
 ## Incertidumbre y tolerancia en las medidas
 
@@ -594,6 +573,32 @@ No tienen en cuenta si el valor que esta al lado de la cifra significativa sea m
 
 
 
+## Estimación de la incertidumbre
+
+Existen 2 formas principales de estimar la incertidumbre, metodos no estocásticos como la GUM y metodos estocásticos, que hacen alusión a distribuciones de probabilidad. Generalmente se mide la incertidumbre con el metodo GUM y se cerciora el resultado con el metodo estocástico MCM.
+
+### Métodos estocásticos Monte carlo simulación  
+
+la simulación de Monte Carlo 
+
+Presente en todos aquellos ámbitos en los que el comportamiento aleatorio desempeña un papel fundamental.
+
+Un elemento importante en los procesos de simulación es identificar las distribuciones de probabilidad apropiadas para los datos. Esto, normalmente, requiere analizar información empírica o histórica, y ajustarla a alguna distribución. 
+
+### Métodos no estocásticos  GUM
+
+Utiliza métodos determinísticos de estadística frecuentista para la evaluación de de incertidumbre tipo A, y lleva a cabo la
+evaluación de incertidumbres tipo B y la combinación de incertidumbres con el método Bayesiano de soluciones analíticas.
+
+Para la aplicación de la metodología deben
+aplicarse los siguientes pasos:
+a) Establecer el modelo matemático.
+b) Identificar las fuentes de incertidumbre.
+c) Evaluación de las fuentes o componentes de
+incertidumbre.
+d) Determinación de la incertidumbre combinada.
+e) Determinación de la incertidumbre expandida.
+f) Determinación del resultado de la medición.
 
 
 

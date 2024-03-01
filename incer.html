@@ -11,7 +11,7 @@
 
 
 
-<title>Incertidumbre</title>
+<title>Conceptos estadísticos</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -408,89 +408,11 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Incertidumbre</h1>
+<h1 class="title toc-ignore">Conceptos estadísticos</h1>
 
 </div>
 
 
-<p><strong>Tipos de incertidumbre</strong></p>
-<p><strong>Incertidumbre</strong></p>
-<ul>
-<li><p>Parámetro asociado al resultado de una medición que caracteriza
-la dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010)</p></li>
-<li><p>Es la duda que todo resultado de medición lleva implícito, se
-representa por medio de un intervalo o rango de valores con una cierta
-probabilidad de cobertura, llamado intervalo de confianza, que suele ser
-del 95 %. Este <strong>factor de cobertura K</strong> es igual a 2 para
-un nivel de confianza del 95 %.</p></li>
-</ul>
-<p>Lo anterior se conoce como <strong>regla empírica de la
-estadística</strong> y se construye con la distribución normal.</p>
-<p>Si la distribución de la población de una variable es
-(aproximadamente) normal, entonces</p>
-<ol style="list-style-type: decimal">
-<li>Aproximadamente 68% de los valores están dentro de 1 DE (desviación
-estándar) de la media.</li>
-</ol>
-<p><span class="math display">\[\LARGE P(\mu-\sigma\leq x \leq
-\mu+\sigma)=68.27\%\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Aproximadamente 95% de los valores están dentro de 2 DE de la
-media. <span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
-\mu+2\sigma)=95.45\%\]</span></p></li>
-<li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la
-media.</p></li>
-</ol>
-<p><span class="math display">\[\LARGE P(\mu-3\sigma\leq x \leq
-\mu+3\sigma)=99.73\%\]</span></p>
-<p>Graficamente:</p>
-<p><img src="imagen/n2.png" width="40%" /></p>
-<p><strong>Incertidumbre típica</strong></p>
-<p>Incertidumbre del resultado de una medición, expresada en forma de
-desviación típica</p>
-<p><img src="imagen/mme.png" width="704" style="display: block; margin: auto;" /></p>
-<p>Dependiendo del origen de los datos la incertidumbre típica se
-clasifica en</p>
-<p><strong>Tipo A:</strong> Obtenida mediante un analisis estadístico de
-los datos, se expresan por medio de varianzas o las desviaciones y el
-número de grados de libertad.</p>
-<p><strong>Tipo B:</strong> La evaluación no resulta de una serie de
-mediciones, si no mediante la bibliografia, como evaluación del material
-de referencia, certificado de calibración, reportes de la deriva de los
-instrumentos ó ficha técnica del instrumento</p>
-<p><strong>Incertidumbre típica combinada</strong></p>
-<p>Resultado de la combinación de las contribuciones de todas las
-fuentes de incertidumbre es igual a la raíz cuadrada positiva de una
-suma de términos, siendo éstos las varianzas o covarianzas de esas otras
-magnitudes, ponderadas en función de la variación del resultado de
-medida con la variación de dichas magnitudes (GUM).</p>
-<p><strong>Incertidumbre expandida </strong></p>
-<p>Magnitud que define un intervalo en torno al resultado de una
-medición, y en el que se espera encontrar una fracción importante de la
-distribución de valores que podrían ser atribuidos razonablemente al
-mensurando (GUM)</p>
-<p>Se obtiene multiplicando la incertidumbre típica combinada por un
-factor de cobertura k, generalmente es con un valor de 2 que garantiza
-al menos el 95% de confianza del resultado</p>
-<p>El propósito de esta incertidumbre expandida es proporcionar un
-intervalo en torno al resultado de medida, que pueda contener una gran
-parte de la distribución de valores que razonablemente podrían ser
-atribuidos al mensurando. La elección del factor k, habitualmente
-comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o
-nivel de confianza requerido para el intervalo</p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/-Zp1V8YJHgg" title="¿Qué es la INCERTIDUMBRE METROLÓGICA?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<p><img src="imagen/med.png" width="371" style="display: block; margin: auto;" /></p>
-<div id="estimación-de-la-incertidumbre" class="section level2">
-<h2>Estimación de la incertidumbre</h2>
-<p>Existen 2 formas principales de estimar la incertidumbre, conocidas
-como metodos estocásticos, que hacen alusión a distribuciones de
-probabilidad y metodos no estocásticos como la GUM.</p>
-</div>
-<div id="conceptos-estadísticos" class="section level2">
-<h2>Conceptos estadísticos</h2>
-</div>
 <div id="medidas-de-tendencia-central" class="section level2">
 <h2>Medidas de tendencia central</h2>
 <p>Son 3 valores que resumen y representan la información contenida en
@@ -625,8 +547,8 @@ medias sean positivas.</p>
 class="section level2">
 <h2>Fuentes de incertidumbre en las medidas</h2>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-0bff9444f31b1e25f1f2" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0bff9444f31b1e25f1f2">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-176fc5ce312d83d221e3" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-176fc5ce312d83d221e3">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 <br>
