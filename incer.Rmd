@@ -216,3 +216,75 @@ $$CV=\frac{S}{\bar x}*100$$
 
 No depende de las unidades de medición, por lo que sirve para comparar la variabilidad de dos conjuntos de datos, siempre que sus medias sean positivas.
 
+
+
+## Fuentes de incertidumbre en las medidas
+
+```{r echo=FALSE}
+library(DiagrammeR) 
+library(DiagrammeRsvg) 
+library(rsvg) 
+
+grViz("digraph{
+ 
+      graph[rankdir = LR]
+      node[shape = rectangle, style = filled]
+      node[fillcolor = Violet, margin = 0.2]
+      D[label = 'Evitables']
+      E[label = 'Inevitables']
+  
+      subgraph cluster_0 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+        label = 'Sistemáticas'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+        F[label = 'Aparatos mal calibrados,
+        vidrios dilatados por calentamiento, 
+        equipos mal cuidados, 
+        errores de método, etc.']
+      }
+      
+      subgraph cluster_2 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'Personales'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         G[label = 'Inexperiencia del operador,
+        equivocación de un reactivo,
+        lecturas erróneas,
+        brusquedad en el uso de aparatos']
+      }
+  
+      subgraph cluster_1 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'Aleatorias'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         I[label = 'Reflejan la dispersión de la
+         magnitud al repetir su medida']
+      }
+  
+  subgraph cluster_3 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'instrumentales'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         H[label = 'Debido a la sensibilidad de los
+dispositivos de medida.']
+         
+      }
+      edge[color = black, arrowhead = vee, arrowsize = 1.25]
+      
+      D -> F    D -> G
+      E -> H    E -> I 
+      
+      }")
+```
+
