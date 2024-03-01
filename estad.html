@@ -11,7 +11,7 @@
 
 
 
-<title>Métodos de medición y estimación de la incertidumbre</title>
+<title>Conceptos estadísticos</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -322,75 +404,160 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Métodos de medición y estimación de la
-incertidumbre</h1>
+<h1 class="title toc-ignore">Conceptos estadísticos</h1>
 
 </div>
 
 
-<p><img src="imagen/metro.png" width="40%" style="display: block; margin: auto;" /></p>
-<div id="introducción" class="section level2">
-<h2>Introducción</h2>
-<p><a href="intro.html" target="_blank">Fundamentos de la
-medición</a></p>
+<div id="medidas-de-tendencia-central" class="section level1">
+<h1>Medidas de tendencia central</h1>
+<p>Son 3 valores que resumen y representan la información contenida en
+un conjunto de datos. Las tres medidas son la media, la mediana y la
+moda.</p>
+<p><img src="imagen/central.png" width="235" style="display: block; margin: auto;" /></p>
+<div id="moda" class="section level2">
+<h2>Moda</h2>
+<p>Es el valor que más se repite, si no hay datos que se repiten se dice
+que no hay moda. Si dos datos se repiten con la misma frecuencia se dice
+que los datos son bimodales.</p>
+<div id="media" class="section level3">
+<h3>Media</h3>
+<p>Valor promedio de un conjunto de datos numéricos, calculada como la
+suma del conjunto de valores dividida entre el número total de valores,
+la fórmula con la que se estima es:</p>
+<p>1Según el teorema de límite central cuando n&gt;30 se considera
+poblacional</p>
 </div>
-<div id="conceptos-estadísticos" class="section level2">
-<h2>Conceptos estadísticos</h2>
-<p><a href="estad.html" target="_blank">Conceptos estadísticos</a></p>
-<p><a href="pruebas_no_paramétricas.html" target="_blank">Pruebas no
-parámetricas</a></p>
 </div>
-<div id="incertidumbre-de-medición" class="section level2">
-<h2>Incertidumbre de medición</h2>
-<p><a href="incer.html" target="_blank">Incertidumbre</a></p>
+<div id="mediana" class="section level2">
+<h2>Mediana</h2>
+<p>Es un valor que se encuentra en la mitad de los datos, cuando estos
+están ordenados</p>
 </div>
-<div id="método-de-medición-no-estocástico-gum" class="section level2">
-<h2>Método de medición no estocástico GUM</h2>
-<p><a href="gum.html" target="_blank">GUM</a></p>
 </div>
-<div id="método-de-medición-estocástico-monte-carlo"
+<div id="medidas-de-variabilidad" class="section level1">
+<h1>Medidas de variabilidad</h1>
+<p>La media es un buen indicador de tendencia central, pero no da una
+evidencia real acerca de los datos.</p>
+<p>Las medidas de variabilidad determinan el grado de acercamiento o
+distanciamiento de los valores de una distribución frente a su promedio
+de localización.</p>
+<div id="rango" class="section level2">
+<h2>Rango</h2>
+<p>Es la diferencia entre el valor máximo y el valor mínimo</p>
+<p>Rango= valor max - valor mínimo</p>
+<p>Esta medida ignora la manera en que los datos están distribuidos</p>
+<p><img src="imagen/rango.png" width="475" style="display: block; margin: auto;" /></p>
+</div>
+<div id="varianza-y-desviación-estándar" class="section level2">
+<h2>Varianza y Desviación estándar</h2>
+<p>indica qué tan dispersos están los datos con respecto a la media</p>
+<p><img src="imagen/sd.png" width="414" style="display: block; margin: auto;" /></p>
+<p><strong>Caso poblacional</strong></p>
+<p><strong>Varianza</strong></p>
+<p><span
+class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span>
+<strong>Desviación estándar</strong></p>
+<p><span
+class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span>
+<strong>Caso muestral</strong></p>
+<p><strong>Varianza</strong> <span
+class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span
+class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}}\]</span></p>
+<p><strong>Diferencia en medidas entre la población y la
+muestra</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Medida</th>
+<th align="center">Población</th>
+<th align="center">Muestra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Tamaño</td>
+<td align="center">N</td>
+<td align="center">n</td>
+</tr>
+<tr class="even">
+<td align="center">Media</td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\bar x\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Varianza</td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+<td align="center"><span class="math inline">\(S^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Desviación estándar</td>
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+<td align="center">S</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparemos</strong></p>
+<p><img src="imagen/bolas.png" width="489" style="display: block; margin: auto;" /></p>
+</div>
+<div id="coeficiente-de-variación" class="section level2">
+<h2>Coeficiente de variación</h2>
+<p>Es una medida de la dispersión relativa de un conjunto de datos, la
+cual relaciona la desviación típica de una muestra y su media.</p>
+<p>Se expresa en términos porcentuales, la fórmula con la que se estima
+es: <span class="math display">\[CV=\frac{S}{\bar x}*100\]</span></p>
+<p>No depende de las unidades de medición, por lo que sirve para
+comparar la variabilidad de dos conjuntos de datos, siempre que sus
+medias sean positivas.</p>
+</div>
+</div>
+<div id="distribución-normal" class="section level1">
+<h1>Distribución normal</h1>
+<p>Una distribución ampliamente usada y la más importante de toda la
+estadística, diversas poblaciones y fenómenos numéricos son
+representados por esta distribución por ejemplo</p>
+<ul>
+<li><p>Errores de medición en experimentos científicos</p></li>
+<li><p>Mediciones antropométricas</p></li>
+<li><p>Tiempos de reacción en experimentos psicológicos</p></li>
+<li><p>Mediciones de inteligencia y aptitud</p></li>
+</ul>
+<div id="función-de-distribución-de-probabilidad"
 class="section level2">
-<h2>Método de medición estocástico Monte-carlo</h2>
-<p><a href="mcm.html" target="_blank">Monte carlo</a></p>
+<h2>Función de distribución de probabilidad</h2>
+<p>Esta distribución depende de los parámetros de localización y escala,
+determinados por la media <span class="math inline">\(E(X)=\mu\)</span>
+y la desviación estándar <span class="math inline">\(sd =
+\sigma\)</span>,</p>
+<p>El valor de <span class="math inline">\(\sigma\)</span> es la
+distancia desde <span class="math inline">\(\mu\)</span> hasta los
+puntos de inflexión de la curva (los puntos donde la curva cambia de
+concavidad de hacia abajo a hacia arriba).</p>
+<p>La función de distribución de probabilidad está dada por:</p>
+<p><span class="math display">\[\LARGE
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]</span> Con <span
+class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> y <span
+class="math inline">\(\sigma&gt;0\)</span></p>
+<p>Si una variable se distribuye normal se denota de la forma:</p>
+<p><span class="math display">\[\LARGE x \sim N(\mu,
+\sigma^2)\]</span></p>
+<p><strong>Aplicativo de distribuciones de probabilidad
+continuas</strong></p>
+<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
+</iframe>
 </div>
-<div id="bibliografía" class="section level2">
-<h2>Bibliografía</h2>
-<ol style="list-style-type: decimal">
-<li><p>Validación de métodos y determinación de la incertidumbre de la
-medición: “Aspectos generales sobre la validación de métodos”, Instituto
-de salud publica de Chile, 2010.</p></li>
-<li><p>Shmid W y lazos R. (2000) Guia para estimar la incertidumbre en
-la medición. centro nacional de metrología.</p></li>
-<li><p>KIRKUP L., FRENKEL R. B., AN INTRODUCTION TO UNCERTAINTY IN
-MEASUREMENT USING THE GUM (GUIDE TO THE EXPRESSION OF UNCERTAINTY IN
-MEASUREMENT), Cambridge University Press New York, 2006.</p></li>
-<li><p>Lira I., Evaluating the Measurement Uncertainty Fundamentals and
-Practical Guidance, IOP Publishing Ltd, 2002.</p></li>
-<li><p>Metrologos, A. (2005). Institución Apasionada por la Metrología
-Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración:
-Somos su Relevo a la Calidad. www.metas.com.mx</p></li>
-<li><p>Patrick F.D., Measurement and Data Analysis for Engineering and
-Science, CRC Press, 2010.</p></li>
-<li><p>Rabinovich G.S., Measurement Errors and Uncertainties Theory and
-Practice, Springer Science and Media, Inc, 2005.</p></li>
-<li><p>Willink R., MEASUREMENT UNCERTAINTY AND PROBABILITY, Springer
-Science and Media, Cambridge University Press New York, 2013.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Guide to the expression of uncertainty in
-measurement, 100:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Supplement using a Monte Carlo method,
-101:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), International
-vocabulary of metrology – Basic and general concepts and associated
-terms (VIM), 200:2012.</p></li>
-<li><p>Maroto A., Incertidumbre en métodos analíticos de rutina,
-Tarragona. 2002.</p></li>
-<li><p>Cárdenas J.J., Metodología para la determinación de la
-incertidumbre asociada a la medición en fuentes fijas usando la guía
-para la expresión de la incertidumbre de medida y un método estocástico,
-Medellín. 2018.</p></li>
-</ol>
+<div id="distribución-rectangular-ó-uniforme" class="section level2">
+<h2>Distribución rectangular ó uniforme</h2>
+<p>En una distribución rectangular cada valor en un intervalo dado tiene
+la misma probabilidad, o sea la función de densidad de probabilidad es
+constante en este intervalo.</p>
+<p><a
+href="https://huggingface.co/spaces/FreddyHernandez/discrete_uniform"
+class="uri">https://huggingface.co/spaces/FreddyHernandez/discrete_uniform</a></p>
+</div>
 </div>
 
 <br>
@@ -400,6 +567,8 @@ Medellín. 2018.</p></li>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -432,6 +601,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

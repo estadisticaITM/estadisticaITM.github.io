@@ -1,0 +1,146 @@
+---
+title: "Conceptos estadísticos"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+---
+
+
+# Medidas de tendencia central 
+Son 3 valores que resumen y representan la información contenida en un conjunto de datos. Las tres medidas son la media, la mediana y la moda.
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/central.png")
+```
+
+
+## Moda
+
+Es el valor que más se repite, si no hay datos que se repiten se dice que no hay moda.
+Si dos datos se repiten con la misma frecuencia se dice que los datos son bimodales.
+
+
+### Media
+
+Valor promedio de un conjunto de datos numéricos, calculada como la suma del conjunto de valores dividida entre el número total de valores, la fórmula con la que se estima es:
+
+1Según el teorema de límite central cuando n>30 se considera poblacional
+
+## Mediana
+
+Es un valor que se encuentra en la mitad de los datos, cuando estos están ordenados
+
+# Medidas de variabilidad
+
+La media es un buen indicador de tendencia central, pero no da una evidencia real acerca de los datos.
+
+Las medidas de variabilidad determinan el grado de acercamiento o distanciamiento de los valores de una distribución frente a su promedio de localización.
+
+## Rango
+
+Es la diferencia entre el valor máximo y el valor mínimo
+
+Rango= valor max - valor mínimo
+
+Esta medida ignora la manera en que los datos están distribuidos
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/rango.png")
+```
+
+## Varianza y Desviación estándar
+ indica qué tan dispersos están los datos con respecto a la media
+
+```{r fig.asp=0.7, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/sd.png")
+
+```
+
+**Caso poblacional**
+
+**Varianza**
+
+$$\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}$$
+**Desviación estándar**
+
+$$\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}$$
+**Caso muestral**
+
+**Varianza**
+$$S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}$$
+**Desviación estándar**
+$$S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}$$
+
+
+**Diferencia en medidas entre la población y la muestra**
+
+|Medida|Población|Muestra|
+|:----:|:-------:|:-----:|
+|Tamaño|N        |n      |
+|Media |$\mu$   |$\bar x$|
+|Varianza|$\sigma^2$|$S^2$|
+|Desviación estándar|$\sigma$|S|
+
+**Comparemos**
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/bolas.png")
+```
+
+
+## Coeficiente de variación 
+
+Es una medida de la dispersión relativa de un conjunto de datos, la cual relaciona la desviación típica de una muestra y su media.
+
+Se expresa en términos porcentuales, la fórmula con la que se estima es:
+$$CV=\frac{S}{\bar x}*100$$
+
+No depende de las unidades de medición, por lo que sirve para comparar la variabilidad de dos conjuntos de datos, siempre que sus medias sean positivas.
+
+
+# Distribución normal
+
+Una distribución ampliamente usada y la más importante de toda la estadística, diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
+
+- Errores de medición en experimentos científicos
+
+- Mediciones antropométricas
+
+- Tiempos de reacción en experimentos psicológicos
+
+- Mediciones de inteligencia y aptitud 
+
+
+## Función de distribución de probabilidad
+
+Esta distribución depende de los parámetros de localización y escala, determinados por la media $E(X)=\mu$ y la desviación estándar $sd = \sigma$,
+
+El valor de $\sigma$ es la distancia desde $\mu$ hasta los puntos de inflexión de la curva (los puntos donde la curva cambia de concavidad de hacia abajo a hacia arriba).
+
+La función de distribución de probabilidad está dada por:
+
+$$\LARGE f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+Con $-\infty<\mu<\infty$ y $\sigma>0$
+
+Si una variable se distribuye normal se denota de la forma:
+
+$$\LARGE x \sim N(\mu, \sigma^2)$$
+
+**Aplicativo de distribuciones de probabilidad continuas**
+
+```{r echo=FALSE}
+
+knitr::include_app("https://amgq828.shinyapps.io/appcontinuas/",height = "1000px")
+
+```
+
+
+
+
+
+## Distribución rectangular ó uniforme
+
+En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+
+https://huggingface.co/spaces/FreddyHernandez/discrete_uniform
