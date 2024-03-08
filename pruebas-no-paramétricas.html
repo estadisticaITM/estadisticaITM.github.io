@@ -11,7 +11,7 @@
 
 
 
-<title>Pruebas no paramétricas</title>
+<title>pruebas-no-paramétricas.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -243,75 +240,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -319,16 +247,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -404,11 +322,29 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Pruebas no paramétricas</h1>
 
 </div>
 
 
+<table>
+<tbody>
+<tr class="odd">
+<td>title: “Pruebas no paramétricas”</td>
+</tr>
+<tr class="even">
+<td>output:</td>
+</tr>
+<tr class="odd">
+<td>html_document:</td>
+</tr>
+<tr class="even">
+<td>toc: true</td>
+</tr>
+<tr class="odd">
+<td>toc_depth: 5</td>
+</tr>
+</tbody>
+</table>
 <p>Gran parte de los procedimientos descritos anteriormente de pruebas
 de hipótesis, consideran que las observaciones provienen de poblaciones
 normales. En muchas situaciones este supuesto no se cumple. Una
@@ -446,8 +382,10 @@ siguen una distribución M</p>
 <p><strong>Ejemplo probando la distribución exponencial</strong></p>
 <p>Celia quiere medir el tiempo de atención a los usuarios. Se
 seleccionaron 20 personas y los tiempos de atención en minutos.</p>
-<pre class="r"><code>require(car)
-tiempo&lt;-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
+<pre class="r"><code>require(car)</code></pre>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre class="r"><code>tiempo&lt;-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
           12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
 
 par(mfrow=c(1,3))
@@ -494,7 +432,7 @@ hist(y)</code></pre>
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x and y
-## D = 0.48, p-value = 0.0002033
+## D = 0.52, p-value = 3.885e-05
 ## alternative hypothesis: two-sided</code></pre>
 </div>
 <div id="test-de-shapiro-wilk" class="section level2">
@@ -715,6 +653,7 @@ X el número de clientes que visitan Celia Express.</p>
 <p>Se realizará el análisis con un α=0.01</p>
 <pre class="r"><code>require(vcd)</code></pre>
 <pre><code>## Loading required package: vcd</code></pre>
+<pre><code>## Loading required package: grid</code></pre>
 <pre class="r"><code>gf&lt;-goodfit(personas, type = &quot;poisson&quot;, method = &quot;MinChisq&quot;)
 gf$par</code></pre>
 <pre><code>## $lambda
@@ -827,175 +766,482 @@ library(MASS)
 
 ##la base de datos total corresponde a 
 survey</code></pre>
-<pre><code>##       Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
-## 1  Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
-## 2    Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
-## 3    Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
-## 4    Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
-## 5    Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
-## 6  Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
-## 7    Male   17.7   17.7 Right  L on R    83   Right Freq Never 182.88 Imperial
-## 8  Female   17.0   17.3 Right  R on L    74   Right Freq Never 157.00   Metric
-## 9    Male   20.0   19.5 Right  R on L    72   Right Some Never 175.00   Metric
-## 10   Male   18.5   18.5 Right  R on L    90   Right Some Never 167.00   Metric
-## 11 Female   17.0   17.2 Right  L on R    80   Right Freq Never 156.20 Imperial
-## 12   Male   21.0   21.0 Right  R on L    68    Left Freq Never     NA     &lt;NA&gt;
-## 13 Female   16.0   16.0 Right  L on R    NA   Right Some Never 155.00   Metric
-## 14 Female   19.5   20.2 Right  L on R    66 Neither Some Never 155.00   Metric
-## 15   Male   16.0   15.5 Right  R on L    60   Right Some Never     NA     &lt;NA&gt;
-## 16 Female   17.5   17.0 Right  R on L    NA   Right Freq Never 156.00   Metric
-## 17 Female   18.0   18.0 Right  L on R    89 Neither Freq Never 157.00   Metric
-## 18   Male   19.4   19.2  Left  R on L    74   Right Some Never 182.88 Imperial
-## 19   Male   20.5   20.5 Right  L on R    NA    Left Some Never 190.50 Imperial
-## 20   Male   21.0   20.9 Right  R on L    78   Right Freq Never 177.00   Metric
-## 21   Male   21.5   22.0 Right  R on L    72    Left Freq Never 190.50 Imperial
-## 22   Male   20.1   20.7 Right  L on R    72   Right Freq Never 180.34 Imperial
-## 23   Male   18.5   18.0 Right  L on R    64   Right Freq Never 180.34 Imperial
-## 24   Male   21.5   21.2 Right  R on L    62   Right Some Never 184.00   Metric
-## 25 Female   17.0   17.5 Right  R on L    64    Left Some Never     NA     &lt;NA&gt;
-## 26   Male   18.5   18.5 Right Neither    90 Neither Some Never     NA     &lt;NA&gt;
-## 27   Male   21.0   20.7 Right  R on L    90   Right Some Never 172.72 Imperial
-## 28   Male   20.8   21.4 Right  R on L    62 Neither Freq Never 175.26 Imperial
-## 29   Male   17.8   17.8 Right  L on R    76 Neither Freq Never     NA     &lt;NA&gt;
-## 30   Male   19.5   19.5 Right  L on R    79   Right Some Never 167.00   Metric
-## 31 Female   18.5   18.0 Right  R on L    76   Right None Occas     NA     &lt;NA&gt;
-## 32   Male   18.8   18.2 Right  L on R    78   Right Freq Never 180.00   Metric
-## 33 Female   17.1   17.5 Right  R on L    72   Right Freq Heavy 166.40 Imperial
-## 34   Male   20.1   20.0 Right  R on L    70   Right Some Never 180.00   Metric
-## 35   Male   18.0   19.0 Right  L on R    54 Neither Some Regul     NA     &lt;NA&gt;
-## 36   Male   22.2   21.0 Right  L on R    66   Right Freq Occas 190.00   Metric
-## 37 Female   16.0   16.5 Right  L on R    NA   Right Some Never 168.00   Metric
-## 38   Male   19.4   18.5 Right  R on L    72 Neither Freq Never 182.50   Metric
-## 39   Male   22.0   22.0 Right  R on L    80   Right Some Never 185.00   Metric
-## 40   Male   19.0   19.0 Right  R on L    NA Neither Freq Occas 171.00   Metric
-## 41 Female   17.5   16.0 Right  L on R    NA   Right Some Never 169.00   Metric
-## 42 Female   17.8   18.0 Right  R on L    72   Right Some Never 154.94 Imperial
-## 43   Male     NA     NA Right  R on L    60    &lt;NA&gt; Some Never 172.00   Metric
-## 44 Female   20.1   20.2 Right  L on R    80   Right Some Never 176.50 Imperial
-## 45 Female   13.0   13.0  &lt;NA&gt;  L on R    70    Left Freq Never 180.34 Imperial
-## 46   Male   17.0   17.5 Right  R on L    NA Neither Freq Never 180.34 Imperial
-## 47   Male   23.2   22.7 Right  L on R    84    Left Freq Regul 180.00   Metric
-## 48   Male   22.5   23.0 Right  R on L    96   Right None Never 170.00   Metric
-## 49 Female   18.0   17.6 Right  R on L    60   Right Some Occas 168.00   Metric
-## 50 Female   18.0   17.9 Right  R on L    50    Left None Never 165.00   Metric
-## 51   Male   22.0   21.5  Left  R on L    55    Left Freq Never 200.00   Metric
-## 52   Male   20.5   20.0 Right  L on R    68   Right Freq Never 190.00   Metric
-## 53   Male   17.0   18.0 Right  L on R    78    Left Some Never 170.18 Imperial
-## 54   Male   20.5   19.5 Right  L on R    56   Right Freq Never 179.00   Metric
-## 55   Male   22.5   22.5 Right  R on L    65   Right Freq Regul 182.00   Metric
-## 56   Male   18.5   18.5 Right  L on R    NA Neither Freq Never 171.00   Metric
-## 57 Female   15.5   15.4 Right  R on L    70 Neither None Never 157.48 Imperial
-## 58   Male   19.5   19.7 Right  R on L    72   Right Freq Never     NA     &lt;NA&gt;
-## 59   Male   19.5   19.0 Right  L on R    62   Right Freq Never 177.80 Imperial
-## 60   Male   20.6   21.0  Left  L on R    NA    Left Freq Occas 175.26 Imperial
-## 61   Male   22.8   23.2 Right  R on L    66 Neither Freq Never 187.00   Metric
-## 62 Female   18.5   18.2 Right  R on L    72 Neither Freq Never 167.64 Imperial
-## 63 Female   19.6   19.7 Right  L on R    70   Right Freq Never 178.00   Metric
-## 64 Female   18.7   18.0  Left  L on R    NA    Left None Never 170.00   Metric
-## 65 Female   17.3   18.0 Right  L on R    64 Neither Freq Never 164.00   Metric
-## 66   Male   19.5   19.8 Right Neither    NA   Right Freq Never 183.00   Metric
-## 67 Female   19.0   19.1 Right  L on R    NA Neither Freq Never 172.00   Metric
-## 68 Female   18.5   18.0 Right  R on L    64   Right Freq Never     NA     &lt;NA&gt;
-## 69   Male   19.0   19.0 Right  L on R    NA   Right Some Never 180.00   Metric
-## 70   Male   21.0   19.5 Right  L on R    80    Left None  &lt;NA&gt;     NA     &lt;NA&gt;
-## 71 Female   18.0   17.5 Right  L on R    64    Left Freq Never 170.00   Metric
-## 72   Male   19.4   19.5 Right  R on L    NA   Right Freq Heavy 176.00   Metric
-## 73 Female   17.0   16.6 Right  R on L    68   Right Some Never 171.00   Metric
-## 74 Female   16.5   17.0 Right  L on R    40    Left Freq Never 167.64 Imperial
-## 75 Female   15.6   15.8 Right  R on L    88    Left Some Never 165.00   Metric
-## 76 Female   17.5   17.5 Right Neither    68   Right Freq Heavy 170.00   Metric
-## 77 Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
-## 78 Female   18.6   18.0 Right  L on R    NA Neither Freq Heavy 165.10 Imperial
-## 79 Female   18.3   18.5 Right  R on L    68 Neither Some Never 165.10 Imperial
-## 80   Male   20.0   20.5 Right  L on R    NA   Right Freq Never 185.42 Imperial
-## 81   Male   19.5   19.5  Left  R on L    66    Left Some Never     NA     &lt;NA&gt;
-## 82   Male   19.2   18.9 Right  R on L    76   Right Freq Never 176.50 Imperial
-## 83 Female   17.5   17.5 Right  R on L    98    Left Freq Never     NA     &lt;NA&gt;
-##       Age
-## 1  18.250
-## 2  17.583
-## 3  16.917
-## 4  20.333
-## 5  23.667
-## 6  21.000
-## 7  18.833
-## 8  35.833
-## 9  19.000
-## 10 22.333
-## 11 28.500
-## 12 18.250
-## 13 18.750
-## 14 17.500
-## 15 17.167
-## 16 17.167
-## 17 19.333
-## 18 18.333
-## 19 19.750
-## 20 17.917
-## 21 17.917
-## 22 18.167
-## 23 17.833
-## 24 18.250
-## 25 19.167
-## 26 17.583
-## 27 17.500
-## 28 18.083
-## 29 21.917
-## 30 19.250
-## 31 41.583
-## 32 17.500
-## 33 39.750
-## 34 17.167
-## 35 17.750
-## 36 18.000
-## 37 19.000
-## 38 17.917
-## 39 35.500
-## 40 19.917
-## 41 17.500
-## 42 17.083
-## 43 28.583
-## 44 17.500
-## 45 17.417
-## 46 18.500
-## 47 18.917
-## 48 19.417
-## 49 18.417
-## 50 30.750
-## 51 18.500
-## 52 17.500
-## 53 18.333
-## 54 17.417
-## 55 20.000
-## 56 18.333
-## 57 17.167
-## 58 17.417
-## 59 17.667
-## 60 18.417
-## 61 20.333
-## 62 17.333
-## 63 17.500
-## 64 19.833
-## 65 18.583
-## 66 18.000
-## 67 30.667
-## 68 16.917
-## 69 19.917
-## 70 18.333
-## 71 17.583
-## 72 17.833
-## 73 17.667
-## 74 17.417
-## 75 17.750
-## 76 20.667
-## 77 23.583
-## 78 17.167
-## 79 17.083
-## 80 18.750
-## 81 16.750
-## 82 20.167
-## 83 17.667
-##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 154 rows ]</code></pre>
+<pre><code>##        Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
+## 1   Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
+## 2     Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
+## 3     Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
+## 4     Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
+## 5     Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
+## 6   Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
+## 7     Male   17.7   17.7 Right  L on R    83   Right Freq Never 182.88 Imperial
+## 8   Female   17.0   17.3 Right  R on L    74   Right Freq Never 157.00   Metric
+## 9     Male   20.0   19.5 Right  R on L    72   Right Some Never 175.00   Metric
+## 10    Male   18.5   18.5 Right  R on L    90   Right Some Never 167.00   Metric
+## 11  Female   17.0   17.2 Right  L on R    80   Right Freq Never 156.20 Imperial
+## 12    Male   21.0   21.0 Right  R on L    68    Left Freq Never     NA     &lt;NA&gt;
+## 13  Female   16.0   16.0 Right  L on R    NA   Right Some Never 155.00   Metric
+## 14  Female   19.5   20.2 Right  L on R    66 Neither Some Never 155.00   Metric
+## 15    Male   16.0   15.5 Right  R on L    60   Right Some Never     NA     &lt;NA&gt;
+## 16  Female   17.5   17.0 Right  R on L    NA   Right Freq Never 156.00   Metric
+## 17  Female   18.0   18.0 Right  L on R    89 Neither Freq Never 157.00   Metric
+## 18    Male   19.4   19.2  Left  R on L    74   Right Some Never 182.88 Imperial
+## 19    Male   20.5   20.5 Right  L on R    NA    Left Some Never 190.50 Imperial
+## 20    Male   21.0   20.9 Right  R on L    78   Right Freq Never 177.00   Metric
+## 21    Male   21.5   22.0 Right  R on L    72    Left Freq Never 190.50 Imperial
+## 22    Male   20.1   20.7 Right  L on R    72   Right Freq Never 180.34 Imperial
+## 23    Male   18.5   18.0 Right  L on R    64   Right Freq Never 180.34 Imperial
+## 24    Male   21.5   21.2 Right  R on L    62   Right Some Never 184.00   Metric
+## 25  Female   17.0   17.5 Right  R on L    64    Left Some Never     NA     &lt;NA&gt;
+## 26    Male   18.5   18.5 Right Neither    90 Neither Some Never     NA     &lt;NA&gt;
+## 27    Male   21.0   20.7 Right  R on L    90   Right Some Never 172.72 Imperial
+## 28    Male   20.8   21.4 Right  R on L    62 Neither Freq Never 175.26 Imperial
+## 29    Male   17.8   17.8 Right  L on R    76 Neither Freq Never     NA     &lt;NA&gt;
+## 30    Male   19.5   19.5 Right  L on R    79   Right Some Never 167.00   Metric
+## 31  Female   18.5   18.0 Right  R on L    76   Right None Occas     NA     &lt;NA&gt;
+## 32    Male   18.8   18.2 Right  L on R    78   Right Freq Never 180.00   Metric
+## 33  Female   17.1   17.5 Right  R on L    72   Right Freq Heavy 166.40 Imperial
+## 34    Male   20.1   20.0 Right  R on L    70   Right Some Never 180.00   Metric
+## 35    Male   18.0   19.0 Right  L on R    54 Neither Some Regul     NA     &lt;NA&gt;
+## 36    Male   22.2   21.0 Right  L on R    66   Right Freq Occas 190.00   Metric
+## 37  Female   16.0   16.5 Right  L on R    NA   Right Some Never 168.00   Metric
+## 38    Male   19.4   18.5 Right  R on L    72 Neither Freq Never 182.50   Metric
+## 39    Male   22.0   22.0 Right  R on L    80   Right Some Never 185.00   Metric
+## 40    Male   19.0   19.0 Right  R on L    NA Neither Freq Occas 171.00   Metric
+## 41  Female   17.5   16.0 Right  L on R    NA   Right Some Never 169.00   Metric
+## 42  Female   17.8   18.0 Right  R on L    72   Right Some Never 154.94 Imperial
+## 43    Male     NA     NA Right  R on L    60    &lt;NA&gt; Some Never 172.00   Metric
+## 44  Female   20.1   20.2 Right  L on R    80   Right Some Never 176.50 Imperial
+## 45  Female   13.0   13.0  &lt;NA&gt;  L on R    70    Left Freq Never 180.34 Imperial
+## 46    Male   17.0   17.5 Right  R on L    NA Neither Freq Never 180.34 Imperial
+## 47    Male   23.2   22.7 Right  L on R    84    Left Freq Regul 180.00   Metric
+## 48    Male   22.5   23.0 Right  R on L    96   Right None Never 170.00   Metric
+## 49  Female   18.0   17.6 Right  R on L    60   Right Some Occas 168.00   Metric
+## 50  Female   18.0   17.9 Right  R on L    50    Left None Never 165.00   Metric
+## 51    Male   22.0   21.5  Left  R on L    55    Left Freq Never 200.00   Metric
+## 52    Male   20.5   20.0 Right  L on R    68   Right Freq Never 190.00   Metric
+## 53    Male   17.0   18.0 Right  L on R    78    Left Some Never 170.18 Imperial
+## 54    Male   20.5   19.5 Right  L on R    56   Right Freq Never 179.00   Metric
+## 55    Male   22.5   22.5 Right  R on L    65   Right Freq Regul 182.00   Metric
+## 56    Male   18.5   18.5 Right  L on R    NA Neither Freq Never 171.00   Metric
+## 57  Female   15.5   15.4 Right  R on L    70 Neither None Never 157.48 Imperial
+## 58    Male   19.5   19.7 Right  R on L    72   Right Freq Never     NA     &lt;NA&gt;
+## 59    Male   19.5   19.0 Right  L on R    62   Right Freq Never 177.80 Imperial
+## 60    Male   20.6   21.0  Left  L on R    NA    Left Freq Occas 175.26 Imperial
+## 61    Male   22.8   23.2 Right  R on L    66 Neither Freq Never 187.00   Metric
+## 62  Female   18.5   18.2 Right  R on L    72 Neither Freq Never 167.64 Imperial
+## 63  Female   19.6   19.7 Right  L on R    70   Right Freq Never 178.00   Metric
+## 64  Female   18.7   18.0  Left  L on R    NA    Left None Never 170.00   Metric
+## 65  Female   17.3   18.0 Right  L on R    64 Neither Freq Never 164.00   Metric
+## 66    Male   19.5   19.8 Right Neither    NA   Right Freq Never 183.00   Metric
+## 67  Female   19.0   19.1 Right  L on R    NA Neither Freq Never 172.00   Metric
+## 68  Female   18.5   18.0 Right  R on L    64   Right Freq Never     NA     &lt;NA&gt;
+## 69    Male   19.0   19.0 Right  L on R    NA   Right Some Never 180.00   Metric
+## 70    Male   21.0   19.5 Right  L on R    80    Left None  &lt;NA&gt;     NA     &lt;NA&gt;
+## 71  Female   18.0   17.5 Right  L on R    64    Left Freq Never 170.00   Metric
+## 72    Male   19.4   19.5 Right  R on L    NA   Right Freq Heavy 176.00   Metric
+## 73  Female   17.0   16.6 Right  R on L    68   Right Some Never 171.00   Metric
+## 74  Female   16.5   17.0 Right  L on R    40    Left Freq Never 167.64 Imperial
+## 75  Female   15.6   15.8 Right  R on L    88    Left Some Never 165.00   Metric
+## 76  Female   17.5   17.5 Right Neither    68   Right Freq Heavy 170.00   Metric
+## 77  Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
+## 78  Female   18.6   18.0 Right  L on R    NA Neither Freq Heavy 165.10 Imperial
+## 79  Female   18.3   18.5 Right  R on L    68 Neither Some Never 165.10 Imperial
+## 80    Male   20.0   20.5 Right  L on R    NA   Right Freq Never 185.42 Imperial
+## 81    Male   19.5   19.5  Left  R on L    66    Left Some Never     NA     &lt;NA&gt;
+## 82    Male   19.2   18.9 Right  R on L    76   Right Freq Never 176.50 Imperial
+## 83  Female   17.5   17.5 Right  R on L    98    Left Freq Never     NA     &lt;NA&gt;
+## 84  Female   17.0   17.4 Right  R on L    NA Neither Some Never     NA     &lt;NA&gt;
+## 85    Male   23.0   23.5 Right  L on R    90   Right Freq Never 167.64 Imperial
+## 86  Female   17.7   17.0 Right  R on L    76   Right Some Never 167.00   Metric
+## 87  Female   18.2   18.0 Right  L on R    70   Right Some Never 162.56 Imperial
+## 88  Female   18.3   18.5 Right  R on L    75    Left Freq Never 170.00   Metric
+## 89    Male   18.0   18.0 Right Neither    60   Right Freq Never 179.00   Metric
+## 90  Female   18.0   17.7  Left  R on L    92    Left Some Never     NA     &lt;NA&gt;
+## 91    Male   20.5   20.0 Right  R on L    75    Left Some Never 183.00   Metric
+## 92  Female   17.5   18.0 Right Neither    NA   Right Some Never     NA     &lt;NA&gt;
+## 93  Female   18.2   17.5 Right  L on R    70   Right Some Never 165.00   Metric
+## 94  Female   18.2   18.5 Right  R on L    NA   Right Some Never 168.00   Metric
+## 95    Male   21.3   20.8 Right  R on L    65   Right Freq Heavy 179.00   Metric
+## 96  Female   19.0   18.8 Right  L on R    NA   Right Some Never     NA     &lt;NA&gt;
+## 97    Male   20.0   19.5 Right  R on L    68 Neither Freq Regul 190.00   Metric
+## 98  Female   17.5   17.5 Right  R on L    60   Right Freq Never 166.50   Metric
+## 99    Male   19.5   19.4 Right Neither    NA   Right Freq Never 165.00   Metric
+## 100 Female   19.4   19.6 Right  R on L    68 Neither Freq Never 175.26 Imperial
+## 101   Male   21.9   22.2 Right  R on L    NA   Right Some Never 187.00   Metric
+## 102   Male   18.9   19.1 Right  L on R    60 Neither None Never 170.00   Metric
+## 103 Female   16.0   16.0 Right Neither    NA   Right Some Never 159.00   Metric
+## 104 Female   17.5   17.3 Right  R on L    72   Right Freq Never 175.00   Metric
+## 105 Female   17.5   17.0 Right  R on L    80    Left Some Heavy 163.00   Metric
+## 106 Female   19.5   18.5 Right  R on L    80   Right Some Never 170.00   Metric
+## 107 Female   16.2   16.4 Right  R on L    NA   Right Freq Occas 172.00   Metric
+## 108 Female   17.0   15.9 Right  R on L    85   Right Freq Never     NA     &lt;NA&gt;
+## 109   Male   17.5   17.5 Right  L on R    64 Neither Freq Never 180.00   Metric
+## 110   Male   19.7   20.1 Right  R on L    67    Left Some Regul 180.34 Imperial
+## 111 Female   18.5   18.5 Right  R on L    76    Left Freq Never 175.00   Metric
+## 112   Male   19.2   19.6 Right  L on R    80   Right None Never 190.50 Imperial
+## 113 Female   17.2   16.7 Right  R on L    75   Right Freq Never 170.18 Imperial
+## 114   Male   20.5   21.0 Right  R on L    60   Right Freq Never 185.00   Metric
+## 115 Female   16.0   15.5 Right  L on R    60    Left Freq Never 162.56 Imperial
+## 116 Female   16.9   16.0 Right  L on R    70   Right None Never 158.00   Metric
+## 117 Female   17.0   16.7 Right  R on L    70   Right Some Never 159.00   Metric
+## 118   Male   23.0   22.0  Left  L on R    83    Left Some Heavy 193.04 Imperial
+## 119 Female   18.5   18.0  Left  L on R   100 Neither Some Never 171.00   Metric
+## 120   Male   21.0   20.4 Right  L on R   100   Right Freq Heavy 184.00   Metric
+## 121   Male   20.0   20.0 Right  R on L    80 Neither Freq Occas     NA     &lt;NA&gt;
+## 122   Male   22.5   22.5 Right  L on R    76   Right Freq Occas 177.00   Metric
+## 123 Female   18.5   18.0 Right  R on L    92   Right Freq Never 172.00   Metric
+## 124   Male   19.8   20.0  Left  L on R    59   Right Freq Never 180.00   Metric
+## 125   Male   18.5   18.1 Right  L on R    66    Left Freq Never 175.26 Imperial
+## 126   Male   19.3   19.4 Right  R on L    NA   Right Freq Never 180.34 Imperial
+## 127 Female   16.0   16.0 Right  R on L    68   Right Freq Never 172.72 Imperial
+## 128   Male   18.8   19.1 Right  L on R    66 Neither Freq Regul 178.50   Metric
+## 129 Female   17.5   17.0 Right  R on L    74   Right Freq Never 157.00   Metric
+## 130 Female   16.4   16.5 Right  L on R    90   Right Some Never 152.00   Metric
+## 131   Male   22.0   21.5 Right  R on L    86   Right Freq Never 187.96 Imperial
+## 132   Male   19.0   19.5 Right  L on R    60   Right Some Never 178.00   Metric
+## 133 Female   18.9   20.0 Right  R on L    86   Right Some Never     NA     &lt;NA&gt;
+## 134 Female   15.4   16.4  Left  L on R    80    Left Freq Occas 160.02 Imperial
+## 135   Male   17.9   17.8 Right  R on L    85    Left Some Never 175.26 Imperial
+## 136   Male   23.1   22.5 Right  L on R    90   Right Some Regul 189.00   Metric
+## 137   &lt;NA&gt;   19.8   19.0  Left  L on R    73 Neither Freq Never 172.00   Metric
+## 138   Male   22.0   22.0 Right  L on R    72   Right Freq Never 182.88 Imperial
+## 139   Male   20.0   19.5 Right  L on R    NA   Right Freq Never 170.00   Metric
+## 140 Female   19.5   18.5 Right  L on R    68   Right None Never 167.00   Metric
+## 141 Female   18.0   18.6 Right  R on L    84   Right Some Never 175.00   Metric
+## 142 Female   18.3   19.0 Right  R on L    NA   Right None Never 165.00   Metric
+## 143 Female   19.0   18.8 Right  R on L    65   Right Freq Never 172.72 Imperial
+## 144   Male   21.4   21.0 Right  L on R    96 Neither Some Never 180.00   Metric
+## 145 Female   20.0   19.5  Left  R on L    68 Neither Freq Never 172.00   Metric
+## 146   Male   18.5   18.5 Right  R on L    75 Neither Some Never 185.00   Metric
+## 147   Male   22.5   22.6 Right  L on R    64   Right Freq Regul 187.96 Imperial
+## 148   Male   19.5   20.2 Right  R on L    60 Neither Freq Never 185.42 Imperial
+## 149 Female   18.0   18.0 Right  L on R    92 Neither Freq Never 165.00   Metric
+## 150 Female   18.0   18.5 Right  R on L    64 Neither Freq Never 164.00   Metric
+## 151   Male   21.8   22.3 Right  R on L    76    Left Freq Never 195.00   Metric
+## 152 Female   13.0   12.5 Right  L on R    80   Right Freq Never 165.00   Metric
+## 153 Female   16.3   16.2 Right  L on R    92   Right Some Regul 152.40 Imperial
+## 154   Male   21.5   21.6 Right  R on L    69   Right Freq Never 172.72 Imperial
+## 155   Male   18.9   19.1 Right  L on R    68   Right None Never 180.34 Imperial
+## 156   Male   20.5   20.0 Right  R on L    76   Right Freq Never 173.00   Metric
+## 157   Male   14.0   15.5 Right  L on R    NA Neither Freq Heavy     NA     &lt;NA&gt;
+## 158 Female   18.9   19.2 Right  L on R    74   Right Some Never 167.64 Imperial
+## 159   Male   20.0   20.5 Right  R on L    NA   Right None Never 187.96 Imperial
+## 160   Male   18.5   19.0 Right  L on R    84   Right Freq Regul 187.00   Metric
+## 161 Female   17.5   17.1 Right  R on L    80    Left None Never 167.00   Metric
+## 162   Male   18.1   18.2  Left Neither    NA   Right Some Never 168.00   Metric
+## 163   Male   20.2   20.3 Right  L on R    72 Neither Some Never 191.80 Imperial
+## 164 Female   16.5   16.9 Right  R on L    60 Neither Freq Occas 169.20   Metric
+## 165   Male   19.1   19.1 Right Neither    NA   Right Some Never 177.00   Metric
+## 166 Female   17.6   17.2 Right  R on L    81    Left Some Never 168.00   Metric
+## 167 Female   19.5   19.2 Right  R on L    70   Right Some Never 170.00   Metric
+## 168 Female   16.5   15.0 Right  L on R    65   Right Some Regul 160.02 Imperial
+## 169   Male   19.0   18.5 Right  L on R    NA Neither Freq Never 189.00   Metric
+## 170   Male   19.0   18.5 Right  R on L    72   Right Freq Never 180.34 Imperial
+## 171 Female   16.5   17.0 Right  L on R    NA   Right Some Never 168.00   Metric
+## 172   Male   20.5   19.5  Left  L on R    80   Right Some Occas 182.88 Imperial
+## 173 Female   15.5   15.5 Right Neither    50   Right Some Regul     NA     &lt;NA&gt;
+## 174 Female   18.0   17.5 Right  R on L    48 Neither Freq Never 165.00   Metric
+## 175 Female   17.5   18.0 Right  R on L    68 Neither Freq Never 157.48 Imperial
+## 176 Female   19.0   18.5  Left  L on R   104    Left Freq Never 170.00   Metric
+## 177   Male   20.5   20.5 Right Neither    76   Right Freq Regul 172.72 Imperial
+## 178 Female   16.7   17.0 Right  L on R    84    Left Freq Never 164.00   Metric
+## 179 Female   20.5   20.5 Right  R on L    NA    Left Freq Regul     NA     &lt;NA&gt;
+## 180 Female   17.0   16.5 Right  R on L    70   Right Some Never 162.56 Imperial
+## 181   Male   19.0   19.5 Right  R on L    68   Right Freq Occas 172.00   Metric
+## 182 Female   14.0   13.5 Right  R on L    87 Neither Freq Occas 165.10 Imperial
+## 183 Female   17.5   17.6 Right  L on R    79   Right Some Never 162.50   Metric
+## 184   Male   18.5   19.0 Right  L on R    70    Left Freq Never 170.00   Metric
+## 185   Male   18.0   18.5 Right Neither    90   Right Some Never 175.00   Metric
+## 186   Male   20.5   20.7 Right  R on L    72   Right Some Never 168.00   Metric
+## 187 Female   17.0   17.0 Right  L on R    79   Right Some Never 163.00   Metric
+## 188   Male   18.5   18.5 Right  R on L    65   Right None Never 165.00   Metric
+## 189   Male   18.0   18.5 Right  R on L    62   Right Freq Never 173.00   Metric
+## 190   Male   18.5   18.0 Right Neither    63 Neither Freq Never 196.00   Metric
+## 191   Male   20.0   19.5 Right  R on L    92   Right Some Never 179.10 Imperial
+## 192   Male   22.0   22.5 Right  L on R    60   Right Some Never 180.00   Metric
+## 193   Male   17.9   18.4 Right  R on L    68    Left None Occas 176.00   Metric
+## 194 Female   17.6   17.8 Right  L on R    72    Left Some Never 160.02 Imperial
+## 195 Female   16.7   15.1 Right Neither    NA   Right None Never 157.48 Imperial
+## 196 Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
+## 197 Female   15.0   13.0 Right  R on L    80 Neither Freq Never 170.18 Imperial
+## 198   Male   16.0   15.5 Right Neither    71   Right Freq Never 154.94 Imperial
+## 199 Female   19.1   19.0 Right  R on L    80   Right Some Occas 170.00   Metric
+## 200 Female   17.5   16.5 Right  R on L    80 Neither Some Never 164.00   Metric
+## 201 Female   16.2   15.8 Right  R on L    61   Right Some Occas 167.00   Metric
+## 202   Male   21.0   21.0 Right  L on R    48 Neither Freq Never 174.00   Metric
+## 203 Female   18.8   17.8 Right  R on L    76   Right Some Never     NA     &lt;NA&gt;
+## 204 Female   18.5   18.0 Right Neither    86   Right None Never 160.00   Metric
+## 205   Male   17.0   17.5 Right  R on L    80   Right Some Regul 179.10   Metric
+## 206 Female   17.5   17.0 Right  R on L    83 Neither Freq Occas 168.00   Metric
+## 207 Female   17.5   17.6 Right  L on R    76   Right Some Never 153.50   Metric
+## 208   Male   17.5   17.6 Right  R on L    84   Right Some Never 160.00   Metric
+## 209   Male   17.5   17.0  Left  L on R    97 Neither None Never 165.00   Metric
+## 210 Female   20.8   20.7 Right  R on L    NA Neither Freq Never 171.50   Metric
+## 211 Female   18.6   18.6 Right  L on R    74   Right Some Never 160.00   Metric
+## 212 Female   17.5   17.5  Left  R on L    83 Neither Some Never 163.00   Metric
+## 213   Male   18.0   18.5 Right  R on L    78   Right Freq Never     NA     &lt;NA&gt;
+## 214   Male   17.0   17.5 Right  R on L    65   Right Some Never 165.00   Metric
+## 215 Female   18.0   17.8 Right  L on R    68   Right Some Never 168.90 Imperial
+## 216   Male   19.5   20.0 Right Neither    NA   Right Some Never 170.00   Metric
+## 217 Female   16.3   16.2 Right  L on R    NA   Right None Never     NA     &lt;NA&gt;
+## 218   Male   18.2   19.8 Right  R on L    88   Right Freq Never 185.00   Metric
+## 219 Female   17.0   17.3 Right  L on R    NA Neither Freq Never 173.00   Metric
+## 220   Male   23.2   23.2 Right  L on R    75   Right Freq Never 188.00   Metric
+## 221   Male   23.2   23.3 Right  L on R    NA   Right None Heavy 171.00   Metric
+## 222 Female   15.9   16.5 Right  R on L    70   Right Freq Never 167.64 Imperial
+## 223 Female   17.5   18.4 Right  R on L    88   Right Some Never 162.56 Imperial
+## 224 Female   17.5   17.6 Right  L on R    NA   Right Freq Never 150.00   Metric
+## 225 Female   17.6   17.2 Right  L on R    NA   Right Some Never     NA     &lt;NA&gt;
+## 226 Female   17.5   17.8 Right  R on L    96   Right Some Never     NA     &lt;NA&gt;
+## 227 Female   18.8   18.3 Right  R on L    80   Right Some Heavy 170.18 Imperial
+## 228   Male   20.0   19.8 Right  L on R    68   Right Freq Never 185.00   Metric
+## 229 Female   18.6   18.8 Right  L on R    70   Right Freq Regul 167.00   Metric
+## 230   Male   18.6   19.6 Right  L on R    71   Right Freq Occas 185.00   Metric
+## 231 Female   18.8   18.5 Right  R on L    80   Right Some Never 169.00   Metric
+## 232   Male   18.0   16.0 Right  R on L    NA   Right Some Never 180.34 Imperial
+## 233 Female   18.0   18.0 Right  L on R    85   Right Some Never 165.10 Imperial
+## 234 Female   18.5   18.0 Right  L on R    88   Right Some Never 160.00   Metric
+## 235 Female   17.5   16.5 Right  R on L    NA   Right Some Never 170.00   Metric
+## 236   Male   21.0   21.5 Right  R on L    90   Right Some Never 183.00   Metric
+## 237 Female   17.6   17.3 Right  R on L    85   Right Freq Never 168.50   Metric
+##        Age
+## 1   18.250
+## 2   17.583
+## 3   16.917
+## 4   20.333
+## 5   23.667
+## 6   21.000
+## 7   18.833
+## 8   35.833
+## 9   19.000
+## 10  22.333
+## 11  28.500
+## 12  18.250
+## 13  18.750
+## 14  17.500
+## 15  17.167
+## 16  17.167
+## 17  19.333
+## 18  18.333
+## 19  19.750
+## 20  17.917
+## 21  17.917
+## 22  18.167
+## 23  17.833
+## 24  18.250
+## 25  19.167
+## 26  17.583
+## 27  17.500
+## 28  18.083
+## 29  21.917
+## 30  19.250
+## 31  41.583
+## 32  17.500
+## 33  39.750
+## 34  17.167
+## 35  17.750
+## 36  18.000
+## 37  19.000
+## 38  17.917
+## 39  35.500
+## 40  19.917
+## 41  17.500
+## 42  17.083
+## 43  28.583
+## 44  17.500
+## 45  17.417
+## 46  18.500
+## 47  18.917
+## 48  19.417
+## 49  18.417
+## 50  30.750
+## 51  18.500
+## 52  17.500
+## 53  18.333
+## 54  17.417
+## 55  20.000
+## 56  18.333
+## 57  17.167
+## 58  17.417
+## 59  17.667
+## 60  18.417
+## 61  20.333
+## 62  17.333
+## 63  17.500
+## 64  19.833
+## 65  18.583
+## 66  18.000
+## 67  30.667
+## 68  16.917
+## 69  19.917
+## 70  18.333
+## 71  17.583
+## 72  17.833
+## 73  17.667
+## 74  17.417
+## 75  17.750
+## 76  20.667
+## 77  23.583
+## 78  17.167
+## 79  17.083
+## 80  18.750
+## 81  16.750
+## 82  20.167
+## 83  17.667
+## 84  17.167
+## 85  17.167
+## 86  17.250
+## 87  18.000
+## 88  18.750
+## 89  21.583
+## 90  17.583
+## 91  19.667
+## 92  18.000
+## 93  19.667
+## 94  17.083
+## 95  22.833
+## 96  17.083
+## 97  19.417
+## 98  23.250
+## 99  18.083
+## 100 19.083
+## 101 18.917
+## 102 17.750
+## 103 20.833
+## 104 20.167
+## 105 17.667
+## 106 18.250
+## 107 17.000
+## 108 18.500
+## 109 18.583
+## 110 17.750
+## 111 24.167
+## 112 18.167
+## 113 21.167
+## 114 17.917
+## 115 17.417
+## 116 20.500
+## 117 22.917
+## 118 18.917
+## 119 18.917
+## 120 20.083
+## 121 17.500
+## 122 18.250
+## 123 17.500
+## 124 17.417
+## 125 21.000
+## 126 19.833
+## 127 17.667
+## 128 18.083
+## 129 18.000
+## 130 18.333
+## 131 20.000
+## 132 18.750
+## 133 19.083
+## 134 18.500
+## 135 18.417
+## 136 19.167
+## 137 21.500
+## 138 19.333
+## 139 21.417
+## 140 18.667
+## 141 17.500
+## 142 21.083
+## 143 17.250
+## 144 19.000
+## 145 19.167
+## 146 19.000
+## 147 23.000
+## 148 32.667
+## 149 20.000
+## 150 20.167
+## 151 25.500
+## 152 18.167
+## 153 23.500
+## 154 70.417
+## 155 43.833
+## 156 23.583
+## 157 21.083
+## 158 44.250
+## 159 19.667
+## 160 17.917
+## 161 18.417
+## 162 21.167
+## 163 17.500
+## 164 29.083
+## 165 19.917
+## 166 18.500
+## 167 18.167
+## 168 32.750
+## 169 17.417
+## 170 17.333
+## 171 73.000
+## 172 18.667
+## 173 18.500
+## 174 18.667
+## 175 17.750
+## 176 17.250
+## 177 36.583
+## 178 23.083
+## 179 19.250
+## 180 17.167
+## 181 23.417
+## 182 17.083
+## 183 17.250
+## 184 23.833
+## 185 18.750
+## 186 21.167
+## 187 24.667
+## 188 18.500
+## 189 20.333
+## 190 20.083
+## 191 18.917
+## 192 27.333
+## 193 18.917
+## 194 17.250
+## 195 18.167
+## 196 26.500
+## 197 17.000
+## 198 17.167
+## 199 19.167
+## 200 17.500
+## 201 19.250
+## 202 21.333
+## 203 18.583
+## 204 20.167
+## 205 18.667
+## 206 17.083
+## 207 17.417
+## 208 18.583
+## 209 19.500
+## 210 18.500
+## 211 17.167
+## 212 17.250
+## 213 17.500
+## 214 20.417
+## 215 17.083
+## 216 21.250
+## 217 19.250
+## 218 19.333
+## 219 19.167
+## 220 18.917
+## 221 20.917
+## 222 17.333
+## 223 18.167
+## 224 20.750
+## 225 19.917
+## 226 18.667
+## 227 18.417
+## 228 17.417
+## 229 20.333
+## 230 19.333
+## 231 18.167
+## 232 20.750
+## 233 17.667
+## 234 16.917
+## 235 18.583
+## 236 17.167
+## 237 17.750</code></pre>
 <pre class="r"><code>##Para ver el encabezado de los datos
 head(survey)</code></pre>
 <pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
@@ -1100,8 +1346,6 @@ ctbl</code></pre>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -1134,35 +1378,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4,h5",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

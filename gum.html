@@ -531,40 +531,187 @@ class="section level2">
 <h2>Librerías de R para estimar la incertidumbre</h2>
 <table>
 <colgroup>
-<col width="42%" />
-<col width="57%" />
+<col width="32%" />
+<col width="24%" />
+<col width="44%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="center">Librería</th>
+<th align="center">Nombre</th>
 <th>Descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center">boot</td>
-<td>proporciona funciones para el remuestreo bootstrap, lo que permite
-la estimación de intervalos de confianza y otras medidas de
-incertidumbre para estadísticas y parámetros</td>
+<td align="center">Funciones Bootstrap</td>
+<td>Proporciona funciones para el remuestreo para estimar intervalos de
+confianza y otras medidas de incertidumbre para estadísticas y
+parámetros</td>
 </tr>
 <tr class="even">
 <td align="center">uncertainty</td>
+<td align="center">Estimación de incertidumbre y análisis de
+contribución</td>
 <td>Ofrece herramientas para la propagación de incertidumbre en cálculos
 y modelos. Permite realizar análisis de sensibilidad y estimar la
 incertidumbre en los resultados</td>
 </tr>
 <tr class="odd">
-<td align="center">‘car’ (Companion to Applied Regression)</td>
+<td align="center">car</td>
+<td align="center">Companion to Applied Regression</td>
 <td>incluye funciones para calcular intervalos de confianza y realizar
 pruebas de hipótesis que pueden ser útiles para estimar la incertidumbre
 en modelos</td>
 </tr>
 <tr class="even">
 <td align="center">propagate</td>
-<td></td>
+<td align="center">propagación de incertidumbre</td>
+<td>Ofrece herramientas para realizar análisis de sensibilidad y estimar
+la incertidumbre en los resultados.</td>
+</tr>
+<tr class="odd">
+<td align="center">gamlss</td>
+<td align="center">Generalized Additive Models for Location Scale and
+Shape</td>
+<td>útil para el modelado de distribuciones de probabilidad complejas y
+puede ser utilizada para estimar la incertidumbre en modelos
+estadísticos más avanzados.</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="distribuciones-de-probabilidad-para-estimar-incertidumbre"
+class="section level2">
+<h2>Distribuciones de probabilidad para estimar incertidumbre</h2>
+<div id="distribución-normal" class="section level3">
+<h3>Distribución normal</h3>
+<p>Una distribución ampliamente usada y la más importante de toda la
+estadística, diversas poblaciones y fenómenos numéricos son
+representados por esta distribución por ejemplo</p>
+<ul>
+<li><p>Errores de medición en experimentos científicos</p></li>
+<li><p>Mediciones antropométricas</p></li>
+<li><p>Tiempos de reacción en experimentos psicológicos</p></li>
+<li><p>Mediciones de inteligencia y aptitud</p></li>
+</ul>
+<p><strong>Función de distribución de probabilidad</strong></p>
+<p>Esta distribución depende de los parámetros de localización y escala,
+determinados por la media <span class="math inline">\(E(X)=\mu\)</span>
+y la desviación estándar <span class="math inline">\(sd =
+\sigma\)</span>,</p>
+<p>El valor de <span class="math inline">\(\sigma\)</span> es la
+distancia desde <span class="math inline">\(\mu\)</span> hasta los
+puntos de inflexión de la curva (los puntos donde la curva cambia de
+concavidad de hacia abajo a hacia arriba).</p>
+<p>La función de distribución de probabilidad está dada por:</p>
+<p><span class="math display">\[\LARGE
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]</span> Con <span
+class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> y <span
+class="math inline">\(\sigma&gt;0\)</span></p>
+<p>Si una variable se distribuye normal se denota de la forma:</p>
+<p><span class="math display">\[\LARGE x \sim N(\mu,
+\sigma^2)\]</span></p>
+<p><strong>Aplicativo de distribuciones de probabilidad
+continuas</strong></p>
+<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
+</iframe>
+</div>
+<div id="distribución-rectangular-ó-uniforme" class="section level3">
+<h3>Distribución rectangular ó uniforme</h3>
+<p>En una distribución rectangular cada valor en un intervalo dado tiene
+la misma probabilidad, o sea la función de densidad de probabilidad es
+constante en este intervalo.</p>
+<p>Sea <span class="math inline">\(X∼U(a,b)\)</span>, es decir, una
+variable aleatoria con distribución uniforme en el intervalo (a,b), con
+<span class="math inline">\(a,b \quad \varepsilon \quad
+\mathbb{R}\)</span>:</p>
+<ul>
+<li>La <strong>función de densidad de probabilidad</strong> es :</li>
+</ul>
+<p><span class="math display">\[ f(x)=\begin{cases}
+\frac{1}{b-a},
+&amp; \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
+0, &amp; \mbox{e.o.c.}
+\end{cases} \]</span></p>
+<ul>
+<li><p>La función de distribución acumulada (CDF) es <span
+class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a})
+\]</span></p></li>
+<li><p>La esperanza o valor medio es</p></li>
+</ul>
+<p><span class="math display">\[E(x)=\frac{a+b}{2}\]</span></p>
+<ul>
+<li>La varianza</li>
+</ul>
+<p><span class="math display">\[E(x)=\frac{(b-a)^2}{12}\]</span></p>
+<p><img src="gum_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Se usa para estimar la incertidumbre cuando:</p>
+<ul>
+<li><p>Un certificado da unos límites sin especificar el nivel de
+confianza (por ejemplo, 25 mL <span class="math inline">\(\pm\)</span>
+0,05 mL)</p></li>
+<li><p>Se ha hecho una estimación en forma de un rango máximo (<span
+class="math inline">\(\pm\)</span>a) sin conocimiento de la forma de la
+distribución.</p></li>
+</ul>
+<p><a
+href="https://huggingface.co/spaces/FreddyHernandez/discrete_uniform"
+class="uri">https://huggingface.co/spaces/FreddyHernandez/discrete_uniform</a></p>
+<p>El rango de una distribución de probabilidad se refiere al conjunto
+de todos los posibles valores que puede tomar una variable aleatoria en
+esa distribución. Es la diferencia entre el valor máximo y el valor
+mínimo de esta variable.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Un químico estima un factor de contribución entre 7 y 10, pero cree
+que el valor podría ser cualquiera entre esos dos valores, pero no tiene
+idea de si alguna de las partes del rango tiene mayor probabilidad de
+ser que otra. Esto es una descripción de una función de distribución
+rectangular con un rango 2a=3 (semi rango de a=1,5).</p>
+<p>Sea la función de estimación de incertidumbre rectángular</p>
+<p><span class="math display">\[u(x)=\frac{a}{\sqrt 3}\]</span> se puede
+calcular una estimación de la incertidumbre estándar. Usando el rango
+antes indicado, a=1,5, resulta una incertidumbre estándar de:</p>
+<p><span class="math display">\[u(x)=\frac{1,5}{{\sqrt 3}} =
+0,87\]</span></p>
+</div>
+<div id="distribución-triángular" class="section level3">
+<h3>Distribución triángular</h3>
+<p>La función de distribución de probabilidad es:</p>
+<p><span class="math display">\[ f(x)=\begin{cases}
+\frac{2(x-a)}{(b-a)(c-a)},
+&amp; \mbox{si $a\leq x &lt; c$,}\\
+\frac{2(b-x)}{(b-a)(b-c)},
+&amp; \mbox{si $c\leq x &lt; b$,}\\
+0, &amp; \mbox{e.o.c.}
+\end{cases} \]</span></p>
+<p>La grafica de la función de distribución de probabilidad es:</p>
+<pre class="r"><code>library(triangle)
+curve(dtriangle(x,3,11,8),xlim=c(3,11),lwd=2,ylab=&quot;f(x)&quot;,main=&quot;Distribución triangular&quot;)</code></pre>
+<p><img src="gum_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ul>
+<li>La esperanza o valor medio es</li>
+</ul>
+<p><span class="math display">\[E(x)=\frac{a+b+c}{3}\]</span></p>
+<ul>
+<li>La varianza</li>
+</ul>
+<p><span
+class="math display">\[E(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}\]</span></p>
+<p>Para estimar incertidumbre se usa cuando</p>
+<ul>
+<li><p>La información disponible está mas delimitada que en una
+distribución rectangular. Los valores cercanos a la mitad de la
+distribución son más probables que los próximos a los límites.</p></li>
+<li><p>Se ha hecho una estimación en forma de un rango máximo <span
+class="math inline">\((\pm a)\)</span> descrito por una distribución
+simétrica.</p></li>
+</ul>
+<p>Sea la función de estimación de incertidumbre rectángular</p>
+<p><span class="math display">\[u(x)=\frac{a}{\sqrt 6}\]</span></p>
+</div>
 </div>
 
 <br>

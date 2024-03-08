@@ -104,3 +104,167 @@ A diferencia del método top-down, el método bottom-up comienza con mediciones 
 |car|Companion to Applied Regression|incluye funciones para calcular intervalos de confianza y realizar pruebas de hipótesis que pueden ser útiles para estimar la incertidumbre en modelos|
 |propagate|propagación de incertidumbre| Ofrece herramientas para realizar análisis de sensibilidad y estimar la incertidumbre en los resultados.|
 |gamlss|Generalized Additive Models for Location Scale and Shape|útil para el modelado de distribuciones de probabilidad complejas y puede ser utilizada para estimar la incertidumbre en modelos estadísticos más avanzados.|
+
+## Distribuciones de probabilidad para estimar incertidumbre
+
+### Distribución normal
+
+Una distribución ampliamente usada y la más importante de toda la estadística, diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
+
+- Errores de medición en experimentos científicos
+
+- Mediciones antropométricas
+
+- Tiempos de reacción en experimentos psicológicos
+
+- Mediciones de inteligencia y aptitud 
+
+
+**Función de distribución de probabilidad**
+
+Esta distribución depende de los parámetros de localización y escala, determinados por la media $E(X)=\mu$ y la desviación estándar $sd = \sigma$,
+
+El valor de $\sigma$ es la distancia desde $\mu$ hasta los puntos de inflexión de la curva (los puntos donde la curva cambia de concavidad de hacia abajo a hacia arriba).
+
+La función de distribución de probabilidad está dada por:
+
+$$\LARGE f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+Con $-\infty<\mu<\infty$ y $\sigma>0$
+
+Si una variable se distribuye normal se denota de la forma:
+
+$$\LARGE x \sim N(\mu, \sigma^2)$$
+
+**Aplicativo de distribuciones de probabilidad continuas**
+
+```{r echo=FALSE}
+
+knitr::include_app("https://amgq828.shinyapps.io/appcontinuas/",height = "1000px")
+
+```
+
+
+
+
+
+### Distribución rectangular ó uniforme
+
+
+En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+
+Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
+
+- La **función de densidad de probabilidad** es :
+
+$$ f(x)=\begin{cases}
+\frac{1}{b-a},
+& \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
+0, & \mbox{e.o.c.}
+\end{cases} $$
+
+- La función de distribución acumulada (CDF) es 
+$$ F(x)=P(x \leq \frac{x-a}{b-a}) $$
+
+- La esperanza o valor medio es
+
+$$E(x)=\frac{a+b}{2}$$
+
+- La varianza 
+
+
+$$E(x)=\frac{(b-a)^2}{12}$$
+
+```{r echo=FALSE}
+
+plotunif <- function(x, min = 0, max = 1, lwd = 1, col = 1, ...) {
+
+    # Rejilla de valores del eje X
+    if (missing(x)) {
+        x <- seq(min - 0.5, max + 0.5, 0.01)
+    }
+
+    if(max < min) {
+        stop("'min' must be lower than 'max'")
+    }
+   
+    plot(x, dunif(x, min = min, max = max),
+         xlim = c(min - 0.25, max + 0.25), type = "l",
+         lty = 0, ylab = "1/2a", ...) 
+    segments(min, 1/(max - min), max, 1/(max - min), col = col, lwd = lwd)
+    segments(min - 2, 0, min, 0, lwd = lwd, col = col)
+    segments(max, 0, max + 2, 0, lwd = lwd, col = col)
+    points(min, 1/(max - min), pch = 19, col = col)
+    points(max, 1/(max - min), pch = 19, col = col)
+    segments(min, 0, min, 1/(max - min), lty = 2, col = col, lwd = lwd)
+    segments(max, 0, max, 1/(max - min), lty = 2, col = col, lwd = lwd)
+    points(0, min, pch = 21, col = col, bg = "white")
+    points(max, min, pch = 21, col = col, bg = "white")
+}
+
+plotunif(min = 0, max = 1, lwd = 2, col = 4, main = "PDF uniforme",xlab="2a=(+-a)")
+```
+
+Se usa para estimar la incertidumbre cuando:
+
+- Un certificado da unos límites sin especificar el nivel de confianza (por ejemplo, 25 mL $\pm$ 0,05 mL)
+
+- Se ha hecho una estimación en forma de un rango máximo ($\pm$a) sin conocimiento de la forma de la distribución.
+
+https://huggingface.co/spaces/FreddyHernandez/discrete_uniform
+
+
+El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
+
+
+**Ejemplo**
+
+Un químico estima un factor de contribución entre 7 y 10, pero cree que el valor podría ser cualquiera entre esos dos valores, pero no tiene idea de si alguna de las partes del rango tiene mayor probabilidad de ser que otra. Esto es una descripción de una función de distribución rectangular con un rango 2a=3 (semi rango de a=1,5). 
+
+Sea la función de estimación de incertidumbre rectángular 
+
+$$u(x)=\frac{a}{\sqrt 3}$$
+se puede calcular una estimación de la incertidumbre estándar. Usando el rango antes indicado, a=1,5, resulta una incertidumbre estándar de:
+
+$$u(x)=\frac{1,5}{{\sqrt 3}} = 0,87$$
+
+### Distribución triángular
+
+La función de distribución de probabilidad es:
+
+$$ f(x)=\begin{cases}
+\frac{2(x-a)}{(b-a)(c-a)},
+& \mbox{si $a\leq x < c$,}\\
+\frac{2(b-x)}{(b-a)(b-c)},
+& \mbox{si $c\leq x < b$,}\\
+0, & \mbox{e.o.c.}
+\end{cases} $$
+
+La grafica de la función de distribución de probabilidad es:
+
+```{r}
+library(triangle)
+curve(dtriangle(x,3,11,8),xlim=c(3,11),lwd=2,ylab="f(x)",main="Distribución triangular")
+```
+
+
+
+
+- La esperanza o valor medio es
+
+$$E(x)=\frac{a+b+c}{3}$$
+
+- La varianza 
+
+
+$$E(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}$$
+
+
+Para estimar incertidumbre se usa cuando
+
+- La información disponible está mas delimitada que en una distribución rectangular. Los valores cercanos a la mitad de la distribución son más probables que los próximos a los límites.
+
+- Se ha hecho una estimación en forma de un rango máximo $(\pm a)$ descrito por una distribución simétrica.
+
+Sea la función de estimación de incertidumbre rectángular 
+
+$$u(x)=\frac{a}{\sqrt 6}$$

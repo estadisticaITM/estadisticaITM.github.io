@@ -1,5 +1,5 @@
 ---
-title: "Conceptos estadísticos"
+title: "Introducción a la incertidumbre"
 output:
   html_document:
     toc: true
@@ -7,9 +7,144 @@ output:
     
 ---
 
+Las fuentes potenciales de incertidumbre se investigan y, siempre que sea
+posible, el método se ajusta para reducir la incertidumbre a un nivel aceptable. 
+
+El parámetro q mide la incertidumbre  puede ser, por ejemplo, una
+desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo con un
+nivel de confianza determinado.
+
+La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
+
+Los otros componentes, que también pueden ser caracterizados por desviaciones estándar, se evalúan asumiendo distribuciones de probabilidad, basadas en la experiencia adquirida o en otras informaciones.
+
+
+es posible obtener una medida de la incertidumbre del pH de diferentes muestras de agua. La incertidumbre en la medición del pH puede deberse a varios factores, como la precisión del electrodo de pH, la calibración del electrodo, la variabilidad en la composición de las muestras de agua, entre otros.
+
+Se entiende que el resultado de la medición es la mejor estimación del valor del mensurando, y que todos los componentes de la incertidumbre, comprendidos los que
+provienen de efectos sistemáticos, tales como los componentes asociados a las correcciones y a los patrones de referencia, contribuyen a la dispersión.
+
+
+el conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
+
+
+Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar [B.10]. 
+
+Si hay una correlación entre algunos de los componentes entonces esto tiene que tenerse en cuenta mediante la determinación de la covarianza. 
+
+Sin
+embargo, a menudo es posible evaluar el efecto
+combinado de diversos componentes. Esto puede
+reducir el esfuerzo global y, cuando los
+componentes cuyas contribuciones se evalúan
+conjuntamente están correlacionados, puede
+
+
+**Incertidumbre de medida objetivo (VIM)**
+Nivel de incertidumbre de medida aceptable, se especifica un límite superior
+numérico para la incertidumbre
+
+**error**
+Se considera que un error tiene dos componentes, llamadas componente aleatoria y
+componente sistemática
+
+Error aleatorio
+
+Aparece de las variaciones impredecibles de las magnitudes de influencia. 
+
+Estos efectos aleatorios producen variaciones en observaciones repetidas del mensurando. El error aleatorio de un resultado analítico no puede ser compensado, pero puede reducirse aumentando el número de observaciones.
+
+
+|Descripción|Aleatorio|Sistemático|
+|:---------:|:-------:|:---------:|
+|Causa      | muestreo y variabilidad del parámetro|      |
+|Media |$\mu$   |$\bar x$|
+|Varianza|$\sigma^2$|$S^2$|
+|Desviación estándar|$\sigma$|S|
+
+
+
+
+
+______________________________________________________________________________
+
+```{r echo=FALSE}
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+timeline_tab <- tibble(
+Descripción = c(
+"Causa",
+"",
+"",
+"",
+""),
+Aleatorio = c(
+"- Muestreo",
+"- Variabilidad del parámetro",
+"",
+"",
+""),
+Sistemático = c(
+"Diseño ejecucción y análisis:",
+"- Selección de los sujetos de estudio",
+"- Obtención de la información",
+"- Presencia de variables externas distorsionadas",
+"")
+) %>%
+add_row(Descripción = c(
+"Disminuye al aumentar el tamaño del estudio"),
+Aleatorio = c("Si"
+),
+Sistemático = c(
+"No")
+) %>%
+add_row(Descripción = c(
+"Afectación"),
+Aleatorio = c(
+"Presición"
+),
+Sistemático = c(
+"Validez"
+)
+) %>%
+add_row(Descripción = c(
+"Valoración"),
+Aleatorio = c(
+"Concepto estadístico con juicio informado"),
+Sistemático = c("Juicio informado"))
+
+timeline_tab %>%
+kable(booktabs = T, align = "c",
+      col.names = c("Descripción ","Error aleatorio",
+"Error sistemático"),
+escape=FALSE) %>%
+column_spec(c(1), width = "4cm") %>%
+column_spec(c(2, 3), width = "8cm") %>%
+row_spec(c(1:3) - 1, extra_latex_after = "\\rowcolor{gray!6}") %>%
+kable_styling(
+latex_options = c("striped", "condensed"),
+position = "center",
+full_width = FALSE)
+ 
+
+```
+_____________________________________________________________________
+
+```{r}
+tbl_img <- data.frame(
+name = c("kableExtra 1", "kableExtra 2"),
+logo = "")
+tbl_img %>%
+kbl(booktabs = T) %>%
+kable_paper(full_width = F) %>%
+column_spec(2, image = "imagen/rango.png")
+```
 
 
 ## Fuentes de incertidumbre en las medidas
+
 
 ```{r echo=FALSE}
 library(DiagrammeR) 

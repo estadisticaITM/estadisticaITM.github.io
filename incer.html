@@ -11,7 +11,7 @@
 
 
 
-<title>Conceptos estadísticos</title>
+<title>Introducción a la incertidumbre</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="site_libs/viz-1.8.2/viz.js"></script>
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
@@ -408,17 +410,266 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Conceptos estadísticos</h1>
+<h1 class="title toc-ignore">Introducción a la incertidumbre</h1>
 
 </div>
 
 
+<p>Las fuentes potenciales de incertidumbre se investigan y, siempre que
+sea posible, el método se ajusta para reducir la incertidumbre a un
+nivel aceptable.</p>
+<p>El parámetro q mide la incertidumbre puede ser, por ejemplo, una
+desviación estándar (o un múltiplo de ésta) o la semiamplitud de un
+intervalo con un nivel de confianza determinado.</p>
+<p>La incertidumbre de medida puede ser evaluada a partir de la
+distribución estadística de los resultados de series de mediciones, y
+pueden caracterizarse por sus desviaciones estándar experimentales.</p>
+<p>Los otros componentes, que también pueden ser caracterizados por
+desviaciones estándar, se evalúan asumiendo distribuciones de
+probabilidad, basadas en la experiencia adquirida o en otras
+informaciones.</p>
+<p>es posible obtener una medida de la incertidumbre del pH de
+diferentes muestras de agua. La incertidumbre en la medición del pH
+puede deberse a varios factores, como la precisión del electrodo de pH,
+la calibración del electrodo, la variabilidad en la composición de las
+muestras de agua, entre otros.</p>
+<p>Se entiende que el resultado de la medición es la mejor estimación
+del valor del mensurando, y que todos los componentes de la
+incertidumbre, comprendidos los que provienen de efectos sistemáticos,
+tales como los componentes asociados a las correcciones y a los patrones
+de referencia, contribuyen a la dispersión.</p>
+<p>el conocimiento de la incertidumbre implica un aumento de la
+confianza en la validez del resultado de una medición.</p>
+<p>Cada una de las contribuciones separadas a la incertidumbre es un
+componente de la incertidumbre. Cuando se expresa como desviación
+estándar se conoce como incertidumbre estándar [B.10].</p>
+<p>Si hay una correlación entre algunos de los componentes entonces esto
+tiene que tenerse en cuenta mediante la determinación de la
+covarianza.</p>
+<p>Sin embargo, a menudo es posible evaluar el efecto combinado de
+diversos componentes. Esto puede reducir el esfuerzo global y, cuando
+los componentes cuyas contribuciones se evalúan conjuntamente están
+correlacionados, puede</p>
+<p><strong>Incertidumbre de medida objetivo (VIM)</strong> Nivel de
+incertidumbre de medida aceptable, se especifica un límite superior
+numérico para la incertidumbre</p>
+<p><strong>error</strong> Se considera que un error tiene dos
+componentes, llamadas componente aleatoria y componente sistemática</p>
+<p>Error aleatorio</p>
+<p>Aparece de las variaciones impredecibles de las magnitudes de
+influencia.</p>
+<p>Estos efectos aleatorios producen variaciones en observaciones
+repetidas del mensurando. El error aleatorio de un resultado analítico
+no puede ser compensado, pero puede reducirse aumentando el número de
+observaciones.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Descripción</th>
+<th align="center">Aleatorio</th>
+<th align="center">Sistemático</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Causa</td>
+<td align="center">muestreo y variabilidad del parámetro</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Media</td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\bar x\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Varianza</td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+<td align="center"><span class="math inline">\(S^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Desviación estándar</td>
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+<td align="center">S</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<pre><code>## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.4.0
+## v ggplot2   3.4.4     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+## 
+## Attaching package: &#39;kableExtra&#39;
+## 
+## 
+## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Descripción
+</th>
+<th style="text-align:center;">
+Error aleatorio
+</th>
+<th style="text-align:center;">
+Error sistemático
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+Causa
+</td>
+<td style="text-align:center;width: 8cm; ">
+<ul>
+<li>Muestreo
+</td>
+<td style="text-align:center;width: 8cm; ">
+Diseño ejecucción y análisis:
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+<ul>
+<li>Variabilidad del parámetro
+</td>
+<td style="text-align:center;width: 8cm; ">
+<ul>
+<li>Selección de los sujetos de estudio
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+<ul>
+<li>Obtención de la información
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+<ul>
+<li>Presencia de variables externas distorsionadas
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+</td>
+<td style="text-align:center;width: 8cm; ">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+Disminuye al aumentar el tamaño del estudio
+</td>
+<td style="text-align:center;width: 8cm; ">
+Si
+</td>
+<td style="text-align:center;width: 8cm; ">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+Afectación
+</td>
+<td style="text-align:center;width: 8cm; ">
+Presición
+</td>
+<td style="text-align:center;width: 8cm; ">
+Validez
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+Valoración
+</td>
+<td style="text-align:center;width: 8cm; ">
+Concepto estadístico con juicio informado
+</td>
+<td style="text-align:center;width: 8cm; ">
+Juicio informado
+</td>
+</tr>
+</tbody>
+</table>
+<hr /></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="r"><code>tbl_img &lt;- data.frame(
+name = c(&quot;kableExtra 1&quot;, &quot;kableExtra 2&quot;),
+logo = &quot;&quot;)
+tbl_img %&gt;%
+kbl(booktabs = T) %&gt;%
+kable_paper(full_width = F) %&gt;%
+column_spec(2, image = &quot;imagen/rango.png&quot;)</code></pre>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+logo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+kableExtra 1
+</td>
+<td style="text-align:left;">
+<html>
+<body>
+<img src="imagen/rango.png">
+</body>
+</html>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kableExtra 2
+</td>
+<td style="text-align:left;">
+<html>
+<body>
+<img src="imagen/rango.png">
+</body>
+</html>
+</td>
+</tr>
+</tbody>
+</table>
 <div id="fuentes-de-incertidumbre-en-las-medidas"
 class="section level2">
 <h2>Fuentes de incertidumbre en las medidas</h2>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-d7c5b951e117fb8a87da" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d7c5b951e117fb8a87da">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c63cf0665f8abd0bb120" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c63cf0665f8abd0bb120">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 <br>
