@@ -32,6 +32,18 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.28/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -345,11 +357,10 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>Gran parte de los procedimientos descritos anteriormente de pruebas
-de hipótesis, consideran que las observaciones provienen de poblaciones
-normales. En muchas situaciones este supuesto no se cumple. Una
-alternativa a la no normalidad de los datos, es proceder a implementar
-pruebas no paramétricas.</p>
+<p>Gran parte de los modelos estadísticos consideran que las
+observaciones provienen de poblaciones normales. En muchas situaciones
+este supuesto no se cumple. Una alternativa a la no normalidad de los
+datos, es proceder a implementar pruebas no paramétricas.</p>
 <div id="pruebas-de-normalidad" class="section level1">
 <h1>Pruebas de normalidad</h1>
 <p>La hipotesis nula y alternativa de normalidad son las siguientes:</p>
@@ -358,8 +369,132 @@ distribuyen \quad normal\]</span></p>
 <p><span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad
 se\quad distribuyen \quad normal\]</span> Existen diferentes pruebas
 para evaluar la normalidad, todas son de fácil implementación en R.</p>
-<div id="test-de-kolmogorov-smirnov-k-s" class="section level2">
-<h2>Test de Kolmogorov-Smirnov K-S</h2>
+<ul>
+<li><strong>Prueba Shapiro-Wilk</strong></li>
+</ul>
+<p>En R se usa la función <strong>shapiro.test</strong>, se usa cuando
+la muestra es como máximo de tamaño 50. Es más potente que la prueba de
+K-S.</p>
+<ul>
+<li><p>Prueba Anderson-Darling con la función ad.test del paquete
+nortest.</p></li>
+<li><p>Prueba Cramer-von Mises con la función cvm.test del paquete
+nortest.</p></li>
+<li><p>Prueba Lilliefors (Kolmogorov-Smirnov) con la función lillie.test
+del paquete nortest.</p></li>
+<li><p>Prueba Pearson chi-square con la función pearson.test del paquete
+nortest.</p></li>
+<li><p>Prueba Shapiro-Francia con la función sf.test del paquete
+nortest.</p></li>
+</ul>
+<p><strong>Ejemplo en R probando normalidad</strong></p>
+<p>Se necesita verificar si es correcto suponer que el volumen de
+llenado (en onzas) de una máquina dispensadora de jugos sigue una
+distribución normal, por lo que se toman 25 botellas de forma aleatoria.
+Los datos del volumen de llenado obtenidos de la muestra se encuentran
+almacenados en el vector volumen.</p>
+<p><strong>Hipótesis</strong></p>
+<p><span class="math inline">\(H_0:\)</span> el volumen de llenado (en
+onzas) sigue una distribución normal.</p>
+<p><span class="math inline">\(H_1:\)</span> el volumen de llenado (en
+onzas) no sigue una distribución normal.</p>
+<p>Nivel de significancia: 0.05 (Hipotético).</p>
+<p><strong>Analisis descriptivo</strong></p>
+<pre class="r"><code>library(nortest)
+volumen &lt;-c(8.39,12.14,11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1,11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
+
+mean(volumen)</code></pre>
+<pre><code>## [1] 11.8144</code></pre>
+<pre class="r"><code>sd(volumen)</code></pre>
+<pre><code>## [1] 1.4036</code></pre>
+<pre class="r"><code>require(car)</code></pre>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre class="r"><code>library(MASS)
+par(mfrow=c(1,3))
+hist(volumen, xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
+
+plot(density(volumen), xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
+
+qqPlot(volumen, xlab=&quot;Cuantiles teóricos&quot;, ylab=&quot;Cuantiles muestrales&quot;, las=1,main=&quot;&quot;)</code></pre>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## [1] 5 1</code></pre>
+<pre class="r"><code>ks.test(volumen, &quot;pnorm&quot;, mean =11.81, sd=1.4)</code></pre>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  volumen
+## D = 0.21516, p-value = 0.1703
+## alternative hypothesis: two-sided</code></pre>
+<pre class="r"><code>shapiro.test(volumen)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  volumen
+## W = 0.8161, p-value = 0.0004272</code></pre>
+<pre class="r"><code>ad.test(volumen)</code></pre>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  volumen
+## A = 1.6505, p-value = 0.0002268</code></pre>
+<pre class="r"><code>cvm.test(volumen)</code></pre>
+<pre><code>## 
+##  Cramer-von Mises normality test
+## 
+## data:  volumen
+## W = 0.27431, p-value = 0.0005727</code></pre>
+<pre class="r"><code>sf.test(volumen)</code></pre>
+<pre><code>## 
+##  Shapiro-Francia normality test
+## 
+## data:  volumen
+## W = 0.79487, p-value = 0.0004128</code></pre>
+<div id="prueba-para-otras-distribuciones" class="section level2">
+<h2>Prueba para otras distribuciones</h2>
+<div id="prueba-de-bondad-de-ajuste-para-datos-discretos"
+class="section level3">
+<h3>Prueba de bondad de ajuste para datos discretos</h3>
+<p>Para estimar los parámetros de una distribución de probabilidad
+discreta (poisson y binomial), se requiere la función goodfit del
+paquete vcd. Esta función también realiza la prueba de bondad y ajuste y
+sus argumentos son: variable de interés, tipo de distribución y método.
+Se usará el test de Chi-cuadradado a través del argumento “MinChisq”</p>
+<p><strong>Ejemplo</strong> En un supermercado se está estudiando el
+comportamiento del número de personas que llegan cada hora. Se
+analizaron 20 horas, cuyos datos se consignan a continuación:</p>
+<p><strong>Análisis exploratorio</strong> Se analiza los gráficos para
+determinar una distribución hipotética.</p>
+<pre class="r"><code>personas&lt;-c(13, 14, 14, 19, 17, 14, 13,  9, 16, 16,13, 13, 15, 13,  7, 14, 14, 13, 20, 15)
+
+par(mfrow=c(1,2))
+hist(personas, xlab = &quot;personas&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
+plot(density(personas), xlab = &quot;personas&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>En este caso, la variable de interés registra un número de eventos
+por unidad de tiempo, por lo que se sugiere analizar el ajuste a una
+distribución poisson. Se muestra la respectiva prueba de hipótesis. Sea
+X el número de clientes que visitan Celia Express.</p>
+<p><span class="math inline">\(H_0:\)</span>X∼Poisson</p>
+<p><span class="math inline">\(H_1:\)</span>X≁Poisson</p>
+<p>Se realizará el análisis con un α=0.01</p>
+<pre class="r"><code>require(vcd)</code></pre>
+<pre><code>## Loading required package: vcd</code></pre>
+<pre><code>## Loading required package: grid</code></pre>
+<pre class="r"><code>gf&lt;-goodfit(personas, type = &quot;poisson&quot;, method = &quot;MinChisq&quot;)
+gf$par</code></pre>
+<pre><code>## $lambda
+## [1] 13.60833</code></pre>
+<pre class="r"><code>summary(gf)</code></pre>
+<pre><code>## Warning in summary.goodfit(gf): Chi-squared approximation may be incorrect</code></pre>
+<pre><code>## 
+##   Goodness-of-fit test for poisson distribution
+## 
+##              X^2 df  P(&gt; X^2)
+## Pearson 19.30042 19 0.4377217</code></pre>
+</div>
+<div id="test-de-kolmogorov-smirnov-k-s" class="section level3">
+<h3>Test de Kolmogorov-Smirnov K-S</h3>
 <p>Se emplea para saber si una distribución de probabilidad acumulada
 difiere de una distribución hipotética, por lo general la distribución
 normal, la uniforme, la de Poisson o la exponencial. Es decir permite
@@ -382,10 +517,8 @@ siguen una distribución M</p>
 <p><strong>Ejemplo probando la distribución exponencial</strong></p>
 <p>Celia quiere medir el tiempo de atención a los usuarios. Se
 seleccionaron 20 personas y los tiempos de atención en minutos.</p>
-<pre class="r"><code>require(car)</code></pre>
-<pre><code>## Loading required package: car</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre class="r"><code>tiempo&lt;-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
+<pre class="r"><code>require(car)
+tiempo&lt;-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
           12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
 
 par(mfrow=c(1,3))
@@ -393,7 +526,7 @@ hist(tiempo, xlab = &quot;Tiempo&quot;, ylab = &quot;Frecuencia&quot;, las=1, ma
 qqPlot(tiempo, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1]  2 13</code></pre>
 <pre class="r"><code>plot(density(tiempo), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Se procede a revisar el ajuste con respecto a una distribución
 exponencial con un α=0.05</p>
 <p>Sea X el tiempo entre llegadas a Celia Express.</p>
@@ -426,70 +559,14 @@ y &lt;- runif(30)
 par(mfrow=c(1,2))
 hist(x)
 hist(y)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>ks.test(x, y)</code></pre>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x and y
-## D = 0.5, p-value = 9.065e-05
+## D = 0.52667, p-value = 2.903e-05
 ## alternative hypothesis: two-sided</code></pre>
-</div>
-<div id="test-de-shapiro-wilk" class="section level2">
-<h2>Test de Shapiro-Wilk</h2>
-<p>También se usa para contrastar normalidad de un conjunto de datos,
-cuando la muestra es como máximo de tamaño 50. Es una alternativa más
-potente que la prueba de K-S.</p>
-<p>Para efectuarla se calcula la media y la varianza muestral <span
-class="math inline">\(S^2\)</span>, y se ordenan las observaciones de
-menor a mayor, luego se calculan las diferencias entre: el primero y el
-último; el segundo y el penúltimo; el tercero y el antepenúltimo, etc. y
-se corrigen con unos coeficientes tabulados por Shapiro-Wilk.</p>
-<p>El estadístico de prueba es:</p>
-<p><span class="math display">\[W=\frac{D^2}{nS^2}\]</span></p>
-<p>donde D es la suma de las diferencias corregidas.</p>
-<p><strong>Ejemplo en R probando normalidad</strong></p>
-<p>Se necesita verificar si es correcto suponer que el volumen de
-llenado (en onzas) de una máquina dispensadora de jugos sigue una
-distribución normal, por lo que se toman 25 botellas de forma aleatoria.
-Los datos del volumen de llenado obtenidos de la muestra se encuentran
-almacenados en el vector volumen.</p>
-<p><strong>Hipótesis</strong></p>
-<p><span class="math inline">\(H_0:\)</span> el volumen de llenado (en
-onzas) sigue una distribución normal.</p>
-<p><span class="math inline">\(H_1:\)</span> el volumen de llenado (en
-onzas) no sigue una distribución normal.</p>
-<p>Nivel de significancia: 0.05 (Hipotético).</p>
-<p><strong>Analisis descriptivo</strong></p>
-<pre class="r"><code>volumen &lt;-c(8.39,12.14, 11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1, 11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
-
-mean(volumen)</code></pre>
-<pre><code>## [1] 11.8144</code></pre>
-<pre class="r"><code>sd(volumen)</code></pre>
-<pre><code>## [1] 1.4036</code></pre>
-<pre class="r"><code>require(car)
-library(MASS)
-par(mfrow=c(1,3))
-hist(volumen, xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
-
-plot(density(volumen), xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
-
-qqPlot(volumen, xlab=&quot;Cuantiles teóricos&quot;, ylab=&quot;Cuantiles muestrales&quot;, las=1,main=&quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre><code>## [1] 5 1</code></pre>
-<pre class="r"><code>ks.test(volumen, &quot;pnorm&quot;, mean =11.81, sd=1.4)</code></pre>
-<pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
-## 
-## data:  volumen
-## D = 0.21516, p-value = 0.1703
-## alternative hypothesis: two-sided</code></pre>
-<pre class="r"><code>shapiro.test(volumen)</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  volumen
-## W = 0.8161, p-value = 0.0004272</code></pre>
 <p><strong>Ejemplo en R</strong></p>
 <p>Se mide las concentraciones de cortisol en dos grupos de mujeres
 antes de dar a luz. Al grupo 1 se le practicó una cesárea de urgencias
@@ -501,9 +578,19 @@ parto expontáneamente.</p>
 0.05.</p></li>
 <li><p>Verifique la igualdad de varianzas entre los grupos de
 datos</p></li>
-<li><p>Según la prueba de varianzas, que prueba recomienda para comparar
-las medias entre los grupos de madres</p></li>
 </ol>
+<p><span
+class="math display">\[H_0=\frac{\sigma^2_{inicio}}{\sigma^2_{final}}=1\]</span>
+<span
+class="math display">\[H_0=\frac{\sigma^2_{inicio}}{\sigma^2_{final}}\neq1\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Según la prueba de varianzas, que prueba recomienda para comparar
+las medias entre los grupos de madres</li>
+</ol>
+<p>4.Compruebe que ambos grupos de datos provienen de la misma
+distribución de probabilidad</p>
+<p><span class="math display">\[H_0:grupo1∼grupo2\]</span></p>
+<p><span class="math display">\[H_1:grupo1≁grupo2\]</span></p>
 <pre class="r"><code>###Ingresamos los datos como vectores de los dos grupos de madres
 
 grupo1=c(411,466,432,409,381,363,449,483,438,381)
@@ -558,176 +645,6 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  421.3000  628.4167</code></pre>
-<p><span class="math display">\[H_0:grupo1∼grupo2\]</span></p>
-<p><span class="math display">\[H_1:grupo1≁grupo2\]</span></p>
-</div>
-</div>
-<div
-id="prueba-no-paramétrica-para-la-diferencias-entre-dos-poblaciones"
-class="section level1">
-<h1>Prueba no paramétrica para la diferencias entre dos poblaciones</h1>
-<div id="prueba-de-mann-whitney" class="section level2">
-<h2>Prueba de Mann-Whitney</h2>
-<ul>
-<li><p>Es una prueba no paramétrica para identificar <strong>diferencias
-entre dos poblaciones</strong> basadas en el análisis de dos muestras
-independientes.</p></li>
-<li><p>Se usa cuando los conjuntos de datos no cumplen los requisitos de
-la prueba de t-Student y la normal, (normalidad de los datos y tamaño de
-muestra mayor a 30)</p></li>
-<li><p>Para realizar la prueba las observaciones de las dos muestras
-deben estar en orden ascendente.</p></li>
-<li><p>También se conoce con otros nombres: Mann–Whitney–Wilcoxon,
-Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. Por ello está disponible
-en R por medio de la función wilcox.test.</p></li>
-<li><p>La prueba se basa en una comparación de cada observación de una
-muestra <span class="math inline">\(x_i\)</span> con cada observación en
-la segunda muestra <span class="math inline">\(y_i\)</span> Si las
-muestras tienen la misma mediana, entones cada observación tiene un 50%
-de probabilidad de ser mayor o menor que la observación correspondiente
-de la otra muestra. Por tanto plantea las hipotesis:</p></li>
-</ul>
-<p><span class="math display">\[H_o:P(x_i&gt;y_i)=0.5\]</span> <span
-class="math display">\[H_1: P(x_i&gt;y_i) \neq 0.5\]</span></p>
-<p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
-<p>Los datos siguientes datos corresponden a constantes de permeabilidad
-de la membrana chorioamnion en humanos (una membrana placentaria) medida
-a las 12 y 26 semanas de edad gestacional.</p>
-<ol style="list-style-type: decimal">
-<li><p>realice una prueba de normalidad para verificar la normalidad en
-los conjuntos de datos</p></li>
-<li><p>Asumiendo que los datos no son normales, pruebe a un nivel de
-significancia de α = 0.05 para chequear la alternativa, mayor
-permeabilidad de la membrana chorioamnion para el inicio del
-embarazo.</p></li>
-</ol>
-<pre class="r"><code>x=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
-y=c(1.15, 0.88, 0.90, 0.74, 1.21)
-
-# prueba no parametrica dewilcoxon
-wilcox.test(x,y, alternative = &quot;g&quot;)</code></pre>
-<pre><code>## 
-##  Wilcoxon rank sum exact test
-## 
-## data:  x and y
-## W = 35, p-value = 0.1272
-## alternative hypothesis: true location shift is greater than 0</code></pre>
-<pre class="r"><code>##PRUEBA DE NORMALIDAD
-shapiro.test(x)</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  x
-## W = 0.91129, p-value = 0.29</code></pre>
-<pre class="r"><code>shapiro.test(y)</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  y
-## W = 0.91538, p-value = 0.5006</code></pre>
-<div id="prueba-de-bondad-de-ajuste-para-datos-discretos"
-class="section level3">
-<h3>Prueba de bondad de ajuste para datos discretos</h3>
-<p>Para estimar los parámetros de una distribución de probabilidad
-discreta (poisson y bonimial), se requiere la función goodfit del
-paquete vcd. Esta función también realiza la prueba de bondad y ajuste y
-sus argumentos son: variable de interés, tipo de distribución y método.
-Se usará el test de Chi-cuadradado a través del argumento “MinChisq”</p>
-<p>En el supermercado doña Celia, se está estudiando el comportamiento
-del número de personas que llegan cada hora. Se analizaron 20 horas,
-cuyos datos se consignan a continuación:</p>
-<p><strong>Análisis exploratorio</strong> Se analiza los gráficos para
-determinar una distribución hipotética.</p>
-<pre class="r"><code>personas&lt;-c(13, 14, 14, 19, 17, 14, 13,  9, 16, 16,13, 13, 15, 13,  7, 14, 14, 13, 20, 15)
-
-par(mfrow=c(1,2))
-hist(personas, xlab = &quot;personas&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
-plot(density(personas), xlab = &quot;personas&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>En este caso, la variable de interés registra un número de eventos
-por unidad de tiempo, por lo que se sugiere analizar el ajuste a una
-distribución poisson. Se muestra la respectiva prueba de hipótesis. Sea
-X el número de clientes que visitan Celia Express.</p>
-<p><span class="math inline">\(H_0:\)</span>X∼Poisson</p>
-<p><span class="math inline">\(H_1:\)</span>X≁Poisson</p>
-<p>Se realizará el análisis con un α=0.01</p>
-<pre class="r"><code>require(vcd)</code></pre>
-<pre><code>## Loading required package: vcd</code></pre>
-<pre><code>## Loading required package: grid</code></pre>
-<pre class="r"><code>gf&lt;-goodfit(personas, type = &quot;poisson&quot;, method = &quot;MinChisq&quot;)
-gf$par</code></pre>
-<pre><code>## $lambda
-## [1] 13.60833</code></pre>
-<pre class="r"><code>summary(gf)</code></pre>
-<pre><code>## Warning in summary.goodfit(gf): Chi-squared approximation may be incorrect</code></pre>
-<pre><code>## 
-##   Goodness-of-fit test for poisson distribution
-## 
-##              X^2 df  P(&gt; X^2)
-## Pearson 19.30042 19 0.4377217</code></pre>
-</div>
-<div id="prueba-t-student-en-r" class="section level3">
-<h3>Prueba t-Student en R</h3>
-<p>Los siguientes datos corresponden al rendimiento por hectárea de
-cierta nueva variedad de trigo, medido en 9 lotes experimentales:</p>
-<p>3,35; 3,92; 4,26; 3,36; 3,72; 4,19, 3,42; 4,38; 4,5.3</p>
-<ol style="list-style-type: decimal">
-<li><p>Realice una prueba de normalidad sobre el vector de
-datos</p></li>
-<li><p>Construya un intervalo de confianza al 90% de confianza para el
-rendimiento promedio de la nueva variedad de trigo si suponemos que el
-rendimiento por hectárea se distribuye aproximadamente normal.</p></li>
-<li><p>Para la salida de R construya una prueba de hipótesis</p></li>
-<li><p>Verifique la hipótesis que el rendimiento medio es mayor que
-4</p></li>
-</ol>
-<pre class="r"><code>#vector de datos
-T&lt;-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
-
-#Prueba de normalidad sobre el vector T
-shapiro.test(T)</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  T
-## W = 0.89424, p-value = 0.2205</code></pre>
-<pre class="r"><code>#Tabulación de datos
-table(T)</code></pre>
-<pre><code>## T
-## 3.35 3.36 3.42 3.72 3.92 4.19 4.26 4.38  4.5 
-##    1    1    1    1    1    1    1    1    1</code></pre>
-<pre class="r"><code>#histograma de los datos
-hist(T,breaks=3,col=4)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre class="r"><code>#gráfico de densidad de dtos
-plot(density(T))</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
-<pre class="r"><code>##prueba t de dos colas
-t.test(T,conf.level=0.90)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  T
-## t = 25.674, df = 8, p-value = 5.681e-09
-## alternative hypothesis: true mean is not equal to 0
-## 90 percent confidence interval:
-##  3.617526 4.182474
-## sample estimates:
-## mean of x 
-##       3.9</code></pre>
-<pre class="r"><code>##prueba t de cola superior
-t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  T
-## t = -0.65831, df = 8, p-value = 0.7356
-## alternative hypothesis: true mean is greater than 4
-## 90 percent confidence interval:
-##  3.687817      Inf
-## sample estimates:
-## mean of x 
-##       3.9</code></pre>
 </div>
 </div>
 </div>
@@ -763,518 +680,15 @@ del 0.05.</li>
 
 ## Para llamar la librería
 library(MASS)
+library(DT)
 
 ##la base de datos total corresponde a 
-survey</code></pre>
-<pre><code>##        Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
-## 1   Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
-## 2     Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
-## 3     Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
-## 4     Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
-## 5     Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
-## 6   Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
-## 7     Male   17.7   17.7 Right  L on R    83   Right Freq Never 182.88 Imperial
-## 8   Female   17.0   17.3 Right  R on L    74   Right Freq Never 157.00   Metric
-## 9     Male   20.0   19.5 Right  R on L    72   Right Some Never 175.00   Metric
-## 10    Male   18.5   18.5 Right  R on L    90   Right Some Never 167.00   Metric
-## 11  Female   17.0   17.2 Right  L on R    80   Right Freq Never 156.20 Imperial
-## 12    Male   21.0   21.0 Right  R on L    68    Left Freq Never     NA     &lt;NA&gt;
-## 13  Female   16.0   16.0 Right  L on R    NA   Right Some Never 155.00   Metric
-## 14  Female   19.5   20.2 Right  L on R    66 Neither Some Never 155.00   Metric
-## 15    Male   16.0   15.5 Right  R on L    60   Right Some Never     NA     &lt;NA&gt;
-## 16  Female   17.5   17.0 Right  R on L    NA   Right Freq Never 156.00   Metric
-## 17  Female   18.0   18.0 Right  L on R    89 Neither Freq Never 157.00   Metric
-## 18    Male   19.4   19.2  Left  R on L    74   Right Some Never 182.88 Imperial
-## 19    Male   20.5   20.5 Right  L on R    NA    Left Some Never 190.50 Imperial
-## 20    Male   21.0   20.9 Right  R on L    78   Right Freq Never 177.00   Metric
-## 21    Male   21.5   22.0 Right  R on L    72    Left Freq Never 190.50 Imperial
-## 22    Male   20.1   20.7 Right  L on R    72   Right Freq Never 180.34 Imperial
-## 23    Male   18.5   18.0 Right  L on R    64   Right Freq Never 180.34 Imperial
-## 24    Male   21.5   21.2 Right  R on L    62   Right Some Never 184.00   Metric
-## 25  Female   17.0   17.5 Right  R on L    64    Left Some Never     NA     &lt;NA&gt;
-## 26    Male   18.5   18.5 Right Neither    90 Neither Some Never     NA     &lt;NA&gt;
-## 27    Male   21.0   20.7 Right  R on L    90   Right Some Never 172.72 Imperial
-## 28    Male   20.8   21.4 Right  R on L    62 Neither Freq Never 175.26 Imperial
-## 29    Male   17.8   17.8 Right  L on R    76 Neither Freq Never     NA     &lt;NA&gt;
-## 30    Male   19.5   19.5 Right  L on R    79   Right Some Never 167.00   Metric
-## 31  Female   18.5   18.0 Right  R on L    76   Right None Occas     NA     &lt;NA&gt;
-## 32    Male   18.8   18.2 Right  L on R    78   Right Freq Never 180.00   Metric
-## 33  Female   17.1   17.5 Right  R on L    72   Right Freq Heavy 166.40 Imperial
-## 34    Male   20.1   20.0 Right  R on L    70   Right Some Never 180.00   Metric
-## 35    Male   18.0   19.0 Right  L on R    54 Neither Some Regul     NA     &lt;NA&gt;
-## 36    Male   22.2   21.0 Right  L on R    66   Right Freq Occas 190.00   Metric
-## 37  Female   16.0   16.5 Right  L on R    NA   Right Some Never 168.00   Metric
-## 38    Male   19.4   18.5 Right  R on L    72 Neither Freq Never 182.50   Metric
-## 39    Male   22.0   22.0 Right  R on L    80   Right Some Never 185.00   Metric
-## 40    Male   19.0   19.0 Right  R on L    NA Neither Freq Occas 171.00   Metric
-## 41  Female   17.5   16.0 Right  L on R    NA   Right Some Never 169.00   Metric
-## 42  Female   17.8   18.0 Right  R on L    72   Right Some Never 154.94 Imperial
-## 43    Male     NA     NA Right  R on L    60    &lt;NA&gt; Some Never 172.00   Metric
-## 44  Female   20.1   20.2 Right  L on R    80   Right Some Never 176.50 Imperial
-## 45  Female   13.0   13.0  &lt;NA&gt;  L on R    70    Left Freq Never 180.34 Imperial
-## 46    Male   17.0   17.5 Right  R on L    NA Neither Freq Never 180.34 Imperial
-## 47    Male   23.2   22.7 Right  L on R    84    Left Freq Regul 180.00   Metric
-## 48    Male   22.5   23.0 Right  R on L    96   Right None Never 170.00   Metric
-## 49  Female   18.0   17.6 Right  R on L    60   Right Some Occas 168.00   Metric
-## 50  Female   18.0   17.9 Right  R on L    50    Left None Never 165.00   Metric
-## 51    Male   22.0   21.5  Left  R on L    55    Left Freq Never 200.00   Metric
-## 52    Male   20.5   20.0 Right  L on R    68   Right Freq Never 190.00   Metric
-## 53    Male   17.0   18.0 Right  L on R    78    Left Some Never 170.18 Imperial
-## 54    Male   20.5   19.5 Right  L on R    56   Right Freq Never 179.00   Metric
-## 55    Male   22.5   22.5 Right  R on L    65   Right Freq Regul 182.00   Metric
-## 56    Male   18.5   18.5 Right  L on R    NA Neither Freq Never 171.00   Metric
-## 57  Female   15.5   15.4 Right  R on L    70 Neither None Never 157.48 Imperial
-## 58    Male   19.5   19.7 Right  R on L    72   Right Freq Never     NA     &lt;NA&gt;
-## 59    Male   19.5   19.0 Right  L on R    62   Right Freq Never 177.80 Imperial
-## 60    Male   20.6   21.0  Left  L on R    NA    Left Freq Occas 175.26 Imperial
-## 61    Male   22.8   23.2 Right  R on L    66 Neither Freq Never 187.00   Metric
-## 62  Female   18.5   18.2 Right  R on L    72 Neither Freq Never 167.64 Imperial
-## 63  Female   19.6   19.7 Right  L on R    70   Right Freq Never 178.00   Metric
-## 64  Female   18.7   18.0  Left  L on R    NA    Left None Never 170.00   Metric
-## 65  Female   17.3   18.0 Right  L on R    64 Neither Freq Never 164.00   Metric
-## 66    Male   19.5   19.8 Right Neither    NA   Right Freq Never 183.00   Metric
-## 67  Female   19.0   19.1 Right  L on R    NA Neither Freq Never 172.00   Metric
-## 68  Female   18.5   18.0 Right  R on L    64   Right Freq Never     NA     &lt;NA&gt;
-## 69    Male   19.0   19.0 Right  L on R    NA   Right Some Never 180.00   Metric
-## 70    Male   21.0   19.5 Right  L on R    80    Left None  &lt;NA&gt;     NA     &lt;NA&gt;
-## 71  Female   18.0   17.5 Right  L on R    64    Left Freq Never 170.00   Metric
-## 72    Male   19.4   19.5 Right  R on L    NA   Right Freq Heavy 176.00   Metric
-## 73  Female   17.0   16.6 Right  R on L    68   Right Some Never 171.00   Metric
-## 74  Female   16.5   17.0 Right  L on R    40    Left Freq Never 167.64 Imperial
-## 75  Female   15.6   15.8 Right  R on L    88    Left Some Never 165.00   Metric
-## 76  Female   17.5   17.5 Right Neither    68   Right Freq Heavy 170.00   Metric
-## 77  Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
-## 78  Female   18.6   18.0 Right  L on R    NA Neither Freq Heavy 165.10 Imperial
-## 79  Female   18.3   18.5 Right  R on L    68 Neither Some Never 165.10 Imperial
-## 80    Male   20.0   20.5 Right  L on R    NA   Right Freq Never 185.42 Imperial
-## 81    Male   19.5   19.5  Left  R on L    66    Left Some Never     NA     &lt;NA&gt;
-## 82    Male   19.2   18.9 Right  R on L    76   Right Freq Never 176.50 Imperial
-## 83  Female   17.5   17.5 Right  R on L    98    Left Freq Never     NA     &lt;NA&gt;
-## 84  Female   17.0   17.4 Right  R on L    NA Neither Some Never     NA     &lt;NA&gt;
-## 85    Male   23.0   23.5 Right  L on R    90   Right Freq Never 167.64 Imperial
-## 86  Female   17.7   17.0 Right  R on L    76   Right Some Never 167.00   Metric
-## 87  Female   18.2   18.0 Right  L on R    70   Right Some Never 162.56 Imperial
-## 88  Female   18.3   18.5 Right  R on L    75    Left Freq Never 170.00   Metric
-## 89    Male   18.0   18.0 Right Neither    60   Right Freq Never 179.00   Metric
-## 90  Female   18.0   17.7  Left  R on L    92    Left Some Never     NA     &lt;NA&gt;
-## 91    Male   20.5   20.0 Right  R on L    75    Left Some Never 183.00   Metric
-## 92  Female   17.5   18.0 Right Neither    NA   Right Some Never     NA     &lt;NA&gt;
-## 93  Female   18.2   17.5 Right  L on R    70   Right Some Never 165.00   Metric
-## 94  Female   18.2   18.5 Right  R on L    NA   Right Some Never 168.00   Metric
-## 95    Male   21.3   20.8 Right  R on L    65   Right Freq Heavy 179.00   Metric
-## 96  Female   19.0   18.8 Right  L on R    NA   Right Some Never     NA     &lt;NA&gt;
-## 97    Male   20.0   19.5 Right  R on L    68 Neither Freq Regul 190.00   Metric
-## 98  Female   17.5   17.5 Right  R on L    60   Right Freq Never 166.50   Metric
-## 99    Male   19.5   19.4 Right Neither    NA   Right Freq Never 165.00   Metric
-## 100 Female   19.4   19.6 Right  R on L    68 Neither Freq Never 175.26 Imperial
-## 101   Male   21.9   22.2 Right  R on L    NA   Right Some Never 187.00   Metric
-## 102   Male   18.9   19.1 Right  L on R    60 Neither None Never 170.00   Metric
-## 103 Female   16.0   16.0 Right Neither    NA   Right Some Never 159.00   Metric
-## 104 Female   17.5   17.3 Right  R on L    72   Right Freq Never 175.00   Metric
-## 105 Female   17.5   17.0 Right  R on L    80    Left Some Heavy 163.00   Metric
-## 106 Female   19.5   18.5 Right  R on L    80   Right Some Never 170.00   Metric
-## 107 Female   16.2   16.4 Right  R on L    NA   Right Freq Occas 172.00   Metric
-## 108 Female   17.0   15.9 Right  R on L    85   Right Freq Never     NA     &lt;NA&gt;
-## 109   Male   17.5   17.5 Right  L on R    64 Neither Freq Never 180.00   Metric
-## 110   Male   19.7   20.1 Right  R on L    67    Left Some Regul 180.34 Imperial
-## 111 Female   18.5   18.5 Right  R on L    76    Left Freq Never 175.00   Metric
-## 112   Male   19.2   19.6 Right  L on R    80   Right None Never 190.50 Imperial
-## 113 Female   17.2   16.7 Right  R on L    75   Right Freq Never 170.18 Imperial
-## 114   Male   20.5   21.0 Right  R on L    60   Right Freq Never 185.00   Metric
-## 115 Female   16.0   15.5 Right  L on R    60    Left Freq Never 162.56 Imperial
-## 116 Female   16.9   16.0 Right  L on R    70   Right None Never 158.00   Metric
-## 117 Female   17.0   16.7 Right  R on L    70   Right Some Never 159.00   Metric
-## 118   Male   23.0   22.0  Left  L on R    83    Left Some Heavy 193.04 Imperial
-## 119 Female   18.5   18.0  Left  L on R   100 Neither Some Never 171.00   Metric
-## 120   Male   21.0   20.4 Right  L on R   100   Right Freq Heavy 184.00   Metric
-## 121   Male   20.0   20.0 Right  R on L    80 Neither Freq Occas     NA     &lt;NA&gt;
-## 122   Male   22.5   22.5 Right  L on R    76   Right Freq Occas 177.00   Metric
-## 123 Female   18.5   18.0 Right  R on L    92   Right Freq Never 172.00   Metric
-## 124   Male   19.8   20.0  Left  L on R    59   Right Freq Never 180.00   Metric
-## 125   Male   18.5   18.1 Right  L on R    66    Left Freq Never 175.26 Imperial
-## 126   Male   19.3   19.4 Right  R on L    NA   Right Freq Never 180.34 Imperial
-## 127 Female   16.0   16.0 Right  R on L    68   Right Freq Never 172.72 Imperial
-## 128   Male   18.8   19.1 Right  L on R    66 Neither Freq Regul 178.50   Metric
-## 129 Female   17.5   17.0 Right  R on L    74   Right Freq Never 157.00   Metric
-## 130 Female   16.4   16.5 Right  L on R    90   Right Some Never 152.00   Metric
-## 131   Male   22.0   21.5 Right  R on L    86   Right Freq Never 187.96 Imperial
-## 132   Male   19.0   19.5 Right  L on R    60   Right Some Never 178.00   Metric
-## 133 Female   18.9   20.0 Right  R on L    86   Right Some Never     NA     &lt;NA&gt;
-## 134 Female   15.4   16.4  Left  L on R    80    Left Freq Occas 160.02 Imperial
-## 135   Male   17.9   17.8 Right  R on L    85    Left Some Never 175.26 Imperial
-## 136   Male   23.1   22.5 Right  L on R    90   Right Some Regul 189.00   Metric
-## 137   &lt;NA&gt;   19.8   19.0  Left  L on R    73 Neither Freq Never 172.00   Metric
-## 138   Male   22.0   22.0 Right  L on R    72   Right Freq Never 182.88 Imperial
-## 139   Male   20.0   19.5 Right  L on R    NA   Right Freq Never 170.00   Metric
-## 140 Female   19.5   18.5 Right  L on R    68   Right None Never 167.00   Metric
-## 141 Female   18.0   18.6 Right  R on L    84   Right Some Never 175.00   Metric
-## 142 Female   18.3   19.0 Right  R on L    NA   Right None Never 165.00   Metric
-## 143 Female   19.0   18.8 Right  R on L    65   Right Freq Never 172.72 Imperial
-## 144   Male   21.4   21.0 Right  L on R    96 Neither Some Never 180.00   Metric
-## 145 Female   20.0   19.5  Left  R on L    68 Neither Freq Never 172.00   Metric
-## 146   Male   18.5   18.5 Right  R on L    75 Neither Some Never 185.00   Metric
-## 147   Male   22.5   22.6 Right  L on R    64   Right Freq Regul 187.96 Imperial
-## 148   Male   19.5   20.2 Right  R on L    60 Neither Freq Never 185.42 Imperial
-## 149 Female   18.0   18.0 Right  L on R    92 Neither Freq Never 165.00   Metric
-## 150 Female   18.0   18.5 Right  R on L    64 Neither Freq Never 164.00   Metric
-## 151   Male   21.8   22.3 Right  R on L    76    Left Freq Never 195.00   Metric
-## 152 Female   13.0   12.5 Right  L on R    80   Right Freq Never 165.00   Metric
-## 153 Female   16.3   16.2 Right  L on R    92   Right Some Regul 152.40 Imperial
-## 154   Male   21.5   21.6 Right  R on L    69   Right Freq Never 172.72 Imperial
-## 155   Male   18.9   19.1 Right  L on R    68   Right None Never 180.34 Imperial
-## 156   Male   20.5   20.0 Right  R on L    76   Right Freq Never 173.00   Metric
-## 157   Male   14.0   15.5 Right  L on R    NA Neither Freq Heavy     NA     &lt;NA&gt;
-## 158 Female   18.9   19.2 Right  L on R    74   Right Some Never 167.64 Imperial
-## 159   Male   20.0   20.5 Right  R on L    NA   Right None Never 187.96 Imperial
-## 160   Male   18.5   19.0 Right  L on R    84   Right Freq Regul 187.00   Metric
-## 161 Female   17.5   17.1 Right  R on L    80    Left None Never 167.00   Metric
-## 162   Male   18.1   18.2  Left Neither    NA   Right Some Never 168.00   Metric
-## 163   Male   20.2   20.3 Right  L on R    72 Neither Some Never 191.80 Imperial
-## 164 Female   16.5   16.9 Right  R on L    60 Neither Freq Occas 169.20   Metric
-## 165   Male   19.1   19.1 Right Neither    NA   Right Some Never 177.00   Metric
-## 166 Female   17.6   17.2 Right  R on L    81    Left Some Never 168.00   Metric
-## 167 Female   19.5   19.2 Right  R on L    70   Right Some Never 170.00   Metric
-## 168 Female   16.5   15.0 Right  L on R    65   Right Some Regul 160.02 Imperial
-## 169   Male   19.0   18.5 Right  L on R    NA Neither Freq Never 189.00   Metric
-## 170   Male   19.0   18.5 Right  R on L    72   Right Freq Never 180.34 Imperial
-## 171 Female   16.5   17.0 Right  L on R    NA   Right Some Never 168.00   Metric
-## 172   Male   20.5   19.5  Left  L on R    80   Right Some Occas 182.88 Imperial
-## 173 Female   15.5   15.5 Right Neither    50   Right Some Regul     NA     &lt;NA&gt;
-## 174 Female   18.0   17.5 Right  R on L    48 Neither Freq Never 165.00   Metric
-## 175 Female   17.5   18.0 Right  R on L    68 Neither Freq Never 157.48 Imperial
-## 176 Female   19.0   18.5  Left  L on R   104    Left Freq Never 170.00   Metric
-## 177   Male   20.5   20.5 Right Neither    76   Right Freq Regul 172.72 Imperial
-## 178 Female   16.7   17.0 Right  L on R    84    Left Freq Never 164.00   Metric
-## 179 Female   20.5   20.5 Right  R on L    NA    Left Freq Regul     NA     &lt;NA&gt;
-## 180 Female   17.0   16.5 Right  R on L    70   Right Some Never 162.56 Imperial
-## 181   Male   19.0   19.5 Right  R on L    68   Right Freq Occas 172.00   Metric
-## 182 Female   14.0   13.5 Right  R on L    87 Neither Freq Occas 165.10 Imperial
-## 183 Female   17.5   17.6 Right  L on R    79   Right Some Never 162.50   Metric
-## 184   Male   18.5   19.0 Right  L on R    70    Left Freq Never 170.00   Metric
-## 185   Male   18.0   18.5 Right Neither    90   Right Some Never 175.00   Metric
-## 186   Male   20.5   20.7 Right  R on L    72   Right Some Never 168.00   Metric
-## 187 Female   17.0   17.0 Right  L on R    79   Right Some Never 163.00   Metric
-## 188   Male   18.5   18.5 Right  R on L    65   Right None Never 165.00   Metric
-## 189   Male   18.0   18.5 Right  R on L    62   Right Freq Never 173.00   Metric
-## 190   Male   18.5   18.0 Right Neither    63 Neither Freq Never 196.00   Metric
-## 191   Male   20.0   19.5 Right  R on L    92   Right Some Never 179.10 Imperial
-## 192   Male   22.0   22.5 Right  L on R    60   Right Some Never 180.00   Metric
-## 193   Male   17.9   18.4 Right  R on L    68    Left None Occas 176.00   Metric
-## 194 Female   17.6   17.8 Right  L on R    72    Left Some Never 160.02 Imperial
-## 195 Female   16.7   15.1 Right Neither    NA   Right None Never 157.48 Imperial
-## 196 Female   17.0   17.6 Right  L on R    76   Right Some Never 165.00   Metric
-## 197 Female   15.0   13.0 Right  R on L    80 Neither Freq Never 170.18 Imperial
-## 198   Male   16.0   15.5 Right Neither    71   Right Freq Never 154.94 Imperial
-## 199 Female   19.1   19.0 Right  R on L    80   Right Some Occas 170.00   Metric
-## 200 Female   17.5   16.5 Right  R on L    80 Neither Some Never 164.00   Metric
-## 201 Female   16.2   15.8 Right  R on L    61   Right Some Occas 167.00   Metric
-## 202   Male   21.0   21.0 Right  L on R    48 Neither Freq Never 174.00   Metric
-## 203 Female   18.8   17.8 Right  R on L    76   Right Some Never     NA     &lt;NA&gt;
-## 204 Female   18.5   18.0 Right Neither    86   Right None Never 160.00   Metric
-## 205   Male   17.0   17.5 Right  R on L    80   Right Some Regul 179.10   Metric
-## 206 Female   17.5   17.0 Right  R on L    83 Neither Freq Occas 168.00   Metric
-## 207 Female   17.5   17.6 Right  L on R    76   Right Some Never 153.50   Metric
-## 208   Male   17.5   17.6 Right  R on L    84   Right Some Never 160.00   Metric
-## 209   Male   17.5   17.0  Left  L on R    97 Neither None Never 165.00   Metric
-## 210 Female   20.8   20.7 Right  R on L    NA Neither Freq Never 171.50   Metric
-## 211 Female   18.6   18.6 Right  L on R    74   Right Some Never 160.00   Metric
-## 212 Female   17.5   17.5  Left  R on L    83 Neither Some Never 163.00   Metric
-## 213   Male   18.0   18.5 Right  R on L    78   Right Freq Never     NA     &lt;NA&gt;
-## 214   Male   17.0   17.5 Right  R on L    65   Right Some Never 165.00   Metric
-## 215 Female   18.0   17.8 Right  L on R    68   Right Some Never 168.90 Imperial
-## 216   Male   19.5   20.0 Right Neither    NA   Right Some Never 170.00   Metric
-## 217 Female   16.3   16.2 Right  L on R    NA   Right None Never     NA     &lt;NA&gt;
-## 218   Male   18.2   19.8 Right  R on L    88   Right Freq Never 185.00   Metric
-## 219 Female   17.0   17.3 Right  L on R    NA Neither Freq Never 173.00   Metric
-## 220   Male   23.2   23.2 Right  L on R    75   Right Freq Never 188.00   Metric
-## 221   Male   23.2   23.3 Right  L on R    NA   Right None Heavy 171.00   Metric
-## 222 Female   15.9   16.5 Right  R on L    70   Right Freq Never 167.64 Imperial
-## 223 Female   17.5   18.4 Right  R on L    88   Right Some Never 162.56 Imperial
-## 224 Female   17.5   17.6 Right  L on R    NA   Right Freq Never 150.00   Metric
-## 225 Female   17.6   17.2 Right  L on R    NA   Right Some Never     NA     &lt;NA&gt;
-## 226 Female   17.5   17.8 Right  R on L    96   Right Some Never     NA     &lt;NA&gt;
-## 227 Female   18.8   18.3 Right  R on L    80   Right Some Heavy 170.18 Imperial
-## 228   Male   20.0   19.8 Right  L on R    68   Right Freq Never 185.00   Metric
-## 229 Female   18.6   18.8 Right  L on R    70   Right Freq Regul 167.00   Metric
-## 230   Male   18.6   19.6 Right  L on R    71   Right Freq Occas 185.00   Metric
-## 231 Female   18.8   18.5 Right  R on L    80   Right Some Never 169.00   Metric
-## 232   Male   18.0   16.0 Right  R on L    NA   Right Some Never 180.34 Imperial
-## 233 Female   18.0   18.0 Right  L on R    85   Right Some Never 165.10 Imperial
-## 234 Female   18.5   18.0 Right  L on R    88   Right Some Never 160.00   Metric
-## 235 Female   17.5   16.5 Right  R on L    NA   Right Some Never 170.00   Metric
-## 236   Male   21.0   21.5 Right  R on L    90   Right Some Never 183.00   Metric
-## 237 Female   17.6   17.3 Right  R on L    85   Right Freq Never 168.50   Metric
-##        Age
-## 1   18.250
-## 2   17.583
-## 3   16.917
-## 4   20.333
-## 5   23.667
-## 6   21.000
-## 7   18.833
-## 8   35.833
-## 9   19.000
-## 10  22.333
-## 11  28.500
-## 12  18.250
-## 13  18.750
-## 14  17.500
-## 15  17.167
-## 16  17.167
-## 17  19.333
-## 18  18.333
-## 19  19.750
-## 20  17.917
-## 21  17.917
-## 22  18.167
-## 23  17.833
-## 24  18.250
-## 25  19.167
-## 26  17.583
-## 27  17.500
-## 28  18.083
-## 29  21.917
-## 30  19.250
-## 31  41.583
-## 32  17.500
-## 33  39.750
-## 34  17.167
-## 35  17.750
-## 36  18.000
-## 37  19.000
-## 38  17.917
-## 39  35.500
-## 40  19.917
-## 41  17.500
-## 42  17.083
-## 43  28.583
-## 44  17.500
-## 45  17.417
-## 46  18.500
-## 47  18.917
-## 48  19.417
-## 49  18.417
-## 50  30.750
-## 51  18.500
-## 52  17.500
-## 53  18.333
-## 54  17.417
-## 55  20.000
-## 56  18.333
-## 57  17.167
-## 58  17.417
-## 59  17.667
-## 60  18.417
-## 61  20.333
-## 62  17.333
-## 63  17.500
-## 64  19.833
-## 65  18.583
-## 66  18.000
-## 67  30.667
-## 68  16.917
-## 69  19.917
-## 70  18.333
-## 71  17.583
-## 72  17.833
-## 73  17.667
-## 74  17.417
-## 75  17.750
-## 76  20.667
-## 77  23.583
-## 78  17.167
-## 79  17.083
-## 80  18.750
-## 81  16.750
-## 82  20.167
-## 83  17.667
-## 84  17.167
-## 85  17.167
-## 86  17.250
-## 87  18.000
-## 88  18.750
-## 89  21.583
-## 90  17.583
-## 91  19.667
-## 92  18.000
-## 93  19.667
-## 94  17.083
-## 95  22.833
-## 96  17.083
-## 97  19.417
-## 98  23.250
-## 99  18.083
-## 100 19.083
-## 101 18.917
-## 102 17.750
-## 103 20.833
-## 104 20.167
-## 105 17.667
-## 106 18.250
-## 107 17.000
-## 108 18.500
-## 109 18.583
-## 110 17.750
-## 111 24.167
-## 112 18.167
-## 113 21.167
-## 114 17.917
-## 115 17.417
-## 116 20.500
-## 117 22.917
-## 118 18.917
-## 119 18.917
-## 120 20.083
-## 121 17.500
-## 122 18.250
-## 123 17.500
-## 124 17.417
-## 125 21.000
-## 126 19.833
-## 127 17.667
-## 128 18.083
-## 129 18.000
-## 130 18.333
-## 131 20.000
-## 132 18.750
-## 133 19.083
-## 134 18.500
-## 135 18.417
-## 136 19.167
-## 137 21.500
-## 138 19.333
-## 139 21.417
-## 140 18.667
-## 141 17.500
-## 142 21.083
-## 143 17.250
-## 144 19.000
-## 145 19.167
-## 146 19.000
-## 147 23.000
-## 148 32.667
-## 149 20.000
-## 150 20.167
-## 151 25.500
-## 152 18.167
-## 153 23.500
-## 154 70.417
-## 155 43.833
-## 156 23.583
-## 157 21.083
-## 158 44.250
-## 159 19.667
-## 160 17.917
-## 161 18.417
-## 162 21.167
-## 163 17.500
-## 164 29.083
-## 165 19.917
-## 166 18.500
-## 167 18.167
-## 168 32.750
-## 169 17.417
-## 170 17.333
-## 171 73.000
-## 172 18.667
-## 173 18.500
-## 174 18.667
-## 175 17.750
-## 176 17.250
-## 177 36.583
-## 178 23.083
-## 179 19.250
-## 180 17.167
-## 181 23.417
-## 182 17.083
-## 183 17.250
-## 184 23.833
-## 185 18.750
-## 186 21.167
-## 187 24.667
-## 188 18.500
-## 189 20.333
-## 190 20.083
-## 191 18.917
-## 192 27.333
-## 193 18.917
-## 194 17.250
-## 195 18.167
-## 196 26.500
-## 197 17.000
-## 198 17.167
-## 199 19.167
-## 200 17.500
-## 201 19.250
-## 202 21.333
-## 203 18.583
-## 204 20.167
-## 205 18.667
-## 206 17.083
-## 207 17.417
-## 208 18.583
-## 209 19.500
-## 210 18.500
-## 211 17.167
-## 212 17.250
-## 213 17.500
-## 214 20.417
-## 215 17.083
-## 216 21.250
-## 217 19.250
-## 218 19.333
-## 219 19.167
-## 220 18.917
-## 221 20.917
-## 222 17.333
-## 223 18.167
-## 224 20.750
-## 225 19.917
-## 226 18.667
-## 227 18.417
-## 228 17.417
-## 229 20.333
-## 230 19.333
-## 231 18.167
-## 232 20.750
-## 233 17.667
-## 234 16.917
-## 235 18.583
-## 236 17.167
-## 237 17.750</code></pre>
-<pre class="r"><code>##Para ver el encabezado de los datos
-head(survey)</code></pre>
-<pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
-## 1 Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
-## 2   Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
-## 3   Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
-## 4   Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
-## 5   Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
-## 6 Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
-##      Age
-## 1 18.250
-## 2 17.583
-## 3 16.917
-## 4 20.333
-## 5 23.667
-## 6 21.000</code></pre>
-<pre class="r"><code>##Para ver la ultima parte de los datos
-tail(survey)</code></pre>
-<pre><code>##        Sex Wr.Hnd NW.Hnd W.Hnd   Fold Pulse  Clap Exer Smoke Height      M.I
-## 232   Male   18.0   16.0 Right R on L    NA Right Some Never 180.34 Imperial
-## 233 Female   18.0   18.0 Right L on R    85 Right Some Never 165.10 Imperial
-## 234 Female   18.5   18.0 Right L on R    88 Right Some Never 160.00   Metric
-## 235 Female   17.5   16.5 Right R on L    NA Right Some Never 170.00   Metric
-## 236   Male   21.0   21.5 Right R on L    90 Right Some Never 183.00   Metric
-## 237 Female   17.6   17.3 Right R on L    85 Right Freq Never 168.50   Metric
-##        Age
-## 232 20.750
-## 233 17.667
-## 234 16.917
-## 235 18.583
-## 236 17.167
-## 237 17.750</code></pre>
+DT::datatable(survey, filter = &#39;top&#39;, 
+              options = list(pageLength = 5, autoWidth = TRUE ))</code></pre>
+<div id="htmlwidget-a23e69e3e157bd12d330" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a23e69e3e157bd12d330">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Female&quot;,&quot;Male&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"13\" data-max=\"23.2\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"12.5\" data-max=\"23.5\" data-scale=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Left&quot;,&quot;Right&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;L on R&quot;,&quot;Neither&quot;,&quot;R on L&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"35\" data-max=\"104\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Left&quot;,&quot;Neither&quot;,&quot;Right&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Freq&quot;,&quot;None&quot;,&quot;Some&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Heavy&quot;,&quot;Never&quot;,&quot;Occas&quot;,&quot;Regul&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"150\" data-max=\"200\" data-scale=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Imperial&quot;,&quot;Metric&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"16.75\" data-max=\"73\" data-scale=\"3\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237"],["Female","Male","Male","Male","Male","Female","Male","Female","Male","Male","Female","Male","Female","Female","Male","Female","Female","Male","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Male","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Male","Male","Male","Male","Male","Female","Male","Male","Male","Male","Female","Female","Female","Female","Male","Female","Female","Male","Male","Female","Male","Female","Female","Female","Female","Female","Female","Female","Male","Male","Male","Female","Female","Male","Female","Female","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Male","Male","Female","Male","Female","Male","Female","Female","Female","Male","Female","Male","Male","Male","Female","Male","Male","Male","Female","Male","Female","Female","Male","Male","Female","Female","Male","Male",null,"Male","Male","Female","Female","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Female","Female","Male","Male","Male","Male","Female","Male","Male","Female","Male","Male","Female","Male","Female","Female","Female","Male","Male","Female","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Female","Male","Male","Male","Female","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Male","Female","Female","Female","Male","Female","Female","Male","Female","Female","Male","Male","Female","Female","Female","Male","Male","Female","Male","Female","Male","Female","Male","Male","Female","Female","Female","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Female","Male","Female"],[18.5,19.5,18,18.8,20,18,17.7,17,20,18.5,17,21,16,19.5,16,17.5,18,19.4,20.5,21,21.5,20.1,18.5,21.5,17,18.5,21,20.8,17.8,19.5,18.5,18.8,17.1,20.1,18,22.2,16,19.4,22,19,17.5,17.8,null,20.1,13,17,23.2,22.5,18,18,22,20.5,17,20.5,22.5,18.5,15.5,19.5,19.5,20.6,22.8,18.5,19.6,18.7,17.3,19.5,19,18.5,19,21,18,19.4,17,16.5,15.6,17.5,17,18.6,18.3,20,19.5,19.2,17.5,17,23,17.7,18.2,18.3,18,18,20.5,17.5,18.2,18.2,21.3,19,20,17.5,19.5,19.4,21.9,18.9,16,17.5,17.5,19.5,16.2,17,17.5,19.7,18.5,19.2,17.2,20.5,16,16.9,17,23,18.5,21,20,22.5,18.5,19.8,18.5,19.3,16,18.8,17.5,16.4,22,19,18.9,15.4,17.9,23.1,19.8,22,20,19.5,18,18.3,19,21.4,20,18.5,22.5,19.5,18,18,21.8,13,16.3,21.5,18.9,20.5,14,18.9,20,18.5,17.5,18.1,20.2,16.5,19.1,17.6,19.5,16.5,19,19,16.5,20.5,15.5,18,17.5,19,20.5,16.7,20.5,17,19,14,17.5,18.5,18,20.5,17,18.5,18,18.5,20,22,17.9,17.6,16.7,17,15,16,19.1,17.5,16.2,21,18.8,18.5,17,17.5,17.5,17.5,17.5,20.8,18.6,17.5,18,17,18,19.5,16.3,18.2,17,23.2,23.2,15.9,17.5,17.5,17.6,17.5,18.8,20,18.6,18.6,18.8,18,18,18.5,17.5,21,17.6],[18,20.5,13.3,18.9,20,17.7,17.7,17.3,19.5,18.5,17.2,21,16,20.2,15.5,17,18,19.2,20.5,20.9,22,20.7,18,21.2,17.5,18.5,20.7,21.4,17.8,19.5,18,18.2,17.5,20,19,21,16.5,18.5,22,19,16,18,null,20.2,13,17.5,22.7,23,17.6,17.9,21.5,20,18,19.5,22.5,18.5,15.4,19.7,19,21,23.2,18.2,19.7,18,18,19.8,19.1,18,19,19.5,17.5,19.5,16.6,17,15.8,17.5,17.6,18,18.5,20.5,19.5,18.9,17.5,17.4,23.5,17,18,18.5,18,17.7,20,18,17.5,18.5,20.8,18.8,19.5,17.5,19.4,19.6,22.2,19.1,16,17.3,17,18.5,16.4,15.9,17.5,20.1,18.5,19.6,16.7,21,15.5,16,16.7,22,18,20.4,20,22.5,18,20,18.1,19.4,16,19.1,17,16.5,21.5,19.5,20,16.4,17.8,22.5,19,22,19.5,18.5,18.6,19,18.8,21,19.5,18.5,22.6,20.2,18,18.5,22.3,12.5,16.2,21.6,19.1,20,15.5,19.2,20.5,19,17.1,18.2,20.3,16.9,19.1,17.2,19.2,15,18.5,18.5,17,19.5,15.5,17.5,18,18.5,20.5,17,20.5,16.5,19.5,13.5,17.6,19,18.5,20.7,17,18.5,18.5,18,19.5,22.5,18.4,17.8,15.1,17.6,13,15.5,19,16.5,15.8,21,17.8,18,17.5,17,17.6,17.6,17,20.7,18.6,17.5,18.5,17.5,17.8,20,16.2,19.8,17.3,23.2,23.3,16.5,18.4,17.6,17.2,17.8,18.3,19.8,18.8,19.6,18.5,16,18,18,16.5,21.5,17.3],["Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right",null,"Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Left","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Left","Right","Right","Left","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right"],["R on L","R on L","L on R","R on L","Neither","L on R","L on R","R on L","R on L","R on L","L on R","R on L","L on R","L on R","R on L","R on L","L on R","R on L","L on R","R on L","R on L","L on R","L on R","R on L","R on L","Neither","R on L","R on L","L on R","L on R","R on L","L on R","R on L","R on L","L on R","L on R","L on R","R on L","R on L","R on L","L on R","R on L","R on L","L on R","L on R","R on L","L on R","R on L","R on L","R on L","R on L","L on R","L on R","L on R","R on L","L on R","R on L","R on L","L on R","L on R","R on L","R on L","L on R","L on R","L on R","Neither","L on R","R on L","L on R","L on R","L on R","R on L","R on L","L on R","R on L","Neither","L on R","L on R","R on L","L on R","R on L","R on L","R on L","R on L","L on R","R on L","L on R","R on L","Neither","R on L","R on L","Neither","L on R","R on L","R on L","L on R","R on L","R on L","Neither","R on L","R on L","L on R","Neither","R on L","R on L","R on L","R on L","R on L","L on R","R on L","R on L","L on R","R on L","R on L","L on R","L on R","R on L","L on R","L on R","L on R","R on L","L on R","R on L","L on R","L on R","R on L","R on L","L on R","R on L","L on R","R on L","L on R","R on L","L on R","R on L","L on R","L on R","L on R","L on R","L on R","R on L","R on L","R on L","L on R","R on L","R on L","L on R","R on L","L on R","R on L","R on L","L on R","L on R","R on L","L on R","R on L","L on R","L on R","R on L","L on R","R on L","Neither","L on R","R on L","Neither","R on L","R on L","L on R","L on R","R on L","L on R","L on R","Neither","R on L","R on L","L on R","Neither","L on R","R on L","R on L","R on L","R on L","L on R","L on R","Neither","R on L","L on R","R on L","R on L","Neither","R on L","L on R","R on L","L on R","Neither","L on R","R on L","Neither","R on L","R on L","R on L","L on R","R on L","Neither","R on L","R on L","L on R","R on L","L on R","R on L","L on R","R on L","R on L","R on L","L on R","Neither","L on R","R on L","L on R","L on R","L on R","R on L","R on L","L on R","L on R","R on L","R on L","L on R","L on R","L on R","R on L","R on L","L on R","L on R","R on L","R on L","R on L"],[92,104,87,null,35,64,83,74,72,90,80,68,null,66,60,null,89,74,null,78,72,72,64,62,64,90,90,62,76,79,76,78,72,70,54,66,null,72,80,null,null,72,60,80,70,null,84,96,60,50,55,68,78,56,65,null,70,72,62,null,66,72,70,null,64,null,null,64,null,80,64,null,68,40,88,68,76,null,68,null,66,76,98,null,90,76,70,75,60,92,75,null,70,null,65,null,68,60,null,68,null,60,null,72,80,80,null,85,64,67,76,80,75,60,60,70,70,83,100,100,80,76,92,59,66,null,68,66,74,90,86,60,86,80,85,90,73,72,null,68,84,null,65,96,68,75,64,60,92,64,76,80,92,69,68,76,null,74,null,84,80,null,72,60,null,81,70,65,null,72,null,80,50,48,68,104,76,84,null,70,68,87,79,70,90,72,79,65,62,63,92,60,68,72,null,76,80,71,80,80,61,48,76,86,80,83,76,84,97,null,74,83,78,65,68,null,null,88,null,75,null,70,88,null,null,96,80,68,70,71,80,null,85,88,null,90,85],["Left","Left","Neither","Neither","Right","Right","Right","Right","Right","Right","Right","Left","Right","Neither","Right","Right","Neither","Right","Left","Right","Left","Right","Right","Right","Left","Neither","Right","Neither","Neither","Right","Right","Right","Right","Right","Neither","Right","Right","Neither","Right","Neither","Right","Right",null,"Right","Left","Neither","Left","Right","Right","Left","Left","Right","Left","Right","Right","Neither","Neither","Right","Right","Left","Neither","Neither","Right","Left","Neither","Right","Neither","Right","Right","Left","Left","Right","Right","Left","Left","Right","Right","Neither","Neither","Right","Left","Right","Left","Neither","Right","Right","Right","Left","Right","Left","Left","Right","Right","Right","Right","Right","Neither","Right","Right","Neither","Right","Neither","Right","Right","Left","Right","Right","Right","Neither","Left","Left","Right","Right","Right","Left","Right","Right","Left","Neither","Right","Neither","Right","Right","Right","Left","Right","Right","Neither","Right","Right","Right","Right","Right","Left","Left","Right","Neither","Right","Right","Right","Right","Right","Right","Neither","Neither","Neither","Right","Neither","Neither","Neither","Left","Right","Right","Right","Right","Right","Neither","Right","Right","Right","Left","Right","Neither","Neither","Right","Left","Right","Right","Neither","Right","Right","Right","Right","Neither","Neither","Left","Right","Left","Left","Right","Right","Neither","Right","Left","Right","Right","Right","Right","Right","Neither","Right","Right","Left","Left","Right","Right","Neither","Right","Right","Neither","Right","Neither","Right","Right","Right","Neither","Right","Right","Neither","Neither","Right","Neither","Right","Right","Right","Right","Right","Right","Neither","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right","Right"],["Some","None","None","None","Some","Some","Freq","Freq","Some","Some","Freq","Freq","Some","Some","Some","Freq","Freq","Some","Some","Freq","Freq","Freq","Freq","Some","Some","Some","Some","Freq","Freq","Some","None","Freq","Freq","Some","Some","Freq","Some","Freq","Some","Freq","Some","Some","Some","Some","Freq","Freq","Freq","None","Some","None","Freq","Freq","Some","Freq","Freq","Freq","None","Freq","Freq","Freq","Freq","Freq","Freq","None","Freq","Freq","Freq","Freq","Some","None","Freq","Freq","Some","Freq","Some","Freq","Some","Freq","Some","Freq","Some","Freq","Freq","Some","Freq","Some","Some","Freq","Freq","Some","Some","Some","Some","Some","Freq","Some","Freq","Freq","Freq","Freq","Some","None","Some","Freq","Some","Some","Freq","Freq","Freq","Some","Freq","None","Freq","Freq","Freq","None","Some","Some","Some","Freq","Freq","Freq","Freq","Freq","Freq","Freq","Freq","Freq","Freq","Some","Freq","Some","Some","Freq","Some","Some","Freq","Freq","Freq","None","Some","None","Freq","Some","Freq","Some","Freq","Freq","Freq","Freq","Freq","Freq","Some","Freq","None","Freq","Freq","Some","None","Freq","None","Some","Some","Freq","Some","Some","Some","Some","Freq","Freq","Some","Some","Some","Freq","Freq","Freq","Freq","Freq","Freq","Some","Freq","Freq","Some","Freq","Some","Some","Some","None","Freq","Freq","Some","Some","None","Some","None","Some","Freq","Freq","Some","Some","Some","Freq","Some","None","Some","Freq","Some","Some","None","Freq","Some","Some","Freq","Some","Some","Some","None","Freq","Freq","Freq","None","Freq","Some","Freq","Some","Some","Some","Freq","Freq","Freq","Some","Some","Some","Some","Some","Some","Freq"],["Never","Regul","Occas","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Occas","Never","Heavy","Never","Regul","Occas","Never","Never","Never","Occas","Never","Never","Never","Never","Never","Never","Regul","Never","Occas","Never","Never","Never","Never","Never","Regul","Never","Never","Never","Never","Occas","Never","Never","Never","Never","Never","Never","Never","Never","Never",null,"Never","Heavy","Never","Never","Never","Heavy","Never","Heavy","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Heavy","Never","Regul","Never","Never","Never","Never","Never","Never","Never","Heavy","Never","Occas","Never","Never","Regul","Never","Never","Never","Never","Never","Never","Never","Heavy","Never","Heavy","Occas","Occas","Never","Never","Never","Never","Never","Regul","Never","Never","Never","Never","Never","Occas","Never","Regul","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Regul","Never","Never","Never","Never","Never","Regul","Never","Never","Never","Heavy","Never","Never","Regul","Never","Never","Never","Occas","Never","Never","Never","Regul","Never","Never","Never","Occas","Regul","Never","Never","Never","Regul","Never","Regul","Never","Occas","Occas","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Occas","Never","Never","Never","Never","Never","Occas","Never","Occas","Never","Never","Never","Regul","Occas","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Never","Heavy","Never","Never","Never","Never","Never","Heavy","Never","Regul","Occas","Never","Never","Never","Never","Never","Never","Never"],[173,177.8,null,160,165,172.72,182.88,157,175,167,156.2,null,155,155,null,156,157,182.88,190.5,177,190.5,180.34,180.34,184,null,null,172.72,175.26,null,167,null,180,166.4,180,null,190,168,182.5,185,171,169,154.94,172,176.5,180.34,180.34,180,170,168,165,200,190,170.18,179,182,171,157.48,null,177.8,175.26,187,167.64,178,170,164,183,172,null,180,null,170,176,171,167.64,165,170,165,165.1,165.1,185.42,null,176.5,null,null,167.64,167,162.56,170,179,null,183,null,165,168,179,null,190,166.5,165,175.26,187,170,159,175,163,170,172,null,180,180.34,175,190.5,170.18,185,162.56,158,159,193.04,171,184,null,177,172,180,175.26,180.34,172.72,178.5,157,152,187.96,178,null,160.02,175.26,189,172,182.88,170,167,175,165,172.72,180,172,185,187.96,185.42,165,164,195,165,152.4,172.72,180.34,173,null,167.64,187.96,187,167,168,191.8,169.2,177,168,170,160.02,189,180.34,168,182.88,null,165,157.48,170,172.72,164,null,162.56,172,165.1,162.5,170,175,168,163,165,173,196,179.1,180,176,160.02,157.48,165,170.18,154.94,170,164,167,174,null,160,179.1,168,153.5,160,165,171.5,160,163,null,165,168.9,170,null,185,173,188,171,167.64,162.56,150,null,null,170.18,185,167,185,169,180.34,165.1,160,170,183,168.5],["Metric","Imperial",null,"Metric","Metric","Imperial","Imperial","Metric","Metric","Metric","Imperial",null,"Metric","Metric",null,"Metric","Metric","Imperial","Imperial","Metric","Imperial","Imperial","Imperial","Metric",null,null,"Imperial","Imperial",null,"Metric",null,"Metric","Imperial","Metric",null,"Metric","Metric","Metric","Metric","Metric","Metric","Imperial","Metric","Imperial","Imperial","Imperial","Metric","Metric","Metric","Metric","Metric","Metric","Imperial","Metric","Metric","Metric","Imperial",null,"Imperial","Imperial","Metric","Imperial","Metric","Metric","Metric","Metric","Metric",null,"Metric",null,"Metric","Metric","Metric","Imperial","Metric","Metric","Metric","Imperial","Imperial","Imperial",null,"Imperial",null,null,"Imperial","Metric","Imperial","Metric","Metric",null,"Metric",null,"Metric","Metric","Metric",null,"Metric","Metric","Metric","Imperial","Metric","Metric","Metric","Metric","Metric","Metric","Metric",null,"Metric","Imperial","Metric","Imperial","Imperial","Metric","Imperial","Metric","Metric","Imperial","Metric","Metric",null,"Metric","Metric","Metric","Imperial","Imperial","Imperial","Metric","Metric","Metric","Imperial","Metric",null,"Imperial","Imperial","Metric","Metric","Imperial","Metric","Metric","Metric","Metric","Imperial","Metric","Metric","Metric","Imperial","Imperial","Metric","Metric","Metric","Metric","Imperial","Imperial","Imperial","Metric",null,"Imperial","Imperial","Metric","Metric","Metric","Imperial","Metric","Metric","Metric","Metric","Imperial","Metric","Imperial","Metric","Imperial",null,"Metric","Imperial","Metric","Imperial","Metric",null,"Imperial","Metric","Imperial","Metric","Metric","Metric","Metric","Metric","Metric","Metric","Metric","Imperial","Metric","Metric","Imperial","Imperial","Metric","Imperial","Imperial","Metric","Metric","Metric","Metric",null,"Metric","Metric","Metric","Metric","Metric","Metric","Metric","Metric","Metric",null,"Metric","Imperial","Metric",null,"Metric","Metric","Metric","Metric","Imperial","Imperial","Metric",null,null,"Imperial","Metric","Metric","Metric","Metric","Imperial","Imperial","Metric","Metric","Metric","Metric"],[18.25,17.583,16.917,20.333,23.667,21,18.833,35.833,19,22.333,28.5,18.25,18.75,17.5,17.167,17.167,19.333,18.333,19.75,17.917,17.917,18.167,17.833,18.25,19.167,17.583,17.5,18.083,21.917,19.25,41.583,17.5,39.75,17.167,17.75,18,19,17.917,35.5,19.917,17.5,17.083,28.583,17.5,17.417,18.5,18.917,19.417,18.417,30.75,18.5,17.5,18.333,17.417,20,18.333,17.167,17.417,17.667,18.417,20.333,17.333,17.5,19.833,18.583,18,30.667,16.917,19.917,18.333,17.583,17.833,17.667,17.417,17.75,20.667,23.583,17.167,17.083,18.75,16.75,20.167,17.667,17.167,17.167,17.25,18,18.75,21.583,17.583,19.667,18,19.667,17.083,22.833,17.083,19.417,23.25,18.083,19.083,18.917,17.75,20.833,20.167,17.667,18.25,17,18.5,18.583,17.75,24.167,18.167,21.167,17.917,17.417,20.5,22.917,18.917,18.917,20.083,17.5,18.25,17.5,17.417,21,19.833,17.667,18.083,18,18.333,20,18.75,19.083,18.5,18.417,19.167,21.5,19.333,21.417,18.667,17.5,21.083,17.25,19,19.167,19,23,32.667,20,20.167,25.5,18.167,23.5,70.417,43.833,23.583,21.083,44.25,19.667,17.917,18.417,21.167,17.5,29.083,19.917,18.5,18.167,32.75,17.417,17.333,73,18.667,18.5,18.667,17.75,17.25,36.583,23.083,19.25,17.167,23.417,17.083,17.25,23.833,18.75,21.167,24.667,18.5,20.333,20.083,18.917,27.333,18.917,17.25,18.167,26.5,17,17.167,19.167,17.5,19.25,21.333,18.583,20.167,18.667,17.083,17.417,18.583,19.5,18.5,17.167,17.25,17.5,20.417,17.083,21.25,19.25,19.333,19.167,18.917,20.917,17.333,18.167,20.75,19.917,18.667,18.417,17.417,20.333,19.333,18.167,20.75,17.667,16.917,18.583,17.167,17.75]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sex<\/th>\n      <th>Wr.Hnd<\/th>\n      <th>NW.Hnd<\/th>\n      <th>W.Hnd<\/th>\n      <th>Fold<\/th>\n      <th>Pulse<\/th>\n      <th>Clap<\/th>\n      <th>Exer<\/th>\n      <th>Smoke<\/th>\n      <th>Height<\/th>\n      <th>M.I<\/th>\n      <th>Age<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[2,3,6,10,12]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>## Para obtener un resumen de los datos
+
 summary(survey)</code></pre>
 <pre><code>##      Sex          Wr.Hnd          NW.Hnd        W.Hnd          Fold    
 ##  Female:118   Min.   :13.00   Min.   :12.50   Left : 18   L on R : 99  
@@ -1336,6 +750,136 @@ ctbl</code></pre>
 ## 
 ## data:  ctbl
 ## X-squared = 3.2328, df = 3, p-value = 0.3571</code></pre>
+</div>
+</div>
+<div
+id="prueba-no-paramétrica-para-la-diferencias-entre-dos-poblaciones"
+class="section level1">
+<h1>Prueba no paramétrica para la diferencias entre dos poblaciones</h1>
+<div id="prueba-de-mann-whitney" class="section level2">
+<h2>Prueba de Mann-Whitney</h2>
+<ul>
+<li><p>Es una prueba no paramétrica para identificar <strong>diferencias
+entre dos poblaciones</strong> basadas en el análisis de dos muestras
+independientes.</p></li>
+<li><p>Se usa cuando los conjuntos de datos no cumplen los requisitos de
+la prueba de t-Student y la normal, (normalidad de los datos y tamaño de
+muestra mayor a 30)</p></li>
+<li><p>Para realizar la prueba las observaciones de las dos muestras
+deben estar en orden ascendente.</p></li>
+<li><p>También se conoce con otros nombres: Mann–Whitney–Wilcoxon,
+Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. Por ello está disponible
+en R por medio de la función wilcox.test.</p></li>
+<li><p>La prueba se basa en una comparación de cada observación de una
+muestra <span class="math inline">\(x_i\)</span> con cada observación en
+la segunda muestra <span class="math inline">\(y_i\)</span> Si las
+muestras tienen la misma mediana, entones cada observación tiene un 50%
+de probabilidad de ser mayor o menor que la observación correspondiente
+de la otra muestra. Por tanto plantea las hipotesis:</p></li>
+</ul>
+<p><span class="math display">\[H_o:P(x_i&gt;y_i)=0.5\]</span> <span
+class="math display">\[H_1: P(x_i&gt;y_i) \neq 0.5\]</span></p>
+<p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
+<p>Los datos siguientes datos corresponden a constantes de permeabilidad
+de la membrana chorioamnion en humanos (una membrana placentaria) medida
+a las 12 y 26 semanas de edad gestacional.</p>
+<ol style="list-style-type: decimal">
+<li><p>realice una prueba de normalidad para verificar la normalidad en
+los conjuntos de datos</p></li>
+<li><p>Asumiendo que los datos no son normales, pruebe a un nivel de
+significancia de α = 0.05 para chequear la alternativa, mayor
+permeabilidad de la membrana chorioamnion para el inicio del
+embarazo.</p></li>
+</ol>
+<pre class="r"><code>library(nortest)
+
+x=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+y=c(1.15, 0.88, 0.90, 0.74, 1.21)
+
+# prueba no parametrica dewilcoxon
+wilcox.test(x,y, alternative = &quot;g&quot;)</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  x and y
+## W = 35, p-value = 0.1272
+## alternative hypothesis: true location shift is greater than 0</code></pre>
+<pre class="r"><code>##PRUEBA DE NORMALIDAD
+shapiro.test(x)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.91129, p-value = 0.29</code></pre>
+<pre class="r"><code>shapiro.test(y)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  y
+## W = 0.91538, p-value = 0.5006</code></pre>
+<div id="prueba-t-student-en-r" class="section level3">
+<h3>Prueba t-Student en R</h3>
+<p>Los siguientes datos corresponden al rendimiento por hectárea de
+cierta nueva variedad de trigo, medido en 9 lotes experimentales:</p>
+<p>3,35; 3,92; 4,26; 3,36; 3,72; 4,19, 3,42; 4,38; 4,5.3</p>
+<ol style="list-style-type: decimal">
+<li><p>Realice una prueba de normalidad sobre el vector de
+datos</p></li>
+<li><p>Construya un intervalo de confianza al 90% de confianza para el
+rendimiento promedio de la nueva variedad de trigo si suponemos que el
+rendimiento por hectárea se distribuye aproximadamente normal.</p></li>
+<li><p>Para la salida de R construya una prueba de hipótesis</p></li>
+<li><p>Verifique la hipótesis que el rendimiento medio es mayor que
+4</p></li>
+</ol>
+<pre class="r"><code>#vector de datos
+T&lt;-c(3.35,3.92,4.26,3.36,3.72,4.19,3.42,4.38,4.5)
+
+#Prueba de normalidad sobre el vector T
+shapiro.test(T)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  T
+## W = 0.89424, p-value = 0.2205</code></pre>
+<pre class="r"><code>#Tabulación de datos
+table(T)</code></pre>
+<pre><code>## T
+## 3.35 3.36 3.42 3.72 3.92 4.19 4.26 4.38  4.5 
+##    1    1    1    1    1    1    1    1    1</code></pre>
+<pre class="r"><code>#histograma de los datos
+hist(T,breaks=3,col=4)</code></pre>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>#gráfico de densidad de dtos
+plot(density(T))</code></pre>
+<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<pre class="r"><code>##prueba t de dos colas
+t.test(T,conf.level=0.90)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = 25.674, df = 8, p-value = 5.681e-09
+## alternative hypothesis: true mean is not equal to 0
+## 90 percent confidence interval:
+##  3.617526 4.182474
+## sample estimates:
+## mean of x 
+##       3.9</code></pre>
+<pre class="r"><code>##prueba t de cola superior
+t.test(T,conf.level=0.90,alternative=&quot;greater&quot;,mu=4)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = -0.65831, df = 8, p-value = 0.7356
+## alternative hypothesis: true mean is greater than 4
+## 90 percent confidence interval:
+##  3.687817      Inf
+## sample estimates:
+## mean of x 
+##       3.9</code></pre>
+</div>
 </div>
 </div>
 
