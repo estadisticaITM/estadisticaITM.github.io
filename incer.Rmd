@@ -7,57 +7,61 @@ output:
     
 ---
 
-Las fuentes potenciales de incertidumbre se investigan y, siempre que sea
+- Las fuentes potenciales de incertidumbre se investigan y, siempre que sea
 posible, el método se ajusta para reducir la incertidumbre a un nivel aceptable. 
 
-El parámetro q mide la incertidumbre  puede ser, por ejemplo, una
-desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo con un
-nivel de confianza determinado.
+- El parámetro que mide la incertidumbre  puede ser,  una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con un nivel de confianza determinado.
 
-La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
+- La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
 
-Los otros componentes, que también pueden ser caracterizados por desviaciones estándar, se evalúan asumiendo distribuciones de probabilidad, basadas en la experiencia adquirida o en otras informaciones.
+- El conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
 
 
-es posible obtener una medida de la incertidumbre del pH de diferentes muestras de agua. La incertidumbre en la medición del pH puede deberse a varios factores, como la precisión del electrodo de pH, la calibración del electrodo, la variabilidad en la composición de las muestras de agua, entre otros.
+- Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar.
 
-Se entiende que el resultado de la medición es la mejor estimación del valor del mensurando, y que todos los componentes de la incertidumbre, comprendidos los que
-provienen de efectos sistemáticos, tales como los componentes asociados a las correcciones y a los patrones de referencia, contribuyen a la dispersión.
+- Si hay correlación entre las componentes, se tiene en cuenta mediante la covarianza. 
+
+### Resolución
+
+Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
 
 
-el conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/reso.png")
+```
 
 
-Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar [B.10]. 
 
-Si hay una correlación entre algunos de los componentes entonces esto tiene que tenerse en cuenta mediante la determinación de la covarianza. 
+## Error
 
-Sin embargo, a menudo es posible evaluar el efecto combinado de diversos componentes. Esto puede reducir el esfuerzo global y, cuando los componentes cuyas contribuciones se evalúan conjuntamente están correlacionados, puede 
 
-**Incertidumbre de medida objetivo (VIM)**
-Nivel de incertidumbre de medida aceptable, se especifica un límite superior
-numérico para la incertidumbre
+Diferencia entre un valor medido de una magnitud y un valor de referencia, 
 
-**error**
+
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/fm.png")
+```
+
+**Errores experimentales**
+
+**Error absoluto**
+Diferencia entre el valor indicado por el instrumento $A_i$ y el valor verdadero $A_r$ de la magnitud medida.
+
+$$E=A_i-A_r$$
+
+
+
+**Componentes del error**
+
 Se considera que un error tiene dos componentes, llamadas componente aleatoria y
 componente sistemática
 
-Error aleatorio
 
-Aparece de las variaciones impredecibles de las magnitudes de influencia. 
+**Error sistemático**
 
-Estos efectos aleatorios producen variaciones en observaciones repetidas del mensurando. El error aleatorio de un resultado analítico no puede ser compensado, pero puede reducirse aumentando el número de observaciones.
-
-
-|Descripción|Aleatorio|Sistemático|
-|:---------:|:-------:|:---------:|
-|Causa      | muestreo y variabilidad del parámetro|      |
-|Media |$\mu$   |$\bar x$|
-|Varianza|$\sigma^2$|$S^2$|
-|Desviación estándar|$\sigma$|S|
-
-
-
+- Los efectos que cambian sistemáticamente en magnitud durante series de análisis, dan lugar a errores sistemáticos que no son constantes.
 
 
 ______________________________________________________________________________
@@ -65,8 +69,9 @@ ______________________________________________________________________________
 ```{r echo=FALSE}
 
 library(tidyverse)
-library(knitr)
 library(kableExtra)
+
+
 timeline_tab <- tibble(
 Descripción = c(
 "Causa",
@@ -75,17 +80,24 @@ Descripción = c(
 "",
 ""),
 Aleatorio = c(
+"- Variaciones impredecibles en observaciones repetidas del mensurando. ",
+"- variaciones de las magnitudes",
 "- Muestreo",
-"- Variabilidad del parámetro",
-"",
 "",
 ""),
 Sistemático = c(
-"Diseño ejecucción y análisis:",
+"- Permanecen constantes o varían de forma predecible en el análisis del mismo mensurando.",
 "- Selección de los sujetos de estudio",
 "- Obtención de la información",
 "- Presencia de variables externas distorsionadas",
 "")
+) %>%
+add_row(Descripción = c(
+"___________________________________"),
+Aleatorio = c("_____________________"
+),
+Sistemático = c(
+"__________________________")
 ) %>%
 add_row(Descripción = c(
 "Disminuye al aumentar el tamaño del estudio"),
@@ -93,6 +105,14 @@ Aleatorio = c("Si"
 ),
 Sistemático = c(
 "No")
+) %>%
+  
+add_row(Descripción = c(
+"___________________________________"),
+Aleatorio = c("_____________________"
+),
+Sistemático = c(
+"__________________________")
 ) %>%
 add_row(Descripción = c(
 "Afectación"),
@@ -104,40 +124,166 @@ Sistemático = c(
 )
 ) %>%
 add_row(Descripción = c(
-"Valoración"),
+"___________________________________"),
+Aleatorio = c("_____________________"
+),
+Sistemático = c(
+"__________________________")
+) %>%
+add_row(Descripción = c(
+"Medida"),
 Aleatorio = c(
-"Concepto estadístico con juicio informado"),
-Sistemático = c("Juicio informado"))
-
+"$$A_i- media (A_i) $$"),
+Sistemático = c("$$media(A_i)-A_i$$"))
 timeline_tab %>%
-kable(booktabs = T, align = "c",
+kable(booktabs = TRUE, align = "c",
       col.names = c("Descripción ","Error aleatorio",
 "Error sistemático"),
 escape=FALSE) %>%
-column_spec(c(1), width = "4cm") %>%
-column_spec(c(2, 3), width = "8cm") %>%
-row_spec(c(1:3) - 1, extra_latex_after = "\\rowcolor{gray!6}") %>%
-kable_styling(
-latex_options = c("striped", "condensed"),
-position = "center",
-full_width = FALSE)
- 
-
+column_spec(c(1), width = "3cm") %>%
+column_spec(c(2, 3), width = "9cm") 
 ```
 _____________________________________________________________________
 
-```{r}
-tbl_img <- data.frame(
-name = c("kableExtra 1", "kableExtra 2"),
-logo = "")
-tbl_img %>%
-kbl(booktabs = T) %>%
-kable_paper(full_width = F) %>%
-column_spec(2, image = "imagen/rango.png")
-```
 
 
-## Fuentes de incertidumbre en las medidas
+
+## Identificación de fuentes de incertidumbre
+
+Listar todas las posibles fuentes de incertidumbre, incluye:
+
+- De los parámetros, 
+
+- De las suposiciones químicas. 
+
+- Por las condiciones ambientales 
+
+- Por la repitibilidad de las medidas
+
+- Por la exactitud y resolución del equipo 
+
+**Procedimientos para formar una lista estructurada**
+
+**Principios del enfoque**
+La estrategia tiene dos fases:
+
+- mediante un diagrama de causa-efecto (conocido como Ishikawa o
+diagrama "espina de pescado), identifique los efectos sobre un resultado.
+
+- Simplifique y resuelva duplicaciones
+
+La lista inicial se depura para simplificar su presentación final y asegurar que los efectos no se han duplicado innecesariamente.
+
+
+**Análisis causa-efecto**
+
+El procedimiento empleado es el siguiente:
+
+1. Escribir la ecuación completa para el resultado. 
+
+Los parámetros de la ecuación forman las ramas principales del diagrama.
+Casi siempre, o cuando resulte apropiado, es necesario añadir una rama principal que representa una corrección nominal de sesgo global, en relación con la recuperación.
+
+2. Considerar cada etapa del método y añadir los factores necesarios al diagrama, desde los efectos principales hacia afuera. Los ejemplos
+incluyen efectos de la matriz y ambientales.
+
+3. Para cada rama, añadir factores que contribuyan hasta que sus efectos sobre el resultado sean insignificantes.
+
+4. Resolver las duplicaciones y repetir el proceso para clarificar las contribuciones y agrupar las contribuciones para cada grupo. Es
+conveniente agrupar en esta fase los términos relacionados con la precisión en una rama independiente.
+
+La etapa final del análisis causa-efecto requiere una aclaración adicional. Las
+duplicaciones aparecen de forma natural al detallar por separado las contribuciones para cada parámetro de entrada. Por ejemplo, está siempre
+presente un elemento de variabilidad entre series de análisis, al menos nominalmente, para cualquier factor de influencia; estos efectos
+contribuyen a la variación global del método considerada como un todo, por lo que no deben añadirse por separado si ya se han tenido en cuenta. 
+
+Del mismo modo, es común encontrar el mismo equipo usado como instrumento de
+pesaje, lo que puede llevar a considerar varias veces su incertidumbre de calibración. Estas consideraciones nos llevan a las siguientes reglas
+adicionales para el perfeccionamiento del diagrama (aunque se aplican igualmente a cualquier lista estructurada de efectos):
+
+- Efectos que se compensan: eliminar todos.
+Por ejemplo, en una pesada por diferencia, se determinan las dos masas, ambas
+influenciadas por ‘sesgo cero’ de la balanza.
+La compensación del cero se eliminará de la pesada por diferencia, y se puede descartar de las ramas de las pesadas independientes.
+
+- Efecto similar, mismo tiempo: combinar en una única variable de entrada. Por ejemplo, la variación entre series de muchas variables de entrada puede combinarse en una única rama de precisión intermedia. Hay que ser cautos;
+concretamente, la variabilidad en las operaciones realizadas individualmente para cada determinación se pueden combinar, en tanto que la variabilidad en las operaciones llevadas a cabo en lotes completos (como la calibración de instrumentos) sólo será observable en la precisión entre-lotes.
+
+- Casos diferentes: renombrar. Es habitual encontrar efectos con la misma
+denominación que en realidad se refieren a casos diferentes de medidas similares. Estas deben distinguirse claramente antes de continuar.
+
+Esta forma de análisis no conduce a listas estructuradas únicas. En este ejemplo, la temperatura puede considerarse con un efecto directo sobre la densidad a medir, o indirecto sobre la masa medida del material contenido en
+el picnómetro; o bien podría constituir la estructura inicial. En la práctica esto no afecta a la utilidad del método. Siempre que todos los
+efectos significativos aparezcan una vez, la metodología global será eficaz.
+
+Una vez se ha completado el análisis causa-efecto puede ser adecuado volver a la
+ecuación original y añadir nuevos términos (como por ejemplo la temperatura).
+
+
+**Ejemplo**
+
+D.4.1 El procedimiento se ilustra por referencia a
+una medida simplificada y directa de densidad.
+Considerar el caso de la determinación directa de
+la densidad de etanol d(EtOH) mediante pesada
+de un volumen conocido V en un recipiente
+volumétrico adecuado de tara mtara y peso bruto
+incluido etanol mbruto. La densidad se calcula a
+partir de
+d(EtOH)=(mbruto - mtara)/V
+Para mayor claridad, solo se tienen en cuenta tres
+efectos: la calibración del equipo, la temperatura
+y la precisión de las medidas. Las Figuras D1-D3
+ilustran gráficamente el proceso.
+D.4.2 Un diagrama causa-efecto consiste en una
+estructura jerarquizada que termina en una única
+salida. Para nuestro objetivo, esta salida es un
+resultado analítico concreto (‘d(EtOH)’ en la
+Figura D1). Las ramas principales del resultado
+son los efectos contributivos, que incluyen tanto
+los resultados de medidas intermedias concretas
+como otros factores, tales como efectos de matriz
+o ambientales. Cada rama a su vez puede tener
+efectos contributivos adicionales. Estos ‘efectos’
+comprenden todos los factores que afectan al
+resultado, ya sean variables o constantes; las
+incertidumbres de estos efectos contribuyen
+claramente sobre la incertidumbre del resultado.
+D.4.3 La Figura D1 muestra un posible diagrama
+obtenido directamente por aplicación de las
+etapas 1-3. Las ramas principales son los
+parámetros en la ecuación, y cada efecto está
+representado mediante ramas secundarias. Hay
+que tener en cuenta que hay dos efectos
+‘temperatura’, tres efectos ‘precisión’ y tres
+efectos ‘calibración’.
+D.4.4 La Figura D2 representa los efectos de
+precisión y temperatura agrupados siguiendo la
+segunda regla (mismo efecto/tiempo); la
+temperatura puede ser tratada como un único
+efecto sobre la densidad, mientras que las
+variaciones individuales en cada determinación
+contribuyen a la variación observada en la
+replicación de todo el método.
+D.4.5 El sesgo en la calibración de las dos
+pesadas se anula, y puede eliminarse (Figura D3)
+siguiendo la primera regla (eliminación).
+D.4.6 Finalmente, las ramas ‘calibración’
+restantes deberían distinguirse como dos
+contribuciones (diferentes) debido a posible no
+linealidad en la respuesta de la balanza, junto
+con la incertidumbre de calibración asociada con
+la determinación volumétrica.
+
+
+
+
+
+
+
+
+
+
 
 
 ```{r echo=FALSE}
@@ -208,3 +354,17 @@ dispositivos de medida.']
       }")
 ```
 
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/df.png")
+```
+
+
+
+## Fuentes de incertidumbre en las medidas
+
+
+<p>This is a normal paragraph:</p>
+
+<pre><code>This is a code block.
+</code></pre>

@@ -415,84 +415,53 @@ div.tocify {
 </div>
 
 
-<p>Las fuentes potenciales de incertidumbre se investigan y, siempre que
-sea posible, el método se ajusta para reducir la incertidumbre a un
-nivel aceptable.</p>
-<p>El parámetro q mide la incertidumbre puede ser, por ejemplo, una
-desviación estándar (o un múltiplo de ésta) o la semiamplitud de un
-intervalo con un nivel de confianza determinado.</p>
-<p>La incertidumbre de medida puede ser evaluada a partir de la
+<ul>
+<li><p>Las fuentes potenciales de incertidumbre se investigan y, siempre
+que sea posible, el método se ajusta para reducir la incertidumbre a un
+nivel aceptable.</p></li>
+<li><p>El parámetro que mide la incertidumbre puede ser, una desviación
+estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con
+un nivel de confianza determinado.</p></li>
+<li><p>La incertidumbre de medida puede ser evaluada a partir de la
 distribución estadística de los resultados de series de mediciones, y
-pueden caracterizarse por sus desviaciones estándar experimentales.</p>
-<p>Los otros componentes, que también pueden ser caracterizados por
-desviaciones estándar, se evalúan asumiendo distribuciones de
-probabilidad, basadas en la experiencia adquirida o en otras
-informaciones.</p>
-<p>es posible obtener una medida de la incertidumbre del pH de
-diferentes muestras de agua. La incertidumbre en la medición del pH
-puede deberse a varios factores, como la precisión del electrodo de pH,
-la calibración del electrodo, la variabilidad en la composición de las
-muestras de agua, entre otros.</p>
-<p>Se entiende que el resultado de la medición es la mejor estimación
-del valor del mensurando, y que todos los componentes de la
-incertidumbre, comprendidos los que provienen de efectos sistemáticos,
-tales como los componentes asociados a las correcciones y a los patrones
-de referencia, contribuyen a la dispersión.</p>
-<p>el conocimiento de la incertidumbre implica un aumento de la
-confianza en la validez del resultado de una medición.</p>
-<p>Cada una de las contribuciones separadas a la incertidumbre es un
+pueden caracterizarse por sus desviaciones estándar
+experimentales.</p></li>
+<li><p>El conocimiento de la incertidumbre implica un aumento de la
+confianza en la validez del resultado de una medición.</p></li>
+<li><p>Cada una de las contribuciones separadas a la incertidumbre es un
 componente de la incertidumbre. Cuando se expresa como desviación
-estándar se conoce como incertidumbre estándar [B.10].</p>
-<p>Si hay una correlación entre algunos de los componentes entonces esto
-tiene que tenerse en cuenta mediante la determinación de la
-covarianza.</p>
-<p>Sin embargo, a menudo es posible evaluar el efecto combinado de
-diversos componentes. Esto puede reducir el esfuerzo global y, cuando
-los componentes cuyas contribuciones se evalúan conjuntamente están
-correlacionados, puede</p>
-<p><strong>Incertidumbre de medida objetivo (VIM)</strong> Nivel de
-incertidumbre de medida aceptable, se especifica un límite superior
-numérico para la incertidumbre</p>
-<p><strong>error</strong> Se considera que un error tiene dos
-componentes, llamadas componente aleatoria y componente sistemática</p>
-<p>Error aleatorio</p>
-<p>Aparece de las variaciones impredecibles de las magnitudes de
-influencia.</p>
-<p>Estos efectos aleatorios producen variaciones en observaciones
-repetidas del mensurando. El error aleatorio de un resultado analítico
-no puede ser compensado, pero puede reducirse aumentando el número de
-observaciones.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Descripción</th>
-<th align="center">Aleatorio</th>
-<th align="center">Sistemático</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">Causa</td>
-<td align="center">muestreo y variabilidad del parámetro</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">Media</td>
-<td align="center"><span class="math inline">\(\mu\)</span></td>
-<td align="center"><span class="math inline">\(\bar x\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">Varianza</td>
-<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
-<td align="center"><span class="math inline">\(S^2\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">Desviación estándar</td>
-<td align="center"><span class="math inline">\(\sigma\)</span></td>
-<td align="center">S</td>
-</tr>
-</tbody>
-</table>
+estándar se conoce como incertidumbre estándar.</p></li>
+<li><p>Si hay correlación entre las componentes, se tiene en cuenta
+mediante la covarianza.</p></li>
+</ul>
+<div id="resolución" class="section level3">
+<h3>Resolución</h3>
+<p>Es la capacidad de un sistema o instrumento para detectar y mostrar
+cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la
+mínima cantidad o el menor cambio que puede ser detectado y expresado
+por el sistema o el instrumento de medición.</p>
+<p><img src="imagen/reso.png" width="500" style="display: block; margin: auto;" /></p>
+</div>
+<div id="error" class="section level2">
+<h2>Error</h2>
+<p>Diferencia entre un valor medido de una magnitud y un valor de
+referencia,</p>
+<p><img src="imagen/fm.png" width="492" style="display: block; margin: auto;" /></p>
+<p><strong>Errores experimentales</strong></p>
+<p><strong>Error absoluto</strong> Diferencia entre el valor indicado
+por el instrumento <span class="math inline">\(A_i\)</span> y el valor
+verdadero <span class="math inline">\(A_r\)</span> de la magnitud
+medida.</p>
+<p><span class="math display">\[E=A_i-A_r\]</span></p>
+<p><strong>Componentes del error</strong></p>
+<p>Se considera que un error tiene dos componentes, llamadas componente
+aleatoria y componente sistemática</p>
+<p><strong>Error sistemático</strong></p>
+<ul>
+<li>Los efectos que cambian sistemáticamente en magnitud durante series
+de análisis, dan lugar a errores sistemáticos que no son
+constantes.</li>
+</ul>
 <hr />
 <pre><code>## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
 ## v dplyr     1.1.2     v readr     2.1.4
@@ -511,7 +480,7 @@ observaciones.</p>
 ## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     group_rows</code></pre>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table>
 <thead>
 <tr>
 <th style="text-align:center;">
@@ -527,88 +496,125 @@ Error sistemático
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
 Causa
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 <ul>
-<li>Muestreo
+<li>Variaciones impredecibles en observaciones repetidas del mensurando.
 </td>
-<td style="text-align:center;width: 8cm; ">
-Diseño ejecucción y análisis:
+<td style="text-align:center;width: 9cm; ">
+<ul>
+<li>Permanecen constantes o varían de forma predecible en el análisis
+del mismo mensurando.
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 <ul>
-<li>Variabilidad del parámetro
+<li>variaciones de las magnitudes
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 <ul>
 <li>Selección de los sujetos de estudio
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
+<ul>
+<li>Muestreo
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 <ul>
 <li>Obtención de la información
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 <ul>
 <li>Presencia de variables externas distorsionadas
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
+___________________________________
+</td>
+<td style="text-align:center;width: 9cm; ">
+_____________________
+</td>
+<td style="text-align:center;width: 9cm; ">
+__________________________
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 3cm; ">
 Disminuye al aumentar el tamaño del estudio
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 Si
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 No
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
+<td style="text-align:center;width: 3cm; ">
+___________________________________
+</td>
+<td style="text-align:center;width: 9cm; ">
+_____________________
+</td>
+<td style="text-align:center;width: 9cm; ">
+__________________________
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 3cm; ">
 Afectación
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 Presición
 </td>
-<td style="text-align:center;width: 8cm; ">
+<td style="text-align:center;width: 9cm; ">
 Validez
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 4cm; ">
-Valoración
+<td style="text-align:center;width: 3cm; ">
+___________________________________
 </td>
-<td style="text-align:center;width: 8cm; ">
-Concepto estadístico con juicio informado
+<td style="text-align:center;width: 9cm; ">
+_____________________
 </td>
-<td style="text-align:center;width: 8cm; ">
-Juicio informado
+<td style="text-align:center;width: 9cm; ">
+__________________________
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+Medida
+</td>
+<td style="text-align:center;width: 9cm; ">
+<span class="math display">\[A_i- media (A_i) \]</span>
+</td>
+<td style="text-align:center;width: 9cm; ">
+<span class="math display">\[media(A_i)-A_i\]</span>
 </td>
 </tr>
 </tbody>
@@ -618,58 +624,144 @@ Juicio informado
 </ul></li>
 </ul></li>
 </ul></li>
+</ul></li>
+</ul></li>
 </ul>
-<pre class="r"><code>tbl_img &lt;- data.frame(
-name = c(&quot;kableExtra 1&quot;, &quot;kableExtra 2&quot;),
-logo = &quot;&quot;)
-tbl_img %&gt;%
-kbl(booktabs = T) %&gt;%
-kable_paper(full_width = F) %&gt;%
-column_spec(2, image = &quot;imagen/rango.png&quot;)</code></pre>
-<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-name
-</th>
-<th style="text-align:left;">
-logo
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-kableExtra 1
-</td>
-<td style="text-align:left;">
-<html>
-<body>
-<img src="imagen/rango.png">
-</body>
-</html>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-kableExtra 2
-</td>
-<td style="text-align:left;">
-<html>
-<body>
-<img src="imagen/rango.png">
-</body>
-</html>
-</td>
-</tr>
-</tbody>
-</table>
+</div>
+<div id="identificación-de-fuentes-de-incertidumbre"
+class="section level2">
+<h2>Identificación de fuentes de incertidumbre</h2>
+<p>Listar todas las posibles fuentes de incertidumbre, incluye:</p>
+<ul>
+<li><p>De los parámetros,</p></li>
+<li><p>De las suposiciones químicas.</p></li>
+<li><p>Por las condiciones ambientales</p></li>
+<li><p>Por la repitibilidad de las medidas</p></li>
+<li><p>Por la exactitud y resolución del equipo</p></li>
+</ul>
+<p><strong>Procedimientos para formar una lista
+estructurada</strong></p>
+<p><strong>Principios del enfoque</strong> La estrategia tiene dos
+fases:</p>
+<ul>
+<li><p>mediante un diagrama de causa-efecto (conocido como Ishikawa o
+diagrama “espina de pescado), identifique los efectos sobre un
+resultado.</p></li>
+<li><p>Simplifique y resuelva duplicaciones</p></li>
+</ul>
+<p>La lista inicial se depura para simplificar su presentación final y
+asegurar que los efectos no se han duplicado innecesariamente.</p>
+<p><strong>Análisis causa-efecto</strong></p>
+<p>El procedimiento empleado es el siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Escribir la ecuación completa para el resultado.</li>
+</ol>
+<p>Los parámetros de la ecuación forman las ramas principales del
+diagrama. Casi siempre, o cuando resulte apropiado, es necesario añadir
+una rama principal que representa una corrección nominal de sesgo
+global, en relación con la recuperación.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Considerar cada etapa del método y añadir los factores necesarios
+al diagrama, desde los efectos principales hacia afuera. Los ejemplos
+incluyen efectos de la matriz y ambientales.</p></li>
+<li><p>Para cada rama, añadir factores que contribuyan hasta que sus
+efectos sobre el resultado sean insignificantes.</p></li>
+<li><p>Resolver las duplicaciones y repetir el proceso para clarificar
+las contribuciones y agrupar las contribuciones para cada grupo. Es
+conveniente agrupar en esta fase los términos relacionados con la
+precisión en una rama independiente.</p></li>
+</ol>
+<p>La etapa final del análisis causa-efecto requiere una aclaración
+adicional. Las duplicaciones aparecen de forma natural al detallar por
+separado las contribuciones para cada parámetro de entrada. Por ejemplo,
+está siempre presente un elemento de variabilidad entre series de
+análisis, al menos nominalmente, para cualquier factor de influencia;
+estos efectos contribuyen a la variación global del método considerada
+como un todo, por lo que no deben añadirse por separado si ya se han
+tenido en cuenta.</p>
+<p>Del mismo modo, es común encontrar el mismo equipo usado como
+instrumento de pesaje, lo que puede llevar a considerar varias veces su
+incertidumbre de calibración. Estas consideraciones nos llevan a las
+siguientes reglas adicionales para el perfeccionamiento del diagrama
+(aunque se aplican igualmente a cualquier lista estructurada de
+efectos):</p>
+<ul>
+<li><p>Efectos que se compensan: eliminar todos. Por ejemplo, en una
+pesada por diferencia, se determinan las dos masas, ambas influenciadas
+por ‘sesgo cero’ de la balanza. La compensación del cero se eliminará de
+la pesada por diferencia, y se puede descartar de las ramas de las
+pesadas independientes.</p></li>
+<li><p>Efecto similar, mismo tiempo: combinar en una única variable de
+entrada. Por ejemplo, la variación entre series de muchas variables de
+entrada puede combinarse en una única rama de precisión intermedia. Hay
+que ser cautos; concretamente, la variabilidad en las operaciones
+realizadas individualmente para cada determinación se pueden combinar,
+en tanto que la variabilidad en las operaciones llevadas a cabo en lotes
+completos (como la calibración de instrumentos) sólo será observable en
+la precisión entre-lotes.</p></li>
+<li><p>Casos diferentes: renombrar. Es habitual encontrar efectos con la
+misma denominación que en realidad se refieren a casos diferentes de
+medidas similares. Estas deben distinguirse claramente antes de
+continuar.</p></li>
+</ul>
+<p>Esta forma de análisis no conduce a listas estructuradas únicas. En
+este ejemplo, la temperatura puede considerarse con un efecto directo
+sobre la densidad a medir, o indirecto sobre la masa medida del material
+contenido en el picnómetro; o bien podría constituir la estructura
+inicial. En la práctica esto no afecta a la utilidad del método. Siempre
+que todos los efectos significativos aparezcan una vez, la metodología
+global será eficaz.</p>
+<p>Una vez se ha completado el análisis causa-efecto puede ser adecuado
+volver a la ecuación original y añadir nuevos términos (como por ejemplo
+la temperatura).</p>
+<p><strong>Ejemplo</strong></p>
+<p>D.4.1 El procedimiento se ilustra por referencia a una medida
+simplificada y directa de densidad. Considerar el caso de la
+determinación directa de la densidad de etanol d(EtOH) mediante pesada
+de un volumen conocido V en un recipiente volumétrico adecuado de tara
+mtara y peso bruto incluido etanol mbruto. La densidad se calcula a
+partir de d(EtOH)=(mbruto - mtara)/V Para mayor claridad, solo se tienen
+en cuenta tres efectos: la calibración del equipo, la temperatura y la
+precisión de las medidas. Las Figuras D1-D3 ilustran gráficamente el
+proceso. D.4.2 Un diagrama causa-efecto consiste en una estructura
+jerarquizada que termina en una única salida. Para nuestro objetivo,
+esta salida es un resultado analítico concreto (‘d(EtOH)’ en la Figura
+D1). Las ramas principales del resultado son los efectos contributivos,
+que incluyen tanto los resultados de medidas intermedias concretas como
+otros factores, tales como efectos de matriz o ambientales. Cada rama a
+su vez puede tener efectos contributivos adicionales. Estos ‘efectos’
+comprenden todos los factores que afectan al resultado, ya sean
+variables o constantes; las incertidumbres de estos efectos contribuyen
+claramente sobre la incertidumbre del resultado. D.4.3 La Figura D1
+muestra un posible diagrama obtenido directamente por aplicación de las
+etapas 1-3. Las ramas principales son los parámetros en la ecuación, y
+cada efecto está representado mediante ramas secundarias. Hay que tener
+en cuenta que hay dos efectos ‘temperatura’, tres efectos ‘precisión’ y
+tres efectos ‘calibración’. D.4.4 La Figura D2 representa los efectos de
+precisión y temperatura agrupados siguiendo la segunda regla (mismo
+efecto/tiempo); la temperatura puede ser tratada como un único efecto
+sobre la densidad, mientras que las variaciones individuales en cada
+determinación contribuyen a la variación observada en la replicación de
+todo el método. D.4.5 El sesgo en la calibración de las dos pesadas se
+anula, y puede eliminarse (Figura D3) siguiendo la primera regla
+(eliminación). D.4.6 Finalmente, las ramas ‘calibración’ restantes
+deberían distinguirse como dos contribuciones (diferentes) debido a
+posible no linealidad en la respuesta de la balanza, junto con la
+incertidumbre de calibración asociada con la determinación
+volumétrica.</p>
+<pre><code>## Linking to librsvg 2.48.8</code></pre>
+<div id="htmlwidget-d0caf02c3bd0e3556195" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d0caf02c3bd0e3556195">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p><img src="imagen/df.png" width="303" style="display: block; margin: auto;" /></p>
+</div>
 <div id="fuentes-de-incertidumbre-en-las-medidas"
 class="section level2">
 <h2>Fuentes de incertidumbre en las medidas</h2>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-c63cf0665f8abd0bb120" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c63cf0665f8abd0bb120">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>
+This is a normal paragraph:
+</p>
+<pre><code>This is a code block.
+</code></pre>
 </div>
 
 <br>
