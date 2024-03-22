@@ -89,9 +89,15 @@ La GUM es un estándar internacional que proporciona un marco sistemático para 
 
 Este enfoque implica la descomposición del proceso de medición en sus componentes individuales, identificando las fuentes de incertidumbre y cuantificándolas por separado. Luego, estas incertidumbres individuales se combinan utilizando reglas de propagación de errores.
 
+Basado en el procesamiento de datos registrados a largo plazo, derivados de resultados de ensayos de aptitud, muestras de control del laboratorio, datos bibliográficos publicados, etc.
+
 ### Método Bottom-Up 
 
-A diferencia del método top-down, el método bottom-up comienza con mediciones individuales y luego combina las incertidumbres asociadas con cada medida para obtener una incertidumbre total.
+Comienza con mediciones individuales y luego combina las incertidumbres asociadas con cada medida para obtener una incertidumbre total.
+
+Basado en una sucesión de etapas de cálculo que tienen en cuenta los errores provenientes de cada una de las operaciones analíticas descompuestas en actividades primarias.
+
+__________________________________________________________________________________
 
 
 
@@ -102,6 +108,8 @@ a. La estimación de la magnitud de salida (mensurando) y su incertidumbre asoci
 b. la pdf para la magnitud de salida del mensurando se aparta de una distribución normal
 
 c. para validar los resultados de la GUM
+
+________________________________________________________________________________________
 
 
 ## Librerías de R para estimar la incertidumbre
@@ -229,10 +237,19 @@ El rango de una distribución de probabilidad se refiere al conjunto de todos lo
 
 Un químico estima un factor de contribución entre 7 y 10, pero cree que el valor podría ser cualquiera entre esos dos valores, pero no tiene idea de si alguna de las partes del rango tiene mayor probabilidad de ser que otra. Esto es una descripción de una función de distribución rectangular con un rango 2a=3 (semi rango de a=1,5). 
 
-Sea la función de estimación de incertidumbre rectángular 
+Sea la función de estimación de incertidumbre rectángular.
+
+La siguiente fórmula se usa si la incertidumbre que se desea calcular es por especificaciones o por resulución del equipo análogo, en cada caso se reemplaza el valor de a por cada cada valor. 
+
+
+
 
 $$u(x)=\frac{a}{\sqrt 3}$$
-se puede calcular una estimación de la incertidumbre estándar. Usando el rango antes indicado, a=1,5, resulta una incertidumbre estándar de:
+En el caso que un equipo sea digital, la fórmula de la incertidumbre asociada a la resolución  es:
+
+$$u(x)=\frac{a}{\sqrt {12}}$$
+
+Se puede calcular una estimación de la incertidumbre estándar. Usando el rango antes indicado, a=1,5, resulta una incertidumbre estándar de:
 
 $$u(x)=\frac{1,5}{{\sqrt 3}} = 0,87$$
 
@@ -274,6 +291,6 @@ Para estimar incertidumbre se usa cuando
 
 - Se ha hecho una estimación en forma de un rango máximo $(\pm a)$ descrito por una distribución simétrica.
 
-Sea la función de estimación de incertidumbre rectángular 
+Sea la función de estimación de incertidumbre triángular 
 
 $$u(x)=\frac{a}{\sqrt 6}$$

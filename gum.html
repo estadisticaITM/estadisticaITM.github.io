@@ -518,12 +518,29 @@ propagación a través del modelo de medición.</p>
 componentes individuales, identificando las fuentes de incertidumbre y
 cuantificándolas por separado. Luego, estas incertidumbres individuales
 se combinan utilizando reglas de propagación de errores.</p>
+<p>Basado en el procesamiento de datos registrados a largo plazo,
+derivados de resultados de ensayos de aptitud, muestras de control del
+laboratorio, datos bibliográficos publicados, etc.</p>
 </div>
 <div id="método-bottom-up" class="section level3">
 <h3>Método Bottom-Up</h3>
-<p>A diferencia del método top-down, el método bottom-up comienza con
-mediciones individuales y luego combina las incertidumbres asociadas con
-cada medida para obtener una incertidumbre total.</p>
+<p>Comienza con mediciones individuales y luego combina las
+incertidumbres asociadas con cada medida para obtener una incertidumbre
+total.</p>
+<p>Basado en una sucesión de etapas de cálculo que tienen en cuenta los
+errores provenientes de cada una de las operaciones analíticas
+descompuestas en actividades primarias.</p>
+<hr />
+<p>MCM es una alternativa a la GUM cuando</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>La estimación de la magnitud de salida (mensurando) y su
+incertidumbre asociada provista por la GUM podría no ser
+confiable</p></li>
+<li><p>la pdf para la magnitud de salida del mensurando se aparta de una
+distribución normal</p></li>
+<li><p>para validar los resultados de la GUM</p></li>
+</ol>
+<hr />
 </div>
 </div>
 <div id="librerías-de-r-para-estimar-la-incertidumbre"
@@ -670,10 +687,17 @@ que el valor podría ser cualquiera entre esos dos valores, pero no tiene
 idea de si alguna de las partes del rango tiene mayor probabilidad de
 ser que otra. Esto es una descripción de una función de distribución
 rectangular con un rango 2a=3 (semi rango de a=1,5).</p>
-<p>Sea la función de estimación de incertidumbre rectángular</p>
-<p><span class="math display">\[u(x)=\frac{a}{\sqrt 3}\]</span> se puede
-calcular una estimación de la incertidumbre estándar. Usando el rango
-antes indicado, a=1,5, resulta una incertidumbre estándar de:</p>
+<p>Sea la función de estimación de incertidumbre rectángular.</p>
+<p>La siguiente fórmula se usa si la incertidumbre que se desea calcular
+es por especificaciones o por resulución del equipo análogo, en cada
+caso se reemplaza el valor de a por cada cada valor.</p>
+<p><span class="math display">\[u(x)=\frac{a}{\sqrt 3}\]</span> En el
+caso que un equipo sea digital, la fórmula de la incertidumbre asociada
+a la resolución es:</p>
+<p><span class="math display">\[u(x)=\frac{a}{\sqrt {12}}\]</span></p>
+<p>Se puede calcular una estimación de la incertidumbre estándar. Usando
+el rango antes indicado, a=1,5, resulta una incertidumbre estándar
+de:</p>
 <p><span class="math display">\[u(x)=\frac{1,5}{{\sqrt 3}} =
 0,87\]</span></p>
 </div>
@@ -709,7 +733,7 @@ distribución son más probables que los próximos a los límites.</p></li>
 class="math inline">\((\pm a)\)</span> descrito por una distribución
 simétrica.</p></li>
 </ul>
-<p>Sea la función de estimación de incertidumbre rectángular</p>
+<p>Sea la función de estimación de incertidumbre triángular</p>
 <p><span class="math display">\[u(x)=\frac{a}{\sqrt 6}\]</span></p>
 </div>
 </div>
