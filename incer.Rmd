@@ -554,15 +554,111 @@ $$u(x)=\frac{Resolución}{\sqrt {12}}$$
 
 Algunas de las distribuciones estadísticas de probabilidad comúnmente utilizadas para modelar estas fuentes de incertidumbre incluyen:
 
-Distribución Normal (Gaussiana): Es la distribución más utilizada para modelar errores de medición aleatorios. Se asume que los errores se distribuyen normalmente alrededor del valor verdadero, con la mayor densidad de probabilidad centrada en el valor medio.
+**Distribución Normal (Gaussiana):** 
 
-Distribución Uniforme: Se utiliza cuando no hay razón para creer que los errores de medición están sesgados hacia ninguna dirección. Por ejemplo, cuando se está midiendo algo dentro de ciertos límites y la probabilidad de que el valor esté dentro de ese rango es igualmente probable en todo el intervalo.
 
-Distribución de Cauchy-Lorentz: A veces, se utiliza para modelar errores de medición cuando se sabe que hay una distribución de valores verdaderos, pero los errores de medición son asimétricos y pueden ser influenciados por factores externos no controlados.
+Es la distribución más utilizada para modelar errores de medición aleatorios. Se asume que los errores se distribuyen normalmente alrededor del valor verdadero, con la mayor densidad de probabilidad centrada en el valor medio.
+
+**Distribución Uniforme:** 
+
+Se utiliza cuando no hay razón para creer que los errores de medición están sesgados hacia ninguna dirección. Por ejemplo, cuando se está midiendo algo dentro de ciertos límites y la probabilidad de que el valor esté dentro de ese rango es igualmente probable en todo el intervalo.
+
+**Distribución de Cauchy-Lorentz:** 
+
+A veces, se utiliza para modelar errores de medición cuando se sabe que hay una distribución de valores verdaderos, pero los errores de medición son asimétricos y pueden ser influenciados por factores externos no controlados.
 
 Distribución de Poisson: Se utiliza comúnmente para modelar la distribución de conteos, por ejemplo, en el caso de mediciones que involucran recuentos de partículas o eventos discretos.
 
 Distribución Exponencial: Se utiliza para modelar el tiempo entre eventos sucesivos en un proceso de Poisson, y a veces se aplica en el contexto de mediciones de tiempo.
+
+
+## Categorías de la incertidumbre tipo A
+
+
+También conocida como incertidumbre aleatoria, se refiere a la incertidumbre que puede ser evaluada y cuantificada mediante métodos estadísticos. Esta incertidumbre se asocia comúnmente con mediciones directas o indirectas y está influenciada por factores como la precisión de los instrumentos de medición, la variabilidad de las condiciones de prueba y otros errores experimentales. 
+
+
+Las categorías de incertidumbre tipo A pueden incluir:
+
+- **Replicabilidad:** 
+
+La variabilidad asociada con la repetición de mediciones bajo las mismas condiciones experimentales.  Esto puede incluir la variabilidad de los operadores, la fluctuación de las condiciones ambientales, etc.
+
+- **Reproducibilidad:** 
+
+La variabilidad asociada con la repetición de mediciones en diferentes condiciones experimentales pero dentro de los mismos límites de precisión. Esto puede incluir diferentes equipos, métodos de medición alternativos, etc.
+
+- **Precisión del equipo:** 
+
+La incertidumbre asociada con la precisión y la calibración del equipo utilizado en el proceso de medición.
+
+
+- **Variabilidad del proceso:**
+
+La variabilidad inherente al proceso o fenómeno que se está midiendo. Esta puede ser influenciada por factores como la variabilidad de la materia prima, la fluctuación en las condiciones de fabricación, etc.
+
+- **Errores sistemáticos:** La incertidumbre debida a errores sistemáticos en el proceso de medición, como errores de calibración, sesgos en los instrumentos, etc.
+
+- **Resolución del instrumento: **La incertidumbre asociada con la capacidad del instrumento de medir con precisión hasta cierto nivel de detalle o resolución.
+
+Estas categorías son solo algunas de las posibles fuentes de incertidumbre tipo A y pueden variar dependiendo del contexto específico de la medición o del experimento. La evaluación adecuada de la incertidumbre tipo A es crucial para obtener resultados confiables y precisos en cualquier análisis o experimento.
+
+## Categorías de la incertidumbre tipo B
+
+La incertidumbre tipo B, también conocida como incertidumbre no aleatoria, se refiere a la incertidumbre que no puede ser evaluada mediante métodos estadísticos y generalmente se determina mediante la aplicación de información externa, como datos históricos, conocimiento experto, especificaciones de diseño, etc. Las categorías de incertidumbre tipo B pueden incluir:
+
+- **Errores de modelo:** 
+
+Incertidumbre asociada con la representación del fenómeno o sistema que se está modelando. Puede incluir simplificaciones excesivas en el modelo, desconocimiento de ciertos efectos o interacciones, etc.
+
+- **Incertidumbre de la fuente de datos:** Incertidumbre asociada con los datos utilizados en el análisis o la estimación. Puede incluir errores de medición, sesgos en la recopilación de datos, etc.
+
+- **Incertidumbre de calibración:** Incertidumbre asociada con la calibración de los instrumentos de medición utilizados en el análisis. Esto puede incluir incertidumbres declaradas por el proveedor del equipo de medición o incertidumbres asociadas con el método de calibración utilizado.
+
+- **Incertidumbre de muestreo:** 
+
+
+Incertidumbre asociada con la variabilidad inherente a la selección de muestras de una población más grande. Puede incluir sesgos en la selección de la muestra, errores de muestreo aleatorio, etc.
+
+- **Incertidumbre de modelado matemático:** 
+
+
+Incertidumbre asociada con la elección y los parámetros de los modelos matemáticos utilizados en el análisis. Esto puede incluir incertidumbre en la determinación de constantes físicas, suposiciones simplificadas en el modelo, etc.
+
+
+
+-  **Incertidumbre de extrapolación:**
+
+
+Incertidumbre asociada con la extensión de resultados o conclusiones más allá del rango de datos o condiciones experimentales en los que se basa el análisis.
+
+Estas categorías son ejemplos comunes de fuentes de incertidumbre tipo B, pero la naturaleza específica de la incertidumbre puede variar según el contexto del análisis o la evaluación. La evaluación adecuada de la incertidumbre tipo B es esencial para comprender completamente la confiabilidad y precisión de los resultados obtenidos en cualquier análisis o experimento.
+
+# Estudio reproducibilidad y repetibilidad
+
+
+Los métodos utilizados para realizar los análisis de R&R son:
+- Método del rango (método corto)
+
+- Método del promedio y del rango
+
+- Análisis de varianza (Anova); 
+
+las ventajas de este último son que las varianzas son estimadas con mayor exactitud, se obtiene mayor información como la interacción del operador con la parte que se mide; además, considera un modelo de efectos aleatorios para todos los factores o componentes de la variación del sistema (operadores, partes, interacción e instrumento)
+
+## Importancia del ANALisis ANOVA de un modelo 
+
+El método ANOVA reparte la variación total $σ^2_{total}$ de los datos en variación debida a la
+producción de la pieza  $σ^2_{pieza}$, variación debida a la repetibilidad $σ^2_{repet}$ y variación debida a la reproducibilidad $σ^2_{reproducibilidad}$
+reprod), de la siguiente forma:
+
+$$σ^2_{total}=σ^2_{pieza}$$
+
+
+
+
+
+
 
 
 

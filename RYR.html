@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>RYR.knit</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
+  </a>
+</li>
+<li>
+  <a href="pagin2.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Diseño de exp
+  </a>
+</li>
+<li>
+  <a href="pagin3.html">
+    <span class="fa fa-pie-chart"></span>
+     
+    Análisis multivariado
+  </a>
+</li>
+<li>
+  <a href="medi.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Medición
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="estudio-reproducibilidad-y-repetibilidad-gagerr"
+class="section level1">
+<h1>Estudio reproducibilidad y repetibilidad gageR&amp;R</h1>
+<p><img src="imagen/cm.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Se evalúa qué parte de la variabilidad total es atribuible al error
+de medición; además, permite cuantificar si este error es mucho o poco
+en comparación con la variabilidad del producto y con las tolerancias de
+la característica de calidad que se mide. Cualquier proceso de medición
+genera un error. Lo que se observa es la realidad más un error de
+medición.</p>
+<p><img src="imagen/ryr.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Los métodos utilizados para realizar los análisis de R&amp;R son:</p>
+<ul>
+<li><p>Método del rango (método corto)</p></li>
+<li><p>Método del promedio y del rango</p></li>
+<li><p>Análisis de varianza (Anova); considera un modelo de efectos
+aleatorios para todos los factores de la variación del sistema
+(operadores, partes, interacción e instrumento)</p></li>
+</ul>
+<p>Sean:</p>
+<ul>
+<li><p><span class="math inline">\(σ^2_{total}\)</span> la variabilidad
+total observada</p></li>
+<li><p><span class="math inline">\(σ^2_{prod}\)</span> la varianza
+atribuible al producto (partes o piezas)</p></li>
+<li><p><span class="math inline">\(σ^2_{instr}\)</span> la variabilidad
+del instrumento de medición</p></li>
+<li><p><span class="math inline">\(σ^2_{oper}\)</span> la variabilidad o
+error debido a operadores</p></li>
+</ul>
+<p>Cumpliendo la siguiente relación:</p>
+<p><span
+class="math display">\[σ^2_{total}=σ^2_{prod}+σ^2_{instr}+σ^2_{oper}\]</span>
+donde <span class="math display">\[σ^2_{instr}=σ^2_{repeti}\]</span>
+<span class="math display">\[σ^2_{Oper}=σ^2_{reprod}\]</span></p>
+<p>Por lo tanto, el error o variabilidad de las mediciones debido a
+repetibilidad y reproducibilidad se obtiene con</p>
+<p><span
+class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span>
+<strong>Pasos para realizar un estudio R&amp;R largo</strong></p>
+<p>para cada instrumento de medición que se desee evaluar es necesario
+plantear un estudio en el que se apliquen los siguientes pasos:</p>
+<p><strong>1. </strong> Seleccionar</p>
+<ul>
+<li><p>dos o más operadores para conducir el estudio acerca del
+instrumento de medición de interés.</p></li>
+<li><p>10 o más partes o piezas que serán medidas varias veces por cada
+operador.</p></li>
+</ul>
+<p><strong>2.</strong> Decidir el número de ensayos o veces que cada
+operador medirá la misma pieza. por lo menos dos ó tres ensayos es lo
+más recomendable.</p>
+<p><strong>3.</strong>Identificar la zona o punto en la parte donde la
+medición será tomada, así como el método o técnica que deberá
+aplicarse.</p>
+<p><strong>4.</strong> Obtener en orden aleatorio la primera medición (o
+ensayo) del operador A para todas las piezas seleccionadas.</p>
+<p><strong>5.</strong> Volver a aleatorizar las piezas y obtener la
+primera medición del operador B.</p>
+<p><strong>6.</strong> Continuar hasta que todos los operadores hayan
+realizado la primera medición de todas las piezas.</p>
+<p><strong>7.</strong> Hacer el análisis estadístico de los datos.</p>
+<p><strong>ANOVA para el estudio de repetibilidad y
+reproducibilidad</strong></p>
+<p>Permite identificar y cuantificar de mejor manera todas las fuentes
+de variación presentes en el estudio R&amp;R. Para comprender los
+conceptos utilizados en la presente sección se recomienda revisar los
+conceptos de análisis de varianza.</p>
+<p>El método de ANOVA reparte la variación total <span
+class="math inline">\(σ^2_{total}\)</span> de los datos en la siguiente
+forma:</p>
+<p><span
+class="math display">\[σ^2_{total}=σ^2_{parte}+σ^2_{oper}+σ^2_{oper×parte}+σ^2_{instr}\]</span>
+donde se agrega el componente de interacción entre el operador y la
+parte, el mismo que se considera parte de la reproducibilidad. Es decir,
+se cumplen las siguientes relaciones:</p>
+<p><span class="math display">\[σ^2_{repeti}=σ^2_{instr}\]</span> <span
+class="math display">\[σ^2_{reprod} = σ^2_{oper} + σ^2_{oper ×
+parte}\]</span> <span
+class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span></p>
+<p>Estos componentes se estiman mediante la técnica de ANOVA aplicada a
+un diseño factorial con efectos aleatorios. De los datos del estudio
+R&amp;R largo se pueden calcular las llamadas sumas de cuadrados (SC)
+correspondientes a cada componente de variación, cumpliendo con la
+relación</p>
+<p><span class="math display">\[
+SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}\]</span></p>
+<p>donde la suma de cuadrados del error <span
+class="math inline">\(SC_{error}\)</span> corresponde a la
+repetibilidad. Al considerar p partes, t ensayos y o operadores, los
+grados de libertad correspondientes a cada suma de cuadrados de la
+ecuación anterior son, respectivamente, <span class="math inline">\(opt
+− 1 = (p − 1) + (o − 1) + (o − 1)( p − 1) + op(t − 1)\)</span> Al
+dividir cada suma de cuadrados por sus grados de libertad se obtienen
+los cuadrados medios (CM), con ellos se pueden construir pruebas
+estadísticas para verificar diferencias entre las partes, entre los
+operadores y la presencia de efecto de interacción operador × parte.</p>
+<p>La tabla anova está definida de la forma</p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="18%" />
+<col width="17%" />
+<col width="18%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de cuadrados</th>
+<th align="center">cuadrados medios</th>
+<th align="center">Estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">operador</td>
+<td align="center">o-1</td>
+<td align="center"><span class="math inline">\(SC_o\)</span></td>
+<td align="center"><span
+class="math inline">\(MS_O=SC_o/(o-1)\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=MS_o/MSE\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">parte</td>
+<td align="center">p-1</td>
+<td align="center"><span class="math inline">\(SC_p\)</span></td>
+<td align="center"><span
+class="math inline">\(MC_p=SC_p/(p-1)\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=MC_p/MSE\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Operador*parte</td>
+<td align="center">(o-1)x(p-1)</td>
+<td align="center"><span class="math inline">\(SC_{op}\)</span></td>
+<td align="center"><span
+class="math inline">\(MC_{op}=SC_{op}/(o-1)x(p-1)\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=MC_{op}/MSE\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Error(instrumento)</td>
+<td align="center">op(t-1)</td>
+<td align="center"><span class="math inline">\(SC_e\)</span></td>
+<td align="center"><span
+class="math inline">\(MC_e=SC_e/op(t-1)\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">opt-1</td>
+<td align="center">SCT</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo</strong></p>
+<pre class="r"><code>library(ggplot2)
+voltmeter = factor(rep(1:2, each = 9))
+battery = factor(rep(rep(1:3, each = 3), 2))
+run = factor(rep(1:3, 6))
+voltage = c(1.4727, 1.4206, 1.4754, 1.5083, 1.5739, 1.4341, 1.5517, 1.5483, 1.4614, 
+            1.3337,1.6078, 1.4767, 1.4066, 1.5951, 1.8419,1.7087, 1.8259, 1.5444)
+batteries = data.frame(voltmeter, battery,run, voltage)
+batteries</code></pre>
+<pre><code>##    voltmeter battery run voltage
+## 1          1       1   1  1.4727
+## 2          1       1   2  1.4206
+## 3          1       1   3  1.4754
+## 4          1       2   1  1.5083
+## 5          1       2   2  1.5739
+## 6          1       2   3  1.4341
+## 7          1       3   1  1.5517
+## 8          1       3   2  1.5483
+## 9          1       3   3  1.4614
+## 10         2       1   1  1.3337
+## 11         2       1   2  1.6078
+## 12         2       1   3  1.4767
+## 13         2       2   1  1.4066
+## 14         2       2   2  1.5951
+## 15         2       2   3  1.8419
+## 16         2       3   1  1.7087
+## 17         2       3   2  1.8259
+## 18         2       3   3  1.5444</code></pre>
+<pre class="r"><code>ggplot(batteries,aes(voltmeter,voltage))+geom_boxplot(aes(colour=battery))</code></pre>
+<p><img src="RYR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>library(SixSigma)
+#ss.rr(var, part, appr, data, main, sub)
+my.rr &lt;- ss.rr(var = voltage, part = battery,
+               appr = voltmeter,
+               data = batteries,
+               main = &quot;Six Sigma Gage R&amp;R Measure&quot;,
+               sub = &quot;Batteries Project MSA&quot;)</code></pre>
+<pre><code>## Complete model (with interaction):
+## 
+##                   Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## battery            2 0.06308 0.03154   3.415  0.227
+## voltmeter          1 0.04444 0.04444   4.812  0.160
+## battery:voltmeter  2 0.01847 0.00924   0.584  0.573
+## Repeatability     12 0.18982 0.01582               
+## Total             17 0.31582                       
+## 
+## alpha for removing interaction: 0.05 
+## 
+## 
+## Reduced model (without interaction):
+## 
+##               Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## battery        2 0.06308 0.03154   2.120  0.157
+## voltmeter      1 0.04444 0.04444   2.987  0.106
+## Repeatability 14 0.20829 0.01488               
+## Total         17 0.31582                       
+## 
+## Gage R&amp;R
+## 
+##                       VarComp %Contrib
+## Total Gage R&amp;R    0.018162959    86.74
+##   Repeatability   0.014878111    71.05
+##   Reproducibility 0.003284848    15.69
+##     voltmeter     0.003284848    15.69
+## Part-To-Part      0.002777127    13.26
+## Total Variation   0.020940086   100.00
+## 
+##                       StdDev  StudyVar %StudyVar
+## Total Gage R&amp;R    0.13477002 0.8086201     93.13
+##   Repeatability   0.12197586 0.7318552     84.29
+##   Reproducibility 0.05731359 0.3438816     39.61
+##     voltmeter     0.05731359 0.3438816     39.61
+## Part-To-Part      0.05269846 0.3161907     36.42
+## Total Variation   0.14470690 0.8682414    100.00
+## 
+## Number of Distinct Categories = 1</code></pre>
+<pre><code>## Warning in widths.x[pos.widths[[nm]]] &lt;- widths.settings[[nm]] *
+## widths.defaults[[nm]]$x: número de items para para sustituir no es un múltiplo
+## de la longitud del reemplazo</code></pre>
+<p><img src="RYR_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

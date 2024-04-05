@@ -1,0 +1,152 @@
+
+# Estudio reproducibilidad y repetibilidad gageR&R
+
+
+```{r, echo=F, out.width="60%", fig.align='center'}
+knitr::include_graphics("imagen/cm.png")
+```
+
+
+
+Se evalúa qué parte de la variabilidad total  es atribuible al error de medición; además, permite cuantificar si este error es mucho o poco en comparación con la variabilidad del producto y con las tolerancias de la característica de calidad que se mide. Cualquier proceso de medición genera un error. Lo que se observa es la realidad más un error de medición.
+
+
+
+```{r, echo=F, out.width="60%", fig.align='center'}
+knitr::include_graphics("imagen/ryr.png")
+```
+
+
+
+
+
+
+Los métodos utilizados para realizar los análisis de R&R son:
+
+- Método del rango (método corto)
+
+- Método del promedio y del rango
+
+- Análisis de varianza (Anova); considera un modelo de efectos aleatorios para todos los factores de la variación del sistema (operadores, partes, interacción e instrumento)
+
+
+
+Sean:
+
+- $σ^2_{total}$  la variabilidad total observada
+
+- $σ^2_{prod}$ la varianza atribuible al producto (partes o piezas)
+
+- $σ^2_{instr}$ la variabilidad  del instrumento de medición
+
+- $σ^2_{oper}$ la variabilidad o error debido a operadores
+
+
+Cumpliendo la siguiente relación:
+
+
+$$σ^2_{total}=σ^2_{prod}+σ^2_{instr}+σ^2_{oper}$$
+donde
+$$σ^2_{instr}=σ^2_{repeti}$$
+$$σ^2_{Oper}=σ^2_{reprod}$$ 
+
+
+Por lo tanto, el error o variabilidad de las mediciones debido a repetibilidad y reproducibilidad se obtiene con
+
+
+$$σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}$$
+**Pasos para realizar un estudio R&R largo**
+
+para cada instrumento de medición que se desee evaluar es necesario plantear un estudio en el que se apliquen los siguientes pasos:
+
+**1. ** Seleccionar 
+
+
+   - dos o más operadores para conducir el estudio acerca del instrumento de medición de interés.
+   
+   
+   - 10 o más partes o piezas que serán medidas varias veces por cada operador. 
+
+**2.** Decidir el número de ensayos o veces que cada operador medirá la misma pieza.  por lo menos dos ó tres ensayos  es lo más recomendable.
+
+**3.**Identificar la zona o punto en la parte donde la medición será tomada, así como el método o técnica que deberá aplicarse.
+
+**4.** Obtener en orden aleatorio la primera medición (o ensayo) del operador A para todas las piezas seleccionadas.
+
+**5.** Volver a aleatorizar las piezas y obtener la primera medición del operador B.
+
+**6.** Continuar hasta que todos los operadores hayan realizado la primera medición de todas las piezas.
+
+**7.** Hacer el análisis estadístico de los datos.
+
+
+**ANOVA para el estudio de repetibilidad y reproducibilidad**
+
+Permite identificar y cuantificar de mejor manera todas las fuentes de variación presentes en el estudio R&R. Para comprender los conceptos utilizados en la presente sección se recomienda revisar los conceptos de análisis de varianza.
+
+El método de ANOVA  reparte la variación total $σ^2_{total}$ de los datos en la siguiente forma:
+
+$$σ^2_{total}=σ^2_{parte}+σ^2_{oper}+σ^2_{oper×parte}+σ^2_{instr}$$
+donde se agrega el componente de interacción entre el operador y la parte, el mismo que se considera parte de la reproducibilidad. Es decir, se cumplen las siguientes relaciones:
+
+$$σ^2_{repeti}=σ^2_{instr}$$
+$$σ^2_{reprod} = σ^2_{oper} + σ^2_{oper × parte}$$
+$$σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}$$
+
+
+ Estos componentes se estiman mediante la técnica de
+ANOVA aplicada a un diseño factorial con efectos aleatorios.
+De los datos del estudio R&R largo se pueden calcular las llamadas sumas de cuadrados (SC) correspondientes a cada componente de variación, cumpliendo con la relación
+
+$$ SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}$$
+
+
+donde la suma de cuadrados del error $SC_{error}$ corresponde a la repetibilidad. Al considerar p partes, t ensayos y o operadores, los grados de libertad correspondientes a cada suma de cuadrados de la ecuación anterior son, respectivamente,
+$opt − 1 = (p − 1) + (o − 1) + (o − 1)( p − 1) + op(t − 1)$
+Al dividir cada suma de cuadrados por sus grados de libertad se obtienen los cuadrados medios (CM),  con ellos se pueden construir pruebas estadísticas para verificar diferencias entre las partes, entre los operadores y la presencia de efecto de interacción operador × parte.
+
+La tabla anova está definida de la forma
+
+
+|Fuente de variación|Grados de libertad|Suma de cuadrados|cuadrados medios |Estadístico|Valor p|
+|:-----------------:|:----------------:|:---------------:|:----------------:|:-----------------------:|
+|operador |o-1  |$SC_o$ |$MS_O=SC_o/(o-1)$|$F_0=MS_o/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|parte    |p-1  |$SC_p$ |$MC_p=SC_p/(p-1)$|$F_0=MC_p/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|Operador*parte| (o-1)x(p-1)|$SC_{op}$|$MC_{op}=SC_{op}/(o-1)x(p-1)$|$F_0=MC_{op}/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|Error(instrumento)   |op(t-1) |$SC_e$     |$MC_e=SC_e/op(t-1)$|             |                    |
+|Total               |opt-1               |SCT     |               |             |                    |
+
+**Ejemplo**
+
+
+
+
+```{r}
+library(ggplot2)
+voltmeter = factor(rep(1:2, each = 9))
+battery = factor(rep(rep(1:3, each = 3), 2))
+run = factor(rep(1:3, 6))
+voltage = c(1.4727, 1.4206, 1.4754, 1.5083, 1.5739, 1.4341, 1.5517, 1.5483, 1.4614, 
+            1.3337,1.6078, 1.4767, 1.4066, 1.5951, 1.8419,1.7087, 1.8259, 1.5444)
+batteries = data.frame(voltmeter, battery,run, voltage)
+batteries
+ggplot(batteries,aes(voltmeter,voltage))+geom_boxplot(aes(colour=battery))
+
+
+library(SixSigma)
+#ss.rr(var, part, appr, data, main, sub)
+my.rr <- ss.rr(var = voltage, part = battery,
+               appr = voltmeter,
+               data = batteries,
+               main = "Six Sigma Gage R&R Measure",
+               sub = "Batteries Project MSA")
+
+
+
+
+
+```
+
+
+
+
