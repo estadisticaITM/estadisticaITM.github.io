@@ -101,8 +101,20 @@ De los datos del estudio R&R largo se pueden calcular las llamadas sumas de cuad
 $$ SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}$$
 
 
-donde la suma de cuadrados del error $SC_{error}$ corresponde a la repetibilidad. Al considerar p partes, t ensayos y o operadores, los grados de libertad correspondientes a cada suma de cuadrados de la ecuación anterior son, respectivamente,
-$opt − 1 = (p − 1) + (o − 1) + (o − 1)( p − 1) + op(t − 1)$
+donde la suma de cuadrados del error $SC_{error}$ corresponde a la repetibilidad.
+
+Considere
+
+- p partes, 
+
+- t ensayos 
+
+- o operadores, 
+
+los grados de libertad correspondientes a cada suma de cuadrados de la ecuación anterior son, respectivamente,
+
+
+$$opt − 1 = (p − 1) + (o − 1) + (o − 1)( p − 1) + op(t − 1)$$
 Al dividir cada suma de cuadrados por sus grados de libertad se obtienen los cuadrados medios (CM),  con ellos se pueden construir pruebas estadísticas para verificar diferencias entre las partes, entre los operadores y la presencia de efecto de interacción operador × parte.
 
 La tabla anova está definida de la forma
@@ -112,16 +124,100 @@ La tabla anova está definida de la forma
 |:-----------------:|:----------------:|:---------------:|:----------------:|:-----------------------:|
 |operador |o-1  |$SC_o$ |$MS_O=SC_o/(o-1)$|$F_0=MS_o/MSE$|$P(f_{a-1,N-a}>F_0)$|
 |parte    |p-1  |$SC_p$ |$MC_p=SC_p/(p-1)$|$F_0=MC_p/MSE$|$P(f_{a-1,N-a}>F_0)$|
-|Operador*parte| (o-1)x(p-1)|$SC_{op}$|$MC_{op}=SC_{op}/(o-1)x(p-1)$|$F_0=MC_{op}/MSE$|$P(f_{a-1,N-a}>F_0)$|
+|Operador*parte| $(o-1)\ast(p-1)$|$SC_{op}$|$MC_{op}=SC_{op}/(o-1)\ast(p-1)$|$F_0=MC_{op}/MSE$|$P(f_{a-1,N-a}>F_0)$|
 |Error(instrumento)   |op(t-1) |$SC_e$     |$MC_e=SC_e/op(t-1)$|             |                    |
 |Total               |opt-1               |SCT     |               |             |                    |
 
+
+Donde la suma de cuadrados del error (SCe) corresponde a la Repetibilidad; es decir, al error en las mediciones debido al instrumento de medición.
+
+
+**Prueba de hipótesis de significancia de los parámetros**
+
+
+$$H_0=\beta_i=0$$
+
+$$H_0=\beta_i \neq  0$$
+**Medidas de varianza para cada una de las componentes**
+
+Varianza del operador = varianza de la reproducibilidad
+
+$$\sigma^2_{op}=\frac{MC_o-MC_{op}}{tp}$$
+Varianza de la parte o pieza
+
+$$\sigma^2_{parte}=\frac{MC_p-MC_{op}}{to}$$
+Varianza de la interacción 
+
+$$\sigma^2_{op*par}=\frac{MC_{op}-MC_e}{t}$$
+Varianza del instrumento = Varianza de la repetibilidad
+$$\sigma^2_{inst}=MCe$$
+
+________________________________________________________________________________________________________________________________
+
+
+
+
+## índice de presición/ tolerancia
+
+
+La RyR estiman la dispersión que cubre un 99% (5.15σ) de las variaciones debidas al equipo de medición y a los operadores respectivamente. La tolerancia del sistema también se ve afectada por variabilidad de cada componente del análisis, el cálculo para obtener el porcentaje de esta afectación se puede realizar mediante los índices de precisión/tolerancia (IP/T), para cada uno de los componentes
+
+
+$$Repetibilidad=\frac{\sqrt{\sigma^2_{inst}*5.15}*100}{tolerancia}$$
+
+$$Reproducibilidad=\frac{\sqrt{\sigma^2_{oper}}*5.15*100}{tolerancia}$$
+
+$$RyR=\frac{\sqrt{\sigma^2_{inst}*\sigma^2_{oper}}*5.15*100}{tolerancia}$$
+
+$$Parte=\frac{\sqrt{\sigma^2_{parte}}*5.15*100}{tolerancia}$$
+El criterio para establecer si el sistema de medición es preciso, con base al índice de precisión/tolerancia (IP/T) del medidor Gage R&R total, es el siguiente:
+
+
+|Rango del IP/T            |Sistema de medición|
+|:------------------------:|:-----------------:|
+|$IP/T_{R\&R} ≤ 10\%$      |      Excelente    |
+|$10\% <IP/T_{R\&R} ≤ 20\%$|            Bueno  |
+|$20\% <IP/T_{R\&R} ≤ 30\%$|           Marginal|
+|$IP/T_{R\&R} ≥ 30\%$      |       Inaceptable |
+
+
+
+
+
+
+
+
+**si la Repetibilidad >> Reproducibilidad**, entonces:
+
+
+El instrumento de medición necesita mantenimiento.
+
+El instrumento de medición está obsoleto y requiere un rediseño.
+
+El lugar donde se efectúan las mediciones necesita ser mejorado.
+
+Existe una variabilidad excesiva entre las partes.
+
+
+
+**Si la Reproducibilidad >> la Repetibilidad**, entonces:
+
+
+Los operadores necesitan mejor entrenamiento en la utilización y lectura del instrumento de medición.
+
+La indicación del instrumento de medición no es clara.
+
+No se han mantenido condiciones de Reproducibilidad buenas y/o el instrumento de medición presenta deriva.
+
 **Ejemplo**
 
+Un fabricante de baterías hace varios tipos de baterías/pilas para uso doméstico. se quiere empezar un proyecto Seis Sigma para mejorar la línea de producción de las pilas de voltaje 1.5. 
+
+Se tiene la variable “voltaje”, 2 voltímetros disponibles y 3 pilas diferentes son seleccionadas al azar al final de la línea de producción. Se mide el voltaje de cada pila con cada voltímetro 3 veces. Los datos son los siguientes:
 
 
 
-```{r}
+```{r }
 library(ggplot2)
 voltmeter = factor(rep(1:2, each = 9))
 battery = factor(rep(rep(1:3, each = 3), 2))
@@ -133,6 +229,37 @@ batteries
 ggplot(batteries,aes(voltmeter,voltage))+geom_boxplot(aes(colour=battery))
 
 
+
+```
+
+El modelo de efectos fijos corresponde a:
+
+$$\large Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij} +\varepsilon_{ijk}$$
+Donde:
+
+- $Y_{ijk}$ es la  k ésima respuesta para la combinación ij  
+
+- $\large \mu$ es la media global del modelo
+
+- $\large \alpha_i$ es el efecto de la i-ésima pila medida  (3) gl=(o-1)=2
+
+- $\large \beta_j$ es el efecto de la j-ésimo voltímetro  (2) gl=(p-1)=1
+
+- $\large (\alpha\beta)_{ij}$ es el efecto de la interacción entre la i-esima pila y  j-ésimo voltímetro usado    gl=(o-1)*(p-1)=2
+
+- $\large \varepsilon_{ijk}$ es el error aleatorio, q se considera la repetibilidad dada por el instrumento. gl=op(t-1)
+
+sujeto a :
+
+$$\varepsilon_{ijk} \sim N(0,\sigma^2) \qquad \sum_{i=1}^2 \alpha_i=0 \qquad \sum_{j=1}^1 \beta_j=0 \qquad \sum_{j=1}^3 (\alpha\beta)_{ij}=0 \qquad \sum_{i=1}^2 (\alpha\beta)_{ij}=0$$
+
+
+```{r fig.height=14}
+
+anova=aov(voltage ~ voltmeter+battery+voltmeter*battery)
+summary(anova)
+
+
 library(SixSigma)
 #ss.rr(var, part, appr, data, main, sub)
 my.rr <- ss.rr(var = voltage, part = battery,
@@ -142,10 +269,42 @@ my.rr <- ss.rr(var = voltage, part = battery,
                sub = "Batteries Project MSA")
 
 
-
-
-
 ```
+
+
+
+**Porcentaje de contribución a la varianza** 
+
+Es el cociente de cada componente de varianza con respecto a la varianza total $(σ^2_{comp}/σ^2_{total})$, provee una interpretación en la escala de las varianzas.
+
+- si la contribución es menor que 10% el sistema de medición es aceptable, 
+
+-  la contribución máxima debe ser del  1% para que sea excelente
+
+
+
+**Número de categorías**
+el valor de nc indica el número de grupos diferentes de piezas que el
+sistema de medición es capaz de distinguir, lo cual tiene relación directa con la resolución con la que éste mide la característica de interés.
+
+
+
+Calcular el número de categorías distintas o distinguibles, nc.  se calcula
+con 
+
+$$n_c= \sqrt2 (σ^2_{parte}/σ^2_{R\&R})$$ 
+
+se interpreta como el número de intervalos de confianza al 97% no traslapados, y basados en el error de medición, que caben en el ancho de la variación
+de las partes. 
+
+Por esto  La interpretación de la calidad del sistema
+de medición en términos del valor de nc se hace de acuerdo con:
+
+• Si nc > 4, la resolución del sistema de medición es adecuada.
+
+• Si nc < 2, la resolución del sistema de medición es claramente inadecuada.
+
+• Si 2 ≤ nc ≤ 4, tiene una resolución poco adecuada.
 
 
 

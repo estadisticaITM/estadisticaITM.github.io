@@ -415,14 +415,21 @@ relación</p>
 SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}\]</span></p>
 <p>donde la suma de cuadrados del error <span
 class="math inline">\(SC_{error}\)</span> corresponde a la
-repetibilidad. Al considerar p partes, t ensayos y o operadores, los
-grados de libertad correspondientes a cada suma de cuadrados de la
-ecuación anterior son, respectivamente, <span class="math inline">\(opt
-− 1 = (p − 1) + (o − 1) + (o − 1)( p − 1) + op(t − 1)\)</span> Al
-dividir cada suma de cuadrados por sus grados de libertad se obtienen
-los cuadrados medios (CM), con ellos se pueden construir pruebas
-estadísticas para verificar diferencias entre las partes, entre los
-operadores y la presencia de efecto de interacción operador × parte.</p>
+repetibilidad.</p>
+<p>Considere</p>
+<ul>
+<li><p>p partes,</p></li>
+<li><p>t ensayos</p></li>
+<li><p>o operadores,</p></li>
+</ul>
+<p>los grados de libertad correspondientes a cada suma de cuadrados de
+la ecuación anterior son, respectivamente,</p>
+<p><span class="math display">\[opt − 1 = (p − 1) + (o − 1) + (o − 1)( p
+− 1) + op(t − 1)\]</span> Al dividir cada suma de cuadrados por sus
+grados de libertad se obtienen los cuadrados medios (CM), con ellos se
+pueden construir pruebas estadísticas para verificar diferencias entre
+las partes, entre los operadores y la presencia de efecto de interacción
+operador × parte.</p>
 <p>La tabla anova está definida de la forma</p>
 <table>
 <colgroup>
@@ -462,10 +469,11 @@ class="math inline">\(F_0=MC_p/MSE\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center">Operador*parte</td>
-<td align="center">(o-1)x(p-1)</td>
+<td align="center"><span
+class="math inline">\((o-1)\ast(p-1)\)</span></td>
 <td align="center"><span class="math inline">\(SC_{op}\)</span></td>
 <td align="center"><span
-class="math inline">\(MC_{op}=SC_{op}/(o-1)x(p-1)\)</span></td>
+class="math inline">\(MC_{op}=SC_{op}/(o-1)\ast(p-1)\)</span></td>
 <td align="center"><span
 class="math inline">\(F_0=MC_{op}/MSE\)</span></td>
 </tr>
@@ -486,7 +494,97 @@ class="math inline">\(MC_e=SC_e/op(t-1)\)</span></td>
 </tr>
 </tbody>
 </table>
+<p>Donde la suma de cuadrados del error (SCe) corresponde a la
+Repetibilidad; es decir, al error en las mediciones debido al
+instrumento de medición.</p>
+<p><strong>Prueba de hipótesis de significancia de los
+parámetros</strong></p>
+<p><span class="math display">\[H_0=\beta_i=0\]</span></p>
+<p><span class="math display">\[H_0=\beta_i \neq  0\]</span>
+<strong>Medidas de varianza para cada una de las
+componentes</strong></p>
+<p>Varianza del operador = varianza de la reproducibilidad</p>
+<p><span
+class="math display">\[\sigma^2_{op}=\frac{MC_o-MC_{op}}{tp}\]</span>
+Varianza de la parte o pieza</p>
+<p><span
+class="math display">\[\sigma^2_{parte}=\frac{MC_p-MC_{op}}{to}\]</span>
+Varianza de la interacción</p>
+<p><span
+class="math display">\[\sigma^2_{op*par}=\frac{MC_{op}-MC_e}{t}\]</span>
+Varianza del instrumento = Varianza de la repetibilidad <span
+class="math display">\[\sigma^2_{inst}=MCe\]</span></p>
+<hr />
+<div id="índice-de-presición-tolerancia" class="section level2">
+<h2>índice de presición/ tolerancia</h2>
+<p>La RyR estiman la dispersión que cubre un 99% (5.15σ) de las
+variaciones debidas al equipo de medición y a los operadores
+respectivamente. La tolerancia del sistema también se ve afectada por
+variabilidad de cada componente del análisis, el cálculo para obtener el
+porcentaje de esta afectación se puede realizar mediante los índices de
+precisión/tolerancia (IP/T), para cada uno de los componentes</p>
+<p><span
+class="math display">\[Repetibilidad=\frac{\sqrt{\sigma^2_{inst}*5.15}*100}{tolerancia}\]</span></p>
+<p><span
+class="math display">\[Reproducibilidad=\frac{\sqrt{\sigma^2_{oper}}*5.15*100}{tolerancia}\]</span></p>
+<p><span
+class="math display">\[RyR=\frac{\sqrt{\sigma^2_{inst}*\sigma^2_{oper}}*5.15*100}{tolerancia}\]</span></p>
+<p><span
+class="math display">\[Parte=\frac{\sqrt{\sigma^2_{parte}}*5.15*100}{tolerancia}\]</span>
+El criterio para establecer si el sistema de medición es preciso, con
+base al índice de precisión/tolerancia (IP/T) del medidor Gage R&amp;R
+total, es el siguiente:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Rango del IP/T</th>
+<th align="center">Sistema de medición</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(IP/T_{R\&amp;R} ≤
+10\%\)</span></td>
+<td align="center">Excelente</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(10\% &lt;IP/T_{R\&amp;R}
+≤ 20\%\)</span></td>
+<td align="center">Bueno</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(20\% &lt;IP/T_{R\&amp;R}
+≤ 30\%\)</span></td>
+<td align="center">Marginal</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(IP/T_{R\&amp;R} ≥
+30\%\)</span></td>
+<td align="center">Inaceptable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>si la Repetibilidad &gt;&gt; Reproducibilidad</strong>,
+entonces:</p>
+<p>El instrumento de medición necesita mantenimiento.</p>
+<p>El instrumento de medición está obsoleto y requiere un rediseño.</p>
+<p>El lugar donde se efectúan las mediciones necesita ser mejorado.</p>
+<p>Existe una variabilidad excesiva entre las partes.</p>
+<p><strong>Si la Reproducibilidad &gt;&gt; la Repetibilidad</strong>,
+entonces:</p>
+<p>Los operadores necesitan mejor entrenamiento en la utilización y
+lectura del instrumento de medición.</p>
+<p>La indicación del instrumento de medición no es clara.</p>
+<p>No se han mantenido condiciones de Reproducibilidad buenas y/o el
+instrumento de medición presenta deriva.</p>
 <p><strong>Ejemplo</strong></p>
+<p>Un fabricante de baterías hace varios tipos de baterías/pilas para
+uso doméstico. se quiere empezar un proyecto Seis Sigma para mejorar la
+línea de producción de las pilas de voltaje 1.5.</p>
+<p>Se tiene la variable “voltaje”, 2 voltímetros disponibles y 3 pilas
+diferentes son seleccionadas al azar al final de la línea de producción.
+Se mide el voltaje de cada pila con cada voltímetro 3 veces. Los datos
+son los siguientes:</p>
 <pre class="r"><code>library(ggplot2)
 voltmeter = factor(rep(1:2, each = 9))
 battery = factor(rep(rep(1:3, each = 3), 2))
@@ -516,6 +614,38 @@ batteries</code></pre>
 ## 18         2       3   3  1.5444</code></pre>
 <pre class="r"><code>ggplot(batteries,aes(voltmeter,voltage))+geom_boxplot(aes(colour=battery))</code></pre>
 <p><img src="RYR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>El modelo de efectos fijos corresponde a:</p>
+<p><span class="math display">\[\large
+Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}
++\varepsilon_{ijk}\]</span> Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{ijk}\)</span> es la k ésima
+respuesta para la combinación ij</p></li>
+<li><p><span class="math inline">\(\large \mu\)</span> es la media
+global del modelo</p></li>
+<li><p><span class="math inline">\(\large \alpha_i\)</span> es el efecto
+de la i-ésima pila medida (3) gl=(o-1)=2</p></li>
+<li><p><span class="math inline">\(\large \beta_j\)</span> es el efecto
+de la j-ésimo voltímetro (2) gl=(p-1)=1</p></li>
+<li><p><span class="math inline">\(\large (\alpha\beta)_{ij}\)</span> es
+el efecto de la interacción entre la i-esima pila y j-ésimo voltímetro
+usado gl=(o-1)*(p-1)=2</p></li>
+<li><p><span class="math inline">\(\large \varepsilon_{ijk}\)</span> es
+el error aleatorio, q se considera la repetibilidad dada por el
+instrumento. gl=op(t-1)</p></li>
+</ul>
+<p>sujeto a :</p>
+<p><span class="math display">\[\varepsilon_{ijk} \sim N(0,\sigma^2)
+\qquad \sum_{i=1}^2 \alpha_i=0 \qquad \sum_{j=1}^1 \beta_j=0 \qquad
+\sum_{j=1}^3 (\alpha\beta)_{ij}=0 \qquad \sum_{i=1}^2
+(\alpha\beta)_{ij}=0\]</span></p>
+<pre class="r"><code>anova=aov(voltage ~ voltmeter+battery+voltmeter*battery)
+summary(anova)</code></pre>
+<pre><code>##                   Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## voltmeter          1 0.04444 0.04444   2.809  0.120
+## battery            2 0.06308 0.03154   1.994  0.179
+## voltmeter:battery  2 0.01847 0.00924   0.584  0.573
+## Residuals         12 0.18982 0.01582</code></pre>
 <pre class="r"><code>library(SixSigma)
 #ss.rr(var, part, appr, data, main, sub)
 my.rr &lt;- ss.rr(var = voltage, part = battery,
@@ -565,7 +695,19 @@ my.rr &lt;- ss.rr(var = voltage, part = battery,
 <pre><code>## Warning in widths.x[pos.widths[[nm]]] &lt;- widths.settings[[nm]] *
 ## widths.defaults[[nm]]$x: número de items para para sustituir no es un múltiplo
 ## de la longitud del reemplazo</code></pre>
-<p><img src="RYR_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="RYR_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><strong>Porcentaje de contribución a la varianza</strong></p>
+<p>Es el cociente de cada componente de varianza con respecto a la
+varianza total <span
+class="math inline">\((σ^2_{comp}/σ^2_{total})\)</span>, provee una
+interpretación en la escala de las varianzas.</p>
+<ul>
+<li><p>si la contribución es menor que 10% el sistema de medición es
+aceptable,</p></li>
+<li><p>la contribución máxima debe ser del 1% para que sea
+excelente</p></li>
+</ul>
+</div>
 </div>
 
 <br>
