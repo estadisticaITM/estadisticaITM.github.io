@@ -450,6 +450,7 @@ anova=aov(dis ~ pza*insp)
 summary(anova)
 
 
+
 library(SixSigma)
 #ss.rr(var, part, appr, data, main, sub)
 my.rr <- ss.rr(var = dis, part = pza,

@@ -11,7 +11,7 @@
 
 
 
-<title>Métodos de medición y estimación de la incertidumbre</title>
+<title>Determinación de la incertidumbre típica combinada</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -322,77 +404,131 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Métodos de medición y estimación de la
-incertidumbre</h1>
+<h1 class="title toc-ignore">Determinación de la incertidumbre típica
+combinada</h1>
 
 </div>
 
 
-<p><img src="imagen/metro.png" width="40%" style="display: block; margin: auto;" /></p>
-<div id="introducción" class="section level2">
-<h2>Introducción</h2>
-<p><a href="intro.html" target="_blank">Fundamentos de la
-medición</a></p>
-</div>
-<div id="conceptos-estadísticos" class="section level2">
-<h2>Conceptos estadísticos</h2>
-<p><a href="estad.html" target="_blank">Conceptos estadísticos</a></p>
-<p><a href="pruebas_no_paramétricas.html" target="_blank">Pruebas no
-parámetricas</a></p>
-</div>
-<div id="incertidumbre-de-medición" class="section level2">
-<h2>Incertidumbre de medición</h2>
-<p><a href="incer.html" target="_blank">Introducción</a></p>
-<p><a href="gum.html" target="_blank">Métodos de medición estocásticos y
-no estocásticos</a></p>
-<p><a href="RYR.html" target="_blank">Estudio reproducibilidad y
-repetibilidad gageR&amp;R</a></p>
-</div>
-<div id="métodos-de-medición-de-la-incertidumbre"
-class="section level2">
-<h2>Métodos de medición de la incertidumbre</h2>
-<p><a href="mcm.html" target="_blank">Monte carlo</a></p>
-<p><a href="coefsensi.html" target="_blank">coeficientes de
-sensibilidad</a></p>
-</div>
-<div id="bibliografía" class="section level2">
-<h2>Bibliografía</h2>
+<div id="incertidumbre-típica-tipo-b" class="section level2">
+<h2>Incertidumbre típica tipo B</h2>
+<p>se establecen mediante decisión científica, basada en toda la
+información disponible acerca de la variabilidad posible de Xi. puede
+comprender:</p>
+<ul>
+<li><p>Resultados de mediciones anteriores</p></li>
+<li><p>Conocimientos sobre las propiedades de los materiales e
+instrumentos</p></li>
+<li><p>Especificaciones del fabricante;</p></li>
+<li><p>Certificados de calibración u otros tipos de
+certificados;</p></li>
+<li><p>Incertidumbres asignadas a valores de referencia procedentes de
+libros y manuales.</p></li>
+</ul>
+<p>La incertidumbre tipo B puede obtenerse de diferentes maneras</p>
 <ol style="list-style-type: decimal">
-<li><p>Validación de métodos y determinación de la incertidumbre de la
-medición: “Aspectos generales sobre la validación de métodos”, Instituto
-de salud publica de Chile, 2010.</p></li>
-<li><p>Shmid W y lazos R. (2000) Guia para estimar la incertidumbre en
-la medición. centro nacional de metrología.</p></li>
-<li><p>KIRKUP L., FRENKEL R. B., AN INTRODUCTION TO UNCERTAINTY IN
-MEASUREMENT USING THE GUM (GUIDE TO THE EXPRESSION OF UNCERTAINTY IN
-MEASUREMENT), Cambridge University Press New York, 2006.</p></li>
-<li><p>Lira I., Evaluating the Measurement Uncertainty Fundamentals and
-Practical Guidance, IOP Publishing Ltd, 2002.</p></li>
-<li><p>Metrologos, A. (2005). Institución Apasionada por la Metrología
-Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración:
-Somos su Relevo a la Calidad. www.metas.com.mx</p></li>
-<li><p>Patrick F.D., Measurement and Data Analysis for Engineering and
-Science, CRC Press, 2010.</p></li>
-<li><p>Rabinovich G.S., Measurement Errors and Uncertainties Theory and
-Practice, Springer Science and Media, Inc, 2005.</p></li>
-<li><p>Willink R., MEASUREMENT UNCERTAINTY AND PROBABILITY, Springer
-Science and Media, Cambridge University Press New York, 2013.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Guide to the expression of uncertainty in
-measurement, 100:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Supplement using a Monte Carlo method,
-101:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), International
-vocabulary of metrology – Basic and general concepts and associated
-terms (VIM), 200:2012.</p></li>
-<li><p>Maroto A., Incertidumbre en métodos analíticos de rutina,
-Tarragona. 2002.</p></li>
-<li><p>Cárdenas J.J., Metodología para la determinación de la
-incertidumbre asociada a la medición en fuentes fijas usando la guía
-para la expresión de la incertidumbre de medida y un método estocástico,
-Medellín. 2018.</p></li>
+<li>La estimación se obtiene a partir de una especificación del
+fabricante, de un certificado de calibración,la incertidumbre viene dada
+como un múltiplo específico de una desviación típica, la incertidumbre
+típica <span class="math inline">\(u(xi)\)</span> es simplemente el
+cociente entre el valor indicado y el factor multiplicador, y la
+varianza estimada u2(xi) es el cuadrado de dicho cociente. (ver ejemplos
+de la hoja y obtener la incertidumbres respectivas)</li>
 </ol>
+<p><strong>EJEMPLO</strong></p>
+<p>Un certificado de calibración indica que la masa de un patrón de
+acero inoxidable, de valor nominal igual a un kilogramo, es mS =
+1000,000325 g, y que “la incertidumbre de este valor es de 240 μg, para
+un nivel de tres desviaciones típicas”.</p>
+<p>La incertidumbre típica del patrón de masa es simplemente u(mS) =
+(240 μg)/3 = 80 μg. Esto corresponde a una incertidumbre típica relativa
+u(mS)/mS de <span class="math inline">\(80 × 10^-9\)</span> . La
+varianza estimada es <span class="math inline">\(u^2(mS) = (80 μg)^2 =
+6,4×10^{-9} g^2.\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math inline">\(u_c(y)\)</span> es una desviación típica
+estimada y caracteriza la dispersión de los valores que podrían ser
+razonablemente atribuidos al mensurando Y.</p>
+<p>La incertidumbre típica combinada de y es <span
+class="math inline">\(u_c(y)\)</span>, se obtiene de las incertidumbres
+típicas de las estimaciones de entrada <span class="math inline">\(x_1,
+x_2, ..., x_N\)</span>.</p>
+<p><strong>Incertidumbre típica para magnitutes
+independientes</strong></p>
+<p>La incertidumbre típica combinada <span
+class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
+varianza combinada <span class="math inline">\(u_c^2(y)\)</span>, dada
+por:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \left[
+\frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)\]</span></p>
+<p><strong>Incertidumbre típica para magnitutes dependientes o
+correlacionadas</strong></p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
+\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
+x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
+\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
+}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
+<p>donde</p>
+<ul>
+<li>f es la función del mesurando dada por:</li>
+</ul>
+<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
+<ul>
+<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
+incertidumbre típica, (Tipo A o Tipo B).</p></li>
+<li><p>Ambas ecuaciones están basadas en un desarrollo en serie de
+Taylor de primer orden de <span class="math inline">\(Y = f(X_1, X_2,
+..., X_N)\)</span>, expresan lo que en la Guía se denomina <strong>ley
+de propagación de la incertidumbre.</strong></p></li>
+</ul>
+<p><strong>Coeficientes de sensibilidad</strong></p>
+<p>Las derivadas parciales <span class="math inline">\(\frac{\partial f
+}{\partial x_i}\)</span> calculadas para <span class="math inline">\(Xi
+=x_i\)</span> son denominadas coeficientes de sensibilidad, describen
+cómo varía la estimación de salida y, en función de las variaciones en
+los valores de las estimaciones de entrada <span
+class="math inline">\(x_1, x_2, ..., x_N.\)</span></p>
+<p>La varianza combinada <span class="math inline">\(u^2_c(y)\)</span>
+puede considerarse como una suma de términos, cada uno de ellos
+representando la varianza estimada asociada a y, debido a la varianza
+estimada asociada a cada estimación de entrada xi. Esto conduce a
+escribir la ecuación de la forma:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{j=1}^N\left[ c_i
+u(x_i)\right]^2 = \sum_{i=1}^Nu^2(y)\]</span></p>
+<p>donde <span class="math display">\[c_i=\frac{\partial f }{\partial
+x_i}\qquad u_i(y)=|c_i|u(x_i)\]</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Si se aplica una diferencia de potencial V a los bornes de una
+resistencia cuyo valor depende de la temperatura, de la resistencia
+<span class="math inline">\(R_0\)</span> a la temperatura definida <span
+class="math inline">\(t_0\)</span> y del coeficiente lineal de
+temperatura α, la potencia disipada P (el mensurando) por la resistencia
+a la temperatura t es función de <span class="math inline">\(V, R_0,
+α,\)</span> y t, la ecuación representativa es:</p>
+<p><span
+class="math display">\[P=f(V,R_0,\alpha,t)=\frac{V^2}{R_0[1+\alpha(t-t_0)]}\]</span></p>
+<p>Las derivadas paraciales de P con respecto a cada una de las
+variables corresponden a :</p>
+<p><span class="math display">\[c_1=\frac{\partial P }{\partial V}=
+\frac{2V}{R_0[1+\alpha(t-t_0)]}=\frac{2P}{V}\]</span> <span
+class="math display">\[c_2=\frac{\partial P }{\partial R_0}=
+\frac{-V^2}{R_0^2[1+\alpha(t-t_0)]}=\frac{-P}{R_0}\]</span> <span
+class="math display">\[c_3=\frac{\partial P }{\partial \alpha}=
+\frac{-V^2(t-t_0)}{R_0[1+\alpha(t-t_0)]^2}=\frac{-P(t-t_0)}{1+\alpha(t-t_0)}\]</span>
+<span class="math display">\[c4=\frac{\partial P }{\partial t}=
+\frac{-V^2\alpha}{R_0[1+\alpha(t-t_0)]^2}=\frac{-P
+\alpha}{1+\alpha(t-t_0)}\]</span> En terminos de fórmula se traduce
+en:</p>
+<p><span class="math display">\[u^2(P)=\left[ \frac{\partial P}{\partial
+V} \right]^2 u^2(V)+\left[\frac{\partial P}{\partial R_0}
+\right]^2u^2(R_0)+\left[ \frac{\partial P}{\partial \alpha}
+\right]^2u^2(\alpha)+\left[ \frac{\partial f }{\partial t}
+\right]^2u^2(t)\]</span></p>
+<p><span class="math display">\[u^2(P)=\left[C_1u(V)\right]^2+\left[ C_2
+u(R_0) \right]^2 +\left[ C_3u(\alpha)
+\right]^2+\left[C_4u(t)  \right]^2\]</span></p>
 </div>
 
 <br>
@@ -402,6 +538,8 @@ Medellín. 2018.</p></li>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -434,6 +572,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
