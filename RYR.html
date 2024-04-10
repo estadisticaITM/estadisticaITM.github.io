@@ -11,7 +11,7 @@
 
 
 
-<title>RYR.knit</title>
+<title>Estudio reproducibilidad y repetibilidad gageR&amp;R</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -322,13 +404,12 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Estudio reproducibilidad y repetibilidad
+gageR&amp;R</h1>
 
 </div>
 
 
-<div id="estudio-reproducibilidad-y-repetibilidad-gagerr"
-class="section level1">
-<h1>Estudio reproducibilidad y repetibilidad gageR&amp;R</h1>
 <p><img src="imagen/cm.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Se evalúa qué parte de la variabilidad total es atribuible al error
 de medición; además, permite cuantificar si este error es mucho o poco
@@ -352,25 +433,16 @@ total observada</p></li>
 <li><p><span class="math inline">\(σ^2_{prod}\)</span> la varianza
 atribuible al producto (partes o piezas)</p></li>
 <li><p><span class="math inline">\(σ^2_{instr}\)</span> la variabilidad
-del instrumento de medición</p></li>
+del instrumento de medición,</p></li>
 <li><p><span class="math inline">\(σ^2_{oper}\)</span> la variabilidad o
 error debido a operadores</p></li>
 </ul>
-<p>Cumpliendo la siguiente relación:</p>
-<p><span
-class="math display">\[σ^2_{total}=σ^2_{prod}+σ^2_{instr}+σ^2_{oper}\]</span>
-donde <span class="math display">\[σ^2_{instr}=σ^2_{repeti}\]</span>
-<span class="math display">\[σ^2_{Oper}=σ^2_{reprod}\]</span></p>
-<p>Por lo tanto, el error o variabilidad de las mediciones debido a
-repetibilidad y reproducibilidad se obtiene con</p>
-<p><span
-class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span>
-<strong>Pasos para realizar un estudio R&amp;R largo</strong></p>
+<p><strong>Pasos para realizar un estudio R&amp;R largo</strong></p>
 <p>para cada instrumento de medición que se desee evaluar es necesario
 plantear un estudio en el que se apliquen los siguientes pasos:</p>
-<p><strong>1. </strong> Seleccionar</p>
+<p><strong>1.</strong> Seleccionar</p>
 <ul>
-<li><p>dos o más operadores para conducir el estudio acerca del
+<li><p>Dos o más operadores para conducir el estudio acerca del
 instrumento de medición de interés.</p></li>
 <li><p>10 o más partes o piezas que serán medidas varias veces por cada
 operador.</p></li>
@@ -378,7 +450,7 @@ operador.</p></li>
 <p><strong>2.</strong> Decidir el número de ensayos o veces que cada
 operador medirá la misma pieza. por lo menos dos ó tres ensayos es lo
 más recomendable.</p>
-<p><strong>3.</strong>Identificar la zona o punto en la parte donde la
+<p><strong>3.</strong> Identificar la zona o punto en la parte donde la
 medición será tomada, así como el método o técnica que deberá
 aplicarse.</p>
 <p><strong>4.</strong> Obtener en orden aleatorio la primera medición (o
@@ -388,13 +460,46 @@ primera medición del operador B.</p>
 <p><strong>6.</strong> Continuar hasta que todos los operadores hayan
 realizado la primera medición de todas las piezas.</p>
 <p><strong>7.</strong> Hacer el análisis estadístico de los datos.</p>
-<p><strong>ANOVA para el estudio de repetibilidad y
-reproducibilidad</strong></p>
+<div id="anova-para-el-estudio-de-repetibilidad-y-reproducibilidad"
+class="section level2">
+<h2>ANOVA para el estudio de repetibilidad y reproducibilidad</h2>
 <p>Permite identificar y cuantificar de mejor manera todas las fuentes
-de variación presentes en el estudio R&amp;R. Para comprender los
-conceptos utilizados en la presente sección se recomienda revisar los
-conceptos de análisis de varianza.</p>
-<p>El método de ANOVA reparte la variación total <span
+de variación presentes en el estudio R&amp;R.</p>
+<p><strong>Prueba de hipótesis de significancia de los
+parámetros</strong></p>
+<p>Parámetro no significativo</p>
+<p><span class="math display">\[H_0=\beta_i=0\]</span> Parámetro
+significativo</p>
+<p><span class="math display">\[H_1=\beta_i \neq  0\]</span></p>
+<div id="modelo-anova-con-interacción-significativa"
+class="section level3">
+<h3>Modelo anova con interacción significativa</h3>
+<p>El modelo de efectos fijos corresponde a:</p>
+<p><span class="math display">\[\large
+Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}
++\varepsilon_{ijk}\]</span> Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{ijk}\)</span> es la k ésima
+respuesta para alfa i ésima observación, beta j-ésima
+observación.</p></li>
+<li><p><span class="math inline">\(\large \mu\)</span> es la media
+global del modelo</p></li>
+<li><p><span class="math inline">\(\large \alpha_i\)</span> es el efecto
+de la i-ésima observación</p></li>
+<li><p><span class="math inline">\(\large \beta_j\)</span> es el efecto
+de la j-ésimo observación</p></li>
+<li><p><span class="math inline">\(\large (\alpha\beta)_{ij}\)</span> es
+el efecto de la interacción entre la i-esima y j-ésimo
+observación</p></li>
+<li><p><span class="math inline">\(\large \varepsilon_{ijk}\)</span> es
+el error aleatorio.</p></li>
+</ul>
+<p>sujeto a :</p>
+<p><span class="math display">\[\varepsilon_{ijk} \sim N(0,\sigma^2)
+\qquad \sum_{i=1}^o \alpha_i=0 \qquad \sum_{j=1}^p \beta_j=0 \qquad
+\sum_{j=1}^o (\alpha\beta)_{ij}=0 \qquad \sum_{i=1}^p
+(\alpha\beta)_{ij}=0\]</span> En caso de que la interacción sea
+significativa el método de ANOVA reparte la variación total <span
 class="math inline">\(σ^2_{total}\)</span> de los datos en la siguiente
 forma:</p>
 <p><span
@@ -407,15 +512,7 @@ class="math display">\[σ^2_{reprod} = σ^2_{oper} + σ^2_{oper ×
 parte}\]</span> <span
 class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span></p>
 <p>Estos componentes se estiman mediante la técnica de ANOVA aplicada a
-un diseño factorial con efectos aleatorios. De los datos del estudio
-R&amp;R largo se pueden calcular las llamadas sumas de cuadrados (SC)
-correspondientes a cada componente de variación, cumpliendo con la
-relación</p>
-<p><span class="math display">\[
-SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}\]</span></p>
-<p>donde la suma de cuadrados del error <span
-class="math inline">\(SC_{error}\)</span> corresponde a la
-repetibilidad.</p>
+un diseño factorial con efectos aleatorios.</p>
 <p>Considere</p>
 <ul>
 <li><p>p partes,</p></li>
@@ -454,7 +551,7 @@ operador × parte.</p>
 <td align="center">o-1</td>
 <td align="center"><span class="math inline">\(SC_o\)</span></td>
 <td align="center"><span
-class="math inline">\(MS_O=SC_o/(o-1)\)</span></td>
+class="math inline">\(MS_O=\frac{SC_o}{(o-1)}\)</span></td>
 <td align="center"><span
 class="math inline">\(F_0=MS_o/MSE\)</span></td>
 </tr>
@@ -463,7 +560,7 @@ class="math inline">\(F_0=MS_o/MSE\)</span></td>
 <td align="center">p-1</td>
 <td align="center"><span class="math inline">\(SC_p\)</span></td>
 <td align="center"><span
-class="math inline">\(MC_p=SC_p/(p-1)\)</span></td>
+class="math inline">\(MC_p=\frac{SC_p}{(p-1)}\)</span></td>
 <td align="center"><span
 class="math inline">\(F_0=MC_p/MSE\)</span></td>
 </tr>
@@ -473,7 +570,7 @@ class="math inline">\(F_0=MC_p/MSE\)</span></td>
 class="math inline">\((o-1)\ast(p-1)\)</span></td>
 <td align="center"><span class="math inline">\(SC_{op}\)</span></td>
 <td align="center"><span
-class="math inline">\(MC_{op}=SC_{op}/(o-1)\ast(p-1)\)</span></td>
+class="math inline">\(MC_{op}=\frac{SC_{op}}{(o-1)\ast(p-1)}\)</span></td>
 <td align="center"><span
 class="math inline">\(F_0=MC_{op}/MSE\)</span></td>
 </tr>
@@ -482,7 +579,7 @@ class="math inline">\(F_0=MC_{op}/MSE\)</span></td>
 <td align="center">op(t-1)</td>
 <td align="center"><span class="math inline">\(SC_e\)</span></td>
 <td align="center"><span
-class="math inline">\(MC_e=SC_e/op(t-1)\)</span></td>
+class="math inline">\(MC_e=\frac{SC_e}{op(t-1)}\)</span></td>
 <td align="center"></td>
 </tr>
 <tr class="odd">
@@ -497,12 +594,106 @@ class="math inline">\(MC_e=SC_e/op(t-1)\)</span></td>
 <p>Donde la suma de cuadrados del error (SCe) corresponde a la
 Repetibilidad; es decir, al error en las mediciones debido al
 instrumento de medición.</p>
-<p><strong>Prueba de hipótesis de significancia de los
-parámetros</strong></p>
-<p><span class="math display">\[H_0=\beta_i=0\]</span></p>
-<p><span class="math display">\[H_0=\beta_i \neq  0\]</span>
-<strong>Medidas de varianza para cada una de las
-componentes</strong></p>
+<p>Las sumas de cuadrados (SC) correspondientes a cada componente de
+variación cumplen la relación</p>
+<p><span class="math display">\[
+SC_{total}=SC_{parte}+SC_{oper}+SC_{oper×parte}+ SC_{error}\]</span></p>
+</div>
+<div id="modelo-anova-sin-interacción-significativa"
+class="section level3">
+<h3>Modelo anova sin interacción significativa</h3>
+<p>El modelo de efectos fijos corresponde a:</p>
+<p><span class="math display">\[\large Y_{ijk}=\mu+\alpha_i+\beta_j
++\varepsilon_{ijk}\]</span> Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{ijk}\)</span> es la k ésima
+respuesta para la combinación ij</p></li>
+<li><p><span class="math inline">\(\large \mu\)</span> es la media
+global del modelo</p></li>
+<li><p><span class="math inline">\(\large \alpha_i\)</span> es el efecto
+de la i-ésima observación</p></li>
+<li><p><span class="math inline">\(\large \beta_j\)</span> es el efecto
+de la j-ésimo observación</p></li>
+<li><p><span class="math inline">\(\large \varepsilon_{ijk}\)</span> es
+el error aleatorio, q se considera la repetibilidad dada por el
+instrumento.</p></li>
+</ul>
+<p>sujeto a :</p>
+<p><span class="math display">\[\varepsilon_{ijk} \sim N(0,\sigma^2)
+\qquad \sum_{i=1}^o \alpha_i=0 \qquad \sum_{j=1}^p \beta_j=0 \]</span>
+Cumpliendo la siguiente relación:</p>
+<p><span
+class="math display">\[σ^2_{total}=σ^2_{prod}+σ^2_{instr}+σ^2_{oper}\]</span>
+donde la varianza del instrumento se toma como el error del modelo
+MCe</p>
+<p><span class="math display">\[σ^2_{instr}=σ^2_{repeti}\]</span></p>
+<p><span class="math display">\[σ^2_{Oper}=σ^2_{reprod}\]</span></p>
+<p>Por lo tanto, el error o variabilidad de las mediciones debido a
+repetibilidad y reproducibilidad se obtiene con</p>
+<p><span
+class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span></p>
+<p>La tabla anova está definida de la forma</p>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="18%" />
+<col width="17%" />
+<col width="18%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de cuadrados</th>
+<th align="center">cuadrados medios</th>
+<th align="center">Estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">operador</td>
+<td align="center">o-1</td>
+<td align="center"><span class="math inline">\(SC_o\)</span></td>
+<td align="center"><span
+class="math inline">\(MS_O=\frac{SC_o}{(o-1)}\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=MS_o/MSE\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">parte</td>
+<td align="center">p-1</td>
+<td align="center"><span class="math inline">\(SC_p\)</span></td>
+<td align="center"><span
+class="math inline">\(MC_p=\frac{SC_p}{(p-1)}\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=MC_p/MSE\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Error(instrumento)</td>
+<td align="center">opt-o-p+1</td>
+<td align="center"><span class="math inline">\(SC_e\)</span></td>
+<td align="center"><span
+class="math inline">\(MC_e=\frac{SC_e}{opt-o-p+1}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Total</td>
+<td align="center">opt-1</td>
+<td align="center">SCT</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="medidas-a-tener-en-cuenta-para-el-análisis-de-rr"
+class="section level2">
+<h2>Medidas a tener en cuenta para el análisis de R&amp;R</h2>
+<div id="varianza-para-cada-una-de-las-componentes"
+class="section level3">
+<h3>Varianza para cada una de las componentes</h3>
 <p>Varianza del operador = varianza de la reproducibilidad</p>
 <p><span
 class="math display">\[\sigma^2_{op}=\frac{MC_o-MC_{op}}{tp}\]</span>
@@ -513,10 +704,15 @@ Varianza de la interacción</p>
 <p><span
 class="math display">\[\sigma^2_{op*par}=\frac{MC_{op}-MC_e}{t}\]</span>
 Varianza del instrumento = Varianza de la repetibilidad <span
-class="math display">\[\sigma^2_{inst}=MCe\]</span></p>
+class="math display">\[\sigma^2_{inst}=MCe\]</span>
+<strong>Nota:</strong></p>
+<p>En caso tal que la interacción no se considere significativa el
+termino <span class="math inline">\(MC_{op}\)</span> es reemplazado por
+<span class="math inline">\(MC_e\)</span></p>
 <hr />
-<div id="índice-de-presición-tolerancia" class="section level2">
-<h2>índice de presición/ tolerancia</h2>
+</div>
+<div id="índice-de-presición-tolerancia" class="section level3">
+<h3>Índice de presición / tolerancia</h3>
 <p>La RyR estiman la dispersión que cubre un 99% (5.15σ) de las
 variaciones debidas al equipo de medición y a los operadores
 respectivamente. La tolerancia del sistema también se ve afectada por
@@ -524,7 +720,7 @@ variabilidad de cada componente del análisis, el cálculo para obtener el
 porcentaje de esta afectación se puede realizar mediante los índices de
 precisión/tolerancia (IP/T), para cada uno de los componentes</p>
 <p><span
-class="math display">\[Repetibilidad=\frac{\sqrt{\sigma^2_{inst}*5.15}*100}{tolerancia}\]</span></p>
+class="math display">\[Repetibilidad=\frac{\sqrt{\sigma^2_{inst}}*5.15*100}{tolerancia}\]</span></p>
 <p><span
 class="math display">\[Reproducibilidad=\frac{\sqrt{\sigma^2_{oper}}*5.15*100}{tolerancia}\]</span></p>
 <p><span
@@ -564,12 +760,18 @@ total, es el siguiente:</p>
 </tr>
 </tbody>
 </table>
+<hr />
+</div>
+<div id="relación-entre-repetibilidad-y-reproducibilidad"
+class="section level3">
+<h3>Relación entre repetibilidad y reproducibilidad</h3>
 <p><strong>si la Repetibilidad &gt;&gt; Reproducibilidad</strong>,
 entonces:</p>
 <p>El instrumento de medición necesita mantenimiento.</p>
 <p>El instrumento de medición está obsoleto y requiere un rediseño.</p>
 <p>El lugar donde se efectúan las mediciones necesita ser mejorado.</p>
 <p>Existe una variabilidad excesiva entre las partes.</p>
+<hr />
 <p><strong>Si la Reproducibilidad &gt;&gt; la Repetibilidad</strong>,
 entonces:</p>
 <p>Los operadores necesitan mejor entrenamiento en la utilización y
@@ -577,6 +779,42 @@ lectura del instrumento de medición.</p>
 <p>La indicación del instrumento de medición no es clara.</p>
 <p>No se han mantenido condiciones de Reproducibilidad buenas y/o el
 instrumento de medición presenta deriva.</p>
+<hr />
+</div>
+<div id="porcentaje-de-contribución-a-la-varianza"
+class="section level3">
+<h3>Porcentaje de contribución a la varianza</h3>
+<p>Es el cociente de cada componente de varianza con respecto a la
+varianza total <span
+class="math inline">\((σ^2_{comp}/σ^2_{total})\)</span>, provee una
+interpretación en la escala de las varianzas.</p>
+<ul>
+<li><p>si la contribución es menor que 10% el sistema de medición es
+aceptable,</p></li>
+<li><p>la contribución máxima debe ser del 1% para que sea
+excelente</p></li>
+</ul>
+</div>
+<div id="número-de-categorías" class="section level3">
+<h3>Número de categorías</h3>
+<p>el valor de nc indica el número de grupos diferentes de piezas que el
+sistema de medición es capaz de distinguir, lo cual tiene relación
+directa con la resolución con la que éste mide la característica de
+interés.</p>
+<p>Calcular el número de categorías distintas o distinguibles, nc. se
+calcula con</p>
+<p><span class="math display">\[n_c= \sqrt2
+(σ^2_{parte}/σ^2_{R\&amp;R})\]</span></p>
+<p>se interpreta como el número de intervalos de confianza al 97% no
+traslapados, y basados en el error de medición, que caben en el ancho de
+la variación de las partes.</p>
+<p>Por esto La interpretación de la calidad del sistema de medición en
+términos del valor de nc se hace de acuerdo con:</p>
+<p>• Si nc &gt; 4, la resolución del sistema de medición es
+adecuada.</p>
+<p>• Si nc &lt; 2, la resolución del sistema de medición es claramente
+inadecuada.</p>
+<p>• Si 2 ≤ nc ≤ 4, tiene una resolución poco adecuada.</p>
 <p><strong>Ejemplo</strong></p>
 <p>Un fabricante de baterías hace varios tipos de baterías/pilas para
 uso doméstico. se quiere empezar un proyecto Seis Sigma para mejorar la
@@ -589,8 +827,7 @@ son los siguientes:</p>
 voltmeter = factor(rep(1:2, each = 9))
 battery = factor(rep(rep(1:3, each = 3), 2))
 run = factor(rep(1:3, 6))
-voltage = c(1.4727, 1.4206, 1.4754, 1.5083, 1.5739, 1.4341, 1.5517, 1.5483, 1.4614, 
-            1.3337,1.6078, 1.4767, 1.4066, 1.5951, 1.8419,1.7087, 1.8259, 1.5444)
+voltage = c(1.4727, 1.4206, 1.4754, 1.5083, 1.5739, 1.4341, 1.5517, 1.5483, 1.4614,1.3337,1.6078, 1.4767, 1.4066, 1.5951, 1.8419,1.7087, 1.8259, 1.5444)
 batteries = data.frame(voltmeter, battery,run, voltage)
 batteries</code></pre>
 <pre><code>##    voltmeter battery run voltage
@@ -614,9 +851,14 @@ batteries</code></pre>
 ## 18         2       3   3  1.5444</code></pre>
 <pre class="r"><code>ggplot(batteries,aes(voltmeter,voltage))+geom_boxplot(aes(colour=battery))</code></pre>
 <p><img src="RYR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>para este modelo se identifican</p>
+<ul>
+<li><p>O operadores, voltímetros = 2</p></li>
+<li><p>t ensayos, repeticiones de cada experimento = 3</p></li>
+<li><p>piezas = 3</p></li>
+</ul>
 <p>El modelo de efectos fijos corresponde a:</p>
-<p><span class="math display">\[\large
-Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha\beta)_{ij}
+<p><span class="math display">\[\large Y_{ijk}=\mu+\alpha_i+\beta_j
 +\varepsilon_{ijk}\]</span> Donde:</p>
 <ul>
 <li><p><span class="math inline">\(Y_{ijk}\)</span> es la k ésima
@@ -627,18 +869,14 @@ global del modelo</p></li>
 de la i-ésima pila medida (3) gl=(o-1)=2</p></li>
 <li><p><span class="math inline">\(\large \beta_j\)</span> es el efecto
 de la j-ésimo voltímetro (2) gl=(p-1)=1</p></li>
-<li><p><span class="math inline">\(\large (\alpha\beta)_{ij}\)</span> es
-el efecto de la interacción entre la i-esima pila y j-ésimo voltímetro
-usado gl=(o-1)*(p-1)=2</p></li>
 <li><p><span class="math inline">\(\large \varepsilon_{ijk}\)</span> es
 el error aleatorio, q se considera la repetibilidad dada por el
 instrumento. gl=op(t-1)</p></li>
 </ul>
 <p>sujeto a :</p>
 <p><span class="math display">\[\varepsilon_{ijk} \sim N(0,\sigma^2)
-\qquad \sum_{i=1}^2 \alpha_i=0 \qquad \sum_{j=1}^1 \beta_j=0 \qquad
-\sum_{j=1}^3 (\alpha\beta)_{ij}=0 \qquad \sum_{i=1}^2
-(\alpha\beta)_{ij}=0\]</span></p>
+\qquad \sum_{i=1}^3 \alpha_i=0 \qquad \sum_{j=1}^2 \beta_j=0
+\]</span></p>
 <pre class="r"><code>anova=aov(voltage ~ voltmeter+battery+voltmeter*battery)
 summary(anova)</code></pre>
 <pre><code>##                   Df  Sum Sq Mean Sq F value Pr(&gt;F)
@@ -696,17 +934,145 @@ my.rr &lt;- ss.rr(var = voltage, part = battery,
 ## widths.defaults[[nm]]$x: número de items para para sustituir no es un múltiplo
 ## de la longitud del reemplazo</code></pre>
 <p><img src="RYR_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p><strong>Porcentaje de contribución a la varianza</strong></p>
-<p>Es el cociente de cada componente de varianza con respecto a la
-varianza total <span
-class="math inline">\((σ^2_{comp}/σ^2_{total})\)</span>, provee una
-interpretación en la escala de las varianzas.</p>
+<p><strong>Conclusiones de R&amp;R</strong></p>
 <ul>
-<li><p>si la contribución es menor que 10% el sistema de medición es
-aceptable,</p></li>
-<li><p>la contribución máxima debe ser del 1% para que sea
-excelente</p></li>
+<li><p>El modelo no representa significativa la interacción entre el
+operario(voltímetro) y la batería (pila).</p></li>
+<li><p>El aporte de las piezas a la varianza del modelo es muy poco
+13.26%, cuando en realidad este valor debería ser mucho mayor. mientras
+que el aporte de R&amp;R es mucho mayor, en especial el aporte de la
+repetibilidad con un 71.05%, asociado a un mal manejo del
+instrumento</p></li>
+<li><p>Sistema identifica apenas un grupo lo cual quiere decir que la
+resolución del sistema de medición es inadecuada.</p></li>
+<li><p>La R&amp;R contribuyen a un 90% de la variación del sistema, es
+decir que el sistema no mide bien.</p></li>
 </ul>
+</div>
+<div id="taller-repetibilidad-y-reproducibilidad"
+class="section level3">
+<h3>Taller repetibilidad y reproducibilidad</h3>
+<p>En una compañía dedicada a la fabricación de bombas y válvulas,
+algunos componentes críticos tienen tolerancias muy estrechas que son
+difíciles de cumplir. De aquí que sea necesario estimar el error de
+medición con el fin de ver la posibilidad de reducirlo para cumplir con
+las especificaciones. El ancho de un componente particular es una
+característica de calidad crítica, cuyas especificaciones son 69 ± 0.4
+mm. Se seleccionaron dos inspectores para realizar un estudio R&amp;R, y
+cada uno midió siete componentes dos veces con un vernier digital capaz
+de discriminar entre piezas que difieran en 0.02 mm.</p>
+<ol style="list-style-type: decimal">
+<li>cual es la tolerancia de la medida</li>
+</ol>
+<p>Los datos se muestran en la siguiente tabla.</p>
+<pre><code>##    medida insp pza   dis
+## 1       1    1   1 69.38
+## 2       1    1   2 69.72
+## 3       1    1   3 69.58
+## 4       1    1   4 69.50
+## 5       1    1   5 69.48
+## 6       1    1   6 69.56
+## 7       1    1   7 69.90
+## 8       2    1   1 69.60
+## 9       2    1   2 69.80
+## 10      2    1   3 69.70
+## 11      2    1   4 69.50
+## 12      2    1   5 69.40
+## 13      2    1   6 69.40
+## 14      2    1   7 70.02
+## 15      1    2   1 69.62
+## 16      1    2   2 69.78
+## 17      1    2   3 69.70
+## 18      1    2   4 69.46
+## 19      1    2   5 69.50
+## 20      1    2   6 69.68
+## 21      1    2   7 69.94
+## 22      2    2   1 69.52
+## 23      2    2   2 69.90
+## 24      2    2   3 69.62
+## 25      2    2   4 69.50
+## 26      2    2   5 69.42
+## 27      2    2   6 69.64
+## 28      2    2   7 69.88</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>La siguiente figura relaciona la medida de cada uno delos operarios
+en cada pieza, que se puede inferir.</li>
+</ol>
+<p><img src="RYR_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Después de evaluar la significancia de cada una de las variables,
+escriba el modelo de efectos fijos asociado a la salida óptima del
+anova, con sus respectivas restricciones.</p></li>
+<li><p>escriba la prueba de hipótesis de significancia del
+modelo</p></li>
+<li><p>Interprete cada uno de los graficos que se ilustran. que se puede
+afirmar, ¿Cuál de los dos componentes, repetibilidad (instrumento) y
+reproducibilidad (operario), del error de medición tiene mayor
+contribución?</p></li>
+</ol>
+<pre class="r"><code>anova=aov(dis ~ pza*insp)
+summary(anova)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## pza          6 0.7516 0.12526  21.976 2.27e-06 ***
+## insp         1 0.0137 0.01373   2.409    0.143    
+## pza:insp     6 0.0352 0.00586   1.028    0.447    
+## Residuals   14 0.0798 0.00570                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>library(SixSigma)
+#ss.rr(var, part, appr, data, main, sub)
+my.rr &lt;- ss.rr(var = dis, part = pza,
+               appr = insp,
+               data = datoss,
+               main = &quot;Six Sigma Gage R&amp;R Measure&quot;,
+               sub = &quot;Batteries Project MSA&quot;)</code></pre>
+<pre><code>## Complete model (with interaction):
+## 
+##               Df Sum Sq Mean Sq F value   Pr(&gt;F)
+## pza            6 0.7516 0.12526  21.369 0.000835
+## insp           1 0.0137 0.01373   2.342 0.176803
+## pza:insp       6 0.0352 0.00586   1.028 0.447141
+## Repeatability 14 0.0798 0.00570                 
+## Total         27 0.8803                         
+## 
+## alpha for removing interaction: 0.05 
+## 
+## 
+## Reduced model (without interaction):
+## 
+##               Df Sum Sq Mean Sq F value   Pr(&gt;F)
+## pza            6 0.7516 0.12526  21.790 8.63e-08
+## insp           1 0.0137 0.01373   2.388    0.138
+## Repeatability 20 0.1150 0.00575                 
+## Total         27 0.8803                         
+## 
+## Gage R&amp;R
+## 
+##                       VarComp %Contrib
+## Total Gage R&amp;R    0.006318571    17.46
+##   Repeatability   0.005748571    15.88
+##   Reproducibility 0.000570000     1.57
+##     insp          0.000570000     1.57
+## Part-To-Part      0.029878333    82.54
+## Total Variation   0.036196905   100.00
+## 
+##                       StdDev  StudyVar %StudyVar
+## Total Gage R&amp;R    0.07948944 0.4769367     41.78
+##   Repeatability   0.07581933 0.4549160     39.85
+##   Reproducibility 0.02387467 0.1432480     12.55
+##     insp          0.02387467 0.1432480     12.55
+## Part-To-Part      0.17285350 1.0371210     90.85
+## Total Variation   0.19025484 1.1415290    100.00
+## 
+## Number of Distinct Categories = 3</code></pre>
+<pre><code>## Warning in widths.x[pos.widths[[nm]]] &lt;- widths.settings[[nm]] *
+## widths.defaults[[nm]]$x: número de items para para sustituir no es un múltiplo
+## de la longitud del reemplazo</code></pre>
+<p><img src="RYR_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>que se puede afirmar del número de categorías</p></li>
+<li><p>Calcule el índice P/T e interprete.</p></li>
+</ol>
 </div>
 </div>
 
@@ -717,6 +1083,8 @@ excelente</p></li>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -749,6 +1117,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
