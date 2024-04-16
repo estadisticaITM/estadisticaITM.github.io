@@ -530,8 +530,8 @@ lo menos 30 semanas</p>
 <span class="math display">\[ 1 - F(30/15;8)= 0.999\]</span></p>
 </div>
 <div id="función-de-distribución-de-probabilidad-exponencial"
-class="section level1">
-<h1>Función de distribución de probabilidad exponencial</h1>
+class="section level2">
+<h2>Función de distribución de probabilidad exponencial</h2>
 <p>La distribución exponencial se deriva de considerar <span
 class="math inline">\(\alpha=1\)</span> y <span
 class="math inline">\(\beta=1/\lambda\)</span> en la distribución gama.
@@ -541,8 +541,8 @@ una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula
 radiactiva en desintegrarse.</p>
 <p><img src="imagen/colas.png" width="357" style="display: block; margin: auto;" /></p>
 <div id="función-de-distribución-de-probabilidad"
-class="section level2">
-<h2>Función de distribución de probabilidad</h2>
+class="section level3">
+<h3>Función de distribución de probabilidad</h3>
 <p>Se dice que X tiene una distribución exponencial con parámetro λ, con
 λ&gt;0, si la función de densidad de probabilidad de X es:</p>
 <p><span class="math display">\[ f(x;λ)=\left\{ \begin{array}{lc}
@@ -563,8 +563,8 @@ class="math display">\[V(X)=\int_0^\infty  x^2 λe^{-λx}-\mu^2 \]</span>
 al resolver las integrales se obtiene que<br />
 <span class="math display">\[Var(x)=\frac{1}{λ^2}\]</span></p>
 </div>
-<div id="función-de-distribución-acumulada" class="section level2">
-<h2>Función de distribución acumulada</h2>
+<div id="función-de-distribución-acumulada" class="section level3">
+<h3>Función de distribución acumulada</h3>
 <p>La función de distribución acumulada es</p>
 <p><span class="math display">\[  F(x;λ)=\left\{ \begin{array}{lc}
 \\ 0 &amp;  si  &amp; x &lt; 0 \\
@@ -592,9 +592,9 @@ class="math display">\[P(t&gt;1.5)=1-F(1.5)=0.95\]</span> <span
 class="math display">\[P(t&gt;1.5)=1-(1-e^{-3*1.5})=e^{-4.5}\]</span></p>
 </div>
 <div id="propiedad-de-pérdida-de-memoria-de-la-distribución-exponencial"
-class="section level2">
-<h2>Propiedad de pérdida de memoria de la distribución exponencial</h2>
-<p>En el análisis del comportamiento de las líneas de Espera, se
+class="section level3">
+<h3>Propiedad de pérdida de memoria de la distribución exponencial</h3>
+<p>En el análisis del comportamiento de las líneas de espera, se
 reconoce que el proceso de llegada de los clientes al sistema ocurre de
 forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia
 de un evento no se ve afectado por el tiempo transcurrido desde la
@@ -615,8 +615,8 @@ y}}\]</span> <span class="math display">\[e^{-\lambda
 x}=P(X&gt;x)\]</span></p>
 </div>
 <div id="relación-entre-la-distribución-exponencial-y-la-poisson"
-class="section level2">
-<h2>Relación entre la distribución exponencial y la poisson</h2>
+class="section level3">
+<h3>Relación entre la distribución exponencial y la poisson</h3>
 <p>La distribución exponencial está estrechamente relacionada con el
 proceso Poisson.</p>
 <div class="figure" style="text-align: center">
@@ -625,15 +625,23 @@ proceso Poisson.</p>
 Probabilidad es un valor entre 0 y 1
 </p>
 </div>
-<p>La v.a Poisson es discreta, cuenta los eventos durante un periodo de
-tiempo, calcula la probabilidad de que se produzca un número de
-eventos.Las preguntas clásicas de la distribución de Poisson son
-“¿cuántas personas llegarán a mi caja en la próxima hora?”.</p>
-<p>La v.a exponencial es continua, calcula las probabilidades del paso
-del tiempo, las preguntas clásicas de la distribución exponencial son
-“¿cuánto tiempo pasará hasta que llegue la siguiente persona?”, o una
-variante, “¿cuánto tiempo permanecerá la persona una vez que haya
-llegado?”.</p>
+<p><strong>La v.a Poisson es discreta</strong></p>
+<ul>
+<li><p>Cuenta los eventos durante un periodo de tiempo.</p></li>
+<li><p>Calcula la probabilidad de que se produzca un número de
+eventos.</p></li>
+<li><p>La pregunta clásica de la distribución de Poisson es ¿cuántas
+personas llegarán a la caja en la próxima hora?“.</p></li>
+</ul>
+<p><strong>La v.a exponencial es continua</strong></p>
+<ul>
+<li><p>calcula las probabilidades del paso del tiempo,</p></li>
+<li><p>las preguntas clásicas de la distribución exponencial son:</p>
+<ul>
+<li>¿cuánto tiempo pasará hasta que llegue la siguiente persona?”</li>
+<li>¿cuánto tiempo permanecerá la persona una vez que haya llegado?</li>
+</ul></li>
+</ul>
 <p><strong>Ejemplo</strong></p>
 <p><strong>VA poisson:</strong> Cuál es la probabilidad de que en
 colombia en el año sucedan 20 temblores</p>
@@ -657,6 +665,7 @@ veloces? Solución:</p>
 <p>λ =1/µ donde λ =1/7.1428=0.14</p>
 <p>X~Exp (0.14)</p>
 <p>P(x&lt;10)=1-e^(-0.14*10) =0.7534</p>
+</div>
 <div id="ejercicios" class="section level3">
 <h3>Ejercicios</h3>
 <p><strong>Ejercicios GAMA</strong></p>
@@ -893,7 +902,6 @@ X~Exp con media de 0.04762 días λ =1/µ donde λ =1/0.1 λ =10 X~Exp (21)
 Pasamos 2 horas a dias 2 horas*(1 dia)/(24 horas)=0.0833 horas</li>
 </ol>
 <p>P(x≥0.0833)=e^(-21*0833)=0,1737</p>
-</div>
 </div>
 </div>
 

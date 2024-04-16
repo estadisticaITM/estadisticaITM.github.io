@@ -132,7 +132,7 @@ $$P(X>30)= 1 - P(X\leq 30)$$
 $$ 1 - F(30/15;8)= 0.999$$
 
 
-# Función de distribución de probabilidad exponencial
+## Función de distribución de probabilidad exponencial
 
 La distribución exponencial se deriva de considerar $\alpha=1$ y  $\beta=1/\lambda$ en la distribución gama. Esta distribución analiza el espacio entre dos eventos en un proceso de Poisson, donde los eventos ocurren de manera continua e independiente a una tasa constante λ.Un ejemplo es el tiempo que tarda una partícula radiactiva en desintegrarse.
 
@@ -142,7 +142,7 @@ knitr::include_graphics("imagen/colas.png")
 ```
 
 
-## Función de distribución de probabilidad
+### Función de distribución de probabilidad
 
 Se dice que X tiene una distribución exponencial con parámetro  λ, con λ>0,  si la función de densidad de probabilidad de X es:
 
@@ -172,7 +172,7 @@ $$Var(x)=\frac{1}{λ^2}$$
 
 
 
-## Función de distribución acumulada
+### Función de distribución acumulada
 
 
 
@@ -208,12 +208,10 @@ $$P(t>1.5)=1-(1-e^{-3*1.5})=e^{-4.5}$$
 
 
 
-## Propiedad de pérdida de memoria de la distribución exponencial
+### Propiedad de pérdida de memoria de la distribución exponencial
 
 
-
-
-En el análisis del comportamiento de las líneas de Espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30. 
+En el análisis del comportamiento de las líneas de espera, se reconoce que el proceso de llegada de los clientes al sistema ocurre de forma totalmente aleatoria. Se entiende por aleatorio que la ocurrencia de un evento no se ve afectado por el tiempo transcurrido desde la ocurrencia de un evento anterior. Por ejemplo, si en estos momentos son las 10:30 y la última llegada de un cliente fue a las 10:15, la probabilidad de que la siguiente llegada sea a las 10:35 es función sólo de las 10:30 a las 10:35 y en consecuencia es totalmente independiente del tiempo transcurrido desde la ocurrencia del último evento, es decir, de las 10:15 a las 10:30. 
 
 Teoricamente se traduce en la siguiente propiedad
 $$P(X>x+y|X>y)=P(X>x) $$
@@ -225,16 +223,31 @@ $$\frac{P(X>x+y )}{P(X>y)}$$
 $$\frac{e^{-\lambda(x+y)}}{e^{-\lambda y}}$$
 $$e^{-\lambda x}=P(X>x)$$
 
-## Relación entre la distribución exponencial y la poisson
+### Relación entre la distribución exponencial y la poisson
+
+
 La distribución exponencial está estrechamente relacionada con el proceso  Poisson. 
 
 ```{r, echo=F, fig.cap='Probabilidad es un valor entre 0 y 1', fig.asp=0.3, fig.align='center'}
 knitr::include_graphics("imagen/REP.png")
 ```
 
-La v.a Poisson es discreta, cuenta los eventos durante un periodo de tiempo, calcula la probabilidad de que se produzca un número de eventos.Las preguntas clásicas de la distribución de Poisson son "¿cuántas personas llegarán a mi caja en la próxima hora?".
+**La v.a Poisson es discreta**
 
-La v.a exponencial es continua, calcula las probabilidades del paso del tiempo, las preguntas clásicas de la distribución exponencial son "¿cuánto tiempo pasará hasta que llegue la siguiente persona?", o una variante, "¿cuánto tiempo permanecerá la persona una vez que haya llegado?".
+- Cuenta los eventos durante un periodo de tiempo. 
+
+- Calcula la probabilidad de que se produzca un número de eventos.
+
+- La pregunta clásica de la distribución de Poisson es ¿cuántas personas llegarán a la caja en la próxima hora?".
+
+**La v.a exponencial es continua**
+
+- calcula las probabilidades del paso del tiempo, 
+
+- las preguntas clásicas de la distribución exponencial son:
+    
+    - ¿cuánto tiempo pasará hasta que llegue la siguiente persona?"
+    - ¿cuánto tiempo permanecerá la persona una vez que haya llegado?
 
 **Ejemplo**
 

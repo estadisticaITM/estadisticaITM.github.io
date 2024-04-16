@@ -203,7 +203,7 @@ $$y=(2,46*4,32 )/(6,38 *2,99 ) = 0,56$$
 $$u(y)=0.56\sqrt{\left[ \frac{0.02 }{2.46} \right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38} \right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}$$
 
 $$u(y)=0.56*0.043=0.024$$
-_____________________________________________
+_________________________________________________________________________________________________________________________
 
 
 
@@ -262,6 +262,39 @@ $$uc^2(V) = u^2(V) + u^2(ΔV) = (12 μV) + (8,7 μV) = 219* 10^{-12} V$$
 y la incertidumbre típica combinada es $$u_c(V) = 15 μV$$
 
 
+## Incertidumbre expandida
+
+Proporciona un intervalo que  comprende una gran fracción de la distribución de valores los cuales podrían ser atribuidos razonablemente al mensurando.
+
+Para obtener la incertidumbre expandida se multiplica la incertidumbre típica combinada por el factor de cobertura escogido para obtener una incertidumbre expandida. 
+
+Al escoger un valor para el factor de cobertura k, se deben considerar varios aspectos. Entre ellos se incluyen:
+
+- El nivel de confianza requerido.
+
+- Las distribuciones subyacentes.
+
+- Valores usados para estimar efectos aleatorios.
+
+En la mayoría de los casos se recomienda
+que k sea 2. Sin embargo, este valor de k podría
+ser insuficiente cuando la incertidumbre
+combinada esté basada en observaciones
+estadísticas con relativamente pocos grados de
+libertad (menos de 6). La elección de k depende
+entonces del número efectivo de grados de
+libertad.
+8.3.4. Cuando la incertidumbre estándar
+combinada está dominada por una sola
+contribución con menos de 6 grados de libertad,
+se recomienda que k sea fijado igual al valor de la
+t de Student para dos colas, para el número de
+grados de libertad asociado con esa contribución,
+y para el nivel de confianza requerido
+(normalmente 95%). La tabla 1 (página 28)
+muestra una lista de valores para t, incluyendo los
+grados de libertad por encima de 6 para
+aplicaciones críticas.
 
 
 
