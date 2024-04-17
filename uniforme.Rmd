@@ -1,29 +1,77 @@
 ---
-title: "Untitled"
-output: html_document
-date: '2024-04-16'
+title: "Distribución rectangular ó uniforme"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    #toc_float:
+     # collapsed: falsed
+      #smooth_scroll: true
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+
+Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
+
+- La **función de densidad de probabilidad** es :
+
+$$ f(x)=\begin{cases}
+\frac{1}{b-a},
+& \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
+0, & \mbox{e.o.c.}
+\end{cases} $$
+
+- La función de distribución acumulada (CDF) es 
+$$ F(x)=P(x \leq \frac{x-a}{b-a}) $$
+
+- La esperanza o valor medio es
+
+$$E(x)=\frac{a+b}{2}$$
+
+- La varianza 
+
+
+$$E(x)=\frac{(b-a)^2}{12}$$
+
+```{r echo=FALSE}
+
+plotunif <- function(x, min = 0, max = 1, lwd = 1, col = 1, ...) {
+
+    # Rejilla de valores del eje X
+    if (missing(x)) {
+        x <- seq(min - 0.5, max + 0.5, 0.01)
+    }
+
+    if(max < min) {
+        stop("'min' must be lower than 'max'")
+    }
+   
+    plot(x, dunif(x, min = min, max = max),
+         xlim = c(min - 0.25, max + 0.25), type = "l",
+         lty = 0, ylab = "1/2a", ...) 
+    segments(min, 1/(max - min), max, 1/(max - min), col = col, lwd = lwd)
+    segments(min - 2, 0, min, 0, lwd = lwd, col = col)
+    segments(max, 0, max + 2, 0, lwd = lwd, col = col)
+    points(min, 1/(max - min), pch = 19, col = col)
+    points(max, 1/(max - min), pch = 19, col = col)
+    segments(min, 0, min, 1/(max - min), lty = 2, col = col, lwd = lwd)
+    segments(max, 0, max, 1/(max - min), lty = 2, col = col, lwd = lwd)
+    points(0, min, pch = 21, col = col, bg = "white")
+    points(max, min, pch = 21, col = col, bg = "white")
+}
+
+plotunif(min = 0, max = 1, lwd = 2, col = 4, main = "PDF uniforme",xlab="2a=(+-a)")
 ```
 
-## R Markdown
+Se usa para estimar la incertidumbre cuando:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+- Un certificado da unos límites sin especificar el nivel de confianza (por ejemplo, 25 mL $\pm$ 0,05 mL)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+- Se ha hecho una estimación en forma de un rango máximo ($\pm$a) sin conocimiento de la forma de la distribución.
 
-```{r cars}
-summary(cars)
-```
+https://huggingface.co/spaces/FreddyHernandez/discrete_uniform
 
-## Including Plots
 
-You can also embed plots, for example:
+El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

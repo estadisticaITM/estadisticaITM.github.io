@@ -276,27 +276,114 @@ Al escoger un valor para el factor de cobertura k, se deben considerar varios as
 
 - Valores usados para estimar efectos aleatorios.
 
-En la mayoría de los casos se recomienda
-que k sea 2. Sin embargo, este valor de k podría
-ser insuficiente cuando la incertidumbre
-combinada esté basada en observaciones
-estadísticas con relativamente pocos grados de
-libertad (menos de 6). La elección de k depende
-entonces del número efectivo de grados de
-libertad.
-8.3.4. Cuando la incertidumbre estándar
-combinada está dominada por una sola
-contribución con menos de 6 grados de libertad,
-se recomienda que k sea fijado igual al valor de la
-t de Student para dos colas, para el número de
-grados de libertad asociado con esa contribución,
-y para el nivel de confianza requerido
-(normalmente 95%). La tabla 1 (página 28)
-muestra una lista de valores para t, incluyendo los
-grados de libertad por encima de 6 para
-aplicaciones críticas.
+En la mayoría de los casos se recomienda que k sea 2, este valor se relaciona con un nivel de confianza del 95.45%. Sin embargo, este valor de k podría ser insuficiente cuando la incertidumbre combinada esté basada en observaciones estadísticas con relativamente pocos grados de libertad (menos de 6). 
+
+La elección de k depende del número efectivo de grados de libertad.
+
+Cuando la incertidumbre estándar combinada está dominada por una sola
+contribución con menos de 6 grados de libertad, se recomienda que k sea fijado igual al valor de la t de Student para dos colas, para el número de
+grados de libertad asociado con esa contribución, y para el nivel de confianza requerido (normalmente 95%). 
 
 
 
+
+**Ejemplo**
+Una incertidumbre estándar combinada para una operación de pesaje está formada por la contribución de la incertidumbre de la calibración ucal=0,01 mg y la desviación estándar de cinco observaciones repetidas sobs=0,08 mg. 
+
+La incertidumbre estándar combinada $u_c$ es:
+
+$$\sqrt {0,01^2+ 0,08^2} = 0,081 mg$$
+
+La incertidumbre está dominada por la contribución de la repetibilidad $s_{obs}$, la cual está basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k está basada en la t deStudent. El valor para dos colas de t para cuatro grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor de 2,8 y la incertidumbre expandida es
+
+$U=2,8*0,081=0,23 mg$.
+
+La siguiente tabla ilustra la elección de la distribución según el nivel de confianza. 
+recuerde que cuando las observaciones son pocas la distribución elegida es la t de student q depende de los grados de libertad . 
+
+
+
+https://huggingface.co/spaces/FreddyHernandez/Dmuestrales
+
+
+
+
+```{r echo=FALSE}
+library(htmltools)
+library(reactable)
+library(crosstalk)
+
+nc=c(0.9,0.95,0.99)
+alfa=1-nc
+alfa2=alfa/2
+
+dn=round(qnorm(alfa2,mean=0, sd=1),3)
+ncp <- seq(0, 6, length.out = 31)
+dt=round(dt(df=2,ncp))
+
+
+data <- data.frame(nc,alfa,alfa2,-dn)
+
+colnames(data)=c("Nivel de confianza","alfa","alfa/2","Cuantil")
+data <- SharedData$new(data)
+
+distri=c("normal", "t-student")
+
+nro=c(1:10)
+
+shiny::fluidRow(
+  shiny::column(
+    1,
+     filter_checkbox("distri", "distri", data, ~distri),
+    filter_select("qb", "Quarterback", data, ~nro)
+  ),
+  shiny::column(
+    10,
+    reactable(data, 
+               defaultColDef = colDef(
+    header = function(value) gsub(".", " ", value, fixed = TRUE),
+    cell = function(value) format(value, nsmall = 1),
+    align = "center",
+    minWidth = 70,
+    headerStyle = list(background = "#f7f7f8")
+  ),
+  columns = list(
+    distri = colDef(minWidth = 140)  # overrides the default
+  ),
+                        minRows = 3)
+  )
+)
+
+
+```
+
+### Informar la incertidumbre
+
+Cuando la incertidumbre se exprese como la incertidumbre estándar combinada uc (es decir como una desviación estándar simple), se recomienda hacerlo de la siguiente forma:
+
+"(Resultado): x (unidades) [con una] incertidumbre estándar de uc (unidades) 
+EJEMPLO:
+
+Nitrógeno total: 3,52 g/100 g
+
+Incertidumbre estándar: 0,07 g/100 g *
+
+
+* La incertidumbre estándar  corresponde con una desviación estándar
+
+
+### Informe de la incertidumbre expandida
+
+El resultado x debe ser establecido junto con la incertidumbre expandida U calculada usando un factor de cobertura k=2 (o como se describe en la sección
+Se recomienda hacerlo del modon siguiente:
+
+
+$$(Resultado): (x \pm U) (unidades)$$
+[donde] la incertidumbre informada está calculada usando un factor de cobertura de 2, [lo que da un nivel de confianza de
+aproximadamente 95 %]"
+
+
+$$Nitrógeno total: (3,52 \pm  0,14) g/100 g $$
+*La incertidumbre informada es una incertidumbre expandida calculada usando un factor de cobertura de 2, lo que da un nivel de confianza de aproximadamente el 95%.
 
 

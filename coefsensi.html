@@ -35,6 +35,17 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/selectize-0.12.4/css/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.4/js/selectize.min.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-18.2.0/react.min.js"></script>
+<script src="site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/reactable-0.4.4/reactable.css" rel="stylesheet" />
+<script src="site_libs/reactable-binding-0.4.4/reactable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -657,7 +668,7 @@ como desviaciones estándar relativas.</p>
 \right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38}
 \right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}\]</span></p>
 <p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span>
-_____________________________________________</p>
+_________________________________________________________________________________________________________________________</p>
 <p><strong>Ejemplo 2:</strong></p>
 <p>Las especificaciones del fabricante de un voltímetro digital indican
 que “entre uno y dos años después de la calibración del instrumento, su
@@ -700,6 +711,140 @@ V}=1\]</span></p>
 (8,7 μV) = 219* 10^{-12} V\]</span></p>
 <p>y la incertidumbre típica combinada es <span
 class="math display">\[u_c(V) = 15 μV\]</span></p>
+</div>
+<div id="incertidumbre-expandida" class="section level2">
+<h2>Incertidumbre expandida</h2>
+<p>Proporciona un intervalo que comprende una gran fracción de la
+distribución de valores los cuales podrían ser atribuidos razonablemente
+al mensurando.</p>
+<p>Para obtener la incertidumbre expandida se multiplica la
+incertidumbre típica combinada por el factor de cobertura escogido para
+obtener una incertidumbre expandida.</p>
+<p>Al escoger un valor para el factor de cobertura k, se deben
+considerar varios aspectos. Entre ellos se incluyen:</p>
+<ul>
+<li><p>El nivel de confianza requerido.</p></li>
+<li><p>Las distribuciones subyacentes.</p></li>
+<li><p>Valores usados para estimar efectos aleatorios.</p></li>
+</ul>
+<p>En la mayoría de los casos se recomienda que k sea 2, este valor se
+relaciona con un nivel de confianza del 95.45%. Sin embargo, este valor
+de k podría ser insuficiente cuando la incertidumbre combinada esté
+basada en observaciones estadísticas con relativamente pocos grados de
+libertad (menos de 6).</p>
+<p>La elección de k depende del número efectivo de grados de
+libertad.</p>
+<p>Cuando la incertidumbre estándar combinada está dominada por una sola
+contribución con menos de 6 grados de libertad, se recomienda que k sea
+fijado igual al valor de la t de Student para dos colas, para el número
+de grados de libertad asociado con esa contribución, y para el nivel de
+confianza requerido (normalmente 95%).</p>
+<p><strong>Ejemplo</strong> Una incertidumbre estándar combinada para
+una operación de pesaje está formada por la contribución de la
+incertidumbre de la calibración ucal=0,01 mg y la desviación estándar de
+cinco observaciones repetidas sobs=0,08 mg.</p>
+<p>La incertidumbre estándar combinada <span
+class="math inline">\(u_c\)</span> es:</p>
+<p><span class="math display">\[\sqrt {0,01^2+ 0,08^2} = 0,081
+mg\]</span></p>
+<p>La incertidumbre está dominada por la contribución de la
+repetibilidad <span class="math inline">\(s_{obs}\)</span>, la cual está
+basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k
+está basada en la t deStudent. El valor para dos colas de t para cuatro
+grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor
+de 2,8 y la incertidumbre expandida es</p>
+<p><span class="math inline">\(U=2,8*0,081=0,23 mg\)</span>.</p>
+<p>La siguiente tabla ilustra la elección de la distribución según el
+nivel de confianza. recuerde que cuando las observaciones son pocas la
+distribución elegida es la t de student q depende de los grados de
+libertad .</p>
+<p><a href="https://huggingface.co/spaces/FreddyHernandez/Dmuestrales"
+class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
+<div class="row">
+<div class="col-sm-1">
+<div id="distri" class="form-group crosstalk-input-checkboxgroup crosstalk-input">
+<label class="control-label" for="distri">distri</label>
+<div class="crosstalk-options-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="distri" value="normal"/>
+<span>normal</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="distri" value="t-student"/>
+<span>t-student</span>
+</label>
+</div>
+</div>
+<script type="application/json" data-for="distri">{
+  "map": {
+    "normal": ["1"],
+    "t-student": ["2"]
+  },
+  "group": ["SharedData960897a6"]
+}</script>
+</div>
+<div id="qb" class="form-group crosstalk-input-select crosstalk-input">
+<label class="control-label" for="qb">Quarterback</label>
+<div>
+<select multiple></select>
+<script type="application/json" data-for="qb">{
+  "items": {
+    "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "label": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  },
+  "map": {
+    "1": ["1"],
+    "2": ["2"],
+    "3": ["3"],
+    "4": [null],
+    "5": [null],
+    "6": [null],
+    "7": [null],
+    "8": [null],
+    "9": [null],
+    "10": [null]
+  },
+  "group": ["SharedData960897a6"]
+}</script>
+</div>
+</div>
+</div>
+<div class="col-sm-10">
+<div id="htmlwidget-8c0b170b07cb8cc37c58" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8c0b170b07cb8cc37c58">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData960897a6","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="informar-la-incertidumbre" class="section level3">
+<h3>Informar la incertidumbre</h3>
+<p>Cuando la incertidumbre se exprese como la incertidumbre estándar
+combinada uc (es decir como una desviación estándar simple), se
+recomienda hacerlo de la siguiente forma:</p>
+<p>“(Resultado): x (unidades) [con una] incertidumbre estándar de uc
+(unidades) EJEMPLO:</p>
+<p>Nitrógeno total: 3,52 g/100 g</p>
+<p>Incertidumbre estándar: 0,07 g/100 g *</p>
+<ul>
+<li>La incertidumbre estándar corresponde con una desviación
+estándar</li>
+</ul>
+</div>
+<div id="informe-de-la-incertidumbre-expandida" class="section level3">
+<h3>Informe de la incertidumbre expandida</h3>
+<p>El resultado x debe ser establecido junto con la incertidumbre
+expandida U calculada usando un factor de cobertura k=2 (o como se
+describe en la sección Se recomienda hacerlo del modon siguiente:</p>
+<p><span class="math display">\[(Resultado): (x \pm U)
+(unidades)\]</span> [donde] la incertidumbre informada está calculada
+usando un factor de cobertura de 2, [lo que da un nivel de confianza de
+aproximadamente 95 %]”</p>
+<p><span class="math display">\[Nitrógeno total: (3,52 \pm  0,14) g/100
+g \]</span> *La incertidumbre informada es una incertidumbre expandida
+calculada usando un factor de cobertura de 2, lo que da un nivel de
+confianza de aproximadamente el 95%.</p>
+</div>
 </div>
 
 <br>
