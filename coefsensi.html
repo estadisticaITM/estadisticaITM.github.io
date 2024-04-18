@@ -667,8 +667,8 @@ como desviaciones estándar relativas.</p>
 <p><span class="math display">\[u(y)=0.56\sqrt{\left[ \frac{0.02 }{2.46}
 \right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38}
 \right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}\]</span></p>
-<p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span>
-_________________________________________________________________________________________________________________________</p>
+<p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span></p>
+<hr />
 <p><strong>Ejemplo 2:</strong></p>
 <p>Las especificaciones del fabricante de un voltímetro digital indican
 que “entre uno y dos años después de la calibración del instrumento, su
@@ -711,6 +711,16 @@ V}=1\]</span></p>
 (8,7 μV) = 219* 10^{-12} V\]</span></p>
 <p>y la incertidumbre típica combinada es <span
 class="math display">\[u_c(V) = 15 μV\]</span></p>
+<p><strong>Incertidumbre de una medida</strong></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++Instrumento+método\]</span> <span
+class="math display">\[Instrumento=Calibración+resolución\]</span></p>
+<p><span class="math display">\[Método=repetibilidad\quad de\quad las
+\quad medidas\]</span></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++Calibración+resolución+repetibilidad\]</span></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++u_{Calibración}+u_{resolución}+u_{repetibilidad}\]</span></p>
 </div>
 <div id="incertidumbre-expandida" class="section level2">
 <h2>Incertidumbre expandida</h2>
@@ -739,13 +749,15 @@ contribución con menos de 6 grados de libertad, se recomienda que k sea
 fijado igual al valor de la t de Student para dos colas, para el número
 de grados de libertad asociado con esa contribución, y para el nivel de
 confianza requerido (normalmente 95%).</p>
-<p><strong>Ejemplo</strong> Una incertidumbre estándar combinada para
-una operación de pesaje está formada por la contribución de la
-incertidumbre de la calibración ucal=0,01 mg y la desviación estándar de
-cinco observaciones repetidas sobs=0,08 mg.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Una incertidumbre estándar combinada para una operación de pesaje
+está formada por la contribución de la incertidumbre de la calibración
+<span class="math inline">\(u_{cal}=0,01 mg\)</span> y la desviación
+estándar de cinco observaciones repetidas <span
+class="math inline">\(s_{obs}=0,08 mg\)</span>.</p>
 <p>La incertidumbre estándar combinada <span
 class="math inline">\(u_c\)</span> es:</p>
-<p><span class="math display">\[\sqrt {0,01^2+ 0,08^2} = 0,081
+<p><span class="math display">\[u_c=\sqrt {0,01^2+ 0,08^2} = 0,081
 mg\]</span></p>
 <p>La incertidumbre está dominada por la contribución de la
 repetibilidad <span class="math inline">\(s_{obs}\)</span>, la cual está
@@ -783,7 +795,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedData960897a6"]
+  "group": ["SharedDatad03a8081"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -807,14 +819,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedData960897a6"]
+  "group": ["SharedDatad03a8081"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-8c0b170b07cb8cc37c58" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8c0b170b07cb8cc37c58">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData960897a6","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-785093bd04b975fdfdbe" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-785093bd04b975fdfdbe">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatad03a8081","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="informar-la-incertidumbre" class="section level3">
@@ -822,28 +834,31 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
 <p>Cuando la incertidumbre se exprese como la incertidumbre estándar
 combinada uc (es decir como una desviación estándar simple), se
 recomienda hacerlo de la siguiente forma:</p>
-<p>“(Resultado): x (unidades) [con una] incertidumbre estándar de uc
-(unidades) EJEMPLO:</p>
-<p>Nitrógeno total: 3,52 g/100 g</p>
-<p>Incertidumbre estándar: 0,07 g/100 g *</p>
+<p>”</p>
+<p><strong>EJEMPLO:</strong> Resultado:</p>
 <ul>
-<li>La incertidumbre estándar corresponde con una desviación
-estándar</li>
+<li><p>x (unidades) [con una] incertidumbre estándar de uc
+(unidades)</p></li>
+<li><p>Nitrógeno total: 3,52 g/100 g</p></li>
+<li><p>Incertidumbre estándar: 0,07 g/100 g</p></li>
 </ul>
-</div>
-<div id="informe-de-la-incertidumbre-expandida" class="section level3">
-<h3>Informe de la incertidumbre expandida</h3>
+<p>La incertidumbre estándar corresponde con una desviación estándar</p>
+<p><strong>Informe de la incertidumbre expandida</strong></p>
 <p>El resultado x debe ser establecido junto con la incertidumbre
 expandida U calculada usando un factor de cobertura k=2 (o como se
-describe en la sección Se recomienda hacerlo del modon siguiente:</p>
+describe en la sección Se recomienda hacerlo del modo siguiente:</p>
 <p><span class="math display">\[(Resultado): (x \pm U)
 (unidades)\]</span> [donde] la incertidumbre informada está calculada
 usando un factor de cobertura de 2, [lo que da un nivel de confianza de
 aproximadamente 95 %]”</p>
-<p><span class="math display">\[Nitrógeno total: (3,52 \pm  0,14) g/100
-g \]</span> *La incertidumbre informada es una incertidumbre expandida
-calculada usando un factor de cobertura de 2, lo que da un nivel de
-confianza de aproximadamente el 95%.</p>
+<p><span class="math display">\[Nitrógeno \quad total: (3,52 \pm  0,14)
+g/100 g \]</span> *La incertidumbre informada es una incertidumbre
+expandida calculada usando un factor de cobertura de 2, lo que da un
+nivel de confianza de aproximadamente el 95%.</p>
+</div>
+<div id="ejemplo-estimación-de-la-incertidumbre-de-volumen"
+class="section level3">
+<h3>Ejemplo estimación de la incertidumbre de volumen</h3>
 </div>
 </div>
 

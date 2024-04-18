@@ -203,7 +203,11 @@ $$y=(2,46*4,32 )/(6,38 *2,99 ) = 0,56$$
 $$u(y)=0.56\sqrt{\left[ \frac{0.02 }{2.46} \right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38} \right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}$$
 
 $$u(y)=0.56*0.043=0.024$$
-_________________________________________________________________________________________________________________________
+
+
+
+
+___________________________________________________________________________________________________________________________________________________________________________________
 
 
 
@@ -261,6 +265,27 @@ $$uc^2(V) = u^2(V) + u^2(ΔV) = (12 μV) + (8,7 μV) = 219* 10^{-12} V$$
 
 y la incertidumbre típica combinada es $$u_c(V) = 15 μV$$
 
+**Incertidumbre de una medida**
+
+$$Valor_{nominal}=\bar x +Instrumento+método$$
+$$Instrumento=Calibración+resolución$$
+
+
+$$Método=repetibilidad\quad de\quad las \quad medidas$$
+
+$$Valor_{nominal}=\bar x +Calibración+resolución+repetibilidad$$
+
+
+$$Valor_{nominal}=\bar x +u_{Calibración}+u_{resolución}+u_{repetibilidad}$$
+
+
+
+
+
+
+
+
+
 
 ## Incertidumbre expandida
 
@@ -288,11 +313,13 @@ grados de libertad asociado con esa contribución, y para el nivel de confianza 
 
 
 **Ejemplo**
-Una incertidumbre estándar combinada para una operación de pesaje está formada por la contribución de la incertidumbre de la calibración ucal=0,01 mg y la desviación estándar de cinco observaciones repetidas sobs=0,08 mg. 
+
+
+Una incertidumbre estándar combinada para una operación de pesaje está formada por la contribución de la incertidumbre de la calibración $u_{cal}=0,01 mg$ y la desviación estándar de cinco observaciones repetidas $s_{obs}=0,08 mg$. 
 
 La incertidumbre estándar combinada $u_c$ es:
 
-$$\sqrt {0,01^2+ 0,08^2} = 0,081 mg$$
+$$u_c=\sqrt {0,01^2+ 0,08^2} = 0,081 mg$$
 
 La incertidumbre está dominada por la contribución de la repetibilidad $s_{obs}$, la cual está basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k está basada en la t deStudent. El valor para dos colas de t para cuatro grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor de 2,8 y la incertidumbre expandida es
 
@@ -361,21 +388,27 @@ shiny::fluidRow(
 
 Cuando la incertidumbre se exprese como la incertidumbre estándar combinada uc (es decir como una desviación estándar simple), se recomienda hacerlo de la siguiente forma:
 
-"(Resultado): x (unidades) [con una] incertidumbre estándar de uc (unidades) 
-EJEMPLO:
-
-Nitrógeno total: 3,52 g/100 g
-
-Incertidumbre estándar: 0,07 g/100 g *
+" 
 
 
-* La incertidumbre estándar  corresponde con una desviación estándar
+
+**EJEMPLO:**
+Resultado:
 
 
-### Informe de la incertidumbre expandida
+- x (unidades) [con una] incertidumbre estándar de uc (unidades)
 
-El resultado x debe ser establecido junto con la incertidumbre expandida U calculada usando un factor de cobertura k=2 (o como se describe en la sección
-Se recomienda hacerlo del modon siguiente:
+- Nitrógeno total: 3,52 g/100 g
+
+- Incertidumbre estándar: 0,07 g/100 g 
+
+
+La incertidumbre estándar  corresponde con una desviación estándar
+
+
+**Informe de la incertidumbre expandida**
+
+El resultado x debe ser establecido junto con la incertidumbre expandida U calculada usando un factor de cobertura k=2 (o como se describe en la sección Se recomienda hacerlo del modo siguiente:
 
 
 $$(Resultado): (x \pm U) (unidades)$$
@@ -383,7 +416,8 @@ $$(Resultado): (x \pm U) (unidades)$$
 aproximadamente 95 %]"
 
 
-$$Nitrógeno total: (3,52 \pm  0,14) g/100 g $$
+$$Nitrógeno \quad total: (3,52 \pm  0,14) g/100 g $$
 *La incertidumbre informada es una incertidumbre expandida calculada usando un factor de cobertura de 2, lo que da un nivel de confianza de aproximadamente el 95%.
 
+### Ejemplo estimación de la incertidumbre de volumen
 
