@@ -721,12 +721,15 @@ class="math display">\[Instrumento=Calibración+resolución\]</span></p>
 +Calibración+resolución+repetibilidad\]</span></p>
 <p><span class="math display">\[Valor_{nominal}=\bar x
 +u_{Calibración}+u_{resolución}+u_{repetibilidad}\]</span></p>
+<p><strong>Aplicaciones de la incertidumbre</strong></p>
+<p><img src="imagen/API.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="incertidumbre-expandida" class="section level2">
 <h2>Incertidumbre expandida</h2>
 <p>Proporciona un intervalo que comprende una gran fracción de la
 distribución de valores los cuales podrían ser atribuidos razonablemente
 al mensurando.</p>
+<p><img src="imagen/IIN.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para obtener la incertidumbre expandida se multiplica la
 incertidumbre típica combinada por el factor de cobertura escogido para
 obtener una incertidumbre expandida.</p>
@@ -795,7 +798,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDatad03a8081"]
+  "group": ["SharedDatab26190cb"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -819,14 +822,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDatad03a8081"]
+  "group": ["SharedDatab26190cb"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-785093bd04b975fdfdbe" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-785093bd04b975fdfdbe">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatad03a8081","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b77bd6d1096329b09349" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b77bd6d1096329b09349">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatab26190cb","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="informar-la-incertidumbre" class="section level3">
@@ -859,6 +862,31 @@ nivel de confianza de aproximadamente el 95%.</p>
 <div id="ejemplo-estimación-de-la-incertidumbre-de-volumen"
 class="section level3">
 <h3>Ejemplo estimación de la incertidumbre de volumen</h3>
+</div>
+</div>
+<div
+id="gum-jcgm-1002008-guía-para-la-expresión-de-la-incertidumbre-de-medición"
+class="section level2">
+<h2>GUM JCGM 100:2008 Guía para la expresión de la incertidumbre de
+medición</h2>
+<p><img src="imagen/GUM.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Reglas generales para evaluar y expresar la incertidumbrede medición
+Aplicable en diversos campos de mediciones, incluyendo las necesarias
+para:</p>
+<p>• Mantener el control y el aseguramiento de la calidad en
+producción</p>
+<p>• Cumplir con leyes y reglamentos</p>
+<p>• Apoyar I+D aplicados en ciencia e ingeniería</p>
+<p>• Calibrar patrones, equipos y realizar ensayos para demostrar
+trazabilidad</p>
+<p>• Desarrollar, mantener y comparar patrones físicos y materiales de
+referencia</p>
+<div id="pasos-para-la-estimación-de-incertidumbre-iso-gum"
+class="section level3">
+<h3>PASOS PARA LA ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM</h3>
+<p><img src="imagen/gumm.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/tc.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/dire.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 

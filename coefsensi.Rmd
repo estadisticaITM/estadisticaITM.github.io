@@ -282,14 +282,35 @@ $$Valor_{nominal}=\bar x +u_{Calibración}+u_{resolución}+u_{repetibilidad}$$
 
 
 
+**Aplicaciones de la incertidumbre**
 
+
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/API.png")
+```
 
 
 
 
 ## Incertidumbre expandida
 
+
+
+
+
+
+
+
 Proporciona un intervalo que  comprende una gran fracción de la distribución de valores los cuales podrían ser atribuidos razonablemente al mensurando.
+
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/IIN.png")
+```
+
+
+
 
 Para obtener la incertidumbre expandida se multiplica la incertidumbre típica combinada por el factor de cobertura escogido para obtener una incertidumbre expandida. 
 
@@ -386,10 +407,16 @@ shiny::fluidRow(
 
 ### Informar la incertidumbre
 
+
+
+```{r, echo=F, out.width="100%", fig.align='center'}
+knitr::include_graphics("imagen/dire.png")
+```
+
+
+
+
 Cuando la incertidumbre se exprese como la incertidumbre estándar combinada uc (es decir como una desviación estándar simple), se recomienda hacerlo de la siguiente forma:
-
-" 
-
 
 
 **EJEMPLO:**
@@ -420,4 +447,43 @@ $$Nitrógeno \quad total: (3,52 \pm  0,14) g/100 g $$
 *La incertidumbre informada es una incertidumbre expandida calculada usando un factor de cobertura de 2, lo que da un nivel de confianza de aproximadamente el 95%.
 
 ### Ejemplo estimación de la incertidumbre de volumen
+
+
+## GUM JCGM 100:2008 Guía para la expresión de la incertidumbre de medición
+
+```{r, echo=F, out.width="50%", fig.align='center'}
+knitr::include_graphics("imagen/GUM.png")
+```
+
+
+Reglas generales para evaluar y expresar la incertidumbre de medición Aplicable en diversos campos de mediciones, incluyendo las necesarias para:
+
+• Mantener el control y el aseguramiento de la calidad en producción
+
+• Cumplir con leyes y reglamentos
+
+• Apoyar I+D aplicados en ciencia e ingeniería
+
+• Calibrar patrones, equipos y realizar ensayos para demostrar trazabilidad
+
+• Desarrollar, mantener y comparar patrones físicos y materiales de referencia
+
+
+
+### PASOS PARA LA  ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM
+
+
+```{r, echo=F, out.width="100%", fig.align='center'}
+knitr::include_graphics("imagen/gumm.png")
+```
+
+
+
+```{r, echo=F, out.width="100%", fig.align='center'}
+knitr::include_graphics("imagen/tc.png")
+```
+
+
+
+
 
