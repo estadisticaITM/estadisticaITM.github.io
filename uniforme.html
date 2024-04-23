@@ -11,7 +11,7 @@
 
 
 
-<title>Distribuciones de probabilidad continuas</title>
+<title>Distribución rectangular ó uniforme</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -240,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -247,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -322,41 +404,54 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Distribuciones de probabilidad
-continuas</h1>
+<h1 class="title toc-ignore">Distribución rectangular ó uniforme</h1>
 
 </div>
 
 
+<p>En una distribución rectangular cada valor en un intervalo dado tiene
+la misma probabilidad, o sea la función de densidad de probabilidad es
+constante en este intervalo.</p>
+<p>Sea <span class="math inline">\(X∼U(a,b)\)</span>, es decir, una
+variable aleatoria con distribución uniforme en el intervalo (a,b), con
+<span class="math inline">\(a,b \quad \varepsilon \quad
+\mathbb{R}\)</span>:</p>
 <ul>
-<li><a href="conn.html" target="_blank"> Distribuciones continuas
-</a></li>
+<li>La <strong>función de densidad de probabilidad</strong> es :</li>
 </ul>
-<div id="distribución-de-probabilidad-normal" class="section level2">
-<h2>Distribución de probabilidad normal</h2>
+<p><span class="math display">\[ f(x)=\begin{cases}
+\frac{1}{b-a},
+&amp; \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
+0, &amp; \mbox{e.o.c.}
+\end{cases} \]</span></p>
 <ul>
-<li><a href="normal.html" target="_blank"> Distribución normal </a></li>
+<li><p>La función de distribución acumulada (CDF) es <span
+class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a})
+\]</span></p></li>
+<li><p>La esperanza o valor medio es</p></li>
 </ul>
-</div>
-<div id="familia-de-la-distribución-de-probabilidad-gama"
-class="section level2">
-<h2>Familia de la distribución de probabilidad Gama</h2>
+<p><span class="math display">\[E(x)=\frac{a+b}{2}\]</span></p>
 <ul>
-<li><a href="exponn.html" target="_blank"> Distribución gama y
-exponencial </a></li>
+<li>La varianza</li>
 </ul>
-</div>
-<div id="distribución-de-probabilidad-uniforme" class="section level2">
-<h2>Distribución de probabilidad uniforme</h2>
+<p><span class="math display">\[E(x)=\frac{(b-a)^2}{12}\]</span></p>
+<p><img src="uniforme_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Se usa para estimar la incertidumbre cuando:</p>
 <ul>
-<li><a href="uniforme.html" target="_blank"> Distribución uniforme
-</a></li>
+<li><p>Un certificado da unos límites sin especificar el nivel de
+confianza (por ejemplo, 25 mL <span class="math inline">\(\pm\)</span>
+0,05 mL)</p></li>
+<li><p>Se ha hecho una estimación en forma de un rango máximo (<span
+class="math inline">\(\pm\)</span>a) sin conocimiento de la forma de la
+distribución.</p></li>
 </ul>
-<p><strong>Aplicativo de distribuciones de probabilidad
-continuas</strong></p>
-<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
-</iframe>
-</div>
+<p><a
+href="https://huggingface.co/spaces/FreddyHernandez/discrete_uniform"
+class="uri">https://huggingface.co/spaces/FreddyHernandez/discrete_uniform</a></p>
+<p>El rango de una distribución de probabilidad se refiere al conjunto
+de todos los posibles valores que puede tomar una variable aleatoria en
+esa distribución. Es la diferencia entre el valor máximo y el valor
+mínimo de esta variable.</p>
 
 <br>
 <hr>
@@ -365,6 +460,8 @@ continuas</strong></p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -397,6 +494,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
