@@ -33,6 +33,11 @@ $$ f(x)=\begin{cases}
 
 - La función de distribución acumulada (CDF) es 
 $$ F(x)=P(x \leq \frac{x-a}{b-a}) $$
+- El hecho de que $P(X = c)= 0$ cuando X es continua tiene una importante consecuencia
+práctica: La probabilidad de que X quede en algún intervalo entre a y b no depende de
+si el límite inferior a o el límite superior b está incluido en el cálculo de probabilidad
+
+$$P(a \leq  X \leq b)=P(a< X <b)=P(a\leq X < b)= P(a < X \leq b)$$
 
 - La esperanza o valor medio es
 
@@ -84,3 +89,75 @@ https://huggingface.co/spaces/FreddyHernandez/discrete_uniform
 
 El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
 
+
+
+Algunas variables aleatorias continuas en física, administración y ciencias biológicas tienen
+distribuciones de probabilidad aproximadamente uniformes. Por ejemplo, suponga que
+el número de eventos, como las llamadas que entran en un conmutador, que se presentan en el
+intervalo (0, t) tienen una distribución de Poisson. Si se sabe que exactamente uno de estos
+eventos ha ocurrido en el intervalo (0, t), entonces el tiempo real del suceso está distribuido de
+manera uniforme en este intervalo.
+
+**Ejemplo**
+La llegada de clientes a una caja en un establecimiento sigue una distribución de Poisson.
+Se sabe que durante un periodo determinado de 30 minutos, un cliente llega a la caja. Encuentre
+la probabilidad de que el cliente llegue durante los últimos 5 minutos del periodo de 30 minutos.
+
+
+**Solución** 
+
+El tiempo real de llegada sigue una distribución uniforme en el intervalo de (0, 30). Si Y denota el tiempo de llegada, entonces
+$$P(25 ≤Y ≤30)=\int_{25}^{30}=\frac{30-25}{30}=\frac{5}{30}=\frac{1}{6}$$
+La probabilidad de que la llegada ocurra en cualquier otro intervalo de 5 minutos también es
+1/6.
+
+
+
+
+**Ejercicios**
+
+
+
+
+**1.** Suponga que la temperatura de reacción X (en °C) en cierto proceso químico tiene una distribución uniforme con A=-5 y B= 5.
+
+a. Calcule P(X < 0).
+
+b. Calcule P(2.5 < X < 2.5)
+
+c. Calcule $P( -2\leq X \leq 3)$
+
+d. Para que k satisfaga -5<k< k+ 4< 5, calcule
+P(k < X < k+ 4).
+
+
+**2.** Se cree que el tiempo X (min) para que un ayudante de laboratorio prepare el equipo para cierto experimento tiene una distribución uniforme con A= 25 y B=35.
+
+a. Determine la función de densidad de probabilidad de X y trace la curva de densidad de correspondiente.
+
+b. ¿Cuál es la probabilidad de que el tiempo de preparación exceda de 33 min?
+
+c. ¿Cuál es la probabilidad de que el tiempo de preparación esté dentro de dos min del tiempo medio? [Sugerencia: Identifique $\mu $en la gráfica de f(x).]
+
+d. Con cualquier a de modo que 25 <a <a +2 <35,
+¿cuál es la probabilidad de que el tiempo de preparación esté entre a y a+2 min?
+
+
+a. f (x) =0.1 para 25<x<35 y 0 de otro modo
+b. 0.20 c. 0.40 d. 0.20
+
+
+**3.** El artículo “Modeling Sediment and Water Column Interactions for Hidrophobic Pollutants” (Water Research, 1984: 1169-1174) sugiere la distribución uniforme en el intervalo (7.5, 20) como modelo de profundidad (cm) de la capa de bioturbación en sedimento en una región.
+
+a. ¿Cuáles son la media y la varianza de la profundidad?
+
+b. ¿Cuál es la función de distribución acumulativa de la profundidad?
+
+c. ¿Cuál es la probabilidad de que la profundidad observada sea cuando mucho de 10? ¿Entre 10 y 15?
+
+
+**4.** Sea X=el tiempo que una cabeza de lectura/escritura requiere para localizar un registro deseado en un dispositivo de memoria de disco de computadora una vez que la cabeza se ha colocado sobre la pista correcta. Si los discos giran una vez cada 25 milisegundos, una suposición razonable es que X está uniformemente distribuida en el intervalo [0, 25].
+a. Calcule P(10<X<20).
+b. Calcule P(X>10).
+c. Obtenga la función de distribución acumulativa F(X).
+d. Calcule E(X) y sd.

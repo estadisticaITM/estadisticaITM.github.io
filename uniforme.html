@@ -409,6 +409,17 @@ div.tocify {
 </div>
 
 
+<p><strong>Introduccción</strong></p>
+<p>Un autobús llega siempre a una parada particular entre las 8:00 y las
+8:10 a.m. y que la probabilidad de que llegue en cualquier subintervalo
+dado es proporcional sólo a la duración del subintervalo.</p>
+<p>Es igual de probable que llegue entre las 8:00 y 8:02 a que llegue
+entre las 8:06 y las 8:08. Denote con Y el tiempo que una persona deba
+esperar para que llegue el autobús si llegó a la parada exactamente a
+las 8:00. Si con cuidado medimos en minutos cuánto tiempo después de las
+8:00 llegó el autobús en varias mañanas, podríamos desarrollar un
+histograma de frecuencia relativa para los datos.</p>
+<p><span class="math display">\[P(0 ≤ Y ≤ 2) = P(6 ≤ Y ≤ 8)\]</span></p>
 <p>En una distribución rectangular cada valor en un intervalo dado tiene
 la misma probabilidad, o sea la función de densidad de probabilidad es
 constante en este intervalo.</p>
@@ -425,10 +436,18 @@ variable aleatoria con distribución uniforme en el intervalo (a,b), con
 0, &amp; \mbox{e.o.c.}
 \end{cases} \]</span></p>
 <ul>
-<li><p>La función de distribución acumulada (CDF) es <span
-class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a})
-\]</span></p></li>
-<li><p>La esperanza o valor medio es</p></li>
+<li>La función de distribución acumulada (CDF) es <span
+class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a}) \]</span></li>
+<li>El hecho de que <span class="math inline">\(P(X = c)= 0\)</span>
+cuando X es continua tiene una importante consecuencia práctica: La
+probabilidad de que X quede en algún intervalo entre a y b no depende de
+si el límite inferior a o el límite superior b está incluido en el
+cálculo de probabilidad</li>
+</ul>
+<p><span class="math display">\[P(a \leq  X \leq b)=P(a&lt; X
+&lt;b)=P(a\leq X &lt; b)= P(a &lt; X \leq b)\]</span></p>
+<ul>
+<li>La esperanza o valor medio es</li>
 </ul>
 <p><span class="math display">\[E(x)=\frac{a+b}{2}\]</span></p>
 <ul>
@@ -452,6 +471,84 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/discrete_uniform</a></
 de todos los posibles valores que puede tomar una variable aleatoria en
 esa distribución. Es la diferencia entre el valor máximo y el valor
 mínimo de esta variable.</p>
+<p>Algunas variables aleatorias continuas en física, administración y
+ciencias biológicas tienen distribuciones de probabilidad
+aproximadamente uniformes. Por ejemplo, suponga que el número de
+eventos, como las llamadas que entran en un conmutador, que se presentan
+en el intervalo (0, t) tienen una distribución de Poisson. Si se sabe
+que exactamente uno de estos eventos ha ocurrido en el intervalo (0, t),
+entonces el tiempo real del suceso está distribuido de manera uniforme
+en este intervalo.</p>
+<p><strong>Ejemplo</strong> La llegada de clientes a una caja en un
+establecimiento sigue una distribución de Poisson. Se sabe que durante
+un periodo determinado de 30 minutos, un cliente llega a la caja.
+Encuentre la probabilidad de que el cliente llegue durante los últimos 5
+minutos del periodo de 30 minutos.</p>
+<p><strong>Solución</strong></p>
+<p>El tiempo real de llegada sigue una distribución uniforme en el
+intervalo de (0, 30). Si Y denota el tiempo de llegada, entonces <span
+class="math display">\[P(25 ≤Y
+≤30)=\int_{25}^{30}=\frac{30-25}{30}=\frac{5}{30}=\frac{1}{6}\]</span>
+La probabilidad de que la llegada ocurra en cualquier otro intervalo de
+5 minutos también es 1/6.</p>
+<p><strong>Ejercicios</strong> 1. Suponga que la temperatura de reacción
+X (en °C) en cierto proceso químico tiene una distribución uniforme con
+A=-5 y B= 5.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calcule P(X &lt; 0).</p></li>
+<li><p>Calcule P(2.5 &lt; X &lt; 2.5)</p></li>
+<li><p>Calcule <span class="math inline">\(P( -2\leq X \leq
+3)\)</span></p></li>
+<li><p>Para que k satisfaga -5&lt;k&lt; k+ 4&lt; 5, calcule P(k &lt; X
+&lt; k+ 4).</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Se cree que el tiempo X (min) para que un ayudante de laboratorio
+prepare el equipo para cierto experimento tiene una distribución
+uniforme con A= 25 y B=35.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Determine la función de densidad de probabilidad de X y trace la
+curva de densidad de correspondiente.</p></li>
+<li><p>¿Cuál es la probabilidad de que el tiempo de preparación exceda
+de 33 min?</p></li>
+<li><p>¿Cuál es la probabilidad de que el tiempo de preparación esté
+dentro de dos min del tiempo medio? [Sugerencia: Identifique $$en la
+gráfica de f(x).]</p></li>
+<li><p>Con cualquier a de modo que 25 &lt;a &lt;a +2 &lt;35, ¿cuál es la
+probabilidad de que el tiempo de preparación esté entre a y a+2
+min?</p></li>
+<li><p>f (x) =0.1 para 25&lt;x&lt;35 y 0 de otro modo</p></li>
+<li><p>0.20 c. 0.40 d. 0.20</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>El artículo “Modeling Sediment and Water Column Interactions for
+Hidrophobic Pollutants” (Water Research, 1984: 1169-1174) sugiere la
+distribución uniforme en el intervalo (7.5, 20) como modelo de
+profundidad (cm) de la capa de bioturbación en sedimento en una
+región.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>¿Cuáles son la media y la varianza de la profundidad?</p></li>
+<li><p>¿Cuál es la función de distribución acumulativa de la
+profundidad?</p></li>
+<li><p>¿Cuál es la probabilidad de que la profundidad observada sea
+cuando mucho de 10? ¿Entre 10 y 15?</p></li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>Sea X=el tiempo que una cabeza de lectura/escritura requiere para
+localizar un registro deseado en un dispositivo de memoria de disco de
+computadora una vez que la cabeza se ha colocado sobre la pista
+correcta. Si los discos giran una vez cada 25 milisegundos, una
+suposición razonable es que X está uniformemente distribuida en el
+intervalo [0, 25].</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Calcule P(10&lt;X&lt;20).</li>
+<li>Calcule P(X&gt;10).</li>
+<li>Obtenga la función de distribución acumulativa F(X).</li>
+<li>Calcule E(X) y sd.</li>
+</ol>
 
 <br>
 <hr>
