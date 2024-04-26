@@ -527,7 +527,7 @@ ecuaciones están basadas en un desarrollo en serie de Taylor de primer
 orden de <span class="math inline">\(Y = f(X_1, X_2, ..., X_N)\)</span>,
 expresan lo que en la Guía se denomina <strong>ley de propagación de la
 incertidumbre.</strong></p>
-<p><strong>Incertidumbre típica para magnitutes
+<p><strong>Incertidumbre típica para magnitudes
 independientes</strong></p>
 <p>La incertidumbre típica combinada <span
 class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
@@ -711,6 +711,35 @@ V}=1\]</span></p>
 (8,7 μV) = 219* 10^{-12} V\]</span></p>
 <p>y la incertidumbre típica combinada es <span
 class="math display">\[u_c(V) = 15 μV\]</span></p>
+</div>
+<div id="importancia-del-analisis-de-varianza-en-la-medición"
+class="section level2">
+<h2>Importancia del analisis de varianza en la medición</h2>
+<p>El análisis de la varianza:</p>
+<ul>
+<li><p>No identifican efectos sistemáticos.</p></li>
+<li><p>Identifica y cuantifica efectos aleatorios en una medición, para
+ser tenidos en cuenta en la estimación de la incertidumbre del resultado
+de medida.</p></li>
+<li><p>Se utiliza para la certificación de materiales de referencia (MR)
+mediante ensayos interlaboratorios que implican:</p>
+<ul>
+<li><p>Varios laboratorios independientes de igual nivel, que midan las
+muestras de material.</p></li>
+<li><p>La media de cada laboratorio es una estimación no sesgada de la
+propiedad del material.</p></li>
+<li><p>I laboratorios diferentes.</p></li>
+<li><p>J muestras distintas del material</p></li>
+<li><p>K observaciones repetidas e independientes.</p></li>
+<li><p>El número total de observaciones sería entonces IJK.</p></li>
+<li><p>El número total de muestras IJ.</p></li>
+<li><p>Las diferencias entre los resultados individuales, tanto inter
+(entre) laboratorios como intra (dentro) laboratorio, son de naturaleza
+estadística, sin importar sus causas.</p></li>
+</ul></li>
+</ul>
+<p><img src="imagen/hh.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><strong>Laboratorio</strong></p>
 <p><strong>Incertidumbre de una medida</strong></p>
 <p><span class="math display">\[Valor_{nominal}=\bar x
 +Instrumento+método\]</span> <span
@@ -721,58 +750,160 @@ class="math display">\[Instrumento=Calibración+resolución\]</span></p>
 +Calibración+resolución+repetibilidad\]</span></p>
 <p><span class="math display">\[Valor_{nominal}=\bar x
 +u_{Calibración}+u_{resolución}+u_{repetibilidad}\]</span></p>
-<p><strong>Aplicaciones de la incertidumbre</strong></p>
-<p><img src="imagen/API.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="incertidumbre-expandida" class="section level2">
-<h2>Incertidumbre expandida</h2>
+<div id="propagación-de-incertidumbre" class="section level2">
+<h2>Propagación de incertidumbre</h2>
+<p>Permite estimar la incertidumbre en un resultado a partir de las
+incertidumbres en las mediciones utilizadas para calcular ese resultado,
+es decir es la estimación de la incertidumbre estándar combinada.</p>
+<p>A manera de resumen evidenciamos la siguiente tabla donde se
+relaciona la función con la estimación de incertidumbre.</p>
+<table>
+<colgroup>
+<col width="47%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Función</th>
+<th align="center"><span class="math inline">\(\bf \mu_R\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=kA\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=k\mu_A\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=A\pm B\)</span></td>
+<td align="center"><span class="math inline">\(\mu_R=\sqrt
+{\mu_A^2+\mu_B^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=A*B \qquad
+R=\frac{A}{B}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{\mu_R}{R}=\sqrt
+{\left(\frac{\mu_A}{A} \right)^2+\left(\frac{\mu_B}{B}
+\right)^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=ln(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=\frac{\mu_A}{A}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=log(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=0.4343*\frac{\mu_A}{A}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=e^A\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{\mu_R}{R}=\mu_A\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=ln(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=\frac{\mu_A}{A}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="teorema-de-límite-central" class="section level2">
+<h2>Teorema de límite central</h2>
+<p>La mayoría de los experimentos de medición tienen características que
+los aproximan fácilmente a una condición de normalidad, para que la
+distribución de probabilidad de un resultado de medición tienda al
+modelo normal se requiere:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Que la función que define al mensurando Y sea función lineal de
+otras magnitudes.</p></li>
+<li><p>Que la distribución de probabilidad de las magnitudes que definen
+al mensurando Y sea del tipo normal o una aproximación a la distribución
+normal.</p></li>
+<li><p>También se puede aceptar que la distribución de probabilidad de
+algunas magnitudes de definición sea rectangular sólo si éstas últimas
+son en número menor que las del tipo normal.</p></li>
+</ol>
+<p><img src="imagen/combi.png" width="80%" style="display: block; margin: auto;" />
+Tomado de Llamosa et al (2011).</p>
+</div>
+<div id="incertidumbre-expandida-u" class="section level2">
+<h2>Incertidumbre expandida U</h2>
 <p>Proporciona un intervalo que comprende una gran fracción de la
 distribución de valores los cuales podrían ser atribuidos razonablemente
 al mensurando.</p>
 <p><img src="imagen/IIN.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para obtener la incertidumbre expandida se multiplica la
-incertidumbre típica combinada por el factor de cobertura escogido para
-obtener una incertidumbre expandida.</p>
+incertidumbre típica combinada por el <strong>factor de cobertura
+(K)</strong> escogido para obtener una incertidumbre expandida.</p>
+<p>El intervalo se denota como</p>
+<p><span class="math display">\[(y-u_c(y)K_p,\quad
+y+u_c(y)K_p)\]</span></p>
+<p>El producto <span class="math inline">\(K_pu_c(y)=U_p\)</span> se
+denomina incertidumbre expandida, donde <span
+class="math inline">\(k_p\)</span> es el factor de cobertura para un
+nivel de confianza p.</p>
+<p>matemáticamente es</p>
+<p><span class="math display">\[P((y-U_p\leq Y\leq y+U_p)=p\]</span></p>
+<p>El area de la función de densidad es</p>
+<p><span class="math display">\[\int_{y-U_p}^{y+U_p} f(y)dy=p
+\]</span></p>
+<p>La función f(y) puede ser una normal, una t student, una triangular o
+una rectangular.</p>
 <p>Al escoger un valor para el factor de cobertura k, se deben
-considerar varios aspectos. Entre ellos se incluyen:</p>
+considerar varios aspectos.</p>
+<p>Entre ellos se incluyen:</p>
 <ul>
 <li><p>El nivel de confianza requerido.</p></li>
 <li><p>Las distribuciones subyacentes.</p></li>
 <li><p>Valores usados para estimar efectos aleatorios.</p></li>
+<li><p>Incertidumbre dominante</p></li>
 </ul>
+</div>
+<div id="distribución-rectangular" class="section level2">
+<h2>Distribución rectangular</h2>
+<p><strong>Incertidumbre dominante (EA-4/02. (2022))</strong></p>
+<p>Si una de las contribuciones a la incertidumbre puede identificarse
+como un término dominante, denotado por <span
+class="math inline">\(\mu_1(y)\)</span>, y otra incertidumbre se denota
+por <span class="math inline">\(\mu_R(y)\)</span>, la incertidumbre
+estándar que se asociará con el resultado de la medición es:</p>
+<p><span
+class="math display">\[\mu(y)=\sqrt{\mu_1^2(y)+\mu_R^2(y)}\]</span></p>
+<p>Donde el termino <span class="math inline">\(\mu_R(y)\)</span> es la
+combinación de las contribuciones no dominantes, estimada como:</p>
+<p><span class="math display">\[\mu_R(y)=\sqrt{\sum_{i=2}^N
+\mu_i^2(y)}\]</span></p>
+<p><strong>Criterio de la distribución dominante</strong></p>
+<p>En la relación</p>
+<p><span class="math display">\[
+\frac{\mu_R(y)}{\mu_1(y)}=R\]</span></p>
+<p><strong>Si <span class="math inline">\(R\leq
+0.3\)</span></strong></p>
+<p>La ecuación de la incertidumbre típica combinada puede aproximarse
+como:</p>
+<p><span class="math display">\[\mu_c(y)=\mu_1(y)*\left[1+\frac{1}{2}
+\left( \frac{\mu_{R}(y)}{\mu_1 (y)} \right)^2  \right]\]</span></p>
+<p>Con un error relativo de aproximación menor que <span
+class="math inline">\(1*10^{-3}\)</span>.</p>
+<p>En este caso la distribución dominante es la rectángular, donde el
+factor de cobertura (después de unos calculos complejos) se evalúa
+asi:</p>
+<p><span class="math display">\[k=p\sqrt 3\]</span> Donde p es el nivel
+de confianza deseado</p>
+<p><img src="imagen/distriii.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="distribución-normal" class="section level2">
+<h2>Distribución normal</h2>
 <p>En la mayoría de los casos se recomienda que k sea 2, este valor se
 relaciona con un nivel de confianza del 95.45%. Sin embargo, este valor
 de k podría ser insuficiente cuando la incertidumbre combinada esté
-basada en observaciones estadísticas con relativamente pocos grados de
-libertad (menos de 6).</p>
-<p>La elección de k depende del número efectivo de grados de
-libertad.</p>
-<p>Cuando la incertidumbre estándar combinada está dominada por una sola
-contribución con menos de 6 grados de libertad, se recomienda que k sea
-fijado igual al valor de la t de Student para dos colas, para el número
-de grados de libertad asociado con esa contribución, y para el nivel de
-confianza requerido (normalmente 95%).</p>
-<p><strong>Ejemplo</strong></p>
-<p>Una incertidumbre estándar combinada para una operación de pesaje
-está formada por la contribución de la incertidumbre de la calibración
-<span class="math inline">\(u_{cal}=0,01 mg\)</span> y la desviación
-estándar de cinco observaciones repetidas <span
-class="math inline">\(s_{obs}=0,08 mg\)</span>.</p>
-<p>La incertidumbre estándar combinada <span
-class="math inline">\(u_c\)</span> es:</p>
-<p><span class="math display">\[u_c=\sqrt {0,01^2+ 0,08^2} = 0,081
-mg\]</span></p>
-<p>La incertidumbre está dominada por la contribución de la
-repetibilidad <span class="math inline">\(s_{obs}\)</span>, la cual está
-basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k
-está basada en la t deStudent. El valor para dos colas de t para cuatro
-grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor
-de 2,8 y la incertidumbre expandida es</p>
-<p><span class="math inline">\(U=2,8*0,081=0,23 mg\)</span>.</p>
+basada en observaciones estadísticas con pocas observaciones (n), por
+tanto pocos grados de libertad (n-1) (menos de 6).</p>
 <p>La siguiente tabla ilustra la elección de la distribución según el
-nivel de confianza. recuerde que cuando las observaciones son pocas la
-distribución elegida es la t de student q depende de los grados de
-libertad .</p>
+nivel de confianza.</p>
 <p><a href="https://huggingface.co/spaces/FreddyHernandez/Dmuestrales"
 class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
 <div class="row">
@@ -798,7 +929,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDatab26190cb"]
+  "group": ["SharedDatae67a54f4"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -822,30 +953,119 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDatab26190cb"]
+  "group": ["SharedDatae67a54f4"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-b77bd6d1096329b09349" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b77bd6d1096329b09349">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatab26190cb","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-443580fcbdccd7e2f9c1" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-443580fcbdccd7e2f9c1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatae67a54f4","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
+</div>
+</div>
+<div id="distribución-t-student" class="section level2">
+<h2>Distribución t student</h2>
+<p>Cuando la incertidumbre estándar combinada está dominada por una sola
+contribución con menos de 6 grados de libertad (pocas observaciones
+(n-1)), se recomienda que k sea fijado igual al valor de la t de Student
+para dos colas, para el número de grados de libertad asociado con esa
+contribución, y para el nivel de confianza requerido (normalmente
+95%).</p>
+<p>La elección de k depende del número efectivo de grados de
+libertad.</p>
+<hr />
+<p><strong>Ejemplo</strong></p>
+<p>Una incertidumbre estándar combinada para una operación de pesaje
+está formada por la contribución de la incertidumbre de la calibración
+<span class="math inline">\(u_{cal}=0,01 mg\)</span> y la desviación
+estándar de cinco observaciones repetidas <span
+class="math inline">\(s_{obs}=0,08 mg\)</span>.</p>
+<p>La incertidumbre estándar combinada <span
+class="math inline">\(u_c\)</span> es:</p>
+<p><span class="math display">\[u_c=\sqrt {0,01^2+ 0,08^2} = 0,081
+mg\]</span></p>
+<p>La incertidumbre está dominada por la contribución de la
+repetibilidad <span class="math inline">\(s_{obs}\)</span>, la cual está
+basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k
+está basada en la t deStudent. El valor para dos colas de t para cuatro
+grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor
+de 2,8 y la incertidumbre expandida es</p>
+<p><span class="math inline">\(U=2,8*0,081=0,23 mg\)</span>.</p>
+<hr />
+<div id="cuantificación-del-número-de-grados-de-libertad"
+class="section level3">
+<h3>Cuantificación del número de grados de libertad</h3>
+<p>Los grados de libertad se pueden considerar una medida de
+incertidumbre de la incertidumbre asociada a una magnitud.</p>
+<p>Entre mayor sea 𝜈, la estimación de la incertidumbre será más
+confiable.</p>
+<p><strong>Número efectivo de grados de libertad <span
+class="math inline">\((𝜈_{eff})\)</span> del mensurando</strong></p>
+<p>Considera el número de grados de libertad <span
+class="math inline">\(𝜈_𝑖\)</span> de cada fuente de incertidumbre</p>
+<p>Una cantidad que depende de la medición de varias variables:</p>
+<p><span class="math display">\[q=q(x_1,x_2,...x_n)\]</span> En el caso
+que las variables no estén correlacionadas (covarianza nula):</p>
+<p><span
+class="math display">\[S_q^2=c_1^2s^2_{x_1}+c_2^2s^2_{x_2}+...+c_1^2s^2_{x_1}\]</span></p>
+<p>Donde los <span class="math inline">\(c_i\)</span> son los
+coeficientes de sensitividad y están definidos por las derivadas
+parciales. Cada una de las incertidumbres <span
+class="math inline">\(s_{x_i}\)</span> está asociada con <span
+class="math inline">\(ν_i\)</span> grados de libertad.</p>
+<p><strong>Grados de libertad para una incertidumbre tipo B</strong></p>
+<p>Se puede asignar grados de libertad a una incertidumbre tipo B, aún
+cuando las incertidumbres puedan ser de tipo B, para especificar una
+incertidumbre en un reporte, seguramente se hicieron muchas medidas, es
+decir que originalmente es de tipo A, que se convierte en tipo B al ser
+usada la información por otros. En consecuencia es posible suponer que
+el valor obtenido del reporte tiene una distribución normal aún cuando
+la incertidumbre estándar asociada es del tipo B.</p>
+<p>Los grados de libertad están dados por:</p>
+<p><span
+class="math display">\[v=\frac{s^2}{2u^2(s)}=  \frac{1}{2}  \left(\frac{u(s)}{s}
+\right)^{-2}\]</span></p>
+<p>La pregunta que surge es cuantos grados de libertad deberían
+asociarse a <span class="math inline">\(S_q\)</span> para poder calcular
+un intervalo de confianza. La respuesta esta dada por la fórmula de
+Welch-Satterthwaite, que aunque aproximada, es adecuada en la mayoría de
+los casos.</p>
+<p><span
+class="math display">\[\frac{\mu^4_c(y)}{v_{eff}}=\sum_{i=1}^N\frac{c_i^4*\mu^4(x_i)}{v_i}+2
+\sum_{i=1}^N\sum_{i=1}^N
+\left(\frac{c_i*c_j*\mu(x_i)*\mu(x_j)*r(x_i,x_j)}{v_j}
+\right)^{2}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p>N número de fuentes de incertidumbres identificadas y
+cuantificadas</p></li>
+<li><p><span class="math inline">\(v_i,v_j\)</span>: Grados de libertad
+asociados a la fuente de incertidumbre i o j</p></li>
+<li><p><span class="math inline">\(r(x_i,x_j)\)</span>: coeficiente de
+correlación entre las variables i y j</p></li>
+<li><p>Si las variables son no correlacionadas el segundo término de la
+Ecuación se hace cero.</p></li>
+</ul>
+<p>Escrito de otra manera</p>
+<p><span
+class="math display">\[v_{ef}=\frac{U^4_c(y)}{\sum_{i=1}^{n}\frac{c_i^4u^4(x_i)}{vi}}\]</span></p>
 </div>
 <div id="informar-la-incertidumbre" class="section level3">
 <h3>Informar la incertidumbre</h3>
+<p><img src="imagen/dire.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Cuando la incertidumbre se exprese como la incertidumbre estándar
 combinada uc (es decir como una desviación estándar simple), se
 recomienda hacerlo de la siguiente forma:</p>
-<p>”</p>
-<p><strong>EJEMPLO:</strong> Resultado:</p>
+<p><strong>EJEMPLO:</strong></p>
+<p>Resultado:</p>
 <ul>
 <li><p>x (unidades) [con una] incertidumbre estándar de uc
 (unidades)</p></li>
 <li><p>Nitrógeno total: 3,52 g/100 g</p></li>
 <li><p>Incertidumbre estándar: 0,07 g/100 g</p></li>
 </ul>
-<p>La incertidumbre estándar corresponde con una desviación estándar</p>
+<p>La incertidumbre estándar corresponde a una desviación estándar</p>
 <p><strong>Informe de la incertidumbre expandida</strong></p>
 <p>El resultado x debe ser establecido junto con la incertidumbre
 expandida U calculada usando un factor de cobertura k=2 (o como se
@@ -855,13 +1075,10 @@ describe en la sección Se recomienda hacerlo del modo siguiente:</p>
 usando un factor de cobertura de 2, [lo que da un nivel de confianza de
 aproximadamente 95 %]”</p>
 <p><span class="math display">\[Nitrógeno \quad total: (3,52 \pm  0,14)
-g/100 g \]</span> *La incertidumbre informada es una incertidumbre
-expandida calculada usando un factor de cobertura de 2, lo que da un
-nivel de confianza de aproximadamente el 95%.</p>
-</div>
-<div id="ejemplo-estimación-de-la-incertidumbre-de-volumen"
-class="section level3">
-<h3>Ejemplo estimación de la incertidumbre de volumen</h3>
+g/100 g \]</span></p>
+<p>*La incertidumbre informada es una incertidumbre expandida calculada
+usando un factor de cobertura de 2, lo que da un nivel de confianza de
+aproximadamente el 95%.</p>
 </div>
 </div>
 <div
@@ -870,7 +1087,7 @@ class="section level2">
 <h2>GUM JCGM 100:2008 Guía para la expresión de la incertidumbre de
 medición</h2>
 <p><img src="imagen/GUM.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Reglas generales para evaluar y expresar la incertidumbrede medición
+<p>Reglas generales para evaluar y expresar la incertidumbre de medición
 Aplicable en diversos campos de mediciones, incluyendo las necesarias
 para:</p>
 <p>• Mantener el control y el aseguramiento de la calidad en
@@ -884,10 +1101,22 @@ referencia</p>
 <div id="pasos-para-la-estimación-de-incertidumbre-iso-gum"
 class="section level3">
 <h3>PASOS PARA LA ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM</h3>
-<p><img src="imagen/gumm.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><img src="imagen/tc.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><img src="imagen/dire.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/gumpasos.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>sdasdas</p>
+<p><img src="imagen/tc.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
+</div>
+<div id="bibliografía" class="section level2">
+<h2>Bibliografía</h2>
+<ul>
+<li><p>Llamosa, L. E., Rivera, J. H., &amp; Torres, J. I. (2011). Using
+The Central Limit Theorem In The Calculation Of Measurement Uncertainty.
+Revista Colombiana de Física, 43(3). <a href="https://doi.org/10.04.10"
+class="uri">https://doi.org/10.04.10</a>.</p></li>
+<li><p>EA-4/02. (2022). Evaluation of the uncertainty of measurement. <a
+href="http://www.european-accreditation.org"
+class="uri">http://www.european-accreditation.org</a></p></li>
+</ul>
 </div>
 
 <br>
