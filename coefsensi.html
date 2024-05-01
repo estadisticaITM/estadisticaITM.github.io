@@ -929,7 +929,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDatae67a54f4"]
+  "group": ["SharedDataa988b1fc"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -953,14 +953,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDatae67a54f4"]
+  "group": ["SharedDataa988b1fc"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-443580fcbdccd7e2f9c1" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-443580fcbdccd7e2f9c1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatae67a54f4","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b9e424942950f94dacb4" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b9e424942950f94dacb4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataa988b1fc","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1102,8 +1102,196 @@ referencia</p>
 class="section level3">
 <h3>PASOS PARA LA ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM</h3>
 <p><img src="imagen/gumpasos.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>sdasdas</p>
 <p><img src="imagen/tc.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Ejemplo</strong></p>
+<p>Se ha efectuado la determinación del valor de una resistencia R,
+empleando el método del voltímetro y el amperímetro (en conexión
+corta),</p>
+<p><img src="imagen/res.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Los instrumentos utilizados fueron dos multímetros marca Hewlett
+Packard, modelo HP974A, en sus funciones de voltímetro y amperímetro,
+respectivamente. Se realizaron 6 mediciones en similares condiciones,
+obteniéndose los siguientes pares de valores:</p>
+<p>en los alcances de 50 V y 500 mA de corriente continua,
+respectivamente.</p>
+<p>En primera aproximación, la expresión (1),</p>
+<p><span class="math display">\[𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)\]</span> aplicada a
+este caso, sería:</p>
+<p><span
+class="math display">\[𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)=𝑓(𝑉_𝑚,𝐼_𝑚)=𝑅_𝑚=\frac{V_𝑚}{𝐼_𝑚}\]</span></p>
+<p>Sin embargo, teniendo en cuenta el consumo del voltímetro para la
+conexión usada, se debería efectuar, al menos inicialmente, una
+corrección como la que sigue:</p>
+<p><span class="math display">\[
+𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)=𝑓(𝑉_𝑚,𝐼_𝑚,𝑅_𝑉)=𝑅_𝑚=\frac{𝑉𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}\]</span></p>
+<p>donde <span class="math inline">\(R_V\)</span> corresponde a la
+resistencia interna del voltímetro con valor de 10 M𝛺. De la ecuación
+anterior, se puede obtener, para cada uno de los valores medidos, la
+estimación de salida y, a partir de las estimaciones de entrada <span
+class="math inline">\(x_1, x_2,…,x_N\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Medición Nº</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">prom</th>
+<th align="center">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(Vm[V]\)</span></td>
+<td align="center">12,615</td>
+<td align="center">12,610</td>
+<td align="center">12,614</td>
+<td align="center">12,612</td>
+<td align="center">12,615</td>
+<td align="center">12,613</td>
+<td align="center">12.613</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(Im[mA]\)</span></td>
+<td align="center">237,21</td>
+<td align="center">237,20</td>
+<td align="center">237,18</td>
+<td align="center">237,22</td>
+<td align="center">237,20</td>
+<td align="center">237,21</td>
+<td align="center">237.203</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R_m[\Omega]\)</span></td>
+<td align="center">53,181</td>
+<td align="center">53,162</td>
+<td align="center">53,184</td>
+<td align="center">53,166</td>
+<td align="center">53,183</td>
+<td align="center">53,173</td>
+<td align="center">53.175</td>
+<td align="center">0.009</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pasos establecidos según GUM</strong></p>
+<ol style="list-style-type: decimal">
+<li>Definir mensurando <span class="math display">\[
+𝑌=𝑓(𝑉_𝑚,𝐼_𝑚,𝑅_𝑉)\]</span></li>
+<li>Modelo físico matemático</li>
+</ol>
+<p><span
+class="math display">\[𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Identificar fuentes de incertidumbre</li>
+</ol>
+<p><img src="imagen/epc.png" width="80%" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Estimar las fuentes de de incertidumbre</li>
+</ol>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="8%" />
+<col width="15%" />
+<col width="15%" />
+<col width="16%" />
+<col width="15%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">fuente</th>
+<th align="center">subfuente</th>
+<th align="center">Tipo</th>
+<th align="center">Distribución</th>
+<th align="center">Medida</th>
+<th align="center">incertidumbre</th>
+<th align="center">Contribución</th>
+<th align="center">prom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Voltímetro</td>
+<td align="center">Resolución</td>
+<td align="center">B</td>
+<td align="center">Rectángular</td>
+<td align="center">rsln=0.001 V</td>
+<td align="center">0.00029 V</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">Error</td>
+<td align="center">B</td>
+<td align="center">Rectángular</td>
+<td align="center">e=237,22 V</td>
+<td align="center">0.0083 V</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Amperímeto</td>
+<td align="center">Resolución</td>
+<td align="center">B</td>
+<td align="center">Rectángular</td>
+<td align="center">rsln=0.01 mA</td>
+<td align="center">0.0029 mA</td>
+<td align="center">575</td>
+<td align="center">009</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">Error</td>
+<td align="center">B</td>
+<td align="center">Rectángular</td>
+<td align="center">e=237,22 mA</td>
+<td align="center">0.73 mA</td>
+<td align="center">237,21</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Repetibilidad (resistencia)</td>
+<td align="center"></td>
+<td align="center">A</td>
+<td align="center">t student</td>
+<td align="center">s=0.009 𝛺</td>
+<td align="center">0.00367 𝛺</td>
+<td align="center">237,21</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Incertidumbre de resolución</strong></p>
+<p><span class="math display">\[u=\frac{rsln}{\sqrt {12}}\]</span>
+<strong>Incertidumbre del error</strong></p>
+<p>A partir de las expresiones de los errores correspondientes a los
+instrumentos utilizados, y empleando el promedio de los valores medidos
+de tensión y corriente, se tiene:</p>
+<p><strong>Voltímetro</strong> <span class="math display">\[𝐸_{𝑉_𝑚}= ±
+(0,05 \% \quad \bar V_𝑚 + 2 \quad 𝑑í𝑔\quad rsln )\]</span></p>
+<p><span class="math display">\[𝐸_{𝑉_𝑚}= ± (0,05 \% \quad 12.613 + 0.002
+)= ± 0,0083 𝑉\]</span></p>
+<p><strong>Amperímetro</strong></p>
+<p><span class="math display">\[𝐸_{𝐼_𝑚}= ± (0,3 \% \bar I_𝑚 + 2 \quad
+𝑑í𝑔\quad rsln)\]</span></p>
+<p><span class="math display">\[𝐸_{𝐼_𝑚}= ± (0,3 \%* 237.203 + 0.02)= ±
+0,73 𝑚𝐴\]</span></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Estimar los coeficientes de sensibilidad</li>
+</ol>
+<p><span
+class="math display">\[𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}\]</span>
+<span class="math display">\[\frac{\partial R}{\partial
+V_m}\]</span></p>
 </div>
 </div>
 <div id="bibliografía" class="section level2">

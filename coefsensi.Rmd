@@ -669,14 +669,102 @@ Reglas generales para evaluar y expresar la incertidumbre de medición Aplicable
 knitr::include_graphics("imagen/gumpasos.png")
 ```
 
-sdasdas
+
 
 ```{r, echo=F, out.width="80%", fig.align='center'}
 knitr::include_graphics("imagen/tc.png")
 ```
 
+**Ejemplo**
 
 
+Se ha efectuado la determinación del valor de una resistencia R, empleando el método del voltímetro y el amperímetro (en conexión corta),
+
+
+```{r, echo=F, out.width="80%", fig.align='center'}
+knitr::include_graphics("imagen/res.png")
+```
+
+Los instrumentos utilizados fueron dos multímetros marca Hewlett Packard, modelo HP974A, en sus funciones de voltímetro y amperímetro, respectivamente. Se realizaron 6 mediciones en similares condiciones, obteniéndose los siguientes pares de valores:
+
+
+en los alcances de 50 V y 500 mA de corriente continua, respectivamente.
+
+
+En primera aproximación, la expresión (1), 
+
+$$𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)$$
+aplicada a este caso, sería:
+
+$$𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)=𝑓(𝑉_𝑚,𝐼_𝑚)=𝑅_𝑚=\frac{V_𝑚}{𝐼_𝑚}$$
+
+Sin embargo, teniendo en cuenta el consumo del voltímetro para la conexión usada, se debería efectuar, al menos inicialmente, una corrección como la que sigue:
+
+$$ 𝑌=𝑓(𝑋_1,𝑋_2,...,𝑋_𝑁)=𝑓(𝑉_𝑚,𝐼_𝑚,𝑅_𝑉)=𝑅_𝑚=\frac{𝑉𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}$$
+
+donde $R_V$ corresponde a la resistencia interna del voltímetro con valor de 10 M𝛺.
+De la ecuación anterior, se puede obtener, para cada uno de los valores medidos, la estimación de salida y, a partir de las estimaciones de entrada $x_1, x_2,…,x_N$. 
+
+
+|Medición Nº  |1     |     2|     3|     4|     5|     6|prom   |sd  |
+|:-----------:|:----:|:----:|:----:|:----:|:----:|:----:|:-----:|:--:|
+|$Vm[V]$      |12,615|12,610|12,614|12,612|12,615|12,613|12.613 |    |
+|$Im[mA]$     |237,21|237,20|237,18|237,22|237,20|237,21|237.203|    |
+|$R_m[\Omega]$|53,181|53,162|53,184|53,166|53,183|53,173|53.175|0.009|
+
+
+
+**Pasos establecidos según GUM**
+
+1. Definir mensurando
+$$ 𝑌=𝑓(𝑉_𝑚,𝐼_𝑚,𝑅_𝑉)$$
+2. Modelo físico matemático
+
+$$𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}$$
+
+3. Identificar fuentes  de incertidumbre 
+
+
+```{r, echo=F, out.width="80%", fig.align='center'}
+knitr::include_graphics("imagen/epc.png")
+```
+
+
+4. Estimar las fuentes de de incertidumbre 
+
+
+|fuente    |subfuente | Tipo  |Distribución|Medida      |incertidumbre|Contribución|prom|
+|:--------:|:--------:|:-----:|:----------:|:----------:|:-----------:|:----------:|:--:|
+|Voltímetro|Resolución|B      |Rectángular |rsln=0.001 V|0.00029 V    |            |    |
+|          |Error     |B      |Rectángular |e=237,22 V  |0.0083  V    |            |    |
+|Amperímeto|Resolución|B      |Rectángular |rsln=0.01 mA|0.0029   mA  |575         | 009|
+|          |Error     |B      |Rectángular |e=237,22 mA |0.73       mA|237,21      |    |
+|Repetibilidad (resistencia)||A|t student  |s=0.009 𝛺  |0.00367   𝛺  |237,21      |    |
+
+**Incertidumbre de resolución**
+
+$$u=\frac{rsln}{\sqrt {12}}$$
+**Incertidumbre del error**
+
+A partir de las expresiones de los errores correspondientes a los instrumentos utilizados, y empleando el promedio de los valores medidos de tensión y corriente, se tiene:
+
+**Voltímetro**
+$$𝐸_{𝑉_𝑚}= ± (0,05 \% \quad \bar V_𝑚 + 2 \quad 𝑑í𝑔\quad rsln )$$
+
+$$𝐸_{𝑉_𝑚}= ± (0,05 \% \quad 12.613 + 0.002 )= ± 0,0083 𝑉$$
+
+**Amperímetro**
+
+
+$$𝐸_{𝐼_𝑚}= ± (0,3 \% \bar I_𝑚 + 2 \quad 𝑑í𝑔\quad rsln)$$
+
+
+$$𝐸_{𝐼_𝑚}= ± (0,3 \%* 237.203 + 0.02)= ± 0,73 𝑚𝐴$$
+
+5. Estimar los coeficientes de sensibilidad
+
+$$𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}$$
+$$\frac{\partial R}{\partial V_m}$$
 
 ## Bibliografía
 
