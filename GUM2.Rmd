@@ -43,3 +43,62 @@ sdasdas
 knitr::include_graphics("imagen/tc.png")
 ```
 
+
+
+ Procedimiento para la evaluación de la incertidumbre MCM
+A continuación, se describen los pasos para realizar la evaluación de la incertidumbre por
+el método de Monte Carlo aplicado al cálculo de la incertidumbre de la CCT, 𝑢(𝐶𝐶𝑇), este
+apartado se basa en la descripción de la sección 5.1 de la guía GUM [35], en donde se
+describen las fases principales de la evaluación de incertidumbre, aquí se explican cada
+paso y luego se hace referencia a la aplicación de la estimación de 𝑢(𝐶𝐶𝑇).
+a) Formulación de variables de entrada y salida:
+1. Definir la magnitud de salida Y, es decir, el mesurando o variable a la cual se
+desea calcular su incertidumbre.
+Para el caso que se trabaja el mesurando es la temperatura de color
+correlacionada.
+Guías para la estimación de incertidumbre, GUM 19
+𝑌 = 𝐶𝐶𝑇 (1.6)
+2. Determinar todas las magnitudes de entrada 𝑋 = (𝑋1, 𝑋2, . . . , 𝑋𝑛
+) de las que
+depende Y;
+Para el caso que se trabaja, estás podrían variar dependiendo del instrumento o
+condiciones del montaje o se podrían descartar algunas variables por ser
+irrelevantes entre otros casos, por ejemplo, si se obtiene el espectro de la fuente
+de luz, las magnitudes de entrada podrían ser la magnitud del espectro tomado, la
+longitud de onda, las incertidumbres debidas a alguna calibración del equipo u otras
+variables, por ejemplo, los componentes de incertidumbre debido a la no linealidad
+del equipo, o la señal del ruido negro entre otros.
+𝐶𝐶𝑇 = 𝑓(,𝐼)
+(1.7)
+Suponiendo que se encontrará que la CCT depende del espectro (intensidad 𝑰 y
+longitud de onda ) son todas las magnitudes de entrada de las que depende el
+mesurando.
+3. Desarrollar un modelo que relacione el mesurando como función de las
+variables de entrada.
+Para el cálculo de la incertidumbre de CCT a partir del espectro, este modelo
+debería tener el modelo matemático para encontrar las coordenadas de color a
+partir del espectro y luego algún método para encontrar CCT a partir de la
+cromaticidad, por ejemplo, el método de Robertson [16].
+4. A partir de los conocimientos disponibles, asignar las PDF a todas las
+magnitudes de entrada 𝑋𝑖
+, de igual forma, asignar una PDF conjunta a todas
+aquellas 𝑋𝑖 que no son independientes;
+b) Propagación: pasar las PDF de las magnitudes de entrada 𝑋𝑖 por el modelo para obtener
+la PDF de Y;
+20 Cálculo de la incertidumbre de la Temperatura de Color Correlacionada (CCT)
+mediante un método de Monte Carlo
+A partir del uso de generadores de números aleatorios se crean variables aleatorias
+de las magnitudes de entrada, las cuales, simularán escenarios posibles, cada
+escenario se evalúa en el modelo implementado 𝑌 = 𝑓(𝑋1, 𝑋2, … , 𝑋𝑛
+) obteniendo
+posibles valores del mesurando 𝑌𝑖
+, realizando este proceso de forma iterativa se
+obtiene el conjunto de las posibles salidas de los cuales se encuentra una PDF del
+mesurando.
+c) Resultado: utilizar la PDF del mesurando, Y para obtener:
+1. la esperanza matemática de Y, considerada como una estimación y de la magnitud,
+2. la desviación típica de Y, considerada como la incertidumbre típica u(y) asociada a
+y.
+3. un intervalo de cobertura que contenga Y con una probabilidad específica (la
+probabilidad de cobertura).
+
