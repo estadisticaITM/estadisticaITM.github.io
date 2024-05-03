@@ -733,13 +733,7 @@ knitr::include_graphics("imagen/epc.png")
 4. Estimar las fuentes de de incertidumbre 
 
 
-|fuente    |subfuente | Tipo  |Distribución|Medida      |incertidumbre|Contribución|prom|
-|:--------:|:--------:|:-----:|:----------:|:----------:|:-----------:|:----------:|:--:|
-|Voltímetro|Resolución|B      |Rectángular |rsln=0.001 V|0.00029 V    |            |    |
-|          |Error     |B      |Rectángular |e=237,22 V  |0.0083  V    |            |    |
-|Amperímeto|Resolución|B      |Rectángular |rsln=0.01 mA|0.0029   mA  |575         | 009|
-|          |Error     |B      |Rectángular |e=237,22 mA |0.73       mA|237,21      |    |
-|Repetibilidad (resistencia)||A|t student  |s=0.009 𝛺  |0.00367   𝛺  |237,21      |    |
+
 
 **Incertidumbre de resolución**
 
@@ -760,11 +754,147 @@ $$𝐸_{𝐼_𝑚}= ± (0,3 \% \bar I_𝑚 + 2 \quad 𝑑í𝑔\quad rsln)$$
 
 
 $$𝐸_{𝐼_𝑚}= ± (0,3 \%* 237.203 + 0.02)= ± 0,73 𝑚𝐴$$
+Las incertidumbres del error están dadas por
+
+$$u_c=\frac{error}{\sqrt 3}$$
+
+|fuente    |subfuente |Tipo|Distribución|Medida      |incertidumbre|
+|:--------:|:--------:|:--:|:----------:|:----------:|:-----------:|
+|Voltímetro|Resolución|B   |Rectángular |rsln=0.001 V|0.00029 V    |
+|          |Error     |B   |Rectángular |e=0.0083 V  |0.0048  V    |
+|Amperímeto|Resolución|B   |Rectángular |rsln=0.01 mA|0.0029   mA  |
+|          |Error     |B   |Rectángular |e=0.73 mA   |0.42     mA|
+|Repetibilidad|Resistencia |A|t student |s=0.009 𝛺 |0.00367 𝛺   |
+
+
+
+
+
+
 
 5. Estimar los coeficientes de sensibilidad
 
 $$𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}$$
-$$\frac{\partial R}{\partial V_m}$$
+
+
+Usar la regla del cociente
+
+$$\left(\frac{f}{g}\right)=\frac{f'g-g'f}{g^2}$$
+
+
+
+$$\frac{\partial R}{\partial V_m}=\frac{I_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 }=4.2159\frac{1}{A}$$
+
+
+$$\frac{\partial R}{\partial I_m}=\frac{-V_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 }=-224.18\frac{V}{A^2}$$
+**Contribución a la incertidumbre**
+
+Evalua la contribución de cada variable a la incertidumbre total del proceso a través del índice de contribución de cada una de ellas; para establecer puntos críticos que pueden mejorarse para disminuir la incertidumbre del método.
+
+$$Ind (\%)=\frac{c_i*u_i}{\sum_i(c_i*u_i)}$$
+
+|fuente    |subfuente |incertidumbre|coef de sens          |$c_i*u_i$    |$Ind (\%)$|
+|:--------:|:--------:|:-----------:|:--------------------:|:-----------:|:--------:|
+|Voltímetro|Resolución|0.00029 V    |$4.2159\frac{1}{A}$   |0.001223 V/A |0.9       |
+|          |Error     |0.0048  V    |                      |0.034992 V/A |26        |
+|Amperímeto|Resolución|0.0029   mA  |$-224.18\frac{V}{A^2}$|0.00065  V/A |0.5       |
+|          |Error     |0.42       mA|                      |0.094155  V/A|70        |
+|Repetibilidad|s=0.009 𝛺|0.00367 𝛺|  1                   |0.00367 𝛺   |2.6       |
+|             |       |             |     suma             |0.134698 𝛺  | 100     |   
+
+
+```{r}
+y=c(70,26,2.6,0.9,0.5)
+x=c("Error Amp","Error Volt","repetibili","Res volt", "Res Amp")
+barplot(y~x)
+
+```
+
+
+**Agrupación de incertidumbres según el tipo**
+
+
+
+Dado que hay varias incertidumbres provienen de diferentes fuentes, se agrupan aquellas pertenecientes a la tipo B
+
+$$u_B(R)=\sqrt {u^2_{v_m}(R)+u^2_{I_m}(R)}$$
+Es decir:
+$$u_B(R)=\sqrt {C^2_{V_m}[u^2(E_{v_m})+u^2(Res_{v_m})]+C^2_{I_m}[u^2(E_{I_m})+u^2(Res_{I_m})]}$$
+
+Reemplazando:
+$$u_B(R)=\sqrt {4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0029^2]}=\pm 0.096   $$
+
+
+Ahora se evalua la incertidumbre total, teniendo en cuenta aquellas provenientes tanto de las tipo A como las de tipo B
+
+$$u(R)=\pm\sqrt {u^2_A(R)+u^2_B(R)}=\pm 0.096$$
+$$u(R)=\pm\sqrt {0.0038^2+0.096^2}=\pm 0.096$$
+
+
+
+
+
+
+
+
+**Grados de libertad**
+
+
+
+
+Determinar los grados de incertidumbre de cada uno de los parámetros
+
+$$v_{eff}=\frac{u^4(R)}{\sum_{i=1}^N \frac{u_i^4(R)}{v_i}}=\frac{u^4(R)}{\frac{u_i^4(R)}{5}+\frac{u_i^4(R)}{\infty}+\frac{u_i^4(R)}{\infty}}$$
+
+
+$$v_{eff}=\frac{(0.096 \Omega)^4}{\ \frac{(0.038\Omega)^4 }{5}}\geq 2.1*10^6$$
+
+
+Para una cobertura del 95% con y gl infinitos se obtiene un factor de cobertura de 1.96 
+
+$$U=k*u(y)=1.96*0.096 \Omega=0.19 \Omega $$
+$$R=(53.18\pm 0.19)\Omega $$
+
+Otro camino, incertidumbre dominante, bajo el teorema de límite central:
+
+
+ **Criterio de la distribución dominante**
+
+
+$$\frac{u_r(y)}{u_1(y)}<0.3$$ 
+Donde $u_r(y)$ es la contribución de las incertidumbres no dominantes, $u_1(y)$ es la incertidumbre estándar de mayor valor siempre y cuando sea "no normal"
+
+Aporte de las incertidumbres no dominantes
+
+$$u_B(R)=\sqrt {0.00367^2+4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.0029^2]}=\pm 0.65045   $$
+
+Incertidumbre no dominante
+
+$$\sqrt{224.18^2*[0.00042^2]}=4.5943$$
+
+
+
+ $$\frac{0.65045}{4.594322}=0.1415<0.3$$ 
+Bajo este criterio, y con un nc del 95%, se tiene que el factor de cobertura es 
+
+$$k=p*\sqrt 3=1.64$$
+$$U=k*u(y)=1.64*0.096 \Omega=0.15744 \Omega$$
+
+
+
+
+
+$$R=(53.18\pm 0.16)\Omega $$
+**Analisis comparativo de ambos resultados**
+
+
+|            |con Dist rectángular|Con Dist Normal|
+|:----       |:------------------:|:-------------:|
+|gl efectivos|  $\infty$          |---            |
+|$U_c$       |0.096               |0.096          |
+|k           |1.64                |1.96           |
+|$U_e$       |0.15744             |0.18816        |
+
 
 ## Bibliografía
 
