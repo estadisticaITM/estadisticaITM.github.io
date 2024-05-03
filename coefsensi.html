@@ -929,7 +929,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedData0febc952"]
+  "group": ["SharedDataeb5bf3c8"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -953,14 +953,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedData0febc952"]
+  "group": ["SharedDataeb5bf3c8"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-f3a92bc884876495fb2a" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f3a92bc884876495fb2a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData0febc952","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c5a9ac56ebb619c87e22" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c5a9ac56ebb619c87e22">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataeb5bf3c8","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1353,7 +1353,7 @@ class="math inline">\(-224.18\frac{V}{A^2}\)</span></td>
 <td align="center"></td>
 <td align="center">suma</td>
 <td align="center">0.134698 𝛺</td>
-<td align="center"></td>
+<td align="center">100</td>
 </tr>
 </tbody>
 </table>
@@ -1369,7 +1369,7 @@ se agrupan aquellas pertenecientes a la tipo B</p>
 class="math display">\[u_B(R)=\sqrt
 {C^2_{V_m}[u^2(E_{v_m})+u^2(Res_{v_m})]+C^2_{I_m}[u^2(E_{I_m})+u^2(Res_{I_m})]}\]</span></p>
 <p>Reemplazando: <span class="math display">\[u_B(R)=\sqrt
-{4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0000029^2]}=\pm
+{4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0029^2]}=\pm
 0.096   \]</span></p>
 <p>Ahora se evalua la incertidumbre total, teniendo en cuenta aquellas
 provenientes tanto de las tipo A como las de tipo B</p>
@@ -1396,7 +1396,58 @@ Donde <span class="math inline">\(u_r(y)\)</span> es la contribución de
 las incertidumbres no dominantes, <span
 class="math inline">\(u_1(y)\)</span> es la incertidumbre estándar de
 mayor valor siempre y cuando sea “no normal”</p>
+<p>Aporte de las incertidumbres no dominantes</p>
+<p><span class="math display">\[u_B(R)=\sqrt
+{0.00367^2+4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.0029^2]}=\pm
+0.65045   \]</span></p>
+<p>Incertidumbre no dominante</p>
+<p><span
+class="math display">\[\sqrt{224.18^2*[0.00042^2]}=4.5943\]</span></p>
+<p><span
+class="math display">\[\frac{0.65045}{4.594322}=0.1415&lt;0.3\]</span>
+Bajo este criterio, y con un nc del 95%, se tiene que el factor de
+cobertura es</p>
+<p><span class="math display">\[k=p*\sqrt 3=1.64\]</span> <span
+class="math display">\[U=k*u(y)=1.64*0.096 \Omega=0.15744
+\Omega\]</span></p>
+<p><span class="math display">\[R=(53.18\pm 0.16)\Omega \]</span>
+<strong>Analisis comparativo de ambos resultados</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">con Dist rectángular</th>
+<th align="center">Con Dist Normal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gl efectivos</td>
+<td align="center"><span class="math inline">\(\infty\)</span></td>
+<td align="center">—</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(U_c\)</span></td>
+<td align="center">0.096</td>
+<td align="center">0.096</td>
+</tr>
+<tr class="odd">
+<td align="left">k</td>
+<td align="center">1.64</td>
+<td align="center">1.96</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(U_e\)</span></td>
+<td align="center">0.15744</td>
+<td align="center">0.18816</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<div id="ejemplo-cuando-las-magnitudes-están-correlacionadas"
+class="section level2">
+<h2>Ejemplo cuando las magnitudes están correlacionadas</h2>
 </div>
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>
