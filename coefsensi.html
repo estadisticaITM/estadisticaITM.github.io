@@ -960,7 +960,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDataac3225a1"]
+  "group": ["SharedDatab9e7fa18"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -984,14 +984,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDataac3225a1"]
+  "group": ["SharedDatab9e7fa18"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-0274f1d3e998c1e6da29" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0274f1d3e998c1e6da29">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataac3225a1","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8b349fd2264e0c9c0f51" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8b349fd2264e0c9c0f51">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatab9e7fa18","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1476,9 +1476,9 @@ class="math display">\[U=k*u(y)=1.64*0.096 \Omega=0.15744
 </table>
 </div>
 </div>
-<div id="magnitutes-dependientes-o-correlacionadas"
+<div id="magnitudes-dependientes-o-correlacionadas"
 class="section level2">
-<h2>Magnitutes dependientes o correlacionadas</h2>
+<h2>Magnitudes dependientes o correlacionadas</h2>
 <p>Algunas situaciones llevan a considerar una correlación significativa
 entre dos magnitudes de entrada, como si se utiliza el mismo instrumento
 de medida, el mismo patrón o la misma referencia con incertidumbre
@@ -1533,6 +1533,11 @@ covarianza asociada a las estimaciones de Xi y Xj.</p></li>
 <div id="incertidumbre-combinada-para-variables-no-correlacionadas"
 class="section level3">
 <h3>Incertidumbre combinada para variables no correlacionadas</h3>
+<p>La evaluación de la incertidumbre de la medición cuando existe
+correlación entre fuentes de es una tarea difícil, especialmente cuando
+las cantidades tienen una distribucion de probabilidad diferente a la
+normal (Konopka, K,2007). En muchos casos se asume la normal, lo q puede
+causar errores en la estimación de incertidumbre.</p>
 <p>La relación para estimar la incertidumbre combinada para variables
 correlacionadas, viene dada por la relación:</p>
 <p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
@@ -1569,6 +1574,9 @@ r(x_i,x_j)\]</span></p>
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>
 <ul>
+<li><p>Konopka, K. (2007). Instrumentation and Measurement Technology
+Conference-IMTC 2007 Estimating Uncertainty of Correlated
+Quantities-Comparison of Two Methods.</p></li>
 <li><p>Llamosa, L. E., Rivera, J. H., &amp; Torres, J. I. (2011). Using
 The Central Limit Theorem In The Calculation Of Measurement Uncertainty.
 Revista Colombiana de Física, 43(3). <a href="https://doi.org/10.04.10"
