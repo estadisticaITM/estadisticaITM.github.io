@@ -844,7 +844,7 @@ Es decir:
 $$u_B(R)=\sqrt {C^2_{V_m}[u^2(E_{v_m})+u^2(Res_{v_m})]+C^2_{I_m}[u^2(E_{I_m})+u^2(Res_{I_m})]}$$
 
 Reemplazando:
-$$u_B(R)=\sqrt {4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0029^2]}=\pm 0.096   $$
+$$u_B(R)=\sqrt {4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0000029^2]}=\pm 0.096   $$
 
 
 Ahora se evalua la incertidumbre total, teniendo en cuenta aquellas provenientes tanto de las tipo A como las de tipo B
@@ -994,7 +994,74 @@ $$2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partia
 La ecuación queda transformada en 
 
 $$u_c^2(y)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j) r(x_i,x_j)$$
+**EJEMPLO**
 
+Retomando el ejercicio anterior.
+
+Considerando el modelo físico matemático
+
+$$𝑅_𝑚=\frac{𝑉_𝑚}{𝐼_𝑚−\frac{𝑉_𝑚}{𝑅_𝑉}}$$
+
+considerando dependencia entre las variables, se tienen los coeficientes de sensibilidad obtenidos mediante las derivadas parciales de la función:
+$$c_1=\frac{\partial R}{\partial V_m}=\frac{I_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 }=4.2159\frac{1}{A}$$
+
+
+$$c_2=\frac{\partial R}{\partial I_m}=\frac{-V_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 }=-224.18\frac{V}{A^2}$$
+
+
+|fuente    |subfuente |incertidumbre|coef de sens          |$c_i*u_i$    |
+|:--------:|:--------:|:-----------:|:--------------------:|:-----------:|
+|Voltímetro|Resolución|0.00029 V    |$4.2159\frac{1}{A}$   |0.001223 V/A |
+|          |Error     |0.0048  V    |                      |0.034992 V/A |
+|Amperímeto|Resolución|0.0029   mA  |$-224.18\frac{V}{A^2}$|0.00065  V/A |
+|          |Error     |0.42       mA|                      |0.094155  V/A|
+|Repetibilidad|s=0.009 𝛺|0.00367 𝛺|  1                   |0.00367 𝛺   |
+|             |       |             |     suma             |0.134698 𝛺  |  
+
+
+$$u_c^2(R)=\sum_{i=1}^Nc_i^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N c_i * c_j* u(x_i) u(x_j) r(x_i,x_j)$$
+$$\small{u_c^2(R)=\left[ \frac{I_m}{\left(I_m-\frac{V_m}{R_v}\right)^2}\right]^2 u^2(V) + \left[ \frac{-V_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 } \right]^2 u^2(I) +2*\frac{I_m}{\left(I_m-\frac{V_m}{R_v}\right)^2}*\frac{-V_m}{\left(I_m-\frac{V_m}{R_v}\right)^2 } * u(V)* u(I)* r(V,I)\qquad(1)}$$
+
+$$\small{u_c^2(R)= \frac{I_m^2}{\left(I_m-\frac{V_m}{R_v}\right)^4} u^2(V)\frac{V_m^4}{V_m^4} + \frac{V_m^2}{\left(I_m-\frac{V_m}{R_v}\right)^4 } \frac{V^2_m}{V^2_m}  u^2(I) -2*\frac{I_m}{1}*\frac{V_m}{\left(I_m-\frac{V_m}{R_v}\right)^4 }*\frac{V_m^4}{V_m^4} * u(V)* u(I)* r(V,I)}$$
+
+
+$$\small{u_c^2(R)= \frac{R^4*I_m^2}{V_m^2} * \frac{u^2(V)}{V_m^2} + 
+R^4*\frac{1}{V_m^2 }  u^2(I) 
+-2*\frac{I_m}{1}*\frac{R^4}{1 }*\frac{1}{V_m^3} * u(V)* u(I)* r(V,I)}$$
+
+$$\small{u_c^2(R)= \frac{R^2*R^2*I_m^2}{V_m^2} * \frac{u^2(V)}{V_m^2} + 
+R^4*\frac{1}{I_m^2*R^2_m }  u^2(I) 
+-2*\frac{I_m}{1}*\frac{R^4}{V_m^2 }*\frac{u(V)}{V_m} *u(I)* r(V,I)}$$
+
+
+$$\small{u_c^2(R)= \frac{R^2*V^2_m}{V_m^2} * \frac{u^2(V)}{V_m^2} + 
+R^4*\frac{1}{I_m^2*R^2_m }  u^2(I)
+-2*\frac{I_m}{1}*\frac{R^4}{I^2R^2 }*\frac{u(V)}{V_m} *u(I)* r(V,I)}$$
+
+$$\small{u_c^2(R)=  R^2*\frac{u^2(V)}{V_m^2} + 
+R^2*\frac{u^2(I)}{I_m^2}  
+-2*R^2*\frac{u(V)}{V_m} *\frac{u(I)}{I}* r(V,I)}$$
+
+
+$$\small{\frac{u_c^2(R)}{R^2}=\frac{u^2(V)}{V_m^2} + 
+\frac{u^2(I)}{I_m^2}  
+-2*\frac{u(V)}{V_m} *\frac{u(I)}{I}* r(V,I)}$$
+
+Reemplazando los valores en (1)
+
+
+
+$$\small{u_c^2(y)= 4.2159^2*u(v)^2+224.18^2u(I)+
+2*4.2159*(-224.18)* u(V)*u(I)* r(V,I)}$$
+
+
+$$\small{ u_c^2(y)= 4.2159^2[0.0048^2+0.00029^2]+224.18^2[0.00042^2+0.0000029^2]+
+2*4.2159*(-224.18)* 0.00509* 0.00332* (-0.176)}$$
+
+$$\small{u_c^2(y)= 0.009276+2*4.2159*(-224.18)* 0.00509*(422.9*10^{-6})* (-0.176)}$$
+$$\small{u_c^2(y)= 0.009276+716.12*10^{-6}}=9.992*10^{-3}$$
+
+$$\small{\sqrt{u_c^2(y)}=\sqrt{9.992*10^{-3}}}=\pm 0.0996$$
 
 ## Bibliografía
 
