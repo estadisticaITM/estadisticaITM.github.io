@@ -11,7 +11,7 @@
 
 
 
-<title>GUM</title>
+<title>Serie de taylor</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -404,35 +404,113 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GUM</h1>
+<h1 class="title toc-ignore">Serie de taylor</h1>
 
 </div>
 
 
-<div
-id="gum-jcgm-1002008-guía-para-la-expresión-de-la-incertidumbre-de-medición"
+<div id="modelos-matematicos-lineales-y-no-lineales"
 class="section level2">
-<h2>GUM JCGM 100:2008 Guía para la expresión de la incertidumbre de
-medición</h2>
-<p><img src="imagen/GUM.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Reglas generales para evaluar y expresar la incertidumbre de medición
-Aplicable en diversos campos de mediciones, incluyendo las necesarias
-para:</p>
-<p>• Mantener el control y el aseguramiento de la calidad en
-producción</p>
-<p>• Cumplir con leyes y reglamentos</p>
-<p>• Apoyar I+D aplicados en ciencia e ingeniería</p>
-<p>• Calibrar patrones, equipos y realizar ensayos para demostrar
-trazabilidad</p>
-<p>• Desarrollar, mantener y comparar patrones físicos y materiales de
-referencia</p>
-<div id="pasos-para-la-estimación-de-incertidumbre-iso-gum"
-class="section level3">
-<h3>PASOS PARA LA ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM</h3>
-<p><img src="imagen/gumm.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>sdasdas</p>
-<p><img src="imagen/tc.png" width="80%" style="display: block; margin: auto;" /></p>
+<h2>Modelos matematicos lineales y no lineales</h2>
+<p>Un Modelo Lineal es un modelo que usa una función lineal para
+representar una situación que incluya una tasa de cambio constante. El
+gráfico de una ecuación lineal es una línea recta.</p>
 </div>
+<div id="inclusión-de-terminos-de-orden-superior-en-la-serie-de-taylor"
+class="section level2">
+<h2>Inclusión de terminos de orden superior en la serie de taylor</h2>
+<p>La GUM es reconocida para la evaluación de la incertidumbre de la
+medición, este método utiliza una aproximación de la serie de Taylor de
+primer orden para evaluar la estimación de un mensurando y su
+incertidumbre estándar asociada, mediante la ley de propagación de
+incertidumbres (Martins, 2011).</p>
+<p>Sin embargo, cuando la función de medición es no lineal, el uso de
+esta aproximación lineal puede ser inadecuado y, por lo tanto, no se
+pueden despreciar los términos de orden superior de la serie de
+Taylor.</p>
+<p>El Suplemento de la GUM 1 que trata de “Propagación de distribuciones
+aplicando el método de Monte Carlo” trata la evaluación numérica de la
+incertidumbre de la medición con un método de Monte Carlo como una
+implementación de la propagación de funciones de densidad de
+probabilidad (PDF), esta propuesta es mejor cuando:</p>
+<ul>
+<li><p>La función de medición es fuertemente no lineal;</p></li>
+<li><p>Las PDF para los valores de cualquier cantidad son asimétricas o
+no gaussianas.</p></li>
+</ul>
+<p>Dichas aproximaciones requieren un esfuerzo computacional
+considerable y también puede acumular errores numéricos si el algoritmo
+computacional del generador de números aleatorios no se desarrolla
+cuidadosamente.</p>
+<p>Un logro importante de GUM consiste en un enfoque para combinar la
+incertidumbre de las estadísticas frecuentistas (evaluación Tipo A) y
+estadísticas bayesianas (evaluación Tipo B), considerando que todas las
+cantidades se caracterizan por una PDF que describe los posibles valores
+de estas cantidades.</p>
+<p>La PDF generalmente se puede resumir en términos de parámetros como
+la media y la varianza (y la desviación estándar) que se utilizan en la
+evaluación de la incertidumbre de la medición.</p>
+<p><strong>Momentos de la estadística</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>E(X)= media</p></li>
+<li><p><span class="math inline">\(var(x)=u(x_i^2)\)</span></p></li>
+</ol>
+<p>En la mayoría de los casos prácticos, el mensurando Y no se mide
+directamente sino que se determina a partir de N otras cantidades de
+entrada (Xi) que están relacionadas a través de una relación funcional
+conocida de la forma</p>
+<p><span class="math display">\[y=f(x_1,x_2,x_3,...x_n)\]</span> Cuando
+no hay correlaciones entre los terminos la función que estima su
+intertidumbre está dada por:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N\left[
+\frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)\]</span></p>
+<p>Cuando la función es no lineal GUM recomienda el uso de algunos
+términos de orden superior en combinación con la ecuación anterior,
+aunque con algunas restricciones como la normalidad y la independencia
+entre las variables.</p>
+<p>La evaluación de la incertidumbre estándar basada en expresiones de
+orden superior, mediante el enfoque de la ley de propagación de
+incertidumbre requiere la aproximación de series de Taylor de segundo y
+tercer orden para una función de medición, asi como también requiere
+momentos estadísticos de orden superior, como los momentos tercero
+(asimetría), cuarto (curtosis), quinto y sexto.</p>
+<p>El sesgo <span class="math inline">\(\gamma\)</span> puede expresado
+en terminos de incertidumbre como</p>
+<p><span class="math display">\[E[(\varepsilon_i-x_i)^3]=\gamma
+u^3(x_i)\]</span></p>
+<p>La curtosis puede ser expresada en terminos de incertidumbre
+como:</p>
+<p><span class="math display">\[E[(\varepsilon_i-x_i)^4]=k
+u^4(x_i)\]</span></p>
+<p>La siguiente ecuación ilustra la incertidumbre con un desarrollo de
+la serie de taylor de 2 orden.</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N\left[
+\frac{\partial f }{\partial x_i} \right]^2
+u^2(x_i)+\sum_{i=1}^{N}\sum_{j=1}^N  \left[ \frac{1}{2}
+\left(\frac{\partial^2f }{\partial x_i \partial x_j} \right)^2 +
+\left(\frac{\partial f}{\partial x_i} \right)\left(\frac{\partial^3f
+}{\partial x_i \partial x_j^2} \right) \right]  u^2(x_i)
+u^2(x_j)\]</span> Expandiendo la serie se obtiene, la serie de 2 y
+tercer orden</p>
+<p><img src="imagen/taylor.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>La inclusión de los términos de tercer orden de la expansión de la
+serie de Taylor de la función de medición da como resultado un método
+más completo que el GUM y los métodos de segundo orden. Por tanto, la
+evaluación de la incertidumbre de la medición utilizando este método
+puede considerarse más apropiada y sólida que los últimos métodos.</p>
+</div>
+<div id="bibliografía" class="section level2">
+<h2>Bibliografía</h2>
+<p>GUM S1. (2008). JCGM 101:2008 Evaluación de datos de
+medición-Suplemento 1 de la “Guía para la expresión de la incertidumbre
+de medida”-Propagación de distribuciones aplicando el método de Monte
+Carlo. www.cem.es,</p>
+<p>Martins, M. A. F., Requião, R., &amp; Kalid, R. A. (2011).
+Generalized expressions of second and third order for the evaluation of
+standard measurement uncertainty. Measurement: Journal of the
+International Measurement Confederation, 44(9), 1526–1530. <a
+href="https://doi.org/10.1016/j.measurement.2011.06.008"
+class="uri">https://doi.org/10.1016/j.measurement.2011.06.008</a></p>
 </div>
 
 <br>
