@@ -960,7 +960,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedData9e40cc63"]
+  "group": ["SharedData0e2e9859"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -984,14 +984,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedData9e40cc63"]
+  "group": ["SharedData0e2e9859"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-c4aa1ffe30ba338fe4f4" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c4aa1ffe30ba338fe4f4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData9e40cc63","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-07d589ef45868531a531" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-07d589ef45868531a531">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData0e2e9859","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1539,9 +1539,9 @@ constante</p></li>
 <li><p>No se posee información suficiente como para evaluar la
 covarianza asociada a las estimaciones de Xi y Xj.</p></li>
 </ul>
-<div id="incertidumbre-combinada-para-variables-no-correlacionadas"
+<div id="incertidumbre-combinada-para-variables-correlacionadas"
 class="section level3">
-<h3>Incertidumbre combinada para variables no correlacionadas</h3>
+<h3>Incertidumbre combinada para variables correlacionadas</h3>
 <p>La evaluación de la incertidumbre de la medición cuando existe
 correlación entre fuentes de es una tarea difícil, especialmente cuando
 las cantidades tienen una distribucion de probabilidad diferente a la
@@ -1705,7 +1705,25 @@ class="math display">\[\small{\frac{u_c^2(R)}{R^2}=\frac{u^2(V)}{V_m^2}
 0.009276+716.12*10^{-6}}=9.992*10^{-3}\]</span></p>
 <p><span
 class="math display">\[\small{\sqrt{u_c^2(y)}=\sqrt{9.992*10^{-3}}}=\pm
-0.0996\]</span></p>
+0.0996\]</span> <strong>Comparación</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Incertidumbre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sin tener en cuenta la correlación</td>
+<td>0.096</td>
+</tr>
+<tr class="even">
+<td>Con la correlación</td>
+<td>0.099</td>
+</tr>
+</tbody>
+</table>
 <p>La GUM cuenta con dos documentos adicionales:</p>
 <ol style="list-style-type: decimal">
 <li><p>Evaluación de datos de medición —Suplemento 1 de la “Guía para la

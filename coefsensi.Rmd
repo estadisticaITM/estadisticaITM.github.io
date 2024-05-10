@@ -976,7 +976,7 @@ La covarianza asociada a las estimaciones de dos magnitudes de entrada $x_i$ y $
 
 
 
-### Incertidumbre combinada para variables no correlacionadas
+### Incertidumbre combinada para variables correlacionadas
 
 La evaluación de la incertidumbre de la medición cuando existe correlación entre fuentes de es una tarea difícil, especialmente cuando las cantidades tienen una distribucion de probabilidad diferente a la normal (Konopka, K,2007). 
 En muchos casos   se asume la normal, lo q puede causar errores en la estimación de incertidumbre.
@@ -1071,6 +1071,13 @@ $$\small{u_c^2(y)= 0.009276+2*4.2159*(-224.18)* 0.00509*(422.9*10^{-6})* (-0.176
 $$\small{u_c^2(y)= 0.009276+716.12*10^{-6}}=9.992*10^{-3}$$
 
 $$\small{\sqrt{u_c^2(y)}=\sqrt{9.992*10^{-3}}}=\pm 0.0996$$
+**Comparación**
+
+|                                  |Incertidumbre|
+|----------------------------------|-------------|
+|sin tener en cuenta la correlación|0.096        |
+|Con la correlación                |0.099        |
+
 
 La GUM cuenta con dos documentos adicionales: 
 
