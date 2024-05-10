@@ -7,28 +7,33 @@ output:
     
 ---
 
-## Modelos matematicos lineales y no lineales
 
-Un Modelo Lineal es un modelo que usa una función lineal para representar una situación que incluya una tasa de cambio constante. El gráfico de una ecuación lineal es una línea recta.
 
 ## Inclusión de terminos de orden superior en la serie de taylor 
 
 La GUM es reconocida para la evaluación de la incertidumbre de la medición, este método utiliza una aproximación de la serie de Taylor de primer orden para evaluar la estimación de un mensurando y su incertidumbre estándar asociada, mediante la ley de propagación de incertidumbres (Martins, 2011).
 
-Sin embargo, cuando la función de medición es no lineal, el uso de esta aproximación lineal puede ser inadecuado y, por lo tanto, no se pueden despreciar los términos de orden superior de la serie de Taylor.
-
-El Suplemento de la GUM 1 que trata de "Propagación de distribuciones aplicando el método de Monte Carlo" trata la evaluación numérica de la incertidumbre de la medición con un método de Monte Carlo como una implementación de la propagación de funciones de densidad de probabilidad (PDF), esta propuesta es mejor cuando: 
-
-- La función de medición es fuertemente no lineal; 
-
-- Las PDF para los valores de cualquier cantidad son asimétricas o no gaussianas. 
-
-Dichas aproximaciones requieren un esfuerzo computacional considerable y también puede acumular errores numéricos si el algoritmo computacional del generador de números aleatorios no se desarrolla cuidadosamente.
-
-
 Un logro importante de GUM consiste en un enfoque para combinar la incertidumbre de las estadísticas frecuentistas (evaluación Tipo A) y estadísticas bayesianas (evaluación Tipo B), considerando que todas las cantidades se caracterizan por una PDF que describe los posibles valores de estas cantidades. 
 
-La PDF generalmente se puede resumir en términos de parámetros como la media y la varianza (y la desviación estándar) que se utilizan en la evaluación de la incertidumbre de la medición.
+
+
+
+En la mayoría de los casos el mensurando Y no se mide directamente sino que se determina a partir de N otras cantidades de entrada $(X_i)$ que están relacionadas a través de una relación funcional conocida de la forma:
+
+$$y=f(x_1,x_2,x_3,...x_n)$$
+
+Sin embargo, cuando la función de medición es no lineal, el uso de esta aproximación lineal puede ser inadecuado y, por lo tanto, se deben considerar los siguientes casos:
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/gums.png")
+```
+
+
+- **Suplemento 1 de la GUM** trata de la "Propagación de distribuciones aplicando el método de Monte Carlo" como una implementación cuando la función de medición es no lineal y los parámetros explicativos no son normales.
+
+    La aproximación monte carlo requieren un esfuerzo computacional considerable y también puede acumular errores numéricos si el algoritmo computacional del generador de números aleatorios no se desarrolla cuidadosamente.
+
+- **Términos de orden superior, segundo y tercero de la serie de Taylor**, con algunas restricciones como la normalidad y la independencia entre las variables, estas aproximaciones requieren de varios momentos estadísticos.
 
 **Momentos de la estadística**
 
@@ -36,25 +41,15 @@ La PDF generalmente se puede resumir en términos de parámetros como la media y
 
 2. $var(x)=u(x_i^2)$
 
-En la mayoría de los casos prácticos, el mensurando Y no se mide directamente sino que se determina a partir de N otras cantidades de entrada (Xi) que están relacionadas a través de una relación funcional conocida de la forma
-
-
-$$y=f(x_1,x_2,x_3,...x_n)$$
-Cuando no hay correlaciones entre los terminos  la función que estima su intertidumbre está dada por:
-
-
-$$u_c^2(y)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)$$
-
-Cuando la función es no lineal GUM recomienda el uso de algunos términos de orden superior en combinación con la ecuación anterior, aunque con algunas restricciones como la normalidad y la independencia entre las variables.
-
-
-La evaluación de la incertidumbre estándar basada en expresiones de orden superior, mediante el enfoque de la ley de propagación de incertidumbre requiere la aproximación de series de Taylor de segundo y tercer orden para una función de medición, asi como también requiere momentos estadísticos de orden superior, como los momentos tercero (asimetría), cuarto (curtosis), quinto y sexto.
+3. Asimetría
 
 El sesgo $\gamma$ puede expresado en terminos de incertidumbre como 
 
 $$E[(\varepsilon_i-x_i)^3]=\gamma u^3(x_i)$$
 
-La curtosis puede ser expresada en terminos de incertidumbre como: 
+4. Curtosis
+
+Que puede ser expresada en terminos de incertidumbre como: 
 
 
 $$E[(\varepsilon_i-x_i)^4]=k u^4(x_i)$$
@@ -69,17 +64,13 @@ Expandiendo la serie se obtiene, la serie de 2 y tercer orden
 knitr::include_graphics("imagen/taylor.png")
 ```
 
- 
+La inclusión de los términos de tercer orden de la expansión de la serie de Taylor de la función de medición da como resultado un método más completo que la GUM y los métodos de segundo orden.
 
-
-La inclusión de los términos de tercer orden de la expansión de la serie de Taylor de la función de medición da como resultado un método más completo que el GUM y los métodos de segundo orden.
 Por tanto, la evaluación de la incertidumbre de la medición utilizando este método puede considerarse más apropiada y sólida que los últimos métodos.
 
+## Modelos con varias variables dependientes
 
-La (GUM) [JCGM 100:2008] se ocupa principalmente de los modelos de medición univariados, es decir, modelos que tienen una única cantidad escalar de salida. 
-
-Sin embargo, en toda la metrología surgen modelos con más de una cantidad de salida. 
-La GUM incluye ejemplos, de metrología eléctrica, con tres cantidades de salida [JCGM 100:2008 H.2], y de metrología térmica, con dos cantidades de salida [JCGM 100:2008 H.3]. 
+La (GUM) [JCGM 100:2008] se ocupa principalmente de los modelos de medición univariados, es decir, modelos que tienen una única cantidad escalar de salida. Sin embargo, en toda la metrología surgen modelos con más de una cantidad de salida.
 
 El Suplemento 2 de la GUM trata modelos de medición multivariados, es decir, modelos con cualquier número de cantidades de salida. Estas cantidades generalmente están mutuamente correlacionadas porque dependen de cantidades de entrada comunes. Se utiliza una generalización del marco de incertidumbre GUM [JCGM 100:2008 5] para proporcionar estimaciones de las cantidades de producción, las incertidumbres estándar asociadas con las estimaciones y las covarianzas asociadas con pares de estimaciones.
 
