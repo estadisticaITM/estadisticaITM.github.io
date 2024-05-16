@@ -402,6 +402,35 @@ Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los 
 knitr::include_graphics("imagen/residuals.png")
 ```
 
+**Prueba de homocedasticidad**
+
+La homocedasticidad se refiere a la propiedad en la que la varianza de los errores del modelo se mantiene constante a lo largo de todas las observaciones de la variable independiente.
+
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/homo.png")
+```
+
+La prueba de hipótesis para verificar la homogeneidad de varianzas es:
+
+
+$$H_0:\quad Los \quad errores \quad tienen \quad varianza \quad constante$$
+
+$$H_1:\quad Los \quad errores \quad no \quad tienen \quad varianza \quad constante$$
+
+
+**Prueba de Breusch-Pagan (1979)**
+
+Consiste en ajustar un modelo de regresión lineal con variable respuesta dada por residuales del modelo original al cuadrado  $e_i^2$ y como covariables las variables del modelo original.
+
+Por ejemplo, si se tienen  k=2 covariables para explicar a  Y, entonces el modelo de regresión para estudiar la homocedasticidad es:
+
+$$e^2_i= δ_0+δ_1x_1+δ_2x_2+u$$
+ 
+
+Si se concluye que $δ_1=δ_2=0$, significa que los residuales no son función de las covariables del modelo. 
+
+La función bptest del paquete lmtest Zeileis and Hothorn (2002) implementa esta prueba.
 
 **Otros diagnósticos**
 
@@ -468,11 +497,6 @@ head(cars)
 En este caso ¿Cuál es la variable dependiente e independiente?
 
 
-
-```{r echo=TRUE}
-plot(cars$speed,cars$dist)
-```
-
 Para este modelo el modelo de regresión lineal simple es:
 
 $$\Large \hat{y}=-17.57+3.93x$$
@@ -488,13 +512,12 @@ Donde
 
 ```{r echo=TRUE}
 
-plot(cars$speed,cars$dist)
+
 cor.test(cars$speed,cars$dist)
 md=lm(cars$dist~cars$speed)
 summary(md)
-j=fitted(md)
-plot(cars$speed,j, col=2, lwd=2)
-
+plot(cars$speed,cars$dist, col=2, lwd=2)
+abline(a=-17.57,b=3.93)
 ```
 
 **anova del modelo**
@@ -522,6 +545,12 @@ rr=residuals(md)
 par(mfrow=c(2,2))
 plot(md)
 shapiro.test(rr)
+
+library(lmtest)
+
+bptest(md)
+
+
 ```
 
 ## **Test de carencia de ajuste**

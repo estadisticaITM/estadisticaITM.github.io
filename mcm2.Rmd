@@ -1,0 +1,29 @@
+---
+title: "MCM"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    
+---
+
+## Propagación de incertidumbres aplicando el método de Monte carlo 
+
+Aplicable a un modelo con cualquier número de magnitudes de entrada y una sola magnitud de salida, parte de un muestreo aleatorio de distribuciones de probabilidad. es una alternativa práctica al enfoque GUM,  se aplica cuando:
+
+- El modelo es no lineal
+
+- La FDP para la magnitud de salida se aparta de una normal o de una t, debido a una marcada asimetría.
+
+- Es difícil proporcionar las derivadas parciales del modelo, tal como requiere la ley de propagación de la incertidumbre
+
+- Los modelos son arbitrariamente complicados
+
+
+
+
+```{r, echo=F, out.width="50%", fig.align='center'}
+knitr::include_graphics("imagen/compa.png")
+```
+
+
