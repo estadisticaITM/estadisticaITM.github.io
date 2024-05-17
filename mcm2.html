@@ -415,15 +415,187 @@ class="section level2">
 <h2>Propagación de incertidumbres aplicando el método de Monte
 carlo</h2>
 <p>Aplicable a un modelo con cualquier número de magnitudes de entrada y
-una sola magnitud de salida, es una alternativa práctica al enfoque GUM,
-se aplica cuando:</p>
+una sola magnitud de salida, parte de un muestreo aleatorio de
+distribuciones de probabilidad. es una alternativa práctica al enfoque
+GUM, se aplica cuando:</p>
 <ul>
-<li><p>La linealización del modelo proporciona una representación
-inadecuada</p></li>
+<li><p>El modelo es no lineal</p></li>
 <li><p>La FDP para la magnitud de salida se aparta de una normal o de
 una t, debido a una marcada asimetría.</p></li>
+<li><p>Es difícil proporcionar las derivadas parciales del modelo, tal
+como requiere la ley de propagación de la incertidumbre</p></li>
+<li><p>Los modelos son arbitrariamente complicados</p></li>
 </ul>
-<p><img src="imagen/compa.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>“El método MCM es aplicado para comprobar el marco de referencia
+GUM”</p>
+<p><img src="imagen/compa.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Comparación</strong></p>
+<p><img src="imagen/gumvsmcm.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Recorderis</strong> Demostración:</p>
+<p>la incertidumbre tipo A proviene de la incertidumbre del promedio</p>
+<p><span class="math display">\[\bar
+x=\frac{x_1+x_2+x_3+...+x_n}{n}\]</span></p>
+<p>vamos a obtener su incertidumbre:</p>
+<p><span class="math display">\[u(\bar x)=\sqrt{\left
+(\frac{1}{n}*u(x_1)\right)^2+\left
+(\frac{1}{n}*u(x_2)\right)^2+...+\left
+(\frac{1}{n}*u(x_n)\right)^2}\]</span></p>
+<p><span class="math display">\[u(\bar x)=\sqrt{n \left
+(\frac{1}{n}*s\right)^2}\]</span></p>
+<p><span class="math display">\[u(\bar x)=\sqrt{
+\frac{n}{n^2}*s^2}\]</span></p>
+<p><span class="math display">\[u(\bar x)=\sqrt{
+\frac{n}{n^2}*s^2}\]</span></p>
+<p><span class="math display">\[u(\bar x)=
+\frac{s}{\sqrt{n}}\]</span></p>
+</div>
+<div id="cuantas-simulaciones-son-necesarias" class="section level2">
+<h2>¿cuantas simulaciones son necesarias?</h2>
+<p>Según GUM S1 (2008) Un valor de <span class="math inline">\(M =
+10^6\)</span> suele proporcionar un intervalo de cobertura del 95 % para
+la magnitud de salida, de forma que la amplitud del intervalo es
+correcta con una o dos cifras decimales significativas.</p>
+<p><span class="math display">\[ \begin{cases}
+N&gt;&gt;\frac{1}{1-p},
+&amp; \\
+N&gt;10^4\frac{1}{1-p},
+\end{cases} \]</span></p>
+<p><span class="math inline">\(N&gt;219781\)</span> donde p es el área
+de cobertura usualmente p=95.45%</p>
+</div>
+<div id="simulación-de-las-distribuciones-de-probabilidad"
+class="section level1">
+<h1>Simulación de las distribuciones de probabilidad</h1>
+<div id="simulación-de-la-distribución-uniforme" class="section level2">
+<h2>Simulación de la distribución uniforme</h2>
+<pre class="r"><code>## runif(n, min = 0, max = 1)
+
+y=runif(n=1e6,min=-1,max=1)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-3-1.png" width="60%" /></p>
+<p>simulemos los resultados de una incertidumbre por resolución</p>
+<p><span class="math display">\[u=\frac{a}{\sqrt 3}=\frac{1}{\sqrt
+3}=0.577350 \]</span></p>
+<p>a es la semiamplitud=1, criterio necesario para definir la
+simulación</p>
+<p>simulación</p>
+<pre class="r"><code>y=runif(n=1e6,min=0,max=2)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="60%" /></p>
+<pre class="r"><code>sd(y)</code></pre>
+<pre><code>## [1] 0.5772246</code></pre>
+<p>Ahora simulemos la distribución</p>
+</div>
+<div id="simulación-de-la-distribución-triangular"
+class="section level2">
+<h2>Simulación de la distribución triangular</h2>
+<p>Ejemplo. Generar una variable aleatoria continua con distribución
+triangular con parámetros a=10, b=30 y c=25</p>
+<pre class="r"><code>u1&lt;-runif(1e6,0,1)
+u2&lt;-runif(1e6,0,1)
+m=0
+a=2
+x=m+(a*(u1+u2-1))
+hist(x)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-5-1.png" width="60%" /></p>
+</div>
+<div id="simulación-de-la-distribución-normal" class="section level2">
+<h2>Simulación de la distribución normal</h2>
+<pre class="r"><code>#rnorm(n, mean = 0, sd = 1)
+
+y=rnorm(1e6, mean = 0, sd = 1)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-6-1.png" width="60%" /></p>
+</div>
+<div id="simulación-de-la-distribución-t-de-student"
+class="section level2">
+<h2>Simulación de la distribución t de student</h2>
+<pre class="r"><code># rt(n, df, ncp)
+
+ncp &lt;- seq(0, 6, length.out = 31)
+
+y=rt(1e6, df=8, ncp)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-7-1.png" width="60%" /></p>
+<div id="distribución-rectangular-ó-uniforme" class="section level3">
+<h3>Distribución rectangular ó uniforme</h3>
+<p>En una distribución rectangular cada valor en un intervalo dado tiene
+la misma probabilidad, o sea la función de densidad de probabilidad es
+constante en este intervalo.</p>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-8-1.png" width="60%" /></p>
+<p>Sea <span class="math inline">\(X∼U(a,b)\)</span>, es decir, una
+variable aleatoria con distribución uniforme en el intervalo (a,b), con
+<span class="math inline">\(a,b \quad \varepsilon \quad
+\mathbb{R}\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Descripción</th>
+<th align="center">b y a con b&gt;a</th>
+<th align="center">a y -a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">fdp f(x)</td>
+<td align="center"><span
+class="math inline">\(\frac{1}{b-a}\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{1}{2a}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">F(x)</td>
+<td align="center"><span
+class="math inline">\(\frac{x-a}{b-a}\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{x-a}{2a}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">prom E(X)</td>
+<td align="center"><span
+class="math inline">\(\frac{a+b}{2}\)</span></td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E(x^2)\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{b^2+ba+a^2}{3}\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{a^2}{3}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">v(x)</td>
+<td align="center"><span
+class="math inline">\(\frac{(b-a)^2}{12}\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{a^2}{3}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">sd=u(x)</td>
+<td align="center"><span
+class="math inline">\(\frac{(b-a)}{\sqrt{12}}\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{a}{\sqrt3}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>El rango de una distribución de probabilidad se refiere al conjunto
+de todos los posibles valores que puede tomar una variable aleatoria en
+esa distribución. Es la diferencia entre el valor máximo y el valor
+mínimo de esta variable.</p>
+</div>
+</div>
+</div>
+<div id="bibliografía" class="section level1">
+<h1>Bibliografía</h1>
+<p>GUM S1. (2008). JCGM 101:2008 Evaluación de datos de
+medición-Suplemento 1 de la “Guía para la expresión de la incertidumbre
+de medida”-Propagación de distribuciones aplicando el método de Monte
+Carlo. www.cem.es,</p>
 </div>
 
 <br>
