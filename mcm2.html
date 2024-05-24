@@ -543,10 +543,12 @@ resolución</strong></p>
 definir la simulación</p>
 <pre class="r"><code>y=runif(n=1e6,min=0,max=2)
 sd(y)</code></pre>
-<pre><code>## [1] 0.5769492</code></pre>
+<pre><code>## [1] 0.5778916</code></pre>
 <pre class="r"><code>hist(y)</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
 <p><strong>Simulando la incertidumbre tipo A</strong></p>
+<p>como la desviación estándar proviene de una distribución uniforme
+hacemos uso de esta misma para la estimación de la incertidumbre.</p>
 <p><span class="math display">\[u=\frac{s}{\sqrt
 {10}}=\frac{0.5773}{10}=0.182574\]</span></p>
 <pre class="r"><code>ysum=0
@@ -557,7 +559,7 @@ for(y in 1:10){
 
 y=(ysum)/10
 sd(y)</code></pre>
-<pre><code>## [1] 0.1823692</code></pre>
+<pre><code>## [1] 0.1825608</code></pre>
 </div>
 <div id="distribución-triangular" class="section level2">
 <h2>Distribución triangular</h2>
@@ -623,10 +625,10 @@ x3=rnorm(1e6, mean = 0, sd = 1)
 y=(5*x1)-(3*x2)+(x3)
 
 mean(y)</code></pre>
-<pre><code>## [1] 0.00537767</code></pre>
+<pre><code>## [1] -0.001376792</code></pre>
 <pre class="r"><code>par(mfrow=c(1,4))
 sd(y)</code></pre>
-<pre><code>## [1] 3.291438</code></pre>
+<pre><code>## [1] 3.291027</code></pre>
 <pre class="r"><code>hist(x1)
 hist(x2)
 hist(x3)
@@ -650,7 +652,7 @@ summary(RES1)</code></pre>
 ##  3.000000  3.000000  3.291129  3.291129 -3.450498  9.450498</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-##  2.996756  3.292081  2.993847  3.292192 -3.455683  9.444929</code></pre>
+##  3.006866  3.290588  3.009085  3.291216 -3.446716  9.447333</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1614466</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -680,11 +682,11 @@ summary(RES1)</code></pre>
 ## x2 0.0000000 0.1384519 0.00000000
 ## x3 0.0000000 0.0000000 0.09232308</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.000924623 / -0.000900651</code></pre>
+<pre><code>## -0.003789659 / 0.005893989</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.1819193 =&gt; normal</code></pre>
+<pre><code>## 0.5110935 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.9531712 =&gt; normal</code></pre>
+<pre><code>## 0.4664824 =&gt; normal</code></pre>
 </div>
 <div id="cuál-distribución-de-probabilidad-se-ajusta-mejor-a-los-datos"
 class="section level2">
@@ -767,15 +769,15 @@ fitDistr(RES1)</code></pre>
 <pre><code>## 32 of 32: Fitting Cosine distribution...</code></pre>
 <pre><code>## .........</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<pre><code>## Best fit is Generalized normal Distribution.</code></pre>
+<pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
-<pre><code>##       alpha          xi       kappa 
-##  3.29535365  2.99719621 -0.00192833</code></pre>
+<pre><code>##     mean       sd 
+## 3.009356 3.291944</code></pre>
 <pre><code>## Standard errors:</code></pre>
-<pre><code>##        alpha           xi        kappa 
-## 0.0015486628 0.0020483543 0.0009400025</code></pre>
+<pre><code>##        mean          sd 
+## 0.002151825 0.001756958</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -931.5035</code></pre>
+<pre><code>## BIC = -889.5548</code></pre>
 <p><strong>¿Cómo realizar una simulaciòn de la incertidumbre por el
 metodo monte carlo cuando hay correlaciòn entre variables?</strong></p>
 <p>Matriz de covarianzas</p>
@@ -804,7 +806,7 @@ summary(RES1)</code></pre>
 ## 89.587580 89.587579  1.475181  1.475181 86.696274 92.478883</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-## 89.586286  1.474715 89.587596  1.473479 86.695743 92.474718</code></pre>
+## 89.585590  1.475921 89.583522  1.479511 86.697188 92.475353</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1000010</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -830,11 +832,11 @@ summary(RES1)</code></pre>
 ## x 0.9999949 0.000000e+00
 ## y 0.0000000 5.128092e-06</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.001284319 / 0.001924141</code></pre>
+<pre><code>## 0.001735325 / -0.007842754</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.4292976 =&gt; normal</code></pre>
+<pre><code>## 0.2408359 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.426555 =&gt; normal</code></pre>
+<pre><code>## 0.4621902 =&gt; normal</code></pre>
 <pre class="r"><code>fitDistr(RES1)</code></pre>
 <pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
 <pre><code>## .........</code></pre>
@@ -907,13 +909,13 @@ summary(RES1)</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
-<pre><code>##      mean        sd 
-## 89.586646  1.474418</code></pre>
+<pre><code>##     mean       sd 
+## 89.58500  1.47946</code></pre>
 <pre><code>## Standard errors:</code></pre>
-<pre><code>##         mean           sd 
-## 0.0010375546 0.0008471598</code></pre>
+<pre><code>##        mean          sd 
+## 0.001357258 0.001108196</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -1616.953</code></pre>
+<pre><code>## BIC = -833.4984</code></pre>
 </div>
 </div>
 <div id="bibliografía" class="section level1">
