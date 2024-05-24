@@ -543,7 +543,7 @@ resolución</strong></p>
 definir la simulación</p>
 <pre class="r"><code>y=runif(n=1e6,min=0,max=2)
 sd(y)</code></pre>
-<pre><code>## [1] 0.5778916</code></pre>
+<pre><code>## [1] 0.5775906</code></pre>
 <pre class="r"><code>hist(y)</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
 <p><strong>Simulando la incertidumbre tipo A</strong></p>
@@ -559,7 +559,7 @@ for(y in 1:10){
 
 y=(ysum)/10
 sd(y)</code></pre>
-<pre><code>## [1] 0.1825608</code></pre>
+<pre><code>## [1] 0.182591</code></pre>
 </div>
 <div id="distribución-triangular" class="section level2">
 <h2>Distribución triangular</h2>
@@ -592,6 +592,37 @@ y=rt(1e6, df=8, ncp)
 
 hist(y)</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
+<p><strong>Simulación Distribución tipo A</strong></p>
+<p>sean los valores</p>
+<pre class="r"><code>#
+
+val=c(40,39.999,39.998,40,39.999,39.999)
+
+
+m=mean(val)
+
+s=sd(val)/sqrt(6)
+
+ncp &lt;- seq(-10,10, length.out = 1e6)
+
+
+##bajo una distribución t
+y=rt(1e6, df=5, ncp=0)
+
+sdd=rep(s,1e6)
+
+ny=(y*sdd)+m
+
+sd(ny)</code></pre>
+<pre><code>## [1] 0.0003967347</code></pre>
+<pre class="r"><code>##bajo una distribución normal
+
+y=rnorm(1e6, mean = 0, sd = 1)
+
+ny=(y*sdd)+m
+
+sd(ny)</code></pre>
+<pre><code>## [1] 0.0003073646</code></pre>
 <p><strong>Propagación de incertidumbres</strong> GUM</p>
 <p><strong>Propagación de distribuciones</strong> MCM</p>
 <p><strong>Ejemplo</strong></p>
@@ -625,17 +656,59 @@ x3=rnorm(1e6, mean = 0, sd = 1)
 y=(5*x1)-(3*x2)+(x3)
 
 mean(y)</code></pre>
-<pre><code>## [1] -0.001376792</code></pre>
+<pre><code>## [1] 0.003171969</code></pre>
 <pre class="r"><code>par(mfrow=c(1,4))
 sd(y)</code></pre>
-<pre><code>## [1] 3.291027</code></pre>
+<pre><code>## [1] 3.28791</code></pre>
 <pre class="r"><code>hist(x1)
 hist(x2)
 hist(x3)
 hist(y)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-9-1.png" width="80%" /></p>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-10-1.png" width="80%" /></p>
+<pre class="r"><code>##Incertidumbre expandida
+
+E=sort(y)
+min(E)</code></pre>
+<pre><code>## [1] -10.78978</code></pre>
+<pre class="r"><code>min(E)</code></pre>
+<pre><code>## [1] -10.78978</code></pre>
+<pre class="r"><code>cuartil1 &lt;- quantile(E, probs = c(0.02275,0.97725)) 
+
+emin=cuartil1[1]
+emax=as.numeric(cuartil1[2])
+mediae=mean(E)
+desv=sd(E)
+
+U=emax-mediae</code></pre>
 <p><strong>Estimación incertidumbre con la función propagate de la
 librería propagate</strong></p>
+<p>Algunos de los argumentos que pide la función propagate:</p>
+<p><strong>Matriz de covarianzas</strong></p>
+<p>Se utiliza cuando hay correlación entre variables</p>
+<p><span class="math display">\[\begin{bmatrix}
+u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
+u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
+\end{bmatrix}\]</span></p>
+<p><strong>Matriz de transformación R</strong></p>
+<p>Para incluir la correlación y desviación estándar de cada magnitud de
+entrada descomposiciòn de cholesky para a matriz de covarianza <span
+class="math display">\[Cov(X)=R^TR\]</span>, esta matriz debe ser no
+definida positiva</p>
+<p>Salidas de la función</p>
+<p><strong>Gradiente</strong> <span class="math display">\[\nabla
+(f)=\left [\frac{\partial f}{\partial x_1
+},...,\frac{\partial f}{\partial x_n} \right]\]</span></p>
+<p><strong>Hessiana</strong> <span
+class="math display">\[\begin{bmatrix}
+\frac{\partial f}{\partial x_1^2} &amp; \frac{\partial ^2f}{\partial
+x_1x_2} &amp;  \dots &amp; \frac{\partial ^2f}{\partial x_1x_n}\\
+\frac{\partial f}{\partial x_2 x_1} &amp; \frac{\partial ^2f}{\partial
+x_2^2} &amp;  \dots &amp; \frac{\partial ^2f}{\partial x_2x_n}\\
+\vdots &amp; \vdots &amp;  \dots &amp; \vdots\\
+\frac{\partial f}{\partial x_n x_1} &amp; \frac{\partial ^2f}{\partial
+x_nx_2} &amp;  \dots &amp; \frac{\partial ^2f}{\partial x_n^2}\\
+\end{bmatrix}\]</span></p>
+<p><strong>Ejemplo</strong></p>
 <pre class="r"><code>library(propagate)</code></pre>
 <pre class="r"><code>## Usando la función propagate
 
@@ -652,7 +725,7 @@ summary(RES1)</code></pre>
 ##  3.000000  3.000000  3.291129  3.291129 -3.450498  9.450498</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-##  3.006866  3.290588  3.009085  3.291216 -3.446716  9.447333</code></pre>
+##  3.000903  3.290091  3.002582  3.291025 -3.446508  9.445770</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1614466</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -682,11 +755,11 @@ summary(RES1)</code></pre>
 ## x2 0.0000000 0.1384519 0.00000000
 ## x3 0.0000000 0.0000000 0.09232308</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.003789659 / 0.005893989</code></pre>
+<pre><code>## 0.0007609499 / -0.000462863</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.5110935 =&gt; normal</code></pre>
+<pre><code>## 0.7554006 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.4664824 =&gt; normal</code></pre>
+<pre><code>## 0.8956985 =&gt; normal</code></pre>
 </div>
 <div id="cuál-distribución-de-probabilidad-se-ajusta-mejor-a-los-datos"
 class="section level2">
@@ -768,28 +841,16 @@ fitDistr(RES1)</code></pre>
 <pre><code>## ...</code></pre>
 <pre><code>## 32 of 32: Fitting Cosine distribution...</code></pre>
 <pre><code>## .........</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##     mean       sd 
-## 3.009356 3.291944</code></pre>
+## 3.000938 3.293966</code></pre>
 <pre><code>## Standard errors:</code></pre>
 <pre><code>##        mean          sd 
-## 0.002151825 0.001756958</code></pre>
+## 0.002406473 0.001964877</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -889.5548</code></pre>
-<p><strong>¿Cómo realizar una simulaciòn de la incertidumbre por el
-metodo monte carlo cuando hay correlaciòn entre variables?</strong></p>
-<p>Matriz de covarianzas</p>
-<p><span class="math display">\[\begin{bmatrix}
-u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
-u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
-\end{bmatrix}\]</span></p>
-<p><strong>Matriz de transformación R</strong></p>
-<p>Para incluir la correlación y desviación estándar de cada magnitud de
-entrada descomposiciòn de cholesky para a matriz de covarianza <span
-class="math display">\[Cov(X)=R^TR\]</span>, esta matriz debe ser no
-definida positiva</p>
+<pre><code>## BIC = -903.6096</code></pre>
 <p><strong>El ejercicio del parcial hecho en R</strong></p>
 <pre class="r"><code>library(propagate)
 ## =&gt; Normal distribution.
@@ -806,7 +867,7 @@ summary(RES1)</code></pre>
 ## 89.587580 89.587579  1.475181  1.475181 86.696274 92.478883</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-## 89.585590  1.475921 89.583522  1.479511 86.697188 92.475353</code></pre>
+## 89.590216  1.472972 89.592712  1.473579 86.700409 92.472337</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1000010</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -832,11 +893,11 @@ summary(RES1)</code></pre>
 ## x 0.9999949 0.000000e+00
 ## y 0.0000000 5.128092e-06</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## 0.001735325 / -0.007842754</code></pre>
+<pre><code>## -0.00431642 / -0.001951679</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.2408359 =&gt; normal</code></pre>
+<pre><code>## 0.116988 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.4621902 =&gt; normal</code></pre>
+<pre><code>## 0.8211589 =&gt; normal</code></pre>
 <pre class="r"><code>fitDistr(RES1)</code></pre>
 <pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
 <pre><code>## .........</code></pre>
@@ -906,16 +967,16 @@ summary(RES1)</code></pre>
 <pre><code>## ...</code></pre>
 <pre><code>## 32 of 32: Fitting Cosine distribution...</code></pre>
 <pre><code>## .........</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##     mean       sd 
-## 89.58500  1.47946</code></pre>
+## 89.59230  1.47424</code></pre>
 <pre><code>## Standard errors:</code></pre>
-<pre><code>##        mean          sd 
-## 0.001357258 0.001108196</code></pre>
+<pre><code>##         mean           sd 
+## 0.0011478220 0.0009371927</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -833.4984</code></pre>
+<pre><code>## BIC = -1554.324</code></pre>
 </div>
 </div>
 <div id="bibliografía" class="section level1">

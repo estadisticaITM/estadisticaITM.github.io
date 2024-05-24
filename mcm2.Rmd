@@ -192,6 +192,47 @@ hist(y)
 
 ```
 
+**Simulación Distribución tipo A**
+
+sean los valores
+```{r}
+#
+
+val=c(40,39.999,39.998,40,39.999,39.999)
+
+
+m=mean(val)
+
+s=sd(val)/sqrt(6)
+
+ncp <- seq(-10,10, length.out = 1e6)
+
+
+##bajo una distribución t
+y=rt(1e6, df=5, ncp=0)
+
+sdd=rep(s,1e6)
+
+ny=(y*sdd)+m
+
+sd(ny)
+
+
+##bajo una distribución normal
+
+y=rnorm(1e6, mean = 0, sd = 1)
+
+ny=(y*sdd)+m
+
+sd(ny)
+
+
+```
+
+
+
+
+
 
 **Propagación de incertidumbres** GUM
 
@@ -243,11 +284,66 @@ hist(x2)
 hist(x3)
 hist(y)
 
+##Incertidumbre expandida
+
+E=sort(y)
+min(E)
+
+
+min(E)
+
+cuartil1 <- quantile(E, probs = c(0.02275,0.97725)) 
+
+emin=cuartil1[1]
+emax=as.numeric(cuartil1[2])
+mediae=mean(E)
+desv=sd(E)
+
+U=emax-mediae
+
+
 ```
 
 
 **Estimación incertidumbre con la función propagate de la librería propagate**
 
+
+Algunos de los argumentos que pide la función propagate:
+
+**Matriz de covarianzas**
+
+Se utiliza cuando hay correlación entre variables
+
+$$\begin{bmatrix} 
+u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
+u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
+\end{bmatrix}$$
+
+**Matriz de transformación R**
+
+
+Para incluir la correlación y desviación estándar de cada magnitud de entrada
+descomposiciòn de cholesky para a matriz de covarianza
+$$Cov(X)=R^TR$$, esta matriz debe ser no definida positiva
+
+Salidas de la función 
+
+**Gradiente**
+$$\nabla (f)=\left [\frac{\partial f}{\partial x_1
+},...,\frac{\partial f}{\partial x_n} \right]$$
+
+**Hessiana**
+$$\begin{bmatrix} 
+\frac{\partial f}{\partial x_1^2} & \frac{\partial ^2f}{\partial x_1x_2} &  \dots & \frac{\partial ^2f}{\partial x_1x_n}\\ 
+\frac{\partial f}{\partial x_2 x_1} & \frac{\partial ^2f}{\partial x_2^2} &  \dots & \frac{\partial ^2f}{\partial x_2x_n}\\
+\vdots & \vdots &  \dots & \vdots\\ 
+\frac{\partial f}{\partial x_n x_1} & \frac{\partial ^2f}{\partial x_nx_2} &  \dots & \frac{\partial ^2f}{\partial x_n^2}\\
+\end{bmatrix}$$
+
+
+
+
+**Ejemplo**
 
 
 ```{r message=FALSE}
@@ -290,24 +386,6 @@ log(n) representa el logaritmo del tamaño de la muestra (n)
 #busca cual distribución es la q mejor se ajusta
 fitDistr(RES1)
 ```
-
-**¿Cómo realizar una simulaciòn de la incertidumbre por el metodo monte carlo cuando hay correlaciòn entre variables?**
-
-Matriz de covarianzas
-
-$$\begin{bmatrix} 
-u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
-u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
-\end{bmatrix}$$
-
-**Matriz de transformación R**
-
-
-Para incluir la correlación y desviación estándar de cada magnitud de entrada
-descomposiciòn de cholesky para a matriz de covarianza
-$$Cov(X)=R^TR$$, esta matriz debe ser no definida positiva
-
-
 
 
 **El ejercicio del parcial hecho en R**
