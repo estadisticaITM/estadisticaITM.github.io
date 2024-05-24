@@ -7,7 +7,7 @@ output:
     
 ---
 
-## Propagación de incertidumbres aplicando el método de Monte carlo 
+# Propagación de incertidumbres aplicando el método de Monte carlo 
 
 Aplicable a un modelo con cualquier número de magnitudes de entrada y una sola magnitud de salida, parte de un muestreo aleatorio de distribuciones de probabilidad. es una alternativa práctica al enfoque GUM,  se aplica cuando:
 
@@ -61,7 +61,7 @@ $$u(\bar x)= \frac{s}{\sqrt{n}}$$
 
 
 
-## ¿cuantas simulaciones son necesarias?
+**¿Cuántas simulaciones son necesarias?**
 
 Según GUM S1 (2008) Un valor de $M = 10^6$ suele proporcionar un intervalo de cobertura del 95 % para la magnitud de salida, de forma que la amplitud del intervalo es correcta con una o dos cifras decimales significativas.
 
@@ -79,9 +79,33 @@ donde p es el área de cobertura usualmente p=95.45%
 
 # Simulación de las distribuciones de probabilidad
 
-## Simulación de la distribución uniforme
 
-```{r  out.width="60%"}
+## Distribución rectangular ó uniforme
+
+
+En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+
+Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
+
+
+|Descripción|b y a con b>a| a y -a [centrada en cero]|
+|:----------|:------------------:|:--------------:|
+|fdp f(x)   |$\frac{1}{b-a}$     |$\frac{1}{2a}$  |
+|F(x)       |$\frac{x-a}{b-a}$   |$\frac{x-a}{2a}$|
+|prom E(X)  |$\frac{a+b}{2}$     |0               |
+|$E(x^2)$   |$\frac{b^2+ba+a^2}{3}$        |$\frac{a^2}{3}$ |
+|v(x)       |$\frac{(b-a)^2}{12}$|$\frac{a^2}{3}$ |
+|sd=u(x)    |$\frac{(b-a)}{\sqrt{12}}$|$\frac{a}{\sqrt3}$|
+
+
+
+El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
+
+
+
+**Simulación de la distribución uniforme**
+
+```{r  out.width="50%"}
 ## runif(n, min = 0, max = 1)
 
 y=runif(n=1e6,min=-1,max=1)
@@ -89,45 +113,65 @@ y=runif(n=1e6,min=-1,max=1)
 hist(y)
 ```
 
-simulemos los resultados de una incertidumbre por resolución
+**simulemos los resultados de una incertidumbre por resolución**
 
 $$u=\frac{a}{\sqrt 3}=\frac{1}{\sqrt 3}=0.577350 $$
-
 a es la semiamplitud=1, criterio necesario para definir la simulación 
 
-simulación
 
-```{r out.width="60%"}
+```{r out.width="50%"}
 
 y=runif(n=1e6,min=0,max=2)
-
+sd(y)
 hist(y)
 
-sd(y)
+
 
 ```
-Ahora simulemos la distribución 
 
-## Simulación de la distribución triangular
 
-Ejemplo. 
-Generar una variable aleatoria continua con distribución triangular con parámetros a=10, b=30 y c=25
+**Simulando la incertidumbre tipo A** 
 
-```{r  out.width="60%"}
+como la desviación estándar proviene de una distribución uniforme hacemos uso de esta misma para la estimación de la incertidumbre. 
+
+
+$$u=\frac{s}{\sqrt {10}}=\frac{0.5773}{10}=0.182574$$
+
+```{r}
+ysum=0
+for(y in 1:10){
+  y=runif(n=1e6,min=-1,max=1)
+  ysum=ysum+y
+}
+
+y=(ysum)/10
+sd(y)
+
+
+```
+
+
+
+
+## Distribución triangular
+
+Generar una variable aleatoria continua con distribución triangular con parámetros a=-2 y b=2
+
+```{r  out.width="50%"}
 
 
 u1<-runif(1e6,0,1)
 u2<-runif(1e6,0,1)
-m=0
-a=2
+m=0 # centro de la distribuciòn
+a=2 # semiamplitud de la distribuciòn
 x=m+(a*(u1+u2-1))
 hist(x)
 
 ```
 
-## Simulación de la distribución normal
+## Distribución normal
 
-```{r  out.width="60%"}
+```{r  out.width="50%"}
 #rnorm(n, mean = 0, sd = 1)
 
 y=rnorm(1e6, mean = 0, sd = 1)
@@ -137,9 +181,9 @@ hist(y)
 
 ```
 
-## Simulación de la distribución t de student
+## Distribución t de student
 
-```{r out.width="60%"}
+```{r out.width="50%"}
 
 # rt(n, df, ncp)
 
@@ -152,56 +196,142 @@ hist(y)
 ```
 
 
-### Distribución rectangular ó uniforme
+**Propagación de incertidumbres** GUM
 
 
-En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+**Propagación de distribuciones** MCM
 
-```{r echo=FALSE,  out.width="60%"}
 
-plotunif <- function(x, min = 0, max = 1, lwd = 1, col = 1, ...) {
+**Ejemplo**
 
-    # Rejilla de valores del eje X
-    if (missing(x)) {
-        x <- seq(min - 0.5, max + 0.5, 0.01)
-    }
+considere la siguiente ecuación que describe al mensurando
 
-    if(max < min) {
-        stop("'min' must be lower than 'max'")
-    }
-   
-    plot(x, dunif(x, min = min, max = max),
-         xlim = c(min - 0.25, max + 0.25), type = "l",
-         lty = 0, ylab = "1/2a", ...) 
-    segments(min, 1/(max - min), max, 1/(max - min), col = col, lwd = lwd)
-    segments(min - 2, 0, min, 0, lwd = lwd, col = col)
-    segments(max, 0, max + 2, 0, lwd = lwd, col = col)
-    points(min, 1/(max - min), pch = 19, col = col)
-    points(max, 1/(max - min), pch = 19, col = col)
-    segments(min, 0, min, 1/(max - min), lty = 2, col = col, lwd = lwd)
-    segments(max, 0, max, 1/(max - min), lty = 2, col = col, lwd = lwd)
-    points(0, min, pch = 21, col = col, bg = "white")
-    points(max, min, pch = 21, col = col, bg = "white")
-}
+$$y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3 $$
 
-plotunif(min = -1, max = 1, lwd = 2, col = 4, main = "PDF uniforme",xlab="2a=(+-a)")
+$$x_1= uniforme\quad u_{x_1}=\frac{1}{\sqrt 3}=0.5773$$
+$$x_2=triangular= \quad u_{x_2}=\frac{1}{\sqrt 6}=0.4082$$
+
+$$x_3=normal\quad u_{x_3}=1$$
+
+**Por la GUM**
+
+$$u_C^2(y)=\sum_{i=1}^N c_i^2u^2(x_i)$$
+
+$$u(y)=\sqrt{(5*u(x_1))^2+(3*u(x_2))^2+(u(x_3))^2}=3.29$$
+
+**Por MCM**
+
+```{r out.width="80%"}
+#distri1
+x1=runif(n=1e6,min=-1,max=1)
+
+#distri2
+u1<-runif(1e6,0,1)
+u2<-runif(1e6,0,1)
+m=0 # centro de la distribuciòn
+a=1 # semiamplitud de la distribuciòn
+x2=m+(a*(u1+u2-1))
+
+#distr3
+x3=rnorm(1e6, mean = 0, sd = 1)
+
+y=(5*x1)-(3*x2)+(x3)
+
+mean(y)
+par(mfrow=c(1,4))
+sd(y)
+
+hist(x1)
+hist(x2)
+hist(x3)
+hist(y)
+
 ```
 
-Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
 
-
-|Descripción|b y a con b>a       | a y -a         |
-|:----------|:------------------:|:--------------:|
-|fdp f(x)   |$\frac{1}{b-a}$     |$\frac{1}{2a}$  |
-|F(x)       |$\frac{x-a}{b-a}$   |$\frac{x-a}{2a}$|
-|prom E(X)  |$\frac{a+b}{2}$     |0               |
-|$E(x^2)$   |$\frac{b^2+ba+a^2}{3}$        |$\frac{a^2}{3}$ |
-|v(x)       |$\frac{(b-a)^2}{12}$|$\frac{a^2}{3}$ |
-|sd=u(x)    |$\frac{(b-a)}{\sqrt{12}}$|$\frac{a}{\sqrt3}$|
+**Estimación incertidumbre con la función propagate de la librería propagate**
 
 
 
-El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
+```{r message=FALSE}
+library(propagate)
+```
+
+
+```{r }
+
+## Usando la función propagate
+
+EXPR1 <- expression((5*x1)-(3*x2)+x3)
+x1 <- c(1,0.5773)
+x2 <- c(1,0.4082)
+x3 <- c(1,1)
+DF1 <- cbind(x1,x2,x3)
+RES1 <- propagate(expr = EXPR1, data = DF1, type = "stat",
+                  do.sim = TRUE, verbose = TRUE)
+summary(RES1)
+
+```
+
+## ¿Cuál distribución de probabilidad se ajusta mejor a los datos?
+
+
+**AIC**
+$$AIC = -2 * log(L) + 2 * k$$
+**BIC**
+$$BIC = -2 * log(L) + k * log(n)$$
+
+L representa la probabilidad maximizada del modelo, que mide qué tan bien se ajusta el modelo a los datos. 
+
+k representa el número de parámetros en el modelo
+
+log(n) representa el logaritmo del tamaño de la muestra (n)
+
+
+
+```{r}
+#busca cual distribución es la q mejor se ajusta
+fitDistr(RES1)
+```
+
+**¿Cómo realizar una simulaciòn de la incertidumbre por el metodo monte carlo cuando hay correlaciòn entre variables?**
+
+Matriz de covarianzas
+
+$$\begin{bmatrix} 
+u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
+u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
+\end{bmatrix}$$
+
+**Matriz de transformación R**
+
+
+Para incluir la correlación y desviación estándar de cada magnitud de entrada
+descomposiciòn de cholesky para a matriz de covarianza
+$$Cov(X)=R^TR$$, esta matriz debe ser no definida positiva
+
+
+
+
+**El ejercicio del parcial hecho en R**
+
+```{r }
+library(propagate)
+## => Normal distribution.
+EXPR1 <- expression((1-(x/y))*100)
+x <- c(165.52,23.45)
+y <- c(1589.64,0.51)
+DF1 <- cbind(x, y)
+RES1 <- propagate(expr = EXPR1, data = DF1, type = "stat",
+                  do.sim = TRUE, verbose = TRUE)
+
+summary(RES1)
+
+```
+
+```{r results='markup'}
+fitDistr(RES1)
+```
 
 
 

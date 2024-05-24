@@ -411,9 +411,9 @@ div.tocify {
 
 <div
 id="propagación-de-incertidumbres-aplicando-el-método-de-monte-carlo"
-class="section level2">
-<h2>Propagación de incertidumbres aplicando el método de Monte
-carlo</h2>
+class="section level1">
+<h1>Propagación de incertidumbres aplicando el método de Monte
+carlo</h1>
 <p>Aplicable a un modelo con cualquier número de magnitudes de entrada y
 una sola magnitud de salida, parte de un muestreo aleatorio de
 distribuciones de probabilidad. es una alternativa práctica al enfoque
@@ -448,9 +448,7 @@ x=\frac{x_1+x_2+x_3+...+x_n}{n}\]</span></p>
 \frac{n}{n^2}*s^2}\]</span></p>
 <p><span class="math display">\[u(\bar x)=
 \frac{s}{\sqrt{n}}\]</span></p>
-</div>
-<div id="cuantas-simulaciones-son-necesarias" class="section level2">
-<h2>¿cuantas simulaciones son necesarias?</h2>
+<p><strong>¿Cuántas simulaciones son necesarias?</strong></p>
 <p>Según GUM S1 (2008) Un valor de <span class="math inline">\(M =
 10^6\)</span> suele proporcionar un intervalo de cobertura del 95 % para
 la magnitud de salida, de forma que la amplitud del intervalo es
@@ -466,67 +464,11 @@ de cobertura usualmente p=95.45%</p>
 <div id="simulación-de-las-distribuciones-de-probabilidad"
 class="section level1">
 <h1>Simulación de las distribuciones de probabilidad</h1>
-<div id="simulación-de-la-distribución-uniforme" class="section level2">
-<h2>Simulación de la distribución uniforme</h2>
-<pre class="r"><code>## runif(n, min = 0, max = 1)
-
-y=runif(n=1e6,min=-1,max=1)
-
-hist(y)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-3-1.png" width="60%" /></p>
-<p>simulemos los resultados de una incertidumbre por resolución</p>
-<p><span class="math display">\[u=\frac{a}{\sqrt 3}=\frac{1}{\sqrt
-3}=0.577350 \]</span></p>
-<p>a es la semiamplitud=1, criterio necesario para definir la
-simulación</p>
-<p>simulación</p>
-<pre class="r"><code>y=runif(n=1e6,min=0,max=2)
-
-hist(y)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="60%" /></p>
-<pre class="r"><code>sd(y)</code></pre>
-<pre><code>## [1] 0.5772246</code></pre>
-<p>Ahora simulemos la distribución</p>
-</div>
-<div id="simulación-de-la-distribución-triangular"
-class="section level2">
-<h2>Simulación de la distribución triangular</h2>
-<p>Ejemplo. Generar una variable aleatoria continua con distribución
-triangular con parámetros a=10, b=30 y c=25</p>
-<pre class="r"><code>u1&lt;-runif(1e6,0,1)
-u2&lt;-runif(1e6,0,1)
-m=0
-a=2
-x=m+(a*(u1+u2-1))
-hist(x)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-5-1.png" width="60%" /></p>
-</div>
-<div id="simulación-de-la-distribución-normal" class="section level2">
-<h2>Simulación de la distribución normal</h2>
-<pre class="r"><code>#rnorm(n, mean = 0, sd = 1)
-
-y=rnorm(1e6, mean = 0, sd = 1)
-
-hist(y)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-6-1.png" width="60%" /></p>
-</div>
-<div id="simulación-de-la-distribución-t-de-student"
-class="section level2">
-<h2>Simulación de la distribución t de student</h2>
-<pre class="r"><code># rt(n, df, ncp)
-
-ncp &lt;- seq(0, 6, length.out = 31)
-
-y=rt(1e6, df=8, ncp)
-
-hist(y)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-7-1.png" width="60%" /></p>
-<div id="distribución-rectangular-ó-uniforme" class="section level3">
-<h3>Distribución rectangular ó uniforme</h3>
+<div id="distribución-rectangular-ó-uniforme" class="section level2">
+<h2>Distribución rectangular ó uniforme</h2>
 <p>En una distribución rectangular cada valor en un intervalo dado tiene
 la misma probabilidad, o sea la función de densidad de probabilidad es
 constante en este intervalo.</p>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-8-1.png" width="60%" /></p>
 <p>Sea <span class="math inline">\(X∼U(a,b)\)</span>, es decir, una
 variable aleatoria con distribución uniforme en el intervalo (a,b), con
 <span class="math inline">\(a,b \quad \varepsilon \quad
@@ -536,7 +478,7 @@ variable aleatoria con distribución uniforme en el intervalo (a,b), con
 <tr class="header">
 <th align="left">Descripción</th>
 <th align="center">b y a con b&gt;a</th>
-<th align="center">a y -a</th>
+<th align="center">a y -a [centrada en cero]</th>
 </tr>
 </thead>
 <tbody>
@@ -587,7 +529,391 @@ class="math inline">\(\frac{a}{\sqrt3}\)</span></td>
 de todos los posibles valores que puede tomar una variable aleatoria en
 esa distribución. Es la diferencia entre el valor máximo y el valor
 mínimo de esta variable.</p>
+<p><strong>Simulación de la distribución uniforme</strong></p>
+<pre class="r"><code>## runif(n, min = 0, max = 1)
+
+y=runif(n=1e6,min=-1,max=1)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-3-1.png" width="50%" /></p>
+<p><strong>simulemos los resultados de una incertidumbre por
+resolución</strong></p>
+<p><span class="math display">\[u=\frac{a}{\sqrt 3}=\frac{1}{\sqrt
+3}=0.577350 \]</span> a es la semiamplitud=1, criterio necesario para
+definir la simulación</p>
+<pre class="r"><code>y=runif(n=1e6,min=0,max=2)
+sd(y)</code></pre>
+<pre><code>## [1] 0.5769492</code></pre>
+<pre class="r"><code>hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
+<p><strong>Simulando la incertidumbre tipo A</strong></p>
+<p><span class="math display">\[u=\frac{s}{\sqrt
+{10}}=\frac{0.5773}{10}=0.182574\]</span></p>
+<pre class="r"><code>ysum=0
+for(y in 1:10){
+  y=runif(n=1e6,min=-1,max=1)
+  ysum=ysum+y
+}
+
+y=(ysum)/10
+sd(y)</code></pre>
+<pre><code>## [1] 0.1823692</code></pre>
 </div>
+<div id="distribución-triangular" class="section level2">
+<h2>Distribución triangular</h2>
+<p>Generar una variable aleatoria continua con distribución triangular
+con parámetros a=-2 y b=2</p>
+<pre class="r"><code>u1&lt;-runif(1e6,0,1)
+u2&lt;-runif(1e6,0,1)
+m=0 # centro de la distribuciòn
+a=2 # semiamplitud de la distribuciòn
+x=m+(a*(u1+u2-1))
+hist(x)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-6-1.png" width="50%" /></p>
+</div>
+<div id="distribución-normal" class="section level2">
+<h2>Distribución normal</h2>
+<pre class="r"><code>#rnorm(n, mean = 0, sd = 1)
+
+y=rnorm(1e6, mean = 0, sd = 1)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-7-1.png" width="50%" /></p>
+</div>
+<div id="distribución-t-de-student" class="section level2">
+<h2>Distribución t de student</h2>
+<pre class="r"><code># rt(n, df, ncp)
+
+ncp &lt;- seq(0, 6, length.out = 31)
+
+y=rt(1e6, df=8, ncp)
+
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
+<p><strong>Propagación de incertidumbres</strong> GUM</p>
+<p><strong>Propagación de distribuciones</strong> MCM</p>
+<p><strong>Ejemplo</strong></p>
+<p>considere la siguiente ecuación que describe al mensurando</p>
+<p><span class="math display">\[y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3
+\]</span></p>
+<p><span class="math display">\[x_1= uniforme\quad
+u_{x_1}=\frac{1}{\sqrt 3}=0.5773\]</span> <span
+class="math display">\[x_2=triangular= \quad u_{x_2}=\frac{1}{\sqrt
+6}=0.4082\]</span></p>
+<p><span class="math display">\[x_3=normal\quad u_{x_3}=1\]</span></p>
+<p><strong>Por la GUM</strong></p>
+<p><span class="math display">\[u_C^2(y)=\sum_{i=1}^N
+c_i^2u^2(x_i)\]</span></p>
+<p><span
+class="math display">\[u(y)=\sqrt{(5*u(x_1))^2+(3*u(x_2))^2+(u(x_3))^2}=3.29\]</span></p>
+<p><strong>Por MCM</strong></p>
+<pre class="r"><code>#distri1
+x1=runif(n=1e6,min=-1,max=1)
+
+#distri2
+u1&lt;-runif(1e6,0,1)
+u2&lt;-runif(1e6,0,1)
+m=0 # centro de la distribuciòn
+a=1 # semiamplitud de la distribuciòn
+x2=m+(a*(u1+u2-1))
+
+#distr3
+x3=rnorm(1e6, mean = 0, sd = 1)
+
+y=(5*x1)-(3*x2)+(x3)
+
+mean(y)</code></pre>
+<pre><code>## [1] 0.00537767</code></pre>
+<pre class="r"><code>par(mfrow=c(1,4))
+sd(y)</code></pre>
+<pre><code>## [1] 3.291438</code></pre>
+<pre class="r"><code>hist(x1)
+hist(x2)
+hist(x3)
+hist(y)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-9-1.png" width="80%" /></p>
+<p><strong>Estimación incertidumbre con la función propagate de la
+librería propagate</strong></p>
+<pre class="r"><code>library(propagate)</code></pre>
+<pre class="r"><code>## Usando la función propagate
+
+EXPR1 &lt;- expression((5*x1)-(3*x2)+x3)
+x1 &lt;- c(1,0.5773)
+x2 &lt;- c(1,0.4082)
+x3 &lt;- c(1,1)
+DF1 &lt;- cbind(x1,x2,x3)
+RES1 &lt;- propagate(expr = EXPR1, data = DF1, type = &quot;stat&quot;,
+                  do.sim = TRUE, verbose = TRUE)
+summary(RES1)</code></pre>
+<pre><code>## Results from error propagation:</code></pre>
+<pre><code>##    Mean.1    Mean.2      sd.1      sd.2      2.5%     97.5% 
+##  3.000000  3.000000  3.291129  3.291129 -3.450498  9.450498</code></pre>
+<pre><code>## Results from Monte Carlo simulation:</code></pre>
+<pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
+##  2.996756  3.292081  2.993847  3.292192 -3.455683  9.444929</code></pre>
+<pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
+<pre><code>## [1] 1614466</code></pre>
+<pre><code>## Coverage factor (k):</code></pre>
+<pre><code>## [1] 1.959965</code></pre>
+<pre><code>## Expanded uncertainty:</code></pre>
+<pre><code>## [1] 6.450498</code></pre>
+<pre><code>## Symbolic gradient matrix:</code></pre>
+<pre><code>## [1] &quot;5&quot;  &quot;-3&quot; &quot;1&quot;</code></pre>
+<pre><code>## Evaluated gradient matrix (sensitivity):</code></pre>
+<pre><code>## [1]  5 -3  1</code></pre>
+<pre><code>## Symbolic hessian matrix:</code></pre>
+<pre><code>## [1] &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [1] &quot;0&quot; &quot;0&quot; &quot;0&quot;
+## [1] &quot;0&quot; &quot;0&quot; &quot;0&quot;</code></pre>
+<pre><code>## Evaluated hessian matrix:</code></pre>
+<pre><code>## [1] 0 0 0
+## [1] 0 0 0
+## [1] 0 0 0</code></pre>
+<pre><code>## Covariance matrix:</code></pre>
+<pre><code>##           x1        x2 x3
+## x1 0.3332753 0.0000000  0
+## x2 0.0000000 0.1666272  0
+## x3 0.0000000 0.0000000  1</code></pre>
+<pre><code>## Relative contribution:</code></pre>
+<pre><code>##           x1        x2         x3
+## x1 0.7692251 0.0000000 0.00000000
+## x2 0.0000000 0.1384519 0.00000000
+## x3 0.0000000 0.0000000 0.09232308</code></pre>
+<pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
+<pre><code>## -0.000924623 / -0.000900651</code></pre>
+<pre><code>## Shapiro-Wilk test for normality:</code></pre>
+<pre><code>## 0.1819193 =&gt; normal</code></pre>
+<pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
+<pre><code>## 0.9531712 =&gt; normal</code></pre>
+</div>
+<div id="cuál-distribución-de-probabilidad-se-ajusta-mejor-a-los-datos"
+class="section level2">
+<h2>¿Cuál distribución de probabilidad se ajusta mejor a los datos?</h2>
+<p><strong>AIC</strong> <span class="math display">\[AIC = -2 * log(L) +
+2 * k\]</span> <strong>BIC</strong> <span class="math display">\[BIC =
+-2 * log(L) + k * log(n)\]</span></p>
+<p>L representa la probabilidad maximizada del modelo, que mide qué tan
+bien se ajusta el modelo a los datos.</p>
+<p>k representa el número de parámetros en el modelo</p>
+<p>log(n) representa el logaritmo del tamaño de la muestra (n)</p>
+<pre class="r"><code>#busca cual distribución es la q mejor se ajusta
+fitDistr(RES1)</code></pre>
+<pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 2 of 32: Fitting Skewed-normal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 3 of 32: Fitting Generalized normal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 4 of 32: Fitting Log-normal distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 5 of 32: Fitting Scaled/shifted t- distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 6 of 32: Fitting Logistic distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 7 of 32: Fitting Uniform distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 8 of 32: Fitting Triangular distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 9 of 32: Fitting Trapezoidal distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 10 of 32: Fitting Curvilinear Trapezoidal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 11 of 32: Fitting Gamma distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 12 of 32: Fitting Inverse Gamma distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 13 of 32: Fitting Cauchy distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 14 of 32: Fitting Laplace distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 15 of 32: Fitting Gumbel distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 16 of 32: Fitting Johnson SU distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 17 of 32: Fitting Johnson SB distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 18 of 32: Fitting 3P Weibull distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 19 of 32: Fitting 2P Beta distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 20 of 32: Fitting 4P Beta distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 21 of 32: Fitting Arcsine distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 22 of 32: Fitting von Mises distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 23 of 32: Fitting Inverse Gaussian distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 24 of 32: Fitting Generalized Extreme Value distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 25 of 32: Fitting Rayleigh distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 26 of 32: Fitting Chi-Square distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 27 of 32: Fitting Exponential distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 28 of 32: Fitting F- distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 29 of 32: Fitting Burr distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 30 of 32: Fitting Chi distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 31 of 32: Fitting Inverse Chi-Square distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 32 of 32: Fitting Cosine distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre><code>## Best fit is Generalized normal Distribution.</code></pre>
+<pre><code>## Parameters:</code></pre>
+<pre><code>##       alpha          xi       kappa 
+##  3.29535365  2.99719621 -0.00192833</code></pre>
+<pre><code>## Standard errors:</code></pre>
+<pre><code>##        alpha           xi        kappa 
+## 0.0015486628 0.0020483543 0.0009400025</code></pre>
+<pre><code>## Goodness of fit:</code></pre>
+<pre><code>## BIC = -931.5035</code></pre>
+<p><strong>¿Cómo realizar una simulaciòn de la incertidumbre por el
+metodo monte carlo cuando hay correlaciòn entre variables?</strong></p>
+<p>Matriz de covarianzas</p>
+<p><span class="math display">\[\begin{bmatrix}
+u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
+u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
+\end{bmatrix}\]</span></p>
+<p><strong>Matriz de transformación R</strong></p>
+<p>Para incluir la correlación y desviación estándar de cada magnitud de
+entrada descomposiciòn de cholesky para a matriz de covarianza <span
+class="math display">\[Cov(X)=R^TR\]</span>, esta matriz debe ser no
+definida positiva</p>
+<p><strong>El ejercicio del parcial hecho en R</strong></p>
+<pre class="r"><code>library(propagate)
+## =&gt; Normal distribution.
+EXPR1 &lt;- expression((1-(x/y))*100)
+x &lt;- c(165.52,23.45)
+y &lt;- c(1589.64,0.51)
+DF1 &lt;- cbind(x, y)
+RES1 &lt;- propagate(expr = EXPR1, data = DF1, type = &quot;stat&quot;,
+                  do.sim = TRUE, verbose = TRUE)
+
+summary(RES1)</code></pre>
+<pre><code>## Results from error propagation:</code></pre>
+<pre><code>##    Mean.1    Mean.2      sd.1      sd.2      2.5%     97.5% 
+## 89.587580 89.587579  1.475181  1.475181 86.696274 92.478883</code></pre>
+<pre><code>## Results from Monte Carlo simulation:</code></pre>
+<pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
+## 89.586286  1.474715 89.587596  1.473479 86.695743 92.474718</code></pre>
+<pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
+<pre><code>## [1] 1000010</code></pre>
+<pre><code>## Coverage factor (k):</code></pre>
+<pre><code>## [1] 1.959966</code></pre>
+<pre><code>## Expanded uncertainty:</code></pre>
+<pre><code>## [1] 2.891304</code></pre>
+<pre><code>## Symbolic gradient matrix:</code></pre>
+<pre><code>## [1] &quot;-(1/y * 100)&quot; &quot;x/y^2 * 100&quot;</code></pre>
+<pre><code>## Evaluated gradient matrix (sensitivity):</code></pre>
+<pre><code>## [1] -0.062907325  0.006550175</code></pre>
+<pre><code>## Symbolic hessian matrix:</code></pre>
+<pre><code>## [1] &quot;0&quot;           &quot;1/y^2 * 100&quot;
+## [1] &quot;1/y^2 * 100&quot;                  &quot;-(x * (2 * y)/(y^2)^2 * 100)&quot;</code></pre>
+<pre><code>## Evaluated hessian matrix:</code></pre>
+<pre><code>## [1] 0.000000e+00 3.957332e-05
+## [1]  3.957332e-05 -8.241080e-06</code></pre>
+<pre><code>## Covariance matrix:</code></pre>
+<pre><code>##          x      y
+## x 549.9025 0.0000
+## y   0.0000 0.2601</code></pre>
+<pre><code>## Relative contribution:</code></pre>
+<pre><code>##           x            y
+## x 0.9999949 0.000000e+00
+## y 0.0000000 5.128092e-06</code></pre>
+<pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
+<pre><code>## -0.001284319 / 0.001924141</code></pre>
+<pre><code>## Shapiro-Wilk test for normality:</code></pre>
+<pre><code>## 0.4292976 =&gt; normal</code></pre>
+<pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
+<pre><code>## 0.426555 =&gt; normal</code></pre>
+<pre class="r"><code>fitDistr(RES1)</code></pre>
+<pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 2 of 32: Fitting Skewed-normal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 3 of 32: Fitting Generalized normal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 4 of 32: Fitting Log-normal distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 5 of 32: Fitting Scaled/shifted t- distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 6 of 32: Fitting Logistic distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 7 of 32: Fitting Uniform distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 8 of 32: Fitting Triangular distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 9 of 32: Fitting Trapezoidal distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 10 of 32: Fitting Curvilinear Trapezoidal distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 11 of 32: Fitting Gamma distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 12 of 32: Fitting Inverse Gamma distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 13 of 32: Fitting Cauchy distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 14 of 32: Fitting Laplace distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 15 of 32: Fitting Gumbel distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 16 of 32: Fitting Johnson SU distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 17 of 32: Fitting Johnson SB distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 18 of 32: Fitting 3P Weibull distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 19 of 32: Fitting 2P Beta distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 20 of 32: Fitting 4P Beta distribution...</code></pre>
+<pre><code>## .........10.........20.........30.........40.........50
+## .........60.........70.........80.</code></pre>
+<pre><code>## 21 of 32: Fitting Arcsine distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 22 of 32: Fitting von Mises distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 23 of 32: Fitting Inverse Gaussian distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 24 of 32: Fitting Generalized Extreme Value distribution...</code></pre>
+<pre><code>## .........10.........20.......</code></pre>
+<pre><code>## 25 of 32: Fitting Rayleigh distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 26 of 32: Fitting Chi-Square distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 27 of 32: Fitting Exponential distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 28 of 32: Fitting F- distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<pre><code>## 29 of 32: Fitting Burr distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 30 of 32: Fitting Chi distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 31 of 32: Fitting Inverse Chi-Square distribution...</code></pre>
+<pre><code>## ...</code></pre>
+<pre><code>## 32 of 32: Fitting Cosine distribution...</code></pre>
+<pre><code>## .........</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre><code>## Best fit is Normal Distribution.</code></pre>
+<pre><code>## Parameters:</code></pre>
+<pre><code>##      mean        sd 
+## 89.586646  1.474418</code></pre>
+<pre><code>## Standard errors:</code></pre>
+<pre><code>##         mean           sd 
+## 0.0010375546 0.0008471598</code></pre>
+<pre><code>## Goodness of fit:</code></pre>
+<pre><code>## BIC = -1616.953</code></pre>
 </div>
 </div>
 <div id="bibliografía" class="section level1">
