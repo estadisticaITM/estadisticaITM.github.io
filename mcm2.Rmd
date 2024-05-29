@@ -300,7 +300,7 @@ mediae=mean(E)
 desv=sd(E)
 
 U=emax-mediae
-
+U
 
 ```
 
@@ -408,8 +408,176 @@ summary(RES1)
 fitDistr(RES1)
 ```
 
+## Otro ejemplo
+
+**Calibración de un multímetro DMM**
+
+Punto de medición: 40V
 
 
+Especificaciones del calibrador: $\pm$ (18 ppm set+150$\mu$ V)
+
+
+
+|Lecturas DMM    |40.000|39.999|39.998|40.000|39.999|39.999|
+|---------------:|:-----|:----:|-----:|:-----|-----:|:-----|
+|        Promedio|39.999|      |    sd|0.00075277|n |6     |
+
+
+Resultados calibración del patrón (tensión continua)
+
+
+|Intervalo V      |329.9999|
+|:----------------|:-------|
+|Valor indicado V |40.0000|
+|Valor patrón   V |40.0020|
+|Error V          |-0.0020|
+|Factor de cobertura k(95.45%)|2|
+|Incertidumbre expandida V    |0.0002|
+|Incertidumbre típica         |0.0001|
+Se desea estimar la incertidumbre del error dada por:
+
+$$Error= V_{medido} - V_{Patrón} $$
+$$E:(V_x+\delta V_{xres})-(V_{certif}+\delta V_{Esp})$$
+
+**Método GUM**
+
+|Componente      |Valor      |Tipo A|Estima Incer                      |Valor incer |Distribución|
+|:--------------:|:---------:|:----:|:--------------------------------:|:----------:|:----------:|
+|$V_x$           |Medido     |A     |$u_A=\frac{0.000075277}{\sqrt 6}$ |0.00030732 V|t student (gl=5)|
+|$\delta V_{res}$|Resolución |B     |$u_{res}=\frac{0.001}{\sqrt {12}}$|0.00028868 V|Uniforme|
+|$V_s$           |Patrón     |B     |$u_{pat}=\frac{0.0002}{2}$        |0.0001     V|Normal|
+|$V_{esp}$       |Especificaciones|B|$u_{esp}=\frac{0.00087}{\sqrt{3}}$| 0.0005023 V|Uniforme|
+
+
+
+
+
+$$u_c=\sqrt{0.00030732^2+0.00028868^2+0.0001^2+0.0005023^2}=0.0006634=6.6*10^{-4}$$
+**¿cumple con el criterio de la Incertidumbre dominante?**
+
+$$\frac{\sqrt{0.00030732^2+0.00028868^2+0.0001^2}}{0.0005023}= 0.86>0.3$$
+!!!no cumple!!!
+
+$$v_{ef}=\frac{0.0006634^4}{\frac{0.00030732^4}{5}}=108$$
+
+con un nc=0.9545 =95.45%
+
+1-0.9545=0.455/2=0.02275
+
+$k=t(\alpha= 0.02275,gl=108)=2.023$
+
+U=2.023*0.0006634=0.001342
+
+
+```{r}
+library(propagate)
+
+qt(p=0.02275, df=108, lower.tail = FALSE, log.p = FALSE)
+
+WelchSatter(ui=c(0.00030732,0.00028868,0.0001,0.0005023),
+            df = c(5,50000,50000,50000), alpha = 0.025)
+
+```
+
+
+**Método Monte carlo**
+
+
+
+```{r out.width="50%"}
+##Incer tipo A
+##bajo una distribución t
+y=rt(1e6, df=5)
+m=39.999
+s=0.00075277/sqrt(6)
+sdd=rep(s,1e6)
+
+ir=(y*sdd)+m
+sd(ir)
+
+##______________________________________________________________
+##Incer resln 
+## rsln=0.001 semi amplitud=0.0005
+## runif(n, min = 0, max = 1)
+
+irsln=runif(n=1e6,min=-0.0005,max=0.0005)
+
+sd(irsln)
+
+##__________________________
+## incer patrón
+##bajo una distribución normal
+m=40.0020
+s=0.0001
+y=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+
+ipat=(y*sdd)+m
+
+sd(ipat)
+
+
+##______________________________________________________________
+##Incer especif 
+## rsln=0.001 semi amplitud=0.0005
+## runif(n, min = 0, max = 1)
+
+iesp=runif(n=1e6, min=-0.00087, max=0.00087)
+
+sd(iesp)
+
+##__forma resultante___________________
+
+e=(ir+irsln)-(ipat+iesp)
+
+# incertidumbre combinada_____
+sd(e)
+hist(e)
+
+##Incertidumbre expandida
+cuartil1 <- quantile(e, probs = c(0.02275,0.97725)) 
+
+emin=cuartil1[1]
+emax=as.numeric(cuartil1[2])
+mediae=mean(e)
+
+
+U=emax-mediae
+U
+
+```
+
+
+**Librería propagate**
+
+```{r}
+library(propagate)
+
+exp=expression(Vm+Vres-Vcer+VEsp)
+Vm=c(1,0.00030732)
+Vres=c(1,0.00028868)
+Vcer=c(1,0.0001)
+VEsp=c(1,0.0005023)
+DF2 <- cbind(Vm,Vres,Vcer,VEsp)
+RES2 <- propagate(expr =exp, data = DF2, type = "stat",do.sim = TRUE, 
+                  verbose = TRUE,alpha = 0.025,nsim = 100000)
+
+summary(RES2)
+
+
+```
+
+
+**Comparación**
+
+
+
+|factor|u GUM    |u MCM  |
+|:----:|:-------:|:-----:|
+|u     |0.0006634|0.00071|
+|k     | 2.023   |  ---  |
+|U     | 0.001342|0.00137|
 
 # Bibliografía
 
