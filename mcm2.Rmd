@@ -397,8 +397,7 @@ EXPR1 <- expression((1-(x/y))*100)
 x <- c(165.52,23.45)
 y <- c(1589.64,0.51)
 DF1 <- cbind(x, y)
-RES1 <- propagate(expr = EXPR1, data = DF1, type = "stat",
-                  do.sim = TRUE, verbose = TRUE)
+RES1 <- propagate(expr = EXPR1, data = DF1, type = "stat",do.sim = TRUE, verbose = TRUE)
 
 summary(RES1)
 
@@ -442,7 +441,7 @@ $$E:(V_x+\delta V_{xres})-(V_{certif}+\delta V_{Esp})$$
 
 **Método GUM**
 
-|Componente      |Valor      |Tipo A|Estima Incer                      |Valor incer |Distribución|
+|Componente|Valor|Tipo|Estima Incer|Valor incer |Distribución|
 |:--------------:|:---------:|:----:|:--------------------------------:|:----------:|:----------:|
 |$V_x$           |Medido     |A     |$u_A=\frac{0.000075277}{\sqrt 6}$ |0.00030732 V|t student (gl=5)|
 |$\delta V_{res}$|Resolución |B     |$u_{res}=\frac{0.001}{\sqrt {12}}$|0.00028868 V|Uniforme|
@@ -495,6 +494,7 @@ sdd=rep(s,1e6)
 
 ir=(y*sdd)+m
 sd(ir)
+## vs valor gum 0.0030732 bajo una t
 
 ##______________________________________________________________
 ##Incer resln 
@@ -504,7 +504,7 @@ sd(ir)
 irsln=runif(n=1e6,min=-0.0005,max=0.0005)
 
 sd(irsln)
-
+## vs 0.0002886
 ##__________________________
 ## incer patrón
 ##bajo una distribución normal
@@ -578,6 +578,127 @@ summary(RES2)
 |u     |0.0006634|0.00071|
 |k     | 2.023   |  ---  |
 |U     | 0.001342|0.00137|
+
+
+**Otro ejemplo teniendo en cuenta la correlación entre variables**
+
+$$y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3$$
+$$r(x_1,x_2)=-0.5$$
+|variable|Distribución|promedio|$u(x_i)$|
+|:------:|:----------:|:------:|:------:|
+|$x_1$   |Normal      |     1.5| 1.2    |
+|$x_2$   |Normal      |      3 |0.8     |
+|$x_3$|Uniforme|$\bar x=0$ a=1|$u=1/\sqrt 3=0.5773$|
+
+Simulación de $x_1$
+
+
+
+```{r}
+m=1.5
+s=1
+y=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm=rep(m,1e6)
+ipat=(y*sdd)+mm
+
+sd(ipat)
+
+
+
+m=3
+s=1
+y1=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm1=rep(m,1e6)
+ipat1=(y1*sdd)+mm1
+
+sd(ipat)
+
+
+```
+
+**encontrar matriz de var-cov**
+
+$$cov=\begin{bmatrix} 
+u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
+u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
+\end{bmatrix}$$
+
+
+$$cov=\begin{bmatrix} 
+1.2^2 & 1.2*0.8*-0.5\\ 
+1.2*0.8*-0.5 & 0.8^2\\
+\end{bmatrix}$$
+
+$$cov=\begin{bmatrix} 
+1.44 & -0.48\\ 
+-0.48 & 0.64\\
+\end{bmatrix}$$
+
+
+$$x=\bar x+x_s*R$$
+
+$$x_{i_{corr}}= \begin{bmatrix} \bar x_1 & \bar x_2 \\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \vdots & \vdots \\
+                                    \bar x_1 & \bar x_2
+                                    \end{bmatrix}
+                                    +\begin{bmatrix} 
+                                     x_{1s} & x_{2s} \\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                    \vdots & \vdots \\
+                                     x_{1s} &  x_{2s}
+                                    \end{bmatrix}*
+                                    \begin{bmatrix} 
+1.44 & -0.48\\ 
+-0.48 & 0.64\\
+\end{bmatrix}$$
+
+```{r}
+
+sy2 <- new("dsyMatrix", Dim = as.integer(c(2,2)), x = c(1.44,-0.48,-0.48,0.64))
+(c2 <- chol(sy2))#-> "Cholesky" matrix
+str(c2)
+c2=as.matrix(c2)
+cc=as.matrix(cbind(ipat,ipat1))
+res=cc%*%c2
+
+med=as.matrix(cbind(mm,mm1))
+
+valres=med+res
+v1=valres[,1]
+V2=valres[,2]
+
+
+## rsln=1 semi amplitud=0.0005
+## runif(n, min = 0, max = 1)
+
+V3=runif(n=1e6,min=-0.5,max=0.5)
+
+y=(5*v1)-(3*V2)+V3
+
+sd(y)
+
+##Incertidumbre expandida
+cuartil1 <- quantile(y, probs = c(0.02275,0.97725)) 
+
+ymin=cuartil1[1]
+ymax=as.numeric(cuartil1[2])
+mediae=mean(y)
+sd(y)
+
+U=ymax-mediae
+U
+
+
+```
 
 # Bibliografía
 
