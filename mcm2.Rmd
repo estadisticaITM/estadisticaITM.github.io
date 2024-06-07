@@ -583,12 +583,29 @@ summary(RES2)
 **Otro ejemplo teniendo en cuenta la correlación entre variables**
 
 $$y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3$$
+
+
 $$r(x_1,x_2)=-0.5$$
-|variable|Distribución|promedio|$u(x_i)$|
-|:------:|:----------:|:------:|:------:|
-|$x_1$   |Normal      |     1.5| 1.2    |
-|$x_2$   |Normal      |      3 |0.8     |
-|$x_3$|Uniforme|$\bar x=0$ a=1|$u=1/\sqrt 3=0.5773$|
+
+
+
+
+
+
+|variable|Distribución|promedio|$u(x_i)$|$c_i$|
+|:------:|:----------:|:------:|:------:|:---:|
+|$x_1$   |Normal      |     1.5| 1.2    |5|
+|$x_2$   |Normal      |      3 |0.8     |3|
+|$x_3$   |Uniforme    |$\bar x=0$ a=1|$u=1/\sqrt 3=0.5773$|1|
+
+
+**Por el método GUM**
+
+$$u_c(y)=\sqrt{(c_1u_{x_1})^2+(c_2u_{x_2})^2+(c_3u_{x_3})^2+2c_1c_2 u_{x_1} u_{x_2} r(x_1,x_2))}$$
+$$u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51$$
+
+sin correlación=6.48
+
 
 Simulación de $x_1$
 
@@ -604,7 +621,7 @@ ipat=(y*sdd)+mm
 
 sd(ipat)
 
-
+#Simulación de x2
 
 m=3
 s=1
@@ -677,6 +694,9 @@ v1=valres[,1]
 V2=valres[,2]
 
 
+
+plot(v1,V2)
+cor(v1,V2)
 ## rsln=1 semi amplitud=0.0005
 ## runif(n, min = 0, max = 1)
 
