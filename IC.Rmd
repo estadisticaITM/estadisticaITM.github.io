@@ -13,6 +13,68 @@ output: html_document
 
 <a href="tallerIC.html" target="_blank"> Taller intervalos de confianza</a>
 
+La inferencia estadística consiste en aquellos métodos por medio de los cuales se realizan inferencias o generalizaciones acerca de una población. 
+
+## estimación por intervalo
+
+```{r echo=FALSE}
+library(DiagrammeR)
+# A minimal plot
+
+
+DiagrammeR("graph LR;
+          
+          
+          
+           Población-->|Distribuciones de muestreo| Muestra
+           Muestra-->|Inferencial IC PH| Población
+           ")
+            
+
+```
+
+
+$$\Huge  \leftrightarrows$$
+**Estimación por intervalo**
+Una estimación por intervalo de un parámetro $\theta$ de la población es un intervalo de la forma: 
+
+$$\hat \theta_{inf}<\theta<\hat \theta_{sup}$$
+Donde los valores estimados dependen del valor estimado de $\theta$ y de la distribución de muestreo.
+
+
+
+```{r, echo=F, out.width="10%", fig.align='center'}
+knitr::include_graphics("imagen/ic.png")
+```
+
+ 
+**Nivel de confianza y Nivel de significancia**
+
+
+$$\huge NC+\alpha=1$$
+**Nivel de confianza:**
+
+
+```{r}
+
+
+c_graph <- create_graph() %>%
+  add_node(label="Población") %>%
+  add_node(label="Distribuciones de muestreo") %>%
+  add_node(label="Muestra") %>%
+  add_node(label="Inferencial") %>%
+  add_edge(from = 1, to = 2)%>% 
+  add_edge(from = 2, to = 3)%>% 
+  add_edge(from = 3, to = 4)%>% 
+  add_edge(from = 4, to = 1)
+
+render_graph(c_graph)
+
+
+
+
+
+```
 
 *Intervalo de confianza para la media con varianza conocida*
 

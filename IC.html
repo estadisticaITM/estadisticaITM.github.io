@@ -32,6 +32,16 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/d3-3.3.8/d3.min.js"></script>
+<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/chromatography-0.1/chromatography.js"></script>
+<script src="site_libs/DiagrammeR-binding-1.0.11/DiagrammeR.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -333,6 +343,38 @@ href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Int
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/f%C3%B3rmulas.pdf">Fórmulas</a></p>
 <p><a href="tallerIC.html" target="_blank"> Taller intervalos de
 confianza</a></p>
+<p>La inferencia estadística consiste en aquellos métodos por medio de
+los cuales se realizan inferencias o generalizaciones acerca de una
+población.</p>
+<div id="estimación-por-intervalo" class="section level2">
+<h2>estimación por intervalo</h2>
+<div id="htmlwidget-9a914e33ca20d81c1d17" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a914e33ca20d81c1d17">{"x":{"diagram":"graph LR;\n          \n          \n          \n           Población-->|Distribuciones de muestreo| Muestra\n           Muestra-->|Inferencial IC PH| Población\n           "},"evals":[],"jsHooks":[]}</script>
+<p><span class="math display">\[\Huge  \leftrightarrows\]</span>
+<strong>Estimación por intervalo</strong> Una estimación por intervalo
+de un parámetro <span class="math inline">\(\theta\)</span> de la
+población es un intervalo de la forma:</p>
+<p><span class="math display">\[\hat \theta_{inf}&lt;\theta&lt;\hat
+\theta_{sup}\]</span> Donde los valores estimados dependen del valor
+estimado de <span class="math inline">\(\theta\)</span> y de la
+distribución de muestreo.</p>
+<p><img src="imagen/ic.png" width="10%" style="display: block; margin: auto;" /></p>
+<p><strong>Nivel de confianza y Nivel de significancia</strong></p>
+<p><span class="math display">\[\huge NC+\alpha=1\]</span> <strong>Nivel
+de confianza:</strong></p>
+<pre class="r"><code>c_graph &lt;- create_graph() %&gt;%
+  add_node(label=&quot;Población&quot;) %&gt;%
+  add_node(label=&quot;Distribuciones de muestreo&quot;) %&gt;%
+  add_node(label=&quot;Muestra&quot;) %&gt;%
+  add_node(label=&quot;Inferencial&quot;) %&gt;%
+  add_edge(from = 1, to = 2)%&gt;% 
+  add_edge(from = 2, to = 3)%&gt;% 
+  add_edge(from = 3, to = 4)%&gt;% 
+  add_edge(from = 4, to = 1)
+
+render_graph(c_graph)</code></pre>
+<div id="htmlwidget-f702fa3ea3df91b64b4c" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f702fa3ea3df91b64b4c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Población\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Distribuciones de muestreo\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Muestra\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Inferencial\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"2\"->\"3\" \n  \"3\"->\"4\" \n  \"4\"->\"1\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><em>Intervalo de confianza para la media con varianza
 conocida</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/tnDFgEv_a-I?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -362,6 +404,7 @@ proporciones</em></p>
 pareadas</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/hcEaKfN28Y0?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
 
 <br>
 <hr>
