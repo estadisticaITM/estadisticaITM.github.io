@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -40,8 +43,16 @@
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/chromatography-0.1/chromatography.js"></script>
 <script src="site_libs/DiagrammeR-binding-1.0.11/DiagrammeR.js"></script>
-<script src="site_libs/viz-1.8.2/viz.js"></script>
-<script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/selectize-0.12.4/css/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.4/js/selectize.min.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-18.2.0/react.min.js"></script>
+<script src="site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<link href="site_libs/reactable-0.4.4/reactable.css" rel="stylesheet" />
+<script src="site_libs/reactable-binding-0.4.4/reactable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -250,6 +261,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -257,6 +337,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -338,53 +428,284 @@ $(document).ready(function () {
 
 
 <p><a
-href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Intervalos%20de%20confianzajtg.pdf">clase</a></p>
-<p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/f%C3%B3rmulas.pdf">Fórmulas</a></p>
 <p><a href="tallerIC.html" target="_blank"> Taller intervalos de
 confianza</a></p>
-<p>La inferencia estadística consiste en aquellos métodos por medio de
-los cuales se realizan inferencias o generalizaciones acerca de una
-población.</p>
-<div id="estimación-por-intervalo" class="section level2">
-<h2>estimación por intervalo</h2>
-<div id="htmlwidget-9a914e33ca20d81c1d17" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9a914e33ca20d81c1d17">{"x":{"diagram":"graph LR;\n          \n          \n          \n           Población-->|Distribuciones de muestreo| Muestra\n           Muestra-->|Inferencial IC PH| Población\n           "},"evals":[],"jsHooks":[]}</script>
-<p><span class="math display">\[\Huge  \leftrightarrows\]</span>
-<strong>Estimación por intervalo</strong> Una estimación por intervalo
-de un parámetro <span class="math inline">\(\theta\)</span> de la
-población es un intervalo de la forma:</p>
+<div id="htmlwidget-72dc2811de6254b2eb36" style="width:80%;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72dc2811de6254b2eb36">{"x":{"diagram":"graph LR;\n           Población-->|Distribuciones de muestreo| Muestra\n           Muestra-->|Inferencial IC PH| Población"},"evals":[],"jsHooks":[]}</script>
+<div id="estimación-por-intervalo" class="section level1">
+<h1>Estimación por intervalo</h1>
+<p>Una estimación por intervalo de un parámetro <span
+class="math inline">\(\theta\)</span> de la población es un intervalo de
+la forma:</p>
 <p><span class="math display">\[\hat \theta_{inf}&lt;\theta&lt;\hat
 \theta_{sup}\]</span> Donde los valores estimados dependen del valor
 estimado de <span class="math inline">\(\theta\)</span> y de la
 distribución de muestreo.</p>
-<p><img src="imagen/ic.png" width="10%" style="display: block; margin: auto;" /></p>
-<p><strong>Nivel de confianza y Nivel de significancia</strong></p>
-<p><span class="math display">\[\huge NC+\alpha=1\]</span> <strong>Nivel
-de confianza:</strong></p>
-<pre class="r"><code>c_graph &lt;- create_graph() %&gt;%
-  add_node(label=&quot;Población&quot;) %&gt;%
-  add_node(label=&quot;Distribuciones de muestreo&quot;) %&gt;%
-  add_node(label=&quot;Muestra&quot;) %&gt;%
-  add_node(label=&quot;Inferencial&quot;) %&gt;%
-  add_edge(from = 1, to = 2)%&gt;% 
-  add_edge(from = 2, to = 3)%&gt;% 
-  add_edge(from = 3, to = 4)%&gt;% 
-  add_edge(from = 4, to = 1)
+<p><img src="imagen/ic.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="intervalo-de-confianza" class="section level1">
+<h1>Intervalo de confianza</h1>
+<p>La inferencia estadística consiste en aquellos métodos por medio de
+los cuales se realizan inferencias o generalizaciones acerca de una
+población.</p>
+</div>
+<div id="nivel-de-confianza-y-de-significancia" class="section level1">
+<h1>Nivel de confianza y de significancia</h1>
+<p>Nivel de confianza: Probabilidad máxima con la que se asegura que un
+parámetro a estimar se encuentra dentro de un intervalo estimado.</p>
+<p>Nivel de significancia: Máximo error que se comete en la estimación
+usualmente se denota como <span
+class="math inline">\(\alpha\)</span>.</p>
+<p><span class="math display">\[\huge NC+\alpha=1\]</span> Si se
+construyen 100 intervalos de la forma <span class="math inline">\(\hat
+\theta_{inf}&lt;\theta&lt;\hat \theta_{sup}\)</span> con un NC=0.97
+entonces se espera que 97 de los 100 intervalos contengan el parámetro
+<span class="math inline">\(\theta\)</span></p>
+<p><img src="IC_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="row">
+<div class="col-sm-1">
+<div id="distri" class="form-group crosstalk-input-checkboxgroup crosstalk-input">
+<label class="control-label" for="distri">distri</label>
+<div class="crosstalk-options-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="distri" value="normal"/>
+<span>normal</span>
+</label>
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" name="distri" value="t-student"/>
+<span>t-student</span>
+</label>
+</div>
+</div>
+<script type="application/json" data-for="distri">{
+  "map": {
+    "normal": ["1"],
+    "t-student": ["2"]
+  },
+  "group": ["SharedDatabe277e8a"]
+}</script>
+</div>
+<div id="qb" class="form-group crosstalk-input-select crosstalk-input">
+<label class="control-label" for="qb">Grados de libertad</label>
+<div>
+<select multiple></select>
+<script type="application/json" data-for="qb">{
+  "items": {
+    "value": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "label": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  },
+  "map": {
+    "1": ["1"],
+    "2": ["2"],
+    "3": ["3"],
+    "4": [null],
+    "5": [null],
+    "6": [null],
+    "7": [null],
+    "8": [null],
+    "9": [null],
+    "10": [null]
+  },
+  "group": ["SharedDatabe277e8a"]
+}</script>
+</div>
+</div>
+</div>
+<div class="col-sm-10">
+<div id="htmlwidget-c31a6a3a666a64f86790" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c31a6a3a666a64f86790">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDatabe277e8a","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-una-muestra"
+class="section level1">
+<h1>Intervalo de confianza para una muestra</h1>
+<div id="ic-para-la-media" class="section level2">
+<h2>IC para la media</h2>
+<pre class="r"><code>library(DiagrammeR)
 
-render_graph(c_graph)</code></pre>
-<div id="htmlwidget-f702fa3ea3df91b64b4c" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f702fa3ea3df91b64b4c">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"Población\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Distribuciones de muestreo\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"Muestra\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Inferencial\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"2\"->\"3\" \n  \"3\"->\"4\" \n  \"4\"->\"1\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+DiagrammeR(&quot;graph TB;
+  
+  A{sigma conocida}--&gt;|Si| C[Normal]
+  A--&gt;|No| B{n mayor q 30}
+  B--&gt;|No| D[t student]
+  B--&gt;|Si| C
+  
+           &quot;)</code></pre>
+<div id="htmlwidget-83ca859a015cfb0f82db" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83ca859a015cfb0f82db">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
+<div id="con-la-varianza-conocida" class="section level3">
+<h3>con la varianza conocida</h3>
+<p>Si <span class="math inline">\(\bar x\)</span> es la media de una
+muestra aleatoria de tamaño 𝑛 de una población normal con varianza <span
+class="math inline">\(\sigma^2\)</span> conocida, un intervalo de
+confianza del 1 − 𝛼 100% para 𝜇 está dado por:</p>
+<p><span class="math display">\[\huge \bar x-Z_{\alpha/2}
+\frac{\sigma}{\sqrt n} \leq \mu \leq \bar x+Z_{\alpha/2}
+\frac{\sigma}{\sqrt n}\]</span></p>
+<p>donde <span class="math inline">\(Z_{\alpha/2}\)</span> es el valor z
+que deja un área de 𝛼/2 a la derecha.</p>
+<p><strong>Ejemplo</strong> Una muestra aleatoria de 110 relámpagos
+dieron por resultado una duración de eco de radar promedio muestral de
+0.81 segundos y una desviación estándar de 0.34 segundos. Calcule un
+intervalo de confianza de 95% para la duración de eco promedio e
+interprete el intervalo resultante</p>
+<pre class="r"><code>library(BSDA)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BSDA&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:datasets&#39;:
+## 
+##     Orange</code></pre>
+<pre class="r"><code>zsum.test(mean.x=0.81,sigma.x=0.34, n.x=110,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  One-sample z-Test
+## 
+## data:  Summarized x
+## z = 24.986, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.7464624 0.8735376
+## sample estimates:
+## mean of x 
+##      0.81</code></pre>
 <p><em>Intervalo de confianza para la media con varianza
 conocida</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/tnDFgEv_a-I?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
+<div id="con-la-varianza-desconocida" class="section level3">
+<h3>con la varianza desconocida</h3>
+<p>Si <span class="math inline">\(\bar x\)</span> es la media de una
+muestra aleatoria de tamaño 𝑛 de una población normal con varianza <span
+class="math inline">\(\sigma^2\)</span> desconocida, un intervalo de
+confianza del 1 − 𝛼 100% para 𝜇 está dado por:</p>
+<p><span class="math display">\[\huge \bar x-t_{\alpha/2} \frac{s}{\sqrt
+n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}\]</span></p>
+<p>donde <span class="math inline">\(Z_{\alpha/2}\)</span> es el valor z
+que deja un área de 𝛼/2 a la derecha.</p>
+<p><strong>Ejemplo</strong> Se tienen los datos de las horas de
+ejercicio que hacen 10 adolescentes por semana, calcule un intervalo de
+confianza para el tiempo promedio con un NC del 90%</p>
+<pre class="r"><code>library(carData)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;carData&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:BSDA&#39;:
+## 
+##     Vocab, Wool</code></pre>
+<pre class="r"><code>carData::Blackmore$exercise[1:10]</code></pre>
+<pre><code>##  [1] 2.71 1.94 2.36 1.54 8.63 0.14 0.14 0.00 0.00 5.08</code></pre>
+<pre class="r"><code>x=carData::Blackmore$exercise[1:10]
+
+t.test(x=x,conf.level = 0.9)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 2.5824, df = 9, p-value = 0.02958
+## alternative hypothesis: true mean is not equal to 0
+## 90 percent confidence interval:
+##  0.6539884 3.8540116
+## sample estimates:
+## mean of x 
+##     2.254</code></pre>
+</div>
+</div>
+<div id="ic-para-la-proporción" class="section level2">
+<h2>IC para la proporción</h2>
+<p>Si <span class="math inline">\(\hat p\)</span> es la proporción de
+éxitos en una muestra aleatoria de tamaño 𝑛, un intervalo de confianza
+aproximado de (1−𝛼) 100% para 𝑝 está dado por</p>
+<p><span class="math display">\[\huge \hat p-Z_{\alpha/2}
+\sqrt{\frac{\hat p(1-\hat p)}{n}}\leq p \leq \hat p+Z_{\alpha/2}
+\sqrt{\frac{\hat p(1-\hat p)}{n}} \]</span></p>
+<p>donde <span class="math inline">\(𝑍_{𝛼/2}\)</span> es el valor z que
+deja un área de 𝛼/2 a la derecha. Nota: usar solo cuando 𝑛𝑝≥50 y 𝑛(1
+−𝑝)≥50</p>
+<p><strong>EJEMPLO</strong> Se seleccionó una muestra de 487 mujeres no
+fumadoras de peso normal (que había dado a luz). 7.2% de estos
+nacimientos dieron por resultado niños con bajo peso al nacer (menos de
+2500 g). Calcule un intervalo de confianza con un nivel de confianza del
+93% para la proporción de todos esos nacimientos que dieron por
+resultado niños de bajo peso al nacer.</p>
+<pre class="r"><code>prop.test(x=72,n=1000,conf.level=0.93)</code></pre>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  72 out of 1000, null probability 0.5
+## X-squared = 731.02, df = 1, p-value &lt; 2.2e-16
+## alternative hypothesis: true p is not equal to 0.5
+## 93 percent confidence interval:
+##  0.05809659 0.08879847
+## sample estimates:
+##     p 
+## 0.072</code></pre>
 <p><em>Intervalo de confianza para la proporción</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/oJv6d9IECRo?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
+<div id="ic-para-la-varianza" class="section level2">
+<h2>IC para la varianza</h2>
+<p>Si <span class="math inline">\(𝑠^2\)</span> es la varianza de una
+muestra aleatoria de tamaño 𝑛 de una población normal, un intervalo de
+confianza aproximado de (1−𝛼) 100% para <span
+class="math inline">\(𝜎^2\)</span> está dado por</p>
+<p><span class="math display">\[\huge \frac {(n−1)𝑠^2}{\chi^2_{ \frac
+{𝛼} {2},𝑛−1} } &lt;𝜎^2&lt;\frac {(n−1)𝑠^2}{\chi^2_{1- \frac {𝛼} {2},𝑛−1}
+}\]</span></p>
+<p>donde los denominadores son obtenidos de una chi-cuadrada. Nota: un
+intervalo de confianza para 𝜎 se puede obtener tomando raíz cuadrada en
+los límites del intervalo anterior.</p>
+<p><strong>Ejemplo</strong> Se tienen los datos de las horas de
+ejercicio que hacen 10 adolescentes por semana, calcule un intervalo de
+confianza para la varianza del tiempo con un NC del 98%.</p>
+<pre class="r"><code>library(EnvStats)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;EnvStats&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     predict, predict.lm</code></pre>
+<pre class="r"><code>library(carData)
+
+carData::Blackmore$exercise[1:10]</code></pre>
+<pre><code>##  [1] 2.71 1.94 2.36 1.54 8.63 0.14 0.14 0.00 0.00 5.08</code></pre>
+<pre class="r"><code>x=carData::Blackmore$exercise[1:10]
+
+varTest(x, conf.level=0.95)</code></pre>
+<pre><code>## 
+## Results of Hypothesis Test
+## --------------------------
+## 
+## Null Hypothesis:                 variance = 1
+## 
+## Alternative Hypothesis:          True variance is not equal to 1
+## 
+## Test Name:                       Chi-Squared Test on Variance
+## 
+## Estimated Parameter(s):          variance = 7.618471
+## 
+## Data:                            x
+## 
+## Test Statistic:                  Chi-Squared = 68.56624
+## 
+## Test Statistic Parameter:        df = 9
+## 
+## P-value:                         5.813905e-11
+## 
+## 95% Confidence Interval:         LCL =  3.60443
+##                                  UCL = 25.39124</code></pre>
 <p><em>Intervalo de confianza para la varianza</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Pw66ZHxzAF4?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+</div>
+</div>
+<div id="intervalos-de-confianza-para-dos-muestras"
+class="section level1">
+<h1>Intervalos de confianza para dos muestras</h1>
 <p><em>Intervalo de confianza para la diferencia de medias con varianzas
 iguales</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/aMOINMuUXVc?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -404,6 +725,8 @@ proporciones</em></p>
 pareadas</em></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/hcEaKfN28Y0?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+<p><a href="tallerIC.html" target="_blank"> Taller intervalos de
+confianza</a></p>
 </div>
 
 <br>
@@ -413,6 +736,8 @@ pareadas</em></p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -445,6 +770,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

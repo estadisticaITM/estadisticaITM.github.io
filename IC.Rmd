@@ -1,41 +1,28 @@
 ---
 title: "Intervalos de confianza"
-output: html_document
-
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
 ---
 
 
-
-[clase](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/Intervalos%20de%20confianzajtg.pdf)
-
 [Fórmulas](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/f%C3%B3rmulas.pdf)
-
 
 <a href="tallerIC.html" target="_blank"> Taller intervalos de confianza</a>
 
-La inferencia estadística consiste en aquellos métodos por medio de los cuales se realizan inferencias o generalizaciones acerca de una población. 
-
-## estimación por intervalo
-
-```{r echo=FALSE}
+```{r echo=FALSE,out.width="80%",fig.align='center'}
 library(DiagrammeR)
 # A minimal plot
-
-
 DiagrammeR("graph LR;
-          
-          
-          
            Población-->|Distribuciones de muestreo| Muestra
-           Muestra-->|Inferencial IC PH| Población
-           ")
-            
-
+           Muestra-->|Inferencial IC PH| Población")
 ```
 
 
-$$\Huge  \leftrightarrows$$
-**Estimación por intervalo**
+# Estimación por intervalo
+
+
 Una estimación por intervalo de un parámetro $\theta$ de la población es un intervalo de la forma: 
 
 $$\hat \theta_{inf}<\theta<\hat \theta_{sup}$$
@@ -43,50 +30,238 @@ Donde los valores estimados dependen del valor estimado de $\theta$ y de la dist
 
 
 
-```{r, echo=F, out.width="10%", fig.align='center'}
+```{r, echo=F, out.width="80%", fig.align='center'}
 knitr::include_graphics("imagen/ic.png")
 ```
 
  
-**Nivel de confianza y Nivel de significancia**
+# Intervalo de confianza
 
+La inferencia estadística consiste en aquellos métodos por medio de los cuales se realizan inferencias o generalizaciones acerca de una población. 
+
+
+
+
+# Nivel de confianza y de significancia
+
+Nivel de confianza: Probabilidad máxima con la que se asegura que un parámetro a estimar se encuentra dentro de un intervalo estimado.
+
+Nivel de significancia: Máximo error que se comete en la estimación usualmente se denota como $\alpha$.
 
 $$\huge NC+\alpha=1$$
-**Nivel de confianza:**
+Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \theta_{sup}$ con un NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
 
 
-```{r}
+```{r echo=FALSE}
+library(htmltools)
+library(reactable)
+library(crosstalk)
 
 
-c_graph <- create_graph() %>%
-  add_node(label="Población") %>%
-  add_node(label="Distribuciones de muestreo") %>%
-  add_node(label="Muestra") %>%
-  add_node(label="Inferencial") %>%
-  add_edge(from = 1, to = 2)%>% 
-  add_edge(from = 2, to = 3)%>% 
-  add_edge(from = 3, to = 4)%>% 
-  add_edge(from = 4, to = 1)
-
-render_graph(c_graph)
+m <- 0.9
+x=seq(-5,5,0.001)        
+curve(dnorm(x, mean=0, sd=1),
+          from=-5,
+          to=5,
+          ylab="Densidad",
+          las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+          xaxt = "n")
+    grid()
 
 
+        
+        text(0, .1,round(m,3),cex=2)
+        text(-2.5, .1,round((1-m)/2,3),cex=2)
+        text(2.5,.1,round((1-m)/2,3),cex=2)
+        ns=1-m
+        ns2=round(qnorm(ns/2,mean=0,sd=1),3)
+        ns3=round(qnorm((1-(ns/2)),mean=0,sd=1),3)
+        axis(1, at = c(-4,ns2, 0,ns3, 4))
+        
+        polygon(c(x[x <= ns2], ns2), c(dnorm(x[x <=ns2]),dnorm(max(x))), col="lightblue")
+        polygon(c(x[x >= ns3], ns3), c(dnorm(x[x >=ns3]),dnorm(max(x))), col="lightblue")
+        
 
+
+
+
+
+nc=c(0.9,0.95,0.99)
+alfa=1-nc
+alfa2=alfa/2
+
+dn=round(qnorm(alfa2,mean=0, sd=1),3)
+ncp <- seq(0, 6, length.out = 31)
+dt=round(dt(df=2,ncp))
+
+
+data <- data.frame(nc,alfa,alfa2,-dn)
+
+colnames(data)=c("Nivel de confianza","alfa","alfa/2","Cuantil")
+data <- SharedData$new(data)
+
+distri=c("normal", "t-student")
+
+nro=c(1:10)
+
+shiny::fluidRow(
+  shiny::column(
+    1,
+     filter_checkbox("distri", "distri", data, ~distri),
+    filter_select("qb", "Grados de libertad", data, ~nro)
+  ),
+  shiny::column(
+    10,
+    reactable(data, 
+               defaultColDef = colDef(
+    header = function(value) gsub(".", " ", value, fixed = TRUE),
+    cell = function(value) format(value, nsmall = 1),
+    align = "center",
+    minWidth = 70,
+    headerStyle = list(background = "#f7f7f8")
+  ),
+  columns = list(
+    distri = colDef(minWidth = 140)  # overrides the default
+  ),
+                        minRows = 3)
+  )
+)
 
 
 ```
+
+
+# Intervalo de confianza para una muestra
+
+## IC para la media
+
+
+
+```{r}
+library(DiagrammeR)
+
+DiagrammeR("graph TB;
+  
+  A{sigma conocida}-->|Si| C[Normal]
+  A-->|No| B{n mayor q 30}
+  B-->|No| D[t student]
+  B-->|Si| C
+  
+           ")
+            
+```
+### con la varianza conocida
+
+Si $\bar x$ es la media de una muestra aleatoria de tamaño 𝑛 de una población normal con varianza $\sigma^2$ conocida, un intervalo de
+confianza del 1 − 𝛼 100% para 𝜇 está dado por:
+
+
+$$\huge \bar x-Z_{\alpha/2} \frac{\sigma}{\sqrt n} \leq \mu \leq \bar x+Z_{\alpha/2} \frac{\sigma}{\sqrt n}$$
+
+donde $Z_{\alpha/2}$ es el valor z que deja un área de 𝛼/2 a la derecha.
+
+
+**Ejemplo**
+Una muestra aleatoria de 110 relámpagos dieron por resultado una duración de eco de radar promedio muestral de 0.81 segundos y una desviación estándar de 0.34 segundos. Calcule un intervalo de confianza de 95% para la duración de eco promedio e interprete el intervalo resultante
+
+```{r}
+library(BSDA)
+zsum.test(mean.x=0.81,sigma.x=0.34, n.x=110,conf.level=0.95)
+
+```
+
+
 
 *Intervalo de confianza para la media con varianza conocida*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/tnDFgEv_a-I?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+### con la varianza desconocida
+
+Si $\bar x$ es la media de una muestra aleatoria de tamaño 𝑛 de una población normal con varianza $\sigma^2$ desconocida, un intervalo de confianza del 1 − 𝛼 100% para 𝜇 está dado por:
+
+
+$$\huge \bar x-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}$$
+
+donde $Z_{\alpha/2}$ es el valor z que deja un área de 𝛼/2 a la derecha.
+
+
+**Ejemplo**
+Se tienen los datos de las horas de ejercicio que hacen 10 adolescentes por semana, calcule un intervalo de confianza para el tiempo promedio con un NC del 90%
+
+
+```{r}
+
+library(carData)
+
+carData::Blackmore$exercise[1:10]
+
+x=carData::Blackmore$exercise[1:10]
+
+t.test(x=x,conf.level = 0.9)
+
+```
+
+## IC para la proporción
+
+Si $\hat p$ es la proporción de éxitos en una muestra aleatoria de tamaño 𝑛, un intervalo de confianza aproximado de (1−𝛼) 100% para 𝑝 está dado por 
+
+$$\huge \hat p-Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}}\leq p \leq \hat p+Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}} $$
+
+
+donde $𝑍_{𝛼/2}$  es el valor z que deja un área de 𝛼/2 a la derecha. Nota: usar solo cuando 𝑛𝑝≥50 y 𝑛(1 −𝑝)≥50
+
+**EJEMPLO**
+Se seleccionó una muestra de 487 mujeres no fumadoras de peso normal (que había dado a luz). 7.2% de estos nacimientos dieron por resultado niños con bajo peso al nacer (menos de 2500 g). Calcule un intervalo de confianza con un nivel de confianza del 93% para la proporción de todos esos nacimientos que dieron por resultado niños de bajo peso al nacer.
+
+```{r}
+prop.test(x=72,n=1000,conf.level=0.93)
+```
+
+
+
 *Intervalo de confianza para la proporción*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/oJv6d9IECRo?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+## IC para la varianza
+
+Si $𝑠^2$ es la varianza de una muestra aleatoria de tamaño 𝑛 de una población normal, un intervalo de confianza aproximado de (1−𝛼) 100% para $𝜎^2$ está dado por 
+
+$$\huge \frac {(n−1)𝑠^2}{\chi^2_{ \frac {𝛼} {2},𝑛−1} } <𝜎^2<\frac {(n−1)𝑠^2}{\chi^2_{1- \frac {𝛼} {2},𝑛−1} }$$
+
+donde los denominadores son obtenidos de una chi-cuadrada. 
+Nota: un intervalo de confianza para 𝜎 se puede obtener tomando raíz cuadrada en los límites del intervalo anterior.
+
+**Ejemplo**
+Se tienen los datos de las horas de ejercicio que hacen 10 adolescentes por semana, calcule un intervalo de confianza para la varianza del tiempo con un NC del 98%.
+
+```{r}
+
+library(EnvStats)
+library(carData)
+
+carData::Blackmore$exercise[1:10]
+
+x=carData::Blackmore$exercise[1:10]
+
+varTest(x, conf.level=0.95)
+
+```
+
 *Intervalo de confianza para la varianza*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Pw66ZHxzAF4?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+# Intervalos de confianza para dos muestras
+
+
+
+
 
 *Intervalo de confianza para la diferencia de medias con varianzas iguales*
 
@@ -107,3 +282,6 @@ render_graph(c_graph)
 *Intervalo de confianza para la diferencia de medias pareadas*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/hcEaKfN28Y0?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<a href="tallerIC.html" target="_blank"> Taller intervalos de confianza</a>
+
