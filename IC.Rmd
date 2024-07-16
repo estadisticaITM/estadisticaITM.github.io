@@ -25,7 +25,7 @@ DiagrammeR("graph LR;
 
 Una estimación por intervalo de un parámetro $\theta$ de la población es un intervalo de la forma: 
 
-$$\hat \theta_{inf}<\theta<\hat \theta_{sup}$$
+$$\Large \hat \theta_{inf}<\theta<\hat \theta_{sup}$$
 Donde los valores estimados dependen del valor estimado de $\theta$ y de la distribución de muestreo.
 
 
@@ -40,15 +40,20 @@ knitr::include_graphics("imagen/ic.png")
 La inferencia estadística consiste en aquellos métodos por medio de los cuales se realizan inferencias o generalizaciones acerca de una población. 
 
 
-
+<iframe width="280" height="160" src="https://www.youtube.com/embed/cMqgG_lBC2U" title="Estimación puntual y estimación por intervalo para un parámetro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 # Nivel de confianza y de significancia
 
-Nivel de confianza: Probabilidad máxima con la que se asegura que un parámetro a estimar se encuentra dentro de un intervalo estimado.
+<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU" title="¿Qué es el Nivel de Confianza de un intervalo?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+**Nivel de confianza:** 
 
-Nivel de significancia: Máximo error que se comete en la estimación usualmente se denota como $\alpha$.
+Probabilidad máxima con la que se asegura que un parámetro a estimar se encuentra dentro de un intervalo estimado.
 
-$$\huge NC+\alpha=1$$
+**Nivel de significancia:**
+
+Máximo error que se comete en la estimación usualmente se denota como $\alpha$.
+
+$$\Large NC+\alpha=1$$
 Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \theta_{sup}$ con un NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
 
 
@@ -137,7 +142,7 @@ shiny::fluidRow(
 
 
 
-```{r}
+```{r echo=FALSE}
 library(DiagrammeR)
 
 DiagrammeR("graph TB;
@@ -156,7 +161,7 @@ Si $\bar x$ es la media de una muestra aleatoria de tamaño 𝑛 de una poblaci�
 confianza del 1 − 𝛼 100% para 𝜇 está dado por:
 
 
-$$\huge \bar x-Z_{\alpha/2} \frac{\sigma}{\sqrt n} \leq \mu \leq \bar x+Z_{\alpha/2} \frac{\sigma}{\sqrt n}$$
+$$\Large \bar x-Z_{\alpha/2} \frac{\sigma}{\sqrt n} \leq \mu \leq \bar x+Z_{\alpha/2} \frac{\sigma}{\sqrt n}$$
 
 donde $Z_{\alpha/2}$ es el valor z que deja un área de 𝛼/2 a la derecha.
 
@@ -182,7 +187,7 @@ zsum.test(mean.x=0.81,sigma.x=0.34, n.x=110,conf.level=0.95)
 Si $\bar x$ es la media de una muestra aleatoria de tamaño 𝑛 de una población normal con varianza $\sigma^2$ desconocida, un intervalo de confianza del 1 − 𝛼 100% para 𝜇 está dado por:
 
 
-$$\huge \bar x-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}$$
+$$\Large \bar x-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}$$
 
 donde $Z_{\alpha/2}$ es el valor z que deja un área de 𝛼/2 a la derecha.
 
@@ -207,7 +212,7 @@ t.test(x=x,conf.level = 0.9)
 
 Si $\hat p$ es la proporción de éxitos en una muestra aleatoria de tamaño 𝑛, un intervalo de confianza aproximado de (1−𝛼) 100% para 𝑝 está dado por 
 
-$$\huge \hat p-Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}}\leq p \leq \hat p+Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}} $$
+$$\Large \hat p-Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}}\leq p \leq \hat p+Z_{\alpha/2} \sqrt{\frac{\hat p(1-\hat p)}{n}} $$
 
 
 donde $𝑍_{𝛼/2}$  es el valor z que deja un área de 𝛼/2 a la derecha. Nota: usar solo cuando 𝑛𝑝≥50 y 𝑛(1 −𝑝)≥50
@@ -230,7 +235,7 @@ prop.test(x=72,n=1000,conf.level=0.93)
 
 Si $𝑠^2$ es la varianza de una muestra aleatoria de tamaño 𝑛 de una población normal, un intervalo de confianza aproximado de (1−𝛼) 100% para $𝜎^2$ está dado por 
 
-$$\huge \frac {(n−1)𝑠^2}{\chi^2_{ \frac {𝛼} {2},𝑛−1} } <𝜎^2<\frac {(n−1)𝑠^2}{\chi^2_{1- \frac {𝛼} {2},𝑛−1} }$$
+$$\Large \frac {(n−1)𝑠^2}{\chi^2_{ \frac {𝛼} {2},𝑛−1} } <𝜎^2<\frac {(n−1)𝑠^2}{\chi^2_{1- \frac {𝛼} {2},𝑛−1} }$$
 
 donde los denominadores son obtenidos de una chi-cuadrada. 
 Nota: un intervalo de confianza para 𝜎 se puede obtener tomando raíz cuadrada en los límites del intervalo anterior.
@@ -259,25 +264,121 @@ varTest(x, conf.level=0.95)
 
 # Intervalos de confianza para dos muestras
 
+## IC para la diferencia de medias
 
+Si el intervalo contiene el cero significa que hay igualdad entre medias
+ 
+ 
+### Con varianzas conocidas
 
+Si$\bar x_1$ y $\bar x_2$son las medias muestrales aleatorias independientes de tamaño $n_1$ y $n_2$ de poblaciones normales con varianzas conocidas $\sigma_1$ y $\sigma_2$ respectivamente, un intervalo de confianza de 1-𝛼 100 para $\mu_1-\mu_2$ está dado por:
 
+$$\Large (\bar x_1-\bar x_2)-Z_{\frac{\alpha}{2}}\sqrt{\left( \frac{\sigma_1^2}{n_1}\right)+\left( \frac{\sigma_2^2}{n_2}\right)}<\mu_1-\mu_2<
+(\bar x_1-\bar x_2)+Z_{\frac{\alpha}{2}}\sqrt{\left( \frac{\sigma_1^2}{n_1}\right)+\left( \frac{\sigma_2^2}{n_2}\right)}$$
+
+### Con varianzas desconocidas pero iguales
+
+Si$\bar x_1$ y $\bar x_2$son las medias muestrales aleatorias independientes de tamaño $n_1$ y $n_2$ de poblaciones normales con varianzas iguales pero desconocidas $\sigma_1$2𝑦$\sigma_2$ respectivamente, un intervalo de confianza de (1-𝛼)100% para $\mu_1-\mu_2$ está dado por:
+
+$$\Large (\bar x_1-\bar x_2)-t_{\frac{\alpha}{2},v}S_p\sqrt{\left( \frac{1}{n_1}\right)+\left( \frac{1}{n_2} \right)}<\mu_1-\mu_2< (\bar x_1-\bar x_2)+ t_{\frac{\alpha}{2},v}S_p\sqrt{\left( \frac{1}{n_1}\right)+\left( \frac{1}{n_2}\right)}$$
+$$v=n_1-n_2-2$$
+
+$$S^2_p=\frac{(n_1)S_1^2+(n_2)S_2^2}{n_1+n_2-2}$$
 
 *Intervalo de confianza para la diferencia de medias con varianzas iguales*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/aMOINMuUXVc?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+
+### Con varianzas desconocidas y diferentes
+
+Si$\bar x_1$ y $\bar x_2$son las medias muestrales aleatorias independientes de tamaño $n_1$ y $n_2$ de poblaciones normales con varianzas iguales pero desconocidas $\sigma_1$2𝑦$\sigma_2$ respectivamente, un intervalo de confianza de (1-𝛼)100% para $\mu_1-\mu_2$ está dado por:
+
+$$\Large (\bar x_1-\bar x_2)-t_{\frac{\alpha}{2},v}\sqrt{\left( \frac{S_1^2}{n_1}\right)+\left( \frac{S_2^2}{n_2} \right)}<\mu_1-\mu_2< (\bar x_1-\bar x_2)+ t_{\frac{\alpha}{2},v}\sqrt{\left( \frac{S_1^2}{n_1}\right)+\left( \frac{S_2^2}{n_2} \right)}$$
+$$v=\frac{\left( \left( \frac{S_1^2}{n_1}\right)+\left( \frac{S_2^2}{n_2} \right) \right) ^2}{\frac{\left( \frac{S_1^2}{n_1}\right)^2}{n_1-1}+\frac{\left( \frac{S_1^2}{n_1}\right)^2}{n_2-1}}$$
+
 *Intervalo de confianza para la diferencia de medias con varianzas desconocidas y diferentes*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/YIImQIRDGMg?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+## IC para la razón de varianzas
+
+Entre los diferentes usos que se le da a este intervalo de confianza el principal consiste en determinar si hay igualdad entre dos varianzas, esto se afirma si el intervalo contiene al 1, de contenerlo se dice que hay evidencia de que las varianzas poblacionales son iguales.
+
+$$\frac{S_1^2}{S_2^2}*\frac{1}{f_{\frac{\alpha}{2},n_1-1,n_2-1}}<\frac{\sigma_1^2}{\sigma_2^2}<\frac{S_1^2}{S_2^2}*f_{\frac{\alpha}{2},n_2-1,n_1-1}$$
 *Intervalo de confianza para la razón de varianzas*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/SzXfVJbPh-0?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+**EJEMPLO**
+
+Se realizó una prueba para comparar un método nuevo con el método estándar. Se entrenaron dos grupos de 9 nuevos empleados cada grupo durante un período de un mes; Se midió el tiempo en minutos que necesito cada empleado en armar cierto dispositivo al final del período de entrenamiento; los resultados obtenidos fueron:
+
+
+```{r}
+E<-c(32,37,35,28,41,44,35,31,34)
+N<-c(35,31,29,25,34,40,27,32,31)
+
+```
+
+
+
+Admitiendo que el tiempo de armado utilizado en ambos métodos son variables aleatorias independientes y distribuidas normalmente: 
+
+1. ¿Tiene igual varianza? 
+
+```{r}
+###prueba de varianza
+var.test(E,N)
+```
+
+
+¿Se puede aceptar la hipótesis de igualdad de tiempos de armado, en función de los datos y con un nivel de confianza del 95%?
+
+```{r}
+t.test (E,N,paired=T,conf.level=0.95)
+```
+
+
+## IC para la diferencia de proporciones
+
+$\bar p_x$ y $\bar p_y$son las proporciones de éxito de dos muestras aleatorias independientes de tamaño $n_1$ y $n_2$, entonces un intervalo de confianza de (1 −𝛼) 100% para $𝑝1−𝑝2$ está dado por:
+
+
+$$\Large (\bar p_x-\bar p_y)-Z_{\frac{\alpha}{2}}\sqrt{\frac{p_x q_x}{n_x}+ \frac{p_y q_y}{n_y}}<p_x-p_y<(\bar p_x-\bar p_y)+Z_{\frac{\alpha}{2}}\sqrt{\frac{p_x q_x}{n_x}+ \frac{p_y q_y}{n_y}}$$
+Si el intervalo contiene el cero significa que hay igualdad entre medias
+
+
 *Intervalo de confianza para la diferencia de proporciones*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Bwbe7cvkDn4?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**Ejemplo**
+Dos grupos son considerados en un grupo sobre la efectividad de una nueva vacuna. El primer grupo, que recibe la vacuna contiene 200.745 individuos. El Segundo grupo, que recibe un placebo consiste de 201.229 individuos. Hubo 57 casos de enfermedad en el primer grupo y 142 casos en el segundo grupo. se desea saber si la vacuna es o no eficiente, use un intervalo de confianza con un nivel de significancia $\alpha=0.05$ para conocer las relaciones entre las proporciones p1 y p2.
+
+```{r}
+x <- c(57,142)
+n <- c(200745,201229)
+prop.test(x, n)
+```
+
+
+
+
+Halle un intervalo de confianza al 95% para la diferencia de proporciones. Que concluye
+
+
+## Intervalo de confianza para la diferencia de medias pareadas
+Si $\hat d$ y $𝑠_𝑑$ son la media y la desviación estándar de las diferencias distribuidas normalmente de 𝑛pares aleatorios de mediciones, entonces un intervalo de confianza de (1-𝛼)100% para $𝜇_𝑑=𝜇_1-𝜇_2$
+está dado por:
+
+$$\Large \bar d-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}$$
+ҧ
+𝑑−𝑡𝛼2,𝑛−1𝑠𝑑𝑛<𝜇<ҧ 𝑑+𝑡𝛼2,𝑛−1𝑠𝑑𝑛
+donde
+𝑣= 𝑛−
 
 *Intervalo de confianza para la diferencia de medias pareadas*
 
