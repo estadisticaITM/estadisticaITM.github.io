@@ -4,6 +4,55 @@ output: html_document
 
 ---
 
+**Prueba de hipótesis**
+
+Una hiótesis estadística es una aseveración o conjetura con respecto a una o más poblaciones.
+
+
+**Tipos de hipótesis**
+
+
+
+$H_0$= Hipótesis nula, status quo
+
+
+
+$H_1$= Hipótesis alternativa, sospecha
+
+
+
+
+**Tipos de errores**
+
+|Decisión|$H_0$ verdadera|$H_0$ Falsa|
+|:------:|:-------------:|:---------:|
+|Aceptar $H_0$|$\checkmark$| Error tipo II $\beta$|
+|Rechazar $H_0$|Error tipo I $\alpha$|$\checkmark$|
+
+
+```{r echo=FALSE}
+library(DiagrammeR)
+
+DiagrammeR("graph TB;
+  
+  A[Definir las hipótesis]-->B{Calcular el estadístico}
+  
+  A-->|No| B{n mayor q 30}
+  B-->|No| D[t student]
+  B-->|Si| C
+  
+           ")
+            
+```
+
+
+Un procedimiento de prueba se especifica como sigue:
+1. Un estadístico de prueba, una función de los datos muestrales en los cuales ha de
+basarse la decisión (rechazar H0 o no rechazar H0)
+2. Una región de rechazo, el conjunto de todos los valores estadísticos de prueba por
+los cuales H0 será rechazada.
+La hipótesis nula será rechazada entonces si y sólo si el valor estadístico de prueba
+observado o calculado queda en la región de rechazo.
 
 
 

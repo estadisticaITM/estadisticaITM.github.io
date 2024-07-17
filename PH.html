@@ -32,6 +32,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/d3-3.3.8/d3.min.js"></script>
+<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/chromatography-0.1/chromatography.js"></script>
+<script src="site_libs/DiagrammeR-binding-1.0.11/DiagrammeR.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -327,6 +335,49 @@ $(document).ready(function () {
 </div>
 
 
+<p><strong>Prueba de hipótesis</strong></p>
+<p>Una hiótesis estadística es una aseveración o conjetura con respecto
+a una o más poblaciones.</p>
+<p><strong>Tipos de hipótesis</strong></p>
+<p><span class="math inline">\(H_0\)</span>= Hipótesis nula, status
+quo</p>
+<p><span class="math inline">\(H_1\)</span>= Hipótesis alternativa,
+sospecha</p>
+<p><strong>Tipos de errores</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Decisión</th>
+<th align="center"><span class="math inline">\(H_0\)</span>
+verdadera</th>
+<th align="center"><span class="math inline">\(H_0\)</span> Falsa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Aceptar <span class="math inline">\(H_0\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<td align="center">Error tipo II <span
+class="math inline">\(\beta\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Rechazar <span
+class="math inline">\(H_0\)</span></td>
+<td align="center">Error tipo I <span
+class="math inline">\(\alpha\)</span></td>
+<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="htmlwidget-ebef28c03cf6138aa739" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ebef28c03cf6138aa739">{"x":{"diagram":"graph TB;\n  \n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  \n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
+<p>Un procedimiento de prueba se especifica como sigue: 1. Un
+estadístico de prueba, una función de los datos muestrales en los cuales
+ha de basarse la decisión (rechazar H0 o no rechazar H0) 2. Una región
+de rechazo, el conjunto de todos los valores estadísticos de prueba por
+los cuales H0 será rechazada. La hipótesis nula será rechazada entonces
+si y sólo si el valor estadístico de prueba observado o calculado queda
+en la región de rechazo.</p>
 <p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
 <p><a
