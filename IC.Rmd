@@ -15,8 +15,12 @@ output:
 library(DiagrammeR)
 # A minimal plot
 DiagrammeR("graph LR;
-           Población-->|Distribuciones de muestreo| Muestra
-           Muestra-->|Inferencial IC PH| Población")
+
+           A[Población]-->|Distribuciones de muestreo| B[Muestra]
+           B-->|Inferencial IC PH| A
+           
+           ")
+
 ```
 
 
@@ -307,7 +311,10 @@ $$v=\frac{\left( \left( \frac{S_1^2}{n_1}\right)+\left( \frac{S_2^2}{n_2} \right
 
 Entre los diferentes usos que se le da a este intervalo de confianza el principal consiste en determinar si hay igualdad entre dos varianzas, esto se afirma si el intervalo contiene al 1, de contenerlo se dice que hay evidencia de que las varianzas poblacionales son iguales.
 
-$$\frac{S_1^2}{S_2^2}*\frac{1}{f_{\frac{\alpha}{2},n_1-1,n_2-1}}<\frac{\sigma_1^2}{\sigma_2^2}<\frac{S_1^2}{S_2^2}*f_{\frac{\alpha}{2},n_2-1,n_1-1}$$
+$$\Large \frac{S_1^2}{S_2^2}f_{\frac{\alpha}{2},n_2-1,n_1-1}<\frac{\sigma_1^2}{\sigma_2^2}<\frac{S_1^2}{S_2^2}*f_{1-\frac{\alpha}{2},n_2-1,n_1-1}$$
+
+
+
 *Intervalo de confianza para la razón de varianzas*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/SzXfVJbPh-0?list=PLfX5C7cc6LRKG-OUUatElez6mzu1B9UjR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -374,11 +381,21 @@ Halle un intervalo de confianza al 95% para la diferencia de proporciones. Que c
 Si $\hat d$ y $𝑠_𝑑$ son la media y la desviación estándar de las diferencias distribuidas normalmente de 𝑛pares aleatorios de mediciones, entonces un intervalo de confianza de (1-𝛼)100% para $𝜇_𝑑=𝜇_1-𝜇_2$
 está dado por:
 
-$$\Large \bar d-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar x+t_{\alpha/2} \frac{s}{\sqrt n}$$
-ҧ
-𝑑−𝑡𝛼2,𝑛−1𝑠𝑑𝑛<𝜇<ҧ 𝑑+𝑡𝛼2,𝑛−1𝑠𝑑𝑛
-donde
-𝑣= 𝑛−
+$$\Large \bar d-t_{\alpha/2} \frac{s}{\sqrt n} \leq \mu \leq \bar d+t_{\alpha/2} \frac{s}{\sqrt n}$$
+**Ejemplo**
+Se tienen los datos del coeficiente intelectual verbal y matemático de un grupo de personas,  se desea saber si hay diferencias entre los coeficientes, use un intervalo de confianza para la diferencia pareada del 92%
+
+
+```{r}
+#IQ MATEMATICO
+iqm=carData::Wong$piq[1:10]
+
+#IQ VERBAL
+iq=carData::Wong$viq[1:10]
+
+t.test(x=iqm,y=iq, paired = TRUE,conf.level = 0.92)
+```
+
 
 *Intervalo de confianza para la diferencia de medias pareadas*
 
