@@ -1,8 +1,11 @@
 ---
 title: "Pruebas de hipótesis"
-output: html_document
-
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
 ---
+
 
 **Prueba de hipótesis**
 
@@ -14,8 +17,6 @@ Una hiótesis estadística es una aseveración o conjetura con respecto a una o 
 
 
 $H_0$= Hipótesis nula, status quo
-
-
 
 $H_1$= Hipótesis alternativa, sospecha
 
@@ -30,38 +31,109 @@ $H_1$= Hipótesis alternativa, sospecha
 |Rechazar $H_0$|Error tipo I $\alpha$|$\checkmark$|
 
 
+**Procedimiento de prueba para rechazar o no $H_0$**
+
+- Algunos videos de interés
+
+*Pasos para realizar una prueba de hipótesis*
+<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ```{r echo=FALSE}
 library(DiagrammeR)
 
 DiagrammeR("graph TB;
-  
   A[Definir las hipótesis]-->B{Calcular el estadístico}
-  
-  A-->|No| B{n mayor q 30}
-  B-->|No| D[t student]
-  B-->|Si| C
-  
+  B-->D[Definir región de aceptación y rechazo]
+  B-->C[Calcular valor p]
+  C-->E[Tomar desición]
+  D-->E[Tomar desición]
            ")
             
 ```
 
 
-Un procedimiento de prueba se especifica como sigue:
-1. Un estadístico de prueba, una función de los datos muestrales en los cuales ha de
-basarse la decisión (rechazar H0 o no rechazar H0)
-2. Una región de rechazo, el conjunto de todos los valores estadísticos de prueba por
-los cuales H0 será rechazada.
-La hipótesis nula será rechazada entonces si y sólo si el valor estadístico de prueba
-observado o calculado queda en la región de rechazo.
 
+**Tipos de pruebas según la región de aceptación y rechazo**
+
+Hipótesis nula
+
+$$H_0:\theta=\theta_0$$
+Hipótesis alternativa
+
+
+```{r echo=FALSE,fig.asp=0.6,fig.align='center' }
+
+par(mfrow=c(1,3))
+x=seq(-5,5,0.001)
+
+# cola inferior
+
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,
+      to=5,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",
+       main =  "Cola inferior"  )
+      mtext(expression(H[1] == theta ~ "<" ~ theta[0] ) , side = 3)
+
+polygon(c(x[x <= -1.5],-1.5), c(dnorm(x[x<=-1.5]),0), col="lightblue")
+axis(1, at = c(-4,-1.5, 0,4))
+
+# cola superior
+
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,
+      to=5,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",
+      main =  "Cola superior"  )
+      mtext(expression(H[1] == theta ~ ">" ~ theta[0] ) , side = 3)
+      
+      
+polygon(c(x[x >=1.5],1.5), c(dnorm(x[x >=1.5]),0), col="lightblue")
+axis(1, at = c(-4, 0,1.5, 4))
+     
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,
+      to=5,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",
+      main =  "Doble cola"  )
+      mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3)
+
+m <- 0.9
+
+x=seq(-5,5,0.001)
+text(0, .1,round(m,3),cex=1)
+text(-2.5, .1,round((1-m)/2,3),cex=1)
+text(2.5,.1,round((1-m)/2,3),cex=1)
+ns=1-m
+ns2=round(qnorm(ns/2,mean=0,sd=1),2)
+ns3=round(qnorm((1-(ns/2)),mean=0,sd=1),2)
+axis(1, at = c(-4,ns2, 0,ns3, 4))
+
+polygon(c(x[x <= ns2], ns2), c(dnorm(x[x <=ns2]),0), col="lightblue")
+polygon(c(x[x >= ns3], ns3), c(dnorm(x[x >=ns3]),0), col="lightblue")
+
+
+
+```
+
+
+# Valor p
+
+• Probabilidad de obtener un estadístico (igual al que se obtuvo o más extremo)
+
+• Probabilidad de equivocarse rechazando la hipótesis nula
 
 
 [Clase](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf)  
 
 [Intervalos de confianza y test de hipótesis con R](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf)
 
-- Algunos videos de interés
 
-*Pasos para realizar una prueba de hipótesis*
-<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

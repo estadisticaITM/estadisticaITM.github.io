@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -248,6 +251,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +327,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -369,25 +451,32 @@ class="math inline">\(\alpha\)</span></td>
 </tr>
 </tbody>
 </table>
-<div id="htmlwidget-ebef28c03cf6138aa739" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ebef28c03cf6138aa739">{"x":{"diagram":"graph TB;\n  \n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  \n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
-<p>Un procedimiento de prueba se especifica como sigue: 1. Un
-estadístico de prueba, una función de los datos muestrales en los cuales
-ha de basarse la decisión (rechazar H0 o no rechazar H0) 2. Una región
-de rechazo, el conjunto de todos los valores estadísticos de prueba por
-los cuales H0 será rechazada. La hipótesis nula será rechazada entonces
-si y sólo si el valor estadístico de prueba observado o calculado queda
-en la región de rechazo.</p>
-<p><a
-href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
-<p><a
-href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf">Intervalos
-de confianza y test de hipótesis con R</a></p>
+<p><strong>Procedimiento de prueba para rechazar o no <span
+class="math inline">\(H_0\)</span></strong></p>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
 <p><em>Pasos para realizar una prueba de hipótesis</em>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<div id="htmlwidget-ac3e8a5696642446a541" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac3e8a5696642446a541">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
+<p><strong>Tipos de pruebas según la región de aceptación y
+rechazo</strong></p>
+<p>Hipótesis nula</p>
+<p><span class="math display">\[H_0:\theta=\theta_0\]</span> Hipótesis
+alternativa</p>
+<p><img src="PH_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="valor-p" class="section level1">
+<h1>Valor p</h1>
+<p>• Probabilidad de obtener un estadístico (igual al que se obtuvo o
+más extremo)</p>
+<p>• Probabilidad de equivocarse rechazando la hipótesis nula</p>
+<p><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
+<p><a
+href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf">Intervalos
+de confianza y test de hipótesis con R</a></p>
+</div>
 
 <br>
 <hr>
@@ -396,6 +485,8 @@ de confianza y test de hipótesis con R</a></p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -428,6 +519,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
