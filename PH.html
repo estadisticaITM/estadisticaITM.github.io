@@ -418,7 +418,7 @@ div.tocify {
 
 
 <p><strong>Prueba de hipótesis</strong></p>
-<p>Una hiótesis estadística es una aseveración o conjetura con respecto
+<p>Una hipótesis estadística es una aseveración o conjetura con respecto
 a una o más poblaciones.</p>
 <p><strong>Tipos de hipótesis</strong></p>
 <p><span class="math inline">\(H_0\)</span>= Hipótesis nula, status
@@ -451,6 +451,48 @@ class="math inline">\(\alpha\)</span></td>
 </tr>
 </tbody>
 </table>
+<p>Error tipo I falso negativo <span
+class="math inline">\(\alpha\)</span>: Rechazar <span
+class="math inline">\(H_0\)</span>, dado que es verdadera</p>
+<p>Error tipo II falso positivo <span
+class="math inline">\(\alpha\)</span>: Aceptar <span
+class="math inline">\(H_0\)</span>, dado que es falsa</p>
+<p><strong>Ejemplos</strong></p>
+<p><img src="imagen/embarazo.png" width="80%" style="display: block; margin: auto;" /></p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="20%" />
+<col width="16%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formulación</th>
+<th><span class="math inline">\(H_0\)</span></th>
+<th><span class="math inline">\(H_1\)</span></th>
+<th>Falso positivo</th>
+<th>Falso negativo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Una prueba de embarazo</td>
+<td>No está embarazada</td>
+<td>Está embarazada</td>
+<td>Reportar que está embarazada cuando en realidad no está</td>
+<td>Reportar que no está embarazada cuando en realidad lo está</td>
+</tr>
+<tr class="even">
+<td>Prueba de genero de un bebe</td>
+<td>Feto femenino</td>
+<td>Feto masculino</td>
+<td>Reportar un feto masculino cuando en realidad es femenino</td>
+<td>Reportar un feto femenino cuando en realidad es masculino</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Procedimiento de prueba para rechazar o no <span
 class="math inline">\(H_0\)</span></strong></p>
 <ul>
@@ -458,14 +500,14 @@ class="math inline">\(H_0\)</span></strong></p>
 </ul>
 <p><em>Pasos para realizar una prueba de hipótesis</em>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-<div id="htmlwidget-ac3e8a5696642446a541" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac3e8a5696642446a541">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8f28123fb8c694e190c5" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8f28123fb8c694e190c5">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Tipos de pruebas según la región de aceptación y
 rechazo</strong></p>
 <p>Hipótesis nula</p>
 <p><span class="math display">\[H_0:\theta=\theta_0\]</span> Hipótesis
 alternativa</p>
-<p><img src="PH_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="PH_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="valor-p" class="section level1">
 <h1>Valor p</h1>
 <p>• Probabilidad de obtener un estadístico (igual al que se obtuvo o

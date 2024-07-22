@@ -9,7 +9,7 @@ output:
 
 **Prueba de hipótesis**
 
-Una hiótesis estadística es una aseveración o conjetura con respecto a una o más poblaciones.
+Una hipótesis estadística es una aseveración o conjetura con respecto a una o más poblaciones.
 
 
 **Tipos de hipótesis**
@@ -27,9 +27,28 @@ $H_1$= Hipótesis alternativa, sospecha
 
 |Decisión|$H_0$ verdadera|$H_0$ Falsa|
 |:------:|:-------------:|:---------:|
-|Aceptar $H_0$|$\checkmark$| Error tipo II $\beta$|
+|Aceptar $H_0$|$\checkmark$ | Error tipo II $\beta$|
 |Rechazar $H_0$|Error tipo I $\alpha$|$\checkmark$|
 
+
+
+
+Error tipo I falso negativo $\alpha$: Rechazar $H_0$, dado que es verdadera
+
+Error tipo II falso positivo $\alpha$: Aceptar $H_0$, dado que es falsa
+
+**Ejemplos**
+
+
+```{r, echo=F, out.width="80%", fig.align='center'}
+knitr::include_graphics("imagen/embarazo.png")
+```
+
+ 
+|Formulación     |             $H_0$|          $H_1$| Falso positivo|Falso negativo|
+|----------------|------------------|---------------|--------------------|--------------------|
+|Una prueba de embarazo|No está embarazada|Está embarazada|Reportar que está embarazada cuando en realidad no está|Reportar que no está embarazada cuando en realidad lo está|
+|Prueba de genero de un bebe|Feto femenino|Feto masculino|Reportar un feto masculino cuando en realidad es femenino|Reportar un feto femenino cuando en realidad es masculino|
 
 **Procedimiento de prueba para rechazar o no $H_0$**
 
