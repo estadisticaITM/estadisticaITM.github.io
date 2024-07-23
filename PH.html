@@ -417,15 +417,19 @@ div.tocify {
 </div>
 
 
-<p><strong>Prueba de hipótesis</strong></p>
+<div id="prueba-de-hipótesis" class="section level1">
+<h1>Prueba de hipótesis</h1>
 <p>Una hipótesis estadística es una aseveración o conjetura con respecto
 a una o más poblaciones.</p>
-<p><strong>Tipos de hipótesis</strong></p>
+<div id="tipos-de-hipótesis" class="section level2">
+<h2>Tipos de hipótesis</h2>
 <p><span class="math inline">\(H_0\)</span>= Hipótesis nula, status
 quo</p>
 <p><span class="math inline">\(H_1\)</span>= Hipótesis alternativa,
 sospecha</p>
-<p><strong>Tipos de errores</strong></p>
+</div>
+<div id="tipos-de-errores" class="section level2">
+<h2>Tipos de errores</h2>
 <table>
 <thead>
 <tr class="header">
@@ -455,7 +459,7 @@ class="math inline">\(\alpha\)</span></td>
 class="math inline">\(\alpha\)</span>: Rechazar <span
 class="math inline">\(H_0\)</span>, dado que es verdadera</p>
 <p>Error tipo II falso positivo <span
-class="math inline">\(\alpha\)</span>: Aceptar <span
+class="math inline">\(\beta\)</span>: Aceptar <span
 class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <p><strong>Ejemplos</strong></p>
 <p><img src="imagen/embarazo.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -493,31 +497,163 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Procedimiento de prueba para rechazar o no <span
-class="math inline">\(H_0\)</span></strong></p>
+</div>
+<div id="pasos-para-realizar-una-prueba-de-hipótesis"
+class="section level2">
+<h2>Pasos para realizar una prueba de hipótesis</h2>
+<div id="htmlwidget-afd60847a3fcfc4f0351" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-afd60847a3fcfc4f0351">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->F[Definir el error tipo I denotado por]\n  F-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
-<p><em>Pasos para realizar una prueba de hipótesis</em>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-<div id="htmlwidget-8f28123fb8c694e190c5" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8f28123fb8c694e190c5">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
-<p><strong>Tipos de pruebas según la región de aceptación y
-rechazo</strong></p>
-<p>Hipótesis nula</p>
-<p><span class="math display">\[H_0:\theta=\theta_0\]</span> Hipótesis
-alternativa</p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="tipos-de-pruebas-según-la-región-de-aceptación-y-rechazo"
+class="section level2">
+<h2>Tipos de pruebas según la región de aceptación y rechazo</h2>
+<p><strong>Hipótesis nula</strong></p>
+<p><span class="math display">\[\Large H_0:\theta=\theta_0\]</span>
+<strong>Hipótesis alternativa</strong></p>
 <p><img src="PH_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div id="valor-p" class="section level1">
-<h1>Valor p</h1>
+</div>
+<div id="valor-p" class="section level2">
+<h2>Valor p</h2>
 <p>• Probabilidad de obtener un estadístico (igual al que se obtuvo o
 más extremo)</p>
 <p>• Probabilidad de equivocarse rechazando la hipótesis nula</p>
+<p>• Se contrasta con el nivel de significancia <span
+class="math inline">\(\alpha\)</span></p>
+<ul>
+<li><p>Si valor p &lt; <span class="math inline">\(\alpha\)</span>
+Rechaza la hipótesis nula</p></li>
+<li><p>Si valor p &gt; <span class="math inline">\(\alpha\)</span>
+Acepta la hipotesis nula</p></li>
+</ul>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-para-una-muestra" class="section level1">
+<h1>Pruebas de hipótesis para una muestra</h1>
+<div id="ph-para-la-media" class="section level2">
+<h2>PH para la media</h2>
+<p>Se pueden considerar dos tipos de estadísticos</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Normal</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\Large z=\frac{\bar
+x-\mu}{\sigma/\sqrt n}\)</span></td>
+<td align="center"><span class="math inline">\(\Large t=\frac{\bar
+x-\mu}{s/\sqrt n}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="htmlwidget-1ec57e355001d9c45ffe" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ec57e355001d9c45ffe">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
+<p><strong>Ejemplo</strong></p>
+<p>Se desea verificar si un proceso de llenado de bolsas de café con 500
+gr, está operando correctamente, para ello se toman muestras de tamaño
+10 cada 4 horas, una muestra de bolsas tiene los siguientes
+resultados</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">502</th>
+<th align="center">501</th>
+<th align="center">497</th>
+<th align="center">491</th>
+<th align="center">496</th>
+<th align="center">501</th>
+<th align="center">502</th>
+<th align="center">500</th>
+<th align="center">489</th>
+<th align="center">490</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>vec=c(502,501,497,491,496,501,502,500,489,490)
+mean(vec)</code></pre>
+<pre><code>## [1] 496.9</code></pre>
+<pre class="r"><code>sd(vec)</code></pre>
+<pre><code>## [1] 5.173651</code></pre>
+<p>Está el proceso llenando bolsas conforme a lo que dice la
+envoltura?</p>
+<p><strong>Siguiendo los pasos de las pruebas de hipótesis</strong></p>
+<p><strong>1. Definir las hipótesis</strong></p>
+<p><span class="math display">\[H_0:\quad \mu=500 gr\]</span> <span
+class="math display">\[H_1:\quad \mu \neq 500 gr\]</span></p>
+<p><strong>2. Calcular el estadístico</strong></p>
+<p>según la normal o según la t de student??</p>
+<p>Es la varianza conocida??</p>
+<p>Es el tamaño de muestra n&gt;30??</p>
+<p><span class="math display">\[\Large t=\frac{\bar x-\mu}{s/\sqrt
+n}\]</span></p>
+<p><span class="math display">\[\Large t=\frac{496.9-500}{5.17/\sqrt
+10}=-1.89\]</span></p>
+<p><strong>3. definir el valor p</strong></p>
+<p><span class="math display">\[P(t_9&lt;-1.89)=0.046\]</span></p>
+<pre class="r"><code>t.test(vec,mu=500)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  vec
+## t = -1.8948, df = 9, p-value = 0.09064
+## alternative hypothesis: true mean is not equal to 500
+## 95 percent confidence interval:
+##  493.199 500.601
+## sample estimates:
+## mean of x 
+##     496.9</code></pre>
+</div>
+<div id="ph-para-la-proporción" class="section level2">
+<h2>PH para la proporción</h2>
+</div>
+<div id="ph-para-la-varianza" class="section level2">
+<h2>PH para la varianza</h2>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-para-dos-muestras" class="section level1">
+<h1>Pruebas de hipótesis para dos muestras</h1>
+<div id="ph-diferencia-de-medias" class="section level2">
+<h2>PH Diferencia de medias</h2>
+</div>
+<div id="ph-diferencia-de-medias-pareadas" class="section level2">
+<h2>PH diferencia de medias pareadas</h2>
+</div>
+<div id="diferencia-de-proporciones" class="section level2">
+<h2>Diferencia de proporciones</h2>
+</div>
+<div id="razón-de-varianzas" class="section level2">
+<h2>Razón de varianzas</h2>
 <p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
 <p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf">Intervalos
 de confianza y test de hipótesis con R</a></p>
+</div>
 </div>
 
 <br>
