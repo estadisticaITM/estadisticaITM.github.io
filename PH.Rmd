@@ -57,19 +57,30 @@ knitr::include_graphics("imagen/embarazo.png")
 
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.align='center'}
 library(DiagrammeR)
+library(greekLetters)
 
 DiagrammeR("graph TB;
-  A[Definir las hipótesis]-->F[Definir el error tipo I denotado por]
-  F-->B{Calcular el estadístico}
-  B-->D[Definir región de aceptación y rechazo]
-  B-->C[Calcular valor p]
-  C-->E[Tomar desición]
-  D-->E[Tomar desición]
-           ")
+
+  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]
+  F-->B{3. Calcular el estadístico}
+  B-->D[4. Definir región de aceptación y rechazo con alfa]
+  B-->C[4. Calcular valor p]
+  C-->E[5. Tomar desición comparando vp con alfa]
+  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]
+
+")
             
 ```
+
+
+
+
+
+
+
+
 
 - Algunos videos de interés
 
@@ -98,7 +109,7 @@ curve(dnorm(x, mean=0, sd=1),
       ylab="Densidad",cex.sub=2,
       las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
       xaxt = "n",sub =  "Cola inferior")
-mtext(expression(H[1] == theta ~ "<" ~ theta[0] ),side = 3,cex=1.3)
+mtext(expression(H[1] == theta~"<"~theta[0]),side = 3,cex=1.5)
 
 polygon(c(x[x <= -1.5],-1.5), c(dnorm(x[x<=-1.5]),0), col="lightblue")
 axis(1, at = c(-4,-1.5, 0,4))
@@ -110,7 +121,7 @@ curve(dnorm(x, mean=0, sd=1),
       ylab="Densidad",cex.sub=2,
       las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
       xaxt = "n",sub =  "Cola superior"  )
-      mtext(expression(H[1] == theta ~ ">" ~ theta[0] ) , side = 3,cex=1.3)
+      mtext(expression(H[1] == theta~">"~theta[0]),side=3,cex=1.5)
       
       
 polygon(c(x[x >=1.5],1.5), c(dnorm(x[x >=1.5]),0), col="lightblue")
@@ -121,7 +132,7 @@ curve(dnorm(x, mean=0, sd=1),
       ylab="Densidad",cex.sub=2,
       las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
       xaxt = "n",sub =  "Doble cola"  )
-      mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.3)
+      mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
 
 m <- 0.9
 
@@ -158,13 +169,8 @@ polygon(c(x[x >= ns3], ns3), c(dnorm(x[x >=ns3]),0), col="lightblue")
 
 ## PH para la media
 
-Se pueden considerar dos tipos de estadísticos
 
-| Normal| t|
-|:-------------------------:|:-------------------------:|
-|$\Large z=\frac{\bar x-\mu}{\sigma/\sqrt n}$|$\Large t=\frac{\bar x-\mu}{s/\sqrt n}$|
-
-```{r echo=FALSE}
+```{r echo=FALSE, fig.align='center'}
 library(DiagrammeR)
 
 DiagrammeR("graph TB;
@@ -173,12 +179,45 @@ DiagrammeR("graph TB;
   A-->|No| B{n mayor q 30}
   B-->|No| D[t student]
   B-->|Si| C
-  
            ")
-            
 ```
 
-**Ejemplo**
+
+
+
+**Hipótesis nula:** 
+
+$$H_0= \mu=\mu_0$$
+
+
+**Estadístico**
+
+Se pueden considerar dos tipos de estadísticos
+
+| Normal| t|
+|:-------------------------:|:-------------------------:|
+|$\Large z=\frac{\bar x-\mu}{\sigma/\sqrt n}$|$\Large t=\frac{\bar x-\mu}{s/\sqrt n}$|
+
+Recuerde que:
+
+|Estadístico|Muestral|Poblacional|
+|:---------:|:------:|:---------:|
+|Media      |$\bar x$|$\mu$      |
+|Desviación |s       |$\sigma$   |
+|Tamaño     | n      | N         |
+
+
+**Hipótesis alternativa:**
+
+|Cola    |   $H_1$       |RR (t student)           |RR Normal Z          |
+|:------:|:-------------:|:-----------------------:|:-------------------:|
+|Superior|$\mu>\mu_0$    |$t\geq t_{\alpha,n-1}$   |$Z\geq Z_\alpha$     |
+|Inferior|$\mu<\mu_0$    |$t\leq -t_{\alpha,n-1}$  |$Z\leq -Z_\alpha$    |
+|DC sup  |$\mu \neq\mu_0$|$t\geq t_{\alpha/2,n-1}$ |$Z\geq Z_{\alpha/2}$ |
+|DC inf  |               |$t\leq -t_{\alpha/2,n-1}$|$Z\leq -Z_{\alpha/2}$|
+
+
+**Ejemplo con la distribución t**
 
 Se desea verificar si un proceso de llenado de bolsas de café con 500 gr, está operando correctamente, para ello se toman muestras de tamaño 10 cada 4 horas, una muestra de bolsas tiene los siguientes resultados
 
@@ -202,9 +241,12 @@ Está el proceso llenando bolsas conforme a lo que dice la envoltura?
 $$H_0:\quad \mu=500 gr$$
 $$H_1:\quad \mu \neq 500 gr$$
 
-**2. Calcular el estadístico**
+**2. Definir el error tipo I denotado por alfa 0.05** 
 
-según la normal o según la t de student??
+
+**3. Calcular el estadístico**
+
+Según la normal o según la t de student??
 
 Es la varianza conocida??
 
@@ -219,13 +261,55 @@ $$\Large t=\frac{\bar x-\mu}{s/\sqrt n}$$
 $$\Large t=\frac{496.9-500}{5.17/\sqrt 10}=-1.89$$
 
 
-**3. definir el valor p**
+**4. definir el valor p**
 
 
 $$P(t_9<-1.89)=0.046$$
 
+como es una prueba a doble cola 
+
+$$Vp=0.046*2=0.092$$
 
 
+**5. Tomar desición**
+
+Como vp>0.05  Acepto $H_0$ el proceso cumple con lo que dice la etiqueta 500 gr
+
+**4. Definir región de aceptación y rechazo**
+
+Como es una prueba a doble cola 
+$$\alpha=0.05 \quad \alpha/2=0.025$$
+se definen los cuantiles que satisfacen esas condiciones.
+
+$$t_{v=9,0.025}=-2.26$$
+
+$$t_{v=9,0.975}=2.26$$
+
+
+```{r echo=FALSE}
+curve(dt(x,df=9),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Doble cola"  )
+mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
+
+m <- 0.95
+
+text(0, .1,round(m,3),cex=1)
+text(-2.5, .1,round((1-m)/2,3),cex=1)
+text(2.5,.1,round((1-m)/2,3),cex=1)
+ns=1-m
+ns2=round(qt(ns/2,df=9),2)
+ns3=round(qt(1-(ns/2),df=9),2)
+axis(1, at = c(-4,ns2,-1.89, 0,ns3, 4))
+
+polygon(c(x[x <= ns2], ns2), c(dt(x[x <=ns2],df=9),0), col="lightblue")
+polygon(c(x[x >= ns3], ns3), c(dt(x[x >=ns3],df=9),0), col="lightblue")
+
+```
+
+**En R**
 
 
 ```{r}
@@ -234,11 +318,109 @@ t.test(vec,mu=500)
 
 ```
 
+**Ejemplo con la distribución normal**
+
+Un fabricante de alarma de calor, afirma que la temperatura de activación del sistema es de 130 F. Una muestra de n=9 sistemas, cuando se somete a prueba, da una temperatura de activación promedio muestral de 131.08 F. Si la distribución de los tiempos de activación es normal con desviación estándar de 1.5 F, ¿contradicen los datos la afirmación del fabricante a un nivel de significancia 0.01
+
+
+**Siguiendo los pasos de las pruebas de hipótesis**
+
+
+**1. Definir las hipótesis**
+
+
+Datos
+
+$\mu=130F \quad \bar x=131.08F \quad \sigma=1.5F$
+
+
+$$H_0:\quad \mu=130 F$$
+$$H_1:\quad \mu > 130 gr$$
+
+**2. Definir el error tipo I denotado por alfa 0.01** 
+
+
+**3. Calcular el estadístico**
+
+Según la normal o según la t de student??
+
+Es la varianza conocida??
+
+Es el tamaño de muestra n>30??
 
 
 
+$$\Large Z=\frac{\bar x-\mu}{\sigma/\sqrt n}$$
+
+
+
+$$\Large Z=\frac{131.08-130}{1.5/\sqrt 9}=2.16$$
+
+
+**4. definir el valor p**
+
+
+$$P(Z>2.16)=0.0154$$
+
+**5. Tomar desición**
+
+Como vp>0.05 (0.0154 >0.01)  Acepto $H_0$, la temperatura de activación es igual a 130 F
+
+**4. Definir región de aceptación y rechazo**
+
+Se define el cuantil que satisface la condición.
+0.01 en el lado superior equivalente al 0.99
+
+$$Z_{0.99}=2.32$$
+```{r echo=FALSE}
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Cola superior"  )
+
+      
+      
+polygon(c(x[x >=2.3],2.3), c(dnorm(x[x >=2.3]),0), col="lightblue")
+axis(1, at = c(-4,0,2.3, 4))
+
+```
 
 ## PH para la proporción
+
+
+**Hipótesis nula:** 
+
+$$H_0= p=p_0$$
+
+
+**Estadístico**
+
+
+$$\Large z=\frac{\hat p-p_0}{\sqrt{p_0*q_0/ n}}$$
+
+
+
+
+**Hipótesis alternativa:**
+
+|Cola    |   $H_1$    |RR Normal Z          |
+|:------:|:----------:|:-------------------:|
+|Superior|$p>p_0$     |$Z\geq Z_\alpha$     |
+|Inferior|$p<p_0$     |$Z\leq -Z_\alpha$    |
+|DC sup  |$p \neq p_0$|$Z\geq Z_{\alpha/2}$ |
+|DC inf  |            |$Z\leq -Z_{\alpha/2}$|
+
+
+**Ejemplo**
+
+La obesidad es un problema creciente entre grupos de todas las edades. un estudio reportó que 1276 individuos en una muestra de 4115 adultos fueron encontrados obesos (un índice de
+masa corporal de más de 30; este índice mide el peso con respecto a la estatura). Una encuesta
+realizada en 1998 basada en la autoevaluación de las personas reveló que el 20% de
+los estadounidenses adultos se autoconsideraron obesos. ¿Sugieren los datos más recientes
+que la proporción verdadera de adultos obesos es más de 1.5 veces el porcentaje de la encuesta
+de autoevaluación? Realice una prueba de hipótesis utilizando un nivel de significación
+de 0.10.
 
 ## PH para la varianza
 

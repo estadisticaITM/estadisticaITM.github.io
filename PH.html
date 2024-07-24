@@ -501,8 +501,8 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-afd60847a3fcfc4f0351" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-afd60847a3fcfc4f0351">{"x":{"diagram":"graph TB;\n  A[Definir las hipótesis]-->F[Definir el error tipo I denotado por]\n  F-->B{Calcular el estadístico}\n  B-->D[Definir región de aceptación y rechazo]\n  B-->C[Calcular valor p]\n  C-->E[Tomar desición]\n  D-->E[Tomar desición]\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-76ee6b8c8b67c11b8614" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76ee6b8c8b67c11b8614">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -536,6 +536,11 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
+<div id="htmlwidget-aae9340c11cd9e8b2579" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aae9340c11cd9e8b2579">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<p><strong>Hipótesis nula:</strong></p>
+<p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
+<p><strong>Estadístico</strong></p>
 <p>Se pueden considerar dos tipos de estadísticos</p>
 <table>
 <colgroup>
@@ -557,9 +562,88 @@ x-\mu}{s/\sqrt n}\)</span></td>
 </tr>
 </tbody>
 </table>
-<div id="htmlwidget-1ec57e355001d9c45ffe" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ec57e355001d9c45ffe">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
-<p><strong>Ejemplo</strong></p>
+<p>Recuerde que:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Estadístico</th>
+<th align="center">Muestral</th>
+<th align="center">Poblacional</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Media</td>
+<td align="center"><span class="math inline">\(\bar x\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Desviación</td>
+<td align="center">s</td>
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Tamaño</td>
+<td align="center">n</td>
+<td align="center">N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="21%" />
+<col width="36%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR (t student)</th>
+<th align="center">RR Normal Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span
+class="math inline">\(\mu&gt;\mu_0\)</span></td>
+<td align="center"><span class="math inline">\(t\geq
+t_{\alpha,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span
+class="math inline">\(\mu&lt;\mu_0\)</span></td>
+<td align="center"><span class="math inline">\(t\leq
+-t_{\alpha,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span class="math inline">\(\mu
+\neq\mu_0\)</span></td>
+<td align="center"><span class="math inline">\(t\geq
+t_{\alpha/2,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_{\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(t\leq
+-t_{\alpha/2,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_{\alpha/2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo con la distribución t</strong></p>
 <p>Se desea verificar si un proceso de llenado de bolsas de café con 500
 gr, está operando correctamente, para ello se toman muestras de tamaño
 10 cada 4 horas, una muestra de bolsas tiene los siguientes
@@ -605,16 +689,31 @@ envoltura?</p>
 <p><strong>1. Definir las hipótesis</strong></p>
 <p><span class="math display">\[H_0:\quad \mu=500 gr\]</span> <span
 class="math display">\[H_1:\quad \mu \neq 500 gr\]</span></p>
-<p><strong>2. Calcular el estadístico</strong></p>
-<p>según la normal o según la t de student??</p>
+<p><strong>2. Definir el error tipo I denotado por alfa
+0.05</strong></p>
+<p><strong>3. Calcular el estadístico</strong></p>
+<p>Según la normal o según la t de student??</p>
 <p>Es la varianza conocida??</p>
 <p>Es el tamaño de muestra n&gt;30??</p>
 <p><span class="math display">\[\Large t=\frac{\bar x-\mu}{s/\sqrt
 n}\]</span></p>
 <p><span class="math display">\[\Large t=\frac{496.9-500}{5.17/\sqrt
 10}=-1.89\]</span></p>
-<p><strong>3. definir el valor p</strong></p>
+<p><strong>4. definir el valor p</strong></p>
 <p><span class="math display">\[P(t_9&lt;-1.89)=0.046\]</span></p>
+<p>como es una prueba a doble cola</p>
+<p><span class="math display">\[Vp=0.046*2=0.092\]</span></p>
+<p><strong>5. Tomar desición</strong></p>
+<p>Como vp&gt;0.05 Acepto <span class="math inline">\(H_0\)</span> el
+proceso cumple con lo que dice la etiqueta 500 gr</p>
+<p><strong>4. Definir región de aceptación y rechazo</strong></p>
+<p>Como es una prueba a doble cola <span
+class="math display">\[\alpha=0.05 \quad \alpha/2=0.025\]</span> se
+definen los cuantiles que satisfacen esas condiciones.</p>
+<p><span class="math display">\[t_{v=9,0.025}=-2.26\]</span></p>
+<p><span class="math display">\[t_{v=9,0.975}=2.26\]</span></p>
+<p><img src="PH_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><strong>En R</strong></p>
 <pre class="r"><code>t.test(vec,mu=500)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
@@ -627,9 +726,96 @@ n}\]</span></p>
 ## sample estimates:
 ## mean of x 
 ##     496.9</code></pre>
+<p><strong>Ejemplo con la distribución normal</strong></p>
+<p>Un fabricante de alarma de calor, afirma que la temperatura de
+activación del sistema es de 130 F. Una muestra de n=9 sistemas, cuando
+se somete a prueba, da una temperatura de activación promedio muestral
+de 131.08 F. Si la distribución de los tiempos de activación es normal
+con desviación estándar de 1.5 F, ¿contradicen los datos la afirmación
+del fabricante a un nivel de significancia 0.01</p>
+<p><strong>Siguiendo los pasos de las pruebas de hipótesis</strong></p>
+<p><strong>1. Definir las hipótesis</strong></p>
+<p>Datos</p>
+<p><span class="math inline">\(\mu=130F \quad \bar x=131.08F \quad
+\sigma=1.5F\)</span></p>
+<p><span class="math display">\[H_0:\quad \mu=130 F\]</span> <span
+class="math display">\[H_1:\quad \mu &gt; 130 gr\]</span></p>
+<p><strong>2. Definir el error tipo I denotado por alfa
+0.01</strong></p>
+<p><strong>3. Calcular el estadístico</strong></p>
+<p>Según la normal o según la t de student??</p>
+<p>Es la varianza conocida??</p>
+<p>Es el tamaño de muestra n&gt;30??</p>
+<p><span class="math display">\[\Large Z=\frac{\bar x-\mu}{\sigma/\sqrt
+n}\]</span></p>
+<p><span class="math display">\[\Large Z=\frac{131.08-130}{1.5/\sqrt
+9}=2.16\]</span></p>
+<p><strong>4. definir el valor p</strong></p>
+<p><span class="math display">\[P(Z&gt;2.16)=0.0154\]</span></p>
+<p><strong>5. Tomar desición</strong></p>
+<p>Como vp&gt;0.05 (0.0154 &gt;0.01) Acepto <span
+class="math inline">\(H_0\)</span>, la temperatura de activación es
+igual a 130 F</p>
+<p><strong>4. Definir región de aceptación y rechazo</strong></p>
+<p>Se define el cuantil que satisface la condición. 0.01 en el lado
+superior equivalente al 0.99</p>
+<p><span class="math display">\[Z_{0.99}=2.32\]</span>
+<img src="PH_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="ph-para-la-proporción" class="section level2">
 <h2>PH para la proporción</h2>
+<p><strong>Hipótesis nula:</strong></p>
+<p><span class="math display">\[H_0= p=p_0\]</span></p>
+<p><strong>Estadístico</strong></p>
+<p><span class="math display">\[\Large z=\frac{\hat
+p-p_0}{\sqrt{p_0*q_0/ n}}\]</span></p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR Normal Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span class="math inline">\(p&gt;p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span class="math inline">\(p&lt;p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span class="math inline">\(p \neq p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_{\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_{\alpha/2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo</strong></p>
+<p>La obesidad es un problema creciente entre grupos de todas las
+edades. un estudio reportó que 1276 individuos en una muestra de 4115
+adultos fueron encontrados obesos (un índice de masa corporal de más de
+30; este índice mide el peso con respecto a la estatura). Una encuesta
+realizada en 1998 basada en la autoevaluación de las personas reveló que
+el 20% de los estadounidenses adultos se autoconsideraron obesos.
+¿Sugieren los datos más recientes que la proporción verdadera de adultos
+obesos es más de 1.5 veces el porcentaje de la encuesta de
+autoevaluación? Realice una prueba de hipótesis utilizando un nivel de
+significación de 0.10.</p>
 </div>
 <div id="ph-para-la-varianza" class="section level2">
 <h2>PH para la varianza</h2>
