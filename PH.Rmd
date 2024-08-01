@@ -6,21 +6,37 @@ output:
     toc_depth: 5
 ---
 
-
-# Prueba de hipótesis
-
 Una hipótesis estadística es una aseveración o conjetura con respecto a una o más poblaciones.
 
 
 ## Tipos de hipótesis
 
+**Hipótesis nula**
+
 
 $H_0$= Hipótesis nula, status quo
 
+
+$$\Large H_0:\theta=\theta_0$$
+
+
+**Hipótesis alternativa**
+
+
 $H_1$= Hipótesis alternativa, sospecha
 
+**cola superior**
 
+$$\Large H_0:\theta>\theta_0$$
+**cola inferior**
 
+$$\Large H_0:\theta<\theta_0$$
+**cola doble**
+
+$$\Large H_0:\theta\neq \theta_0$$
+**Nota:**
+
+$\theta$ puede ser cualquier estadístico como la media, la varianza, l adiferencia de medias o de proporciónes o razón de varianzas, lo que cambia es la distribución asociada, varía dependiendo del caso
 
 ## Tipos de errores
 
@@ -32,9 +48,9 @@ $H_1$= Hipótesis alternativa, sospecha
 
 
 
-Error tipo I falso negativo $\alpha$: Rechazar $H_0$, dado que es verdadera
+**Error tipo I falso negativo $\alpha$:** Rechazar $H_0$, dado que es verdadera
 
-Error tipo II falso positivo $\beta$: Aceptar $H_0$, dado que es falsa
+**Error tipo II falso positivo $\beta$:** Aceptar $H_0$, dado que es falsa
 
 **Ejemplos**
 
@@ -89,68 +105,7 @@ DiagrammeR("graph TB;
 <iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-## Tipos de pruebas según la región de aceptación y rechazo
 
-**Hipótesis nula**
-
-$$\Large H_0:\theta=\theta_0$$
-**Hipótesis alternativa**
-
-
-```{r echo=FALSE,fig.asp=0.6,fig.align='center' }
-
-par(mfrow=c(1,3))
-x=seq(-5,5,0.001)
-
-# cola inferior
-
-curve(dnorm(x, mean=0, sd=1),
-      from=-5,to=5,
-      ylab="Densidad",cex.sub=2,
-      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
-      xaxt = "n",sub =  "Cola inferior")
-mtext(expression(H[1] == theta~"<"~theta[0]),side = 3,cex=1.5)
-
-polygon(c(x[x <= -1.5],-1.5), c(dnorm(x[x<=-1.5]),0), col="lightblue")
-axis(1, at = c(-4,-1.5, 0,4))
-
-# cola superior
-
-curve(dnorm(x, mean=0, sd=1),
-      from=-5,to=5,
-      ylab="Densidad",cex.sub=2,
-      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
-      xaxt = "n",sub =  "Cola superior"  )
-      mtext(expression(H[1] == theta~">"~theta[0]),side=3,cex=1.5)
-      
-      
-polygon(c(x[x >=1.5],1.5), c(dnorm(x[x >=1.5]),0), col="lightblue")
-axis(1, at = c(-4, 0,1.5, 4))
-     
-curve(dnorm(x, mean=0, sd=1),
-      from=-5,to=5,
-      ylab="Densidad",cex.sub=2,
-      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
-      xaxt = "n",sub =  "Doble cola"  )
-      mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
-
-m <- 0.9
-
-x=seq(-5,5,0.001)
-text(0, .1,round(m,3),cex=1)
-text(-2.5, .1,round((1-m)/2,3),cex=1)
-text(2.5,.1,round((1-m)/2,3),cex=1)
-ns=1-m
-ns2=round(qnorm(ns/2,mean=0,sd=1),2)
-ns3=round(qnorm((1-(ns/2)),mean=0,sd=1),2)
-axis(1, at = c(-4,ns2, 0,ns3, 4))
-
-polygon(c(x[x <= ns2], ns2), c(dnorm(x[x <=ns2]),0), col="lightblue")
-polygon(c(x[x >= ns3], ns3), c(dnorm(x[x >=ns3]),0), col="lightblue")
-
-
-
-```
 
 
 ## Valor p
@@ -194,7 +149,7 @@ $$H_0= \mu=\mu_0$$
 
 Se pueden considerar dos tipos de estadísticos
 
-| Normal| t|
+| Normal                    |                 t student |
 |:-------------------------:|:-------------------------:|
 |$\Large z=\frac{\bar x-\mu}{\sigma/\sqrt n}$|$\Large t=\frac{\bar x-\mu}{s/\sqrt n}$|
 
@@ -215,6 +170,65 @@ Recuerde que:
 |Inferior|$\mu<\mu_0$    |$t\leq -t_{\alpha,n-1}$  |$Z\leq -Z_\alpha$    |
 |DC sup  |$\mu \neq\mu_0$|$t\geq t_{\alpha/2,n-1}$ |$Z\geq Z_{\alpha/2}$ |
 |DC inf  |               |$t\leq -t_{\alpha/2,n-1}$|$Z\leq -Z_{\alpha/2}$|
+
+
+
+```{r echo=FALSE,fig.asp=0.6,fig.align='center' }
+
+par(mfrow=c(1,3))
+x=seq(-5,5,0.001)
+
+# cola inferior
+
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Cola inferior")
+mtext(expression(H[1] == mu~"<"~mu[0]),side = 3,cex=1.5)
+
+polygon(c(x[x <= -1.5],-1.5), c(dnorm(x[x<=-1.5]),0), col="lightblue")
+axis(1, at = c(-4,-1.5, 0,4))
+
+# cola superior
+
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Cola superior"  )
+      mtext(expression(H[1] == mu~">"~mu[0]),side=3,cex=1.5)
+      
+      
+polygon(c(x[x >=1.5],1.5), c(dnorm(x[x >=1.5]),0), col="lightblue")
+axis(1, at = c(-4, 0,1.5, 4))
+     
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Doble cola"  )
+      mtext(expression(H[1] ~ mu !=  mu[0]) , side = 3,cex=1.5)
+
+m <- 0.9
+
+x=seq(-5,5,0.001)
+text(0, .1,round(m,3),cex=1)
+text(-2.5, .1,round((1-m)/2,3),cex=1)
+text(2.5,.1,round((1-m)/2,3),cex=1)
+ns=1-m
+ns2=round(qnorm(ns/2,mean=0,sd=1),2)
+ns3=round(qnorm((1-(ns/2)),mean=0,sd=1),2)
+axis(1, at = c(-4,ns2, 0,ns3, 4))
+
+polygon(c(x[x <= ns2], ns2), c(dnorm(x[x <=ns2]),0), col="lightblue")
+polygon(c(x[x >= ns3], ns3), c(dnorm(x[x >=ns3]),0), col="lightblue")
+
+
+
+```
+
+
 
 
 **Ejemplo con la distribución t**
@@ -292,7 +306,7 @@ curve(dt(x,df=9),
       ylab="Densidad",cex.sub=2,
       las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
       xaxt = "n",sub =  "Doble cola"  )
-mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
+mtext(expression(H[1] ~ mu !=  mu[0]) , side = 3,cex=1.5)
 
 m <- 0.95
 
@@ -325,17 +339,20 @@ Un fabricante de alarma de calor, afirma que la temperatura de activación del s
 
 **Siguiendo los pasos de las pruebas de hipótesis**
 
-
-**1. Definir las hipótesis**
-
-
-Datos
+**Datos**
 
 $\mu=130F \quad \bar x=131.08F \quad \sigma=1.5F$
 
 
+
+**1. Definir las hipótesis**
+
+
+
+
+
 $$H_0:\quad \mu=130 F$$
-$$H_1:\quad \mu > 130 gr$$
+$$H_1:\quad \mu > 130 F$$
 
 **2. Definir el error tipo I denotado por alfa 0.01** 
 
@@ -398,9 +415,7 @@ $$H_0= p=p_0$$
 
 
 $$\Large z=\frac{\hat p-p_0}{\sqrt{p_0*q_0/ n}}$$
-
-
-
+Recuerde que:
 
 **Hipótesis alternativa:**
 
@@ -414,15 +429,250 @@ $$\Large z=\frac{\hat p-p_0}{\sqrt{p_0*q_0/ n}}$$
 
 **Ejemplo**
 
-La obesidad es un problema creciente entre grupos de todas las edades. un estudio reportó que 1276 individuos en una muestra de 4115 adultos fueron encontrados obesos (un índice de
-masa corporal de más de 30; este índice mide el peso con respecto a la estatura). Una encuesta
-realizada en 1998 basada en la autoevaluación de las personas reveló que el 20% de
-los estadounidenses adultos se autoconsideraron obesos. ¿Sugieren los datos más recientes
-que la proporción verdadera de adultos obesos es más de 1.5 veces el porcentaje de la encuesta
-de autoevaluación? Realice una prueba de hipótesis utilizando un nivel de significación
-de 0.10.
+La obesidad es un problema creciente entre grupos de todas las edades. un estudio reportó que 1276 individuos en una muestra de 4115 adultos fueron encontrados obesos. 
+
+
+Una encuesta reveló que el 20% de los estadounidenses adultos se autoconsideraron obesos. ¿Sugieren los datos más recientes que la proporción verdadera de adultos obesos es más de 1.5 veces el porcentaje de la encuesta de autoevaluación? 
+
+Realice una prueba de hipótesis utilizando un nivel de significancia de 0.10.
+
+**Pasos**
+
+
+**Datos**
+
+$$p=\frac{1276}{4115}=0.31\quad q=0.69$$
+
+
+
+**1. Definir las hipótesis**
+
+
+
+
+$$\Large H_0= p=0.3$$
+$$\Large H_1= p>0.3$$
+
+**2. Definir el error tipo I denotado por alfa 0.1**
+
+
+**3. Calcular el estadístico**
+
+$$\Large z=\frac{\hat p-p_0}{\sqrt{p_0*q_0/ n}}=\frac{0.31-0.3}{\sqrt{0.3*0.7/ 4115}}=$$
+
+$$z=\frac{0.31-0.3}{\sqrt{0.3*0.7/ 4115}}=\frac{0.01}{0.007}=1.4$$
+**4. definir el valor p**
+
+$$P(Z>1.4)=0.081$$
+
+**5. Tomar desición**
+
+Como vp<0.1 (0.081 < 0.1) Rechazo $H_0$, la proporción de personas obesas es mayor del 30%. 
+
+**4. Definir región de aceptación y rechazo**
+Se define el cuantil que satisface la condición. 0.1 en el lado superior equivalente al 0.9
+
+$$Z_{0.9}=1.282$$
+
+```{r echo=FALSE}
+curve(dnorm(x, mean=0, sd=1),
+      from=-5,to=5,
+      ylab="Densidad",cex.sub=2,
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.4),
+      xaxt = "n",sub =  "Cola superior"  )
+
+      
+      
+polygon(c(x[x >=1.282],1.282), c(dnorm(x[x >=1.282]),0), col="lightblue")
+axis(1, at = c(-4,0,1.282, 4))
+
+```
+
 
 ## PH para la varianza
+
+
+Surgen situaciones que requieren inferencias acerca de la variabilidad,relacionando con la uniformidad de una población. por ejemplo la variabilidad de las calificaciones otorgadas por cierto profesor en determinado examen. Se esperaría que las puntuaciones tuvieran una varianza pequeña.
+
+Se parte bajo el supuesto de la muestra proviene de una población que se
+distribuye normal.
+
+**Hipótesis nula:**
+
+$$\Large H_0= \sigma=\sigma_0^2$$
+
+**Estadístico**
+
+$$\Large\chi^2=\frac{(n-1)S^2}{\sigma_0^2}$$
+
+**Hipótesis alternativa:**
+
+
+|Cola    |   $H_1$               |RR (Chi cuadrado)                |
+|:------:|:---------------------:|:-------------------------------:|
+|Superior|$\sigma>\sigma_0^2$    |$\chi^2\geq \chi_{\alpha,n-1}$   |
+|Inferior|$\sigma<\sigma_0^2$    |$\chi^2\leq \chi_{1-\alpha,n-1}$ |
+|DC sup  |$\sigma\neq \sigma_0^2$|$\chi^2\geq \chi_{\alpha/2,n-1}$ |
+|DC inf  |                       |$\chi^2\leq \chi_{\alpha/2,n-1}$ |
+
+
+
+
+```{r echo=FALSE}
+par(mfrow=c(1,3))
+
+x=seq(-1,13,0.001)
+curve(dchisq(x,df=2),
+      from=-1,
+      to=15,cex=2,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.5),
+      xlim=c(-1,13),xaxt = "n")
+grid()
+
+
+n=4.6
+polygon(c(x[x>= n],n), c(dchisq(x[x >=n],df=2),
+                         dchisq(max(x),df=2)), 
+        col="lightblue")
+
+text(5.5,0.05,round(pchisq(q=n,df=2,lower.tail = FALSE),3),cex=1.2)
+mtext(expression(H[1] == theta~">"~theta[0]),side=3,cex=1.5)
+#mtext(expression(chi[alpha,n-1]),side=1, line=3, cex=3,col="blue")
+axis(1, at = c(0, 4.6),
+     labels = expression(0,chi[alpha] ^2 ==4.6),cex.axis=1.3,col="blue")
+
+###---------------------------
+
+x=seq(-1,13,0.001)
+curve(dchisq(x,df=2),
+      from=-1,
+      to=15,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.5),
+      xlim=c(-1,13),xaxt = "n")
+grid()
+
+n <- 0.211
+polygon(c(x[x>= n],n), c(dchisq(x[x >=n],df=2),
+        dchisq(max(x),df=2)), col="lightblue")
+axis(1, at = c(0.211),labels = expression(chi[1-alpha] ==0.21),
+     cex.axis=1.3,col="blue")
+
+
+text(2,.1,round(pchisq(q=n,df=2,lower.tail = FALSE),3),cex=1.2)
+
+mtext(expression(H[1] == theta~"<"~theta[0]),side = 3,cex=1.5)
+
+
+###---------------
+x=seq(-1,13,0.001)
+curve(dchisq(x,df=2),
+      from=-1,
+      to=15,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.5),
+      xlim=c(-1,13),xaxt = "n")
+grid()
+
+m <- 0.9
+
+ns=1-m
+ns2=round(qchisq(ns/2,df=2),3)
+ns3=round(qchisq((1-(ns/2)),df=2),3)
+axis(1, at = c(ns2,ns3),
+     labels = expression(chi[1-frac(alpha,2) ^2 ==0.103],
+                         chi[frac(alpha,2)] ^2 ==6),
+     cex.axis=1.3,col="blue")
+
+text(2.5,0.05,round(0.9,3),cex=1.2)
+text(0,0.05,round((1-m)/2,3),cex=1.2)
+text(5,0.05,round((1-m)/2,3),cex=1.2)
+polygon(c(x[x <= ns2], ns2), 
+        c(dchisq(x[x <=ns2],df=2),0), col="lightblue")
+polygon(c(x[x >= ns3], ns3), 
+        c(dchisq(x[x >=ns3],df=2),
+          0), col="lightblue")
+mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
+
+
+
+
+```
+
+
+**Ejemplo**
+
+
+Datos históricos indican que la varianza de las mediciones sobre una lámina metálica es de 0.18 pulgadas cuadradas.Las mediciones realizadas por un inspector nuevo podrían tener una varianza mayor o menor.
+Si un nuevo inspector mide 40 laminas grabadas con una varianza de 0.13
+pulgadas cuadradas, pruébese con un nivel de significancia de 0.05 si el inspector realiza mediciones satisfactorias.
+
+**Solución**
+
+
+**Datos**
+
+
+n=13,  $S^2=0.13$, $\sigma^2=0.18$
+
+
+
+**1. Juego de hipótesis**
+
+$$\Large H_0= \sigma^2=0.18$$
+$$\Large H_1= \sigma^2 \neq 0.18$$
+
+**2. Definir el error tipo I denotado por alfa 0.05**
+
+
+**3. Estadístico**
+
+
+$$\Large\chi^2=\frac{(n-1)S^2}{\sigma_0^2}=\frac{(39)0.13}{0.18}=28.16$$
+
+
+**4. Definir el valor p**
+
+$$P(\chi^2_{12}>28.16)=(0.0052)*2 colas=0.0104$$
+vp=0.0104
+
+**5. Desición**
+
+Como vp <0.05 (0.0104 < 0.05) Rechazo $H_0$, la proporción de laminas es diferente de 0.18
+
+**4. Definir región de aceptación y rechazo**
+
+
+
+```{r echo=FALSE}
+###---------------
+x=seq(-1,50,0.001)
+curve(dchisq(x,df=12),
+      from=-1,
+      to=50,
+      ylab="Densidad",
+      las=1, lwd=3, col="deepskyblue3",ylim=c(0,0.1),
+      xlim=c(-1,50),xaxt = "n")
+grid()
+ns2=round(qchisq(0.025,df=12),3)
+ns3=round(qchisq(0.975,df=12),3)
+
+axis(1, at = c(ns2,ns3),cex.axis=1.3,col="blue")
+
+text(0,0.05,0.025,cex=1.2)
+text(23,0.05,0.975,cex=1.2)
+polygon(c(x[x <= ns2], ns2), 
+        c(dchisq(x[x <=ns2],df=12),0), col="lightblue")
+polygon(c(x[x >= ns3], ns3), 
+        c(dchisq(x[x >=ns3],df=12),
+          0), col="lightblue")
+mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
+
+
+
+```
+
 
 # Pruebas de hipótesis para dos muestras
 

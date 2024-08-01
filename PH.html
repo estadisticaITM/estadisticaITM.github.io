@@ -417,16 +417,28 @@ div.tocify {
 </div>
 
 
-<div id="prueba-de-hipótesis" class="section level1">
-<h1>Prueba de hipótesis</h1>
 <p>Una hipótesis estadística es una aseveración o conjetura con respecto
 a una o más poblaciones.</p>
 <div id="tipos-de-hipótesis" class="section level2">
 <h2>Tipos de hipótesis</h2>
+<p><strong>Hipótesis nula</strong></p>
 <p><span class="math inline">\(H_0\)</span>= Hipótesis nula, status
 quo</p>
+<p><span class="math display">\[\Large H_0:\theta=\theta_0\]</span></p>
+<p><strong>Hipótesis alternativa</strong></p>
 <p><span class="math inline">\(H_1\)</span>= Hipótesis alternativa,
 sospecha</p>
+<p><strong>cola superior</strong></p>
+<p><span class="math display">\[\Large H_0:\theta&gt;\theta_0\]</span>
+<strong>cola inferior</strong></p>
+<p><span class="math display">\[\Large H_0:\theta&lt;\theta_0\]</span>
+<strong>cola doble</strong></p>
+<p><span class="math display">\[\Large H_0:\theta\neq \theta_0\]</span>
+<strong>Nota:</strong></p>
+<p><span class="math inline">\(\theta\)</span> puede ser cualquier
+estadístico como la media, la varianza, l adiferencia de medias o de
+proporciónes o razón de varianzas, lo que cambia es la distribución
+asociada, varía dependiendo del caso</p>
 </div>
 <div id="tipos-de-errores" class="section level2">
 <h2>Tipos de errores</h2>
@@ -455,11 +467,11 @@ class="math inline">\(\alpha\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Error tipo I falso negativo <span
-class="math inline">\(\alpha\)</span>: Rechazar <span
+<p><strong>Error tipo I falso negativo <span
+class="math inline">\(\alpha\)</span>:</strong> Rechazar <span
 class="math inline">\(H_0\)</span>, dado que es verdadera</p>
-<p>Error tipo II falso positivo <span
-class="math inline">\(\beta\)</span>: Aceptar <span
+<p><strong>Error tipo II falso positivo <span
+class="math inline">\(\beta\)</span>:</strong> Aceptar <span
 class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <p><strong>Ejemplos</strong></p>
 <p><img src="imagen/embarazo.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -501,21 +513,13 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-76ee6b8c8b67c11b8614" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-76ee6b8c8b67c11b8614">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-af5837b0b83187d74c62" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-af5837b0b83187d74c62">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-</div>
-<div id="tipos-de-pruebas-según-la-región-de-aceptación-y-rechazo"
-class="section level2">
-<h2>Tipos de pruebas según la región de aceptación y rechazo</h2>
-<p><strong>Hipótesis nula</strong></p>
-<p><span class="math display">\[\Large H_0:\theta=\theta_0\]</span>
-<strong>Hipótesis alternativa</strong></p>
-<p><img src="PH_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="valor-p" class="section level2">
 <h2>Valor p</h2>
@@ -531,13 +535,12 @@ Rechaza la hipótesis nula</p></li>
 Acepta la hipotesis nula</p></li>
 </ul>
 </div>
-</div>
 <div id="pruebas-de-hipótesis-para-una-muestra" class="section level1">
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-aae9340c11cd9e8b2579" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aae9340c11cd9e8b2579">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-663b54f546c5181ee146" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-663b54f546c5181ee146">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -550,7 +553,7 @@ Acepta la hipotesis nula</p></li>
 <thead>
 <tr class="header">
 <th align="center">Normal</th>
-<th align="center">t</th>
+<th align="center">t student</th>
 </tr>
 </thead>
 <tbody>
@@ -643,6 +646,7 @@ Z_{\alpha/2}\)</span></td>
 </tr>
 </tbody>
 </table>
+<p><img src="PH_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo con la distribución t</strong></p>
 <p>Se desea verificar si un proceso de llenado de bolsas de café con 500
 gr, está operando correctamente, para ello se toman muestras de tamaño
@@ -734,12 +738,12 @@ de 131.08 F. Si la distribución de los tiempos de activación es normal
 con desviación estándar de 1.5 F, ¿contradicen los datos la afirmación
 del fabricante a un nivel de significancia 0.01</p>
 <p><strong>Siguiendo los pasos de las pruebas de hipótesis</strong></p>
-<p><strong>1. Definir las hipótesis</strong></p>
-<p>Datos</p>
+<p><strong>Datos</strong></p>
 <p><span class="math inline">\(\mu=130F \quad \bar x=131.08F \quad
 \sigma=1.5F\)</span></p>
+<p><strong>1. Definir las hipótesis</strong></p>
 <p><span class="math display">\[H_0:\quad \mu=130 F\]</span> <span
-class="math display">\[H_1:\quad \mu &gt; 130 gr\]</span></p>
+class="math display">\[H_1:\quad \mu &gt; 130 F\]</span></p>
 <p><strong>2. Definir el error tipo I denotado por alfa
 0.01</strong></p>
 <p><strong>3. Calcular el estadístico</strong></p>
@@ -768,7 +772,7 @@ superior equivalente al 0.99</p>
 <p><span class="math display">\[H_0= p=p_0\]</span></p>
 <p><strong>Estadístico</strong></p>
 <p><span class="math display">\[\Large z=\frac{\hat
-p-p_0}{\sqrt{p_0*q_0/ n}}\]</span></p>
+p-p_0}{\sqrt{p_0*q_0/ n}}\]</span> Recuerde que:</p>
 <p><strong>Hipótesis alternativa:</strong></p>
 <table>
 <thead>
@@ -808,17 +812,122 @@ Z_{\alpha/2}\)</span></td>
 <p><strong>Ejemplo</strong></p>
 <p>La obesidad es un problema creciente entre grupos de todas las
 edades. un estudio reportó que 1276 individuos en una muestra de 4115
-adultos fueron encontrados obesos (un índice de masa corporal de más de
-30; este índice mide el peso con respecto a la estatura). Una encuesta
-realizada en 1998 basada en la autoevaluación de las personas reveló que
-el 20% de los estadounidenses adultos se autoconsideraron obesos.
-¿Sugieren los datos más recientes que la proporción verdadera de adultos
-obesos es más de 1.5 veces el porcentaje de la encuesta de
-autoevaluación? Realice una prueba de hipótesis utilizando un nivel de
-significación de 0.10.</p>
+adultos fueron encontrados obesos.</p>
+<p>Una encuesta reveló que el 20% de los estadounidenses adultos se
+autoconsideraron obesos. ¿Sugieren los datos más recientes que la
+proporción verdadera de adultos obesos es más de 1.5 veces el porcentaje
+de la encuesta de autoevaluación?</p>
+<p>Realice una prueba de hipótesis utilizando un nivel de significancia
+de 0.10.</p>
+<p><strong>Pasos</strong></p>
+<p><strong>Datos</strong></p>
+<p><span class="math display">\[p=\frac{1276}{4115}=0.31\quad
+q=0.69\]</span></p>
+<p><strong>1. Definir las hipótesis</strong></p>
+<p><span class="math display">\[\Large H_0= p=0.3\]</span> <span
+class="math display">\[\Large H_1= p&gt;0.3\]</span></p>
+<p><strong>2. Definir el error tipo I denotado por alfa 0.1</strong></p>
+<p><strong>3. Calcular el estadístico</strong></p>
+<p><span class="math display">\[\Large z=\frac{\hat
+p-p_0}{\sqrt{p_0*q_0/ n}}=\frac{0.31-0.3}{\sqrt{0.3*0.7/
+4115}}=\]</span></p>
+<p><span class="math display">\[z=\frac{0.31-0.3}{\sqrt{0.3*0.7/
+4115}}=\frac{0.01}{0.007}=1.4\]</span> <strong>4. definir el valor
+p</strong></p>
+<p><span class="math display">\[P(Z&gt;1.4)=0.081\]</span></p>
+<p><strong>5. Tomar desición</strong></p>
+<p>Como vp&lt;0.1 (0.081 &lt; 0.1) Rechazo <span
+class="math inline">\(H_0\)</span>, la proporción de personas obesas es
+mayor del 30%.</p>
+<p><strong>4. Definir región de aceptación y rechazo</strong> Se define
+el cuantil que satisface la condición. 0.1 en el lado superior
+equivalente al 0.9</p>
+<p><span class="math display">\[Z_{0.9}=1.282\]</span></p>
+<p><img src="PH_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="ph-para-la-varianza" class="section level2">
 <h2>PH para la varianza</h2>
+<p>Surgen situaciones que requieren inferencias acerca de la
+variabilidad,relacionando con la uniformidad de una población. por
+ejemplo la variabilidad de las calificaciones otorgadas por cierto
+profesor en determinado examen. Se esperaría que las puntuaciones
+tuvieran una varianza pequeña.</p>
+<p>Se parte bajo el supuesto de la muestra proviene de una población que
+se distribuye normal.</p>
+<p><strong>Hipótesis nula:</strong></p>
+<p><span class="math display">\[\Large H_0=
+\sigma=\sigma_0^2\]</span></p>
+<p><strong>Estadístico</strong></p>
+<p><span
+class="math display">\[\Large\chi^2=\frac{(n-1)S^2}{\sigma_0^2}\]</span></p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR (Chi cuadrado)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span
+class="math inline">\(\sigma&gt;\sigma_0^2\)</span></td>
+<td align="center"><span class="math inline">\(\chi^2\geq
+\chi_{\alpha,n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span
+class="math inline">\(\sigma&lt;\sigma_0^2\)</span></td>
+<td align="center"><span class="math inline">\(\chi^2\leq
+\chi_{1-\alpha,n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span class="math inline">\(\sigma\neq
+\sigma_0^2\)</span></td>
+<td align="center"><span class="math inline">\(\chi^2\geq
+\chi_{\alpha/2,n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\chi^2\leq
+\chi_{\alpha/2,n-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img src="PH_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><strong>Ejemplo</strong></p>
+<p>Datos históricos indican que la varianza de las mediciones sobre una
+lámina metálica es de 0.18 pulgadas cuadradas.Las mediciones realizadas
+por un inspector nuevo podrían tener una varianza mayor o menor. Si un
+nuevo inspector mide 40 laminas grabadas con una varianza de 0.13
+pulgadas cuadradas, pruébese con un nivel de significancia de 0.05 si el
+inspector realiza mediciones satisfactorias.</p>
+<p><strong>Solución</strong></p>
+<p><strong>Datos</strong></p>
+<p>n=13, <span class="math inline">\(S^2=0.13\)</span>, <span
+class="math inline">\(\sigma^2=0.18\)</span></p>
+<p><strong>1. Juego de hipótesis</strong></p>
+<p><span class="math display">\[\Large H_0= \sigma^2=0.18\]</span> <span
+class="math display">\[\Large H_1= \sigma^2 \neq 0.18\]</span></p>
+<p><strong>2. Definir el error tipo I denotado por alfa
+0.05</strong></p>
+<p><strong>3. Estadístico</strong></p>
+<p><span
+class="math display">\[\Large\chi^2=\frac{(n-1)S^2}{\sigma_0^2}=\frac{(39)0.13}{0.18}=28.16\]</span></p>
+<p><strong>4. Definir el valor p</strong></p>
+<p><span class="math display">\[P(\chi^2_{12}&gt;28.16)=(0.0052)*2
+colas=0.0104\]</span> vp=0.0104</p>
+<p><strong>5. Desición</strong></p>
+<p>Como vp &lt;0.05 (0.0104 &lt; 0.05) Rechazo <span
+class="math inline">\(H_0\)</span>, la proporción de laminas es
+diferente de 0.18</p>
+<p><strong>4. Definir región de aceptación y rechazo</strong></p>
+<p><img src="PH_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 </div>
 <div id="pruebas-de-hipótesis-para-dos-muestras" class="section level1">
