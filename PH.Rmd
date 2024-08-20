@@ -676,7 +676,45 @@ mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
 
 # Pruebas de hipótesis para dos muestras
 
-## PH Diferencia de medias
+## PH diferencia de medias
+
+
+```{r echo=FALSE}
+library(DiagrammeR)
+DiagrammeR("
+ graph LR;
+ 
+ 
+ 
+     A{Varianza} --> B(Iguales pero desconocidas)
+     A --> C(Diferentes y desconocidas)
+     A --> D(conocidas)
+            ")
+```
+
+
+
+
+
+
+
+
+
+
+|Varianzas                |Estadístico                      |Varianza|
+|:-----------------------:|:-------------------------------:|:--------------------------------------------------------------------------------------:|
+|Iguales pero desconocidas|$$t_{n_1+n_2-2}=\frac{(\bar X_1-\bar X_2)-(\mu_1-\mu_2)}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$|$$s^2_p=\left[\frac
+{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}
+\right]$$|
+|Diferentes y desconocidas|$$t_{n_1+n_2-2}=\frac{\bar x_1-\bar x_2-(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$||
+|diferentes|$$Z=\frac{\bar x_1-\bar x_2-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$||
+
+**Hipótesis nula:**
+$$H_0=\mu_x-\mu_y=\mu_d$$
+Donde $\mu_d=0$ representa la diferencia que se desea probar entre los valores desconocidos de las medias poblacionales,si $\mu_d=0$ significa que:
+                                       $$H_0=\mu_x=\mu_y$$
+
+
 
 ## PH diferencia de medias pareadas
 

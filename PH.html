@@ -513,8 +513,8 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-af5837b0b83187d74c62" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-af5837b0b83187d74c62">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8c8a35692ce014df958d" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c8a35692ce014df958d">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -539,8 +539,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-663b54f546c5181ee146" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-663b54f546c5181ee146">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fabbc35a4eb7e43a58a2" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fabbc35a4eb7e43a58a2">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -933,7 +933,53 @@ diferente de 0.18</p>
 <div id="pruebas-de-hipótesis-para-dos-muestras" class="section level1">
 <h1>Pruebas de hipótesis para dos muestras</h1>
 <div id="ph-diferencia-de-medias" class="section level2">
-<h2>PH Diferencia de medias</h2>
+<h2>PH diferencia de medias</h2>
+<div id="htmlwidget-6131ea1402b30efd5dcf" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6131ea1402b30efd5dcf">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="22%" />
+<col width="60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Varianzas</th>
+<th align="center">Estadístico</th>
+<th align="center">Varianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Iguales pero desconocidas</td>
+<td align="center"><span
+class="math display">\[t_{n_1+n_2-2}=\frac{(\bar X_1-\bar
+X_2)-(\mu_1-\mu_2)}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\]</span></td>
+<td align="center"><span class="math display">\[s^2_p=\left[\frac
+{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}
+\right]\]</span></td>
+</tr>
+<tr class="even">
+<td align="center">Diferentes y desconocidas</td>
+<td align="center"><span class="math display">\[t_{n_1+n_2-2}=\frac{\bar
+x_1-\bar
+x_2-(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\]</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">diferentes</td>
+<td align="center"><span class="math display">\[Z=\frac{\bar x_1-\bar
+x_2-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}\]</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hipótesis nula:</strong> <span
+class="math display">\[H_0=\mu_x-\mu_y=\mu_d\]</span> Donde <span
+class="math inline">\(\mu_d=0\)</span> representa la diferencia que se
+desea probar entre los valores desconocidos de las medias
+poblacionales,si <span class="math inline">\(\mu_d=0\)</span> significa
+que: <span class="math display">\[H_0=\mu_x=\mu_y\]</span></p>
 </div>
 <div id="ph-diferencia-de-medias-pareadas" class="section level2">
 <h2>PH diferencia de medias pareadas</h2>

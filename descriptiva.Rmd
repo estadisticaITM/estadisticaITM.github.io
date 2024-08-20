@@ -22,7 +22,7 @@ output:
 
 
 ```{r, echo=F, fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/crono.jpg")
+knitr::include_graphics("imagen/CRONO (2).jpg")
 ```
 
 ## ¿Qué es la estadística?
@@ -73,38 +73,8 @@ Colección de información organizada, de tal modo que sea fácilmente accesible
 
 **Almacenamiento de bases de datos**
 
-Las bases de datos Surgen de la necesidad de almacenar la información a través de la historia
-
-1. Piedras, madera y arcilla, donde se escribian jeroglíficos.
-
-- Los babilonios y mesopotámicos a través de la escritura cuneiforme que tallaban en tabletas y en rocas, al igual q los mallas 
-
--La cultura inca que escribian en un sistema de cuerdas anudadas.
-
-```{r, echo=F, fig.cap='Puntos atípicos', fig.asp=0.3, fig.align='center'}
+```{r, echo=F, fig.asp=1, fig.align='center'}
 knitr::include_graphics("imagen/escritura.png")
-```
-
-
-2. Papel
-
-Edad media: Códice Formato de libro, Se compone de pergaminos plegados, cosidos y encuadernados.
-
-El papel reemplazó progresivamente al pergamino, una herramienta más barata que permitió una difusión mas amplia, en la época moderna el códice fue hecho en papel
-
-3. Films
-
-4. Almacenamiento digital: bytes, tarjetas perforadas, CDs y memorias
-Actualmente es posible almacenar digitalmente en un disco compacto por ejemplo los datos que cabrian en miles de carpetas archivadas
-
-5. Nube:
-Se puede guardar y compartir un volumen de archivos ilimitados, asi como acceder a ellos desde cualquier dispositivo con acceso a internet
-
-A lo largo de la historia se ha buscado el sistema más pequeño físicamente con mayor capacidad de almacenamiento
-
-
-```{r, echo=F, fig.cap='Discos duros en la nube', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/nube.png")
 ```
 
 
@@ -112,8 +82,9 @@ knitr::include_graphics("imagen/nube.png")
 Son observaciones extremas, alejadas hacia valores muy grandes o pequeños comparadas con el resto de valores. Los valores atípicos pueden ser indicativos de datos que pertenecen a una población diferente del resto de las muestras establecidas. Se pueden detectar con un análisis descriptivo, mediante diagramas de dispersión, boxplot o histograma. 
 
 
-```{r, echo=F, fig.cap='Puntos atípicos', fig.asp=0.3, fig.align='center'}
+```{r, echo=F,  fig.asp=0.3, fig.align='center'}
 knitr::include_graphics("imagen/manzana.png")
+
 ```
 
 
@@ -193,7 +164,6 @@ tabla
 #Añadir totales
 Tab=addmargins(tabla)
 Tab
-kable(Tab,booktabs = TRUE)
 
 # Tabla de proporciones o porcentajes
 
@@ -203,7 +173,6 @@ Tab1
 #Añador totales
 Tab2=addmargins(Tab1)
 Tab2
-kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)
 ```
 
 ```{r}
@@ -214,12 +183,10 @@ table(gen)
 #añadir totales
 addmargins(table(gen))
 
-kable(addmargins(table(gen)),booktabs = TRUE)
 # Tabla de proporciones o porcentajes
 
 addmargins(prop.table(table(gen)))
 
-kable(prop.table(table(gen))*100,booktabs = TRUE)
 
 ```
 
@@ -354,7 +321,6 @@ m=data.frame(table(mtcars$cyl),porcentajes*100,grad)
 
 colnames(m)=c("cilindros","frecuencia absoluta","Porcentaje","grad°")
 
-kable(m,caption = "Frecuencia del número de cilindros",booktabs = TRUE)
 
 barplot(j,col='#4168c3',ylab="Frecuencia absoluta", xlab="Número de cilindros")
 box()
@@ -515,8 +481,7 @@ Arauca=c(1317,1235,1227,1214,1233,1306,1302,1312, 1358,1385,1377,1712,1485,1364,
 Armenia=c(1556,1389,1400,1365,1211,1211,1211,1294,1294,1206,1122,1639,1324,1194,1144,1128,1406,1374,1524,1561,2037,2111,1824,1861,1620,1750)
 
 dt <- data.frame(fecha,Bogota,Arauca,Armenia)
-knitr::kable(dt, booktabs = TRUE,
-caption = 'Precios de la zanahoria')
+dt
 
 ```
 

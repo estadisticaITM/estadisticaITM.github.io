@@ -38,8 +38,8 @@
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -427,7 +427,7 @@ div.tocify {
 </iframe>
 </div>
 <p><strong>Graficamente</strong></p>
-<p><img src="imagen/crono.jpg" width="400" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/CRONO%20(2).jpg" width="400" style="display: block; margin: auto;" /></p>
 </div>
 <div id="qué-es-la-estadística" class="section level2">
 <h2>¿Qué es la estadística?</h2>
@@ -476,60 +476,14 @@ de estudiar o determinar las características del grupo.</p>
 <p><strong>Base de datos:</strong> Colección de información organizada,
 de tal modo que sea fácilmente accesible, gestionada y actualizada</p>
 <p><strong>Almacenamiento de bases de datos</strong></p>
-<p>Las bases de datos Surgen de la necesidad de almacenar la información
-a través de la historia</p>
-<ol style="list-style-type: decimal">
-<li>Piedras, madera y arcilla, donde se escribian jeroglíficos.</li>
-</ol>
-<ul>
-<li>Los babilonios y mesopotámicos a través de la escritura cuneiforme
-que tallaban en tabletas y en rocas, al igual q los mallas</li>
-</ul>
-<p>-La cultura inca que escribian en un sistema de cuerdas anudadas.</p>
-<div class="figure" style="text-align: center">
-<img src="imagen/escritura.png" alt="Puntos atípicos" width="526" />
-<p class="caption">
-Puntos atípicos
-</p>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Papel</li>
-</ol>
-<p>Edad media: Códice Formato de libro, Se compone de pergaminos
-plegados, cosidos y encuadernados.</p>
-<p>El papel reemplazó progresivamente al pergamino, una herramienta más
-barata que permitió una difusión mas amplia, en la época moderna el
-códice fue hecho en papel</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Films</p></li>
-<li><p>Almacenamiento digital: bytes, tarjetas perforadas, CDs y
-memorias Actualmente es posible almacenar digitalmente en un disco
-compacto por ejemplo los datos que cabrian en miles de carpetas
-archivadas</p></li>
-<li><p>Nube: Se puede guardar y compartir un volumen de archivos
-ilimitados, asi como acceder a ellos desde cualquier dispositivo con
-acceso a internet</p></li>
-</ol>
-<p>A lo largo de la historia se ha buscado el sistema más pequeño
-físicamente con mayor capacidad de almacenamiento</p>
-<div class="figure" style="text-align: center">
-<img src="imagen/nube.png" alt="Discos duros en la nube" width="669" />
-<p class="caption">
-Discos duros en la nube
-</p>
-</div>
+<p><img src="imagen/escritura.png" width="400" style="display: block; margin: auto;" /></p>
 <p><strong>Punto atípico o outlier</strong> Son observaciones extremas,
 alejadas hacia valores muy grandes o pequeños comparadas con el resto de
 valores. Los valores atípicos pueden ser indicativos de datos que
 pertenecen a una población diferente del resto de las muestras
 establecidas. Se pueden detectar con un análisis descriptivo, mediante
 diagramas de dispersión, boxplot o histograma.</p>
-<div class="figure" style="text-align: center">
-<img src="imagen/manzana.png" alt="Puntos atípicos" width="280" />
-<p class="caption">
-Puntos atípicos
-</p>
-</div>
+<p><img src="imagen/manzana.png" width="280" style="display: block; margin: auto;" /></p>
 </div>
 <div id="tipos-de-variables" class="section level2">
 <h2>Tipos de variables</h2>
@@ -676,41 +630,6 @@ Tab</code></pre>
 <pre><code>## fuma
 ## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
 ##          35          13          10          10          78         146</code></pre>
-<pre class="r"><code>kable(Tab,booktabs = TRUE)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">fuma</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1 ó 2 VECES</td>
-<td align="right">35</td>
-</tr>
-<tr class="even">
-<td align="left">A DIARIO</td>
-<td align="right">13</td>
-</tr>
-<tr class="odd">
-<td align="left">CADA MES</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">CADA SEMANA</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="left">NUNCA</td>
-<td align="right">78</td>
-</tr>
-<tr class="even">
-<td align="left">Sum</td>
-<td align="right">146</td>
-</tr>
-</tbody>
-</table>
 <pre class="r"><code># Tabla de proporciones o porcentajes
 
 Tab1=prop.table(table(fuma))
@@ -724,41 +643,6 @@ Tab2</code></pre>
 <pre><code>## fuma
 ## 1 ó 2 VECES    A DIARIO    CADA MES CADA SEMANA       NUNCA         Sum 
 ##  0.23972603  0.08904110  0.06849315  0.06849315  0.53424658  1.00000000</code></pre>
-<pre class="r"><code>kable(addmargins(prop.table(table(fuma))*100),booktabs =TRUE)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">fuma</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1 ó 2 VECES</td>
-<td align="right">23.972603</td>
-</tr>
-<tr class="even">
-<td align="left">A DIARIO</td>
-<td align="right">8.904110</td>
-</tr>
-<tr class="odd">
-<td align="left">CADA MES</td>
-<td align="right">6.849315</td>
-</tr>
-<tr class="even">
-<td align="left">CADA SEMANA</td>
-<td align="right">6.849315</td>
-</tr>
-<tr class="odd">
-<td align="left">NUNCA</td>
-<td align="right">53.424658</td>
-</tr>
-<tr class="even">
-<td align="left">Sum</td>
-<td align="right">100.000000</td>
-</tr>
-</tbody>
-</table>
 <pre class="r"><code>gen=c(&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Mujer&#39;,&#39;Mujer&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;,&#39;Hombre&#39;)
 # Tabla de resumen
 table(gen)</code></pre>
@@ -770,54 +654,12 @@ addmargins(table(gen))</code></pre>
 <pre><code>## gen
 ## Hombre  Mujer    Sum 
 ##     93     53    146</code></pre>
-<pre class="r"><code>kable(addmargins(table(gen)),booktabs = TRUE)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">gen</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Hombre</td>
-<td align="right">93</td>
-</tr>
-<tr class="even">
-<td align="left">Mujer</td>
-<td align="right">53</td>
-</tr>
-<tr class="odd">
-<td align="left">Sum</td>
-<td align="right">146</td>
-</tr>
-</tbody>
-</table>
 <pre class="r"><code># Tabla de proporciones o porcentajes
 
 addmargins(prop.table(table(gen)))</code></pre>
 <pre><code>## gen
 ##    Hombre     Mujer       Sum 
 ## 0.6369863 0.3630137 1.0000000</code></pre>
-<pre class="r"><code>kable(prop.table(table(gen))*100,booktabs = TRUE)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">gen</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Hombre</td>
-<td align="right">63.69863</td>
-</tr>
-<tr class="even">
-<td align="left">Mujer</td>
-<td align="right">36.30137</td>
-</tr>
-</tbody>
-</table>
 <p><strong>Pregunta</strong> ¿Quién fuma con más frecuencia? Hombres o
 mujeres</p>
 <div id="tablas-de-contingencia" class="section level3">
@@ -1011,41 +853,10 @@ m=data.frame(table(mtcars$cyl),porcentajes*100,grad)
 
 colnames(m)=c(&quot;cilindros&quot;,&quot;frecuencia absoluta&quot;,&quot;Porcentaje&quot;,&quot;grad°&quot;)
 
-kable(m,caption = &quot;Frecuencia del número de cilindros&quot;,booktabs = TRUE)</code></pre>
-<table>
-<caption>Frecuencia del número de cilindros</caption>
-<thead>
-<tr class="header">
-<th align="left">cilindros</th>
-<th align="right">frecuencia absoluta</th>
-<th align="right">Porcentaje</th>
-<th align="right">grad°</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">4</td>
-<td align="right">11</td>
-<td align="right">34.375</td>
-<td align="right">123.75</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="right">7</td>
-<td align="right">21.875</td>
-<td align="right">78.75</td>
-</tr>
-<tr class="odd">
-<td align="left">8</td>
-<td align="right">14</td>
-<td align="right">43.750</td>
-<td align="right">157.50</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>barplot(j,col=&#39;#4168c3&#39;,ylab=&quot;Frecuencia absoluta&quot;, xlab=&quot;Número de cilindros&quot;)
+
+barplot(j,col=&#39;#4168c3&#39;,ylab=&quot;Frecuencia absoluta&quot;, xlab=&quot;Número de cilindros&quot;)
 box()</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de tortas
 
 bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
@@ -1060,7 +871,7 @@ bar</code></pre>
 ## i Use `cilindros` instead.
 ## Use of `m$cilindros` is discouraged.
 ## i Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de donas
 
 bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
@@ -1075,7 +886,7 @@ bar1</code></pre>
 ## i Use `cilindros` instead.
 ## Use of `m$cilindros` is discouraged.
 ## i Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
 <p><strong>Algunos videos que sirven de ejemplo</strong></p>
 <p><strong>Ejemplo 1</strong></p>
 <div style="text-align: center;">
@@ -1137,10 +948,10 @@ datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
 continuación.</p>
 <pre class="r"><code>tsData &lt;- EuStockMarkets[,1] # ts data
 plot(tsData,col=4)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>decomposedRes &lt;- decompose(tsData, type=&quot;mult&quot;) # use type = &quot;additive&quot; for additive components
 plot (decomposedRes,col=4) # see plot below</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 </div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
@@ -1182,180 +993,38 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-db74bbb77087ee23cbd7" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-db74bbb77087ee23cbd7">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"543859b7ddd":{"x":{},"y":{},"colour":{},"type":"scatter"},"54382d09269f":{"x":{},"y":{},"colour":{}}},"cur_data":"543859b7ddd","visdat":{"543859b7ddd":["function (y) ","x"],"54382d09269f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-78e54317773a96a9b70d" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78e54317773a96a9b70d">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"45e4533a167c":{"x":{},"y":{},"colour":{},"type":"scatter"},"45e45ed86740":{"x":{},"y":{},"colour":{}}},"cur_data":"45e4533a167c","visdat":{"45e4533a167c":["function (y) ","x"],"45e45ed86740":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Ejemplo en excel</strong></p>
 <p>Se tienen los precios de la zanahoria en las plazas de mercado de 3
 ciudades diferentes</p>
-<table>
-<caption>Precios de la zanahoria</caption>
-<thead>
-<tr class="header">
-<th align="left">fecha</th>
-<th align="right">Bogota</th>
-<th align="right">Arauca</th>
-<th align="right">Armenia</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">4-ene</td>
-<td align="right">1700</td>
-<td align="right">1317</td>
-<td align="right">1556</td>
-</tr>
-<tr class="even">
-<td align="left">11-ene</td>
-<td align="right">1472</td>
-<td align="right">1235</td>
-<td align="right">1389</td>
-</tr>
-<tr class="odd">
-<td align="left">18-ene</td>
-<td align="right">1288</td>
-<td align="right">1227</td>
-<td align="right">1400</td>
-</tr>
-<tr class="even">
-<td align="left">25-ene</td>
-<td align="right">1321</td>
-<td align="right">1214</td>
-<td align="right">1365</td>
-</tr>
-<tr class="odd">
-<td align="left">1-feb</td>
-<td align="right">1492</td>
-<td align="right">1233</td>
-<td align="right">1211</td>
-</tr>
-<tr class="even">
-<td align="left">8-feb</td>
-<td align="right">1392</td>
-<td align="right">1306</td>
-<td align="right">1211</td>
-</tr>
-<tr class="odd">
-<td align="left">15-feb</td>
-<td align="right">1544</td>
-<td align="right">1302</td>
-<td align="right">1211</td>
-</tr>
-<tr class="even">
-<td align="left">22-feb</td>
-<td align="right">1389</td>
-<td align="right">1312</td>
-<td align="right">1294</td>
-</tr>
-<tr class="odd">
-<td align="left">29-feb</td>
-<td align="right">1296</td>
-<td align="right">1358</td>
-<td align="right">1294</td>
-</tr>
-<tr class="even">
-<td align="left">7-mar</td>
-<td align="right">1229</td>
-<td align="right">1385</td>
-<td align="right">1206</td>
-</tr>
-<tr class="odd">
-<td align="left">14-mar</td>
-<td align="right">1867</td>
-<td align="right">1377</td>
-<td align="right">1122</td>
-</tr>
-<tr class="even">
-<td align="left">21-mar</td>
-<td align="right">1973</td>
-<td align="right">1712</td>
-<td align="right">1639</td>
-</tr>
-<tr class="odd">
-<td align="left">28-mar</td>
-<td align="right">1158</td>
-<td align="right">1485</td>
-<td align="right">1324</td>
-</tr>
-<tr class="even">
-<td align="left">4-abr</td>
-<td align="right">1313</td>
-<td align="right">1364</td>
-<td align="right">1194</td>
-</tr>
-<tr class="odd">
-<td align="left">11-abr</td>
-<td align="right">1398</td>
-<td align="right">1379</td>
-<td align="right">1144</td>
-</tr>
-<tr class="even">
-<td align="left">18-abr</td>
-<td align="right">1658</td>
-<td align="right">1230</td>
-<td align="right">1128</td>
-</tr>
-<tr class="odd">
-<td align="left">25-abr</td>
-<td align="right">1708</td>
-<td align="right">1364</td>
-<td align="right">1406</td>
-</tr>
-<tr class="even">
-<td align="left">2-may</td>
-<td align="right">2826</td>
-<td align="right">1811</td>
-<td align="right">1374</td>
-</tr>
-<tr class="odd">
-<td align="left">9-may</td>
-<td align="right">2081</td>
-<td align="right">2521</td>
-<td align="right">1524</td>
-</tr>
-<tr class="even">
-<td align="left">16-may</td>
-<td align="right">2105</td>
-<td align="right">2264</td>
-<td align="right">1561</td>
-</tr>
-<tr class="odd">
-<td align="left">23-may</td>
-<td align="right">2208</td>
-<td align="right">2121</td>
-<td align="right">2037</td>
-</tr>
-<tr class="even">
-<td align="left">30-may</td>
-<td align="right">2474</td>
-<td align="right">2230</td>
-<td align="right">2111</td>
-</tr>
-<tr class="odd">
-<td align="left">6-jun</td>
-<td align="right">2243</td>
-<td align="right">2424</td>
-<td align="right">1824</td>
-</tr>
-<tr class="even">
-<td align="left">13-jun</td>
-<td align="right">1884</td>
-<td align="right">1794</td>
-<td align="right">1861</td>
-</tr>
-<tr class="odd">
-<td align="left">20-jun</td>
-<td align="right">1775</td>
-<td align="right">1800</td>
-<td align="right">1620</td>
-</tr>
-<tr class="even">
-<td align="left">27-jun</td>
-<td align="right">2021</td>
-<td align="right">1448</td>
-<td align="right">1750</td>
-</tr>
-</tbody>
-</table>
+<pre><code>##     fecha Bogota Arauca Armenia
+## 1   4-ene   1700   1317    1556
+## 2  11-ene   1472   1235    1389
+## 3  18-ene   1288   1227    1400
+## 4  25-ene   1321   1214    1365
+## 5   1-feb   1492   1233    1211
+## 6   8-feb   1392   1306    1211
+## 7  15-feb   1544   1302    1211
+## 8  22-feb   1389   1312    1294
+## 9  29-feb   1296   1358    1294
+## 10  7-mar   1229   1385    1206
+## 11 14-mar   1867   1377    1122
+## 12 21-mar   1973   1712    1639
+## 13 28-mar   1158   1485    1324
+## 14  4-abr   1313   1364    1194
+## 15 11-abr   1398   1379    1144
+## 16 18-abr   1658   1230    1128
+## 17 25-abr   1708   1364    1406
+## 18  2-may   2826   1811    1374
+## 19  9-may   2081   2521    1524
+## 20 16-may   2105   2264    1561
+## 21 23-may   2208   2121    2037
+## 22 30-may   2474   2230    2111
+## 23  6-jun   2243   2424    1824
+## 24 13-jun   1884   1794    1861
+## 25 20-jun   1775   1800    1620
+## 26 27-jun   2021   1448    1750</code></pre>
 </div>
 </div>
 <div id="medidas-de-tendencia-central" class="section level2">
@@ -1787,7 +1456,7 @@ mtcars %&gt;%
 ## 3     8  15.1</code></pre>
 <pre class="r"><code>#boxplot
 boxplot(mtcars[,1]~mtcars[,2],xlab=&quot;cilindros&quot;,ylab=&quot;mpg&quot;,col =&quot;pink&quot;)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="medidas-de-forma" class="section level2">
 <h2>Medidas de forma</h2>
@@ -1849,11 +1518,11 @@ tmp &lt;- rbind(data.frame(origen = &quot;no&quot;, dato = no),
              data.frame(origen = &quot;si&quot;, dato = si))
 ggplot(tmp, aes(x =dato, fill = origen)) +
   geom_density(alpha = 0.3)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <pre class="r"><code>hist(no, xlab = &quot;PH agua no potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
 
 hist(si, xlab = &quot;PH agua potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
 <p><em>Medidas de tendencia central en tablas de frecuencia</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -2201,7 +1870,7 @@ iris %&gt;%
   summarise(frequency = n()) %&gt;% 
   ggplot() +
   geom_bar(aes(x = sepal_length_group, y = frequency), stat = &#39;identity&#39;,col=3)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p><strong>Analisis de datos agrupados</strong></p>
 <p>medidas de tendencia central en datos agrupados</p>
 <div style="text-align: center;">
