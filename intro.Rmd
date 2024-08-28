@@ -117,30 +117,198 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 - El aseguramiento de la calidad.
 
 
+**ABREVIATURAS DE LAS ORGANIZACIONES**
+
+
+|Abreviatura|**Significado                  **                      |
+|:---------:|:------------------------------------------------------|
+|ICONTEC    |Instituto Colombiano de Normas Técnicas y Certificación|
+|BIPM|Oficina Internacional de Pesos y Medidas|
+|CGPM | Conferencia general de pesas y medidas|
+|CIPM|Comité Internacional de Pesas y Medidas|
+|IS         |Sistema internacional de las medidas                   |      
+|ONAC       |Organismo Nacional de Acreditación                     |      
+|ISO        |Organización internacional de estandarización - International Standardisation Organisation)|
+
+## Cronología de la metrología 
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/ltmc.png")
+knitr::include_graphics("imagen/multi.png")
 ```
-
-
-
-## Organizaciones metrológicas
-
-
-
-|Abreviatura|**Significado                  **|
-|:---------:|:------------------------------------------------------------------|
-|    BIPM   | Oficina Internacional de Pesas y Medidas (BIPM) fue creada por la Convención del Metro, firmada en París el 20 de mayo de 1875 por diecisiete Estados, en la última sesión de la Conferencia Diplomática. Esta Convención fue modificada en 1921. |   
-|ICONTEC    |Instituto Colombiano de Normas Técnicas y Certificación  |    |
-|IS         |Sistema internacional de las medidas|       |
-|ONAC       |Organismo Nacional de Acreditación  |       |
-|ISO        |organización internacional de estandarización - International Standardisation Organisation)||
-
 
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/ins.png")
 ```
+
+## Institutos Metrológicos del mundo 
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/cgpm.png")
+```
+
+
+**INSTITUTOS NACIONALES ALREDEDOR DEL MUNDO**
+
+```{r echo=FALSE}
+data <-
+  data.frame(
+    
+    Año_fund = c(
+      1842,
+      1900,
+      1916,
+      1950,
+      1957,
+      1973,
+      1988,
+      1989,
+      1992,
+      2012
+    ),
+    fundacion = c(
+      "VNIIM",
+      "NPL",
+      "NRC",
+      "PTB",
+      "INTI",
+      "INMETRO",
+      "NIST",
+      "CEM",
+      "CENAM",
+      "INM"
+    ),
+    Pais = c(
+      "Rusia",
+      "Inglaterra",
+      "Canadá",
+      "Alemania",
+      "Argentina",
+      "Brasil",
+      "Estados unidos",
+      "España",
+      "México",
+      "Colombia"),
+    Nombre=c(
+            "Depósito de pesas y medidas de referencia
+            D.I. Mendeleev All Russian Institute for Metrology",
+           "National Physical Laboratory",
+"National Research Council",
+"Physikalisch Technische Bundesanstalt, 
+. Physikalisch Technische Reichsanstalt (1887)",
+"Instituto Nacional de Tecnología Industrial",
+"Instituto Nacional de Metrología, Calidad y Tecnología",
+"National Institute of Standards and Technology, 
+(National Bureau of Standards (1901))",
+"Centro Español de Metrología",
+"Centro Nacional de Metrología",
+"Instituto Nacional de Metrología"
+            
+            
+            
+            
+    )
+  )
+
+library(kableExtra)
+library(expss)
+library(DT)
+
+
+tab01 <- as.data.frame(data)
+tab02 <- tab01
+
+vector.img <-
+  c("https://www.vniim.org/images/l2_title_1.gif",
+    "data:image/jpeg;base64,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",
+    "https://nrc.canada.ca/libraries/theme-gcweb/assets/sig-blk-en.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Physikalisch-Technische_Bundesanstalt_2013_logo.png/800px-Physikalisch-Technische_Bundesanstalt_2013_logo.png",    
+    "https://upload.wikimedia.org/wikipedia/commons/3/32/Avatar_2023_new_%281%29.png",
+    "https://w7.pngwing.com/pngs/553/516/png-transparent-inmetro-hd-logo.png",
+    "https://cyberhoot.com/wp-content/uploads/2022/05/NIST-1024x535.png",
+    "https://www.cem.es/themes/custom/cem/logo-cem.png",
+    "data:image/jpeg;base64,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",
+    "https://elearning.inm.gov.co/wp-content/uploads/2022/07/logo-INM-1.png"
+  )
+kbl(tab02) %>%
+  kable_styling(bootstrap_options = c("hover"),
+                full_width = FALSE) %>%
+  column_spec(1, image = vector.img,width='25mm') %>%
+  column_spec(2, color = "teal", bold = TRUE)
+ 
+
+```
+
+
+
+**ORGANIZACIONES DE NORMAS O PATRONES ESCRITOS**
+
+
+```{r echo=FALSE}
+data <-
+  data.frame(
+    
+    Año_fund = c(
+      1906,
+      1916,
+      1922,
+      1945,
+      1952,
+      1997
+    ),
+    fundacion = c(
+      "CEI",
+      "IUPAC",
+      "IUPAP",
+      "ISO",
+      "IFCC",
+      "JCGM"
+    ),
+    Pais = c(
+      "Suiza",
+      "Suiza",
+      "París",
+      "Reino Unido",
+      "Londres",
+      "IBPM"),
+    Nombre=c(
+            "Comisión Electrónica Internacional",
+            "Unión Internacional de Química Pura y Aplicada",
+ "Unión Internacional de Física Pura y Aplicada",
+"Organización Internacional de Normalización",
+"Federación Internacional de Química Clínica",
+"Comité Conjunto para las Guías en Metrología (VIM GUM)"
+    )
+  )
+
+library(kableExtra)
+library(expss)
+library(DT)
+
+
+tab01 <- as.data.frame(data)
+tab02 <- tab01
+
+vector.img <-
+  c("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/International_Electrotechnical_Commission_Logo.svg/320px-International_Electrotechnical_Commission_Logo.svg.png",
+    "https://iupac.org/wp-content/uploads/2021/11/iupac.png",
+    "https://cicanum.ucr.ac.cr/images/XIII_LASNPA_2020/Sponsors/Sponsor-IUPAP.png",
+    "https://www.ctaima.com/wp-content/uploads/2019/11/Las-Certificaciones-ISO-a-Nivel-Mundial-descienden-un-20-%C2%BFA-que%CC%81-se-debe%EF%BB%BF.png",
+    "https://www.unilabs.es/sites/default/files/2022-04/Federaci%C3%B3n%20Internacional%20de%20Qu%C3%ADmica%20Cl%C3%ADnica%20y%20Medicina%20de%20Laboratorio.jpg",
+    "https://www.bipm.org/documents/20126/27072194/Logo+JCGM.png/52660484-ab9f-66da-6046-a8172b639b28?t=1647625103137"
+  )
+kbl(tab02) %>%
+  kable_styling(bootstrap_options = c("hover"),
+                full_width = FALSE) %>%
+  column_spec(1, image = vector.img,width='25mm') %>%
+  column_spec(2, color = "teal", bold = TRUE)
+ 
+
+```
+
+
+
+
 
 
 
@@ -151,11 +319,11 @@ knitr::include_graphics("imagen/ins.png")
 
 |**Abreviatura**|**Significado**|**Autor**|
 |:---------:|:--------------------------------------------------|:--------------------:|
-|     VIM   |Vocabulario internacional de metrología  |JCGM* Comité Conjunto para las Guías en Metrología (JCGM por sus siglas en inglés)|
+|     VIM   |Vocabulario internacional de metrología  |JCGM|
 | GUM       |Guia para la expresión de la incertidumbre de las medidas|JCGM|
 |Norma 10012 (2003)|**Comprobación Metrológica** Orienta los procesos y el equipo de medición utilizado para apoyar y demostrar el cumplimiento de requisitos metrológicos.|   ISO  |
 |Norma 17025 (2006)|Establece los criterios para los laboratorios que desean demostrar su competencia técnica, que poseen un sistema de calidad efectivo y que son capaces de producir resultados técnicamente válidos|    ISO   |
-*BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP y OIML
+
 
 
 
@@ -257,7 +425,6 @@ Intermedio entre calibraciones
 
 
 Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
-
 
 
 **Mensurando:** Cantidad destinada a la medida. (VIM)
@@ -474,84 +641,9 @@ En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 
 
 El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida.  Para la cuantificación de las medidas la ISO creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
 
-## La humanidad y la medición
-
-El primer codo real fue definido como la longitud del antebrazo del Faraón, desde el codo hasta el extremo del dedo medio, teniendo la mano extendida La medida original fue transferida y materializada en granito negro En los lugares de construcción, los trabajadores poseían copias en granito o madera, siendo responsabilidad de los arquitectos su mantenimiento
-
-
-EURAMET, «Metrología Abreviada,» 2008.pp 8
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/medi.png")
-```
-
-
-**Convención del metro**
-
-Tratado internacional firmado el 20 de mayo de 1875 por 17 representantes de
-17 naciones en París 
-
-**Objetivos de la convención del metro**
-
-- Coordinar la metrología Internacional
-
-- Desarrollar un sistema métrico que provea mediciones con un alto nivel de
-trazabilidad dentro del marco del sistema internacional (masa y longitud)
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/conven.png")
-```
 
 
 
-**CONFERENCIA GENERAL DE PESAS Y MEDIDAS (CGPM)**
-
-Conferencia General de Pesas y Medidas, (Conférence générale des poids et mesures)
-
-
-- Es la autoridad suprema, es una reunión de los delegados de cada nación Se reúnen en Francia cada 4 años
-
-- (1921) Se extiende a todas las mediciones de variables físicas
-
-- (1960) Se establece es sistema Internacional de Unidades (SI)
-
-**OFICINA INTERNACIONAL DE PESAS Y MEDIDAS (BIPM)**
-
-Oficina Internacional de Pesas y Medidas (Bureau international des poids et measures
-
-- Se encuentra en Sèvres, Francia
-
-- Resguarda el prototipo internacional del kilogramo
-
-- Provee servicios metrológicos al CGPM y CIPM
-
-- Anfitrión de las reuniones tanto del CGPM como del CIPM
-
-- En sus laboratorios laboran 60 personas
-
-**COMITÉ INTERNACIONAL DE PESAS Y MEDIDAS (CIPM)**
-
-Comité Internacional de Pesas y Medidas (Comité international des poids et
-mesures)
-
-**Objetivo** 
-
-- Promover la uniformidad en las unidades de medida al rededor del mundo
-
-
-- Es un cuerpo consultor de la CGPM,compuesto por 18 destacados metrólogos
-de diferentes países, son electos por el CGPM
-
-- Consta con 10 comités consultores
-
-
-**Responsabildades CIPM**
-
-1. Revisar el trabajo de la oficina internacional de Pesos y Medidas ( bajo la autorización de la CGPM
-
-2. Revisar el trabajo metrológico realizado en conjunto por países pertenecientes a la convención del metro y coordinar las actividades entre especialistas en metrología
-
-3. Preparar los reportes de los comités para las reuniones de la CGPM
 
 ### **Sistema internacional de medida (SI)**
 
@@ -768,7 +860,7 @@ No tienen en cuenta si el valor que esta al lado de la cifra significativa sea m
 
 12. ¿Cómo medir la variabilidad de un conjunto de datos?
 
-13. ¿Qué es un outlier opunto atípico y como detectarlo?
+13. ¿Qué es un outlier o punto atípico y como detectarlo?
 
 
 
