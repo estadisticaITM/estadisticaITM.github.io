@@ -117,7 +117,31 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 - El aseguramiento de la calidad.
 
 
+
+
+### **Sistema internacional de medida (SI)**
+
+Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acordaron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
+
+|Cantidad|   Unidad|Simbolo|
+|:------ |:-------:|:-----:|
+| Masa   |Kilogramo|  kg   |
+| Tiempo |Segundo  |s    	 |
+|Longitud|Metro    |m    	 |
+| Temperatura termodinamica|Kelvin|k|
+|Corriente electrica|Amperio|A|
+|Intensidad luminosa|Candela|sd|
+|Cantidad de sustancia|mole|mol|
+
+Existen otras medidas derivadas de las anteriores.
+
+
+
+## Cronología de la metrología 
+Para entender este gráfico y sus notaciones es necesario tener claro las siguientes siglas:
+
 **ABREVIATURAS DE LAS ORGANIZACIONES**
+
 
 
 |Abreviatura|**Significado                  **                      |
@@ -130,7 +154,6 @@ Comprende todas las actividades metrológicas que necesita la industria para cum
 |ONAC       |Organismo Nacional de Acreditación                     |      
 |ISO        |Organización internacional de estandarización - International Standardisation Organisation)|
 
-## Cronología de la metrología 
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/multi.png")
@@ -533,12 +556,6 @@ R y R  son conocidas después de tomar las mediciones.
 
 **Tipos de incertidumbre**
 
-**Incertidumbre** 
-
-- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
-
-
-
 **Incertidumbre típica $u$**
 
 Incertidumbre del resultado de una medición, expresada en forma de desviación típica, dependiendo del origen de los datos la incertidumbre típica se clasifica en 
@@ -627,6 +644,30 @@ knitr::include_graphics("imagen/tol.png")
 
 $$Intervalo \quad toleracia \geq error+incertidumbre$$
 
+## Resolución
+
+Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
+
+
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/reso.png")
+```
+
+**Incertidumbre por resolución**
+
+La siguiente fórmula se usa si el equipo es análogo: 
+
+
+$$u(x)=\frac{Resolución}{\sqrt 3}$$
+En el caso que un equipo sea digital, la fórmula es:
+
+$$u(x)=\frac{Resolución}{\sqrt {12}}$$
+
+
+## Incertidumbre de una medida
+
+El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
 
 **Ejemplo**
 
@@ -636,39 +677,6 @@ En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 
 -  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
 
 - Se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
-
-## ¿Cómo medir la incertidumbre de una medida?
-
-El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida.  Para la cuantificación de las medidas la ISO creo la guia para la expresión de la incertidumbre de las medidas. **(GUM)**, actualizada en el año 1995.
-
-
-
-
-
-### **Sistema internacional de medida (SI)**
-
-Para comunicar los resultados de las mediciones de manera efectiva y eficiente, los científicos e ingenieros acordaron el sistema internacional de medidas SI, este sistema es integral, aceptado y adoptado internacionalmente, coherente y cómodo de usar y revisado  periódicamente. 
-
-|Cantidad|   Unidad|Simbolo|
-|:------ |:-------:|:-----:|
-| Masa   |Kilogramo|  kg   |
-| Tiempo |Segundo  |s    	 |
-|Longitud|Metro    |m    	 |
-| Temperatura termodinamica|Kelvin|k|
-|Corriente electrica|Amperio|A|
-|Intensidad luminosa|Candela|sd|
-|Cantidad de sustancia|mole|mol|
-
-Existen otras medidas derivadas de las anteriores.
-
-
-
-
-
-
-
-
-## Incertidumbre en la medida
 
 **Incertidumbre absoluta**
 
@@ -684,17 +692,69 @@ Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una c
 $$\frac{u_a}{a}$$
 
 
+**Incertidumbre en medidas reproducibles**
+
+
+Cuando al realizar una serie de medidas de una misma magnitud se obtienen los
+mismos resultados, no se puede concluir que la incertidumbre sea cero; lo que
+sucede es que los errores quedan ocultos ya que son menores que la incertidumbre asociada al aparato de medición. 
+
+En este caso, puede establecerse un criterio simple y útil: cuando las medidas son reproducibles, se asigna una incertidumbre igual a la mitad de la división más pequeña del instrumento, la cual se conoce como resolución.
+
+Por ejemplo, al medir con un instrumento graduado en mililitros repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml, la incertidumbre será 0.5 ml.
+
+Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce
+como intervalo de confianza de la medición y su tamaño es el doble de la
+incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de
+medición tales como reglas, transportadores, balanzas, probetas, manómetros,
+termómetros, etc
+
+**Incertidumbre en medidas no-reproducibles**
+
+Cuando se hacen repeticiones de una medida y estas resultan diferentes, con
+valores $x_1, x_2,...,x_N$, surgen las preguntas:
+
+
+- ¿Cuál es el valor que se reporta?
+
+- ¿Qué incertidumbre se asigna al valor reportado?
+
+La respuesta a estas preguntas se obtiene a partir del estudio estadístico de las
+mediciones,promedio y desviación estándar.
+
+
 ## Incertidumbre en el redondeo de cifras significativas
 
 **Regla 1**
 
 La incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores.
 
-Por ejemplo supongamos una distancia se encuentra entre los valores (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre proporcional es:
+**Ejemplo**
+
+Una distancia se encuentra entre los valores (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre proporcional es:
 
 $$\frac{0,05}{25,1}=0.2\%$$
 
 
+Intervalo en forma absoluta
+
+$$25.1 \pm 0.05$$
+Intervalo porcentual
+
+$$25.1 \pm 0.2 \%$$
+ Propagación de la incertidumbre en la suma y diferencia
+Si las q r se miden con incertidumbre ∆q y ∆r respectivamente y
+si se utilizan para calcular la diferencia w = q − r entonces la incertidumbre
+asociada a la variable w es la suma de las incertidumbres asociadas a q y a r , es
+decir
+∆w = ∆q + ∆r
+Lo mismo es cierto cuando se calcula la suma w = q + r .
+Este resultado nos indica que cuando se combinan dos variables mediante una
+3.2.1.2 Propagación de errores en
+as cantidades y
+
+suma o una resta, las incertidumbres siempre se suman.
+Ejemplo, (62 ± 0.01) + (1.7± 0.1) = 63.73± 0.11.
 **Regla 2**
 
 Cuando se multiplican, dividen, suman o restan valores, la incertidumbre resultante es la más cercana a la mayor de las incertidumbres proporcionales de las componentes.
