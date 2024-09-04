@@ -371,24 +371,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -513,8 +499,8 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-8c8a35692ce014df958d" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c8a35692ce014df958d">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6a0b6a5e969752da133b" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6a0b6a5e969752da133b">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -539,8 +525,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-fabbc35a4eb7e43a58a2" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fabbc35a4eb7e43a58a2">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-86c7e09a21e2bf4b7636" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-86c7e09a21e2bf4b7636">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -682,10 +668,7 @@ resultados</p>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>vec=c(502,501,497,491,496,501,502,500,489,490)
-mean(vec)</code></pre>
 <pre><code>## [1] 496.9</code></pre>
-<pre class="r"><code>sd(vec)</code></pre>
 <pre><code>## [1] 5.173651</code></pre>
 <p>Está el proceso llenando bolsas conforme a lo que dice la
 envoltura?</p>
@@ -718,7 +701,6 @@ definen los cuantiles que satisfacen esas condiciones.</p>
 <p><span class="math display">\[t_{v=9,0.975}=2.26\]</span></p>
 <p><img src="PH_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><strong>En R</strong></p>
-<pre class="r"><code>t.test(vec,mu=500)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -934,8 +916,8 @@ diferente de 0.18</p>
 <h1>Pruebas de hipótesis para dos muestras</h1>
 <div id="ph-diferencia-de-medias" class="section level2">
 <h2>PH diferencia de medias</h2>
-<div id="htmlwidget-6131ea1402b30efd5dcf" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6131ea1402b30efd5dcf">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2b42b28d84c4ffc4b85b" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2b42b28d84c4ffc4b85b">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />

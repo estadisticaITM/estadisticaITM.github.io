@@ -281,24 +281,10 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -371,45 +357,6 @@ explicatorias, la matrix XtX seria singular y por tanto no podríamos
 hallar los estimadores de mínimos cuadrados!.</p>
 <p>##Ejemplo</p>
 <p>Retomando el ejemplo de los arboles</p>
-<pre class="r"><code>library(car)</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre><code>## 
-## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     recode</code></pre>
-<pre class="r"><code>#library(rgl)
-library(perturbR)
-library(leaps)
-library(scatterplot3d)
-
-
-DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
-
-D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
-
-HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
-
-VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
-
-bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
-
-##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
-miscoeficientes=function(modeloreg,datosreg){
-  coefi=coef(modeloreg)
-  datos2=as.data.frame(scale(datosreg))
-  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
-  limites=confint(modeloreg,level=0.95)
-  vifs=c(0,vif(modeloreg))
-  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
-  cat(&quot;Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados&quot;,&quot;\n&quot;)
-  resul
-}
-
-
-m1=lm(VOL~D16+HT+DBH)
-
-summary(m1)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = VOL ~ D16 + HT + DBH)
@@ -430,7 +377,6 @@ summary(m1)</code></pre>
 ## Residual standard error: 3.095 on 16 degrees of freedom
 ## Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
 ## F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11</code></pre>
-<pre class="r"><code>miscoeficientes(m1,bosque)</code></pre>
 <pre><code>## Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados</code></pre>
 <pre><code>##                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
 ## (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000

@@ -194,8 +194,6 @@ A las cantidades $\Large S_{xx}$ y $\Large S_{xy}$ se les conoce como suma corre
 $$\Large \hat{\beta_0}=\bar{y}-\hat{\beta_1}\bar{x}$$
 
 ```{r fig.asp=0.5, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
 IM3 <- readPNG("mc.png")
 grid.raster(IM3)
 ```
@@ -210,8 +208,7 @@ $$\Large \varepsilon_i= y_i- \hat{y_i}$$
 
 
 ```{r fig.asp=0.5, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
+
 IM4 <- readPNG("img4.png")
 grid.raster(IM4)
 ```
@@ -294,8 +291,16 @@ En general, una variable cualitativa con c clases se representa mediante c -1 va
 La siguiente base de datos relaciona 7 medidas del crecimiento de 5 tipos de arboles en el tiempo en meses y el diámetro en mm.
 
 ```{r echo = TRUE}
+library(ggplot2)
+library(tidyverse)
+library(viridis)
+library(pacman)
+p_load("datasets","DT", "fdth","prettydoc","xfun")
+library(datasets)
 
-head (Orange)
+bass=datasets::Orange
+
+head(bass)
 
 
 ```
@@ -303,14 +308,14 @@ head (Orange)
 El diagrama de dispersión simple es:
 
 ```{r echo = TRUE}
-plot(Orange$age,Orange$circumference,lwd=3)
+plot(bass$age,bass$circumference,lwd=3)
 ```
 
 El modelo de regresión lineal simple corresponde a:
 
 ```{r echo = TRUE}
 
-model=lm(Orange$circumference~Orange$age)
+model=lm(bass$circumference~bass$age)
 summary(model)
 
 ```
@@ -324,13 +329,13 @@ La linea de regresión ajustada corresponde a
 
 ```{r echo = TRUE}
 
-model=lm(Orange$circumference~Orange$age)
+model=lm(bass$circumference~bass$age)
 
 
-plot(Orange$age,Orange$circumference,lwd=3)
+plot(bass$age,bass$circumference,lwd=3)
 
 yest=fitted(model)
-lines(Orange$age,yest,col=2)
+lines(bass$age,yest,col=2)
 abline(coef(model))
 
 
@@ -346,14 +351,14 @@ La  péndiente indica que por cada mes que pasa la circunferencia del arbol aume
 El diagrama de dispersión discriminando por los niveles de la variables factor es:
 
 ```{r echo = TRUE }
-plot(Orange$age,Orange$circumference,col=Orange$Tree,lwd=3)
+plot(bass$age,bass$circumference,col=bass$Tree,lwd=3)
 
 ```
 
 El modelo de regresión lineal con factores corresponde a 
 ```{r echo = TRUE}
 
-model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
+model=lm(bass$circumference~bass$age+as.factor(bass$Tree))
 summary(model)
 
 ```

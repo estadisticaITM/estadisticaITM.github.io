@@ -363,24 +363,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -477,7 +463,6 @@ horas= \frac{8 llamadas}{2 horas}\]</span></p>
 ^x}{x!}\]</span> La probabilidad pedida es:</p>
 <p><span class="math display">\[P(x=10)=f(x)=\frac{e^{-8}8
 ^{10}}{10!}=9.92 \%\]</span> <strong>En R</strong></p>
-<pre class="r"><code>dpois(x=10,lambda=8)</code></pre>
 <pre><code>## [1] 0.09926153</code></pre>
 <p>b.Calcule la probabilidad de que por lo menos cinco solicitudes sean
 recibidas durante un periodo particular de 2 horas.</p>
@@ -488,7 +473,6 @@ la respuesta es:</strong></p>
 equivalente a <span class="math inline">\(P(X&gt;x)\)</span>, es por
 ello que la probabilidad de al menos 10 se debe evaluar en el valor
 anterior 9.</p>
-<pre class="r"><code>ppois(4,lambda=8,lower.tail = FALSE)</code></pre>
 <pre><code>## [1] 0.9003676</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Si los operadores del servicio de grúas hacen una pausa de 30 min
@@ -501,7 +485,6 @@ llamadas de ayuda?</li>
 probabilidad pedida se traduce en</p>
 <p><span class="math display">\[p(x=0)= \frac{e^{-2}2 ^0}{0!}=13.53
 \%\]</span> <strong>En R</strong></p>
-<pre class="r"><code>dpois(x=0,lambda=2)</code></pre>
 <pre><code>## [1] 0.1353353</code></pre>
 <p>¿Cuántas llamadas esperaría durante la pausa de 30 minutos?</p>
 <p>el valor esperado de una distribución poisson esta dado por la tasa

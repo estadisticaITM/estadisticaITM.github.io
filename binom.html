@@ -363,24 +363,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -497,7 +483,6 @@ sobrevivan.</p>
 <p><span class="math display">\[p(x=14)=\displaystyle{20 \choose
 14}0.8^{14} 0.2^{6}=0.109\]</span> <strong>En R la respuesta
 es:</strong></p>
-<pre class="r"><code>dbinom(14,size=20, prob=0.8)</code></pre>
 <pre><code>## [1] 0.1090997</code></pre>
 <p>b Encuentre la probabilidad de que al menos 10 sobrevivan.</p>
 <p>Recordemos la forma de la función acumulada</p>
@@ -510,13 +495,11 @@ probabilidad pedida es <span class="math display">\[P(x \geq
 <p>El argumento lower tail si es falso, es equivalente a <span
 class="math inline">\(P(X&gt;x)\)</span>, es por ello que la
 probabilidad de al menos 10 se debe evaluar en el valor anterior 9.</p>
-<pre class="r"><code>pbinom(9,20,lower.tail = FALSE,prob=0.8)</code></pre>
 <pre><code>## [1] 0.9994366</code></pre>
 <p>c Encuentre la probabilidad de que a lo sumo 16 sobrevivan.</p>
 <p>La probabilidad pedida es <span class="math display">\[P(x \leq
 16)=\sum_{x=0}^{16}\displaystyle{20 \choose x}0.8^x
 0.2^{20-x}=0.5885\]</span> En R la respuesta es:</p>
-<pre class="r"><code>pbinom(16,20, prob = 0.8)</code></pre>
 <pre><code>## [1] 0.5885511</code></pre>
 <p>d Encuentre la media y la varianza del número que sobrevive. Media
 <span class="math display">\[\mu=np=20*0.8=16\]</span> Varianza <span

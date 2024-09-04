@@ -369,24 +369,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -615,9 +601,6 @@ International Standardisation Organisation)</td>
 <h2>Institutos Metrológicos del mundo</h2>
 <p><img src="imagen/cgpm.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>INSTITUTOS NACIONALES ALREDEDOR DEL MUNDO</strong></p>
-<pre><code>## Loading required package: maditr</code></pre>
-<pre><code>## 
-## To drop variable use NULL: let(mtcars, am = NULL) %&gt;% head()</code></pre>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1027,9 +1010,8 @@ variación bajo las condiciones especificadas.</p>
 <p>Proximidad entre los valores medidos obtenidos en mediciones
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-8e4642c708f7d897713f" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8e4642c708f7d897713f">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-baae15ac52b95d7bfa5e" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-baae15ac52b95d7bfa5e">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
@@ -1210,11 +1192,13 @@ probetas, manómetros, termómetros, etc</p>
 <p><strong>Incertidumbre en medidas no-reproducibles</strong></p>
 <p>Cuando se hacen repeticiones de una medida y estas resultan
 diferentes, con valores <span class="math inline">\(x_1,
-x_2,...,x_N\)</span>, surgen las preguntas: • ¿Cuál es el valor que se
-reporta? • ¿Qué incertidumbre se asigna al valor reportado? La respuesta
-a estas preguntas se obtiene a partir del estudio estadístico de las
-mediciones, el cual debe de arrojar cual es la tendencia central de las
-medidas y su dispersión.</p>
+x_2,...,x_N\)</span>, surgen las preguntas:</p>
+<ul>
+<li><p>¿Cuál es el valor que se reporta?</p></li>
+<li><p>¿Qué incertidumbre se asigna al valor reportado?</p></li>
+</ul>
+<p>La respuesta a estas preguntas se obtiene a partir del estudio
+estadístico de las mediciones,promedio y desviación estándar.</p>
 </div>
 <div id="incertidumbre-en-el-redondeo-de-cifras-significativas"
 class="section level2">
@@ -1229,10 +1213,18 @@ es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre
 proporcional es:</p>
 <p><span class="math display">\[\frac{0,05}{25,1}=0.2\%\]</span></p>
 <p>Intervalo en forma absoluta</p>
-<p><span class="math display">\[25.1 \pm 0.05\]</span> el intervalo
+<p><span class="math display">\[25.1 \pm 0.05\]</span> Intervalo
 porcentual</p>
-<p><span class="math display">\[25.1 \pm 0.2 \%\]</span></p>
-<p><strong>Regla 2</strong></p>
+<p><span class="math display">\[25.1 \pm 0.2 \%\]</span> Propagación de
+la incertidumbre en la suma y diferencia Si las q r se miden con
+incertidumbre ∆q y ∆r respectivamente y si se utilizan para calcular la
+diferencia w = q − r entonces la incertidumbre asociada a la variable w
+es la suma de las incertidumbres asociadas a q y a r , es decir ∆w = ∆q
++ ∆r Lo mismo es cierto cuando se calcula la suma w = q + r . Este
+resultado nos indica que cuando se combinan dos variables mediante una
+3.2.1.2 Propagación de errores en as cantidades y</p>
+<p>suma o una resta, las incertidumbres siempre se suman. Ejemplo, (62 ±
+0.01) + (1.7± 0.1) = 63.73± 0.11. <strong>Regla 2</strong></p>
 <p>Cuando se multiplican, dividen, suman o restan valores, la
 incertidumbre resultante es la más cercana a la mayor de las
 incertidumbres proporcionales de las componentes.</p>

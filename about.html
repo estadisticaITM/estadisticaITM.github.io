@@ -363,24 +363,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -463,168 +449,37 @@ pueden almacenar en formato:</p>
 tres observaciones y tres variables, que nos servirá como ejemplo para
 mostrar cómo se debe almacenar la información.</p>
 <p>Ejemplo de una base de datos simple.</p>
-<table>
-<caption>Ejemplo de una base de datos simple.</caption>
-<thead>
-<tr class="header">
-<th align="right">Edad</th>
-<th align="left">Fuma</th>
-<th align="left">sex</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">17</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="left">esporádicamente</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">17</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">23</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">17</td>
-<td align="left">CADA MES</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">27</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">20</td>
-<td align="left">A DIARIO</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">17</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="left">A DIARIO</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">20</td>
-<td align="left">esporádicamente</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="even">
-<td align="right">21</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">19</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">18</td>
-<td align="left">CADA MES</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="left">A DIARIO</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">21</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="even">
-<td align="right">22</td>
-<td align="left">A DIARIO</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="odd">
-<td align="right">20</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="even">
-<td align="right">22</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">24</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">24</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">28</td>
-<td align="left">CADA SEMANA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">29</td>
-<td align="left">NUNCA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">24</td>
-<td align="left">NUNCA</td>
-<td align="left">Hombre</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="left">CADA SEMANA</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="odd">
-<td align="right">23</td>
-<td align="left">esporádicamente</td>
-<td align="left">Mujer</td>
-</tr>
-<tr class="even">
-<td align="right">24</td>
-<td align="left">esporádicamente</td>
-<td align="left">Hombre</td>
-</tr>
-</tbody>
-</table>
+<pre><code>##    Edad            Fuma    sex
+## 1    17           NUNCA Hombre
+## 2    18 esporádicamente Hombre
+## 3    17           NUNCA Hombre
+## 4    23           NUNCA Hombre
+## 5    17        CADA MES Hombre
+## 6    20           NUNCA Hombre
+## 7    27           NUNCA Hombre
+## 8    20           NUNCA Hombre
+## 9    20        A DIARIO Hombre
+## 10   20           NUNCA Hombre
+## 11   17           NUNCA Hombre
+## 12   19        A DIARIO Hombre
+## 13   20 esporádicamente  Mujer
+## 14   21           NUNCA  Mujer
+## 15   19           NUNCA  Mujer
+## 16   18           NUNCA Hombre
+## 17   18        CADA MES Hombre
+## 18   18        A DIARIO  Mujer
+## 19   21           NUNCA  Mujer
+## 20   22        A DIARIO Hombre
+## 21   20           NUNCA  Mujer
+## 22   22           NUNCA  Mujer
+## 23   24           NUNCA Hombre
+## 24   24           NUNCA  Mujer
+## 25   28     CADA SEMANA Hombre
+## 26   29           NUNCA  Mujer
+## 27   24           NUNCA Hombre
+## 28   18     CADA SEMANA  Mujer
+## 29   23 esporádicamente  Mujer
+## 30   24 esporádicamente Hombre</code></pre>
 <p>Para almacenar la información del Cuadro en Excel, abrimos un archivo
 nuevo archivo de Excel y copiamos la información.</p>
 <p><strong>OBSERVACIONES</strong></p>
@@ -637,17 +492,7 @@ nuevo archivo de Excel y copiamos la información.</p>
 nombrar el archivo se debe modificar la opción tipo de archivo a csv
 (delimitado por comas).</p></li>
 </ul>
-
-<div class="rmdwarning">
-Advertencia: Recuerde que el archivo de Excel se debe guardar con
-extensión .csv.
-</div>
 <p>en R se debe correr la siguiente instrucción</p>
-<pre class="r"><code>#forma original
-read.table(file, header, sep, dec)
-
-#forma sugerida
-datos &lt;- read.table(file.choose(), header=TRUE, sep=&#39;,&#39;)</code></pre>
 </div>
 <div id="librería-shiny" class="section level2">
 <h2>Librería Shiny</h2>

@@ -58,9 +58,7 @@ Fuma <- c('NUNCA','esporádicamente','NUNCA','NUNCA', 'CADA MES','NUNCA','NUNCA'
 sex <- c('Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Hombre','Mujer','Mujer','Mujer','Hombre','Hombre','Mujer','Mujer','Hombre','Mujer','Mujer','Hombre','Mujer','Hombre','Mujer','Hombre','Mujer','Mujer','Hombre'
 )
 dt <- data.frame(Edad, Fuma, sex)
-knitr::kable(dt, booktabs = TRUE,
-caption = 'Ejemplo de una base de datos simple.'
-)
+dt
 ```
 
 

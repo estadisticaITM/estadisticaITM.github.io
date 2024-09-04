@@ -281,24 +281,10 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -421,40 +407,10 @@ permita identificar a que especie (a o b) pertenece un determinado
 insecto. Para ello se han medido tres variables (longitud de las patas,
 diámetro del abdomen y diámetro del órgano sexual) en 10 individuos de
 cada una de las dos especies.</p>
-<pre class="r"><code>input &lt;- (&quot;
-especie pata abdomen organo_sexual 
-a 191 131 53
-a 185 134 50
-a 200 137 52
-a 173 127 50
-a 171 128 49
-a 160 118 47
-a 188 134 54
-a 186 129 51
-a 174 131 52
-a 163 115 47
-b 186 107 49
-b 211 122 49
-b 201 144 47
-b 242 131 54
-b 184 108 43
-b 211 118 51
-b 217 122 49
-b 223 127 51
-b 208 125 50
-b 199 124 46
-&quot;)
-datos &lt;- read.table(textConnection(input), header = TRUE)</code></pre>
-<p><strong>GRAFICAMENTE</strong></p>
-<pre class="r"><code>par(mfrow=c(1,3))
-
-boxplot(datos$pata~datos$especie)
-boxplot(datos$abdomen~datos$especie)
-boxplot(datos$organo_sexual~datos$especie)</code></pre>
-<p><img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<p><strong>GRAFICAMENTE</strong>
+<img src="lda_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 Las patas tienen claramente un comportamiento diferente entre
 especies</p>
-<pre class="r"><code>plot(datos[-1],col = c(&quot;firebrick&quot;, &quot;green3&quot;)[datos$especie], pch = 19)</code></pre>
 <p><img src="lda_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>El par de variables abdomen-pata y el par pata-organo_sexual parecen
 separar bien las dos especies.</p>
