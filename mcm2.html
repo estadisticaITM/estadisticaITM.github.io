@@ -522,14 +522,14 @@ resolución</strong></p>
 <p><span class="math display">\[u=\frac{a}{\sqrt 3}=\frac{1}{\sqrt
 3}=0.577350 \]</span> a es la semiamplitud=1, criterio necesario para
 definir la simulación</p>
-<pre><code>## [1] 0.577455</code></pre>
+<pre><code>## [1] 0.5776757</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
 <p><strong>Simulando la incertidumbre tipo A</strong></p>
 <p>como la desviación estándar proviene de una distribución uniforme
 hacemos uso de esta misma para la estimación de la incertidumbre.</p>
 <p><span class="math display">\[u=\frac{s}{\sqrt
 {10}}=\frac{0.5773}{10}=0.182574\]</span></p>
-<pre><code>## [1] 0.1826335</code></pre>
+<pre><code>## [1] 0.1824945</code></pre>
 </div>
 <div id="distribución-triangular" class="section level2">
 <h2>Distribución triangular</h2>
@@ -546,8 +546,8 @@ con parámetros a=-2 y b=2</p>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-8-1.png" width="50%" /></p>
 <p><strong>Simulación Distribución tipo A</strong></p>
 <p>sean los valores</p>
-<pre><code>## [1] 0.0003963723</code></pre>
-<pre><code>## [1] 0.0003076212</code></pre>
+<pre><code>## [1] 0.0003955015</code></pre>
+<pre><code>## [1] 0.0003071509</code></pre>
 <p><strong>Propagación de incertidumbres</strong> GUM</p>
 <p><strong>Propagación de distribuciones</strong> MCM</p>
 <p><strong>Ejemplo</strong></p>
@@ -565,12 +565,12 @@ c_i^2u^2(x_i)\]</span></p>
 <p><span
 class="math display">\[u(y)=\sqrt{(5*u(x_1))^2+(3*u(x_2))^2+(u(x_3))^2}=3.29\]</span></p>
 <p><strong>Por MCM</strong></p>
-<pre><code>## [1] -0.007863067</code></pre>
-<pre><code>## [1] 3.289087</code></pre>
+<pre><code>## [1] -0.0001099584</code></pre>
+<pre><code>## [1] 3.289513</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-10-1.png" width="80%" /></p>
-<pre><code>## [1] -10.78985</code></pre>
-<pre><code>## [1] -10.78985</code></pre>
-<pre><code>## [1] 6.111291</code></pre>
+<pre><code>## [1] -10.27849</code></pre>
+<pre><code>## [1] -10.27849</code></pre>
+<pre><code>## [1] 6.107311</code></pre>
 <p><strong>Estimación incertidumbre con la función propagate de la
 librería propagate</strong></p>
 <p>Algunos de los argumentos que pide la función propagate:</p>
@@ -605,7 +605,7 @@ x_nx_2} &amp;  \dots &amp; \frac{\partial ^2f}{\partial x_n^2}\\
 ##  3.000000  3.000000  3.291129  3.291129 -3.450498  9.450498</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-##  2.999615  3.294477  3.003932  3.295221 -3.460468  9.435324</code></pre>
+##  2.999510  3.293733  2.999416  3.297018 -3.453876  9.460244</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1614466</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -635,11 +635,11 @@ x_nx_2} &amp;  \dots &amp; \frac{\partial ^2f}{\partial x_n^2}\\
 ## x2 0.0000000 0.1384519 0.00000000
 ## x3 0.0000000 0.0000000 0.09232308</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.001624959 / -0.002378939</code></pre>
+<pre><code>## 0.001934064 / -0.001485569</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.5692835 =&gt; normal</code></pre>
+<pre><code>## 0.7968585 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.7345723 =&gt; normal</code></pre>
+<pre><code>## 0.3474236 =&gt; normal</code></pre>
 </div>
 <div id="cuál-distribución-de-probabilidad-se-ajusta-mejor-a-los-datos"
 class="section level2">
@@ -723,19 +723,19 @@ bien se ajusta el modelo a los datos.</p>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##     mean       sd 
-## 3.002084 3.299553</code></pre>
+## 2.998587 3.297084</code></pre>
 <pre><code>## Standard errors:</code></pre>
 <pre><code>##        mean          sd 
-## 0.002786088 0.002274832</code></pre>
+## 0.002884458 0.002355150</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -871.17</code></pre>
+<pre><code>## BIC = -866.5849</code></pre>
 <p><strong>El ejercicio del parcial hecho en R</strong></p>
 <pre><code>## Results from error propagation:</code></pre>
 <pre><code>##    Mean.1    Mean.2      sd.1      sd.2      2.5%     97.5% 
 ## 89.587580 89.587579  1.475181  1.475181 86.696274 92.478883</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-## 89.588079  1.474226 89.588798  1.474701 86.705046 92.478314</code></pre>
+## 89.585321  1.474963 89.586887  1.476517 86.700010 92.472330</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1000010</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -761,11 +761,11 @@ bien se ajusta el modelo a los datos.</p>
 ## x 0.9999949 0.000000e+00
 ## y 0.0000000 5.128092e-06</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## 0.001444041 / 0.0002244566</code></pre>
+<pre><code>## 0.0009975888 / -0.003091823</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.2912234 =&gt; normal</code></pre>
+<pre><code>## 0.6319615 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.7264197 =&gt; normal</code></pre>
+<pre><code>## 0.6470225 =&gt; normal</code></pre>
 <pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
 <pre><code>## .........</code></pre>
 <pre><code>## 2 of 32: Fitting Skewed-normal distribution...</code></pre>
@@ -838,12 +838,12 @@ bien se ajusta el modelo a los datos.</p>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##      mean        sd 
-## 89.587792  1.476005</code></pre>
+## 89.584915  1.477004</code></pre>
 <pre><code>## Standard errors:</code></pre>
 <pre><code>##        mean          sd 
-## 0.001306354 0.001066634</code></pre>
+## 0.001450904 0.001184658</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -886.1041</code></pre>
+<pre><code>## BIC = -835.3804</code></pre>
 </div>
 <div id="otro-ejemplo" class="section level2">
 <h2>Otro ejemplo</h2>
@@ -999,13 +999,13 @@ class="math display">\[v_{ef}=\frac{0.0006634^4}{\frac{0.00030732^4}{5}}=108\]</
 ## $u.exp
 ## [1] 0.001507941</code></pre>
 <p><strong>Método Monte carlo</strong></p>
-<pre><code>## [1] 0.0003972693</code></pre>
-<pre><code>## [1] 0.0002884825</code></pre>
-<pre><code>## [1] 0.0001000334</code></pre>
-<pre><code>## [1] 0.0005023858</code></pre>
-<pre><code>## [1] 0.0007094188</code></pre>
+<pre><code>## [1] 0.0003962538</code></pre>
+<pre><code>## [1] 0.0002886565</code></pre>
+<pre><code>## [1] 9.990505e-05</code></pre>
+<pre><code>## [1] 0.0005021773</code></pre>
+<pre><code>## [1] 0.0007081529</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-17-1.png" width="50%" /></p>
-<pre><code>## [1] 0.001372029</code></pre>
+<pre><code>## [1] 0.001371322</code></pre>
 <p><strong>Librería propagate</strong></p>
 <pre><code>## Results from error propagation:</code></pre>
 <pre><code>##       Mean.1       Mean.2         sd.1         sd.2        1.25% 
@@ -1014,9 +1014,9 @@ class="math display">\[v_{ef}=\frac{0.0006634^4}{\frac{0.00030732^4}{5}}=108\]</
 ## 2.0014869263</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##         Mean           sd       Median          MAD        1.25% 
-## 2.0000014522 0.0006671733 2.0000020488 0.0006634302 1.9984971428 
+## 1.9999995658 0.0006629561 1.9999950493 0.0006640144 1.9985239703 
 ##       98.75% 
-## 2.0014907154</code></pre>
+## 2.0015044842</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 2432424</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -1050,11 +1050,11 @@ class="math display">\[v_{ef}=\frac{0.0006634^4}{\frac{0.00030732^4}{5}}=108\]</
 ## Vcer 0.0000000 0.0000000 0.02272278 0.0000000
 ## VEsp 0.0000000 0.0000000 0.00000000 0.5733077</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.006424177 / 0.02821639</code></pre>
+<pre><code>## 0.02193534 / 0.0111011</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.8689406 =&gt; normal</code></pre>
+<pre><code>## 0.4835289 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.1217861 =&gt; normal</code></pre>
+<pre><code>## 0.3438292 =&gt; normal</code></pre>
 <p><strong>Comparación</strong></p>
 <table>
 <thead>
@@ -1130,8 +1130,8 @@ u_{x_1} u_{x_2} r(x_1,x_2))}\]</span> <span
 class="math display">\[u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51\]</span></p>
 <p>sin correlación=6.48</p>
 <p>Simulación de <span class="math inline">\(x_1\)</span></p>
-<pre><code>## [1] 1.000589</code></pre>
-<pre><code>## [1] 1.000589</code></pre>
+<pre><code>## [1] 0.9986677</code></pre>
+<pre><code>## [1] 0.9986677</code></pre>
 <p><strong>encontrar matriz de var-cov</strong></p>
 <p><span class="math display">\[cov=\begin{bmatrix}
 u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
@@ -1181,10 +1181,10 @@ u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
 ##   ..@ uplo    : chr &quot;U&quot;
 ##   ..@ diag    : chr &quot;N&quot;</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<pre><code>## [1] -0.4993747</code></pre>
-<pre><code>## [1] 7.503265</code></pre>
-<pre><code>## [1] 7.503265</code></pre>
-<pre><code>## [1] 15.0178</code></pre>
+<pre><code>## [1] -0.4991404</code></pre>
+<pre><code>## [1] 7.489189</code></pre>
+<pre><code>## [1] 7.489189</code></pre>
+<pre><code>## [1] 14.93451</code></pre>
 </div>
 </div>
 <div id="bibliografía" class="section level1">

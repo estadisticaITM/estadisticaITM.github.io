@@ -330,8 +330,78 @@ kbl(tab02) %>%
 ```
 
 
+**Organizaciones regionales de metrología**
 
 
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/org.png")
+```
+
+
+
+```{r echo=FALSE}
+data <-
+  data.frame(
+    
+    Año_fund = c(
+      1977,
+      1979,
+      1987,
+      1991,
+      2006,
+      2010
+    ),
+    fundacion = c(
+      "APMP",
+      "SIM",
+      "EURAMET",
+      "COOMET",
+      "AFRIMETS",
+      "GULFMET"
+    ),
+    Pais = c(
+      "Asia",
+      "Suramérica",
+      "Unión Europea",
+      "Eurasia",
+      "Africa",
+      "Paises arabes"),
+    Nombre=c(
+      "Asia Pacific Metrology Programme",
+      "Sistema Interamericano de Metrología (SIM)",
+      "European Association of National Metrology Inst",
+      "Euro-Asian Cooperation of National Metrological Institutions",
+            "Intra-Africa Metrology System",
+      "Gulf Association for Metrology"
+    )
+  )
+
+library(kableExtra)
+library(expss)
+library(DT)
+
+
+tab01 <- as.data.frame(data)
+tab02 <- tab01
+
+vector.img <-
+  c(
+    "https://edit.uia.org/img/org_logos/XE3352.jpg",
+    "https://sim-metrologia.org/wp-content/uploads/2018/09/logo-sim.png.webp",
+      "https://www.euramet.org/fileadmin/Public/assets/logo.png",
+    "https://edit.uia.org/img/org_logos/XD3547.jpg",
+    "https://www.qi-africa.ptb.de/fileadmin/images/logos/AFRIMETS_logo.png",
+    "https://www.gulfmet.org/catalog/view/theme/default/en/images/logo.png"
+    
+  )
+kbl(tab02) %>%
+  kable_styling(bootstrap_options = c("hover"),
+                full_width = FALSE) %>%
+  column_spec(1, image = vector.img,width='25mm') %>%
+  column_spec(2, color = "teal", bold = TRUE)
+ 
+
+```
 
 
 
@@ -368,10 +438,105 @@ Acto administrativo siguiente después de haber calibrado un equipo, en el que s
 knitr::include_graphics("imagen/n10.png")
 ```
 
+### Vocabulario internacional de metrología VIM 2008-2012
 
+
+|Capítulo|Tema|Definiciones|
+|:------:|:-----------------------------|:-:|
+|1|Magnitudes y unidades                 |29|
+|2|Medición                              |54|
+|3|Dispositivos para medir               |12|
+|4|Propiedades de dispositivos para medir|30|
+|5|Patrones de medida                    |18|
+
+**Capítulo 1:**
+**Sistema Internacional de Magnitudes (ISQ):**
+
+Sistema de magnitudes basado en las siete magnitudes básicas
+
+
+**Sistema Internacional de unidades SI:**
+
+
+sistema de unidades basado en el Sistema Internacional de Magnitudes(ISQ), con nombres y símbolos de las unidades, y con una serie de prefijos con sus nombres y símbolos, así como reglas para su utilización, adoptado por la Conferencia General de Pesas y Medidas (CGPM)
+
+
+|Magnitud básica (SIQ)|Nombre (SI)|símbolo (SI)|Constante|Reseña|
+|:-------:|:---------:|:-------:|:-------:|:-------------------------:|
+|Longitud |Metro      |m     |c=299 792 458 m/s   |velocidad de la luz en el vacio|
+|Masa     |Kilogramo  |kg    |$6.626 070 15 × 10^{−34}$  J⋅s| Constante de Planck|
+|Tiempo   |Segundo    |s     |Δν Cs= 9 192 631 770  Hz|frecuencia de transición hiperfina del átomo del celsio Cs|
+|Corriente eléctrica|Ampére|A|1,602 176 634 × $10^{−19}$   C|carga elemental|
+|Temperatura termodinámica|kelvin|K|$1.380649×10^{−23} J/K$|Constante de Boltzmann|
+|Cantidad de sustancia|mol    |mol |$N_a=6.022 140 76 × 10^23  mol^{−1}$|Constante de Avogadro|
+|Intensidad Luminosa  |Candela| cd |$K_{cd}$=683 lm / W |Eficacia luminosa de Radiación de 540 THz|
+
+
+
+
+
+
+**Magnitud:** 
+
+Propiedad de un fenómeno, cuerpo o sustancia, que puede expresarse cuantitativamente mediante un número y una referencia
+
+
+**Magnitud escalar real**
+
+Definida y adoptada por convenio, con la que se puede comparar cualquier otra magnitud de la misma naturaleza para expresar la relación entre ambas mediante un número 
+
+
+**Magnitud de base:**
+
+Magnitud de un subconjunto elegido por convenio, dentro de un sistema de magnitudes dado, de tal manera que ninguna magnitud del subconjunto pueda ser expresada en función de las otras.
+
+**Magnitud derivada**
+
+Magnitud dentro de un sistema de magnitudes, definida en función de las magnitudes de base de ese sistema
+
+**EJEMPLOS:** 
+
+- La densidad de masa es una magnitud derivada definida como el cociente entre una masa y un volumen
+
+|Magnitud derivada|ISQ   |SI|
+|:---------------:|:----:|:----:|
+|Densidad: Cociente entre una masa y el volumen|$\rho=[M][L]^{-3}$|$\rho=[kg][m]^{-3}$|
+|Fuerza: producto de la masa y la aceleración|$F=[M][L][T]^{-2}$|$F=[Kg][m][s]^{-2}$|
+
+
+
+
+**Dimensión de una magnitud**
+
+Expresión de la dependencia de una magnitud en términos de las magnitudes de base, dentro de un sistema de magnitudes, como el producto de potencias de factores de magnitudes de base, omitiendo cualquier factor numérico
+
+<font color="blue">Magnitud</font>  
+
+<font color="green">Valor de la Magnitud</font> 
+
+<font color="pink">Unidad de medida</font>
+
+- <font color="blue">Longitud</font> de una carretera <font color="green">10 000 </font> <font color="pink">m</font>
+
+- <font color="blue">Masa</font> del planeta tierra <font color="green">$5.972x10^{-24}$ </font> <font color="pink">kg</font>
+
+- <font color="blue">Tiempo</font> que le toma a la luz recorrer un metro <font color="green">$3.34x10^{-9}$ </font> <font color="pink">s</font>
+
+**Unidad derivada coherente**
+Unidad derivada que, para un sistema de magnitudes y un conjunto de unidades básicas dados, es producto de potencias de unidades de base, sin otro factor de proporcionalidad que el número uno.
+
+
+$$F=C(M*a)$$
+
+**UNIDAD DERIVADA NO COHERENTE**
+Es el caso en el cual el factor de proporcionalidad es diferente de uno.
+
+
+
+$$F=\frac{1}{9.81}m*(Kg)*a\left(\frac{m}{s^2}\right)$$
 ## Calibración
 
-- Operación que bajo condiciones especificas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+- Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
 
 - Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
 
