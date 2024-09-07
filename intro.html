@@ -603,7 +603,8 @@ International Standardisation Organisation)</td>
 <p><strong>INSTITUTOS NACIONALES ALREDEDOR DEL MUNDO</strong></p>
 <pre><code>## Loading required package: maditr</code></pre>
 <pre><code>## 
-## To get total summary skip &#39;by&#39; argument: take_all(mtcars, mean)</code></pre>
+## To modify variables or add new variables:
+##              let(mtcars, new_var = 42, new_var2 = new_var*hp) %&gt;% head()</code></pre>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1094,7 +1095,7 @@ class="section level3">
 Magnitudes (ISQ):</strong></p>
 <p>Sistema de magnitudes basado en las siete magnitudes básicas</p>
 <p><strong>Sistema Internacional de unidades SI:</strong></p>
-<p>sistema de unidades basado en el Sistema Internacional de
+<p>Sistema de unidades basado en el Sistema Internacional de
 Magnitudes(ISQ), con nombres y símbolos de las unidades, y con una serie
 de prefijos con sus nombres y símbolos, así como reglas para su
 utilización, adoptado por la Conferencia General de Pesas y Medidas
@@ -1175,32 +1176,34 @@ W</td>
 </tbody>
 </table>
 <p><strong>Magnitud:</strong></p>
-<p>Propiedad de un fenómeno, cuerpo o sustancia, que puede expresarse
-cuantitativamente mediante un número y una referencia</p>
+<p>Propiedad que puede expresarse cuantitativamente mediante un número y
+una referencia</p>
+<p><strong>Magnitud de base:</strong></p>
+<p>Magnitud de un subconjunto elegido por convenio, dentro de un sistema
+de magnitudes dado, de tal manera que ninguna magnitud del subconjunto
+pueda ser expresada en función de las otras. por ejemplo ISQ (Sistema
+internacional de magnitudes)</p>
+<p>Las magnitudes básicas son independientes entre sí, dado que una
+magnitud básica no puede expresarse como el producto de potencias de
+otras magnitudes básicas.</p>
+<p><strong>Magnitud derivada</strong></p>
+<p>Magnitud dentro de un sistema de magnitudes, definida en función de
+las magnitudes de base de ese sistema</p>
 <p><strong>Magnitud escalar real</strong></p>
 <p>Definida y adoptada por convenio, con la que se puede comparar
 cualquier otra magnitud de la misma naturaleza para expresar la relación
 entre ambas mediante un número</p>
-<p><strong>Magnitud de base:</strong></p>
-<p>Magnitud de un subconjunto elegido por convenio, dentro de un sistema
-de magnitudes dado, de tal manera que ninguna magnitud del subconjunto
-pueda ser expresada en función de las otras.</p>
-<p><strong>Magnitud derivada</strong></p>
-<p>Magnitud dentro de un sistema de magnitudes, definida en función de
-las magnitudes de base de ese sistema</p>
 <p><strong>EJEMPLOS:</strong></p>
-<ul>
-<li>La densidad de masa es una magnitud derivada definida como el
-cociente entre una masa y un volumen</li>
-</ul>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="58%" />
-<col width="20%" />
-<col width="20%" />
+<col width="30%" />
+<col width="40%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
+<th align="center">Magnitud base</th>
 <th align="center">Magnitud derivada</th>
 <th align="center">ISQ</th>
 <th align="center">SI</th>
@@ -1208,14 +1211,16 @@ cociente entre una masa y un volumen</li>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">Densidad: Cociente entre una masa y el volumen</td>
+<td align="center">Masa y volumen</td>
+<td align="center">Densidad</td>
 <td align="center"><span
 class="math inline">\(\rho=[M][L]^{-3}\)</span></td>
 <td align="center"><span
 class="math inline">\(\rho=[kg][m]^{-3}\)</span></td>
 </tr>
 <tr class="even">
-<td align="center">Fuerza: producto de la masa y la aceleración</td>
+<td align="center">masa, longitud y tiempo</td>
+<td align="center">Fuerza producto de la masa y la aceleración</td>
 <td align="center"><span
 class="math inline">\(F=[M][L][T]^{-2}\)</span></td>
 <td align="center"><span
@@ -1323,8 +1328,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-9456b3ededd8bdf85638" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9456b3ededd8bdf85638">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e009fb96b8b2b17716d2" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e009fb96b8b2b17716d2">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
