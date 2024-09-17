@@ -461,15 +461,15 @@ Sistema de magnitudes basado en las siete magnitudes básicas
 Sistema de unidades basado en el Sistema Internacional de Magnitudes(ISQ), con nombres y símbolos de las unidades, y con una serie de prefijos con sus nombres y símbolos, así como reglas para su utilización, adoptado por la Conferencia General de Pesas y Medidas (CGPM)
 
 
-|Magnitud básica (SIQ)|Nombre (SI)|símbolo (SI)|Constante|Reseña|
-|:-------:|:---------:|:-------:|:-------:|:-------------------------:|
-|Longitud |Metro      |m     |c=299 792 458 m/s   |velocidad de la luz en el vacio|
-|Masa     |Kilogramo  |kg    |$6.626 070 15 × 10^{−34}$  J⋅s| Constante de Planck|
-|Tiempo   |Segundo    |s     |Δν Cs= 9 192 631 770  Hz|frecuencia de transición hiperfina del átomo del celsio Cs|
-|Corriente eléctrica|Ampére|A|1,602 176 634 × $10^{−19}$   C|carga elemental|
-|Temperatura termodinámica|kelvin|K|$1.380649×10^{−23} J/K$|Constante de Boltzmann|
-|Cantidad de sustancia|mol    |mol |$N_a=6.022 140 76 × 10^23  mol^{−1}$|Constante de Avogadro|
-|Intensidad Luminosa  |Candela| cd |$K_{cd}$=683 lm / W |Eficacia luminosa de Radiación de 540 THz|
+|Magnitud básica (SIQ)|símbolo (SIQ)|Nombre (SI)|símbolo (SI)|Constante|Reseña|
+|:-------:|:---------:|:---------:|:-------:|:-------:|:-------------------------:|
+|Longitud |L|Metro      |m     |c=299 792 458 m/s   |velocidad de la luz en el vacio|
+|Masa     |M|Kilogramo  |kg    |$6.626 070 15 × 10^{−34}$  J⋅s| Constante de Planck|
+|Tiempo   |T|Segundo    |s     |Δν Cs= 9 192 631 770  Hz|frecuencia de transición hiperfina del átomo del celsio Cs|
+|Corriente eléctrica|I|Ampére|A|1,602 176 634 × $10^{−19}$   C|carga elemental|
+|Temperatura termodinámica|$\Theta$|kelvin|K|$1.380649×10^{−23} J/K$|Constante de Boltzmann|
+|Cantidad de sustancia|N|mol    |mol |$N_a=6.022 140 76 × 10^23  mol^{−1}$|Constante de Avogadro|
+|Intensidad Luminosa|J  |Candela| cd |$K_{cd}$=683 lm / W |Eficacia luminosa de Radiación de 540 THz|
 
 
 **Magnitud:** 
@@ -486,7 +486,7 @@ no puede expresarse como el producto de potencias de otras magnitudes básicas.
 
 **Magnitud derivada**
 
-Magnitud dentro de un sistema de magnitudes, definida en función de las magnitudes de base de ese sistema
+Magnitud definida en función de las magnitudes de base.
 
 
 **Magnitud escalar real**
@@ -537,7 +537,19 @@ Es el caso en el cual el factor de proporcionalidad es diferente de uno.
 
 
 $$F=\frac{1}{9.81}m*(Kg)*a\left(\frac{m}{s^2}\right)$$
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/magnitud.png")
+```
+
+
+
+
+
+
+
 ## Calibración
+
 
 - Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
 
@@ -871,12 +883,21 @@ En este caso, puede establecerse un criterio simple y útil: cuando las medidas 
 
 Por ejemplo, al medir con un instrumento graduado en mililitros repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml, la incertidumbre será 0.5 ml.
 
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/menisco.png")
+```
+
+
+
 Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce
 como intervalo de confianza de la medición y su tamaño es el doble de la
 incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de
 medición tales como reglas, transportadores, balanzas, probetas, manómetros,
 termómetros, etc
 
+ **Apreciación** es la menor variación de la medida que podemos registrar con dicho instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
+ 
+ 
 **Incertidumbre en medidas no-reproducibles**
 
 Cuando se hacen repeticiones de una medida y estas resultan diferentes, con
@@ -893,14 +914,18 @@ valores $x_1, x_2,...,x_N$, surgen las preguntas:
 La respuesta a estas preguntas se obtiene a partir del estudio estadístico de las
 mediciones,promedio y desviación estándar.
 
+Para una medida repetida la incertidumbre está dada por:
+
+$$u=\frac{ sd}{\sqrt n}$$
+
 
 ## Incertidumbre en el redondeo de cifras significativas
 
 **Regla 1**
 
-La incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores.
+La incertidumbre aproximada de un valor se puede estimar como la mitad del rango posible de valores, es decir es la semiamplitud del intervalo.
 
-**Ejemplo**
+**Ejemplo 1**
 
 Una distancia se encuentra entre los valores (25,15−25,05)m=0,10 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre proporcional es:
 
@@ -913,19 +938,48 @@ $$25.1 \pm 0.05$$
 Intervalo porcentual
 
 $$25.1 \pm 0.2 \%$$
- Propagación de la incertidumbre en la suma y diferencia
-Si las q r se miden con incertidumbre ∆q y ∆r respectivamente y
-si se utilizan para calcular la diferencia w = q − r entonces la incertidumbre
-asociada a la variable w es la suma de las incertidumbres asociadas a q y a r , es
-decir
-∆w = ∆q + ∆r
-Lo mismo es cierto cuando se calcula la suma w = q + r .
-Este resultado nos indica que cuando se combinan dos variables mediante una
-3.2.1.2 Propagación de errores en
-as cantidades y
+ **Ejemplo 2**
+ 
+El tiempo de llegada de los corredores de una carrera se encuentra entre los valores 3.4 y 3.6 min. La mitad de este intervalo es de 0,2 m. Entonces el tiempo t=3.5 min, con una incertidumbre de 0,1 min. La incertidumbre proporcional es:
 
-suma o una resta, las incertidumbres siempre se suman.
-Ejemplo, (62 ± 0.01) + (1.7± 0.1) = 63.73± 0.11.
+$$\frac{0,1}{3.5}=2.8\%$$
+
+
+Intervalo en forma absoluta
+
+$$3.4 min \pm 0.1min$$
+Intervalo porcentual
+
+$$25.1 \pm 2.8 \%$$
+ 
+ 
+ 
+ **Propagación de la incertidumbre**
+ q y r se miden con incertidumbre ∆q y ∆r respectivamente 
+ 
+ 
+ **En la suma y diferencia**
+
+Si se utilizan para calcular la diferencia w = q − r o la suma  w = q + r entonces la incertidumbre asociada a la variable w es la suma de las incertidumbres asociadas a q y a r, es decir:
+
+$$∆w = ∆q + ∆r$$
+
+
+cuando se combinan dos variables mediante una suma o una resta, las incertidumbres siempre se suman.Ejemplo:
+
+$$(62 ± 0.01) + (1.7± 0.1) = 63.73± 0.11$$
+**En la multiplicación o división**
+
+Si los valores de q y r se utilizan para calcular el producto w = qr ó el cociente W=q/r, entonces la incertidumbre asociada, está dada por:
+
+$$∆w = |w|\left( \frac{∆q}{q} + \frac{∆r}{r}\right) $$
+Continuando con el ejemplo de la distancia y el tiempo
+la incertidumbre resultante al estimar la velocidad es:
+$$v=d/t=25.1 m/3.4 min=7.38 m/min $$
+y la incertidumbre resultante es:
+$$∆w = |w|\left( \frac{∆q}{q} + \frac{∆r}{r}\right) $$
+$$∆w = |w|\left(0.2  + 2.8 \right) $$
+
 **Regla 2**
 
 Cuando se multiplican, dividen, suman o restan valores, la incertidumbre resultante es la más cercana a la mayor de las incertidumbres proporcionales de las componentes.

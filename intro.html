@@ -605,6 +605,9 @@ International Standardisation Organisation)</td>
 <pre><code>## 
 ## To modify variables or add new variables:
 ##              let(mtcars, new_var = 42, new_var2 = new_var*hp) %&gt;% head()</code></pre>
+<pre><code>## 
+## Use &#39;expss_output_rnotebook()&#39; to display tables inside R Notebooks.
+##  To return to the console output, use &#39;expss_output_default()&#39;.</code></pre>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1102,15 +1105,17 @@ utilización, adoptado por la Conferencia General de Pesas y Medidas
 (CGPM)</p>
 <table>
 <colgroup>
-<col width="13%" />
-<col width="16%" />
-<col width="13%" />
-<col width="13%" />
-<col width="41%" />
+<col width="11%" />
+<col width="14%" />
+<col width="14%" />
+<col width="11%" />
+<col width="11%" />
+<col width="35%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="center">Magnitud básica (SIQ)</th>
+<th align="center">símbolo (SIQ)</th>
 <th align="center">Nombre (SI)</th>
 <th align="center">símbolo (SI)</th>
 <th align="center">Constante</th>
@@ -1120,6 +1125,7 @@ utilización, adoptado por la Conferencia General de Pesas y Medidas
 <tbody>
 <tr class="odd">
 <td align="center">Longitud</td>
+<td align="center">L</td>
 <td align="center">Metro</td>
 <td align="center">m</td>
 <td align="center">c=299 792 458 m/s</td>
@@ -1127,6 +1133,7 @@ utilización, adoptado por la Conferencia General de Pesas y Medidas
 </tr>
 <tr class="even">
 <td align="center">Masa</td>
+<td align="center">M</td>
 <td align="center">Kilogramo</td>
 <td align="center">kg</td>
 <td align="center"><span class="math inline">\(6.626 070 15 ×
@@ -1135,6 +1142,7 @@ utilización, adoptado por la Conferencia General de Pesas y Medidas
 </tr>
 <tr class="odd">
 <td align="center">Tiempo</td>
+<td align="center">T</td>
 <td align="center">Segundo</td>
 <td align="center">s</td>
 <td align="center">Δν Cs= 9 192 631 770 Hz</td>
@@ -1143,6 +1151,7 @@ celsio Cs</td>
 </tr>
 <tr class="even">
 <td align="center">Corriente eléctrica</td>
+<td align="center">I</td>
 <td align="center">Ampére</td>
 <td align="center">A</td>
 <td align="center">1,602 176 634 × <span
@@ -1151,6 +1160,7 @@ class="math inline">\(10^{−19}\)</span> C</td>
 </tr>
 <tr class="odd">
 <td align="center">Temperatura termodinámica</td>
+<td align="center"><span class="math inline">\(\Theta\)</span></td>
 <td align="center">kelvin</td>
 <td align="center">K</td>
 <td align="center"><span class="math inline">\(1.380649×10^{−23}
@@ -1159,6 +1169,7 @@ J/K\)</span></td>
 </tr>
 <tr class="even">
 <td align="center">Cantidad de sustancia</td>
+<td align="center">N</td>
 <td align="center">mol</td>
 <td align="center">mol</td>
 <td align="center"><span class="math inline">\(N_a=6.022 140 76 × 10^23
@@ -1167,6 +1178,7 @@ mol^{−1}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center">Intensidad Luminosa</td>
+<td align="center">J</td>
 <td align="center">Candela</td>
 <td align="center">cd</td>
 <td align="center"><span class="math inline">\(K_{cd}\)</span>=683 lm /
@@ -1187,8 +1199,7 @@ internacional de magnitudes)</p>
 magnitud básica no puede expresarse como el producto de potencias de
 otras magnitudes básicas.</p>
 <p><strong>Magnitud derivada</strong></p>
-<p>Magnitud dentro de un sistema de magnitudes, definida en función de
-las magnitudes de base de ese sistema</p>
+<p>Magnitud definida en función de las magnitudes de base.</p>
 <p><strong>Magnitud escalar real</strong></p>
 <p>Definida y adoptada por convenio, con la que se puede comparar
 cualquier otra magnitud de la misma naturaleza para expresar la relación
@@ -1255,8 +1266,12 @@ proporcionalidad que el número uno.</p>
 <p><strong>UNIDAD DERIVADA NO COHERENTE</strong> Es el caso en el cual
 el factor de proporcionalidad es diferente de uno.</p>
 <p><span
-class="math display">\[F=\frac{1}{9.81}m*(Kg)*a\left(\frac{m}{s^2}\right)\]</span>
-## Calibración</p>
+class="math display">\[F=\frac{1}{9.81}m*(Kg)*a\left(\frac{m}{s^2}\right)\]</span></p>
+<p><img src="imagen/magnitud.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="calibración" class="section level2">
+<h2>Calibración</h2>
 <ul>
 <li><p>Operación que bajo condiciones específicas establece una relación
 entre los valores y sus incertidumbres de medida
@@ -1296,7 +1311,6 @@ calibrar (mensurando)</p></li>
 </ul>
 <p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-</div>
 <div id="definiciones" class="section level2">
 <h2>Definiciones</h2>
 <p><strong>Metodos de medición</strong></p>
@@ -1328,8 +1342,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-e009fb96b8b2b17716d2" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e009fb96b8b2b17716d2">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2ace99abd96c4bb1e589" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2ace99abd96c4bb1e589">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
@@ -1502,11 +1516,16 @@ resolución.</p>
 <p>Por ejemplo, al medir con un instrumento graduado en mililitros
 repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml,
 la incertidumbre será 0.5 ml.</p>
+<p><img src="imagen/menisco.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se
 le conoce como intervalo de confianza de la medición y su tamaño es el
 doble de la incertidumbre. Esto generalmente se aplica cuando se trata
 de aparatos de medición tales como reglas, transportadores, balanzas,
 probetas, manómetros, termómetros, etc</p>
+<p><strong>Apreciación</strong> es la menor variación de la medida que
+podemos registrar con dicho instrumento. En los instrumentos con escala,
+la apreciación es el valor entre dos divisiones consecutivas; por
+ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.</p>
 <p><strong>Incertidumbre en medidas no-reproducibles</strong></p>
 <p>Cuando se hacen repeticiones de una medida y estas resultan
 diferentes, con valores <span class="math inline">\(x_1,
@@ -1517,14 +1536,17 @@ x_2,...,x_N\)</span>, surgen las preguntas:</p>
 </ul>
 <p>La respuesta a estas preguntas se obtiene a partir del estudio
 estadístico de las mediciones,promedio y desviación estándar.</p>
+<p>Para una medida repetida la incertidumbre está dada por:</p>
+<p><span class="math display">\[u=\frac{ sd}{\sqrt n}\]</span></p>
 </div>
 <div id="incertidumbre-en-el-redondeo-de-cifras-significativas"
 class="section level2">
 <h2>Incertidumbre en el redondeo de cifras significativas</h2>
 <p><strong>Regla 1</strong></p>
 <p>La incertidumbre aproximada de un valor se puede estimar como la
-mitad del rango posible de valores.</p>
-<p><strong>Ejemplo</strong></p>
+mitad del rango posible de valores, es decir es la semiamplitud del
+intervalo.</p>
+<p><strong>Ejemplo 1</strong></p>
 <p>Una distancia se encuentra entre los valores (25,15−25,05)m=0,10
 metros. La mitad de este intervalo es de 0,05 m. Entonces la distancia
 es d = 25,1 m, con una incertidumbre de 0,05 m. La incertidumbre
@@ -1533,16 +1555,39 @@ proporcional es:</p>
 <p>Intervalo en forma absoluta</p>
 <p><span class="math display">\[25.1 \pm 0.05\]</span> Intervalo
 porcentual</p>
-<p><span class="math display">\[25.1 \pm 0.2 \%\]</span> Propagación de
-la incertidumbre en la suma y diferencia Si las q r se miden con
-incertidumbre ∆q y ∆r respectivamente y si se utilizan para calcular la
-diferencia w = q − r entonces la incertidumbre asociada a la variable w
-es la suma de las incertidumbres asociadas a q y a r , es decir ∆w = ∆q
-+ ∆r Lo mismo es cierto cuando se calcula la suma w = q + r . Este
-resultado nos indica que cuando se combinan dos variables mediante una
-3.2.1.2 Propagación de errores en as cantidades y</p>
-<p>suma o una resta, las incertidumbres siempre se suman. Ejemplo, (62 ±
-0.01) + (1.7± 0.1) = 63.73± 0.11. <strong>Regla 2</strong></p>
+<p><span class="math display">\[25.1 \pm 0.2 \%\]</span> <strong>Ejemplo
+2</strong></p>
+<p>El tiempo de llegada de los corredores de una carrera se encuentra
+entre los valores 3.4 y 3.6 min. La mitad de este intervalo es de 0,2 m.
+Entonces el tiempo t=3.5 min, con una incertidumbre de 0,1 min. La
+incertidumbre proporcional es:</p>
+<p><span class="math display">\[\frac{0,1}{3.5}=2.8\%\]</span></p>
+<p>Intervalo en forma absoluta</p>
+<p><span class="math display">\[3.4 min \pm 0.1min\]</span> Intervalo
+porcentual</p>
+<p><span class="math display">\[25.1 \pm 2.8 \%\]</span></p>
+<p><strong>Propagación de la incertidumbre</strong> q y r se miden con
+incertidumbre ∆q y ∆r respectivamente</p>
+<p><strong>En la suma y diferencia</strong></p>
+<p>Si se utilizan para calcular la diferencia w = q − r o la suma w = q
++ r entonces la incertidumbre asociada a la variable w es la suma de las
+incertidumbres asociadas a q y a r, es decir:</p>
+<p><span class="math display">\[∆w = ∆q + ∆r\]</span></p>
+<p>cuando se combinan dos variables mediante una suma o una resta, las
+incertidumbres siempre se suman.Ejemplo:</p>
+<p><span class="math display">\[(62 ± 0.01) + (1.7± 0.1) = 63.73±
+0.11\]</span> <strong>En la multiplicación o división</strong></p>
+<p>Si los valores de q y r se utilizan para calcular el producto w = qr
+ó el cociente W=q/r, entonces la incertidumbre asociada, está dada
+por:</p>
+<p><span class="math display">\[∆w = |w|\left( \frac{∆q}{q} +
+\frac{∆r}{r}\right) \]</span> Continuando con el ejemplo de la distancia
+y el tiempo la incertidumbre resultante al estimar la velocidad es:
+<span class="math display">\[v=d/t=25.1 m/3.4 min=7.38 m/min \]</span> y
+la incertidumbre resultante es: <span class="math display">\[∆w =
+|w|\left( \frac{∆q}{q} + \frac{∆r}{r}\right) \]</span> <span
+class="math display">\[∆w = |w|\left(0.2  + 2.8 \right) \]</span></p>
+<p><strong>Regla 2</strong></p>
 <p>Cuando se multiplican, dividen, suman o restan valores, la
 incertidumbre resultante es la más cercana a la mayor de las
 incertidumbres proporcionales de las componentes.</p>
