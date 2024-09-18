@@ -870,7 +870,10 @@ $$a-u_a\leq A \leq a+ u_a $$
 Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje.
 
 $$\frac{u_a}{a}$$
-
+ **Apreciación** 
+ 
+ 
+Es la menor variación de la medida que podemos registrar con dicho instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
 
 **Incertidumbre en medidas reproducibles**
 
@@ -889,13 +892,9 @@ knitr::include_graphics("imagen/menisco.png")
 
 
 
-Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce
-como intervalo de confianza de la medición y su tamaño es el doble de la
-incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de
-medición tales como reglas, transportadores, balanzas, probetas, manómetros,
-termómetros, etc
+Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce como intervalo de confianza de la medición y su tamaño es el doble de la incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de medición tales como reglas, transportadores, balanzas, probetas, manómetros, termómetros, etc
 
- **Apreciación** es la menor variación de la medida que podemos registrar con dicho instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
+
  
  
 **Incertidumbre en medidas no-reproducibles**
@@ -954,56 +953,86 @@ $$25.1 \pm 2.8 \%$$
  
  
  
- **Propagación de la incertidumbre**
- q y r se miden con incertidumbre ∆q y ∆r respectivamente 
+## Propagación de errores en operaciones básicas
  
+x y y se miden con incertidumbre ∆x y ∆y respectivamente 
+
+se calcula una función $z=f(x,y,...)$
  
- **En la suma y diferencia**
+ **Propagación de errores** 
+ 
+Conjunto de reglas que permiten asignar un error a z, conocidas las incertidumbres de x e y, ...
 
-Si se utilizan para calcular la diferencia w = q − r o la suma  w = q + r entonces la incertidumbre asociada a la variable w es la suma de las incertidumbres asociadas a q y a r, es decir:
+- Permiten asignar un error al resultado final.
 
-$$∆w = ∆q + ∆r$$
+- Indica la importancia relativa de las diferentes medidas directas.
 
 
-cuando se combinan dos variables mediante una suma o una resta, las incertidumbres siempre se suman.Ejemplo:
+- Planificación del experimento. 
+
+
+**En la suma y diferencia**
+ 
+
+Si se utilizan para calcular la diferencia q = x − y o la suma  q = x + y, entonces la incertidumbre asociada a la variable q es la suma de las incertidumbres asociadas, es decir:
+
+$$∆q = ∆x + ∆y$$
+
+
+cuando se combinan dos variables mediante una suma o una resta, las incertidumbres siempre se suman.    Ejemplo:
 
 $$(62 ± 0.01) + (1.7± 0.1) = 63.73± 0.11$$
+
+
+
 **En la multiplicación o división**
 
-Si los valores de q y r se utilizan para calcular el producto w = qr ó el cociente W=q/r, entonces la incertidumbre asociada, está dada por:
+El error relativo del producto es igual a la suma de los errores relativos: 
 
-$$∆w = |w|\left( \frac{∆q}{q} + \frac{∆r}{r}\right) $$
+$$q=xy\quad q= \frac{x}{y}$$
+
+$$\frac{∆q}{q}= \frac{∆x}{x}+\frac{∆y}{y}$$
+
+
 Continuando con el ejemplo de la distancia y el tiempo
 la incertidumbre resultante al estimar la velocidad es:
+
+
+$$d= 25.1 \pm 0.05$$
+
+$$t= 3.4 min \pm 0.1min$$
+
+
+
 $$v=d/t=25.1 m/3.4 min=7.38 m/min $$
-y la incertidumbre resultante es:
-$$∆w = |w|\left( \frac{∆q}{q} + \frac{∆r}{r}\right) $$
-$$∆w = |w|\left(0.2  + 2.8 \right) $$
-
-**Regla 2**
-
-Cuando se multiplican, dividen, suman o restan valores, la incertidumbre resultante es la más cercana a la mayor de las incertidumbres proporcionales de las componentes.
-
-Por ejemplo, supongamos una velocidad v,  cuando la distancia d = 25,1 m y el tiempo necesario es t = 3,4 s. La distancia d tiene una incertidumbre  de 0,2%, mientras que el tiempo t tiene una incertidumbre de 1,7%. Escribimos, provisionalmente, la velocidad resultante es:
-
-$$v=\frac{d}{t}=\frac{25.1 m}{3.4 s}=7.382 353 m/s $$
-
-La mayor de las incertidumbres de los componentes es 1,7%.Las incertidumbres proporcionales implícitas resultantes., se muestran en las siguiente tabla
 
 
 
-|Valor aproximado|Diferencia|Incertidumbre|
-|:--------------:|:---------|:-----------:|
-|     7.38       |  0.002   |0.032% |
-|7.4             |0.018     |0.238% |
-|7               |0.382353  | 5.4%|
+y el error resultante es:
 
 
-De estas posibilidades, deberíamos elegir el 0,238% como el más cercano al 1,7% requerido, por lo que citamos la velocidad como 7,4 m/s.
+$$∆v = \frac{0.05}{25.1} + \frac{0.1}{3.4}=0.031$$
+
+$$∆v=0.031*7.38=0.23$$
+$$v=(7.38\pm0.23) m/min$$
+
+**Error del producto por una constante**
 
 
 
 
+El error absoluto del producto de una constante por una magnitud es igual al producto de la constante por el error absoluto de la magnitud
+
+
+
+$$∆q = A*∆x$$
+**Error de una potencia**
+
+Sea 
+
+$$x \pm ∆x \qquad q=x^n=x*x*x*...x$$
+El error relativo de una potencia es el producto de la potencia por el error relativo de la magnitud. 
+$$\frac{∆q}{q}= n\frac{∆x}{x}$$
 
 
 ## Redondeo y cifras significativas
