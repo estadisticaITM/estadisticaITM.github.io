@@ -5,7 +5,25 @@ output:
     toc: true
     toc_depth: 5
 ---
+# Estudio reproducibilidad y repetibilidad
 
+
+Los métodos utilizados para realizar los análisis de R&R son:
+- Método del rango (método corto)
+
+- Método del promedio y del rango
+
+- Análisis de varianza (Anova); 
+
+las ventajas de este último son que las varianzas son estimadas con mayor exactitud, se obtiene mayor información como la interacción del operador con la parte que se mide; además, considera un modelo de efectos aleatorios para todos los factores o componentes de la variación del sistema (operadores, partes, interacción e instrumento)
+
+## Importancia del analisis ANOVA de un modelo 
+
+El método ANOVA reparte la variación total $σ^2_{total}$ de los datos en variación debida a la
+producción de la pieza  $σ^2_{pieza}$, variación debida a la repetibilidad $σ^2_{repet}$ y variación debida a la reproducibilidad $σ^2_{reproducibilidad}$
+reprod), de la siguiente forma:
+
+$$σ^2_{total}=σ^2_{pieza}$$
 
 
 ```{r, echo=F, out.width="60%", fig.align='center'}
