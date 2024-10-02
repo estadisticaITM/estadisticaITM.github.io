@@ -122,6 +122,75 @@ column_spec(c(2, 3), width = "9cm")
 ```
 _____________________________________________________________________
 
+
+
+```{r echo=FALSE}
+library(DiagrammeR) 
+library(DiagrammeRsvg) 
+library(rsvg) 
+
+grViz("digraph{
+ 
+      graph[rankdir = LR]
+      node[shape = rectangle, style = filled]
+      node[fillcolor = Violet, margin = 0.2]
+      D[label = 'Evitables']
+      E[label = 'Inevitables']
+  
+      subgraph cluster_0 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+        label = 'Sistemáticas'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+        F[label = 'Aparatos mal calibrados,
+        vidrios dilatados por calentamiento, 
+        equipos mal cuidados, 
+        errores de método, etc.']
+      }
+      
+      subgraph cluster_2 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'Personales'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         G[label = 'Inexperiencia del operador,
+        equivocación de un reactivo,
+        lecturas erróneas,
+        brusquedad en el uso de aparatos']
+      }
+  
+      subgraph cluster_1 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'Aleatorias'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         I[label = 'Reflejan la dispersión de la
+         magnitud al repetir su medida']
+      }
+  
+  subgraph cluster_3 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'instrumentales'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         H[label = 'Debido a la sensibilidad de los
+dispositivos de medida.']
+         
+      }
+      edge[color = black, arrowhead = vee, arrowsize = 1.25]
+      
+      D -> F    D -> G
+      E -> H    E -> I 
+      
+      }")
+```
 ## Sesgo
 
 En metrología se diferencian diferentes tipos de sesgo
@@ -226,7 +295,7 @@ plot( function(x) dt( x, df = 8 ), -5, 5, ylim = c( 0, 0.4 ),
 abline(v=0.46,col=2)
 ```
 
-
+no hay diferencias significativas entre los resultados dados por los dos métodos.
 La diferencia de medias muestrales es 0,64, y se compara con
 un término de la desviación estándar de 1,4, asociada a la diferencia, y por lo tanto representa una contribución aplicable a la incertidumbre asociada al sesgo medido.
 
@@ -380,75 +449,6 @@ Los parámetros de la ecuación forman las ramas principales del diagrama.
 
 
 
-
-
-```{r echo=FALSE}
-library(DiagrammeR) 
-library(DiagrammeRsvg) 
-library(rsvg) 
-
-grViz("digraph{
- 
-      graph[rankdir = LR]
-      node[shape = rectangle, style = filled]
-      node[fillcolor = Violet, margin = 0.2]
-      D[label = 'Evitables']
-      E[label = 'Inevitables']
-  
-      subgraph cluster_0 {
-        graph[shape = rectangle]
-        style = rounded
-        bgcolor = Gold
-        label = 'Sistemáticas'
-        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-        F[label = 'Aparatos mal calibrados,
-        vidrios dilatados por calentamiento, 
-        equipos mal cuidados, 
-        errores de método, etc.']
-      }
-      
-      subgraph cluster_2 {
-        graph[shape = rectangle]
-        style = rounded
-        bgcolor = Gold
-    
-         label = 'Personales'
-        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         G[label = 'Inexperiencia del operador,
-        equivocación de un reactivo,
-        lecturas erróneas,
-        brusquedad en el uso de aparatos']
-      }
-  
-      subgraph cluster_1 {
-         graph[shape = rectangle]
-         style = rounded
-         bgcolor = Gold
-    
-         label = 'Aleatorias'
-         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         I[label = 'Reflejan la dispersión de la
-         magnitud al repetir su medida']
-      }
-  
-  subgraph cluster_3 {
-         graph[shape = rectangle]
-         style = rounded
-         bgcolor = Gold
-    
-         label = 'instrumentales'
-         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
-         H[label = 'Debido a la sensibilidad de los
-dispositivos de medida.']
-         
-      }
-      edge[color = black, arrowhead = vee, arrowsize = 1.25]
-      
-      D -> F    D -> G
-      E -> H    E -> I 
-      
-      }")
-```
 
 **Ejemplo 1: Determinación de la densidad del etanol**
 
