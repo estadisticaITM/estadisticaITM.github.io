@@ -10,43 +10,82 @@ output:
 
 ---
 
-**Introduccción**
 
-Un autobús llega siempre a una parada particular entre las 8:00 y las 8:10 a.m.
-y que la probabilidad de que llegue en cualquier subintervalo dado es proporcional sólo a la duración del subintervalo. 
+De esta función de probabilidad se distinguen 2 formas una discreta y otra continua:
 
-Es igual de probable que llegue entre las 8:00 y 8:02 a que llegue entre las 8:06 y las 8:08. Denote con Y el tiempo que una persona deba esperar para que llegue el autobús si llegó a la parada exactamente a las 8:00. Si con cuidado medimos en minutos cuánto tiempo después de las 8:00 llegó el autobús en varias mañanas, podríamos desarrollar un histograma de frecuencia relativa para los datos.
+**Ejemplo forma continua:**
+
+Un autobús llega siempre a una parada particular entre las 8:00 y las 8:10 a.m. la probabilidad de que llegue en cualquier subintervalo dado es proporcional sólo a la duración del subintervalo. 
+
+Es igual de probable que llegue entre las 8:00 y 8:02 a que llegue entre las 8:06 y las 8:08. Denote con Y el tiempo que una persona deba esperar para que llegue el autobús si llegó a la parada exactamente a las 8:00.
 
 $$P(0 ≤ Y ≤ 2) = P(6 ≤ Y ≤ 8)$$
 
-En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+En una distribución rectangular cada valor en un intervalo ó valor (Continua o discreta) tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo o valor. 
 
-Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
 
-- La **función de densidad de probabilidad** es :
 
-$$ f(x)=\begin{cases}
+
+
+|Uniforme|Discreta $x=1,2,3,...k$|Continua $a,b \quad \varepsilon \quad \mathbb{R}$|
+|:------:|:----------------:|:----------------------:|
+|E(x)    |$\frac{k+1}{2}$|$\frac{a+b}{2}$|
+|$E(x^2)$|$\frac{2k^2+3k+1}{6}$|$\frac{(a^2+ab+b^2)}{3}$|
+|V(x)    | $$\frac{k^2-1}{12}$$       | $$\frac{(b-a)^2}{12}$$     |
+|f(x)    |        | $$\begin{cases}
 \frac{1}{b-a},
 & \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
 0, & \mbox{e.o.c.}
-\end{cases} $$
+\end{cases} $$|
+|F(x)    ||$$P(x \leq \frac{x-a}{b-a}) $$|
+|Notación|$X∼U(a,b)$|||||
 
-- La función de distribución acumulada (CDF) es 
-$$ F(x)=P(x \leq \frac{x-a}{b-a}) $$
-- El hecho de que $P(X = c)= 0$ cuando X es continua tiene una importante consecuencia
-práctica: La probabilidad de que X quede en algún intervalo entre a y b no depende de
-si el límite inferior a o el límite superior b está incluido en el cálculo de probabilidad
+$a,b \quad \varepsilon \quad \mathbb{R}$:
+
+**Forma discreta**
+
+**Demostración E(x)**
+
+
+$$E(x)=\sum_{i=1}^n x*f(x)$$
+$$E(x)=\sum_{i=1}^n x*\frac{1}{k}$$
+$$E(x)=1*\frac{1}{k}+2*\frac{1}{k}+3*\frac{1}{k}+...+k*\frac{1}{k}$$
+en general
+
+$$E(X)=\frac{1}{k}\sum_{i=1}^k i$$
+
+pero
+
+$$\sum_{i=1}^k i=\frac{k(k+1)}{2} $$
+entonces:
+$$E(x)=\frac{(k+1)}{2} $$
+
+
+**Demostración $E(x^2)$**
+
+
+$$E(x^2)=\sum_{i=1}^k x^2*f(x)$$
+$$E(x^2)=\sum_{i=1}^n x^2*\frac{1}{k}$$
+pero
+
+$$\sum_{i=1}^k x^2=\frac{k(k+1)(2k+1)}{6} $$
+entonces:
+
+
+$$E(x^2)=\frac{1}{k}\frac{k(k+1)(2k+1)}{6}$$
+$$E(x^2)=\frac{(k+1)(2k+1)}{6}$$
+$$E(x^2)=\frac{(2k^2+3k+1)}{6}$$
+
+
+
+
+**Continua**
+
+- El hecho de que $P(X = c)= 0$ cuando X es continua tiene una importante consecuencia práctica: La probabilidad de que X quede en algún intervalo entre a y b no depende desi el límite inferior a o el límite superior b está incluido en el cálculo de probabilidad
 
 $$P(a \leq  X \leq b)=P(a< X <b)=P(a\leq X < b)= P(a < X \leq b)$$
 
-- La esperanza o valor medio es
 
-$$E(x)=\frac{a+b}{2}$$
-
-- La varianza 
-
-
-$$E(x)=\frac{(b-a)^2}{12}$$
 
 ```{r echo=FALSE}
 
