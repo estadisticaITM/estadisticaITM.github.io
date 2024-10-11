@@ -11,7 +11,7 @@
 
 
 
-<title>Métodos de medición y estimación de la incertidumbre</title>
+<title>vim.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -308,77 +308,247 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Métodos de medición y estimación de la
-incertidumbre</h1>
 
 </div>
 
 
-<p><img src="imagen/metro.png" width="40%" style="display: block; margin: auto;" /></p>
-<p><img src="imagen/MMEI.png" width="50%" style="display: block; margin: auto;" /></p>
-<div id="métodos-de-medición" class="section level2">
-<h2>Métodos de medición</h2>
-<p><a href="intro.html" target="_blank">Fundamentos de la
-medición</a></p>
-<p><a href="incer.html" target="_blank">Introducción a la estimación de
-incertidumbre</a></p>
+<div id="vocabulario-internacional-de-metrología-vim-2008-2012"
+class="section level1">
+<h1>Vocabulario internacional de metrología VIM 2008-2012</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Capítulo</th>
+<th align="left">Tema</th>
+<th align="center">Definiciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">Magnitudes y unidades</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">Medición</td>
+<td align="center">54</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">Dispositivos para medir</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">Propiedades de dispositivos para medir</td>
+<td align="center">30</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">Patrones de medida</td>
+<td align="center">18</td>
+</tr>
+</tbody>
+</table>
+<div id="capítulo-1-sistema-internacional-de-magnitudes-isq"
+class="section level2">
+<h2>Capítulo 1: Sistema Internacional de Magnitudes (ISQ):</h2>
+<p>Sistema de magnitudes basado en las siete magnitudes básicas</p>
+<p><strong>Sistema Internacional de unidades SI:</strong></p>
+<p>Sistema de unidades basado en el Sistema Internacional de
+Magnitudes(ISQ), con nombres y símbolos de las unidades, y con una serie
+de prefijos con sus nombres y símbolos, así como reglas para su
+utilización, adoptado por la Conferencia General de Pesas y Medidas
+(CGPM)</p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="14%" />
+<col width="11%" />
+<col width="11%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Magnitud básica (SIQ)</th>
+<th align="center">símbolo (SIQ)</th>
+<th align="center">Nombre (SI)</th>
+<th align="center">símbolo (SI)</th>
+<th align="center">Constante</th>
+<th align="center">Reseña</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Longitud</td>
+<td align="center">L</td>
+<td align="center">Metro</td>
+<td align="center">m</td>
+<td align="center">c=299 792 458 m/s</td>
+<td align="center">velocidad de la luz en el vacio</td>
+</tr>
+<tr class="even">
+<td align="center">Masa</td>
+<td align="center">M</td>
+<td align="center">Kilogramo</td>
+<td align="center">kg</td>
+<td align="center"><span class="math inline">\(6.626 070 15 ×
+10^{−34}\)</span> J⋅s</td>
+<td align="center">Constante de Planck</td>
+</tr>
+<tr class="odd">
+<td align="center">Tiempo</td>
+<td align="center">T</td>
+<td align="center">Segundo</td>
+<td align="center">s</td>
+<td align="center">Δν Cs= 9 192 631 770 Hz</td>
+<td align="center">frecuencia de transición hiperfina del átomo del
+celsio Cs</td>
+</tr>
+<tr class="even">
+<td align="center">Corriente eléctrica</td>
+<td align="center">I</td>
+<td align="center">Ampére</td>
+<td align="center">A</td>
+<td align="center">1,602 176 634 × <span
+class="math inline">\(10^{−19}\)</span> C</td>
+<td align="center">carga elemental</td>
+</tr>
+<tr class="odd">
+<td align="center">Temperatura termodinámica</td>
+<td align="center"><span class="math inline">\(\Theta\)</span></td>
+<td align="center">kelvin</td>
+<td align="center">K</td>
+<td align="center"><span class="math inline">\(1.380649×10^{−23}
+J/K\)</span></td>
+<td align="center">Constante de Boltzmann</td>
+</tr>
+<tr class="even">
+<td align="center">Cantidad de sustancia</td>
+<td align="center">N</td>
+<td align="center">mol</td>
+<td align="center">mol</td>
+<td align="center"><span class="math inline">\(N_a=6.022 140 76 × 10^23
+mol^{−1}\)</span></td>
+<td align="center">Constante de Avogadro</td>
+</tr>
+<tr class="odd">
+<td align="center">Intensidad Luminosa</td>
+<td align="center">J</td>
+<td align="center">Candela</td>
+<td align="center">cd</td>
+<td align="center"><span class="math inline">\(K_{cd}\)</span>=683 lm /
+W</td>
+<td align="center">Eficacia luminosa de Radiación de 540 THz</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Magnitud:</strong></p>
+<p>Propiedad que puede expresarse cuantitativamente mediante un número y
+una referencia</p>
+<p><strong>Magnitud de base:</strong></p>
+<p>Magnitud de un subconjunto elegido por convenio, dentro de un sistema
+de magnitudes dado, de tal manera que ninguna magnitud del subconjunto
+pueda ser expresada en función de las otras. por ejemplo ISQ (Sistema
+internacional de magnitudes)</p>
+<p>Las magnitudes básicas son independientes entre sí, dado que una
+magnitud básica no puede expresarse como el producto de potencias de
+otras magnitudes básicas.</p>
+<p><strong>Magnitud derivada</strong></p>
+<p>Magnitud definida en función de las magnitudes de base.</p>
+<p><strong>Magnitud escalar real</strong></p>
+<p>Definida y adoptada por convenio, con la que se puede comparar
+cualquier otra magnitud de la misma naturaleza para expresar la relación
+entre ambas mediante un número</p>
+<p><strong>EJEMPLOS:</strong></p>
+<table>
+<colgroup>
+<col width="30%" />
+<col width="40%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Magnitud base</th>
+<th align="center">Magnitud derivada</th>
+<th align="center">ISQ</th>
+<th align="center">SI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Masa y volumen</td>
+<td align="center">Densidad</td>
+<td align="center"><span
+class="math inline">\(\rho=[M][L]^{-3}\)</span></td>
+<td align="center"><span
+class="math inline">\(\rho=[kg][m]^{-3}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">masa, longitud y tiempo</td>
+<td align="center">Fuerza producto de la masa y la aceleración</td>
+<td align="center"><span
+class="math inline">\(F=[M][L][T]^{-2}\)</span></td>
+<td align="center"><span
+class="math inline">\(F=[Kg][m][s]^{-2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dimensión de una magnitud</strong></p>
+<p>Expresión de la dependencia de una magnitud en términos de las
+magnitudes de base, dentro de un sistema de magnitudes, como el producto
+de potencias de factores de magnitudes de base, omitiendo cualquier
+factor numérico</p>
+<p><font color="blue">Magnitud</font></p>
+<p><font color="green">Valor de la Magnitud</font></p>
+<p><font color="pink">Unidad de medida</font></p>
+<ul>
+<li><p><font color="blue">Longitud</font> de una carretera
+<font color="green">10 000 </font> <font color="pink">m</font></p></li>
+<li><p><font color="blue">Masa</font> del planeta tierra
+<font color="green"><span class="math inline">\(5.972x10^{-24}\)</span>
+</font> <font color="pink">kg</font></p></li>
+<li><p><font color="blue">Tiempo</font> que le toma a la luz recorrer un
+metro <font color="green"><span
+class="math inline">\(3.34x10^{-9}\)</span> </font>
+<font color="pink">s</font></p></li>
+</ul>
+<p><strong>Unidad derivada coherente</strong> Unidad derivada que, para
+un sistema de magnitudes y un conjunto de unidades básicas dados, es
+producto de potencias de unidades de base, sin otro factor de
+proporcionalidad que el número uno.</p>
+<p><span class="math display">\[F=C(M*a)\]</span></p>
+<p><strong>UNIDAD DERIVADA NO COHERENTE</strong> Es el caso en el cual
+el factor de proporcionalidad es diferente de uno.</p>
+<p><span
+class="math display">\[F=\frac{1}{9.81}m*(Kg)*a\left(\frac{m}{s^2}\right)\]</span></p>
+<p><img src="imagen/cap1VIM.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="estadística" class="section level2">
-<h2>Estadística</h2>
-<p><a href="redon.html" target="_blank">Estudio reproducibilidad y
-repetibilidad gageR&amp;R</a></p>
-<p><a href="pruebas_no_paramétricas.html" target="_blank">Pruebas no
-parámetricas</a></p>
-<p><a href="RYR.html" target="_blank">Estudio reproducibilidad y
-repetibilidad gageR&amp;R</a></p>
+<div id="capítulo-3-dispositivos-de-medida" class="section level2">
+<h2>Capítulo 3: Dispositivos de medida</h2>
+<p><img src="imagen/CAP3VIM.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>MEDICIÓN</strong></p>
+<p>Proceso que consiste en obtener experimentalmente uno o varios
+valores que pueden atribuirse razonablemente a una magnitud</p>
+<p>supone:</p>
+<ul>
+<li><p>Una comparación de magnitudes e incluye el conteo de
+entidades</p></li>
+<li><p>Es una descripción de la magnitud compatible con el resultado de
+medida de un procedimiento y un sistema de medida calibrado conforme a
+un procedimiento de medida especificado, incluyendo las condiciones de
+medida.</p></li>
+</ul>
+<p><strong>SISTEMA DE MEDIDA</strong></p>
+<p>Conjunto de uno o más instrumentos de medida, frecuentemente, otros
+dispositivos, incluyendo reactivos e insumos varios, ensamblados y
+adaptados para proporcionar información utilizada para obtener valores
+medidos dentro de intervalos especificados, para magnitudes de
+naturalezas dadas</p>
 </div>
-<div id="incertidumbre" class="section level2">
-<h2>Incertidumbre</h2>
-<p><a href="gum.html" target="_blank">Métodos de medición estocásticos y
-no estocásticos</a></p>
-<p><a href="coefsensi.html" target="_blank">coeficientes de
-sensibilidad</a></p>
-<p><a href="GUM2.html" target="_blank">GUM</a></p>
-<p><a href="mcm2.html" target="_blank">Monte carlo2</a></p>
-</div>
-<div id="bibliografía" class="section level2">
-<h2>Bibliografía</h2>
-<ol style="list-style-type: decimal">
-<li><p>Validación de métodos y determinación de la incertidumbre de la
-medición: “Aspectos generales sobre la validación de métodos”, Instituto
-de salud publica de Chile, 2010.</p></li>
-<li><p>Shmid W y lazos R. (2000) Guia para estimar la incertidumbre en
-la medición. centro nacional de metrología.</p></li>
-<li><p>KIRKUP L., FRENKEL R. B., AN INTRODUCTION TO UNCERTAINTY IN
-MEASUREMENT USING THE GUM (GUIDE TO THE EXPRESSION OF UNCERTAINTY IN
-MEASUREMENT), Cambridge University Press New York, 2006.</p></li>
-<li><p>Lira I., Evaluating the Measurement Uncertainty Fundamentals and
-Practical Guidance, IOP Publishing Ltd, 2002.</p></li>
-<li><p>Metrologos, A. (2005). Institución Apasionada por la Metrología
-Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración:
-Somos su Relevo a la Calidad. www.metas.com.mx</p></li>
-<li><p>Patrick F.D., Measurement and Data Analysis for Engineering and
-Science, CRC Press, 2010.</p></li>
-<li><p>Rabinovich G.S., Measurement Errors and Uncertainties Theory and
-Practice, Springer Science and Media, Inc, 2005.</p></li>
-<li><p>Willink R., MEASUREMENT UNCERTAINTY AND PROBABILITY, Springer
-Science and Media, Cambridge University Press New York, 2013.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Guide to the expression of uncertainty in
-measurement, 100:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Supplement using a Monte Carlo method,
-101:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), International
-vocabulary of metrology – Basic and general concepts and associated
-terms (VIM), 200:2012.</p></li>
-<li><p>Maroto A., Incertidumbre en métodos analíticos de rutina,
-Tarragona. 2002.</p></li>
-<li><p>Cárdenas J.J., Metodología para la determinación de la
-incertidumbre asociada a la medición en fuentes fijas usando la guía
-para la expresión de la incertidumbre de medida y un método estocástico,
-Medellín. 2018.</p></li>
-</ol>
 </div>
 
 <br>
