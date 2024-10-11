@@ -401,55 +401,72 @@ div.tocify {
 </div>
 
 
-<div id="calibración" class="section level2">
-<h2>Calibración</h2>
-<ul>
-<li><p>Operación que bajo condiciones específicas establece una relación
-entre los valores y sus incertidumbres de medida
-asociadas(VIM).</p></li>
-<li><p>Conjunto de operaciones por comparación entre un patrón y un
-instrumento de prueba para determinar el error máximo y su incertidumbre
-asociada, va documentado en un certificado de calibración.</p></li>
-<li><p>Comparación documentada entre el dispositivo de medición que se
-va a calibrar y otro de referencia trazable (BIPM, Bureau International
-des Poids et Mesures, es decir, la oficina internacional de pesos y
-medidas).</p></li>
-<li><p>Descalibración no existe</p></li>
-<li><p>Una calibración puede expresarse mediante una declaración, una
-función de calibración, un diagrama de calibración, una curva de
-calibración o una tabla de calibración.</p></li>
-<li><p>El estado de nuevo o usado no lo excluye de la
-calibración</p></li>
-<li><p>Previo a una calibración el equipo debe estar en óptimas
-condiciones de funcionamiento.</p></li>
-</ul>
-<div id="certificado-de-calibración" class="section level3">
-<h3>Certificado de calibración</h3>
-<p>Documento que muestra las diferencias de medida entre el instrumento
-a calibrar (mensurando) y el patrón contra el que se contrasta.</p>
-<p><strong>Qué debe contener un certificado de calibración</strong></p>
-<ul>
-<li><p>Nombre del equipo</p></li>
-<li><p>Resolución</p></li>
-<li><p>Rango</p></li>
-<li><p>Método de calibración</p></li>
-<li><p>Incertidumbre del mensurando</p></li>
-<li><p>Qué voy a medir?</p></li>
-<li><p>Con que instrumento voy a medir</p></li>
-<li><p>Diferencias entre las medidas que muestra el instrumento a
-calibrar (mensurando)</p></li>
-<li><p>Patrones contrastados</p></li>
-<li><p>Incertidumbre de medida de cada punto contrastado.</p></li>
-</ul>
-<p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
 <div id="resolución" class="section level2">
 <h2>Resolución</h2>
 <p>Es la capacidad de un sistema o instrumento para detectar y mostrar
 cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la
 mínima cantidad o el menor cambio que puede ser detectado y expresado
 por el sistema o el instrumento de medición.</p>
+</div>
+<div id="medición" class="section level2">
+<h2>Medición</h2>
+<p>Proceso que consiste en obtener experimentalmente uno o varios
+valores que pueden atribuirse razonablemente a una magnitud</p>
+</div>
+<div id="incertidumbre" class="section level2">
+<h2>Incertidumbre</h2>
+<ul>
+<li><p>Parámetro asociado al resultado de una medición que caracteriza
+la dispersión de los valores que podrían ser atribuidos al mensurando,
+(ISP, 2010)</p></li>
+<li><p>Es el intervalo de los valores posibles de una medida.</p></li>
+</ul>
+</div>
+<div id="incertidumbre-y-tolerancia-en-las-medidas"
+class="section level2">
+<h2>Incertidumbre y tolerancia en las medidas</h2>
+<p>Las medidas llevan asociado un error desconocido; al que se le asigna
+una cota superior, llamada incertidumbre.</p>
+<p><span class="math display">\[medida ± incertidumbre \]</span></p>
+<p><strong>Tolerancia (de una magnitud)</strong></p>
+<p>Es el intervalo de valores en el que debe encontrarse una magnitud
+para que se acepte como válida.</p>
+<p><img src="imagen/tol.png" width="261" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[Intervalo \quad toleracia \geq
+error+incertidumbre\]</span></p>
+</div>
+<div id="incertidumbre-de-una-medida" class="section level2">
+<h2>Incertidumbre de una medida</h2>
+<p>El resultado de una medición suele ser un número expresado como
+múltiplo de una unidad de medida.</p>
+<p><strong>Ejemplo</strong></p>
+<p>En un experimento se ha medido la gravedad, obteniendo como resultado
+<span class="math inline">\((9,51 ± 0,45) m/s^2\)</span>, esto da a
+entender que:</p>
+<ul>
+<li><p>No se puede asegurar que el valor de la gravedad sea <span
+class="math inline">\(9,51 m/s^2\)</span></p></li>
+<li><p>Se puede afirmar que hay un margen de error de <span
+class="math inline">\(0,45 m/s^2\)</span>, ya sea por exceso o por
+defecto.</p></li>
+</ul>
+<p><strong>Incertidumbre absoluta</strong></p>
+<p>Dada una medida experimental de una magnitud, a, y una incertidumbre
+absoluta, <span class="math inline">\(u_a\)</span>; el valor verdadero,
+A, debe estar contenido, con razonable certeza, dentro del siguiente
+intervalo:</p>
+<p><span class="math display">\[a-u_a\leq A \leq a+ u_a \]</span></p>
+<p><strong>Incertidumbre relativa</strong></p>
+<p>Es el cociente entre la incertidumbre absoluta y el valor de la
+medida, es una cantidad adimensional que nos informa de la precisión de
+la medida. Suele expresarse (multiplicándola por 100) como
+porcentaje.</p>
+<p><span class="math display">\[\frac{u_a}{a}\]</span>
+<strong>Apreciación</strong></p>
+<p>Es la menor variación de la medida que podemos registrar con dicho
+instrumento. En los instrumentos con escala, la apreciación es el valor
+entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL
+tiene una apreciación de 0,5 mL.</p>
 </div>
 <div id="metodos-de-medición" class="section level2">
 <h2>Metodos de medición</h2>
@@ -484,8 +501,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-5bf4eb298c17fd26c9a6" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5bf4eb298c17fd26c9a6">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7c6d0b3d874cff8074f9" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c6d0b3d874cff8074f9">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
@@ -681,8 +698,8 @@ __________________________
 </ul></li>
 </ul></li>
 </ul>
-<div id="htmlwidget-5252b364005e8f65393a" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5252b364005e8f65393a">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-948a8e304e3b7268c259" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-948a8e304e3b7268c259">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="sesgo" class="section level2">
 <h2>Sesgo</h2>

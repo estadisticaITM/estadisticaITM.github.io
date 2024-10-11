@@ -7,63 +7,72 @@ output:
     
 ---
 
-## Calibración
-
-
-- Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
-
-- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
-
-- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
-
-- Descalibración no existe
-
-- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
-
-- El estado de nuevo o usado no lo excluye de la calibración 
-
-- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
-
-
-
-### Certificado de calibración
-
-Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
-
-
-
-
-**Qué debe contener un certificado de calibración**
-
-- Nombre del equipo
-
-- Resolución
-
-- Rango 
-
-- Método de calibración
-
-- Incertidumbre del mensurando 
-
-- Qué voy a medir?
-
-- Con que instrumento voy a medir
-
-- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
-
-- Patrones contrastados
-
-- Incertidumbre de medida de cada punto contrastado.
-
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/certi.png")
-```
 
 ## Resolución
 
 Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
 
+## Medición
+
+Proceso que consiste en obtener experimentalmente uno o varios valores que pueden atribuirse razonablemente a una magnitud
+
+## Incertidumbre
+
+
+- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+
+- Es el intervalo de los valores posibles de una medida. 
+
+
+## Incertidumbre y tolerancia en las medidas
+
+Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
+
+$$medida ± incertidumbre $$
+
+
+**Tolerancia (de una magnitud)** 
+
+Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
+
+
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/tol.png")
+```
+
+
+$$Intervalo \quad toleracia \geq error+incertidumbre$$
+
+## Incertidumbre de una medida
+
+El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
+
+**Ejemplo**
+
+
+En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
+
+-  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
+
+- Se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
+
+**Incertidumbre absoluta**
+
+Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $u_a$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
+
+$$a-u_a\leq A \leq a+ u_a $$
+
+
+**Incertidumbre relativa**
+
+Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje.
+
+$$\frac{u_a}{a}$$
+ **Apreciación** 
+ 
+ 
+Es la menor variación de la medida que podemos registrar con dicho instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
 
 ## Metodos de medición
 

@@ -59,6 +59,7 @@ La **metrología** es la ciencia que se ocupa de mantener y aumentar la precisi�
 - En el campo de la medicina tener mediciones de la presión arterial para el diagnostico de enfermedades.
 
 
+
 ### Tipos de metrología
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
@@ -399,6 +400,60 @@ kbl(tab02) %>%
 | GUM       |Guia para la expresión de la incertidumbre de las medidas|JCGM|
 |Norma 10012 (2003)|**Comprobación Metrológica** Orienta los procesos y el equipo de medición utilizado para apoyar y demostrar el cumplimiento de requisitos metrológicos.|   ISO  |
 |Norma 17025 (2006)|Establece los criterios para los laboratorios que desean demostrar su competencia técnica, que poseen un sistema de calidad efectivo y que son capaces de producir resultados técnicamente válidos|    ISO   |
+
+
+
+**Calibración**
+
+
+- Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+
+- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
+
+- Descalibración no existe
+
+- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+- El estado de nuevo o usado no lo excluye de la calibración 
+
+- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+
+
+
+**Certificado de calibración**
+
+Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
+
+
+
+**Qué debe contener un certificado de calibración**
+
+- Nombre del equipo
+
+- Resolución
+
+- Rango 
+
+- Método de calibración
+
+- Incertidumbre del mensurando 
+
+- Qué voy a medir?
+
+- Con que instrumento voy a medir
+
+- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
+
+- Patrones contrastados
+
+- Incertidumbre de medida de cada punto contrastado.
+
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/certi.png")
+```
 
 
 **Norma 10012**

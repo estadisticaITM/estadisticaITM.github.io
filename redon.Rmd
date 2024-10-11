@@ -3,6 +3,9 @@ title: "redon"
 output: html_document
 date: '2024-10-11'
 ---
+
+
+
 ## Incertidumbre
 
 
@@ -10,71 +13,6 @@ date: '2024-10-11'
 
 - Es el intervalo de los valores posibles de una medida. 
 
-**Tipos de incertidumbre**
-
-**Incertidumbre típica $u$**
-
-Incertidumbre del resultado de una medición, expresada en forma de desviación típica, dependiendo del origen de los datos la incertidumbre típica se clasifica en 
-
-**Tipo A:** 
-Obtenida mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
-
-**Tipo B:** 
-La evaluación mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
-
-
-**Incertidumbre típica combinada $u_c$**
-
-Resultado de la combinación de las contribuciones de todas las fuentes de incertidumbre es igual a la raíz cuadrada positiva de una suma de términos, siendo éstos las varianzas o covarianzas de otras magnitudes, ponderadas en función de la variación del resultado de medida con la variación de dichas magnitudes (GUM).
-
-
-
-
-
-**Incertidumbre expandida $U$ **
-
-Magnitud que define un intervalo en torno al resultado de una medición, y en el que se espera encontrar una fracción importante de la distribución de valores que podrían ser atribuidos razonablemente al mensurando (GUM)
-
-Se obtiene multiplicando la incertidumbre típica combinada por un **factor de cobertura k**, generalmente es con un valor de 2 que garantiza al menos el 95% de confianza del resultado.
-
-La elección del factor k, habitualmente comprendido entre los valores 2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido para el intervalo 
-
-- Observe qué según el nivel de confianza el factor de cobertura cambia
-
-
-
-|nivel de confianza en porcentaje|Factor de cobertura|
-|:------------------------------:|:-----------------:|
-|68.27%                          |?|
-|90%                          |?|
-|95%                          |?|
-|95.45%   |?|
-|99%                          |?|
-|99.73%                          |?|
-
-Este intervalo tiene su fundamento en la **regla empírica de la estadística** y se construye con la distribución normal.
- 
- Si la distribución de la población de una variable es (aproximadamente) normal, entonces
-
-1. Aproximadamente 68% de los valores están dentro de 1 DE (desviación estándar) de la media.
-
-$$\LARGE P(\mu-\sigma\leq x \leq \mu+\sigma)=68.27\%$$
-
-2. Aproximadamente 95% de los valores están dentro de 2 DE de la media.
-$$\LARGE P(\mu-2\sigma\leq x \leq \mu+2\sigma)=95.45\%$$
-
-3. Aproximadamente 99.7% de los valores están dentro de 3 DE de la media.
-
-$$\LARGE P(\mu-3\sigma\leq x \leq \mu+3\sigma)=99.73\%$$
-
-Graficamente:
-
-
-```{r echo=F, out.width="40%",fig.align='center'}
-knitr::include_graphics("imagen/n2.png")
-```
-
- 
 
 ## Incertidumbre y tolerancia en las medidas
 
@@ -99,27 +37,6 @@ knitr::include_graphics("imagen/tol.png")
 
 
 $$Intervalo \quad toleracia \geq error+incertidumbre$$
-
-## Resolución
-
-Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
-
-
-
-```{r, echo=F, fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/reso.png")
-```
-
-**Incertidumbre por resolución**
-
-La siguiente fórmula se usa si el equipo es análogo: 
-
-
-$$u(x)=\frac{Resolución}{\sqrt 3}$$
-En el caso que un equipo sea digital, la fórmula es:
-
-$$u(x)=\frac{Resolución}{\sqrt {12}}$$
-
 
 ## Incertidumbre de una medida
 
