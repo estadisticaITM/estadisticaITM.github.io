@@ -1,5 +1,5 @@
 ---
-title: "Introducción a la incertidumbre"
+title: "Definiciones metrologicas"
 output:
   html_document:
     toc: true
@@ -7,7 +7,190 @@ output:
     
 ---
 
-## Error
+## **Calibración**
+
+
+- Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+
+- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
+
+- Descalibración no existe
+
+- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+- El estado de nuevo o usado no lo excluye de la calibración 
+
+- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+
+
+
+### **Certificado de calibración**
+
+Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
+
+
+
+
+**Qué debe contener un certificado de calibración**
+
+- Nombre del equipo
+
+- Resolución
+
+- Rango 
+
+- Método de calibración
+
+- Incertidumbre del mensurando 
+
+- Qué voy a medir?
+
+- Con que instrumento voy a medir
+
+- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
+
+- Patrones contrastados
+
+- Incertidumbre de medida de cada punto contrastado.
+
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/certi.png")
+```
+
+
+
+**Metodos de medición**
+
+Descripción genérica de la secuencia lógica de operaciones utilizadas en una medición.
+
+La norma internacional ISO/IEC 17025 identifica los métodos en términos de su origen, mientras que VIM los clasifica según el fenómeno.
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/mm.png")
+```
+
+
+
+
+
+**Comprobación metrológica**
+
+Intermedio entre calibraciones
+
+
+**Trazabilidad metrológica (VIM)**
+
+
+Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
+
+
+**Mensurando:** 
+
+Cantidad destinada a la medida. (VIM)
+
+
+
+**Exactitud de medida**
+
+
+¿Que tan cercano esta al valor verdadero?
+
+
+Proximidad entre un valor medido y un valor verdadero de un mensurando
+
+
+**Precisión de medida (VIM)**
+
+
+¿Qué tan cercanas están las medidas entre ellas?
+
+Capacidad que tiene un equipo de replicar  un valor, así sea el verdadero u otro diferente, se expresa mediante medidas de dispersión tales como la desviación típica, la varianza o el coeficiente de variación bajo las condiciones especificadas.
+
+Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones específicas  de repetibilidad, de precisión intermedia, o de reproducibilidad. 
+
+
+```{r echo=FALSE}
+library(DiagrammeR) 
+library(DiagrammeRsvg) 
+library(rsvg) 
+
+grViz("digraph{
+ 
+      graph[rankdir = LR]
+  
+      node[shape = rectangle, style = filled]
+  
+    
+      node[fillcolor = Violet, margin = 0.2]
+      D[label = 'Condiciones especificas']
+      
+  
+      subgraph cluster_0 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'De Repetibilidad'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+        F[label = 'En un periodo corto de tiempo el mismo: 
+- Procedimiento de medida,      
+- Operadores
+- Sistema de medida, 
+- Condiciones de operación 
+- Lugar
+- Objeto o uno similar']
+      }
+      
+      subgraph cluster_2 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = Gold
+    
+         label = 'De precisión intermedia'
+        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         G[label = 'Mismas condiciones de repetibilidad
+         pero con algunas variaciones como nuevas:
+         - Calibraciones
+         - Patrones 
+         - Operadores 
+         - Sistemas de medida']
+      }
+  
+      subgraph cluster_3 {
+         graph[shape = rectangle]
+         style = rounded
+         bgcolor = Gold
+    
+         label = 'De reproducibilidad'
+         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]
+         H[label = 'Mediciones repetidas de los mismos
+         objetos u otros similares en diferentes 
+         - Lugares
+         - Operadores
+         - Sistemas de medida ']
+         
+      }
+      edge[color = black, arrowhead = vee, arrowsize = 1.25]
+      
+      D -> F    D -> G  D -> H
+      
+      }")
+```
+
+**Relación entre precisión y exactitud**
+
+```{r out.width="80%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/dina.png")
+```
+
+R y R  son conocidas después de tomar las mediciones.
+
+
+
+**Error**
 
 
 Diferencia entre un valor medido de una magnitud y un valor de referencia, 
@@ -236,14 +419,6 @@ podrían ser:
 __________________________________________________
 
 El sesgo puede estar determinado por:
-
-**Los materiales de referencia certificados (MRC)** 
-
-Su incertidumbre se estima mediante un análisis repetido del MRC. si no resulta ser significativa, la incertidumbre asociada es la combinación de la incertidumbre del valor del MRC, con la desviación estándar asociada a la medida del sesgo. 
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/mrc.png")
-```
 
 
 **Un método**

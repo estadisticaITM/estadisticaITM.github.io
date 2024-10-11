@@ -11,7 +11,7 @@
 
 
 
-<title>Introducción a la incertidumbre</title>
+<title>Definiciones metrologicas</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,12 +35,12 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="site_libs/viz-1.8.2/viz.js"></script>
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -396,13 +396,87 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introducción a la incertidumbre</h1>
+<h1 class="title toc-ignore">Definiciones metrologicas</h1>
 
 </div>
 
 
-<div id="error" class="section level2">
-<h2>Error</h2>
+<div id="calibración" class="section level2">
+<h2><strong>Calibración</strong></h2>
+<ul>
+<li><p>Operación que bajo condiciones específicas establece una relación
+entre los valores y sus incertidumbres de medida
+asociadas(VIM).</p></li>
+<li><p>Conjunto de operaciones por comparación entre un patrón y un
+instrumento de prueba para determinar el error máximo y su incertidumbre
+asociada, va documentado en un certificado de calibración.</p></li>
+<li><p>Comparación documentada entre el dispositivo de medición que se
+va a calibrar y otro de referencia trazable (BIPM, Bureau International
+des Poids et Mesures, es decir, la oficina internacional de pesos y
+medidas).</p></li>
+<li><p>Descalibración no existe</p></li>
+<li><p>Una calibración puede expresarse mediante una declaración, una
+función de calibración, un diagrama de calibración, una curva de
+calibración o una tabla de calibración.</p></li>
+<li><p>El estado de nuevo o usado no lo excluye de la
+calibración</p></li>
+<li><p>Previo a una calibración el equipo debe estar en óptimas
+condiciones de funcionamiento.</p></li>
+</ul>
+<div id="certificado-de-calibración" class="section level3">
+<h3><strong>Certificado de calibración</strong></h3>
+<p>Documento que muestra las diferencias de medida entre el instrumento
+a calibrar (mensurando) y el patrón contra el que se contrasta.</p>
+<p><strong>Qué debe contener un certificado de calibración</strong></p>
+<ul>
+<li><p>Nombre del equipo</p></li>
+<li><p>Resolución</p></li>
+<li><p>Rango</p></li>
+<li><p>Método de calibración</p></li>
+<li><p>Incertidumbre del mensurando</p></li>
+<li><p>Qué voy a medir?</p></li>
+<li><p>Con que instrumento voy a medir</p></li>
+<li><p>Diferencias entre las medidas que muestra el instrumento a
+calibrar (mensurando)</p></li>
+<li><p>Patrones contrastados</p></li>
+<li><p>Incertidumbre de medida de cada punto contrastado.</p></li>
+</ul>
+<p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Metodos de medición</strong></p>
+<p>Descripción genérica de la secuencia lógica de operaciones utilizadas
+en una medición.</p>
+<p>La norma internacional ISO/IEC 17025 identifica los métodos en
+términos de su origen, mientras que VIM los clasifica según el
+fenómeno.</p>
+<p><img src="imagen/mm.png" width="666" style="display: block; margin: auto;" /></p>
+<p><strong>Comprobación metrológica</strong></p>
+<p>Intermedio entre calibraciones</p>
+<p><strong>Trazabilidad metrológica (VIM)</strong></p>
+<p>Propiedad de un resultado de medida, que puede relacionarse con una
+referencia, mediante una cadena ininterrumpida y documentada de
+calibraciones, que contribuyen a la medición de la incertidumbre.</p>
+<p><strong>Mensurando:</strong></p>
+<p>Cantidad destinada a la medida. (VIM)</p>
+<p><strong>Exactitud de medida</strong></p>
+<p>¿Que tan cercano esta al valor verdadero?</p>
+<p>Proximidad entre un valor medido y un valor verdadero de un
+mensurando</p>
+<p><strong>Precisión de medida (VIM)</strong></p>
+<p>¿Qué tan cercanas están las medidas entre ellas?</p>
+<p>Capacidad que tiene un equipo de replicar un valor, así sea el
+verdadero u otro diferente, se expresa mediante medidas de dispersión
+tales como la desviación típica, la varianza o el coeficiente de
+variación bajo las condiciones especificadas.</p>
+<p>Proximidad entre los valores medidos obtenidos en mediciones
+repetidas de un mismo objeto bajo condiciones específicas de
+repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
+<pre><code>## Linking to librsvg 2.48.8</code></pre>
+<div id="htmlwidget-4d8cab95f0a99714ce43" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4d8cab95f0a99714ce43">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p><strong>Relación entre precisión y exactitud</strong></p>
+<p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>R y R son conocidas después de tomar las mediciones.</p>
+<p><strong>Error</strong></p>
 <p>Diferencia entre un valor medido de una magnitud y un valor de
 referencia,</p>
 <p><strong>Error absoluto</strong> Diferencia entre el valor indicado
@@ -592,9 +666,9 @@ __________________________
 </ul></li>
 </ul></li>
 </ul>
-<pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-94b8021c260a15c9718b" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-94b8021c260a15c9718b">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e63ff61718d179a20ec9" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e63ff61718d179a20ec9">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
 <div id="sesgo" class="section level2">
 <h2>Sesgo</h2>
@@ -634,12 +708,6 @@ resultado.</p></li>
 </ul>
 <hr />
 <p>El sesgo puede estar determinado por:</p>
-<p><strong>Los materiales de referencia certificados (MRC)</strong></p>
-<p>Su incertidumbre se estima mediante un análisis repetido del MRC. si
-no resulta ser significativa, la incertidumbre asociada es la
-combinación de la incertidumbre del valor del MRC, con la desviación
-estándar asociada a la medida del sesgo.</p>
-<p><img src="imagen/mrc.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Un método</strong></p>
 <p>Se determina por comparación de un método de referencia con método
 empírico. Si los resultados muestran que el sesgo es estadísticamente
@@ -703,7 +771,7 @@ para definir el valor p</p>
       col = &quot;red&quot;, type = &quot;l&quot;, lwd = 2,
       main = &quot;Función densidad t de Student df = 8&quot; )
 abline(v=0.46,col=2)</code></pre>
-<p><img src="incer_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="incer_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>no hay diferencias significativas entre los resultados dados por los
 dos métodos. La diferencia de medias muestrales es 0,64, y se compara
 con un término de la desviación estándar de 1,4, asociada a la
