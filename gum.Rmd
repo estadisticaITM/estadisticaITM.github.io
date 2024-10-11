@@ -6,6 +6,307 @@ output:
     toc_depth: 5
     
 ---
+## Proceso de estimación de incertidumbre
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/df.png")
+```
+
+### 1. Especificación del mensurando
+
+**Expresión del mensurando**
+
+El mensurando puede expresarse matemáticamente de la siguiente manera:
+
+$$X=f(x_1,x_2,..,x_n)$$
+
+
+Donde:
+
+X es el mensurando, es decir, el valor que se está midiendo o estimando.
+
+$x_1,x_2,...,x_n$  son las variables de entrada o las magnitudes medidas que contribuyen al valor de X.
+
+
+f es una función matemática que describe la relación entre las variables de entrada y el mensurando. Esta función puede ser lineal o no lineal, dependiendo de la naturaleza de la medición.
+
+
+
+### 2. Identificación de fuentes de incertidumbre
+
+- Las fuentes potenciales de incertidumbre se investigan y, siempre que sea posible, el método se ajusta para reducir la incertidumbre a un nivel aceptable. 
+
+- El parámetro que mide la incertidumbre  puede ser,  una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con un nivel de confianza determinado.
+
+- La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
+
+- El conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
+
+
+- Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar.
+
+- Si hay correlación entre las componentes, se tiene en cuenta mediante la covarianza. 
+
+Listar todas las posibles fuentes de incertidumbre, incluye:
+
+- De los parámetros, 
+
+- De las suposiciones químicas. 
+
+- Por las condiciones ambientales 
+
+- Por la repitibilidad de las medidas
+
+- Por la exactitud y resolución del equipo 
+
+- **Muestreo:** Variaciones aleatorias entre muestras.
+
+- Condiciones de almacenamiento
+
+- Efectos instrumentales
+
+- Pureza de reactivos
+
+- Estequiometría asumida
+
+- Condiciones de medida
+
+- Efectos de la muestra, computacionales
+
+- De redondeo 
+
+- Efectos del operador y aleatorios
+
+- considerar los parámetros de **la expresión del mensurando**, ya que pueden tener una incertidumbre asociada.
+
+- El **diagrama de causa y efecto** es una forma muy práctica de listar las fuentes de incertidumbres, mostrando cómo se relacionan entre ellas e indicando su influencia sobre la incertidumbre del resultado. Ayuda a identificar efectos duplicados 
+
+___________________________________________________________________________________________________________________________________
+
+**Procedimientos para formar una lista estructurada**
+
+**Principios del enfoque**
+
+La estrategia tiene dos fases:
+
+- Con un diagrama de causa-efecto se identifican efectos sobre un resultado.
+
+- Simplifique y resuelva duplicaciones. La lista inicial se depura para simplificar su presentación final y asegurar que los efectos no se han duplicado innecesariamente.
+
+
+**Análisis causa-efecto**
+
+El procedimiento empleado es el siguiente:
+
+**1.** Escribir la ecuación completa para el resultado. 
+
+Los parámetros de la ecuación forman las ramas principales del diagrama.
+
+
+**2.** Considerar cada etapa del método y añadir los factores necesarios al diagrama.
+
+**3.** Para cada rama, añadir factores que contribuyen, hasta que sus efectos sobre la incertidumbre sean insignificantes.
+
+**4.** Resolver las duplicaciones y repetir el proceso para clarificar las contribuciones 
+
+**5.** Agrupar las contribuciones para cada grupo. Es conveniente agrupar en esta fase los términos relacionados con la precisión en una rama independiente. Es común encontrar el mismo equipo usado como instrumento de pesaje, lo que puede llevar a considerar varias veces su incertidumbre de calibración. considerarla una sola vez.
+
+
+
+
+
+
+**Ejemplo 1: Determinación de la densidad del etanol**
+
+
+
+
+Considerar el caso de la determinación directa de la densidad de etanol d(EtOH) mediante la pesa de un volumen conocido V en un recipiente volumétrico adecuado de tara mtara y peso bruto incluido etanol mbruto. La densidad se calcula a
+partir de
+
+$$d(EtOH)=\frac{(mbruto - mtara)}{V}$$
+
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/masa.png")
+```
+
+
+
+Para mayor claridad, solo se tienen en cuenta tres efectos: 
+
+- la calibración del equipo, 
+
+* la temperatura
+
+* la precisión de las medidas. 
+
+
+El diagrama causa-efecto asociado es: 
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/diag.png")
+```
+
+
+
+
+- Las ramas principales del resultado son los parámetros de la ecuación.
+
+- Cada rama tiene efectos contributivos adicionales, ya sean variables o constantes; las
+incertidumbres de estos efectos contribuyen claramente sobre la incertidumbre del resultadoen este caso hay dos efectos ‘temperatura’, tres efectos ‘precisión’ y tres efectos ‘calibración’.
+
+
+
+- La  figura D2 representa los efectos de precisión y temperatura agrupados 
+
+- La temperatura puede ser tratada como un único efecto sobre la densidad, mientras que las
+variaciones individuales en cada determinación contribuyen a la variación observada en la
+replicación de todo el método.
+
+- El sesgo en la calibración de las dos pesadas se anula, y puede eliminarse (Figura D3)
+
+- Las ramas ‘calibración’ restantes deberían distinguirse como dos contribuciones (diferentes) debido a posible no
+linealidad en la respuesta de la balanza, junto con la incertidumbre de calibración asociada con la determinación volumétrica.
+
+
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/diag1.png")
+```
+
+
+
+
+
+**Ejemplo: Estudio de caso Determinación de la incertidumbre de método de análisis de aflatoxinas por HPLC en pasa uva (Martinez et al, 2018)**
+
+
+Las aflatoxinas son un tipo de toxinas producidas por ciertos hongos en cultivos agrícolas como el maíz, el maní o cacahuates, la semilla de algodón y los frutos secos (de cáscara dura como las nueces) (NIH,2024), esta sustancias es considerada como un carcinógeno natural más potente conocido hasta el momento.
+
+La Cromatografía Líquida de Alta Eficiencia (HPLC, por sus siglas en inglés) es una técnica analítica que permite separar mezclas complejas de sustancias de procedencia diversa, con el propósito de identificarlas, cuantificarlas y purificarlas (UV,2024).
+
+Determinar la concentración final de un analito en una matriz implica calcular una función, la cual depende de las variables de cálculo (por ejemplo, volumen de extracción, respuesta del equipo, etc.). Para el cálculo de la concentración para cualquier aflatoxina, se utiliza la siguiente ecuación:
+
+$$Concentración \frac{u_g}{kg}=c_x=C_{HPLC}\frac{V_1*V_2}{v_3*M}*\frac{1}{R}$$
+Un análisis de aflatoxina implica determinar el valor de $C_{HPLC}$, que es la respuesta del cromatógrafo.Todos los demás términos son constantes porque son mediciones establecidas con valor único.
+
+Para el análisis de la incertidumbre se construyó un diagrama de causa y efecto, para determinar las fuentes de error y su incidencia en la incertidumbre.
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/ikishawa.png")
+```
+
+
+
+
+
+### Resolución
+
+Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
+
+
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/reso.png")
+```
+
+**Incertidumbre por resolución**
+
+La siguiente fórmula se usa si el equipo es análogo: 
+
+
+$$u(x)=\frac{Resolución}{\sqrt 3}$$
+En el caso que un equipo sea digital, la fórmula es:
+
+$$u(x)=\frac{Resolución}{\sqrt {12}}$$
+
+
+
+## Categorías de la incertidumbre tipo A
+
+
+También conocida como incertidumbre aleatoria, se refiere a la incertidumbre que puede ser evaluada y cuantificada mediante métodos estadísticos. Esta incertidumbre se asocia comúnmente con mediciones directas o indirectas y está influenciada por factores como la precisión de los instrumentos de medición, la variabilidad de las condiciones de prueba y otros errores experimentales. 
+
+
+Las categorías de incertidumbre tipo A pueden incluir:
+
+- **Replicabilidad:** 
+
+La variabilidad asociada con la repetición de mediciones bajo las mismas condiciones experimentales.  Esto puede incluir la variabilidad de los operadores, la fluctuación de las condiciones ambientales, etc.
+
+- **Reproducibilidad:** 
+
+La variabilidad asociada con la repetición de mediciones en diferentes condiciones experimentales pero dentro de los mismos límites de precisión. Esto puede incluir diferentes equipos, métodos de medición alternativos, etc.
+
+- **Precisión del equipo:** 
+
+La incertidumbre asociada con la precisión y la calibración del equipo utilizado en el proceso de medición.
+
+
+- **Variabilidad del proceso:**
+
+La variabilidad inherente al proceso o fenómeno que se está midiendo. Esta puede ser influenciada por factores como la variabilidad de la materia prima, la fluctuación en las condiciones de fabricación, etc.
+
+- **Errores sistemáticos:** La incertidumbre debida a errores sistemáticos en el proceso de medición, como errores de calibración, sesgos en los instrumentos, etc.
+
+- **Resolución del instrumento: **La incertidumbre asociada con la capacidad del instrumento de medir con precisión hasta cierto nivel de detalle o resolución.
+
+Estas categorías son solo algunas de las posibles fuentes de incertidumbre tipo A y pueden variar dependiendo del contexto específico de la medición o del experimento. La evaluación adecuada de la incertidumbre tipo A es crucial para obtener resultados confiables y precisos en cualquier análisis o experimento.
+
+## Categorías de la incertidumbre tipo B
+
+La incertidumbre tipo B, también conocida como incertidumbre no aleatoria, se refiere a la incertidumbre que no puede ser evaluada mediante métodos estadísticos y generalmente se determina mediante la aplicación de información externa, como datos históricos, conocimiento experto, especificaciones de diseño, etc. Las categorías de incertidumbre tipo B pueden incluir:
+
+- **Errores de modelo:** 
+
+Incertidumbre asociada con la representación del fenómeno o sistema que se está modelando. Puede incluir simplificaciones excesivas en el modelo, desconocimiento de ciertos efectos o interacciones, etc.
+
+- **Incertidumbre de la fuente de datos:** Incertidumbre asociada con los datos utilizados en el análisis o la estimación. Puede incluir errores de medición, sesgos en la recopilación de datos, etc.
+
+- **Incertidumbre de calibración:** Incertidumbre asociada con la calibración de los instrumentos de medición utilizados en el análisis. Esto puede incluir incertidumbres declaradas por el proveedor del equipo de medición o incertidumbres asociadas con el método de calibración utilizado.
+
+- **Incertidumbre de muestreo:** 
+
+
+Incertidumbre asociada con la variabilidad inherente a la selección de muestras de una población más grande. Puede incluir sesgos en la selección de la muestra, errores de muestreo aleatorio, etc.
+
+- **Incertidumbre de modelado matemático:** 
+
+
+Incertidumbre asociada con la elección y los parámetros de los modelos matemáticos utilizados en el análisis. Esto puede incluir incertidumbre en la determinación de constantes físicas, suposiciones simplificadas en el modelo, etc.
+
+
+
+-  **Incertidumbre de extrapolación:**
+
+
+Incertidumbre asociada con la extensión de resultados o conclusiones más allá del rango de datos o condiciones experimentales en los que se basa el análisis.
+
+Estas categorías son ejemplos comunes de fuentes de incertidumbre tipo B, pero la naturaleza específica de la incertidumbre puede variar según el contexto del análisis o la evaluación. La evaluación adecuada de la incertidumbre tipo B es esencial para comprender completamente la confiabilidad y precisión de los resultados obtenidos en cualquier análisis o experimento.
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Bibliografía
+
+- EURACHEM. (2011). Cuantificación de la Incertidumbre en medidas analíticas.
+
+- Martínez, N. D., Rodríguez, A. M., Gutiérrez, A. R., di Carlo Vitolino, M. D., & Durán, A. D. los Á. (2018). Determinación de la incertidumbre del método de análisis de aflatoxinas por HPLC en pasa de uva. Tecnura, 22(58), 25–36. https://doi.org/10.14483/22487638.12896
+
+
+- NIH. (2024). Aflatoxinas. https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas
+
+- Universidad Veracruzana.(UV) (2024). Cromatografía Líquida de Alta Resolución (HPLC). https://www.uv.mx/sara/equipamiento/hplc/#:~:text=La%20Cromatograf%C3%ADa%20L%C3%ADquida%20de%20Alta,de%20identificarlas%2C%20cuantificarlas%20y%20purificarlas.
 
 ## Distribuciones de muestreo
 

@@ -11,7 +11,7 @@
 
 
 
-<title>Métodos de medición y estimación de la incertidumbre</title>
+<title>distris.knit</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -308,80 +308,39 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Métodos de medición y estimación de la
-incertidumbre</h1>
 
 </div>
 
 
-<p><img src="imagen/metro.png" width="40%" style="display: block; margin: auto;" /></p>
-<p><img src="imagen/MMEI.png" width="50%" style="display: block; margin: auto;" /></p>
-<div id="métodos-de-medición" class="section level2">
-<h2>Métodos de medición</h2>
-<p><a href="intro.html" target="_blank">Fundamentos de la
-medición</a></p>
-<p><a href="vim.html" target="_blank">Vocabulario internacional de
-metrología</a></p>
-<p><a href="incer.html" target="_blank">Definiciones
-metrológicas</a></p>
-</div>
-<div id="estadística" class="section level2">
-<h2>Estadística</h2>
-<p><a href="redon.html" target="_blank">Redondeo</a></p>
-<p><a href="pruebas_no_paramétricas.html" target="_blank">Pruebas no
-parámetricas</a></p>
-<p><a href="RYR.html" target="_blank">Estudio reproducibilidad y
-repetibilidad gageR&amp;R</a></p>
-<p><a href="distris.html" target="_blank">Distribuciones de probabilidad
-estadísticas usadas para la estimación de incertidumbre</a></p>
-</div>
-<div id="incertidumbre" class="section level2">
-<h2>Incertidumbre</h2>
-<p><a href="gum.html" target="_blank">Estimación de
-incertidumbre</a></p>
-<p><a href="coefsensi.html" target="_blank">coeficientes de
-sensibilidad</a></p>
-<p><a href="GUM2.html" target="_blank">GUM</a></p>
-<p><a href="mcm2.html" target="_blank">Monte carlo2</a></p>
-</div>
-<div id="bibliografía" class="section level2">
-<h2>Bibliografía</h2>
-<ol style="list-style-type: decimal">
-<li><p>Validación de métodos y determinación de la incertidumbre de la
-medición: “Aspectos generales sobre la validación de métodos”, Instituto
-de salud publica de Chile, 2010.</p></li>
-<li><p>Shmid W y lazos R. (2000) Guia para estimar la incertidumbre en
-la medición. centro nacional de metrología.</p></li>
-<li><p>KIRKUP L., FRENKEL R. B., AN INTRODUCTION TO UNCERTAINTY IN
-MEASUREMENT USING THE GUM (GUIDE TO THE EXPRESSION OF UNCERTAINTY IN
-MEASUREMENT), Cambridge University Press New York, 2006.</p></li>
-<li><p>Lira I., Evaluating the Measurement Uncertainty Fundamentals and
-Practical Guidance, IOP Publishing Ltd, 2002.</p></li>
-<li><p>Metrologos, A. (2005). Institución Apasionada por la Metrología
-Métodos de: Medición, Prueba y Calibración Laboratorios de Calibración:
-Somos su Relevo a la Calidad. www.metas.com.mx</p></li>
-<li><p>Patrick F.D., Measurement and Data Analysis for Engineering and
-Science, CRC Press, 2010.</p></li>
-<li><p>Rabinovich G.S., Measurement Errors and Uncertainties Theory and
-Practice, Springer Science and Media, Inc, 2005.</p></li>
-<li><p>Willink R., MEASUREMENT UNCERTAINTY AND PROBABILITY, Springer
-Science and Media, Cambridge University Press New York, 2013.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Guide to the expression of uncertainty in
-measurement, 100:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), Evaluation of
-measurement data — Supplement using a Monte Carlo method,
-101:2008.</p></li>
-<li><p>Joint Committee for Guides in Metrology (JCGM), International
-vocabulary of metrology – Basic and general concepts and associated
-terms (VIM), 200:2012.</p></li>
-<li><p>Maroto A., Incertidumbre en métodos analíticos de rutina,
-Tarragona. 2002.</p></li>
-<li><p>Cárdenas J.J., Metodología para la determinación de la
-incertidumbre asociada a la medición en fuentes fijas usando la guía
-para la expresión de la incertidumbre de medida y un método estocástico,
-Medellín. 2018.</p></li>
-</ol>
+<div
+id="distribuciones-de-probabilidad-asociadas-a-las-fuentes-de-incertidumbre-en-las-medidas"
+class="section level2">
+<h2>Distribuciones de probabilidad asociadas a las fuentes de
+incertidumbre en las medidas</h2>
+<p>Algunas de las distribuciones estadísticas de probabilidad comúnmente
+utilizadas para modelar estas fuentes de incertidumbre incluyen:</p>
+<p><strong>Distribución Normal (Gaussiana):</strong></p>
+<p>Es la distribución más utilizada para modelar errores de medición
+aleatorios. Se asume que los errores se distribuyen normalmente
+alrededor del valor verdadero, con la mayor densidad de probabilidad
+centrada en el valor medio.</p>
+<p><strong>Distribución Uniforme:</strong></p>
+<p>Se utiliza cuando no hay razón para creer que los errores de medición
+están sesgados hacia ninguna dirección. Por ejemplo, cuando se está
+midiendo algo dentro de ciertos límites y la probabilidad de que el
+valor esté dentro de ese rango es igualmente probable en todo el
+intervalo.</p>
+<p><strong>Distribución de Cauchy-Lorentz:</strong></p>
+<p>A veces, se utiliza para modelar errores de medición cuando se sabe
+que hay una distribución de valores verdaderos, pero los errores de
+medición son asimétricos y pueden ser influenciados por factores
+externos no controlados.</p>
+<p>Distribución de Poisson: Se utiliza comúnmente para modelar la
+distribución de conteos, por ejemplo, en el caso de mediciones que
+involucran recuentos de partículas o eventos discretos.</p>
+<p>Distribución Exponencial: Se utiliza para modelar el tiempo entre
+eventos sucesivos en un proceso de Poisson, y a veces se aplica en el
+contexto de mediciones de tiempo.</p>
 </div>
 
 <br>
