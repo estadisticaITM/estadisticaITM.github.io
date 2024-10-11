@@ -416,8 +416,7 @@ div.tocify {
 </ol>
 <div id="estadística-y-metrología" class="section level2">
 <h2>Estadística y metrología</h2>
-<div id="estadística" class="section level3">
-<h3>Estadística</h3>
+<p><strong>Estadística</strong></p>
 <p>La ciencia <strong>estadística</strong> busca reducir el error,
 resultante de una estimación con su valor verdadero, con el objeto de
 tener valoraciones confiables como por ejemplo:</p>
@@ -426,9 +425,7 @@ tener valoraciones confiables como por ejemplo:</p>
 acción</p></li>
 <li><p>Predecir la temperatura de un día</p></li>
 </ul>
-</div>
-<div id="metrología" class="section level3">
-<h3>Metrología</h3>
+<p><strong>Metrología</strong></p>
 <p>En la vida cotidiana, nos interesan muchas medidas como:</p>
 <ul>
 <li><p>El tiempo que debemos hervir un huevo</p></li>
@@ -445,7 +442,6 @@ alimentarios como el mercurio en el pescado</p></li>
 <li><p>En el campo de la medicina tener mediciones de la presión
 arterial para el diagnostico de enfermedades.</p></li>
 </ul>
-</div>
 <div id="tipos-de-metrología" class="section level3">
 <h3>Tipos de metrología</h3>
 <p><img src="imagen/tm.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -553,6 +549,9 @@ International Standardisation Organisation)</td>
 ##                  let(mpg_hp = mpg/hp) %&gt;%
 ##                  take(mean(mpg_hp), by = am)
 ## </code></pre>
+<pre><code>## 
+## Use &#39;expss_output_viewer()&#39; to display tables in the RStudio Viewer.
+##  To return to the console output, use &#39;expss_output_default()&#39;.</code></pre>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -945,8 +944,8 @@ Gulf Association for Metrology
 </tbody>
 </table>
 </div>
-<div id="normas-metrológicas" class="section level2">
-<h2>Normas metrológicas</h2>
+<div id="algunas-normas-metrológicas" class="section level2">
+<h2>Algunas normas metrológicas</h2>
 <table>
 <colgroup>
 <col width="13%" />
@@ -989,8 +988,7 @@ válidos</td>
 </tr>
 </tbody>
 </table>
-<div id="norma-10012" class="section level3">
-<h3>Norma 10012</h3>
+<p><strong>Norma 10012</strong></p>
 <p><strong>Confirmación metrológica</strong></p>
 <p>Conjunto de operaciones necesarias para asegurar que el equipo de
 medición cumple con los requisitos para su uso previsto</p>
@@ -1000,9 +998,9 @@ en el que se comparan las características metrologicas de un equipo de
 medición y los requisitos metrológicos del cliente.</p>
 <p><img src="imagen/n10.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-</div>
-<div id="calibración" class="section level2">
-<h2>Calibración</h2>
+<div id="definiciones" class="section level2">
+<h2>Definiciones</h2>
+<p><strong>Calibración</strong></p>
 <ul>
 <li><p>Operación que bajo condiciones específicas establece una relación
 entre los valores y sus incertidumbres de medida
@@ -1041,9 +1039,6 @@ calibrar (mensurando)</p></li>
 <li><p>Incertidumbre de medida de cada punto contrastado.</p></li>
 </ul>
 <p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="definiciones" class="section level2">
-<h2>Definiciones</h2>
 <p><strong>Metodos de medición</strong></p>
 <p>Descripción genérica de la secuencia lógica de operaciones utilizadas
 en una medición.</p>
@@ -1057,8 +1052,8 @@ fenómeno.</p>
 <p>Propiedad de un resultado de medida, que puede relacionarse con una
 referencia, mediante una cadena ininterrumpida y documentada de
 calibraciones, que contribuyen a la medición de la incertidumbre.</p>
-<p><strong>Mensurando:</strong> Cantidad destinada a la medida.
-(VIM)</p>
+<p><strong>Mensurando:</strong></p>
+<p>Cantidad destinada a la medida. (VIM)</p>
 <p><strong>Exactitud de medida</strong></p>
 <p>¿Que tan cercano esta al valor verdadero?</p>
 <p>Proximidad entre un valor medido y un valor verdadero de un
@@ -1073,8 +1068,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-5f4b17991995b7ae567c" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5f4b17991995b7ae567c">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e6d593471f6a2a2fab00" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e6d593471f6a2a2fab00">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
