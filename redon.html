@@ -10,9 +10,8 @@
 
 
 
-<meta name="date" content="2024-10-11" />
 
-<title>redon</title>
+<title>Incertidumbre</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -30,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -241,6 +243,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -248,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -309,8 +390,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">redon</h1>
-<h4 class="date">2024-10-11</h4>
+<h1 class="title toc-ignore">Incertidumbre</h1>
 
 </div>
 
@@ -323,97 +403,6 @@ la dispersión de los valores que podrían ser atribuidos al mensurando,
 (ISP, 2010)</p></li>
 <li><p>Es el intervalo de los valores posibles de una medida.</p></li>
 </ul>
-<p><strong>Tipos de incertidumbre</strong></p>
-<p><strong>Incertidumbre típica <span
-class="math inline">\(u\)</span></strong></p>
-<p>Incertidumbre del resultado de una medición, expresada en forma de
-desviación típica, dependiendo del origen de los datos la incertidumbre
-típica se clasifica en</p>
-<p><strong>Tipo A:</strong> Obtenida mediante un analisis estadístico de
-los datos, se expresan por medio de varianzas o las desviaciones y el
-número de grados de libertad.</p>
-<p><strong>Tipo B:</strong> La evaluación mediante la bibliografia, como
-evaluación del material de referencia, certificado de calibración,
-reportes de la deriva de los instrumentos ó ficha técnica del
-instrumento</p>
-<p><strong>Incertidumbre típica combinada <span
-class="math inline">\(u_c\)</span></strong></p>
-<p>Resultado de la combinación de las contribuciones de todas las
-fuentes de incertidumbre es igual a la raíz cuadrada positiva de una
-suma de términos, siendo éstos las varianzas o covarianzas de otras
-magnitudes, ponderadas en función de la variación del resultado de
-medida con la variación de dichas magnitudes (GUM).</p>
-<p><strong>Incertidumbre expandida <span
-class="math inline">\(U\)</span> </strong></p>
-<p>Magnitud que define un intervalo en torno al resultado de una
-medición, y en el que se espera encontrar una fracción importante de la
-distribución de valores que podrían ser atribuidos razonablemente al
-mensurando (GUM)</p>
-<p>Se obtiene multiplicando la incertidumbre típica combinada por un
-<strong>factor de cobertura k</strong>, generalmente es con un valor de
-2 que garantiza al menos el 95% de confianza del resultado.</p>
-<p>La elección del factor k, habitualmente comprendido entre los valores
-2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido
-para el intervalo</p>
-<ul>
-<li>Observe qué según el nivel de confianza el factor de cobertura
-cambia</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center">nivel de confianza en porcentaje</th>
-<th align="center">Factor de cobertura</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">68.27%</td>
-<td align="center">?</td>
-</tr>
-<tr class="even">
-<td align="center">90%</td>
-<td align="center">?</td>
-</tr>
-<tr class="odd">
-<td align="center">95%</td>
-<td align="center">?</td>
-</tr>
-<tr class="even">
-<td align="center">95.45%</td>
-<td align="center">?</td>
-</tr>
-<tr class="odd">
-<td align="center">99%</td>
-<td align="center">?</td>
-</tr>
-<tr class="even">
-<td align="center">99.73%</td>
-<td align="center">?</td>
-</tr>
-</tbody>
-</table>
-<p>Este intervalo tiene su fundamento en la <strong>regla empírica de la
-estadística</strong> y se construye con la distribución normal.</p>
-<p>Si la distribución de la población de una variable es
-(aproximadamente) normal, entonces</p>
-<ol style="list-style-type: decimal">
-<li>Aproximadamente 68% de los valores están dentro de 1 DE (desviación
-estándar) de la media.</li>
-</ol>
-<p><span class="math display">\[\LARGE P(\mu-\sigma\leq x \leq
-\mu+\sigma)=68.27\%\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Aproximadamente 95% de los valores están dentro de 2 DE de la
-media. <span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
-\mu+2\sigma)=95.45\%\]</span></p></li>
-<li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la
-media.</p></li>
-</ol>
-<p><span class="math display">\[\LARGE P(\mu-3\sigma\leq x \leq
-\mu+3\sigma)=99.73\%\]</span></p>
-<p>Graficamente:</p>
-<p><img src="imagen/n2.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="incertidumbre-y-tolerancia-en-las-medidas"
 class="section level2">
@@ -428,20 +417,6 @@ para que se acepte como válida.</p>
 <p><img src="imagen/tol.png" width="261" style="display: block; margin: auto;" /></p>
 <p><span class="math display">\[Intervalo \quad toleracia \geq
 error+incertidumbre\]</span></p>
-</div>
-<div id="resolución" class="section level2">
-<h2>Resolución</h2>
-<p>Es la capacidad de un sistema o instrumento para detectar y mostrar
-cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la
-mínima cantidad o el menor cambio que puede ser detectado y expresado
-por el sistema o el instrumento de medición.</p>
-<p><img src="imagen/reso.png" width="500" style="display: block; margin: auto;" /></p>
-<p><strong>Incertidumbre por resolución</strong></p>
-<p>La siguiente fórmula se usa si el equipo es análogo:</p>
-<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt 3}\]</span>
-En el caso que un equipo sea digital, la fórmula es:</p>
-<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt
-{12}}\]</span></p>
 </div>
 <div id="incertidumbre-de-una-medida" class="section level2">
 <h2>Incertidumbre de una medida</h2>
@@ -684,6 +659,8 @@ significativa superior</p>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -716,6 +693,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

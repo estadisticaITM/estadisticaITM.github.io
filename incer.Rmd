@@ -1,5 +1,5 @@
 ---
-title: "Definiciones metrologicas"
+title: "Definiciones metrológicas"
 output:
   html_document:
     toc: true
@@ -8,15 +8,122 @@ output:
 ---
 
 
+
+**Preguntas del día**
+
+1. ¿Qué es calibración?
+
+2. ¿Qué es la resolución de un equipo?
+
+3. ¿Qué es el error?
+
+4. ¿Qué factores inducen al error de medición?
+
+5. ¿Qué componentes tiene el error de medición?
+
+6. ¿Qué es el sesgo de medición?
+
+7. ¿Qué importancia tiene el sesgo en la estimación de la incertidumbre?
+
+8. Que fuentes de incertidumbre reconoces
+
+
+
+
 ## Resolución
 
 Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
 
+
+## Calibración
+
+- Operación que bajo condiciones específicas establece una relación entre los valores y sus incertidumbres de medida asociadas(VIM).
+
+- Conjunto de operaciones por comparación entre un patrón y un instrumento de prueba para determinar el error máximo y su incertidumbre asociada, va documentado en un certificado de calibración.
+
+- Comparación documentada entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM, Bureau International des Poids et Mesures, es decir, la oficina internacional de pesos y medidas).
+
+- Descalibración no existe
+
+- Una calibración puede expresarse mediante una declaración, una función de calibración, un diagrama de calibración, una curva de calibración o una tabla de calibración.
+
+- El estado de nuevo o usado no lo excluye de la calibración 
+
+- Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
+
+
+
+**Certificado de calibración**
+
+Documento que muestra las diferencias de medida entre el instrumento a calibrar (mensurando) y el patrón contra el que se contrasta. 
+
+
+
+**Qué debe contener un certificado de calibración**
+
+- Nombre del equipo
+
+- Resolución
+
+- Rango 
+
+- Método de calibración
+
+- Incertidumbre del mensurando 
+
+- Qué voy a medir?
+
+- Con que instrumento voy a medir
+
+- Diferencias entre las medidas que muestra el instrumento a calibrar (mensurando)
+
+- Patrones contrastados
+
+- Incertidumbre de medida de cada punto contrastado.
+
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/certi.png")
+```
+
+
+
 ## Medición
 
-Proceso que consiste en obtener experimentalmente uno o varios valores que pueden atribuirse razonablemente a una magnitud
+Proceso que consiste en obtener experimentalmente uno o varios valores que pueden atribuirse razonablemente a una magnitud **VIM**
 
-## Incertidumbre
+
+## Tolerancia de una medida
+
+Cantidad de error ocurrida entre el valor medido y el valor verdadero. Lo importante es especificar el rango de error permitido. En términos de medición, la diferencia entre las dimensiones máximas y mínimas de los errores permitidos se denomina "tolerancia". 
+
+- Generalmente se representa como un valor +/- fuera de una especificación nominal. 
+
+- "No es conveniente utilizar el término “tolerancia” para designar el ‘error máximo permitido" **VIM**
+
+- En cuanto a la **calidad de la tolerancia** podemos decir que cuanto mayor sea la calidad menor será la tolerancia.
+
+- El sistema ISO prevé 18 calidades designadas por : IT01, IT-0,...., IT-16,
+
+
+|Calidades |Aplicaciones|
+|:--------:|:------------------------------------------------------:|
+|IT-01 IT-5| Construcción de instrumentos de control y en mecánica de alta presición|
+|IT-6 IT-11|Mecánica de precisión y ajustes mecánicos|
+|IT-12 IT-16|Trabajos de fabricación y piezas de fundición|
+
+
+- La amplitud de la zona de tolerancia dependerá de la calidad que se asigne y la dimensión a obtener.
+
+|mayor de (mm)|hasta (mm)|0.1|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16| 
+|:-----------:|:--------:|:-:|-|-|-|-|-|-|-|-|-|-|--|--|--|--|--|--|--|
+|0|3|0.3|0.5|0.8|1.2|2|3|4|6|10|14|25|40|60|100|140|250|400|600|
+|3|6|0.4|0.6|1|1.5|2.5|4|5|8|12|18|30|48|75|120|180|300|480|750|
+
+
+
+
+## Incertidumbre de una medida
 
 
 - Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
@@ -24,7 +131,7 @@ Proceso que consiste en obtener experimentalmente uno o varios valores que puede
 - Es el intervalo de los valores posibles de una medida. 
 
 
-## Incertidumbre y tolerancia en las medidas
+**Relación entre la incertidumbre y la tolerancia en las medidas**
 
 Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
 
@@ -50,7 +157,6 @@ El resultado de una medición suele ser un número expresado como múltiplo de u
 
 **Ejemplo**
 
-
 En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
 
 -  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
@@ -72,7 +178,50 @@ $$\frac{u_a}{a}$$
  **Apreciación** 
  
  
-Es la menor variación de la medida que podemos registrar con dicho instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
+Es la menor variación de la medida que podemos registrar con un instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
+
+
+**Incertidumbre en medidas reproducibles**
+
+
+Cuando al realizar una serie de medidas de una misma magnitud se obtienen los
+mismos resultados, no se puede concluir que la incertidumbre sea cero; lo que
+sucede es que los errores quedan ocultos ya que son menores que la incertidumbre asociada al aparato de medición. 
+
+En este caso, puede establecerse un criterio simple y útil: cuando las medidas son reproducibles, se asigna una incertidumbre igual a la mitad de la división más pequeña del instrumento, la cual se conoce como resolución.
+
+Por ejemplo, al medir con un instrumento graduado en mililitros repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml, la incertidumbre será 0.5 ml.
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/menisco.png")
+```
+
+
+
+Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce como intervalo de confianza de la medición y su tamaño es el doble de la incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de medición tales como reglas, transportadores, balanzas, probetas, manómetros, termómetros, etc
+
+
+ 
+ 
+**Incertidumbre en medidas no-reproducibles**
+
+Cuando se hacen repeticiones de una medida y estas resultan diferentes, con
+valores $x_1, x_2,...,x_N$, surgen las preguntas:
+
+
+
+- ¿Cuál es el valor que se reporta?
+
+
+- ¿Qué incertidumbre se asigna al valor reportado?
+
+
+La respuesta a estas preguntas se obtiene a partir del estudio estadístico de las
+mediciones,promedio y desviación estándar.
+
+Para una medida repetida la incertidumbre está dada por:
+
+$$u=\frac{ sd}{\sqrt n}$$
 
 ## Metodos de medición
 
@@ -527,24 +676,6 @@ t.test(x1,x2) # Prueba t de Student
 
 _____________________________________________________________________________________
 
-
-
-
-**Preguntas del día**
-
-1. ¿Qué es el error?
-
-2. ¿Qué factores inducen al error de medición?
-
-3. ¿Qué componentes tiene el error de medición?
-
-4. ¿Qué es el sesgo de medición?
-
-5. ¿Qué importancia tiene el sesgo en la estimación de la incertidumbre?
-
-5. Que fuentes de incertidumbre reconoces
-
-6. Qué es resolución de un equipo.
 
 
 

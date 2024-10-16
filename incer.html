@@ -11,7 +11,7 @@
 
 
 
-<title>Definiciones metrologicas</title>
+<title>Definiciones metrológicas</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -396,11 +396,23 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Definiciones metrologicas</h1>
+<h1 class="title toc-ignore">Definiciones metrológicas</h1>
 
 </div>
 
 
+<p><strong>Preguntas del día</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>¿Qué es calibración?</p></li>
+<li><p>¿Qué es la resolución de un equipo?</p></li>
+<li><p>¿Qué es el error?</p></li>
+<li><p>¿Qué factores inducen al error de medición?</p></li>
+<li><p>¿Qué componentes tiene el error de medición?</p></li>
+<li><p>¿Qué es el sesgo de medición?</p></li>
+<li><p>¿Qué importancia tiene el sesgo en la estimación de la
+incertidumbre?</p></li>
+<li><p>Que fuentes de incertidumbre reconoces</p></li>
+</ol>
 <div id="resolución" class="section level2">
 <h2>Resolución</h2>
 <p>Es la capacidad de un sistema o instrumento para detectar y mostrar
@@ -408,23 +420,183 @@ cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la
 mínima cantidad o el menor cambio que puede ser detectado y expresado
 por el sistema o el instrumento de medición.</p>
 </div>
+<div id="calibración" class="section level2">
+<h2>Calibración</h2>
+<ul>
+<li><p>Operación que bajo condiciones específicas establece una relación
+entre los valores y sus incertidumbres de medida
+asociadas(VIM).</p></li>
+<li><p>Conjunto de operaciones por comparación entre un patrón y un
+instrumento de prueba para determinar el error máximo y su incertidumbre
+asociada, va documentado en un certificado de calibración.</p></li>
+<li><p>Comparación documentada entre el dispositivo de medición que se
+va a calibrar y otro de referencia trazable (BIPM, Bureau International
+des Poids et Mesures, es decir, la oficina internacional de pesos y
+medidas).</p></li>
+<li><p>Descalibración no existe</p></li>
+<li><p>Una calibración puede expresarse mediante una declaración, una
+función de calibración, un diagrama de calibración, una curva de
+calibración o una tabla de calibración.</p></li>
+<li><p>El estado de nuevo o usado no lo excluye de la
+calibración</p></li>
+<li><p>Previo a una calibración el equipo debe estar en óptimas
+condiciones de funcionamiento.</p></li>
+</ul>
+<p><strong>Certificado de calibración</strong></p>
+<p>Documento que muestra las diferencias de medida entre el instrumento
+a calibrar (mensurando) y el patrón contra el que se contrasta.</p>
+<p><strong>Qué debe contener un certificado de calibración</strong></p>
+<ul>
+<li><p>Nombre del equipo</p></li>
+<li><p>Resolución</p></li>
+<li><p>Rango</p></li>
+<li><p>Método de calibración</p></li>
+<li><p>Incertidumbre del mensurando</p></li>
+<li><p>Qué voy a medir?</p></li>
+<li><p>Con que instrumento voy a medir</p></li>
+<li><p>Diferencias entre las medidas que muestra el instrumento a
+calibrar (mensurando)</p></li>
+<li><p>Patrones contrastados</p></li>
+<li><p>Incertidumbre de medida de cada punto contrastado.</p></li>
+</ul>
+<p><img src="imagen/certi.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="medición" class="section level2">
 <h2>Medición</h2>
 <p>Proceso que consiste en obtener experimentalmente uno o varios
-valores que pueden atribuirse razonablemente a una magnitud</p>
+valores que pueden atribuirse razonablemente a una magnitud
+<strong>VIM</strong></p>
 </div>
-<div id="incertidumbre" class="section level2">
-<h2>Incertidumbre</h2>
+<div id="tolerancia-de-una-medida" class="section level2">
+<h2>Tolerancia de una medida</h2>
+<p>Cantidad de error ocurrida entre el valor medido y el valor
+verdadero. Lo importante es especificar el rango de error permitido. En
+términos de medición, la diferencia entre las dimensiones máximas y
+mínimas de los errores permitidos se denomina “tolerancia”.</p>
+<ul>
+<li><p>Generalmente se representa como un valor +/- fuera de una
+especificación nominal.</p></li>
+<li><p>“No es conveniente utilizar el término “tolerancia” para designar
+el ’error máximo permitido” <strong>VIM</strong></p></li>
+<li><p>En cuanto a la <strong>calidad de la tolerancia</strong> podemos
+decir que cuanto mayor sea la calidad menor será la tolerancia.</p></li>
+<li><p>El sistema ISO prevé 18 calidades designadas por : IT01, IT-0,….,
+IT-16,</p></li>
+</ul>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Calidades</th>
+<th align="center">Aplicaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">IT-01 IT-5</td>
+<td align="center">Construcción de instrumentos de control y en mecánica
+de alta presición</td>
+</tr>
+<tr class="even">
+<td align="center">IT-6 IT-11</td>
+<td align="center">Mecánica de precisión y ajustes mecánicos</td>
+</tr>
+<tr class="odd">
+<td align="center">IT-12 IT-16</td>
+<td align="center">Trabajos de fabricación y piezas de fundición</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>La amplitud de la zona de tolerancia dependerá de la calidad que se
+asigne y la dimensión a obtener.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">mayor de (mm)</th>
+<th align="center">hasta (mm)</th>
+<th align="center">0.1</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">0.3</td>
+<td>0.5</td>
+<td>0.8</td>
+<td>1.2</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td>10</td>
+<td>14</td>
+<td>25</td>
+<td>40</td>
+<td>60</td>
+<td>100</td>
+<td>140</td>
+<td>250</td>
+<td>400</td>
+<td>600</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">6</td>
+<td align="center">0.4</td>
+<td>0.6</td>
+<td>1</td>
+<td>1.5</td>
+<td>2.5</td>
+<td>4</td>
+<td>5</td>
+<td>8</td>
+<td>12</td>
+<td>18</td>
+<td>30</td>
+<td>48</td>
+<td>75</td>
+<td>120</td>
+<td>180</td>
+<td>300</td>
+<td>480</td>
+<td>750</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="incertidumbre-de-una-medida" class="section level2">
+<h2>Incertidumbre de una medida</h2>
 <ul>
 <li><p>Parámetro asociado al resultado de una medición que caracteriza
 la dispersión de los valores que podrían ser atribuidos al mensurando,
 (ISP, 2010)</p></li>
 <li><p>Es el intervalo de los valores posibles de una medida.</p></li>
 </ul>
-</div>
-<div id="incertidumbre-y-tolerancia-en-las-medidas"
-class="section level2">
-<h2>Incertidumbre y tolerancia en las medidas</h2>
+<p><strong>Relación entre la incertidumbre y la tolerancia en las
+medidas</strong></p>
 <p>Las medidas llevan asociado un error desconocido; al que se le asigna
 una cota superior, llamada incertidumbre.</p>
 <p><span class="math display">\[medida ± incertidumbre \]</span></p>
@@ -435,7 +607,7 @@ para que se acepte como válida.</p>
 <p><span class="math display">\[Intervalo \quad toleracia \geq
 error+incertidumbre\]</span></p>
 </div>
-<div id="incertidumbre-de-una-medida" class="section level2">
+<div id="incertidumbre-de-una-medida-1" class="section level2">
 <h2>Incertidumbre de una medida</h2>
 <p>El resultado de una medición suele ser un número expresado como
 múltiplo de una unidad de medida.</p>
@@ -463,10 +635,41 @@ la medida. Suele expresarse (multiplicándola por 100) como
 porcentaje.</p>
 <p><span class="math display">\[\frac{u_a}{a}\]</span>
 <strong>Apreciación</strong></p>
-<p>Es la menor variación de la medida que podemos registrar con dicho
+<p>Es la menor variación de la medida que podemos registrar con un
 instrumento. En los instrumentos con escala, la apreciación es el valor
 entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL
 tiene una apreciación de 0,5 mL.</p>
+<p><strong>Incertidumbre en medidas reproducibles</strong></p>
+<p>Cuando al realizar una serie de medidas de una misma magnitud se
+obtienen los mismos resultados, no se puede concluir que la
+incertidumbre sea cero; lo que sucede es que los errores quedan ocultos
+ya que son menores que la incertidumbre asociada al aparato de
+medición.</p>
+<p>En este caso, puede establecerse un criterio simple y útil: cuando
+las medidas son reproducibles, se asigna una incertidumbre igual a la
+mitad de la división más pequeña del instrumento, la cual se conoce como
+resolución.</p>
+<p>Por ejemplo, al medir con un instrumento graduado en mililitros
+repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml,
+la incertidumbre será 0.5 ml.</p>
+<p><img src="imagen/menisco.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se
+le conoce como intervalo de confianza de la medición y su tamaño es el
+doble de la incertidumbre. Esto generalmente se aplica cuando se trata
+de aparatos de medición tales como reglas, transportadores, balanzas,
+probetas, manómetros, termómetros, etc</p>
+<p><strong>Incertidumbre en medidas no-reproducibles</strong></p>
+<p>Cuando se hacen repeticiones de una medida y estas resultan
+diferentes, con valores <span class="math inline">\(x_1,
+x_2,...,x_N\)</span>, surgen las preguntas:</p>
+<ul>
+<li><p>¿Cuál es el valor que se reporta?</p></li>
+<li><p>¿Qué incertidumbre se asigna al valor reportado?</p></li>
+</ul>
+<p>La respuesta a estas preguntas se obtiene a partir del estudio
+estadístico de las mediciones,promedio y desviación estándar.</p>
+<p>Para una medida repetida la incertidumbre está dada por:</p>
+<p><span class="math display">\[u=\frac{ sd}{\sqrt n}\]</span></p>
 </div>
 <div id="metodos-de-medición" class="section level2">
 <h2>Metodos de medición</h2>
@@ -501,8 +704,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-7c6d0b3d874cff8074f9" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7c6d0b3d874cff8074f9">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9b31a8001da863031795" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b31a8001da863031795">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
@@ -698,8 +901,8 @@ __________________________
 </ul></li>
 </ul></li>
 </ul>
-<div id="htmlwidget-948a8e304e3b7268c259" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-948a8e304e3b7268c259">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-74467cc69beea59b924f" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-74467cc69beea59b924f">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="sesgo" class="section level2">
 <h2>Sesgo</h2>
@@ -802,7 +1005,7 @@ para definir el valor p</p>
       col = &quot;red&quot;, type = &quot;l&quot;, lwd = 2,
       main = &quot;Función densidad t de Student df = 8&quot; )
 abline(v=0.46,col=2)</code></pre>
-<p><img src="incer_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="incer_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>no hay diferencias significativas entre los resultados dados por los
 dos métodos. La diferencia de medias muestrales es 0,64, y se compara
 con un término de la desviación estándar de 1,4, asociada a la
@@ -873,17 +1076,6 @@ t.test(x1,x2) # Prueba t de Student</code></pre>
 ## mean of x mean of y 
 ##     1.736     1.726</code></pre>
 <hr />
-<p><strong>Preguntas del día</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>¿Qué es el error?</p></li>
-<li><p>¿Qué factores inducen al error de medición?</p></li>
-<li><p>¿Qué componentes tiene el error de medición?</p></li>
-<li><p>¿Qué es el sesgo de medición?</p></li>
-<li><p>¿Qué importancia tiene el sesgo en la estimación de la
-incertidumbre?</p></li>
-<li><p>Que fuentes de incertidumbre reconoces</p></li>
-<li><p>Qué es resolución de un equipo.</p></li>
-</ol>
 </div>
 
 <br>
