@@ -11,7 +11,7 @@
 
 
 
-<title>Metodos para estimar la incertidumbre</title>
+<title>Proceso para estimar la incertidumbre</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -390,13 +390,288 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Metodos para estimar la incertidumbre</h1>
+<h1 class="title toc-ignore">Proceso para estimar la incertidumbre</h1>
 
 </div>
 
 
-<div id="proceso-de-estimación-de-incertidumbre" class="section level2">
-<h2>Proceso de estimación de incertidumbre</h2>
+<div id="tipos-de-incertidumbre" class="section level2">
+<h2><strong>Tipos de incertidumbre</strong></h2>
+</div>
+<div id="incertidumbre-típica-u" class="section level2">
+<h2><strong>Incertidumbre típica <span
+class="math inline">\(u\)</span></strong></h2>
+<p>Incertidumbre del resultado de una medición, expresada en forma de
+desviación típica, dependiendo del origen de los datos la incertidumbre
+típica se clasifica en tipo A y tipo B</p>
+<p>Antes de combinar las incertidumbres, estas deben estar expresadas
+como desviaciones estándar.</p>
+</div>
+<div id="tipo-a" class="section level2">
+<h2>Tipo A</h2>
+<p>Obtenida mediante un analisis estadístico de los datos, se expresan
+por medio de varianzas o las desviaciones y el número de grados de
+libertad. Se asocia comúnmente con mediciones directas o indirectas y
+está influenciada por factores como la precisión de los instrumentos de
+medición, la variabilidad de las condiciones de prueba y otros errores
+experimentales.</p>
+<p>Las categorías de incertidumbre tipo A pueden incluir:</p>
+<ul>
+<li><strong>Replicabilidad:</strong></li>
+</ul>
+<p>La variabilidad asociada con la repetición de mediciones bajo las
+mismas condiciones experimentales. Esto puede incluir la variabilidad de
+los operadores, la fluctuación de las condiciones ambientales, etc.</p>
+<ul>
+<li><strong>Reproducibilidad:</strong></li>
+</ul>
+<p>La variabilidad asociada con la repetición de mediciones en
+diferentes condiciones experimentales pero dentro de los mismos límites
+de precisión. Esto puede incluir diferentes equipos, métodos de medición
+alternativos, etc.</p>
+<ul>
+<li><strong>Precisión del equipo:</strong></li>
+</ul>
+<p>La incertidumbre asociada con la precisión y la calibración del
+equipo utilizado en el proceso de medición.</p>
+<ul>
+<li><strong>Variabilidad del proceso:</strong></li>
+</ul>
+<p>La variabilidad inherente al proceso o fenómeno que se está midiendo.
+Esta puede ser influenciada por factores como la variabilidad de la
+materia prima, la fluctuación en las condiciones de fabricación,
+etc.</p>
+<ul>
+<li><p><strong>Errores sistemáticos:</strong> La incertidumbre debida a
+errores sistemáticos en el proceso de medición, como errores de
+calibración, sesgos en los instrumentos, etc.</p></li>
+<li><p><strong>Resolución del instrumento: </strong> La incertidumbre
+asociada con la capacidad del instrumento de medir con precisión hasta
+cierto nivel de detalle o resolución.</p></li>
+</ul>
+<p>La siguiente fórmula se usa si el equipo es análogo:</p>
+<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt 3}\]</span>
+En el caso que un equipo sea digital, la fórmula es:</p>
+<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt
+{12}}\]</span></p>
+</div>
+<div id="tipo-b" class="section level2">
+<h2>Tipo B</h2>
+<p>La evaluación mediante la bibliografia, como evaluación del material
+de referencia, certificado de calibración, reportes de la deriva de los
+instrumentos ó ficha técnica del instrumento</p>
+<p><strong>Categorías de la incertidumbre tipo B</strong></p>
+<p>La incertidumbre tipo B, también conocida como incertidumbre no
+aleatoria, se refiere a la incertidumbre que no puede ser evaluada
+mediante métodos estadísticos y generalmente se determina mediante la
+aplicación de información externa, como datos históricos, conocimiento
+experto, especificaciones de diseño, etc. Las categorías de
+incertidumbre tipo B pueden incluir:</p>
+<ul>
+<li><strong>Errores de modelo:</strong></li>
+</ul>
+<p>Incertidumbre asociada con la representación del fenómeno o sistema
+que se está modelando. Puede incluir simplificaciones excesivas en el
+modelo, desconocimiento de ciertos efectos o interacciones, etc.</p>
+<ul>
+<li><p><strong>Incertidumbre de la fuente de datos:</strong>
+Incertidumbre asociada con los datos utilizados en el análisis o la
+estimación. Puede incluir errores de medición, sesgos en la recopilación
+de datos, etc.</p></li>
+<li><p><strong>Incertidumbre de calibración:</strong> Incertidumbre
+asociada con la calibración de los instrumentos de medición utilizados
+en el análisis. Esto puede incluir incertidumbres declaradas por el
+proveedor del equipo de medición o incertidumbres asociadas con el
+método de calibración utilizado.</p></li>
+</ul>
+<p>Esta incertidumbre viene dada como un múltiplo específico de una
+desviación típica, la incertidumbre típica <span
+class="math inline">\(u(xi)\)</span> es simplemente el cociente entre el
+valor indicado y el factor multiplicador.</p>
+<p><strong>EJEMPLO</strong></p>
+<p>Un certificado de calibración indica que la masa de un patrón de
+acero inoxidable, de valor nominal igual a un kilogramo, es <span
+class="math inline">\(m_S = 1000,000325 g\)</span>, y que “la
+incertidumbre de este valor es de 240 μg, para un nivel de tres
+desviaciones típicas”.</p>
+<ul>
+<li><p>La incertidumbre típica del patrón de masa es simplemente <span
+class="math inline">\(u(m_S)=(240 μg)/3 =80 μg\)</span>.</p>
+<ul>
+<li><p>La incertidumbre típica relativa <span
+class="math inline">\(u(mS)/mS\)</span> de <span
+class="math inline">\(80 × 10^{-9}\)</span>** .</p></li>
+<li><p>La varianza estimada es <span class="math inline">\(u^2(mS) = (80
+μg)^2 = 6,4×10^{-9} g^2.\)</span></p></li>
+</ul>
+<p><strong>Nota:</strong></p></li>
+</ul>
+<p><strong>La desviación estándar relativa</strong>, también conocida
+como coeficiente de variación, es una medida de dispersión relativa que
+compara la desviación estándar con la media de un conjunto de datos.</p>
+<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p>
+<p><strong>incertidumbre típica relativa</strong></p>
+<p><span class="math display">\[u(xi)/⏐xi⏐\]</span></p>
+<ul>
+<li>Si la incertidumbre tipo B se obtiene a partir de un intervalo de
+confianza del 90, 95 ó 99 por ciento, suponiendo una distribución
+normal, la incertidumbre típica se obtiene mediante simple división del
+valor de incertidumbre dado por el factor correspondiente de la
+distribución normal. Dicho factor, para los tres niveles de confianza
+citados, es 1,64; 1,96 y 2,58.</li>
+</ul>
+<p><strong>Ejemplo 1</strong></p>
+<p>Una especificación establece que la lectura de una balanza está entre
+±0,2 mg con un 95 % de confianza.</p>
+<p>A partir de tablas estándar de puntos porcentuales de distribución
+normal, se calcula un intervalo de confianza del 95% usando un valor de
+1,96.</p>
+<p>Usando esta cifra resulta una incertidumbre estándar de (0,2/1,96)=
+0,1.</p>
+<p><strong>Ejemplo 2</strong></p>
+<p>Un certificado de calibración indica que el valor <span
+class="math inline">\(R_S\)</span> de una resistencia patrón de valor
+nominal 10Ω es 10,000742 Ω ± 129 μΩ a 23 °C, y que “la incertidumbre
+indicada de 129 μΩ define un intervalo con nivel de confianza del 99 por
+ciento”.</p>
+<p>La incertidumbre típica del valor de la resistencia puede suponerse
+que es u(RS) = (129 μΩ) / 2,58 = 50 μΩ, que corresponde a una
+incertidumbre típica relativa u(RS)/RS de <span
+class="math inline">\(5,0×10^{-6}\)</span>).</p>
+<ul>
+<li>Si los límites de ±a son dados sin nivel de confianza, hay motivos
+para esperar que sea probable que haya valores extremos, normalmente es
+apropiado suponer una distribución rectangular, con una desviación
+estándar de</li>
+</ul>
+<p><span class="math display">\[\frac{a}{\sqrt 3}\]</span></p>
+<p><strong>EJEMPLO</strong></p>
+<p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
+±0,2 mL.</p>
+<p>La incertidumbre estándar es <span class="math display">\[0,2/\sqrt
+3=0,12 mL\]</span></p>
+<p><img src="imagen/matraz.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Si los límites de ±a son dados sin nivel de confianza, pero hay
+motivos para esperar que sea improbable que haya valores
+extremos,normalmente es apropiado suponer una distribución triangular,
+con una desviación estándar de <span
+class="math inline">\(a/\sqrt6\)</span>.</li>
+</ul>
+<p><strong>EJEMPLO</strong> Un matraz volumétrico de Clase A de 10 mL
+está certificado dentro de ±0,2 mL, pero controles internos rutinarios
+muestran que los valores extremos son infrecuentes. La incertidumbre
+estándar es <span class="math inline">\(0,2/\sqrt 6 = 0,08
+mL\)</span></p>
+<ul>
+<li><strong>Incertidumbre de muestreo:</strong></li>
+</ul>
+<p>Incertidumbre asociada con la variabilidad inherente a la selección
+de muestras de una población más grande. Puede incluir sesgos en la
+selección de la muestra, errores de muestreo aleatorio, etc.</p>
+<ul>
+<li><strong>Incertidumbre de modelado matemático:</strong></li>
+</ul>
+<p>Incertidumbre asociada con la elección y los parámetros de los
+modelos matemáticos utilizados en el análisis. Esto puede incluir
+incertidumbre en la determinación de constantes físicas, suposiciones
+simplificadas en el modelo, etc.</p>
+<ul>
+<li><strong>Incertidumbre de extrapolación:</strong></li>
+</ul>
+<p>Incertidumbre asociada con la extensión de resultados o conclusiones
+más allá del rango de datos o condiciones experimentales en los que se
+basa el análisis.</p>
+<p>Estas categorías son ejemplos comunes de fuentes de incertidumbre
+tipo B, pero la naturaleza específica de la incertidumbre puede variar
+según el contexto del análisis o la evaluación. La evaluación adecuada
+de la incertidumbre tipo B es esencial para comprender completamente la
+confiabilidad y precisión de los resultados obtenidos en cualquier
+análisis o experimento.</p>
+</div>
+<div id="incertidumbre-típica-combinada-u_c" class="section level2">
+<h2>Incertidumbre típica combinada <span
+class="math inline">\(u_c\)</span></h2>
+<p>Resultado de la combinación de las contribuciones de todas las
+fuentes de incertidumbre es igual a la raíz cuadrada positiva de una
+suma de términos, siendo éstos las varianzas o covarianzas de otras
+magnitudes, ponderadas en función de la variación del resultado de
+medida con la variación de dichas magnitudes (GUM).</p>
+</div>
+<div id="incertidumbre-expandida-u" class="section level2">
+<h2>Incertidumbre expandida <span class="math inline">\(U\)</span></h2>
+<p>Magnitud que define un intervalo en torno al resultado de una
+medición, y en el que se espera encontrar una fracción importante de la
+distribución de valores que podrían ser atribuidos razonablemente al
+mensurando (GUM)</p>
+<p>Se obtiene multiplicando la incertidumbre típica combinada por un
+<strong>factor de cobertura k</strong>, generalmente es con un valor de
+2 que garantiza al menos el 95% de confianza del resultado.</p>
+<p>La elección del factor k, habitualmente comprendido entre los valores
+2 y 3, se fundamenta en la probabilidad o nivel de confianza requerido
+para el intervalo</p>
+<ul>
+<li>Observe qué según el nivel de confianza el factor de cobertura
+cambia</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">nivel de confianza en porcentaje</th>
+<th align="center">Factor de cobertura</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">68.27%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">90%</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="center">95%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">95.45%</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="center">99%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">99.73%</td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+<p>Este intervalo tiene su fundamento en la <strong>regla empírica de la
+estadística</strong> y se construye con la distribución normal.</p>
+<p>Si la distribución de la población de una variable es
+(aproximadamente) normal, entonces</p>
+<ol style="list-style-type: decimal">
+<li>Aproximadamente 68% de los valores están dentro de 1 DE (desviación
+estándar) de la media.</li>
+</ol>
+<p><span class="math display">\[\LARGE P(\mu-\sigma\leq x \leq
+\mu+\sigma)=68.27\%\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Aproximadamente 95% de los valores están dentro de 2 DE de la
+media. <span class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
+\mu+2\sigma)=95.45\%\]</span></p></li>
+<li><p>Aproximadamente 99.7% de los valores están dentro de 3 DE de la
+media.</p></li>
+</ol>
+<p><span class="math display">\[\LARGE P(\mu-3\sigma\leq x \leq
+\mu+3\sigma)=99.73\%\]</span></p>
+<p>Graficamente:</p>
+<p><img src="imagen/n2.png" width="40%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="proceso-para-estimar-la-incertidumbre" class="section level2">
+<h2>Proceso para estimar la incertidumbre</h2>
 <p><img src="imagen/df.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="especificación-del-mensurando" class="section level3">
 <h3>1. Especificación del mensurando</h3>
@@ -513,7 +788,7 @@ mtara)}{V}\]</span></p>
 ecuación.</p></li>
 <li><p>Cada rama tiene efectos contributivos adicionales, ya sean
 variables o constantes; las incertidumbres de estos efectos contribuyen
-claramente sobre la incertidumbre del resultadoen este caso hay dos
+claramente sobre la incertidumbre del resultado en este caso hay dos
 efectos ‘temperatura’, tres efectos ‘precisión’ y tres efectos
 ‘calibración’.</p></li>
 <li><p>La figura D2 representa los efectos de precisión y temperatura
@@ -558,197 +833,6 @@ causa y efecto, para determinar las fuentes de error y su incidencia en
 la incertidumbre.</p>
 <p><img src="imagen/ikishawa.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="resolución" class="section level3">
-<h3>Resolución</h3>
-<p>Es la capacidad de un sistema o instrumento para detectar y mostrar
-cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la
-mínima cantidad o el menor cambio que puede ser detectado y expresado
-por el sistema o el instrumento de medición.</p>
-<p><img src="imagen/reso.png" width="500" style="display: block; margin: auto;" /></p>
-<p><strong>Incertidumbre por resolución</strong></p>
-<p>La siguiente fórmula se usa si el equipo es análogo:</p>
-<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt 3}\]</span>
-En el caso que un equipo sea digital, la fórmula es:</p>
-<p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt
-{12}}\]</span></p>
-</div>
-</div>
-<div
-id="distribuciones-de-probabilidad-asociadas-a-las-fuentes-de-incertidumbre-en-las-medidas"
-class="section level2">
-<h2>Distribuciones de probabilidad asociadas a las fuentes de
-incertidumbre en las medidas</h2>
-<p>Algunas de las distribuciones estadísticas de probabilidad comúnmente
-utilizadas para modelar estas fuentes de incertidumbre incluyen:</p>
-<p><strong>Distribución Normal (Gaussiana):</strong></p>
-<p>Es la distribución más utilizada para modelar errores de medición
-aleatorios. Se asume que los errores se distribuyen normalmente
-alrededor del valor verdadero, con la mayor densidad de probabilidad
-centrada en el valor medio.</p>
-<p><strong>Distribución Uniforme:</strong></p>
-<p>Se utiliza cuando no hay razón para creer que los errores de medición
-están sesgados hacia ninguna dirección. Por ejemplo, cuando se está
-midiendo algo dentro de ciertos límites y la probabilidad de que el
-valor esté dentro de ese rango es igualmente probable en todo el
-intervalo.</p>
-<p><strong>Distribución de Cauchy-Lorentz:</strong></p>
-<p>A veces, se utiliza para modelar errores de medición cuando se sabe
-que hay una distribución de valores verdaderos, pero los errores de
-medición son asimétricos y pueden ser influenciados por factores
-externos no controlados.</p>
-<p>Distribución de Poisson: Se utiliza comúnmente para modelar la
-distribución de conteos, por ejemplo, en el caso de mediciones que
-involucran recuentos de partículas o eventos discretos.</p>
-<p>Distribución Exponencial: Se utiliza para modelar el tiempo entre
-eventos sucesivos en un proceso de Poisson, y a veces se aplica en el
-contexto de mediciones de tiempo.</p>
-</div>
-<div id="categorías-de-la-incertidumbre-tipo-a" class="section level2">
-<h2>Categorías de la incertidumbre tipo A</h2>
-<p>También conocida como incertidumbre aleatoria, se refiere a la
-incertidumbre que puede ser evaluada y cuantificada mediante métodos
-estadísticos. Esta incertidumbre se asocia comúnmente con mediciones
-directas o indirectas y está influenciada por factores como la precisión
-de los instrumentos de medición, la variabilidad de las condiciones de
-prueba y otros errores experimentales.</p>
-<p>Las categorías de incertidumbre tipo A pueden incluir:</p>
-<ul>
-<li><strong>Replicabilidad:</strong></li>
-</ul>
-<p>La variabilidad asociada con la repetición de mediciones bajo las
-mismas condiciones experimentales. Esto puede incluir la variabilidad de
-los operadores, la fluctuación de las condiciones ambientales, etc.</p>
-<ul>
-<li><strong>Reproducibilidad:</strong></li>
-</ul>
-<p>La variabilidad asociada con la repetición de mediciones en
-diferentes condiciones experimentales pero dentro de los mismos límites
-de precisión. Esto puede incluir diferentes equipos, métodos de medición
-alternativos, etc.</p>
-<ul>
-<li><strong>Precisión del equipo:</strong></li>
-</ul>
-<p>La incertidumbre asociada con la precisión y la calibración del
-equipo utilizado en el proceso de medición.</p>
-<ul>
-<li><strong>Variabilidad del proceso:</strong></li>
-</ul>
-<p>La variabilidad inherente al proceso o fenómeno que se está midiendo.
-Esta puede ser influenciada por factores como la variabilidad de la
-materia prima, la fluctuación en las condiciones de fabricación,
-etc.</p>
-<ul>
-<li><p><strong>Errores sistemáticos:</strong> La incertidumbre debida a
-errores sistemáticos en el proceso de medición, como errores de
-calibración, sesgos en los instrumentos, etc.</p></li>
-<li><p><strong>Resolución del instrumento: </strong>La incertidumbre
-asociada con la capacidad del instrumento de medir con precisión hasta
-cierto nivel de detalle o resolución.</p></li>
-</ul>
-<p>Estas categorías son solo algunas de las posibles fuentes de
-incertidumbre tipo A y pueden variar dependiendo del contexto específico
-de la medición o del experimento. La evaluación adecuada de la
-incertidumbre tipo A es crucial para obtener resultados confiables y
-precisos en cualquier análisis o experimento.</p>
-</div>
-<div id="categorías-de-la-incertidumbre-tipo-b" class="section level2">
-<h2>Categorías de la incertidumbre tipo B</h2>
-<p>La incertidumbre tipo B, también conocida como incertidumbre no
-aleatoria, se refiere a la incertidumbre que no puede ser evaluada
-mediante métodos estadísticos y generalmente se determina mediante la
-aplicación de información externa, como datos históricos, conocimiento
-experto, especificaciones de diseño, etc. Las categorías de
-incertidumbre tipo B pueden incluir:</p>
-<ul>
-<li><strong>Errores de modelo:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la representación del fenómeno o sistema
-que se está modelando. Puede incluir simplificaciones excesivas en el
-modelo, desconocimiento de ciertos efectos o interacciones, etc.</p>
-<ul>
-<li><p><strong>Incertidumbre de la fuente de datos:</strong>
-Incertidumbre asociada con los datos utilizados en el análisis o la
-estimación. Puede incluir errores de medición, sesgos en la recopilación
-de datos, etc.</p></li>
-<li><p><strong>Incertidumbre de calibración:</strong> Incertidumbre
-asociada con la calibración de los instrumentos de medición utilizados
-en el análisis. Esto puede incluir incertidumbres declaradas por el
-proveedor del equipo de medición o incertidumbres asociadas con el
-método de calibración utilizado.</p></li>
-<li><p><strong>Incertidumbre de muestreo:</strong></p></li>
-</ul>
-<p>Incertidumbre asociada con la variabilidad inherente a la selección
-de muestras de una población más grande. Puede incluir sesgos en la
-selección de la muestra, errores de muestreo aleatorio, etc.</p>
-<ul>
-<li><strong>Incertidumbre de modelado matemático:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la elección y los parámetros de los
-modelos matemáticos utilizados en el análisis. Esto puede incluir
-incertidumbre en la determinación de constantes físicas, suposiciones
-simplificadas en el modelo, etc.</p>
-<ul>
-<li><strong>Incertidumbre de extrapolación:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la extensión de resultados o conclusiones
-más allá del rango de datos o condiciones experimentales en los que se
-basa el análisis.</p>
-<p>Estas categorías son ejemplos comunes de fuentes de incertidumbre
-tipo B, pero la naturaleza específica de la incertidumbre puede variar
-según el contexto del análisis o la evaluación. La evaluación adecuada
-de la incertidumbre tipo B es esencial para comprender completamente la
-confiabilidad y precisión de los resultados obtenidos en cualquier
-análisis o experimento.</p>
-<div id="bibliografía" class="section level3">
-<h3>Bibliografía</h3>
-<ul>
-<li><p>EURACHEM. (2011). Cuantificación de la Incertidumbre en medidas
-analíticas.</p></li>
-<li><p>Martínez, N. D., Rodríguez, A. M., Gutiérrez, A. R., di Carlo
-Vitolino, M. D., &amp; Durán, A. D. los Á. (2018). Determinación de la
-incertidumbre del método de análisis de aflatoxinas por HPLC en pasa de
-uva. Tecnura, 22(58), 25–36. <a
-href="https://doi.org/10.14483/22487638.12896"
-class="uri">https://doi.org/10.14483/22487638.12896</a></p></li>
-<li><p>NIH. (2024). Aflatoxinas. <a
-href="https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas"
-class="uri">https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas</a></p></li>
-<li><p>Universidad Veracruzana.(UV) (2024). Cromatografía Líquida de
-Alta Resolución (HPLC). <a
-href="https://www.uv.mx/sara/equipamiento/hplc/#"
-class="uri">https://www.uv.mx/sara/equipamiento/hplc/#</a>:~:text=La%20Cromatograf%C3%ADa%20L%C3%ADquida%20de%20Alta,de%20identificarlas%2C%20cuantificarlas%20y%20purificarlas.</p></li>
-</ul>
-</div>
-</div>
-<div id="distribuciones-de-muestreo" class="section level2">
-<h2>Distribuciones de muestreo</h2>
-<p>Un <strong>estadístico</strong> es una función de las variables
-aleatorias observables en una muestra, como la media muestral <span
-class="math inline">\(\bar Y\)</span>, la varianza muestral <span
-class="math inline">\(S^2\)</span>, Max, Min, la amplitud (Rango = max –
-min), la mediana muestral, etc.</p>
-<p>Se usan estadísticos para hacer inferencias o estimaciones, acerca de
-parámetros de población desconocidos. Todos los estadísticos son
-funciones de las variables aleatorias observadas en una muestra, por
-tanto también son variables aleatorias. En consecuencia, todos
-<strong>los estadísticos tienen distribuciones de probabilidad, que
-llamaremos distribuciones muestrales</strong>.</p>
-<p>La distribución muestral de un estadístico proporciona un modelo
-teórico para el histograma de frecuencia relativa de los posibles
-valores del estadístico que observaríamos por medio de muestreo
-repetido.</p>
-<p>Si se seleccionan muestras aleatorias de tamaño 20 en una población
-grande. Se calcula la media muestral <span class="math inline">\(\bar
-X\)</span> para cada muestra; la colección de todas estas medias
-muestrales recibe el nombre de <strong>distribución muestral de
-medias</strong>, así como tambien se puede obtener la
-<strong>distribución muestral de las desviaciones estándar</strong> como
-se ilustra en la siguiente figura:</p>
-<p><img src="imagen/dmm.png" width="926" style="display: block; margin: auto;" /></p>
-<p>Un elemento importante en los procesos de simulación es identificar
-las distribuciones de probabilidad apropiadas para los datos. Esto,
-normalmente, requiere analizar información empírica o histórica, y
-ajustarla a alguna distribución.</p>
 </div>
 <div id="estimación-de-la-incertidumbre" class="section level2">
 <h2>Estimación de la incertidumbre</h2>
@@ -909,145 +993,25 @@ estadísticos más avanzados.</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="distribuciones-de-probabilidad-para-estimar-incertidumbre"
-class="section level2">
-<h2>Distribuciones de probabilidad para estimar incertidumbre</h2>
-<div id="distribución-normal" class="section level3">
-<h3>Distribución normal</h3>
-<p>Una distribución ampliamente usada y la más importante de toda la
-estadística, diversas poblaciones y fenómenos numéricos son
-representados por esta distribución por ejemplo</p>
+<div id="bibliografía" class="section level3">
+<h3>Bibliografía</h3>
 <ul>
-<li><p>Errores de medición en experimentos científicos</p></li>
-<li><p>Mediciones antropométricas</p></li>
-<li><p>Tiempos de reacción en experimentos psicológicos</p></li>
-<li><p>Mediciones de inteligencia y aptitud</p></li>
+<li><p>EURACHEM. (2011). Cuantificación de la Incertidumbre en medidas
+analíticas.</p></li>
+<li><p>Martínez, N. D., Rodríguez, A. M., Gutiérrez, A. R., di Carlo
+Vitolino, M. D., &amp; Durán, A. D. los Á. (2018). Determinación de la
+incertidumbre del método de análisis de aflatoxinas por HPLC en pasa de
+uva. Tecnura, 22(58), 25–36. <a
+href="https://doi.org/10.14483/22487638.12896"
+class="uri">https://doi.org/10.14483/22487638.12896</a></p></li>
+<li><p>NIH. (2024). Aflatoxinas. <a
+href="https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas"
+class="uri">https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas</a></p></li>
+<li><p>Universidad Veracruzana.(UV) (2024). Cromatografía Líquida de
+Alta Resolución (HPLC). <a
+href="https://www.uv.mx/sara/equipamiento/hplc/#"
+class="uri">https://www.uv.mx/sara/equipamiento/hplc/#</a>:~:text=La%20Cromatograf%C3%ADa%20L%C3%ADquida%20de%20Alta,de%20identificarlas%2C%20cuantificarlas%20y%20purificarlas.</p></li>
 </ul>
-<p><strong>Función de distribución de probabilidad</strong></p>
-<p>Esta distribución depende de los parámetros de localización y escala,
-determinados por la media <span class="math inline">\(E(X)=\mu\)</span>
-y la desviación estándar <span class="math inline">\(sd =
-\sigma\)</span>,</p>
-<p>El valor de <span class="math inline">\(\sigma\)</span> es la
-distancia desde <span class="math inline">\(\mu\)</span> hasta los
-puntos de inflexión de la curva (los puntos donde la curva cambia de
-concavidad de hacia abajo a hacia arriba).</p>
-<p>La función de distribución de probabilidad está dada por:</p>
-<p><span class="math display">\[\LARGE
-f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\]</span> Con <span
-class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> y <span
-class="math inline">\(\sigma&gt;0\)</span></p>
-<p>Si una variable se distribuye normal se denota de la forma:</p>
-<p><span class="math display">\[\LARGE x \sim N(\mu,
-\sigma^2)\]</span></p>
-<p><strong>Aplicativo de distribuciones de probabilidad
-continuas</strong></p>
-<iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
-</iframe>
-</div>
-<div id="distribución-rectangular-ó-uniforme" class="section level3">
-<h3>Distribución rectangular ó uniforme</h3>
-<p>En una distribución rectangular cada valor en un intervalo dado tiene
-la misma probabilidad, o sea la función de densidad de probabilidad es
-constante en este intervalo.</p>
-<p>Sea <span class="math inline">\(X∼U(a,b)\)</span>, es decir, una
-variable aleatoria con distribución uniforme en el intervalo (a,b), con
-<span class="math inline">\(a,b \quad \varepsilon \quad
-\mathbb{R}\)</span>:</p>
-<ul>
-<li>La <strong>función de densidad de probabilidad</strong> es :</li>
-</ul>
-<p><span class="math display">\[ f(x)=\begin{cases}
-\frac{1}{b-a},
-&amp; \mbox{si x $\varepsilon \quad \mathbb{R}$,}\\
-0, &amp; \mbox{e.o.c.}
-\end{cases} \]</span></p>
-<ul>
-<li><p>La función de distribución acumulada (CDF) es <span
-class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a})
-\]</span></p></li>
-<li><p>La esperanza o valor medio es</p></li>
-</ul>
-<p><span class="math display">\[E(x)=\frac{a+b}{2}\]</span></p>
-<ul>
-<li>La varianza</li>
-</ul>
-<p><span class="math display">\[E(x)=\frac{(b-a)^2}{12}\]</span></p>
-<p><img src="gum_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Se usa para estimar la incertidumbre cuando:</p>
-<ul>
-<li><p>Un certificado da unos límites sin especificar el nivel de
-confianza (por ejemplo, 25 mL <span class="math inline">\(\pm\)</span>
-0,05 mL)</p></li>
-<li><p>Se ha hecho una estimación en forma de un rango máximo (<span
-class="math inline">\(\pm\)</span>a) sin conocimiento de la forma de la
-distribución.</p></li>
-</ul>
-<p><a
-href="https://huggingface.co/spaces/FreddyHernandez/discrete_uniform"
-class="uri">https://huggingface.co/spaces/FreddyHernandez/discrete_uniform</a></p>
-<p>El rango de una distribución de probabilidad se refiere al conjunto
-de todos los posibles valores que puede tomar una variable aleatoria en
-esa distribución. Es la diferencia entre el valor máximo y el valor
-mínimo de esta variable.</p>
-<p><strong>Ejemplo</strong></p>
-<p>Un químico estima un factor de contribución entre 7 y 10, pero cree
-que el valor podría ser cualquiera entre esos dos valores, pero no tiene
-idea de si alguna de las partes del rango tiene mayor probabilidad de
-ser que otra. Esto es una descripción de una función de distribución
-rectangular con un rango 2a=3 (semi rango de a=1,5).</p>
-<p>Sea la función de estimación de incertidumbre rectángular.</p>
-<p>La siguiente fórmula se usa si la incertidumbre que se desea calcular
-es por especificaciones o por resulución del equipo análogo, en cada
-caso se reemplaza el valor de a por cada cada valor.</p>
-<p><span class="math display">\[u(x)=\frac{a}{\sqrt 3}\]</span> En el
-caso que un equipo sea digital, la fórmula de la incertidumbre asociada
-a la resolución es:</p>
-<p><span class="math display">\[u(x)=\frac{a}{\sqrt {12}}\]</span></p>
-<p>Se puede calcular una estimación de la incertidumbre estándar. Usando
-el rango antes indicado, a=1,5, resulta una incertidumbre estándar
-de:</p>
-<p><span class="math display">\[u(x)=\frac{1,5}{{\sqrt 3}} =
-0,87\]</span></p>
-</div>
-<div id="distribución-triángular" class="section level3">
-<h3>Distribución triángular</h3>
-<p>La función de distribución de probabilidad es:</p>
-<p><span class="math display">\[ f(x)=\begin{cases}
-\frac{2(x-a)}{(b-a)(c-a)},
-&amp; \mbox{si $a\leq x &lt; c$,}\\
-\frac{2(b-x)}{(b-a)(b-c)},
-&amp; \mbox{si $c\leq x &lt; b$,}\\
-0, &amp; \mbox{e.o.c.}
-\end{cases} \]</span></p>
-<p>La grafica de la función de distribución de probabilidad es:</p>
-<pre class="r"><code>library(triangle)
-curve(dtriangle(x,3,11,8),xlim=c(3,11),lwd=2,ylab=&quot;f(x)&quot;,main=&quot;Distribución triangular&quot;)</code></pre>
-<p><img src="gum_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<ul>
-<li>La esperanza o valor medio es</li>
-</ul>
-<p><span class="math display">\[E(x)=\frac{a+b+c}{3}\]</span></p>
-<ul>
-<li>La varianza</li>
-</ul>
-<p><span
-class="math display">\[E(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}\]</span></p>
-<p>Para estimar incertidumbre se usa cuando</p>
-<ul>
-<li><p>La información disponible está mas delimitada que en una
-distribución rectangular. Los valores cercanos a la mitad de la
-distribución son más probables que los próximos a los límites.</p></li>
-<li><p>Se ha hecho una estimación en forma de un rango máximo <span
-class="math inline">\((\pm a)\)</span> descrito por una distribución
-simétrica.</p></li>
-</ul>
-<p>Sea la función de estimación de incertidumbre triángular</p>
-<p><span class="math display">\[u(x)=\frac{a}{\sqrt 6}\]</span></p>
-<p><strong>Aplicaciones de la incertidumbre</strong></p>
-<p><img src="imagen/API.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 

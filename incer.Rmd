@@ -25,7 +25,7 @@ output:
 
 7. ¿Qué importancia tiene el sesgo en la estimación de la incertidumbre?
 
-8. Que fuentes de incertidumbre reconoces
+8. ¿Qué fuentes de incertidumbre reconoces?
 
 
 
@@ -33,6 +33,11 @@ output:
 ## Resolución
 
 Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o variaciones pequeñas en una magnitud o medida. Es decir, es la mínima cantidad o el menor cambio que puede ser detectado y expresado por el sistema o el instrumento de medición.
+
+
+```{r, echo=F, fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/reso.png")
+```
 
 
 ## Calibración
@@ -52,6 +57,15 @@ Es la capacidad de un sistema o instrumento para detectar y mostrar cambios o va
 - Previo a una calibración el equipo debe estar en óptimas condiciones de funcionamiento.
 
 
+**Comprobación metrológica**
+
+Intermedio entre calibraciones
+
+
+**Trazabilidad metrológica (VIM)**
+
+
+Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
 
 **Certificado de calibración**
 
@@ -93,135 +107,14 @@ knitr::include_graphics("imagen/certi.png")
 Proceso que consiste en obtener experimentalmente uno o varios valores que pueden atribuirse razonablemente a una magnitud **VIM**
 
 
-## Tolerancia de una medida
+**Mensurando:** 
 
-Cantidad de error ocurrida entre el valor medido y el valor verdadero. Lo importante es especificar el rango de error permitido. En términos de medición, la diferencia entre las dimensiones máximas y mínimas de los errores permitidos se denomina "tolerancia". 
+Cantidad destinada a la medida. (VIM)
 
-- Generalmente se representa como un valor +/- fuera de una especificación nominal. 
-
-- "No es conveniente utilizar el término “tolerancia” para designar el ‘error máximo permitido" **VIM**
-
-- En cuanto a la **calidad de la tolerancia** podemos decir que cuanto mayor sea la calidad menor será la tolerancia.
-
-- El sistema ISO prevé 18 calidades designadas por : IT01, IT-0,...., IT-16,
-
-
-|Calidades |Aplicaciones|
-|:--------:|:------------------------------------------------------:|
-|IT-01 IT-5| Construcción de instrumentos de control y en mecánica de alta presición|
-|IT-6 IT-11|Mecánica de precisión y ajustes mecánicos|
-|IT-12 IT-16|Trabajos de fabricación y piezas de fundición|
-
-
-- La amplitud de la zona de tolerancia dependerá de la calidad que se asigne y la dimensión a obtener.
-
-|mayor de (mm)|hasta (mm)|0.1|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16| 
-|:-----------:|:--------:|:-:|-|-|-|-|-|-|-|-|-|-|--|--|--|--|--|--|--|
-|0|3|0.3|0.5|0.8|1.2|2|3|4|6|10|14|25|40|60|100|140|250|400|600|
-|3|6|0.4|0.6|1|1.5|2.5|4|5|8|12|18|30|48|75|120|180|300|480|750|
-
-
-
-
-## Incertidumbre de una medida
-
-
-- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
-
-- Es el intervalo de los valores posibles de una medida. 
-
-
-**Relación entre la incertidumbre y la tolerancia en las medidas**
-
-Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
-
-$$medida ± incertidumbre $$
-
-
-**Tolerancia (de una magnitud)** 
-
-Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
-
-
-
-```{r fig.asp=0.5, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/tol.png")
-```
-
-
-$$Intervalo \quad toleracia \geq error+incertidumbre$$
-
-## Incertidumbre de una medida
-
-El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
-
-**Ejemplo**
-
-En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
-
--  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
-
-- Se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
-
-**Incertidumbre absoluta**
-
-Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $u_a$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
-
-$$a-u_a\leq A \leq a+ u_a $$
-
-
-**Incertidumbre relativa**
-
-Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje.
-
-$$\frac{u_a}{a}$$
  **Apreciación** 
- 
  
 Es la menor variación de la medida que podemos registrar con un instrumento. En los instrumentos con escala, la apreciación es el valor entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL tiene una apreciación de 0,5 mL.
 
-
-**Incertidumbre en medidas reproducibles**
-
-
-Cuando al realizar una serie de medidas de una misma magnitud se obtienen los
-mismos resultados, no se puede concluir que la incertidumbre sea cero; lo que
-sucede es que los errores quedan ocultos ya que son menores que la incertidumbre asociada al aparato de medición. 
-
-En este caso, puede establecerse un criterio simple y útil: cuando las medidas son reproducibles, se asigna una incertidumbre igual a la mitad de la división más pequeña del instrumento, la cual se conoce como resolución.
-
-Por ejemplo, al medir con un instrumento graduado en mililitros repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml, la incertidumbre será 0.5 ml.
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/menisco.png")
-```
-
-
-
-Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce como intervalo de confianza de la medición y su tamaño es el doble de la incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de medición tales como reglas, transportadores, balanzas, probetas, manómetros, termómetros, etc
-
-
- 
- 
-**Incertidumbre en medidas no-reproducibles**
-
-Cuando se hacen repeticiones de una medida y estas resultan diferentes, con
-valores $x_1, x_2,...,x_N$, surgen las preguntas:
-
-
-
-- ¿Cuál es el valor que se reporta?
-
-
-- ¿Qué incertidumbre se asigna al valor reportado?
-
-
-La respuesta a estas preguntas se obtiene a partir del estudio estadístico de las
-mediciones,promedio y desviación estándar.
-
-Para una medida repetida la incertidumbre está dada por:
-
-$$u=\frac{ sd}{\sqrt n}$$
 
 ## Metodos de medición
 
@@ -234,22 +127,13 @@ knitr::include_graphics("imagen/mm.png")
 ```
 
 
-**Comprobación metrológica**
-
-Intermedio entre calibraciones
 
 
-**Trazabilidad metrológica (VIM)**
 
 
-Propiedad de un resultado de medida, que puede relacionarse con una referencia, mediante una cadena ininterrumpida y documentada de calibraciones, que contribuyen a la medición de la incertidumbre.
 
 
-**Mensurando:** 
-
-Cantidad destinada a la medida. (VIM)
-
-
+## Precisión y exactitud de medida
 
 **Exactitud de medida**
 
@@ -260,8 +144,6 @@ Cantidad destinada a la medida. (VIM)
 Proximidad entre un valor medido y un valor verdadero de un mensurando
 
 
-
-## Precisión y exactitud de medida
 
 **Precisión de medida (VIM)**
 
@@ -348,6 +230,151 @@ knitr::include_graphics("imagen/dina.png")
 ```
 
 R y R  son conocidas después de tomar las mediciones.
+
+
+
+## Tolerancia de una medida
+
+Cantidad de error ocurrida entre el valor medido y el valor verdadero. Lo importante es especificar el rango de error permitido. En términos de medición, la diferencia entre las dimensiones máximas y mínimas de los errores permitidos se denomina "tolerancia". 
+
+- Generalmente se representa como un valor +/- fuera de una especificación nominal. 
+
+- "No es conveniente utilizar el término “tolerancia” para designar el ‘error máximo permitido" **VIM**
+
+- En cuanto a la **calidad de la tolerancia** podemos decir que cuanto mayor sea la calidad menor será la tolerancia.
+
+- El sistema ISO prevé 18 calidades designadas por : IT01, IT-0,...., IT-16,
+
+
+|Calidades |Aplicaciones|
+|:--------:|:------------------------------------------------------:|
+|IT-01 IT-5| Construcción de instrumentos de control y en mecánica de alta presición|
+|IT-6 IT-11|Mecánica de precisión y ajustes mecánicos|
+|IT-12 IT-16|Trabajos de fabricación y piezas de fundición|
+
+
+- La amplitud de la zona de tolerancia dependerá de la calidad que se asigne y la dimensión a obtener.
+
+|mayor de (mm)|hasta (mm)|0.1|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16| 
+|:-----------:|:--------:|:-:|-|-|-|-|-|-|-|-|-|-|--|--|--|--|--|--|--|
+|0|3|0.3|0.5|0.8|1.2|2|3|4|6|10|14|25|40|60|100|140|250|400|600|
+|3|6|0.4|0.6|1|1.5|2.5|4|5|8|12|18|30|48|75|120|180|300|480|750|
+
+
+
+
+## Incertidumbre de una medida
+
+
+- Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
+
+- Es el intervalo de los valores posibles de una medida. 
+
+
+
+**Aplicaciones de la incertidumbre**
+
+
+
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/API.png")
+```
+
+
+
+
+**Relación entre la incertidumbre y la tolerancia en las medidas**
+
+Las medidas llevan asociado un error desconocido; al que se le asigna una cota superior, llamada incertidumbre.
+
+$$medida ± incertidumbre $$
+
+
+**Tolerancia (de una magnitud)** 
+
+Es el intervalo de valores en el que debe encontrarse una magnitud para que se acepte como válida.
+
+
+
+```{r fig.asp=0.5, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/tol.png")
+```
+
+
+$$Intervalo \quad toleracia \geq error+incertidumbre$$
+
+### Tipos de incertidumbre de una medida
+
+El resultado de una medición suele ser un número expresado como múltiplo de una unidad de medida. 
+
+**Ejemplo**
+
+En un experimento se ha medido la gravedad, obteniendo como resultado $(9,51 ± 0,45) m/s^2$, esto da a entender que:
+
+-  No se puede asegurar que el valor de la  gravedad sea $9,51 m/s^2$
+
+- Se puede afirmar que hay un margen de error de $0,45 m/s^2$, ya sea por exceso o por defecto. 
+
+
+
+
+
+
+**Incertidumbre absoluta**
+
+Dada una medida experimental de una magnitud, a, y una incertidumbre absoluta, $u_a$; el valor verdadero, A, debe estar contenido, con razonable certeza, dentro del siguiente intervalo:
+
+$$a-u_a\leq A \leq a+ u_a $$
+
+
+**Incertidumbre relativa**
+
+Es el cociente entre la incertidumbre absoluta y el valor de la medida, es una cantidad adimensional que nos informa de la precisión de la medida. Suele expresarse (multiplicándola por 100) como porcentaje.
+
+$$\frac{u_a}{a}$$
+
+
+
+**Incertidumbre en medidas reproducibles**
+
+
+Cuando al realizar una serie de medidas de una misma magnitud se obtienen los mismos resultados, no se puede concluir que la incertidumbre sea cero; lo que sucede es que los errores quedan ocultos ya que son menores que la incertidumbre asociada al aparato de medición. 
+
+En este caso, puede establecerse un criterio simple y útil: cuando las medidas son reproducibles, se asigna una incertidumbre igual a la mitad de la división más pequeña del instrumento, la cual se conoce como resolución.
+
+Por ejemplo, al medir con un instrumento graduado en mililitros repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml, la incertidumbre será 0.5 ml.
+
+```{r out.width="100%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/menisco.png")
+```
+
+
+
+Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se le conoce como intervalo de confianza de la medición y su tamaño es el doble de la incertidumbre. Esto generalmente se aplica cuando se trata de aparatos de medición tales como reglas, transportadores, balanzas, probetas, manómetros, termómetros, etc
+
+
+ 
+ 
+**Incertidumbre en medidas no-reproducibles**
+
+Cuando se hacen repeticiones de una medida y estas resultan diferentes, con
+valores $x_1, x_2,...,x_N$, surgen las preguntas:
+
+
+
+- ¿Cuál es el valor que se reporta?
+
+
+- ¿Qué incertidumbre se asigna al valor reportado?
+
+
+La respuesta a estas preguntas se obtiene a partir del estudio estadístico de las
+mediciones,promedio y desviación estándar.
+
+Para una medida repetida la incertidumbre está dada por:
+
+$$u=\frac{ sd}{\sqrt n}$$
+
 
 
 
@@ -536,7 +563,6 @@ dispositivos de medida.']
       }")
 ```
 
-
 ## Sesgo
 
 En metrología se diferencian diferentes tipos de sesgo
@@ -549,137 +575,4 @@ valor estimado de un error sistemático (VIM)
 **Sesgo instrumental**
 
 Diferencia entre la media de las indicaciones repetidas y un **valor de referencia** (VIM). 
-
-
-__________________________________________________________________
-
-
-
-
-
-- La determinación del **sesgo global** en relación con valores de referencia apropiados es importante para establecer la trazabilidad a patrones reconocidos. 
-
-
-- Según la guia ISO se deben aplicar correcciones para todos los efectos sistemáticos significativos y reconocidos.
-
-- La determinación del sesgo es un componente esencial de la incertidumbre global.
-
-A la hora de decidir si un sesgo conocido puede ser razonablemente descartado, se recomienda la siguiente aproximación:
-
-i) Estimar la incertidumbre combinada sin considerar el sesgo relevante.
-
-ii) Comparar el sesgo con la incertidumbre combinada.
-
-iii) Cuando el sesgo no es significativo comparado con la incertidumbre combinada, el sesgo puede ser descartado.
-
-iv) Cuando el sesgo es significativo comparado con la incertidumbre combinada, se requiere una acción adicional. Acciones apropiadas
-podrían ser:
-
-- Eliminar o corregir el sesgo, haciendo la debida asignación de la incertidumbre de la corrección.
-
-- Informar del sesgo observado y su incertidumbre además del resultado.
-
-__________________________________________________
-
-El sesgo puede estar determinado por:
-
-
-**Un método**
-
-Se determina por comparación de un método de referencia con método empírico. Si los resultados muestran que el sesgo es estadísticamente estadísticamente no significativo, la incertidumbre estándar es la del método de referencia, combinada con la incertidumbre estándar asociada a la diferencia medida entre métodos, dada por la desviación estándar de la distribución de muestreo de diferencia medias para varianzas poblacionales desconocidas pero iguales. 
-
-
-**EJEMPLO**
-Un método (M1) para determinar la concentración de selenio es comparado con un método de referencia (M2). Los resultados (en $mg/kg$) para cada método son los que se muestran a continuación:
-
-
-|Método|$\bar x$|   s|n  |
-|------|:------:|:--:|:-:|
-|M1    |5.40    |1.47|5  |
-|M2    |4.76    |2.75|5  |
-
-Usando pruebas de hipótesis pruebe que no existen diferencias significativas entre ambos métodos.
-
-$$H_0=\mu_1=\mu_2$$
-$$H_1=\mu_1\neq \mu_2$$
-
-
-
-Para probarlo se usa la distribución de muestreo para la diferencias de medias con varianzas desconocidas y diferentes. 
-
-La fórmula para unificar las desviaciones estándar vienen dadas por: 
-
-$$S^2=\frac{(n_1-1)*S_1^2+(n_2-1)*S_2^2}{n_1+n_2-2}$$
-Aplicando la fórmula se tiene
-
-$$s_c=\sqrt{\frac{1.47^2*(5-1)+2.75^2*(5-1)}{5+5-2}}=2.205$$
-
-El  valor del estadístico se calcula mediante la fórmula:
-
-$$t_{n_1+n_2-2}=\frac{\bar X_1-\bar X_2-(\mu_1-\mu_2)}{s_c\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
-reemplazando:
-
-$$t_{8}=\frac{5.4-4.76-(0)}{2.205\sqrt{\frac{1}{5}+\frac{1}{5}}}=\frac{0.64}{1.4}=0.46$$
-para definir el valor p
-
-$$P(t_8>0.46)=32.89\%$$
-
-```{r}
-pt(0.46, 8, lower.tail = F) 
-
-plot( function(x) dt( x, df = 8 ), -5, 5, ylim = c( 0, 0.4 ),
-      col = "red", type = "l", lwd = 2,
-      main = "Función densidad t de Student df = 8" )
-abline(v=0.46,col=2)
-```
-
-no hay diferencias significativas entre los resultados dados por los dos métodos.
-La diferencia de medias muestrales es 0,64, y se compara con
-un término de la desviación estándar de 1,4, asociada a la diferencia, y por lo tanto representa una contribución aplicable a la incertidumbre asociada al sesgo medido.
-
-**Actividad**
-
-
-Se investiga el efecto de la variación de una hora en el tiempo de extracción mediante una prueba t con 5 mediciones, todas ellas en la misma muestra, para el tiempo de extracción normal, y para la extracción con una hora menos
-
-Los datos suministrados son:
-
-|Momento|    |    |    |    |    |media|desviación estándar s|
-|-------|:--:|:--:|:--:|:--:|:--:|----:|---------------------|
-|Antes  |1.67|1.86|1.88|1.55|1.72|     |                     |  
-|Después|1.87|1.83|1.72|1.54|1.67|     |                     |
-
-
-1. Escriba la prueba de hipotesis asociada
-2. Acepte o rechace la hipótesis
-2. Halle la media y desviación estándar
-3. Halle el valor  de la contribución asociada al efecto de la variación permitida en el tiempo de extracción
-
-
-
-
-```{r}
-
-x1=c(1.67,1.86,1.88,1.55,1.72)
-x2=c(1.87,1.83,1.72,1.54,1.67)
- 
-t.test(x1,x2) # Prueba t de Student
-
-```
-
-
-
-
-
-
-
-
-_____________________________________________________________________________________
-
-
-
-
-
-
-
 

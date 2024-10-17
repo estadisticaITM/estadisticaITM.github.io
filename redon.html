@@ -11,7 +11,7 @@
 
 
 
-<title>Incertidumbre</title>
+<title>Redondeo de cifras significativas</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -390,97 +390,92 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Incertidumbre</h1>
+<h1 class="title toc-ignore">Redondeo de cifras significativas</h1>
 
 </div>
 
 
-<div id="incertidumbre" class="section level2">
-<h2>Incertidumbre</h2>
+<p>Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los
+instrumentos modernos son capaces de mostrar valores de muchas cifras.
+Como ejemplo, un multímetro digital?</p>
+<p><img src="imagen/multimetro.png" width="142" style="display: block; margin: auto;" /></p>
+<p>Aveces es prudente registrar todas las cifras proporcionadas por un
+instrumento, pero en muchos casos carecen de significado.</p>
 <ul>
-<li><p>Parámetro asociado al resultado de una medición que caracteriza
-la dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010)</p></li>
-<li><p>Es el intervalo de los valores posibles de una medida.</p></li>
+<li><p>Etapa primordial dentro de la expresión de incertidumbre</p></li>
+<li><p>Evita poner en riesgo los resultados que emite un
+laboratorio</p></li>
 </ul>
+<p><strong>Como redondear el valor de la medida y su
+incertidumbre</strong></p>
+<p>Redondea el resultado de la medicion con el mismo numero de cifras
+decimales que la incertidumbre</p>
+<p><strong>Paso 1</strong></p>
+<p>Identificar las dos primeras cifras significativas del valor de la
+incertidumbre y redondearlo</p>
+<p><span class="math display">\[U=0,0{\color{Red} {21}}3   \quad
+\rightarrow  \quad U=0.021 g\]</span> Recuerda que los ceros que están
+al lado izquierdo de las cifras no se cuentan como cifras
+significativas.</p>
+<p><strong>Paso 2</strong></p>
+<p>Redondea el resultado de la medida</p>
+<p><span class="math display">\[x=1.0226 g \quad \rightarrow  \quad
+x=1.023 g\]</span> <strong>Resultado</strong> Suponga q x es la medida
+de masa y que U es la incertidumbre asociada.</p>
+<p><span class="math display">\[x=1.{\color{Red}{023}} g \quad
+\rightarrow \quad U=0,{\color{Red} {021}}g\]</span></p>
+<div id="metodos-de-redondeo" class="section level2">
+<h2>Metodos de redondeo</h2>
+<p>Normalmente hay 5 situaciones en las que se redondea hacia arriba (de
+0,5 a 0,9) pero sólo 4 para redondear hacia abajo (de 0,1 a 0,4).</p>
+<div id="metodos-de-redondeo-a" class="section level3">
+<h3>Metodos de redondeo A</h3>
+<p><strong>Regla de Redondeo 1</strong></p>
+<ul>
+<li>Cuando la cifra siguiente a la que se va a retener es inferior a
+cinco, se mantiene la cifra retenida sin cambios</li>
+</ul>
+<p><span class="math display">\[3,{\color{Red}{5}41}\quad \rightarrow
+\quad 3,{\color{Red} {5}}\]</span> <strong>Regla de redondeo
+2</strong></p>
+<ul>
+<li>Cuando la cifra siguiente a la que se va a retener es mayor o igual
+que 5,aumente la cifra retenida en 1</li>
+</ul>
+<p><span class="math display">\[3,{\color{Red}{6}53}\quad \rightarrow
+\quad 3,{\color{Red} {7}}\]</span></p>
+<p><strong>Regla de redondeo 3: método par/impar</strong></p>
+<p>Al utilizar el método se introduce un mayor equilibrio en los
+resultados finales que puede evitar el sesgo en los valores medios a
+largo plazo.</p>
+<p>Cuando la cifra siguiente a la que se va a retener es exactamente 5 y
+la cifra retenida es par, se deja sin modificar, por el contrario si la
+cifra es impar, se aumenta la cifra retenida en 1 (redondeo par
+impar)</p>
+<p><span class="math display">\[4,{\color{Red}{4}50}\quad \rightarrow
+\quad 4,{\color{Red} {4}}\]</span></p>
+<p><span class="math display">\[3,{\color{Red}{5}50}\quad \rightarrow
+\quad 3,{\color{Red} {6}}\]</span></p>
+<p>en ese orden de ideas</p>
+<p><span class="math display">\[3.05\quad \rightarrow \quad 3,0\]</span>
+<span class="math display">\[3.15\quad \rightarrow \quad 3,2\]</span>
+<span class="math display">\[3.25\quad \rightarrow \quad
+3,2\]</span></p>
 </div>
-<div id="incertidumbre-y-tolerancia-en-las-medidas"
-class="section level2">
-<h2>Incertidumbre y tolerancia en las medidas</h2>
-<p>Las medidas llevan asociado un error desconocido; al que se le asigna
-una cota superior, llamada incertidumbre.</p>
-<p><span class="math display">\[medida ± incertidumbre \]</span></p>
-<p><strong>Incertidumbre</strong></p>
-<p><strong>Tolerancia (de una magnitud)</strong></p>
-<p>Es el intervalo de valores en el que debe encontrarse una magnitud
-para que se acepte como válida.</p>
-<p><img src="imagen/tol.png" width="261" style="display: block; margin: auto;" /></p>
-<p><span class="math display">\[Intervalo \quad toleracia \geq
-error+incertidumbre\]</span></p>
+<div id="método-de-redondeo-b" class="section level3">
+<h3>Método de redondeo B</h3>
+<p>Excel, generalmente redondea hacia arriba</p>
 </div>
-<div id="incertidumbre-de-una-medida" class="section level2">
-<h2>Incertidumbre de una medida</h2>
-<p>El resultado de una medición suele ser un número expresado como
-múltiplo de una unidad de medida.</p>
-<p><strong>Ejemplo</strong></p>
-<p>En un experimento se ha medido la gravedad, obteniendo como resultado
-<span class="math inline">\((9,51 ± 0,45) m/s^2\)</span>, esto da a
-entender que:</p>
-<ul>
-<li><p>No se puede asegurar que el valor de la gravedad sea <span
-class="math inline">\(9,51 m/s^2\)</span></p></li>
-<li><p>Se puede afirmar que hay un margen de error de <span
-class="math inline">\(0,45 m/s^2\)</span>, ya sea por exceso o por
-defecto.</p></li>
-</ul>
-<p><strong>Incertidumbre absoluta</strong></p>
-<p>Dada una medida experimental de una magnitud, a, y una incertidumbre
-absoluta, <span class="math inline">\(u_a\)</span>; el valor verdadero,
-A, debe estar contenido, con razonable certeza, dentro del siguiente
-intervalo:</p>
-<p><span class="math display">\[a-u_a\leq A \leq a+ u_a \]</span></p>
-<p><strong>Incertidumbre relativa</strong></p>
-<p>Es el cociente entre la incertidumbre absoluta y el valor de la
-medida, es una cantidad adimensional que nos informa de la precisión de
-la medida. Suele expresarse (multiplicándola por 100) como
-porcentaje.</p>
-<p><span class="math display">\[\frac{u_a}{a}\]</span>
-<strong>Apreciación</strong></p>
-<p>Es la menor variación de la medida que podemos registrar con dicho
-instrumento. En los instrumentos con escala, la apreciación es el valor
-entre dos divisiones consecutivas; por ejemplo una probeta de 25,0 mL
-tiene una apreciación de 0,5 mL.</p>
-<p><strong>Incertidumbre en medidas reproducibles</strong></p>
-<p>Cuando al realizar una serie de medidas de una misma magnitud se
-obtienen los mismos resultados, no se puede concluir que la
-incertidumbre sea cero; lo que sucede es que los errores quedan ocultos
-ya que son menores que la incertidumbre asociada al aparato de
-medición.</p>
-<p>En este caso, puede establecerse un criterio simple y útil: cuando
-las medidas son reproducibles, se asigna una incertidumbre igual a la
-mitad de la división más pequeña del instrumento, la cual se conoce como
-resolución.</p>
-<p>Por ejemplo, al medir con un instrumento graduado en mililitros
-repetidas veces el volumen de un recipiente se obtiene siempre 48.0 ml,
-la incertidumbre será 0.5 ml.</p>
-<p><img src="imagen/menisco.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Lo que significa que la medición está entre 47.5 a 48.5 ml, a éste se
-le conoce como intervalo de confianza de la medición y su tamaño es el
-doble de la incertidumbre. Esto generalmente se aplica cuando se trata
-de aparatos de medición tales como reglas, transportadores, balanzas,
-probetas, manómetros, termómetros, etc</p>
-<p><strong>Incertidumbre en medidas no-reproducibles</strong></p>
-<p>Cuando se hacen repeticiones de una medida y estas resultan
-diferentes, con valores <span class="math inline">\(x_1,
-x_2,...,x_N\)</span>, surgen las preguntas:</p>
-<ul>
-<li><p>¿Cuál es el valor que se reporta?</p></li>
-<li><p>¿Qué incertidumbre se asigna al valor reportado?</p></li>
-</ul>
-<p>La respuesta a estas preguntas se obtiene a partir del estudio
-estadístico de las mediciones,promedio y desviación estándar.</p>
-<p>Para una medida repetida la incertidumbre está dada por:</p>
-<p><span class="math display">\[u=\frac{ sd}{\sqrt n}\]</span></p>
+<div id="método-de-redondeo-c" class="section level3">
+<h3>Método de redondeo C</h3>
+<p>Redondea las incertidumbres al siguiente valor mayor cuando haya
+algún dígito más allá del segundo dígito significativo.</p>
+<p><span class="math display">\[U=0.001{\color{Red}{2}3}\quad
+\rightarrow \quad U=0.001{\color{Red} {3}}\]</span></p>
+<p>No tienen en cuenta si el valor que esta al lado de la cifra
+significativa sea mayor o menor que 5, siempre incrementa a la 2 cifra
+significativa superior</p>
+</div>
 </div>
 <div id="incertidumbre-en-el-redondeo-de-cifras-significativas"
 class="section level2">
@@ -562,94 +557,6 @@ potencia</strong></p>
 q=x^n=x*x*x*...x\]</span> El error relativo de una potencia es el
 producto de la potencia por el error relativo de la magnitud. <span
 class="math display">\[\frac{∆q}{q}= n\frac{∆x}{x}\]</span></p>
-</div>
-<div id="redondeo-y-cifras-significativas" class="section level2">
-<h2>Redondeo y cifras significativas</h2>
-<p>Cuando se realizan mediciones, ¿cuántas cifras se deben informar? Los
-instrumentos modernos son capaces de mostrar valores de muchas cifras.
-Como ejemplo, un multímetro digital?</p>
-<p><img src="imagen/multimetro.png" width="142" style="display: block; margin: auto;" /></p>
-<p>Aveces es prudente registrar todas las cifras proporcionadas por un
-instrumento, pero en muchos casos carecen de significado.</p>
-</div>
-<div id="redondeo-de-cifras-significativas" class="section level2">
-<h2>Redondeo de cifras significativas</h2>
-<ul>
-<li><p>Etapa primordial dentro de la expresión de incertidumbre</p></li>
-<li><p>Evita poner en riesgo los resultados que emite un
-laboratorio</p></li>
-</ul>
-<p><strong>Como redondear el valor de la medida y su
-incertidumbre</strong></p>
-<p>Redondea el resultado de la medicion con el mismo numero de cifras
-decimales que la incertidumbre</p>
-<p><strong>Paso 1</strong></p>
-<p>Identificar las dos primeras cifras significativas del valor de la
-incertidumbre y redondearlo</p>
-<p><span class="math display">\[U=0,0{\color{Red} {21}}3   \quad
-\rightarrow  \quad U=0.021 g\]</span> Recuerda que los ceros que están
-al lado izquierdo de las cifras no se cuentan como cifras
-significativas.</p>
-<p><strong>Paso 2</strong></p>
-<p>Redondea el resultado de la medida</p>
-<p><span class="math display">\[x=1.0226 g \quad \rightarrow  \quad
-x=1.023 g\]</span> <strong>Resultado</strong> Suponga q x es la medida
-de masa y que U es la incertidumbre asociada.</p>
-<p><span class="math display">\[x=1.{\color{Red}{023}} g \quad
-\rightarrow \quad U=0,{\color{Red} {021}}g\]</span></p>
-</div>
-<div id="metodos-de-redondeo" class="section level2">
-<h2>Metodos de redondeo</h2>
-<p>Normalmente hay 5 situaciones en las que se redondea hacia arriba (de
-0,5 a 0,9) pero sólo 4 para redondear hacia abajo (de 0,1 a 0,4).</p>
-<div id="metodos-de-redondeo-a" class="section level3">
-<h3>Metodos de redondeo A</h3>
-<p><strong>Regla de Redondeo 1</strong></p>
-<ul>
-<li>Cuando la cifra siguiente a la que se va a retener es inferior a
-cinco, se mantiene la cifra retenida sin cambios</li>
-</ul>
-<p><span class="math display">\[3,{\color{Red}{5}41}\quad \rightarrow
-\quad 3,{\color{Red} {5}}\]</span> <strong>Regla de redondeo
-2</strong></p>
-<ul>
-<li>Cuando la cifra siguiente a la que se va a retener es mayor o igual
-que 5,aumente la cifra retenida en 1</li>
-</ul>
-<p><span class="math display">\[3,{\color{Red}{6}53}\quad \rightarrow
-\quad 3,{\color{Red} {7}}\]</span></p>
-<p><strong>Regla de redondeo 3: método par/impar</strong></p>
-<p>Al utilizar el método se introduce un mayor equilibrio en los
-resultados finales que puede evitar el sesgo en los valores medios a
-largo plazo.</p>
-<p>Cuando la cifra siguiente a la que se va a retener es exactamente 5 y
-la cifra retenida es par, se deja sin modificar, por el contrario si la
-cifra es impar, se aumenta la cifra retenida en 1 (redondeo par
-impar)</p>
-<p><span class="math display">\[4,{\color{Red}{4}50}\quad \rightarrow
-\quad 4,{\color{Red} {4}}\]</span></p>
-<p><span class="math display">\[3,{\color{Red}{5}50}\quad \rightarrow
-\quad 3,{\color{Red} {6}}\]</span></p>
-<p>en ese orden de ideas</p>
-<p><span class="math display">\[3.05\quad \rightarrow \quad 3,0\]</span>
-<span class="math display">\[3.15\quad \rightarrow \quad 3,2\]</span>
-<span class="math display">\[3.25\quad \rightarrow \quad
-3,2\]</span></p>
-</div>
-<div id="método-de-redondeo-b" class="section level3">
-<h3>Método de redondeo B</h3>
-<p>Excel, generalmente redondea hacia arriba</p>
-</div>
-<div id="método-de-redondeo-c" class="section level3">
-<h3>Método de redondeo C</h3>
-<p>Redondea las incertidumbres al siguiente valor mayor cuando haya
-algún dígito más allá del segundo dígito significativo.</p>
-<p><span class="math display">\[U=0.001{\color{Red}{2}3}\quad
-\rightarrow \quad U=0.001{\color{Red} {3}}\]</span></p>
-<p>No tienen en cuenta si el valor que esta al lado de la cifra
-significativa sea mayor o menor que 5, siempre incrementa a la 2 cifra
-significativa superior</p>
-</div>
 </div>
 
 <br>

@@ -407,94 +407,6 @@ combinada</h1>
 </div>
 
 
-<div id="incertidumbre-típica" class="section level2">
-<h2>Incertidumbre típica</h2>
-<p>Antes de combinar las incertidumbres, estas deben estar expresadas
-como desviaciones estándar. Esto puede implicar la conversión de algunas
-medidas de dispersión. Algunas reglas son</p>
-<ul>
-<li><p>Si una componente de la incertidumbre ha sido evaluado como la
-dispersión de medidas repetidas, este puede expresarse como una
-desviación estándar.</p></li>
-<li><p>Si es una incertidumbre tipo B, obtenida mediante una una
-especificación del fabricante, de un certificado de calibración,la
-incertidumbre viene dada como un múltiplo específico de una desviación
-típica, la incertidumbre típica <span
-class="math inline">\(u(xi)\)</span> es simplemente el cociente entre el
-valor indicado y el factor multiplicador.</p>
-<p><strong>EJEMPLO</strong></p>
-<p>Un certificado de calibración indica que la masa de un patrón de
-acero inoxidable, de valor nominal igual a un kilogramo, es <span
-class="math inline">\(m_S = 1000,000325 g\)</span>, y que “la
-incertidumbre de este valor es de 240 μg, para un nivel de tres
-desviaciones típicas”.</p>
-<ul>
-<li><p>La incertidumbre típica del patrón de masa es simplemente <span
-class="math inline">\(u(m_S)=(240 μg)/3 =80 μg\)</span>.</p></li>
-<li><p>La incertidumbre típica relativa <span
-class="math inline">\(u(mS)/mS\)</span> de <span
-class="math inline">\(80 × 10^{-9}\)</span>** .</p></li>
-<li><p>La varianza estimada es <span class="math inline">\(u^2(mS) = (80
-μg)^2 = 6,4×10^{-9} g^2.\)</span></p></li>
-</ul>
-<p><strong>Nota:</strong></p>
-<p><strong>La desviación estándar relativa</strong>, también conocida
-como coeficiente de variación, es una medida de dispersión relativa que
-compara la desviación estándar con la media de un conjunto de datos.</p>
-<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p>
-<p><strong>incertidumbre típica relativa</strong></p></li>
-</ul>
-<p><span class="math display">\[u(xi)/⏐xi⏐\]</span></p>
-<ul>
-<li><p>Si la incertidumbre tipo B se obtiene a partir de un intervalo de
-confianza del 90, 95 ó 99 por ciento, suponiendo una distribución
-normal, la incertidumbre típica se obtiene mediante simple división del
-valor de incertidumbre dado por el factor correspondiente de la
-distribución normal. Dicho factor, para los tres niveles de confianza
-citados, es 1,64; 1,96 y 2,58.</p>
-<p><strong>Ejemplo 1</strong></p>
-<p>Una especificación establece que la lectura de una balanza está entre
-±0,2 mg con un 95 % de confianza.</p>
-<p>A partir de tablas estándar de puntos porcentuales de distribución
-normal, se calcula un intervalo de confianza del 95% usando un valor de
-1,96.</p>
-<p>Usando esta cifra resulta una incertidumbre estándar de (0,2/1,96)=
-0,1.</p>
-<p><strong>Ejemplo 2</strong></p>
-<p>Un certificado de calibración indica que el valor <span
-class="math inline">\(R_S\)</span> de una resistencia patrón de valor
-nominal 10Ω es 10,000742 Ω ± 129 μΩ a 23 °C, y que “la incertidumbre
-indicada de 129 μΩ define un intervalo con nivel de confianza del 99 por
-ciento”.</p>
-<p>La incertidumbre típica del valor de la resistencia puede suponerse
-que es u(RS) = (129 μΩ) / 2,58 = 50 μΩ, que corresponde a una
-incertidumbre típica relativa u(RS)/RS de <span
-class="math inline">\(5,0×10^{-6}\)</span>).</p></li>
-<li><p>Si los límites de ±a son dados sin nivel de confianza, hay
-motivos para esperar que sea probable que haya valores extremos,
-normalmente es apropiado suponer una distribución rectangular, con una
-desviación estándar de</p></li>
-</ul>
-<p><span class="math display">\[\frac{a}{\sqrt 3}\]</span></p>
-<pre><code>**EJEMPLO**</code></pre>
-<p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
-±0,2 mL.</p>
-<p>La incertidumbre estándar es <span class="math display">\[0,2/\sqrt
-3=0,12 mL\]</span></p>
-<p><img src="imagen/matraz.png" width="10%" style="display: block; margin: auto;" /></p>
-<ul>
-<li><p>Si los límites de ±a son dados sin nivel de confianza, pero hay
-motivos para esperar que sea improbable que haya valores
-extremos,normalmente es apropiado suponer una distribución triangular,
-con una desviación estándar de <span
-class="math inline">\(a/\sqrt6\)</span>.</p>
-<p><strong>EJEMPLO</strong> Un matraz volumétrico de Clase A de 10 mL
-está certificado dentro de ±0,2 mL, pero controles internos rutinarios
-muestran que los valores extremos son infrecuentes. La incertidumbre
-estándar es <span class="math inline">\(0,2/\sqrt 6 = 0,08
-mL\)</span></p></li>
-</ul>
-</div>
 <div id="incertidumbre-típica-combinada" class="section level2">
 <h2>Incertidumbre típica combinada</h2>
 <p>Después de estimar los componentes de la incertidumbre y de
@@ -946,7 +858,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDataa7d25a33"]
+  "group": ["SharedDataac60faeb"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -970,14 +882,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDataa7d25a33"]
+  "group": ["SharedDataac60faeb"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-0343b369e45e10c4ec62" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0343b369e45e10c4ec62">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataa7d25a33","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f07334edbe89bff925ab" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f07334edbe89bff925ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataac60faeb","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1383,7 +1295,10 @@ class="math inline">\(-224.18\frac{V}{A^2}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><img src="coefsensi_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>y=c(70,26,2.6,0.9,0.5)
+x=c(&quot;Error Amp&quot;,&quot;Error Volt&quot;,&quot;repetibili&quot;,&quot;Res volt&quot;, &quot;Res Amp&quot;)
+barplot(y~x)</code></pre>
+<p><img src="coefsensi_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p><strong>Agrupación de incertidumbres según el tipo</strong></p>
 <p>Dado que hay varias incertidumbres provienen de diferentes fuentes,
 se agrupan aquellas pertenecientes a la tipo B</p>
