@@ -1,5 +1,5 @@
 ---
-title: "Proceso para estimar la incertidumbre"
+title: "Incertidumbre"
 output:
   html_document:
     toc: true
@@ -8,18 +8,13 @@ output:
 ---
 
 
-
-## **Tipos de incertidumbre**
+## Tipos de incertidumbre
 
 ## **Incertidumbre típica $u$**
 
 Incertidumbre del resultado de una medición, expresada en forma de desviación típica, dependiendo del origen de los datos la incertidumbre típica se clasifica en tipo A y tipo B
 
 Antes de combinar las incertidumbres, estas deben estar expresadas como desviaciones estándar.
-
-
-
-
 
 ## Tipo A
 
@@ -59,10 +54,8 @@ En el caso que un equipo sea digital, la fórmula es:
 
 $$u(x)=\frac{Resolución}{\sqrt {12}}$$
 
-
-
-
 ## Tipo B
+
 La evaluación mediante la bibliografia, como evaluación del material de referencia, certificado de calibración, reportes de la deriva de los instrumentos ó ficha técnica del instrumento 
 
 
@@ -222,7 +215,12 @@ Graficamente:
 knitr::include_graphics("imagen/n2.png")
 ```
 
-## Proceso para estimar la incertidumbre
+
+
+# Proceso para estimar la incertidumbre
+
+
+
 ```{r, echo=F, out.width="70%", fig.align='center'}
 knitr::include_graphics("imagen/df.png")
 ```
