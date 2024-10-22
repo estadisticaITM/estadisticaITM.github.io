@@ -70,7 +70,7 @@ knitr::include_app("https://amgq828.shinyapps.io/appcontinuas/",height = "1000px
 
 
 
-### Distribución rectangular ó uniforme
+### Distribución uniforme
 
 Se utiliza cuando no hay razón para creer que los errores de medición están sesgados hacia ninguna dirección. Por ejemplo, cuando se está midiendo algo dentro de ciertos límites y la probabilidad de que el valor esté dentro de ese rango es igualmente probable en todo el intervalo.
 
@@ -96,7 +96,7 @@ $$E(x)=\frac{a+b}{2}$$
 - La varianza 
 
 
-$$E(x)=\frac{(b-a)^2}{12}$$
+$$V(x)=\frac{(b-a)^2}{12}$$
 
 ```{r echo=FALSE}
 
@@ -189,7 +189,7 @@ $$E(x)=\frac{a+b+c}{3}$$
 - La varianza 
 
 
-$$E(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}$$
+$$V(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}$$
 
 
 Para estimar incertidumbre se usa cuando
@@ -221,7 +221,7 @@ Un elemento importante en los procesos de simulación es identificar las distrib
 
 
 
-## Sesgo
+## Sesgo como fuente de incertidumbre
 
 En metrología se diferencian diferentes tipos de sesgo
 

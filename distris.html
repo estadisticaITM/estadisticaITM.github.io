@@ -459,8 +459,8 @@ continuas</strong></p>
 <iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
 </iframe>
 </div>
-<div id="distribución-rectangular-ó-uniforme" class="section level3">
-<h3>Distribución rectangular ó uniforme</h3>
+<div id="distribución-uniforme" class="section level3">
+<h3>Distribución uniforme</h3>
 <p>Se utiliza cuando no hay razón para creer que los errores de medición
 están sesgados hacia ninguna dirección. Por ejemplo, cuando se está
 midiendo algo dentro de ciertos límites y la probabilidad de que el
@@ -491,7 +491,7 @@ class="math display">\[ F(x)=P(x \leq \frac{x-a}{b-a})
 <ul>
 <li>La varianza</li>
 </ul>
-<p><span class="math display">\[E(x)=\frac{(b-a)^2}{12}\]</span></p>
+<p><span class="math display">\[V(x)=\frac{(b-a)^2}{12}\]</span></p>
 <p><img src="distris_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Se usa para estimar la incertidumbre cuando:</p>
 <ul>
@@ -551,7 +551,7 @@ curve(dtriangle(x,3,11,8),xlim=c(3,11),lwd=2,ylab=&quot;f(x)&quot;,main=&quot;Di
 <li>La varianza</li>
 </ul>
 <p><span
-class="math display">\[E(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}\]</span></p>
+class="math display">\[V(x)=\frac{a^2+b^2+c^2+ab+ac+bc}{6}\]</span></p>
 <p>Para estimar incertidumbre se usa cuando</p>
 <ul>
 <li><p>La información disponible está mas delimitada que en una
@@ -595,8 +595,8 @@ las distribuciones de probabilidad apropiadas para los datos. Esto,
 normalmente, requiere analizar información empírica o histórica, y
 ajustarla a alguna distribución.</p>
 </div>
-<div id="sesgo" class="section level2">
-<h2>Sesgo</h2>
+<div id="sesgo-como-fuente-de-incertidumbre" class="section level2">
+<h2>Sesgo como fuente de incertidumbre</h2>
 <p>En metrología se diferencian diferentes tipos de sesgo</p>
 <p><strong>Sesgo de medida</strong></p>
 <p>valor estimado de un error sistemático (VIM)</p>
