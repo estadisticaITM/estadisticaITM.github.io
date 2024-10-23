@@ -11,7 +11,7 @@
 
 
 
-<title>Distribuciones de probabilidad</title>
+<title>Distribuciones de probabilidad para estimar incertidumbre en las medidas</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -390,39 +390,35 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Distribuciones de probabilidad</h1>
+<h1 class="title toc-ignore">Distribuciones de probabilidad para estimar
+incertidumbre en las medidas</h1>
 
 </div>
 
 
-<div
-id="distribuciones-de-probabilidad-asociadas-a-las-fuentes-de-incertidumbre-en-las-medidas"
-class="section level2">
-<h2>Distribuciones de probabilidad asociadas a las fuentes de
-incertidumbre en las medidas</h2>
 <p>Algunas de las distribuciones estadísticas de probabilidad comúnmente
 utilizadas para modelar estas fuentes de incertidumbre incluyen:</p>
-<div id="distribución-de-cauchy-lorentz" class="section level3">
-<h3>Distribución de Cauchy-Lorentz</h3>
+<div id="distribución-de-cauchy-lorentz" class="section level2">
+<h2>Distribución de Cauchy-Lorentz</h2>
 <p>A veces, se utiliza para modelar errores de medición cuando se sabe
 que hay una distribución de valores verdaderos, pero los errores de
 medición son asimétricos y pueden ser influenciados por factores
 externos no controlados.</p>
 </div>
-<div id="distribución-de-poisson" class="section level3">
-<h3>Distribución de Poisson</h3>
+<div id="distribución-de-poisson" class="section level2">
+<h2>Distribución de Poisson</h2>
 <p>Se utiliza comúnmente para modelar la distribución de conteos, por
 ejemplo, en el caso de mediciones que involucran recuentos de partículas
 o eventos discretos.</p>
 </div>
-<div id="distribución-exponencial" class="section level3">
-<h3>Distribución Exponencial</h3>
+<div id="distribución-exponencial" class="section level2">
+<h2>Distribución Exponencial</h2>
 <p>Se utiliza para modelar el tiempo entre eventos sucesivos en un
 proceso de Poisson, y a veces se aplica en el contexto de mediciones de
 tiempo.</p>
 </div>
-<div id="distribución-normal" class="section level3">
-<h3>Distribución normal</h3>
+<div id="distribución-normal" class="section level2">
+<h2>Distribución normal</h2>
 <p>Una distribución ampliamente usada y la más importante de toda la
 estadística, diversas poblaciones y fenómenos numéricos son
 representados por esta distribución por ejemplo</p>
@@ -459,8 +455,8 @@ continuas</strong></p>
 <iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
 </iframe>
 </div>
-<div id="distribución-uniforme" class="section level3">
-<h3>Distribución uniforme</h3>
+<div id="distribución-uniforme" class="section level2">
+<h2>Distribución uniforme</h2>
 <p>Se utiliza cuando no hay razón para creer que los errores de medición
 están sesgados hacia ninguna dirección. Por ejemplo, cuando se está
 midiendo algo dentro de ciertos límites y la probabilidad de que el
@@ -529,8 +525,8 @@ de:</p>
 <p><span class="math display">\[u(x)=\frac{1,5}{{\sqrt 3}} =
 0,87\]</span></p>
 </div>
-<div id="distribución-triángular" class="section level3">
-<h3>Distribución triángular</h3>
+<div id="distribución-triángular" class="section level2">
+<h2>Distribución triángular</h2>
 <p>La función de distribución de probabilidad es:</p>
 <p><span class="math display">\[ f(x)=\begin{cases}
 \frac{2(x-a)}{(b-a)(c-a)},
@@ -564,6 +560,24 @@ simétrica.</p></li>
 <p>Sea la función de estimación de incertidumbre triángular</p>
 <p><span class="math display">\[u(x)=\frac{a}{\sqrt 6}\]</span></p>
 </div>
+<div id="teorema-de-límite-central" class="section level2">
+<h2>Teorema de límite central</h2>
+<p>La mayoría de los experimentos de medición tienen características que
+los aproximan fácilmente a una condición de normalidad, para que la
+distribución de probabilidad de un resultado de medición tienda al
+modelo normal se requiere:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Que la función que define al mensurando Y sea función lineal de
+otras magnitudes.</p></li>
+<li><p>Que la distribución de probabilidad de las magnitudes que definen
+al mensurando Y sea del tipo normal o una aproximación a la distribución
+normal.</p></li>
+<li><p>También se puede aceptar que la distribución de probabilidad de
+algunas magnitudes de definición sea rectangular sólo si éstas últimas
+son en número menor que las del tipo normal.</p></li>
+</ol>
+<p><img src="imagen/combi.png" width="80%" style="display: block; margin: auto;" />
+Tomado de Llamosa et al (2011).</p>
 </div>
 <div id="distribuciones-de-muestreo" class="section level2">
 <h2>Distribuciones de muestreo</h2>
@@ -594,9 +608,8 @@ se ilustra en la siguiente figura:</p>
 las distribuciones de probabilidad apropiadas para los datos. Esto,
 normalmente, requiere analizar información empírica o histórica, y
 ajustarla a alguna distribución.</p>
-</div>
-<div id="sesgo-como-fuente-de-incertidumbre" class="section level2">
-<h2>Sesgo como fuente de incertidumbre</h2>
+<div id="sesgo-como-fuente-de-incertidumbre" class="section level3">
+<h3>Sesgo como fuente de incertidumbre</h3>
 <p>En metrología se diferencian diferentes tipos de sesgo</p>
 <p><strong>Sesgo de medida</strong></p>
 <p>valor estimado de un error sistemático (VIM)</p>
@@ -696,7 +709,7 @@ para definir el valor p</p>
       col = &quot;red&quot;, type = &quot;l&quot;, lwd = 2,
       main = &quot;Función densidad t de Student df = 8&quot; )
 abline(v=0.46,col=2)</code></pre>
-<p><img src="distris_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="distris_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>no hay diferencias significativas entre los resultados dados por los
 dos métodos. La diferencia de medias muestrales es 0,64, y se compara
 con un término de la desviación estándar de 1,4, asociada a la
@@ -767,6 +780,7 @@ t.test(x1,x2) # Prueba t de Student</code></pre>
 ## mean of x mean of y 
 ##     1.736     1.726</code></pre>
 <hr />
+</div>
 </div>
 
 <br>

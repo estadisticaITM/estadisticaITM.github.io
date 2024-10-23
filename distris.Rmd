@@ -1,34 +1,28 @@
 ---
-title: "Distribuciones de probabilidad"
+title: "Distribuciones de probabilidad para estimar incertidumbre en las medidas"
 output:
   html_document:
     toc: true
     toc_depth: 5
 ---
 
-
-## Distribuciones de probabilidad asociadas a las fuentes de incertidumbre en las medidas
-
 Algunas de las distribuciones estadísticas de probabilidad comúnmente utilizadas para modelar estas fuentes de incertidumbre incluyen:
 
 
 
-### Distribución de Cauchy-Lorentz
+## Distribución de Cauchy-Lorentz
 
 A veces, se utiliza para modelar errores de medición cuando se sabe que hay una distribución de valores verdaderos, pero los errores de medición son asimétricos y pueden ser influenciados por factores externos no controlados.
 
-### Distribución de Poisson
+## Distribución de Poisson
 
 Se utiliza comúnmente para modelar la distribución de conteos, por ejemplo, en el caso de mediciones que involucran recuentos de partículas o eventos discretos.
 
-### Distribución Exponencial
-
+## Distribución Exponencial
 
 Se utiliza para modelar el tiempo entre eventos sucesivos en un proceso de Poisson, y a veces se aplica en el contexto de mediciones de tiempo.
 
-
-
-### Distribución normal
+## Distribución normal
 
 Una distribución ampliamente usada y la más importante de toda la estadística, diversas poblaciones y fenómenos numéricos son representados por esta distribución por ejemplo
 
@@ -70,7 +64,7 @@ knitr::include_app("https://amgq828.shinyapps.io/appcontinuas/",height = "1000px
 
 
 
-### Distribución uniforme
+## Distribución uniforme
 
 Se utiliza cuando no hay razón para creer que los errores de medición están sesgados hacia ninguna dirección. Por ejemplo, cuando se está midiendo algo dentro de ciertos límites y la probabilidad de que el valor esté dentro de ese rango es igualmente probable en todo el intervalo.
 
@@ -160,7 +154,7 @@ Se puede calcular una estimación de la incertidumbre estándar. Usando el rango
 
 $$u(x)=\frac{1,5}{{\sqrt 3}} = 0,87$$
 
-### Distribución triángular
+## Distribución triángular
 
 La función de distribución de probabilidad es:
 
@@ -221,7 +215,7 @@ Un elemento importante en los procesos de simulación es identificar las distrib
 
 
 
-## Sesgo como fuente de incertidumbre
+### Sesgo como fuente de incertidumbre
 
 En metrología se diferencian diferentes tipos de sesgo
 
@@ -235,10 +229,7 @@ valor estimado de un error sistemático (VIM)
 Diferencia entre la media de las indicaciones repetidas y un **valor de referencia** (VIM). 
 
 
-__________________________________________________________________
-
-
-
+___________________________________________________________________________________________
 
 
 - La determinación del **sesgo global** en relación con valores de referencia apropiados es importante para establecer la trazabilidad a patrones reconocidos. 
@@ -263,7 +254,7 @@ podrían ser:
 
 - Informar del sesgo observado y su incertidumbre además del resultado.
 
-__________________________________________________
+___________________________________________________________________________________
 
 El sesgo puede estar determinado por:
 
