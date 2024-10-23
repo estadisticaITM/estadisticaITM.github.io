@@ -11,7 +11,7 @@
 
 
 
-<title>Estudio reproducibilidad y repetibilidad gageR&amp;R</title>
+<title>Calidad de las mediciones</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -363,24 +363,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -404,39 +390,49 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Estudio reproducibilidad y repetibilidad
-gageR&amp;R</h1>
+<h1 class="title toc-ignore">Calidad de las mediciones</h1>
 
 </div>
 
 
+<p>La variación observada en conjunto de datos son el resultado de la
+variación de un producto más el error del proceso de medición. Las
+mediciones son el resultado de un proceso influenciado por causas del
+mismo tipo que afectan al proceso de producción (6M).</p>
+<ul>
+<li>Mano de obra</li>
+<li>Materiales</li>
+<li>Maquinas</li>
+<li>Medio ambiente</li>
+<li>Metodos</li>
+<li>Mediciones</li>
+</ul>
+<p>Un sistema de medición debe ser preciso y exacto, repetible,
+Reproducible y estable en el tiempo</p>
 <p><img src="imagen/cm.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Se evalúa qué parte de la variabilidad total es atribuible al error
-de medición; además, permite cuantificar si este error es mucho o poco
-en comparación con la variabilidad del producto y con las tolerancias de
-la característica de calidad que se mide. Cualquier proceso de medición
-genera un error. Lo que se observa es la realidad más un error de
-medición.</p>
-<p><img src="imagen/ryr.png" width="60%" style="display: block; margin: auto;" /></p>
+<div id="estudio-de-repetibilidad-y-reproducibilidad"
+class="section level2">
+<h2>Estudio de repetibilidad y reproducibilidad</h2>
 <p>Los métodos utilizados para realizar los análisis de R&amp;R son:</p>
 <ul>
 <li><p>Método del rango (método corto)</p></li>
 <li><p>Método del promedio y del rango</p></li>
-<li><p>Análisis de varianza (Anova); considera un modelo de efectos
-aleatorios para todos los factores de la variación del sistema
-(operadores, partes, interacción e instrumento)</p></li>
+<li><p>Análisis de varianza (Anova).</p></li>
 </ul>
-<p>Sean:</p>
-<ul>
-<li><p><span class="math inline">\(σ^2_{total}\)</span> la variabilidad
-total observada</p></li>
-<li><p><span class="math inline">\(σ^2_{prod}\)</span> la varianza
-atribuible al producto (partes o piezas)</p></li>
-<li><p><span class="math inline">\(σ^2_{instr}\)</span> la variabilidad
-del instrumento de medición,</p></li>
-<li><p><span class="math inline">\(σ^2_{oper}\)</span> la variabilidad o
-error debido a operadores</p></li>
-</ul>
+<p>En estos metodos se evalúa qué parte de la variabilidad total es
+atribuible al error de medición y al producto, en relación a las
+tolerancias de la característica de calidad que se mide.</p>
+<p><img src="imagen/ryr.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><strong>Incertidumbre de una medida</strong></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++Instrumento+método\]</span> <span
+class="math display">\[Instrumento=Calibración+resolución\]</span></p>
+<p><span class="math display">\[Método=repetibilidad\quad de\quad las
+\quad medidas\]</span></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++Calibración+resolución+repetibilidad\]</span></p>
+<p><span class="math display">\[Valor_{nominal}=\bar x
++u_{Calibración}+u_{resolución}+u_{repetibilidad}\]</span></p>
 <p><strong>Pasos para realizar un estudio R&amp;R largo</strong></p>
 <p>para cada instrumento de medición que se desee evaluar es necesario
 plantear un estudio en el que se apliquen los siguientes pasos:</p>
@@ -460,17 +456,41 @@ primera medición del operador B.</p>
 <p><strong>6.</strong> Continuar hasta que todos los operadores hayan
 realizado la primera medición de todas las piezas.</p>
 <p><strong>7.</strong> Hacer el análisis estadístico de los datos.</p>
-<div id="anova-para-el-estudio-de-repetibilidad-y-reproducibilidad"
-class="section level2">
-<h2>ANOVA para el estudio de repetibilidad y reproducibilidad</h2>
-<p>Permite identificar y cuantificar de mejor manera todas las fuentes
-de variación presentes en el estudio R&amp;R.</p>
-<p><strong>Prueba de hipótesis de significancia de los
-parámetros</strong></p>
+</div>
+<div id="anova-para-el-estudio-de-rr" class="section level2">
+<h2>ANOVA para el estudio de R&amp;R</h2>
+<p>El método ANOVA reparte la variación total <span
+class="math inline">\(σ^2_{total}\)</span> de los datos en variación
+debida a la producción de la pieza <span
+class="math inline">\(σ^2_{pieza}\)</span>, variación debida a la
+repetibilidad <span class="math inline">\(σ^2_{repet}\)</span>,
+variación debida a la reproducibilidad <span
+class="math inline">\(σ^2_{reproducibilidad}\)</span> y las
+interacciones entre ellas.</p>
+<p><strong>ventajas</strong></p>
+<ul>
+<li><p>Varianzas estimadas con mayor exactitud.</p></li>
+<li><p>Permite identificar y cuantificar de mejor manera todas las
+fuentes de variación presentes en el estudio R&amp;R.</p></li>
+<li><p>Se utiliza para la certificación de materiales de referencia (MR)
+mediante ensayos que implican varios laboratorios de igual nivel, que
+midan las muestras de material, las diferencias entre los resultados
+individuales, tanto inter (entre) laboratorios como intra (dentro)
+laboratorio, son de naturaleza estadística, sin importar sus
+causas.</p></li>
+</ul>
+<p><strong>Desventajas</strong></p>
+<ul>
+<li>No identifican efectos sistemáticos.</li>
+</ul>
+<div id="prueba-de-hipótesis-de-significancia-de-los-parámetros"
+class="section level3">
+<h3>Prueba de hipótesis de significancia de los parámetros</h3>
 <p>Parámetro no significativo</p>
 <p><span class="math display">\[H_0=\beta_i=0\]</span> Parámetro
 significativo</p>
 <p><span class="math display">\[H_1=\beta_i \neq  0\]</span></p>
+</div>
 <div id="modelo-anova-con-interacción-significativa"
 class="section level3">
 <h3>Modelo anova con interacción significativa</h3>
@@ -511,8 +531,8 @@ se cumplen las siguientes relaciones:</p>
 class="math display">\[σ^2_{reprod} = σ^2_{oper} + σ^2_{oper ×
 parte}\]</span> <span
 class="math display">\[σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}\]</span></p>
-<p>Estos componentes se estiman mediante la técnica de ANOVA aplicada a
-un diseño factorial con efectos aleatorios.</p>
+<p>Estos componentes se estiman mediante un ANOVA aplicado a un diseño
+factorial con efectos aleatorios.</p>
 <p>Considere</p>
 <ul>
 <li><p>p partes,</p></li>

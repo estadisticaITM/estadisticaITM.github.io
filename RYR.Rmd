@@ -1,69 +1,58 @@
 ---
-title: "Estudio reproducibilidad y repetibilidad gageR&R"
+title: "Calidad de las mediciones "
 output:
   html_document:
     toc: true
     toc_depth: 5
 ---
-# Estudio reproducibilidad y repetibilidad
+
+La variación observada en conjunto de datos son el resultado de la variación de un producto más el error del proceso de medición. Las mediciones son el resultado de un proceso influenciado por causas del mismo tipo que afectan al proceso de producción (6M).
+
+- Mano de obra
+- Materiales
+- Maquinas
+- Medio ambiente
+- Metodos
+- Mediciones
 
 
-Los métodos utilizados para realizar los análisis de R&R son:
-- Método del rango (método corto)
 
-- Método del promedio y del rango
 
-- Análisis de varianza (Anova); 
-
-las ventajas de este último son que las varianzas son estimadas con mayor exactitud, se obtiene mayor información como la interacción del operador con la parte que se mide; además, considera un modelo de efectos aleatorios para todos los factores o componentes de la variación del sistema (operadores, partes, interacción e instrumento)
-
-## Importancia del analisis ANOVA de un modelo 
-
-El método ANOVA reparte la variación total $σ^2_{total}$ de los datos en variación debida a la
-producción de la pieza  $σ^2_{pieza}$, variación debida a la repetibilidad $σ^2_{repet}$ y variación debida a la reproducibilidad $σ^2_{reproducibilidad}$
-reprod), de la siguiente forma:
-
-$$σ^2_{total}=σ^2_{pieza}$$
-
+Un sistema de medición debe ser preciso y exacto, repetible, Reproducible y estable en el tiempo
 
 ```{r, echo=F, out.width="60%", fig.align='center'}
 knitr::include_graphics("imagen/cm.png")
 ```
 
+## Estudio de repetibilidad y reproducibilidad
 
+Los métodos utilizados para realizar los análisis de R&R son:
 
-Se evalúa qué parte de la variabilidad total  es atribuible al error de medición; además, permite cuantificar si este error es mucho o poco en comparación con la variabilidad del producto y con las tolerancias de la característica de calidad que se mide. Cualquier proceso de medición genera un error. Lo que se observa es la realidad más un error de medición.
+- Método del rango (método corto)
 
+- Método del promedio y del rango
 
+- Análisis de varianza (Anova).
+
+En estos metodos se evalúa qué parte de la variabilidad total es atribuible al error de medición y al producto, en relación a las tolerancias de la característica de calidad que se mide.
 
 ```{r, echo=F, out.width="60%", fig.align='center'}
 knitr::include_graphics("imagen/ryr.png")
 ```
 
 
+**Incertidumbre de una medida**
+
+$$Valor_{nominal}=\bar x +Instrumento+método$$
+$$Instrumento=Calibración+resolución$$
 
 
+$$Método=repetibilidad\quad de\quad las \quad medidas$$
+
+$$Valor_{nominal}=\bar x +Calibración+resolución+repetibilidad$$
 
 
-Los métodos utilizados para realizar los análisis de R&R son:
-
-- Método del rango (método corto)
-
-- Método del promedio y del rango
-
-- Análisis de varianza (Anova); considera un modelo de efectos aleatorios para todos los factores de la variación del sistema (operadores, partes, interacción e instrumento)
-
-
-
-Sean:
-
-- $σ^2_{total}$  la variabilidad total observada
-
-- $σ^2_{prod}$ la varianza atribuible al producto (partes o piezas)
-
-- $σ^2_{instr}$ la variabilidad  del instrumento de medición, 
-
-- $σ^2_{oper}$ la variabilidad o error debido a operadores
+$$Valor_{nominal}=\bar x +u_{Calibración}+u_{resolución}+u_{repetibilidad}$$
 
 
 
@@ -92,12 +81,31 @@ para cada instrumento de medición que se desee evaluar es necesario plantear un
 **7.** Hacer el análisis estadístico de los datos.
 
 
-## ANOVA para el estudio de repetibilidad y reproducibilidad
 
-Permite identificar y cuantificar de mejor manera todas las fuentes de variación presentes en el estudio R&R. 
+## ANOVA para el estudio de R&R
 
 
-**Prueba de hipótesis de significancia de los parámetros**
+El método ANOVA reparte la variación total $σ^2_{total}$ de los datos en variación debida a la producción de la pieza  $σ^2_{pieza}$, variación debida a la repetibilidad $σ^2_{repet}$, variación debida a la reproducibilidad $σ^2_{reproducibilidad}$ y las interacciones entre ellas.
+
+
+**ventajas**
+
+- Varianzas estimadas con mayor exactitud.
+
+- Permite identificar y cuantificar de mejor manera todas las fuentes de variación presentes en el estudio R&R. 
+
+- Se utiliza para la certificación de materiales de referencia (MR) mediante ensayos que implican varios laboratorios de igual nivel, que midan las muestras de material, las diferencias entre los resultados individuales, tanto inter (entre) laboratorios como intra (dentro) laboratorio, son de naturaleza estadística, sin importar sus causas. 
+   
+
+**Desventajas**
+
+- No identifican efectos sistemáticos.
+
+
+
+
+
+### Prueba de hipótesis de significancia de los parámetros
 
 Parámetro no significativo
 
@@ -138,8 +146,7 @@ $$σ^2_{reprod} = σ^2_{oper} + σ^2_{oper × parte}$$
 $$σ^2_{RyR}=σ^2_{repet}+σ^2_{reprod}$$
 
 
-Estos componentes se estiman mediante la técnica de
-ANOVA aplicada a un diseño factorial con efectos aleatorios.
+Estos componentes se estiman mediante un ANOVA aplicado a un diseño factorial con efectos aleatorios.
 
 
 Considere

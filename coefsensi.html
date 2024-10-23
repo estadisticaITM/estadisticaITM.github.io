@@ -407,240 +407,6 @@ combinada</h1>
 </div>
 
 
-<div id="incertidumbre-típica-combinada" class="section level2">
-<h2>Incertidumbre típica combinada</h2>
-<p>Después de estimar los componentes de la incertidumbre y de
-expresarlos como incertidumbres estándar, el siguiente paso es calcular
-la incertidumbre estándar combinada.</p>
-<p><span class="math inline">\(u_c(y)\)</span> es una desviación típica
-estimada y caracteriza la dispersión de los valores que podrían ser
-razonablemente atribuidos al mensurando Y.</p>
-<p>La incertidumbre típica combinada de y es <span
-class="math inline">\(u_c(y)\)</span>, se obtiene de las incertidumbres
-típicas de las estimaciones de entrada <span class="math inline">\(x_1,
-x_2, ..., x_N\)</span>.</p>
-<p>Se distinguen dos casos para hallar la incertidumbre, en donde las
-variables pueden ser dependientes o independientes, en ambos casos las
-ecuaciones están basadas en un desarrollo en serie de Taylor de primer
-orden de <span class="math inline">\(Y = f(X_1, X_2, ..., X_N)\)</span>,
-expresan lo que en la Guía se denomina <strong>ley de propagación de la
-incertidumbre.</strong></p>
-<p><strong>Incertidumbre típica para magnitudes
-independientes</strong></p>
-<p>La incertidumbre típica combinada <span
-class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
-varianza combinada <span class="math inline">\(u_c^2(y)\)</span>, dada
-por:</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \left[
-\frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)\]</span></p>
-<p>Con las derivadas parciales <span
-class="math inline">\(\frac{\partial f }{\partial x_i}\)</span>
-calculadas para <span class="math inline">\(Xi =x_i\)</span>, se
-obtienen unas constantes llamadas <strong>coeficientes de
-sensibilidad</strong>, describen cómo varía la estimación de salida y,
-en función de las variaciones en los valores de las estimaciones de
-entrada <span class="math inline">\(x_1, x_2, ..., x_N.\)</span></p>
-<p>Los coeficientes de sensibilidad pueden ser evaluados de manera
-experimental; es útil donde no existe una descripción matemática fiable
-de la relación.</p>
-<p><span class="math display">\[c_i=\frac{\partial f }{\partial
-x_i}\]</span></p>
-<p>reemplazando en la ecuación anterior se obtiene</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N c_i^2
-u^2(x_i)\]</span> de forma equivalente:</p>
-<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1}^N c_i^2
-u^2(x_i)}\]</span> <strong>Incertidumbre típica para magnitutes
-dependientes o correlacionadas</strong></p>
-<p>Cuando las variables no son independientes, la relación es más
-compleja GUM expresa la incertidumbre típica como:</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
-\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
-x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
-\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
-}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
-<p>donde <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span> son las estimaciones de <span
-class="math inline">\(Xi\)</span> y <span
-class="math inline">\(Xj\)</span>, y <span
-class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span> es la covarianza
-estimada asociada a <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span>.</p>
-<p>El grado de correlación entre xi y xj viene dado por el coeficiente
-de correlación estimado como</p>
-<p><span
-class="math display">\[r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}\]</span>
-donde <span class="math inline">\(r(xi,xj) = r(xj,xi) y −1 ≤ r(xi,xj) ≤
-+1.\)</span></p>
-<p>Si las estimaciones <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span> son independientes, <span
-class="math inline">\(r(x_i,x_j) = 0\)</span>, ees una variación en una
-de las dos no implica una variación en la otra.</p>
-<p>El segundo término de la covarianza, puede escribirse en función de
-los coeficientes de correlación, más fácilmente interpretables que las
-covarianzas, como:</p>
-<p><span class="math display">\[2\sum_{i=1}^{N-1}\sum_{j=i+1}^N
-\frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i)
-u(x_j) r(x_i,x_j)\]</span> La ecuación queda transformada en</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
-\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
-x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
-\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
-}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j)
-r(x_i,x_j))\]</span> En esta ecuación haciendo</p>
-<p><span class="math display">\[c_i=\frac{\partial f}{\partial x_i}\quad
-u_i(y)=|c_i|u(x_i)\]</span> y asumiendo que las correlaciones son 0, el
-2 termino no existe Se llega a:</p>
-<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1,n}c_i^2
-u^2(x_i)}\]</span></p>
-<p>donde</p>
-<ul>
-<li>f es la función del mesurando dada por:</li>
-</ul>
-<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
-<ul>
-<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
-incertidumbre típica, (Tipo A o Tipo B).</p></li>
-<li><p><span class="math inline">\(c_i\)</span> y <span
-class="math inline">\(c_k\)</span>, son los coeficientes de
-sensibilidad</p></li>
-<li><p><span class="math inline">\(u(x_i,x_j)\)</span> es la covarianza
-entre <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_k\)</span></p>
-<p>La covarianza se relaciona con el coeficiente de correlación <span
-class="math inline">\(r_{ik}\)</span> de este modo:</p>
-<p><span class="math display">\[u(x_i,x_k) =
-u(x_i)*u(x_k)*r_{ik}\]</span></p>
-<p>donde <span class="math inline">\(-1 \leq rik \leq
-1\)</span></p></li>
-</ul>
-<p><strong>Otras formas</strong></p>
-<p>En algunos casos, las expresiones para combinar incertidumbres se
-reducen a formas más sencillas. Aquí se dan dos reglas simples para
-combinar incertidumbres estándar.</p>
-<p><strong>Regla 1</strong></p>
-<p>Para modelos que supongan solo una suma o diferencia de cantidades,
-por ejemplo <span class="math inline">\(y=(p+q+r+...)\)</span>, la
-incertidumbre estándar combinada uc(y) viene dada por: <span
-class="math display">\[uc (y(p,q..))=\sqrt {u(p)^2
-+u(q)2^.....}\]</span></p>
-<p><strong>EJEMPLO 1</strong> sea la ecuación</p>
-<p><span class="math display">\[y = (p-q+r)\]</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">valores</th>
-<th align="center">p</th>
-<th align="center">q</th>
-<th align="center">r</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">valor</td>
-<td align="center">5.02</td>
-<td align="center">6.45</td>
-<td align="center">9.04</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(u(c)\)</span></td>
-<td align="center">0.13</td>
-<td align="center">0.05</td>
-<td align="center">0.22</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math display">\[y = (5.02-6.45+9.04)=7.61\]</span> <span
-class="math display">\[u(y)=\sqrt{0.13^2+0.05^2+0.22^2}\]</span></p>
-<hr />
-<p><strong>Regla 2</strong></p>
-<p>Para modelos que impliquen un producto o un cociente, por ejemplo
-<span class="math inline">\(y=(p\ast q\ast r ...)\)</span> o <span
-class="math inline">\(y= p/(q\ast r...),\)</span>, la incertidumbre
-estándar combinada <span class="math inline">\(u_c(y)\)</span> es dada
-por</p>
-<p><span class="math display">\[u_c(y)=y*\sqrt{\left[ \frac{u(p) }{p}
-\right]^2+ \left[ \frac{u(q) }{q} \right]^2+.... }\]</span></p>
-<p>donde (u(p)/p) son las incertidumbres en los parámetros, expresadas
-como desviaciones estándar relativas.</p>
-<p><strong>EJEMPLO 2</strong> <span class="math display">\[y =
-(op/qr)\]</span>.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">valores</th>
-<th align="center">o</th>
-<th align="center">p</th>
-<th align="center">q</th>
-<th align="center">r</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">valor</td>
-<td align="center">2.46</td>
-<td align="center">4.32</td>
-<td align="center">6.38</td>
-<td align="center">2.99</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(u(c)\)</span></td>
-<td align="center">0.02</td>
-<td align="center">0.13</td>
-<td align="center">0.11</td>
-<td align="center">0.07</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math display">\[y=(2,46*4,32 )/(6,38 *2,99 ) =
-0,56\]</span></p>
-<p><span class="math display">\[u(y)=0.56\sqrt{\left[ \frac{0.02 }{2.46}
-\right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38}
-\right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}\]</span></p>
-<p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span></p>
-<hr />
-<p><strong>Ejemplo 2:</strong></p>
-<p>Las especificaciones del fabricante de un voltímetro digital indican
-que “entre uno y dos años después de la calibración del instrumento, su
-exactitud en el rango de 1 V es <span class="math inline">\(14 ×
-10^{-6}\)</span> veces la lectura más <span class="math inline">\(2 ×
-10^{-6}\)</span> veces el rango”.</p>
-<p><img src="imagen/volt.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>Supongamos que el instrumento se utiliza 20 meses después de la
-calibración para medir una diferencia de potencial V en el rango de 1 V,
-y que se obtiene como media aritmética de un número de observaciones
-repetidas e independientes el valor V = 0,928 571 V, con una
-incertidumbre típica tipo A, u(V)=12 μV.</p>
-<p>La evaluación Tipo B de la incertidumbre típica se deduce de las
-especificaciones del fabricante, se supone que la exactitud representa
-los límites simétricos de una corrección aditiva a V , ΔV , de esperanza
-matemática igual a cero y pudiendo situarse con igual probabilidad entre
-dichos límites.</p>
-<p>La semiamplitud a de la distribución rectangular simétrica de los
-valores posibles de Δ V , es entonces</p>
-<p><span class="math display">\[a=(14 × 10^{-6})×(0,928571 V) + (2×
-10^{-6})×(1V)=15 μV\]</span></p>
-<p>y, a partir de la ecuación de la incertidumbre dada por una
-distribución rectángular:</p>
-<p><span class="math display">\[u_c=\frac{a}{\sqrt 3}=\frac{15μV }{\sqrt
-3}=8.7\]</span></p>
-<p><span class="math display">\[u^2(ΔV)=75 μV2 \quad  u(ΔV) = 8,7
-μV\]</span></p>
-<p>La estimación del valor del mensurando V, denominada por
-simplificación con el mismo símbolo V, viene dada por</p>
-<p><span class="math display">\[V = V + Δ V = 0,928 571 V\]</span></p>
-<p>Puede obtenerse la incertidumbre típica combinada de esta estimación
-combinando la incertidumbre típica Tipo A de V , 12 μV, con la
-incertidumbre típica Tipo B de ΔV , 8,7 μV. .</p>
-<p>la corrección aditiva ΔV = 0, y u(ΔV) = 8,7 μV. Como::</p>
-<p><span class="math display">\[\frac{\partial V}{\partial
-V}=1\]</span></p>
-<p><span class="math display">\[\frac{\partial V}{\partial
-ΔV}=1\]</span> La varianza combinada asociada a V viene dada por:</p>
-<p><span class="math display">\[uc^2(V) = u^2(V) + u^2(ΔV) = (12 μV) +
-(8,7 μV) = 219* 10^{-12} V\]</span></p>
-<p>y la incertidumbre típica combinada es <span
-class="math display">\[u_c(V) = 15 μV\]</span></p>
-</div>
 <div id="importancia-del-analisis-de-varianza-en-la-medición"
 class="section level2">
 <h2>Importancia del analisis de varianza en la medición</h2>
@@ -858,7 +624,7 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "normal": ["1"],
     "t-student": ["2"]
   },
-  "group": ["SharedDataac60faeb"]
+  "group": ["SharedData682dc672"]
 }</script>
 </div>
 <div id="qb" class="form-group crosstalk-input-select crosstalk-input">
@@ -882,14 +648,14 @@ class="uri">https://huggingface.co/spaces/FreddyHernandez/Dmuestrales</a></p>
     "9": [null],
     "10": [null]
   },
-  "group": ["SharedDataac60faeb"]
+  "group": ["SharedData682dc672"]
 }</script>
 </div>
 </div>
 </div>
 <div class="col-sm-10">
-<div id="htmlwidget-f07334edbe89bff925ab" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f07334edbe89bff925ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedDataac60faeb","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-47800e08c9c3b88c0fd2" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-47800e08c9c3b88c0fd2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Nivel de confianza":[0.9,0.95,0.99],"alfa":[0.1,0.05,0.01],"alfa/2":[0.05,0.025,0.005],"Cuantil":[1.645,1.96,2.576]},"columns":[{"id":"Nivel de confianza","name":"Nivel de confianza","type":"numeric","cell":["0.9","0.95","0.99"],"header":"Nivel de confianza","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa","name":"alfa","type":"numeric","cell":["0.1","0.05","0.01"],"header":"alfa","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"alfa/2","name":"alfa/2","type":"numeric","cell":["0.05","0.025","0.005"],"header":"alfa/2","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}},{"id":"Cuantil","name":"Cuantil","type":"numeric","cell":["1.645","1.96","2.576"],"header":"Cuantil","minWidth":70,"align":"center","headerStyle":{"background":"#f7f7f8"}}],"minRows":3,"crosstalkKey":["1","2","3"],"crosstalkGroup":"SharedData682dc672","dataKey":"267bc0486ec11694aa574a75791067a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1298,7 +1064,7 @@ class="math inline">\(-224.18\frac{V}{A^2}\)</span></td>
 <pre class="r"><code>y=c(70,26,2.6,0.9,0.5)
 x=c(&quot;Error Amp&quot;,&quot;Error Volt&quot;,&quot;repetibili&quot;,&quot;Res volt&quot;, &quot;Res Amp&quot;)
 barplot(y~x)</code></pre>
-<p><img src="coefsensi_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="coefsensi_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><strong>Agrupación de incertidumbres según el tipo</strong></p>
 <p>Dado que hay varias incertidumbres provienen de diferentes fuentes,
 se agrupan aquellas pertenecientes a la tipo B</p>

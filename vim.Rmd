@@ -38,11 +38,6 @@ Sistema de unidades basado en el Sistema Internacional de Magnitudes(ISQ), con n
 |Intensidad Luminosa|J  |Candela| cd |$K_{cd}$=683 lm / W |Eficacia luminosa de Radiación de 540 THz|
 
 
-
-
-
-
-
 **Magnitud:** 
 
 Propiedad que puede expresarse cuantitativamente mediante un número y una referencia
@@ -132,11 +127,31 @@ Conjunto de uno o más instrumentos de medida, frecuentemente, otros dispositivo
 
 ## Materiales de referencia certificados (MRC)
 
-Su incertidumbre se estima mediante un análisis repetido del MRC. si no resulta ser significativa, la incertidumbre asociada es la combinación de la incertidumbre del valor del MRC, con la desviación estándar asociada a la medida del sesgo. 
 
 ```{r out.width="100%", fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/mrc.png")
 ```
 
+Un material de referencia (MR) se certifica mediante un analisis de varianza ANOVA, mediante ensayos interlaboratorios que implican:
+    
+  - Varios laboratorios independientes de igual nivel (I), que midan las muestras de material, la media de cada laboratorio es una estimación no sesgada de la propiedad del material.
+    
+  - J muestras distintas del material
+    
+  - K observaciones repetidas e independientes. 
+    
+  - El número total de observaciones sería entonces IJK.
+    
+  - El número total de muestras IJ. 
+
+  - Las diferencias entre los resultados individuales, tanto inter (entre) laboratorios como intra (dentro) laboratorio, son de naturaleza estadística, sin importar sus causas. 
+    
+        
+```{r, echo=F, out.width="70%", fig.align='center'}
+knitr::include_graphics("imagen/hh.png")
+```
+
+
+- Aporta a la inceridumbre
 
 
