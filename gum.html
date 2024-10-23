@@ -502,41 +502,41 @@ basa el análisis.</p>
 </div>
 <div id="formas-de-presentar-la-incertidumbre" class="section level3">
 <h3>Formas de presentar la incertidumbre</h3>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Viene dada como un <strong>múltiplo específico de una desviación
-típica</strong>, se obtiene como el cociente entre el valor indicado y
-el factor multiplicador.</li>
-</ul>
+típica</strong>, se obtiene del cociente entre el valor indicado y el
+factor multiplicador.</li>
+</ol>
 <p><strong>EJEMPLO</strong></p>
 <p>Un certificado de calibración indica que la masa de un patrón de
 acero inoxidable, de valor nominal igual a un kilogramo, es <span
 class="math inline">\(m_S = 1000,000325 g\)</span>, y que “la
 incertidumbre de este valor es de 240 μg, para un nivel de tres
 desviaciones típicas”.</p>
-<pre><code>- La incertidumbre típica del patrón de masa es simplemente $u(m_S)=(240 μg)/3 =80 μg$. 
-
-- La incertidumbre típica relativa $u(mS)/mS$ de $80 × 10^{-9}$** . 
-
-- La varianza estimada es $u^2(mS) = (80 μg)^2 = 6,4×10^{-9} g^2.$
-
-**Nota:**</code></pre>
 <ul>
-<li><p>Una <strong>desviación estándar relativa</strong> también
-conocida como coeficiente de variación, es una medida de dispersión
-relativa que compara la desviación estándar con la media de un conjunto
-de datos.</p>
-<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p></li>
-<li><p><strong>incertidumbre típica relativa</strong></p></li>
+<li><p>La incertidumbre típica del patrón de masa es simplemente <span
+class="math inline">\(u(m_S)=(240 μg)/3 =80 μg\)</span>.</p></li>
+<li><p>La incertidumbre típica relativa <span
+class="math inline">\(u(mS)/mS\)</span> de <span
+class="math inline">\(80 × 10^{-6}\)</span>.</p></li>
+<li><p>La varianza estimada es <span class="math inline">\(u^2(mS) = (80
+μg)^2 = 6,4×10^{-9} g^2.\)</span></p></li>
 </ul>
+<p><strong>Nota:</strong> Una <strong>desviación estándar
+relativa</strong> también conocida como coeficiente de variación, es una
+medida de dispersión relativa que compara la desviación estándar con la
+media de un conjunto de datos.</p>
+<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p>
+<p><strong>incertidumbre típica relativa</strong></p>
 <p><span class="math display">\[u(xi)/⏐xi⏐\]</span></p>
-<ul>
+<ol start="2" style="list-style-type: decimal">
 <li>A partir de un <strong>intervalo de confianza</strong> del 90, 95 ó
 99 por ciento, suponiendo una distribución normal, la incertidumbre
 típica se obtiene mediante simple división del valor de incertidumbre
 dado por el factor correspondiente de la distribución normal. Dicho
 factor, para los tres niveles de confianza citados, es 1,64; 1,96 y
 2,58.</li>
-</ul>
+</ol>
 <p><strong>Ejemplo 1</strong></p>
 <p>Una especificación establece que la lectura de una balanza está entre
 ±0,2 mg con un 95 % de confianza.</p>
@@ -548,18 +548,20 @@ normal, se calcula un intervalo de confianza del 95% usando un valor de
 <p><strong>Ejemplo 2</strong></p>
 <p>Un certificado de calibración indica que el valor <span
 class="math inline">\(R_S\)</span> de una resistencia patrón de valor
-nominal 10Ω es 10,000742 Ω ± 129 μΩ a 23 °C, y que “la incertidumbre
+nominal 10Ω es 10,000742 Ω ± 129 μΩ a 23°C, y que “la incertidumbre
 indicada de 129 μΩ define un intervalo con nivel de confianza del 99 por
 ciento”.</p>
 <p>La incertidumbre típica del valor de la resistencia puede suponerse
 que es u(RS) = (129 μΩ) / 2,58 = 50 μΩ, que corresponde a una
 incertidumbre típica relativa u(RS)/RS de <span
-class="math inline">\(5,0×10^{-6}\)</span>).</p>
+class="math inline">\(5,0×10^{-6}\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Dada por los <strong>límites de ±a sin nivel de
+confianza</strong></li>
+</ol>
 <ul>
-<li><p>Dada por los <strong>límites de ±a sin nivel de
-confianza</strong></p>
-<p>-Si hay valores extremos, suponemos una distribución rectángular, con
-una desviación estándar de:</p></li>
+<li>Si hay valores extremos, suponemos una distribución rectángular, con
+una desviación estándar de:</li>
 </ul>
 <p><span class="math display">\[\frac{a}{\sqrt 3}\]</span></p>
 <p><strong>EJEMPLO</strong></p>
@@ -568,7 +570,11 @@ una desviación estándar de:</p></li>
 <p>La incertidumbre estándar es <span class="math display">\[0,2/\sqrt
 3=0,12 mL\]</span></p>
 <p><img src="imagen/matraz.png" width="10%" style="display: block; margin: auto;" /></p>
-<pre><code>- Si no se esperan valores extremos,normalmente es apropiado suponer una distribución triangular, con una desviación estándar de $a/\sqrt6$.</code></pre>
+<ul>
+<li>Si no se esperan valores extremos,normalmente es apropiado suponer
+una distribución triangular, con una desviación estándar de <span
+class="math inline">\(a/\sqrt6\)</span>.</li>
+</ul>
 <p><strong>EJEMPLO</strong></p>
 <p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
 ±0,2 mL, pero controles internos rutinarios muestran que los valores
