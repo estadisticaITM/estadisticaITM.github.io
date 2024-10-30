@@ -414,6 +414,19 @@ está influenciada por factores como la precisión de los instrumentos de
 medición, la variabilidad de las condiciones de prueba y otros errores
 experimentales.</p>
 <p>Las categorías de incertidumbre tipo A pueden incluir:</p>
+<div id="incertidumbres-aleatorias" class="section level5">
+<h5><strong>Incertidumbres aleatorias</strong></h5>
+<p>una incertidumbre aleatoria se distribuye alrededor de un valor
+central que finalmente se espera coincida con el valor real, es decir,
+las fluctuaciones aleatorias en los valores medidos terminan
+compensándose.</p>
+<ul>
+<li><strong>Variabilidad del proceso:</strong></li>
+</ul>
+<p>La variabilidad inherente al proceso o fenómeno que se está midiendo.
+Esta puede ser influenciada por factores como la variabilidad de la
+materia prima, la fluctuación en las condiciones de fabricación,
+etc.</p>
 <ul>
 <li><strong>Replicabilidad:</strong></li>
 </ul>
@@ -427,31 +440,53 @@ los operadores, la fluctuación de las condiciones ambientales, etc.</p>
 diferentes condiciones experimentales pero dentro de los mismos límites
 de precisión. Esto puede incluir diferentes equipos, métodos de medición
 alternativos, etc.</p>
+<p><span class="math display">\[u(reproducibilidad)=\frac{s}{\sqrt
+n}\]</span></p>
+<p>la replicabilidad se trata de repetir un estudio con un enfoque
+similar, mientras que la reproducibilidad implica la verificación de
+resultados usando los mismos datos y métodos. Ambos son esenciales para
+validar la investigación científica.</p>
 <ul>
 <li><strong>Precisión del equipo:</strong></li>
 </ul>
-<p>La incertidumbre asociada con la precisión y la calibración del
-equipo utilizado en el proceso de medición.</p>
+<p>Conjunto de condiciones que incluye el mismo procedimiento de
+medición, el mismo lugar y mediciones repetidas del mismo objeto u
+objetos similares durante un periodo amplio de tiempo, pero que puede
+incluir otras condiciones que involucren variaciones como calibraciones,
+patrones, operadores y sistemas de medida (VIM).</p>
+<p>La menor variación en la magnitud de salida obtenible de esta forma
+puede tomarse como una medida de la incertidumbre (GUM); si dicha
+variación es δx conocido como la diferencia esperada entre 2 valores, la
+incertidumbre es:</p>
+<p><span class="math display">\[u= \frac{δx}{\sqrt {12}}\]</span></p>
+</div>
+<div id="errores-sistemáticos" class="section level5">
+<h5><strong>Errores sistemáticos:</strong></h5>
 <ul>
-<li><strong>Variabilidad del proceso:</strong></li>
+<li><p>Se repiten en el proceso de medición sin modificación,</p></li>
+<li><p>Es una de las incertidumbres más complejas de controlar, siempre
+generará que las medidas se encuentren alrededor del mismo valor
+erróneo, por lo que nunca se compensarán, provocando que el valor real y
+central no coincidan;</p></li>
+<li><p>La incertidumbre de una corrección por efecto sistemático
+conocido puede obtenerse en algunos casos mediante una evaluación Tipo
+A, mientras que en otros casos puede obtenerse mediante una evaluación
+Tipo B; lo mismo puede decirse para una incertidumbre que caracteriza a
+un efecto aleatorio.</p></li>
 </ul>
-<p>La variabilidad inherente al proceso o fenómeno que se está midiendo.
-Esta puede ser influenciada por factores como la variabilidad de la
-materia prima, la fluctuación en las condiciones de fabricación,
-etc.</p>
+<p>entre ellos se puede tener los errores de calibración y sesgos en los
+instrumentos, etc.</p>
 <ul>
-<li><p><strong>Errores sistemáticos:</strong> La incertidumbre debida a
-errores sistemáticos en el proceso de medición, como errores de
-calibración, sesgos en los instrumentos, etc.</p></li>
-<li><p><strong>Resolución del instrumento: </strong> La incertidumbre
+<li><strong>Resolución del instrumento: </strong> La incertidumbre
 asociada con la capacidad del instrumento de medir con precisión hasta
-cierto nivel de detalle o resolución.</p></li>
+cierto nivel de detalle o resolución.</li>
 </ul>
 <p>La siguiente fórmula se usa si el equipo es análogo:</p>
 <p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt 3}\]</span>
 En el caso que un equipo sea digital, la fórmula es:</p>
 <p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt
 {12}}\]</span></p>
+</div>
 </div>
 <div id="tipo-b" class="section level4">
 <h4>Tipo B</h4>
