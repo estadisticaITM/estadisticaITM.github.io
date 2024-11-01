@@ -10,8 +10,33 @@ output:
 Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010)
 
 
+
+## Tipos de errores
+
+
+### **Error aleatorio**
+
+Un error aleatorio se distribuye alrededor de un valor central, se espera coincida con el valor real, es decir, las fluctuaciones aleatorias en los valores medidos terminan compensándose
+
+
+
+
+##### **Errores sistemáticos:** 
+
+- Se repiten en el proceso de medición sin modificación,  
+
+- Es una de las incertidumbres más complejas de controlar, siempre generará que las medidas se encuentren alrededor del mismo valor erróneo, por lo que nunca se compensarán, provocando que el valor real y central no coincidan; 
+
+- La incertidumbre de una corrección por efecto sistemático conocido puede
+obtenerse en algunos casos mediante una evaluación Tipo A, mientras que en otros casos puede obtenerse mediante una evaluación Tipo B; lo mismo puede decirse para una incertidumbre que caracteriza a un efecto
+aleatorio.
+
+
+entre ellos se puede tener los errores de calibración y sesgos en los instrumentos, etc.
+
 ## Tipos de incertidumbre
 
+.
 
 ### Incertidumbre típica $u$
 
@@ -26,11 +51,6 @@ Se asocia comúnmente con mediciones directas o indirectas y está influenciada 
 
 
 Las categorías de incertidumbre tipo A pueden incluir:
-
-
-##### **Incertidumbres aleatorias**
-
-una incertidumbre aleatoria se distribuye alrededor de un valor central que finalmente se espera coincida con el valor real, es decir, las fluctuaciones aleatorias en los valores medidos terminan compensándose.
 
 - **Variabilidad del proceso:**
 
@@ -53,6 +73,9 @@ $$u(reproducibilidad)=\frac{s}{\sqrt n}$$
 la replicabilidad se trata de repetir un estudio con un enfoque similar, mientras que la reproducibilidad implica la verificación de resultados usando los mismos datos y métodos. Ambos son esenciales para validar la investigación científica.
 
 
+
+
+
 - **Precisión del equipo:** 
 
 Conjunto de condiciones que incluye el mismo procedimiento de medición, el mismo lugar y mediciones repetidas del mismo objeto u objetos similares durante un periodo amplio de tiempo, pero que puede incluir otras condiciones que involucren variaciones como calibraciones, patrones, operadores y sistemas de medida (VIM).
@@ -61,20 +84,6 @@ Conjunto de condiciones que incluye el mismo procedimiento de medición, el mism
 La menor variación en la magnitud de salida obtenible de esta forma puede tomarse como una medida de la incertidumbre (GUM); si dicha variación es δx conocido como la diferencia esperada entre 2 valores, la incertidumbre es:
 
 $$u= \frac{δx}{\sqrt {12}}$$
-
-##### **Errores sistemáticos:** 
-
-- Se repiten en el proceso de medición sin modificación,  
-
-- Es una de las incertidumbres más complejas de controlar, siempre generará que las medidas se encuentren alrededor del mismo valor erróneo, por lo que nunca se compensarán, provocando que el valor real y central no coincidan; 
-
-- La incertidumbre de una corrección por efecto sistemático conocido puede
-obtenerse en algunos casos mediante una evaluación Tipo A, mientras que en otros casos puede obtenerse
-mediante una evaluación Tipo B; lo mismo puede decirse para una incertidumbre que caracteriza a un efecto
-aleatorio.
-
-
-entre ellos se puede tener los errores de calibración y sesgos en los instrumentos, etc.
 
 
 - **Resolución del instrumento: ** La incertidumbre asociada con la capacidad del instrumento de medir con precisión hasta cierto nivel de detalle o resolución.
