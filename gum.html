@@ -395,86 +395,111 @@ div.tocify {
 </div>
 
 
+<div id="incertidumbre" class="section level2">
+<h2>Incertidumbre</h2>
 <p>Parámetro asociado al resultado de una medición que caracteriza la
 dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010)</p>
-<div id="tipos-de-errores" class="section level2">
-<h2>Tipos de errores</h2>
-<div id="error-aleatorio" class="section level3">
-<h3><strong>Error aleatorio</strong></h3>
-<p>Un error aleatorio se distribuye alrededor de un valor central, se
-espera coincida con el valor real, es decir, las fluctuaciones
-aleatorias en los valores medidos terminan compensándose</p>
-<div id="errores-sistemáticos" class="section level5">
-<h5><strong>Errores sistemáticos:</strong></h5>
+(ISP, 2010).</p>
+<p><strong>Algunas fuentes de incertidumbre</strong></p>
 <ul>
-<li><p>Se repiten en el proceso de medición sin modificación,</p></li>
-<li><p>Es una de las incertidumbres más complejas de controlar, siempre
-generará que las medidas se encuentren alrededor del mismo valor
-erróneo, por lo que nunca se compensarán, provocando que el valor real y
-central no coincidan;</p></li>
-<li><p>La incertidumbre de una corrección por efecto sistemático
-conocido puede obtenerse en algunos casos mediante una evaluación Tipo
-A, mientras que en otros casos puede obtenerse mediante una evaluación
-Tipo B; lo mismo puede decirse para una incertidumbre que caracteriza a
-un efecto aleatorio.</p></li>
+<li><p>La incertidumbre generada por efectos sistematicos, es una de las
+más complejas de controlar, puede obtenerse mediante una evaluación Tipo
+A ó Tipo B (GUM,p18).</p></li>
+<li><p>La incertidumbre generada por efectos aleatorios, puede obtenerse
+mediante una evaluación Tipo A ó Tipo B (GUM,p18).</p></li>
 </ul>
-<p>entre ellos se puede tener los errores de calibración y sesgos en los
-instrumentos, etc.</p>
-</div>
-</div>
 </div>
 <div id="tipos-de-incertidumbre" class="section level2">
 <h2>Tipos de incertidumbre</h2>
-<p>.</p>
-<div id="incertidumbre-típica-u" class="section level3">
-<h3>Incertidumbre típica <span class="math inline">\(u\)</span></h3>
 <p>Incertidumbre del resultado de una medición, expresada en forma de
-desviación típica, dependiendo del origen de los datos la incertidumbre
-típica se clasifica en tipo A y tipo B</p>
-<div id="tipo-a" class="section level4">
-<h4>Tipo A</h4>
-<p>Obtenida mediante un analisis estadístico de los datos, se expresan
+desviación típica, dependiendo del origen se clasifica en tipo A y tipo
+B, estas categorías se refieren a la incertidumbre y no sustituyen a las
+palabras “aleatorio” y “sistemático”.</p>
+<div id="tipo-a" class="section level3">
+<h3>Tipo A</h3>
+<p>Se obtiene mediante un analisis estadístico de los datos, se expresan
 por medio de varianzas o las desviaciones y el número de grados de
-libertad. Se asocia comúnmente con mediciones directas o indirectas y
-está influenciada por factores como la precisión de los instrumentos de
+libertad.</p>
+<p>Se asocia comúnmente con mediciones directas o indirectas y está
+influenciada por factores como la precisión de los instrumentos de
 medición, la variabilidad de las condiciones de prueba y otros errores
-experimentales.</p>
+experimentales. Se calcula como</p>
+<p><span class="math display">\[u(típica)=\frac{s}{\sqrt n}\]</span></p>
 <p>Las categorías de incertidumbre tipo A pueden incluir:</p>
-<ul>
-<li><strong>Variabilidad del proceso:</strong></li>
-</ul>
-<p>La variabilidad inherente al proceso o fenómeno que se está midiendo.
-Esta puede ser influenciada por factores como la variabilidad de la
-materia prima, la fluctuación en las condiciones de fabricación,
-etc.</p>
-<ul>
-<li><strong>Replicabilidad:</strong></li>
-</ul>
-<p>La variabilidad asociada con la repetición de mediciones bajo las
+<table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Categoría</th>
+<th align="center">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Variabilidad</td>
+<td align="center">influenciada por factores como la variabilidad de la
+materia prima, la fluctuación en las condiciones de fabricación</td>
+</tr>
+<tr class="even">
+<td align="center">Replicabilidad</td>
+<td align="center">asociada con la repetición de mediciones bajo las
 mismas condiciones experimentales. Esto puede incluir la variabilidad de
-los operadores, la fluctuación de las condiciones ambientales, etc.</p>
-<ul>
-<li><strong>Reproducibilidad:</strong></li>
-</ul>
-<p>La variabilidad asociada con la repetición de mediciones en
-diferentes condiciones experimentales pero dentro de los mismos límites
-de precisión. Esto puede incluir diferentes equipos, métodos de medición
-alternativos, etc.</p>
-<p><span class="math display">\[u(reproducibilidad)=\frac{s}{\sqrt
-n}\]</span></p>
+los operadores, la fluctuación de las condiciones ambientales</td>
+</tr>
+<tr class="odd">
+<td align="center">Reproducibilidad</td>
+<td align="center">Asociada con la repetición de mediciones en
+diferentes condiciones pero dentro de los mismos límites de precisión.
+Puede incluir diferentes equipos, métodos de medición alternativos.</td>
+</tr>
+<tr class="even">
+<td align="center">Muestreo</td>
+<td align="center">Asociada con la variabilidad de la selección de
+muestras de una población. incluye sesgos en la selección de la muestra
+y errores de muestreo aleatorio</td>
+</tr>
+</tbody>
+</table>
 <p>la replicabilidad se trata de repetir un estudio con un enfoque
 similar, mientras que la reproducibilidad implica la verificación de
 resultados usando los mismos datos y métodos. Ambos son esenciales para
 validar la investigación científica.</p>
+<p>Incertidumbre , etc.</p>
+<div id="tipo-b" class="section level4">
+<h4>Tipo B</h4>
+<p>Incertidumbre no aleatoria, no puede ser evaluada mediante métodos
+estadísticos y generalmente se determina mediante la aplicación de
+información externa, como datos históricos, conocimiento experto,
+especificaciones de diseño, etc. Las categorías de incertidumbre tipo B
+pueden incluir:</p>
+<ul>
+<li><strong>Errores de modelo:</strong></li>
+</ul>
+<p>Asociado a la representación del fenómeno que se está modelando.
+Puede incluir simplificaciones excesivas en el modelo, desconocimiento
+de ciertos efectos o interacciones, etc.</p>
+<ul>
+<li><strong>de la fuente de datos:</strong></li>
+</ul>
+<p>Asociada con los datos utilizados en el análisis o la estimación.
+Puede incluir errores de medición, sesgos en la recopilación de datos,
+etc.</p>
+<ul>
+<li><strong>de calibración:</strong></li>
+</ul>
+<p>Asociada con la calibración de los instrumentos de medición
+utilizados en el análisis.</p>
 <ul>
 <li><strong>Precisión del equipo:</strong></li>
 </ul>
-<p>Conjunto de condiciones que incluye el mismo procedimiento de
-medición, el mismo lugar y mediciones repetidas del mismo objeto u
-objetos similares durante un periodo amplio de tiempo, pero que puede
-incluir otras condiciones que involucren variaciones como calibraciones,
-patrones, operadores y sistemas de medida (VIM).</p>
+<p>Conjunto de condiciones que incluye condiciones similares, (el mismo
+procedimiento de medición, el mismo lugar y mediciones repetidas del
+mismo objeto u objetos similares durante un periodo amplio de tiempo),
+pero que puede incluir otras condiciones que involucren variaciones como
+calibraciones, patrones, operadores y sistemas de medida (VIM).</p>
 <p>La menor variación en la magnitud de salida obtenible de esta forma
 puede tomarse como una medida de la incertidumbre (GUM); si dicha
 variación es δx conocido como la diferencia esperada entre 2 valores, la
@@ -490,39 +515,6 @@ cierto nivel de detalle o resolución.</li>
 En el caso que un equipo sea digital, la fórmula es:</p>
 <p><span class="math display">\[u(x)=\frac{Resolución}{\sqrt
 {12}}\]</span></p>
-</div>
-<div id="tipo-b" class="section level4">
-<h4>Tipo B</h4>
-<p>También conocida como incertidumbre no aleatoria, no puede ser
-evaluada mediante métodos estadísticos y generalmente se determina
-mediante la aplicación de información externa, como datos históricos,
-conocimiento experto, especificaciones de diseño, etc. Las categorías de
-incertidumbre tipo B pueden incluir:</p>
-<ul>
-<li><strong>Errores de modelo:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la representación del fenómeno o sistema
-que se está modelando. Puede incluir simplificaciones excesivas en el
-modelo, desconocimiento de ciertos efectos o interacciones, etc.</p>
-<ul>
-<li><strong>de la fuente de datos:</strong></li>
-</ul>
-<p>Incertidumbre asociada con los datos utilizados en el análisis o la
-estimación. Puede incluir errores de medición, sesgos en la recopilación
-de datos, etc.</p>
-<ul>
-<li><strong>de calibración:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la calibración de los instrumentos de
-medición utilizados en el análisis. Esto puede incluir incertidumbres
-declaradas por el proveedor del equipo de medición o incertidumbres
-asociadas con el método de calibración utilizado.</p>
-<ul>
-<li><strong>de muestreo:</strong></li>
-</ul>
-<p>Incertidumbre asociada con la variabilidad inherente a la selección
-de muestras de una población más grande. Puede incluir sesgos en la
-selección de la muestra, errores de muestreo aleatorio, etc.</p>
 <ul>
 <li><strong>de modelado matemático:</strong></li>
 </ul>

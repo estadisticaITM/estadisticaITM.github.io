@@ -133,7 +133,15 @@ knitr::include_graphics("imagen/mm.png")
 
 
 
+## Precisión de medida
+
+
+Conjunto de condiciones que incluye el mismo procedimiento de medición, el mismo lugar y mediciones repetidas del mismo objeto u objetos similares durante un periodo amplio de tiempo, puede incluir variaciones como calibraciones, patrones, operadores y sistemas de medida (VIM)
+
+
+
 ## Precisión y exactitud de medida
+
 
 **Exactitud de medida**
 
@@ -248,7 +256,7 @@ Cantidad de error ocurrida entre el valor medido y el valor verdadero. Lo import
 
 |Calidades |Aplicaciones|
 |:--------:|:------------------------------------------------------:|
-|IT-01 IT-5| Construcción de instrumentos de control y en mecánica de alta presición|
+|IT-01 IT-5| Construcción de instrumentos de control y en mecánica de alta precisión|
 |IT-6 IT-11|Mecánica de precisión y ajustes mecánicos|
 |IT-12 IT-16|Trabajos de fabricación y piezas de fundición|
 
@@ -380,8 +388,9 @@ $$u=\frac{ sd}{\sqrt n}$$
 
 ## Error
 
-
 Diferencia entre un valor medido de una magnitud y un valor de referencia, 
+
+
 
 
 **Error absoluto**
@@ -394,7 +403,7 @@ $$E=A_i-A_r$$
 knitr::include_graphics("imagen/fm.png")
 ```
 
-**Componentes del error**
+### Componentes del error
 
 Se considera que un error tiene dos componentes, llamadas componente aleatoria y componente sistemática
 
@@ -403,94 +412,34 @@ Se considera que un error tiene dos componentes, llamadas componente aleatoria y
 
 También se le conoce como sesgo(EURACHEM, 2011), los efectos que cambian sistemáticamente en magnitud durante series de análisis, dan lugar a errores sistemáticos que no son constantes.
 
+- Se repiten en el proceso de medición sin modificación,  
+
+- Siempre genera medidas que se encuentran alrededor del mismo valor erróneo, por lo que nunca se compensarán, provocando que el valor real y central no coincidan.
+
+- Ocasionados por errores de calibración y sesgos en los instrumentos.
 
 
+**Error aleatorio**
+
+Un error aleatorio se distribuye alrededor de un valor central, se espera coincida con el valor real, es decir, las fluctuaciones aleatorias en los valores medidos terminan compensándose
 
 ______________________________________________________________________________
 
-```{r echo=FALSE}
 
-library(tidyverse)
-library(kableExtra)
+|Descripción|Error aleatorio| Error sistemático| 
+|:---------:|:-------------:|:----------------:|
+|________________|____________________|__________________________|
+||Variaciones impredecibles en observaciones repetidas del mensurando.|Permanecen constantes o varían de forma predecible en el análisis del mismo mensurando.|
+|Causa|variaciones de las magnitudes|Selección de los sujetos de estudio| 
+| |Muestreo|Obtención de la información|
+| | |Presencia de variables externas distorsionadas
+|________________|____________________|__________________________|
+|Disminuye al aumentar el tamaño del estudio|Si|No|
+|________________|____________________|__________________________|
+|Afectación|Precisión|Validez|
+|________________|____________________|__________________________|
 
 
-timeline_tab <- tibble(
-  Descripción = c(
-"___________________________________"),
-Aleatorio = c("_____________________"
-),
-Sistemático = c(
-"__________________________")) %>%
-add_row(Descripción = c(
-"Causa",
-"",
-"",
-"",
-""),
-Aleatorio = c(
-"- Variaciones impredecibles en observaciones repetidas del mensurando. ",
-"- variaciones de las magnitudes",
-"- Muestreo",
-"",
-""),
-Sistemático = c(
-"- Permanecen constantes o varían de forma predecible en el análisis del mismo mensurando.",
-"- Selección de los sujetos de estudio",
-"- Obtención de la información",
-"- Presencia de variables externas distorsionadas",
-"")
-) %>%
-add_row(Descripción = c(
-"___________________________________"),
-Aleatorio = c("_____________________"
-),
-Sistemático = c(
-"__________________________")
-) %>%
-add_row(Descripción = c(
-"Disminuye al aumentar el tamaño del estudio"),
-Aleatorio = c("Si"
-),
-Sistemático = c(
-"No")
-) %>%
-  
-add_row(Descripción = c(
-"___________________________________"),
-Aleatorio = c("_____________________"
-),
-Sistemático = c(
-"__________________________")
-) %>%
-add_row(Descripción = c(
-"Afectación"),
-Aleatorio = c(
-"Presición"
-),
-Sistemático = c(
-"Validez"
-)
-) %>%
-add_row(Descripción = c(
-"___________________________________"),
-Aleatorio = c("_____________________"
-),
-Sistemático = c(
-"__________________________")
-) %>%
-add_row(Descripción = c(
-""),
-Aleatorio = c(
-""),
-Sistemático = c(""))
-timeline_tab %>%
-kable(booktabs = TRUE, align = "c",
-      col.names = c("Descripción ","Error aleatorio",
-"Error sistemático"),
-escape=FALSE) %>%
-column_spec(c(1), width = "3cm") %>%
-column_spec(c(2, 3), width = "9cm") 
-```
 _____________________________________________________________________
 
 
