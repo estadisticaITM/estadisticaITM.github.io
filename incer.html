@@ -488,6 +488,14 @@ términos de su origen, mientras que VIM los clasifica según el
 fenómeno.</p>
 <p><img src="imagen/mm.png" width="666" style="display: block; margin: auto;" /></p>
 </div>
+<div id="precisión-de-medida" class="section level2">
+<h2>Precisión de medida</h2>
+<p>Conjunto de condiciones que incluye el mismo procedimiento de
+medición, el mismo lugar y mediciones repetidas del mismo objeto u
+objetos similares durante un periodo amplio de tiempo, puede incluir
+variaciones como calibraciones, patrones, operadores y sistemas de
+medida (VIM)</p>
+</div>
 <div id="precisión-y-exactitud-de-medida" class="section level2">
 <h2>Precisión y exactitud de medida</h2>
 <p><strong>Exactitud de medida</strong></p>
@@ -504,8 +512,8 @@ variación bajo las condiciones especificadas.</p>
 repetidas de un mismo objeto bajo condiciones específicas de
 repetibilidad, de precisión intermedia, o de reproducibilidad.</p>
 <pre><code>## Linking to librsvg 2.48.8</code></pre>
-<div id="htmlwidget-290482582c5962f896e8" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-290482582c5962f896e8">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5d27def5c7c045c29386" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5d27def5c7c045c29386">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n  \n      node[shape = rectangle, style = filled]\n  \n    \n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Condiciones especificas\"]\n      \n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De Repetibilidad\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"En un periodo corto de tiempo el mismo: \n- Procedimiento de medida,      \n- Operadores\n- Sistema de medida, \n- Condiciones de operación \n- Lugar\n- Objeto o uno similar\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"De precisión intermedia\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Mismas condiciones de repetibilidad\n         pero con algunas variaciones como nuevas:\n         - Calibraciones\n         - Patrones \n         - Operadores \n         - Sistemas de medida\"]\n      }\n  \n      subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"De reproducibilidad\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Mediciones repetidas de los mismos\n         objetos u otros similares en diferentes \n         - Lugares\n         - Operadores\n         - Sistemas de medida \"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G  D -> H\n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Relación entre precisión y exactitud</strong></p>
 <p><img src="imagen/dina.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>R y R son conocidas después de tomar las mediciones.</p>
@@ -541,7 +549,7 @@ IT-16,</p></li>
 <tr class="odd">
 <td align="center">IT-01 IT-5</td>
 <td align="center">Construcción de instrumentos de control y en mecánica
-de alta presición</td>
+de alta precisión</td>
 </tr>
 <tr class="even">
 <td align="center">IT-6 IT-11</td>
@@ -714,7 +722,7 @@ estadístico de las mediciones,promedio y desviación estándar.</p>
 <div id="error" class="section level2">
 <h2>Error</h2>
 <p>Diferencia entre un valor medido de una magnitud y un valor de
-referencia,</p>
+referencia.</p>
 <p><strong>Error absoluto</strong> Diferencia entre el valor indicado
 por el instrumento <span class="math inline">\(A_i\)</span> y el valor
 verdadero <span class="math inline">\(A_r\)</span> de la magnitud
@@ -727,11 +735,9 @@ causas de error</strong></p>
 <p>Se considera que un error tiene dos componentes, llamadas componente
 aleatoria y componente sistemática</p>
 <p><strong>Error sistemático</strong></p>
-<p>También se le conoce como sesgo(EURACHEM, 2011), los efectos que
-cambian sistemáticamente en magnitud durante series de análisis, dan
-lugar a errores sistemáticos que no son constantes.</p>
 <ul>
-<li><p>Se repiten en el proceso de medición sin modificación,</p></li>
+<li><p>También se le conoce como sesgo (EURACHEM, 2011)</p></li>
+<li><p>Se repiten en el proceso de medición sin modificación.</p></li>
 <li><p>Siempre genera medidas que se encuentran alrededor del mismo
 valor erróneo, por lo que nunca se compensarán, provocando que el valor
 real y central no coincidan.</p></li>
@@ -739,9 +745,9 @@ real y central no coincidan.</p></li>
 instrumentos.</p></li>
 </ul>
 <p><strong>Error aleatorio</strong></p>
-<p>Un error aleatorio se distribuye alrededor de un valor central, se
-espera coincida con el valor real, es decir, las fluctuaciones
-aleatorias en los valores medidos terminan compensándose</p>
+<p>Se distribuye alrededor de un valor central, se espera que este valor
+coincida con el valor real, es decir, las fluctuaciones aleatorias en
+los valores medidos terminan compensándose.</p>
 <hr />
 <table>
 <colgroup>
@@ -764,25 +770,25 @@ aleatorias en los valores medidos terminan compensándose</p>
 </tr>
 <tr class="even">
 <td align="center"></td>
-<td align="center">Variaciones impredecibles en observaciones repetidas
-del mensurando.</td>
-<td align="center">Permanecen constantes o varían de forma predecible en
-el análisis del mismo mensurando.</td>
+<td align="center">- Variaciones impredecibles en observaciones
+repetidas del mensurando.</td>
+<td align="center">- Permanecen constantes o varían de forma predecible
+en el análisis del mismo mensurando.</td>
 </tr>
 <tr class="odd">
 <td align="center">Causa</td>
-<td align="center">variaciones de las magnitudes</td>
-<td align="center">Selección de los sujetos de estudio</td>
+<td align="center">- variaciones de las magnitudes</td>
+<td align="center">- Selección de los sujetos de estudio</td>
 </tr>
 <tr class="even">
 <td align="center"></td>
-<td align="center">Muestreo</td>
-<td align="center">Obtención de la información</td>
+<td align="center">- Muestreo</td>
+<td align="center">- Obtención de la información</td>
 </tr>
 <tr class="odd">
 <td align="center"></td>
 <td align="center"></td>
-<td align="center">Presencia de variables externas distorsionadas</td>
+<td align="center">- Presencia de variables externas distorsionadas</td>
 </tr>
 <tr class="even">
 <td align="center">________________</td>
@@ -801,7 +807,7 @@ el análisis del mismo mensurando.</td>
 </tr>
 <tr class="odd">
 <td align="center">Afectación</td>
-<td align="center">Presición</td>
+<td align="center">Precisión</td>
 <td align="center">Validez</td>
 </tr>
 <tr class="even">
@@ -812,8 +818,8 @@ el análisis del mismo mensurando.</td>
 </tbody>
 </table>
 <hr />
-<div id="htmlwidget-a291d75f0ef25c22e432" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a291d75f0ef25c22e432">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f6ab6dacd405e316d75f" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f6ab6dacd405e316d75f">{"x":{"diagram":"digraph{\n \n      graph[rankdir = LR]\n      node[shape = rectangle, style = filled]\n      node[fillcolor = Violet, margin = 0.2]\n      D[label = \"Evitables\"]\n      E[label = \"Inevitables\"]\n  \n      subgraph cluster_0 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n        label = \"Sistemáticas\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n        F[label = \"Aparatos mal calibrados,\n        vidrios dilatados por calentamiento, \n        equipos mal cuidados, \n        errores de método, etc.\"]\n      }\n      \n      subgraph cluster_2 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = Gold\n    \n         label = \"Personales\"\n        node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         G[label = \"Inexperiencia del operador,\n        equivocación de un reactivo,\n        lecturas erróneas,\n        brusquedad en el uso de aparatos\"]\n      }\n  \n      subgraph cluster_1 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"Aleatorias\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         I[label = \"Reflejan la dispersión de la\n         magnitud al repetir su medida\"]\n      }\n  \n  subgraph cluster_3 {\n         graph[shape = rectangle]\n         style = rounded\n         bgcolor = Gold\n    \n         label = \"instrumentales\"\n         node[shape = rectangle, fillcolor = LemonChiffon, margin = 0.25]\n         H[label = \"Debido a la sensibilidad de los\ndispositivos de medida.\"]\n         \n      }\n      edge[color = black, arrowhead = vee, arrowsize = 1.25]\n      \n      D -> F    D -> G\n      E -> H    E -> I \n      \n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="sesgo" class="section level2">
