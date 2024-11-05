@@ -11,7 +11,7 @@
 
 
 
-<title>Determinación de la incertidumbre típica combinada</title>
+<title>Métodologia para estimar la incertidumbre</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -390,162 +390,19 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Determinación de la incertidumbre típica
-combinada</h1>
+<h1 class="title toc-ignore">Métodologia para estimar la
+incertidumbre</h1>
 
 </div>
 
 
-<div id="estimación-de-la-incertidumbre" class="section level2">
-<h2>Estimación de la incertidumbre</h2>
-<p>Existen 2 formas principales de estimar la incertidumbre, metodos no
-estocásticos como la GUM y metodos estocásticos como la simulación monte
-carlo (MCM), que hacen alusión a distribuciones de probabilidad.
-Generalmente se mide la incertidumbre con el metodo GUM y se cerciora el
-resultado con el metodo estocástico MCM.</p>
-</div>
-<div id="métodos-estocásticos-para-estimar-la-incertidumbre"
-class="section level2">
-<h2>Métodos estocásticos para estimar la incertidumbre</h2>
-<p><img src="imagen/mestocastico.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><strong>Simulación Determinística</strong></p>
-<p>Simula múltiples resultados posibles dados los mismos valores de
-entrada. Puede ser útil para explorar la variabilidad en las salidas del
-modelo de medición.</p>
-<p><strong>Monte Carlo</strong></p>
-<p>Implica la generación de múltiples muestras aleatorias de las
-variables de entrada, la propagación de estas muestras a través del
-modelo de medición y el cálculo de la incertidumbre a partir de la
-distribución de las salidas.</p>
-<p><strong>Inferencia Bayesiana</strong></p>
-<p>Utilizan el teorema de Bayes para actualizar la información a priori
-sobre los parámetros del modelo en función de los datos observados. A
-partir de las distribuciones a posteriori de los parámetros, se pueden
-calcular intervalos de credibilidad que reflejen la incertidumbre en las
-estimaciones.</p>
-<p><strong>Métodos de remuestreo</strong></p>
-<p>Implica el muestreo de los datos disponibles para generar múltiples
-conjuntos de datos simulados. A partir de estos conjuntos de datos, se
-calculan las estimaciones de interés y se utiliza la variabilidad entre
-estas estimaciones para inferir la incertidumbre.</p>
-<p><strong>Formas de remuestreo</strong></p>
-<p><strong>Jackknife</strong></p>
-<ul>
-<li><p>Consiste en generar múltiples conjuntos de datos “dejando fuera”
-un solo punto de datos en cada iteración y recalculando el estimador en
-cada conjunto de datos.</p></li>
-<li><p>Es útil para identificar la sensibilidad del estimador a la
-exclusión de puntos de datos individuales y proporciona una estimación
-robusta de la incertidumbre sin hacer suposiciones sobre la distribución
-de los datos.</p></li>
-</ul>
-<p><strong>Bootstrap</strong></p>
-<p>Muestreo con reemplazo</p>
-<p><strong>Métodos de Sensibilidad Estocástica</strong></p>
-<p>Evalúan la sensibilidad de las salidas del modelo a las variaciones
-en las entradas bajo condiciones de incertidumbre. Pueden proporcionar
-información valiosa sobre qué variables de entrada tienen el mayor
-impacto en la incertidumbre de la salida.</p>
-</div>
-<div id="métodos-no-estocásticos-para-la-estimación-de-incertidumbre"
-class="section level2">
-<h2>Métodos no estocásticos para la estimación de incertidumbre</h2>
-<p><img src="imagen/metnoestocastico.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><strong>Guía para la Expresión de la Incertidumbre de Medición
-(GUM)</strong></p>
-<p>La GUM es un estándar internacional que proporciona un marco
-sistemático para la estimación y expresión de la incertidumbre de la
-medida. Se basa en la identificación de fuentes de incertidumbre y su
-propagación a través del modelo de medición.</p>
-<p><strong>Top-Down</strong></p>
-<p>Este enfoque implica la descomposición del proceso de medición en sus
-componentes individuales, identificando las fuentes de incertidumbre y
-cuantificándolas por separado. Luego, estas incertidumbres individuales
-se combinan utilizando reglas de propagación de errores.</p>
-<p>Basado en el procesamiento de datos registrados a largo plazo,
-derivados de resultados de ensayos de aptitud, muestras de control del
-laboratorio, datos bibliográficos publicados, etc.</p>
-<p><strong>Método Bottom-Up</strong></p>
-<p>Comienza con mediciones individuales y luego combina las
-incertidumbres asociadas con cada medida para obtener una incertidumbre
-total.</p>
-<p>Basado en una sucesión de etapas de cálculo que tienen en cuenta los
-errores provenientes de cada una de las operaciones analíticas
-descompuestas en actividades primarias.</p>
-<hr />
-<p>MCM es una alternativa a la GUM cuando</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>La estimación de la magnitud de salida (mensurando) y su
-incertidumbre asociada provista por la GUM podría no ser
-confiable</p></li>
-<li><p>la pdf para la magnitud de salida del mensurando se aparta de una
-distribución normal</p></li>
-<li><p>para validar los resultados de la GUM</p></li>
-</ol>
-<hr />
-</div>
-<div id="librerías-de-r-para-estimar-la-incertidumbre"
-class="section level2">
-<h2>Librerías de R para estimar la incertidumbre</h2>
-<table>
-<colgroup>
-<col width="32%" />
-<col width="24%" />
-<col width="44%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Librería</th>
-<th align="center">Nombre</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">boot</td>
-<td align="center">Funciones Bootstrap</td>
-<td>Proporciona funciones para el remuestreo para estimar intervalos de
-confianza y otras medidas de incertidumbre para estadísticas y
-parámetros</td>
-</tr>
-<tr class="even">
-<td align="center">uncertainty</td>
-<td align="center">Estimación de incertidumbre y análisis de
-contribución</td>
-<td>Ofrece herramientas para la propagación de incertidumbre en cálculos
-y modelos. Permite realizar análisis de sensibilidad y estimar la
-incertidumbre en los resultados</td>
-</tr>
-<tr class="odd">
-<td align="center">car</td>
-<td align="center">Companion to Applied Regression</td>
-<td>incluye funciones para calcular intervalos de confianza y realizar
-pruebas de hipótesis que pueden ser útiles para estimar la incertidumbre
-en modelos</td>
-</tr>
-<tr class="even">
-<td align="center">propagate</td>
-<td align="center">propagación de incertidumbre</td>
-<td>Ofrece herramientas para realizar análisis de sensibilidad y estimar
-la incertidumbre en los resultados.</td>
-</tr>
-<tr class="odd">
-<td align="center">gamlss</td>
-<td align="center">Generalized Additive Models for Location Scale and
-Shape</td>
-<td>útil para el modelado de distribuciones de probabilidad complejas y
-puede ser utilizada para estimar la incertidumbre en modelos
-estadísticos más avanzados.</td>
-</tr>
-</tbody>
-</table>
-</div>
 <div id="proceso-para-identificar-y-cuantificar-la-incertidumbre"
 class="section level2">
 <h2>Proceso para identificar y cuantificar la incertidumbre</h2>
 <p><img src="imagen/df.png" width="70%" style="display: block; margin: auto;" /></p>
 <div id="especificación-del-mensurando" class="section level3">
 <h3>1. Especificación del mensurando</h3>
+<p>EURACHEM DISPONE ASI</p>
 <p><strong>Expresión del mensurando</strong></p>
 <p>El mensurando puede expresarse matemáticamente de la siguiente
 manera:</p>
@@ -1029,7 +886,7 @@ class="math inline">\(-224.18\frac{V}{A^2}\)</span></td>
 <pre class="r"><code>y=c(70,26,2.6,0.9,0.5)
 x=c(&quot;Error Amp&quot;,&quot;Error Volt&quot;,&quot;repetibili&quot;,&quot;Res volt&quot;, &quot;Res Amp&quot;)
 barplot(y~x)</code></pre>
-<p><img src="coefsensi_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="coefsensi_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><strong>Agrupación de incertidumbres según el tipo</strong></p>
 <p>Dado que hay varias incertidumbres provienen de diferentes fuentes,
 se agrupan aquellas pertenecientes a la tipo B</p>

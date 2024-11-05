@@ -489,32 +489,7 @@ categorías de incertidumbre tipo B pueden incluir:</p>
 <li><strong>Calibración</strong></li>
 </ul>
 <p>Comparación entre el dispositivo de medición que se va a calibrar y
-otro de referencia trazable (BIPM). La incertidumbre viene dada como un
-<strong>múltiplo específico de una desviación típica</strong>, se
-obtiene del cociente entre el valor indicado y el factor
-multiplicador.</p>
-<p><strong>EJEMPLO</strong></p>
-<p>Un certificado de calibración indica que la masa de un patrón de
-acero inoxidable, de valor nominal igual a un kilogramo, es <span
-class="math inline">\(m_S = 1000,000325 g\)</span>, y que “la
-incertidumbre de este valor es de 240 μg, para un nivel de tres
-desviaciones típicas”.</p>
-<ul>
-<li><p>La incertidumbre típica del patrón de masa es simplemente <span
-class="math inline">\(u(m_S)=(240 μg)/3 =80 μg\)</span>.</p></li>
-<li><p>La incertidumbre típica relativa <span
-class="math inline">\(u(mS)/mS\)</span> de <span
-class="math inline">\(80 × 10^{-6}\)</span>.</p></li>
-<li><p>La varianza estimada es <span class="math inline">\(u^2(mS) = (80
-μg)^2 = 6,4×10^{-9} g^2.\)</span></p></li>
-</ul>
-<p><strong>Nota:</strong> Una <strong>desviación estándar
-relativa</strong> también conocida como coeficiente de variación, es una
-medida de dispersión relativa que compara la desviación estándar con la
-media de un conjunto de datos.</p>
-<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p>
-<p><strong>incertidumbre típica relativa</strong></p>
-<p><span class="math display">\[u(xi)/⏐xi⏐\]</span></p>
+otro de referencia trazable (BIPM).</p>
 <ul>
 <li><strong>Precisión del equipo:</strong></li>
 </ul>
@@ -552,17 +527,43 @@ simplificadas en el modelo, etc.</p>
 más allá del rango de datos o condiciones experimentales en los que se
 basa el análisis.</p>
 </div>
-<div id="formas-de-presentar-la-incertidumbre" class="section level3">
-<h3>Formas de presentar la incertidumbre</h3>
-<ol style="list-style-type: decimal">
-<li></li>
+<div id="formas-de-obtener-la-incertidumbre" class="section level3">
+<h3>Formas de obtener la incertidumbre</h3>
+<ul>
+<li>La incertidumbre viene dada como un <strong>múltiplo específico de
+una desviación típica</strong>, se obtiene del cociente entre el valor
+indicado y el factor multiplicador.</li>
+</ul>
+<p><strong>EJEMPLO</strong></p>
+<p>Un certificado de calibración indica que la masa de un patrón de
+acero inoxidable, de valor nominal igual a un kilogramo, es <span
+class="math inline">\(m_S = 1000,000325 g\)</span>, y que “la
+incertidumbre de este valor es de 240 μg, para un nivel de tres
+desviaciones típicas”.</p>
+<ul>
+<li><p>La incertidumbre típica del patrón de masa es simplemente <span
+class="math inline">\(u(m_S)=(240 μg)/3 =80 μg\)</span>.</p></li>
+<li><p>La incertidumbre típica relativa <span
+class="math inline">\(u(mS)/mS\)</span> de <span
+class="math inline">\(80 × 10^{-6}\)</span>.</p></li>
+<li><p>La varianza estimada es <span class="math inline">\(u^2(mS) = (80
+μg)^2 = 6,4×10^{-9} g^2.\)</span></p></li>
+</ul>
+<p><strong>Nota:</strong> Una <strong>desviación estándar
+relativa</strong> también conocida como coeficiente de variación, es una
+medida de dispersión relativa que compara la desviación estándar con la
+media de un conjunto de datos.</p>
+<p><span class="math display">\[\frac{sd}{\bar x}*100\]</span></p>
+<p><strong>incertidumbre típica relativa</strong></p>
+<p><span class="math display">\[u(xi)/⏐xi⏐\]</span></p>
+<ul>
 <li>A partir de un <strong>intervalo de confianza</strong> del 90, 95 ó
 99 por ciento, suponiendo una distribución normal, la incertidumbre
 típica se obtiene mediante simple división del valor de incertidumbre
 dado por el factor correspondiente de la distribución normal. Dicho
 factor, para los tres niveles de confianza citados, es 1,64; 1,96 y
 2,58.</li>
-</ol>
+</ul>
 <p><strong>Ejemplo 1</strong></p>
 <p>Una especificación establece que la lectura de una balanza está entre
 ±0,2 mg con un 95 % de confianza.</p>
@@ -581,14 +582,12 @@ ciento”.</p>
 que es u(RS) = (129 μΩ) / 2,58 = 50 μΩ, que corresponde a una
 incertidumbre típica relativa u(RS)/RS de <span
 class="math inline">\(5,0×10^{-6}\)</span>.</p>
-<ol start="3" style="list-style-type: decimal">
+<ul>
 <li>Dada por los <strong>límites de ±a sin nivel de
 confianza</strong></li>
-</ol>
-<ul>
-<li>Si hay valores extremos, suponemos una distribución rectángular, con
-una desviación estándar de:</li>
 </ul>
+<p>– Si hay valores extremos, suponemos una distribución rectángular,
+con una desviación estándar de:</p>
 <p><span class="math display">\[\frac{a}{\sqrt 3}\]</span></p>
 <p><strong>EJEMPLO</strong></p>
 <p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
@@ -596,11 +595,9 @@ una desviación estándar de:</li>
 <p>La incertidumbre estándar es <span class="math display">\[0,2/\sqrt
 3=0,12 mL\]</span></p>
 <p><img src="imagen/matraz.png" width="10%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Si no se esperan valores extremos,normalmente es apropiado suponer
+<p>– Si no se esperan valores extremos,normalmente es apropiado suponer
 una distribución triangular, con una desviación estándar de <span
-class="math inline">\(a/\sqrt6\)</span>.</li>
-</ul>
+class="math inline">\(a/\sqrt6\)</span>.</p>
 <p><strong>EJEMPLO</strong></p>
 <p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
 ±0,2 mL, pero controles internos rutinarios muestran que los valores
@@ -608,9 +605,11 @@ extremos son infrecuentes. La incertidumbre estándar es <span
 class="math inline">\(0,2/\sqrt 6 = 0,08 mL\)</span></p>
 </div>
 </div>
-<div id="incertidumbre-típica-combinada-u_c" class="section level2">
-<h2>Incertidumbre típica combinada <span
-class="math inline">\(u_c\)</span></h2>
+<div id="propagación-de-incertidumbre" class="section level2">
+<h2>Propagación de incertidumbre</h2>
+<div id="incertidumbre-típica-combinada-u_c" class="section level3">
+<h3>Incertidumbre típica combinada <span
+class="math inline">\(u_c\)</span></h3>
 <p>Después de estimar los componentes de la incertidumbre y de
 expresarlos como incertidumbres estándar, el siguiente paso es calcular
 la incertidumbre estándar combinada <span
@@ -626,8 +625,9 @@ ecuaciones están basadas en un desarrollo en serie de Taylor de primer
 orden de <span class="math inline">\(Y = f(X_1, X_2, ..., X_N)\)</span>,
 expresan lo que en la Guía se denomina <strong>ley de propagación de la
 incertidumbre.</strong></p>
-<div id="para-magnitudes-independientes" class="section level3">
-<h3>Para magnitudes independientes</h3>
+<ul>
+<li>Para magnitudes independientes</li>
+</ul>
 <p>La incertidumbre típica combinada <span
 class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
 varianza combinada <span class="math inline">\(u_c^2(y)\)</span>, dada
@@ -651,11 +651,11 @@ x_i}\]</span></p>
 u^2(x_i)\]</span> de forma equivalente:</p>
 <p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1}^N c_i^2
 u^2(x_i)}\]</span></p>
-</div>
-<div id="para-magnitutes-correlacionadas" class="section level3">
-<h3>Para magnitutes correlacionadas</h3>
+<ul>
+<li><strong>Para magnitutes correlacionadas</strong></li>
+</ul>
 <p>Cuando las variables no son independientes, la relación es más
-compleja GUM expresa la incertidumbre típica como:</p>
+compleja, GUM expresa la incertidumbre típica como:</p>
 <p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
 \frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
 x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
@@ -800,13 +800,6 @@ como desviaciones estándar relativas.</p>
 \right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38}
 \right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}\]</span></p>
 <p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span></p>
-</div>
-</div>
-<div id="propagación-de-incertidumbre" class="section level2">
-<h2>Propagación de incertidumbre</h2>
-<p>Permite estimar la incertidumbre en un resultado a partir de las
-incertidumbres en las mediciones utilizadas para calcular ese resultado,
-es decir es la estimación de la incertidumbre estándar combinada.</p>
 <p>A manera de resumen evidenciamos la siguiente tabla donde se
 relaciona la función con la estimación de incertidumbre.</p>
 <table>
@@ -903,6 +896,7 @@ V}=1\]</span></p>
 (8,7 μV)^2 = 219* 10^{-12} V\]</span></p>
 <p>y la incertidumbre típica combinada es <span
 class="math display">\[u_c(V) = 15 μV\]</span></p>
+</div>
 </div>
 <div id="incertidumbre-dominante" class="section level2">
 <h2>Incertidumbre dominante</h2>

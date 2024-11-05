@@ -1,116 +1,11 @@
 ---
-title: "Determinación de la incertidumbre típica combinada"
+title: "Métodologia para estimar la incertidumbre"
 output:
   html_document:
     toc: true
     toc_depth: 5
     
 ---
-
-
-
-## Estimación de la incertidumbre
-
-Existen 2 formas principales de estimar la incertidumbre, metodos no estocásticos como la GUM y metodos estocásticos como la simulación monte carlo (MCM), que hacen alusión a distribuciones de probabilidad. Generalmente se mide la incertidumbre con el metodo GUM y se cerciora el resultado con el metodo estocástico MCM.
-
-## Métodos estocásticos para estimar la incertidumbre
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/mestocastico.png")
-```
-
-**Simulación Determinística**
-
-Simula múltiples resultados posibles dados los mismos valores de entrada. Puede ser útil para explorar la variabilidad en las salidas del modelo de medición.
-
-
-**Monte Carlo**
-
-Implica la generación de múltiples muestras aleatorias de las variables de entrada, la propagación de estas muestras a través del modelo de medición y el cálculo de la incertidumbre a partir de la distribución de las salidas.
-
-
-**Inferencia Bayesiana**
-
-Utilizan el teorema de Bayes para actualizar la información a priori sobre los parámetros del modelo en función de los datos observados. A partir de las distribuciones a posteriori de los parámetros, se pueden calcular intervalos de credibilidad que reflejen la incertidumbre en las estimaciones.
-
-
-**Métodos de remuestreo** 
-
-Implica el muestreo de los datos disponibles para generar múltiples conjuntos de datos simulados. A partir de estos conjuntos de datos, se calculan las estimaciones de interés y se utiliza la variabilidad entre estas estimaciones para inferir la incertidumbre.
-
-
-**Formas de remuestreo**
-
-
-**Jackknife**
-
-- Consiste en generar múltiples conjuntos de datos "dejando fuera" un solo punto de datos en cada iteración y recalculando el estimador en cada conjunto de datos.
-
-- Es útil para identificar la sensibilidad del estimador a la exclusión de puntos de datos individuales y proporciona una estimación robusta de la incertidumbre sin hacer suposiciones sobre la distribución de los datos.
-
-
-**Bootstrap**
-
-Muestreo con reemplazo
-
-
-**Métodos de Sensibilidad Estocástica**
-
-Evalúan la sensibilidad de las salidas del modelo a las variaciones en las entradas bajo condiciones de incertidumbre. Pueden proporcionar información valiosa sobre qué variables de entrada tienen el mayor impacto en la incertidumbre de la salida.
-
-
-## Métodos no estocásticos para la estimación de incertidumbre
-
-```{r out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/metnoestocastico.png")
-```
-
-**Guía para la Expresión de la Incertidumbre de Medición (GUM)**
-
-La GUM es un estándar internacional que proporciona un marco sistemático para la estimación y expresión de la incertidumbre de la medida. Se basa en la identificación de fuentes de incertidumbre y su propagación a través del modelo de medición.
-
-
-**Top-Down**
-
-Este enfoque implica la descomposición del proceso de medición en sus componentes individuales, identificando las fuentes de incertidumbre y cuantificándolas por separado. Luego, estas incertidumbres individuales se combinan utilizando reglas de propagación de errores.
-
-Basado en el procesamiento de datos registrados a largo plazo, derivados de resultados de ensayos de aptitud, muestras de control del laboratorio, datos bibliográficos publicados, etc.
-
-**Método Bottom-Up**
-
-Comienza con mediciones individuales y luego combina las incertidumbres asociadas con cada medida para obtener una incertidumbre total.
-
-Basado en una sucesión de etapas de cálculo que tienen en cuenta los errores provenientes de cada una de las operaciones analíticas descompuestas en actividades primarias.
-
-__________________________________________________________________________________
-
-
-
-MCM es una alternativa a la GUM cuando
-
-a. La estimación de la magnitud de salida (mensurando) y su incertidumbre asociada provista por la GUM podría no ser confiable
-
-b. la pdf para la magnitud de salida del mensurando se aparta de una distribución normal
-
-c. para validar los resultados de la GUM
-
-________________________________________________________________________________________
-
-
-## Librerías de R para estimar la incertidumbre
-
-|Librería|Nombre|Descripción|
-|:------:|:----:|-----------|
-|boot|Funciones Bootstrap|Proporciona funciones para el remuestreo para estimar intervalos de confianza y otras medidas de incertidumbre para estadísticas y parámetros|
-|uncertainty|Estimación de incertidumbre y análisis de contribución|Ofrece herramientas para la propagación de incertidumbre en cálculos y modelos. Permite realizar análisis de sensibilidad y estimar la incertidumbre en los resultados|
-|car|Companion to Applied Regression|incluye funciones para calcular intervalos de confianza y realizar pruebas de hipótesis que pueden ser útiles para estimar la incertidumbre en modelos|
-|propagate|propagación de incertidumbre| Ofrece herramientas para realizar análisis de sensibilidad y estimar la incertidumbre en los resultados.|
-|gamlss|Generalized Additive Models for Location Scale and Shape|útil para el modelado de distribuciones de probabilidad complejas y puede ser utilizada para estimar la incertidumbre en modelos estadísticos más avanzados.|
-
-
-
-
-
 
 
 
@@ -122,6 +17,8 @@ knitr::include_graphics("imagen/df.png")
 ```
 
 ### 1. Especificación del mensurando
+
+EURACHEM DISPONE ASI
 
 **Expresión del mensurando**
 
