@@ -8,44 +8,40 @@ output:
 ---
 
 
+## Metodología propuesta por EURACHEM.
 
+Eurachem propone la siguiente metodología para estimar la incertidumbre.
 
-## Proceso para identificar y cuantificar la incertidumbre
 
 ```{r, echo=F, out.width="70%", fig.align='center'}
 knitr::include_graphics("imagen/df.png")
 ```
 
-### 1. Especificación del mensurando
+**1. Especificación del mensurando**
 
-EURACHEM DISPONE ASI
 
-**Expresión del mensurando**
-
-El mensurando puede expresarse matemáticamente de la siguiente manera:
+El mensurando puede expresarse matemáticamente con una función:
 
 $$X=f(x_1,x_2,..,x_n)$$
 
 
 Donde:
 
-X es el mensurando, es decir, el valor que se está midiendo o estimando.
+- X es el mensurando, es decir, el valor que se está midiendo o estimando.
 
-$x_1,x_2,...,x_n$  son las variables de entrada o las magnitudes medidas que contribuyen al valor de X.
+- $x_1,x_2,...,x_n$  son las variables de entrada o las magnitudes medidas que contribuyen al valor de X.
 
 
-f es una función matemática que describe la relación entre las variables de entrada y el mensurando. Esta función puede ser lineal o no lineal, dependiendo de la naturaleza de la medición.
+- f es una función matemática que describe la relación entre las variables de entrada y el mensurando. Esta función puede ser lineal o no lineal, dependiendo de la naturaleza de la medición.
 
-La mayoría de los experimentos de medición tienen características que los aproximan fácilmente a una condición de normalidad, para que la distribución de probabilidad de un resultado de medición tienda al modelo normal se requiere:
+- La mayoría de los experimentos de medición tienen características que los aproximan fácilmente a una condición de normalidad, para que la distribución de probabilidad de un resultado de medición tienda al modelo normal se requiere:
 
-a) Que la función que define al mensurando Y sea función lineal de otras magnitudes.
-
+a) Que la función que define al mensurando, sea función lineal de otras magnitudes.
 
 b) Que la distribución de probabilidad de las magnitudes que definen al mensurando Y sea del tipo normal o una aproximación a la distribución normal.
 
-c) También se puede aceptar que la distribución de probabilidad de algunas magnitudes de definición sea rectangular sólo si éstas últimas son en número menor que las del tipo normal.
+c) También se puede aceptar que la distribución de probabilidad de algunas magnitudes de definición sea rectangular, sólo si éstas últimas son un número menor que las del tipo normal.
  
-
 
 ```{r, echo=F, out.width="80%", fig.align='center'}
 knitr::include_graphics("imagen/combi.png")
@@ -57,230 +53,12 @@ Tomado de Llamosa et al (2011).
 
 
 
-### 2. Identificación de fuentes de incertidumbre
+**2. Identificación de fuentes de incertidumbre**
 
-- Las fuentes potenciales de incertidumbre se investigan y, siempre que sea posible, el método se ajusta para reducir la incertidumbre a un nivel aceptable. 
 
-- El parámetro que mide la incertidumbre  puede ser,  una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con un nivel de confianza determinado.
 
-- La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
 
-- El conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
-
-
-- Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar.
-
-- Si hay correlación entre las componentes, se tiene en cuenta mediante la covarianza. 
-
-Listar todas las posibles fuentes de incertidumbre, incluye:
-
-- De los parámetros, 
-
-- De las suposiciones químicas. 
-
-- Por las condiciones ambientales 
-
-- Por la repitibilidad de las medidas
-
-- Por la exactitud y resolución del equipo 
-
-- **Muestreo:** Variaciones aleatorias entre muestras.
-
-- Condiciones de almacenamiento
-
-- Efectos instrumentales
-
-- Pureza de reactivos
-
-- Estequiometría asumida
-
-- Condiciones de medida
-
-- Efectos de la muestra, computacionales
-
-- De redondeo 
-
-- Efectos del operador y aleatorios
-
-- considerar los parámetros de **la expresión del mensurando**, ya que pueden tener una incertidumbre asociada.
-
-- El **diagrama de causa y efecto** es una forma muy práctica de listar las fuentes de incertidumbres, mostrando cómo se relacionan entre ellas e indicando su influencia sobre la incertidumbre del resultado. Ayuda a identificar efectos duplicados 
-
-___________________________________________________________________________________________________________________________________
-
-**Procedimientos para formar una lista estructurada**
-
-**Principios del enfoque**
-
-La estrategia tiene dos fases:
-
-- Con un diagrama de causa-efecto se identifican efectos sobre un resultado.
-
-- Simplifique y resuelva duplicaciones. La lista inicial se depura para simplificar su presentación final y asegurar que los efectos no se han duplicado innecesariamente.
-
-
-**Análisis causa-efecto**
-
-El procedimiento empleado es el siguiente:
-
-**1.** Escribir la ecuación completa para el resultado. 
-
-Los parámetros de la ecuación forman las ramas principales del diagrama.
-
-
-**2.** Considerar cada etapa del método y añadir los factores necesarios al diagrama.
-
-**3.** Para cada rama, añadir factores que contribuyen, hasta que sus efectos sobre la incertidumbre sean insignificantes.
-
-**4.** Resolver las duplicaciones y repetir el proceso para clarificar las contribuciones 
-
-**5.** Agrupar las contribuciones para cada grupo. Es conveniente agrupar en esta fase los términos relacionados con la precisión en una rama independiente. Es común encontrar el mismo equipo usado como instrumento de pesaje, lo que puede llevar a considerar varias veces su incertidumbre de calibración. considerarla una sola vez.
-
-
-
-
-
-
-**Ejemplo 1: Determinación de la densidad del etanol**
-
-
-
-
-Considerar el caso de la determinación directa de la densidad de etanol d(EtOH) mediante la pesa de un volumen conocido V en un recipiente volumétrico adecuado de tara mtara y peso bruto incluido etanol mbruto. La densidad se calcula a
-partir de
-
-$$d(EtOH)=\frac{(mbruto - mtara)}{V}$$
-
-
-```{r, echo=F, out.width="70%", fig.align='center'}
-knitr::include_graphics("imagen/masa.png")
-```
-
-
-
-Para mayor claridad, solo se tienen en cuenta tres efectos: 
-
-- la calibración del equipo, 
-
-* la temperatura
-
-* la precisión de las medidas. 
-
-
-El diagrama causa-efecto asociado es: 
-
-```{r, echo=F, out.width="70%", fig.align='center'}
-knitr::include_graphics("imagen/diag.png")
-```
-
-
-
-
-- Las ramas principales del resultado son los parámetros de la ecuación.
-
-- Cada rama tiene efectos contributivos adicionales, ya sean variables o constantes; las incertidumbres de estos efectos contribuyen claramente sobre la incertidumbre del resultado en este caso hay dos efectos ‘temperatura’, tres efectos ‘precisión’ y tres efectos ‘calibración’.
-
-
-
-- La  figura D2 representa los efectos de precisión y temperatura agrupados 
-
-- La temperatura puede ser tratada como un único efecto sobre la densidad, mientras que las
-variaciones individuales en cada determinación contribuyen a la variación observada en la
-replicación de todo el método.
-
-- El sesgo en la calibración de las dos pesadas se anula, y puede eliminarse (Figura D3)
-
-- Las ramas ‘calibración’ restantes deberían distinguirse como dos contribuciones (diferentes) debido a posible no
-linealidad en la respuesta de la balanza, junto con la incertidumbre de calibración asociada con la determinación volumétrica.
-
-
-
-```{r, echo=F, out.width="70%", fig.align='center'}
-knitr::include_graphics("imagen/diag1.png")
-```
-
-
-
-
-
-**Ejemplo: Estudio de caso Determinación de la incertidumbre de método de análisis de aflatoxinas por HPLC en pasa uva (Martinez et al, 2018)**
-
-
-Las aflatoxinas son un tipo de toxinas producidas por ciertos hongos en cultivos agrícolas como el maíz, el maní o cacahuates, la semilla de algodón y los frutos secos (de cáscara dura como las nueces) (NIH,2024), esta sustancias es considerada como un carcinógeno natural más potente conocido hasta el momento.
-
-La Cromatografía Líquida de Alta Eficiencia (HPLC, por sus siglas en inglés) es una técnica analítica que permite separar mezclas complejas de sustancias de procedencia diversa, con el propósito de identificarlas, cuantificarlas y purificarlas (UV,2024).
-
-Determinar la concentración final de un analito en una matriz implica calcular una función, la cual depende de las variables de cálculo (por ejemplo, volumen de extracción, respuesta del equipo, etc.). Para el cálculo de la concentración para cualquier aflatoxina, se utiliza la siguiente ecuación:
-
-$$Concentración \frac{u_g}{kg}=c_x=C_{HPLC}\frac{V_1*V_2}{v_3*M}*\frac{1}{R}$$
-Un análisis de aflatoxina implica determinar el valor de $C_{HPLC}$, que es la respuesta del cromatógrafo.Todos los demás términos son constantes porque son mediciones establecidas con valor único.
-
-Para el análisis de la incertidumbre se construyó un diagrama de causa y efecto, para determinar las fuentes de error y su incidencia en la incertidumbre.
-
-```{r, echo=F, out.width="70%", fig.align='center'}
-knitr::include_graphics("imagen/ikishawa.png")
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Bibliografía
-
-- EURACHEM. (2011). Cuantificación de la Incertidumbre en medidas analíticas.
-
-- Martínez, N. D., Rodríguez, A. M., Gutiérrez, A. R., di Carlo Vitolino, M. D., & Durán, A. D. los Á. (2018). Determinación de la incertidumbre del método de análisis de aflatoxinas por HPLC en pasa de uva. Tecnura, 22(58), 25–36. https://doi.org/10.14483/22487638.12896
-
-
-- NIH. (2024). Aflatoxinas. https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas
-
-- Universidad Veracruzana.(UV) (2024). Cromatografía Líquida de Alta Resolución (HPLC). https://www.uv.mx/sara/equipamiento/hplc/#:~:text=La%20Cromatograf%C3%ADa%20L%C3%ADquida%20de%20Alta,de%20identificarlas%2C%20cuantificarlas%20y%20purificarlas.
-
-
-
-
-## GUM JCGM 100:2008 Guía para la expresión de la incertidumbre de medición
-
-```{r, echo=F, out.width="50%", fig.align='center'}
-knitr::include_graphics("imagen/GUM.png")
-```
-
-
-Reglas generales para evaluar y expresar la incertidumbre de medición Aplicable en diversos campos de mediciones, incluyendo las necesarias para:
-
-• Mantener el control y el aseguramiento de la calidad en producción
-
-• Cumplir con leyes y reglamentos
-
-• Apoyar I+D aplicados en ciencia e ingeniería
-
-• Calibrar patrones, equipos y realizar ensayos para demostrar trazabilidad
-
-• Desarrollar, mantener y comparar patrones físicos y materiales de referencia
-
-La GUM cuenta con dos complementos para su aplicación,
-
-1. Evaluación de datos de medición —Suplemento 1 de la “Guía para la expresión de la incertidumbre de medida”—
-Propagación de distribuciones aplicando el método de Monte Carlo.
-
-2. Evaluación de medición datos – Suplemento 2 del “Guía para la expresión deincertidumbre en la medición” – Ampliación a cualquier número de cantidades de salida
-
-
-
-
-
-### PASOS PARA LA  ESTIMACIÓN DE INCERTIDUMBRE ISO-GUM
+## Metodología ISO-GUM
 
 
 ```{r, echo=F, out.width="80%", fig.align='center'}
@@ -293,7 +71,7 @@ knitr::include_graphics("imagen/gumpasos.png")
 knitr::include_graphics("imagen/tc.png")
 ```
 
-**Ejemplo**
+**Ejemplo 1**
 
 
 Se ha efectuado la determinación del valor de una resistencia R, empleando el método del voltímetro y el amperímetro (en conexión corta),
@@ -590,7 +368,7 @@ $$2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partia
 La ecuación queda transformada en 
 
 $$u_c^2(y)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j) r(x_i,x_j)$$
-**EJEMPLO**
+**EJEMPLO 2**
 
 Retomando el ejercicio anterior.
 
@@ -680,14 +458,18 @@ Hast ahora se han considerado modelos  que consideran dos variables de entrada y
 
 ## Bibliografía
 
+- EURACHEM. (2011). Cuantificación de la Incertidumbre en medidas analíticas.
+
+- EA-4/02. (2022). Evaluation of the uncertainty of measurement. http://www.european-accreditation.org
+
 - GUM. (2008). Evaluación de datos de medición Guía para la Expresión de la Incertidumbre de Medida.
 
 - Konopka, K. (2007). Instrumentation and Measurement Technology Conference-IMTC 2007 Estimating Uncertainty of Correlated Quantities-Comparison of Two Methods.
 
 - Llamosa, L. E., Rivera, J. H., & Torres, J. I. (2011). Using The Central Limit Theorem In The Calculation Of Measurement Uncertainty. Revista Colombiana de Física, 43(3). https://doi.org/10.04.10.
 
-- EA-4/02. (2022). Evaluation of the uncertainty of measurement. http://www.european-accreditation.org
+- Martínez, N. D., Rodríguez, A. M., Gutiérrez, A. R., di Carlo Vitolino, M. D., & Durán, A. D. los Á. (2018). Determinación de la incertidumbre del método de análisis de aflatoxinas por HPLC en pasa de uva. Tecnura, 22(58), 25–36. https://doi.org/10.14483/22487638.12896
 
+- NIH. (2024). Aflatoxinas. https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/sustancias/aflatoxinas/aflatoxinas
 
-
-
+- Universidad Veracruzana.(UV) (2024). Cromatografía Líquida de Alta Resolución (HPLC). https://www.uv.mx/sara/equipamiento/hplc/#:~:text=La%20Cromatograf%C3%ADa%20L%C3%ADquida%20de%20Alta,de%20identificarlas%2C%20cuantificarlas%20y%20purificarlas.

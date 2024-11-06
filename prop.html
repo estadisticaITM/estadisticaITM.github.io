@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Propagación de Incertidumbre</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
+  </a>
+</li>
+<li>
+  <a href="medi.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Metrología
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Propagación de Incertidumbre</h1>
+
+</div>
+
+
+<div id="incertidumbre-típica-combinada-u_c" class="section level2">
+<h2>Incertidumbre típica combinada <span
+class="math inline">\(u_c\)</span></h2>
+<p>Después de estimar los componentes de la incertidumbre y de
+expresarlos como incertidumbres estándar, el siguiente paso es calcular
+la incertidumbre estándar combinada <span
+class="math inline">\(u_c(y)\)</span> que caracteriza la dispersión de
+los valores que podrían ser atribuidos al mensurando Y.</p>
+<p>Resultado de la combinación de las contribuciones de todas las
+fuentes de incertidumbre es igual a la raíz cuadrada positiva de las
+varianzas de otras magnitudes, ponderadas en función de la variación del
+resultado de medida con la variación de dichas magnitudes (GUM).</p>
+<p>Se distinguen dos casos para hallar la incertidumbre, en donde las
+variables pueden ser dependientes o independientes, en ambos casos las
+ecuaciones están basadas en un desarrollo en serie de Taylor de primer
+orden de <span class="math inline">\(Y = f(X_1, X_2, ..., X_N)\)</span>,
+expresan lo que en la Guía se denomina <strong>ley de propagación de la
+incertidumbre.</strong></p>
+<ul>
+<li><strong>Para magnitudes independientes</strong></li>
+</ul>
+<p>La incertidumbre típica combinada <span
+class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
+varianza combinada <span class="math inline">\(u_c^2(y)\)</span>, dada
+por:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \left[
+\frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)\]</span></p>
+<p>Con las derivadas parciales <span
+class="math inline">\(\frac{\partial f }{\partial x_i}\)</span>
+calculadas para <span class="math inline">\(Xi\)</span>, se obtienen
+unas constantes llamadas <strong>coeficientes de sensibilidad</strong>,
+describen cómo varía la estimación de salida y, en función de las
+variaciones en los valores de las estimaciones de entrada <span
+class="math inline">\(x_1, x_2, ..., x_N.\)</span></p>
+<p>Los coeficientes de sensibilidad pueden ser evaluados de manera
+experimental; es útil donde no existe una descripción matemática fiable
+de la relación.</p>
+<p><span class="math display">\[c_i=\frac{\partial f }{\partial
+x_i}\]</span></p>
+<p>reemplazando en la ecuación anterior se obtiene</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N c_i^2
+u^2(x_i)\]</span> de forma equivalente:</p>
+<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1}^N c_i^2
+u^2(x_i)}\]</span></p>
+<ul>
+<li><strong>Para magnitutes correlacionadas</strong></li>
+</ul>
+<p>Cuando las variables no son independientes, la relación es más
+compleja, GUM expresa la incertidumbre típica como:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
+\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
+x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
+\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
+}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
+<p>donde <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span> son las estimaciones de <span
+class="math inline">\(Xi\)</span> y <span
+class="math inline">\(Xj\)</span>, y <span
+class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span> es la covarianza
+estimada asociada a <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span>.</p>
+<p>El grado de correlación entre xi y xj viene dado por el coeficiente
+de correlación estimado como</p>
+<p><span
+class="math display">\[r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}\]</span>
+donde <span class="math inline">\(r(xi,xj) = r(xj,xi) y −1 ≤ r(xi,xj) ≤
++1.\)</span></p>
+<p>Si las estimaciones <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span> son independientes, <span
+class="math inline">\(r(x_i,x_j) = 0\)</span>, ees una variación en una
+de las dos no implica una variación en la otra.</p>
+<p>El segundo término de la covarianza, puede escribirse en función de
+los coeficientes de correlación, más fácilmente interpretables que las
+covarianzas, como:</p>
+<p><span class="math display">\[2\sum_{i=1}^{N-1}\sum_{j=i+1}^N
+\frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i)
+u(x_j) r(x_i,x_j)\]</span> La ecuación queda transformada en</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
+\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
+x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
+\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
+}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j)
+r(x_i,x_j))\]</span> En esta ecuación haciendo</p>
+<p><span class="math display">\[c_i=\frac{\partial f}{\partial x_i}\quad
+u_i(y)=|c_i|u(x_i)\]</span> y asumiendo que las correlaciones son 0, el
+2 termino no existe Se llega a:</p>
+<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1,n}c_i^2
+u^2(x_i)}\]</span></p>
+<p>donde</p>
+<ul>
+<li>f es la función del mesurando dada por:</li>
+</ul>
+<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
+<ul>
+<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
+incertidumbre típica, (Tipo A o Tipo B).</p></li>
+<li><p><span class="math inline">\(c_i\)</span> y <span
+class="math inline">\(c_k\)</span>, son los coeficientes de
+sensibilidad</p></li>
+<li><p><span class="math inline">\(u(x_i,x_j)\)</span> es la covarianza
+entre <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_k\)</span></p>
+<p>La covarianza se relaciona con el coeficiente de correlación <span
+class="math inline">\(r_{ik}\)</span> de este modo:</p>
+<p><span class="math display">\[u(x_i,x_k) =
+u(x_i)*u(x_k)*r_{ik}\]</span></p>
+<p>donde <span class="math inline">\(-1 \leq rik \leq
+1\)</span></p></li>
+</ul>
+<p><strong>Otras formas</strong></p>
+<p>En algunos casos, las expresiones para combinar incertidumbres se
+reducen a formas más sencillas. Aquí se dan dos reglas simples para
+combinar incertidumbres estándar.</p>
+<p><strong>Regla 1</strong></p>
+<p>Para modelos que supongan solo una suma o diferencia de cantidades,
+por ejemplo <span class="math inline">\(y=(p+q+r+...)\)</span>, la
+incertidumbre estándar combinada uc(y) viene dada por: <span
+class="math display">\[uc (y(p,q..))=\sqrt {u(p)^2
++u(q)2^.....}\]</span></p>
+<p><strong>EJEMPLO 6</strong> sea la ecuación</p>
+<p><span class="math display">\[y = (p-q+r)\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">valores</th>
+<th align="center">p</th>
+<th align="center">q</th>
+<th align="center">r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">valor</td>
+<td align="center">5.02</td>
+<td align="center">6.45</td>
+<td align="center">9.04</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(u(c)\)</span></td>
+<td align="center">0.13</td>
+<td align="center">0.05</td>
+<td align="center">0.22</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[y = (5.02-6.45+9.04)=7.61\]</span> <span
+class="math display">\[u(y)=\sqrt{0.13^2+0.05^2+0.22^2}\]</span></p>
+<hr />
+<p><strong>Regla 2</strong></p>
+<p>Para modelos que impliquen un producto o un cociente, por ejemplo
+<span class="math inline">\(y=(p\ast q\ast r ...)\)</span> o <span
+class="math inline">\(y= p/(q\ast r...),\)</span>, la incertidumbre
+estándar combinada <span class="math inline">\(u_c(y)\)</span> es dada
+por</p>
+<p><span class="math display">\[u_c(y)=y*\sqrt{\left[ \frac{u(p) }{p}
+\right]^2+ \left[ \frac{u(q) }{q} \right]^2+.... }\]</span></p>
+<p>donde (u(p)/p) son las incertidumbres en los parámetros, expresadas
+como desviaciones estándar relativas.</p>
+<p><strong>EJEMPLO 7</strong> <span class="math display">\[y =
+(op/qr)\]</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">valores</th>
+<th align="center">o</th>
+<th align="center">p</th>
+<th align="center">q</th>
+<th align="center">r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">valor</td>
+<td align="center">2.46</td>
+<td align="center">4.32</td>
+<td align="center">6.38</td>
+<td align="center">2.99</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(u(c)\)</span></td>
+<td align="center">0.02</td>
+<td align="center">0.13</td>
+<td align="center">0.11</td>
+<td align="center">0.07</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[y=(2,46*4,32 )/(6,38 *2,99 ) =
+0,56\]</span></p>
+<p><span class="math display">\[u(y)=0.56\sqrt{\left[ \frac{0.02 }{2.46}
+\right]^2+ \left[ \frac{0.13 }{4.32} \right]^2+\left[ \frac{0.11 }{6.38}
+\right]^2+ \left[ \frac{0.07 }{2.99} \right]^2}\]</span></p>
+<p><span class="math display">\[u(y)=0.56*0.043=0.024\]</span></p>
+<p>A manera de resumen evidenciamos la siguiente tabla donde se
+relaciona la función con la estimación de incertidumbre.</p>
+<table>
+<colgroup>
+<col width="47%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Función</th>
+<th align="center"><span class="math inline">\(\bf \mu_R\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=kA\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=k\mu_A\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=A\pm B\)</span></td>
+<td align="center"><span class="math inline">\(\mu_R=\sqrt
+{\mu_A^2+\mu_B^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=A*B \qquad
+R=\frac{A}{B}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{\mu_R}{R}=\sqrt
+{\left(\frac{\mu_A}{A} \right)^2+\left(\frac{\mu_B}{B}
+\right)^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=ln(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=\frac{\mu_A}{A}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=log(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=0.4343*\frac{\mu_A}{A}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R=e^A\)</span></td>
+<td align="center"><span
+class="math inline">\(\frac{\mu_R}{R}=\mu_A\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R=ln(A)\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_R=\frac{\mu_A}{A}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Ejemplo 8:</strong></p>
+<p>Las especificaciones del fabricante de un voltímetro digital indican
+que “entre uno y dos años después de la calibración del instrumento, su
+exactitud en el rango de 1 V es <span class="math inline">\(14 ×
+10^{-6}\)</span> veces la lectura más <span class="math inline">\(2 ×
+10^{-6}\)</span> veces el rango”.</p>
+<p><img src="imagen/volt.png" width="10%" style="display: block; margin: auto;" /></p>
+<p>Supongamos que el instrumento se utiliza 20 meses después de la
+calibración para medir una diferencia de potencial V en el rango de 1 V,
+y que se obtiene como media aritmética de un número de observaciones
+repetidas e independientes el valor V = 0,928 571 V, con una
+incertidumbre típica tipo A, u(V)=12 μV.</p>
+<p>La evaluación Tipo B de la incertidumbre típica se deduce de las
+especificaciones del fabricante, se supone que la exactitud representa
+los límites simétricos de una corrección aditiva a V , ΔV , de esperanza
+matemática igual a cero y pudiendo situarse con igual probabilidad entre
+dichos límites.</p>
+<p>La semiamplitud a de la distribución rectangular simétrica de los
+valores posibles de Δ V , es entonces</p>
+<p><span class="math display">\[a=(14 × 10^{-6})×(0,928571 V) + (2×
+10^{-6})×(1V)=15 μV\]</span></p>
+<p>y, a partir de la ecuación de la incertidumbre dada por una
+distribución rectángular:</p>
+<p><span class="math display">\[u_c=\frac{a}{\sqrt 3}=\frac{15μV }{\sqrt
+3}=8.7μV\]</span></p>
+<p><span class="math display">\[u^2(ΔV)=75 (μV)^2 \quad  u(ΔV) = 8,7
+μV\]</span></p>
+<p>La estimación del valor del mensurando V, denominada por
+simplificación con el mismo símbolo V, viene dada por</p>
+<p><span class="math display">\[V = V + Δ V = 0,928 571 V\]</span></p>
+<p>Puede obtenerse la incertidumbre típica combinada de esta estimación
+combinando la incertidumbre típica Tipo A de V, 12 μV, con la
+incertidumbre típica Tipo B de ΔV , 8,7 μV. .</p>
+<p>la corrección aditiva ΔV = 0, y u(ΔV) = 8,7 μV. Como::</p>
+<p><span class="math display">\[\frac{\partial V}{\partial
+V}=1\]</span></p>
+<p><span class="math display">\[\frac{\partial V}{\partial
+ΔV}=1\]</span> La varianza combinada asociada a V viene dada por:</p>
+<p><span class="math display">\[uc^2(V) = u^2(V) + u^2(ΔV) = (12 μV)^2 +
+(8,7 μV)^2 = 219* 10^{-12} V\]</span></p>
+<p>y la incertidumbre típica combinada es <span
+class="math display">\[u_c(V) = 15 μV\]</span></p>
+</div>
+<div id="incertidumbre-dominante" class="section level2">
+<h2>Incertidumbre dominante</h2>
+<p>Si una de las contribuciones a la incertidumbre puede identificarse
+como un término dominante, denotado por <span
+class="math inline">\(\mu_1(y)\)</span>, y otra incertidumbre se denota
+por <span class="math inline">\(\mu_R(y)\)</span>, la incertidumbre
+estándar que se asociará con el resultado de la medición es:</p>
+<p><span
+class="math display">\[\mu(y)=\sqrt{\mu_1^2(y)+\mu_R^2(y)}\]</span></p>
+<p>Donde el termino <span class="math inline">\(\mu_R(y)\)</span> es la
+combinación de las contribuciones no dominantes, estimada como:</p>
+<p><span class="math display">\[\mu_R(y)=\sqrt{\sum_{i=2}^N
+\mu_i^2(y)}\]</span></p>
+<p><strong>Criterio de la distribución dominante</strong></p>
+<p>En la relación</p>
+<p><span class="math display">\[
+\frac{\mu_R(y)}{\mu_1(y)}=R\]</span></p>
+<p><strong>Si <span class="math inline">\(R\leq 0.3\)</span></strong> Se
+dice que la contribución de la incertidumbre de mayor valor es la
+incertidumbre dominante y la ecuación de la incertidumbre típica
+combinada puede aproximarse como:</p>
+<p><span class="math display">\[\mu_c(y)=\mu_1(y)*\left[1+\frac{1}{2}
+\left( \frac{\mu_{R}(y)}{\mu_1 (y)} \right)^2  \right]\]</span></p>
+<p>Con un error relativo de aproximación menor que <span
+class="math inline">\(1*10^{-3}\)</span>.</p>
+</div>
+<div id="incertidumbre-expandida-u" class="section level2">
+<h2>Incertidumbre expandida <span class="math inline">\(U\)</span></h2>
+<p>Magnitud que define un intervalo en torno al resultado de una
+medición, y en el que se espera encontrar una fracción importante de la
+distribución de valores que podrían ser atribuidos razonablemente al
+mensurando (GUM).</p>
+<p><img src="imagen/IIN.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Para obtener la incertidumbre expandida se multiplica la
+incertidumbre típica combinada por el <strong>factor de cobertura
+(K)</strong> escogido para obtener una incertidumbre expandida.</p>
+<p>El intervalo se denota como</p>
+<p><span class="math display">\[(y-u_c(y)K_p,\quad
+y+u_c(y)K_p)\]</span></p>
+<p>El producto <span class="math inline">\(K_pu_c(y)=U_p\)</span> se
+denomina incertidumbre expandida, donde <span
+class="math inline">\(k_p\)</span> es el factor de cobertura para un
+nivel de confianza p.</p>
+<p>matemáticamente es</p>
+<p><span class="math display">\[P(y-U_p\leq Y\leq y+U_p)=p\]</span></p>
+<p>El area de la función de densidad es</p>
+<p><span class="math display">\[\int_{y-U_p}^{y+U_p} f(y)dy=p
+\]</span></p>
+<p>La función f(y) puede ser una normal, una t student, una triangular o
+una rectangular.</p>
+<p><strong>Informe de la incertidumbre expandida</strong></p>
+<p>El resultado x debe ser establecido junto con la incertidumbre
+expandida U calculada usando un factor de cobertura k=2 (o como se
+describe en la sección Se recomienda hacerlo del modo siguiente:</p>
+<p><span class="math display">\[(Resultado): (x \pm U)
+(unidades)\]</span> [donde] la incertidumbre informada está calculada
+usando un factor de cobertura de 2, [lo que da un nivel de confianza de
+aproximadamente 95 %]”</p>
+<p><span class="math display">\[Nitrógeno \quad total: (3,52 \pm  0,14)
+g/100 g \]</span></p>
+<p>*La incertidumbre informada es una incertidumbre expandida calculada
+usando un factor de cobertura de 2, lo que da un nivel de confianza de
+aproximadamente el 95%.</p>
+</div>
+<div id="factor-de-cobertura-k-según-el-tipo-de-distribución"
+class="section level2">
+<h2>Factor de cobertura K según el tipo de distribución</h2>
+<p>Al escoger un valor para el factor de cobertura k, se deben
+considerar varios aspectos.</p>
+<p>Entre ellos se incluyen:</p>
+<ul>
+<li><p>El nivel de confianza requerido.</p></li>
+<li><p>Las distribuciones subyacentes.</p></li>
+<li><p>Valores usados para estimar efectos aleatorios.</p></li>
+<li><p>Incertidumbre dominante</p></li>
+</ul>
+<p><strong>Bajo la distribución normal</strong></p>
+<p>En la mayoría de los casos se recomienda que k sea 2, este valor se
+relaciona con un nivel de confianza del 95.45%. Según el nivel de
+confianza el factor de cobertura cambia</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Nivel de confianza en porcentaje</th>
+<th align="center">Factor de cobertura</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">68.27%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">90%</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="center">95%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">95.45%</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="center">99%</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">99.73%</td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+<p>Este intervalo tiene su fundamento en la <strong>regla empírica de la
+estadística</strong> y se construye con la distribución normal.</p>
+<p>Si la distribución de la población de una variable es
+(aproximadamente) normal, entonces</p>
+<p>1.68% de los valores están dentro de 1 DE (desviación estándar) de la
+media.</p>
+<p><span class="math display">\[\LARGE P(\mu-\sigma\leq x \leq
+\mu+\sigma)=68.27\%\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>95% de los valores están dentro de 2 DE de la media. <span
+class="math display">\[\LARGE P(\mu-2\sigma\leq x \leq
+\mu+2\sigma)=95.45\%\]</span></p></li>
+<li><p>99.7% de los valores están dentro de 3 DE de la media.</p></li>
+</ol>
+<p><span class="math display">\[\LARGE P(\mu-3\sigma\leq x \leq
+\mu+3\sigma)=99.73\%\]</span></p>
+<p>Graficamente:</p>
+<p><img src="imagen/n2.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><strong>Bajo la distribución rectángular</strong></p>
+<p>Si se cumple el criterio de la distribución dominante, la
+distribución apropiada es la rectángular, donde el factor de cobertura
+(después de unos calculos complejos) se evalúa asi:</p>
+<p><span class="math display">\[k=p\sqrt 3\]</span> Donde p es el nivel
+de confianza deseado</p>
+<p><img src="imagen/distriii.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Distribución t student</strong></p>
+<p>Cuando la incertidumbre estándar combinada está dominada por una sola
+contribución con menos de 6 grados de libertad (pocas observaciones
+(n-1)), se recomienda que k sea fijado igual al valor de la t de Student
+para dos colas, para el número de grados de libertad asociado con esa
+contribución, y para el nivel de confianza requerido (normalmente
+95%).</p>
+<p>La elección de k depende del número efectivo de grados de
+libertad.</p>
+<hr />
+<p><strong>Ejemplo 9</strong></p>
+<p>Una incertidumbre estándar combinada para una operación de pesaje
+está formada por la contribución de la incertidumbre de la calibración
+<span class="math inline">\(u_{cal}=0,01 mg\)</span> y la desviación
+estándar de cinco observaciones repetidas <span
+class="math inline">\(s_{obs}=0,08 mg\)</span>.</p>
+<p>La incertidumbre estándar combinada <span
+class="math inline">\(u_c\)</span> es:</p>
+<p><span class="math display">\[u_c=\sqrt {0,01^2+ 0,08^2} = 0,081
+mg\]</span></p>
+<p>La incertidumbre está dominada por la contribución de la
+repetibilidad <span class="math inline">\(s_{obs}\)</span>, la cual está
+basada en 5 observaciones, dando 5-1=4 grados de libertad. Entonces k
+está basada en la t deStudent. El valor para dos colas de t para cuatro
+grados de libertad y 95% de confianza es 2,8; por lo que k toma el valor
+de 2,8 y la incertidumbre expandida es</p>
+<p><span class="math inline">\(U=2,8*0,081=0,23 mg\)</span>.</p>
+<hr />
+<p><strong>Cuantificación del número de grados de libertad</strong></p>
+<p>Los grados de libertad se pueden considerar una medida de la
+incertidumbre de una magnitud.</p>
+<p>Entre mayor sea 𝜈, la estimación de la incertidumbre será más
+confiable.</p>
+<p><strong>Número efectivo de grados de libertad <span
+class="math inline">\((𝜈_{eff})\)</span> del mensurando</strong></p>
+<p>Considera el número de grados de libertad <span
+class="math inline">\(𝜈_𝑖\)</span> de cada fuente de incertidumbre</p>
+<p>Una cantidad que depende de la medición de varias variables:</p>
+<p><span class="math display">\[q=q(x_1,x_2,...x_n)\]</span> En el caso
+que las variables no estén correlacionadas (covarianza nula):</p>
+<p><span
+class="math display">\[S_q^2=c_1^2s^2_{x_1}+c_2^2s^2_{x_2}+...+c_1^2s^2_{x_1}\]</span></p>
+<p>Donde los <span class="math inline">\(c_i\)</span> son los
+coeficientes de sensitividad y están definidos por las derivadas
+parciales. Cada una de las incertidumbres <span
+class="math inline">\(s_{x_i}\)</span> está asociada con <span
+class="math inline">\(ν_i\)</span> grados de libertad.</p>
+<p><strong>Grados de libertad para una incertidumbre tipo B</strong></p>
+<p>Se puede asignar grados de libertad a una incertidumbre tipo B, aún
+cuando las incertidumbres puedan ser de tipo B, para especificar una
+incertidumbre en un reporte, seguramente se hicieron muchas medidas, es
+decir que originalmente es de tipo A, que se convierte en tipo B al ser
+usada la información por otros. En consecuencia es posible suponer que
+el valor obtenido del reporte tiene una distribución normal aún cuando
+la incertidumbre estándar asociada es del tipo B.</p>
+<p>Los grados de libertad están dados por:</p>
+<p><span
+class="math display">\[v=\frac{s^2}{2u^2(s)}=  \frac{1}{2}  \left(\frac{u(s)}{s}
+\right)^{-2}\]</span></p>
+<p>La pregunta que surge es cuantos grados de libertad deberían
+asociarse a <span class="math inline">\(S_q\)</span> para poder calcular
+un intervalo de confianza. La respuesta esta dada por la fórmula de
+Welch-Satterthwaite, que aunque aproximada, es adecuada en la mayoría de
+los casos.</p>
+<p><span
+class="math display">\[\frac{\mu^4_c(y)}{v_{eff}}=\sum_{i=1}^N\frac{c_i^4*\mu^4(x_i)}{v_i}+2
+\sum_{i=1}^N\sum_{i=1}^N
+\left(\frac{c_i*c_j*\mu(x_i)*\mu(x_j)*r(x_i,x_j)}{v_j}
+\right)^{2}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p>N número de fuentes de incertidumbres identificadas y
+cuantificadas</p></li>
+<li><p><span class="math inline">\(v_i,v_j\)</span>: Grados de libertad
+asociados a la fuente de incertidumbre i o j</p></li>
+<li><p><span class="math inline">\(r(x_i,x_j)\)</span>: coeficiente de
+correlación entre las variables i y j</p></li>
+<li><p>Si las variables son no correlacionadas el segundo término de la
+Ecuación se hace cero.</p></li>
+</ul>
+<p>Escrito de otra manera</p>
+<p><span
+class="math display">\[v_{ef}=\frac{U^4_c(y)}{\sum_{i=1}^{n}\frac{c_i^4u^4(x_i)}{vi}}\]</span></p>
+<div id="informar-la-incertidumbre" class="section level3">
+<h3>Informar la incertidumbre</h3>
+<p><img src="imagen/dire.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Cuando la incertidumbre se exprese como la incertidumbre estándar
+combinada uc (es decir como una desviación estándar simple), se
+recomienda hacerlo de la siguiente forma:</p>
+<p><strong>EJEMPLO 10</strong></p>
+<p>Resultado:</p>
+<ul>
+<li><p>x (unidades) [con una] incertidumbre estándar de uc
+(unidades)</p></li>
+<li><p>Nitrógeno total: 3,52 g/100 g</p></li>
+<li><p>Incertidumbre estándar: 0,07 g/100 g</p></li>
+</ul>
+<p>La incertidumbre estándar corresponde a una desviación estándar</p>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
