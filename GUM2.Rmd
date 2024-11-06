@@ -1,5 +1,5 @@
 ---
-title: "Serie de taylor"
+title: "Metodos alternativos a la GUM"
 output:
   html_document:
     toc: true
@@ -7,11 +7,7 @@ output:
     
 ---
 
-
-
-## Estimación de la incertidumbre
-
-Existen 2 formas principales de estimar la incertidumbre, metodos no estocásticos como la GUM y metodos estocásticos como la simulación monte carlo (MCM), que hacen alusión a distribuciones de probabilidad. Generalmente se mide la incertidumbre con el metodo GUM y se cerciora el resultado con el metodo estocástico MCM.
+Existen 2 formas principales de estimar la incertidumbre, metodos no estocásticos como la GUM y metodos estocásticos como la simulación monte carlo (MCM), que hacen alusión a distribuciones de probabilidad. 
 
 ## Métodos estocásticos para estimar la incertidumbre
 
@@ -82,17 +78,7 @@ Comienza con mediciones individuales y luego combina las incertidumbres asociada
 
 Basado en una sucesión de etapas de cálculo que tienen en cuenta los errores provenientes de cada una de las operaciones analíticas descompuestas en actividades primarias.
 
-__________________________________________________________________________________
 
-
-
-MCM es una alternativa a la GUM cuando
-
-a. La estimación de la magnitud de salida (mensurando) y su incertidumbre asociada provista por la GUM podría no ser confiable
-
-b. la pdf para la magnitud de salida del mensurando se aparta de una distribución normal
-
-c. para validar los resultados de la GUM
 
 ________________________________________________________________________________________
 
@@ -110,17 +96,15 @@ ________________________________________________________________________________
 
 
 
+__________________________________________________________________________________
 
 
 
 
-## Inclusión de terminos de orden superior en la serie de taylor 
+
+## Alternativas a la GUM 
 
 La GUM es reconocida para la evaluación de la incertidumbre de la medición, este método utiliza una aproximación de la serie de Taylor de primer orden para evaluar la estimación de un mensurando y su incertidumbre estándar asociada, mediante la ley de propagación de incertidumbres (Martins, 2011).
-
-Un logro importante de GUM consiste en un enfoque para combinar la incertidumbre de las estadísticas frecuentistas (evaluación Tipo A) y estadísticas bayesianas (evaluación Tipo B), considerando que todas las cantidades se caracterizan por una PDF que describe los posibles valores de estas cantidades. 
-
-
 
 
 En la mayoría de los casos el mensurando Y no se mide directamente sino que se determina a partir de N otras cantidades de entrada $(X_i)$ que están relacionadas a través de una relación funcional conocida de la forma:
@@ -133,12 +117,35 @@ Sin embargo, cuando la función de medición es no lineal, el uso de esta aproxi
 knitr::include_graphics("imagen/gums.png")
 ```
 
+La decisión de incluir términos de orden superior en una serie de Taylor para estimar incertidumbre depende en gran medida de la precisión deseada y de la naturaleza de la función que se está aproximando.
 
-- **Suplemento 1 de la GUM** trata de la "Propagación de distribuciones aplicando el método de Monte Carlo" como una implementación cuando la función de medición es no lineal y los parámetros explicativos no son normales.
+La GUM cuenta con dos complementos para su aplicación,
 
-    La aproximación monte carlo requieren un esfuerzo computacional considerable y también puede acumular errores numéricos si el algoritmo computacional del generador de números aleatorios no se desarrolla cuidadosamente.
+1. Evaluación de datos de medición **—Suplemento 1 de la “Guía para la expresión de la incertidumbre de medida” — Propagación de distribuciones aplicando el método de Monte Carlo**,
 
-- **Términos de orden superior, segundo y tercero de la serie de Taylor**, con algunas restricciones como la normalidad y la independencia entre las variables, estas aproximaciones requieren de varios momentos estadísticos.
+Esta aproximación requiere un esfuerzo computacional considerable y puede acumular errores numéricos si el algoritmo computacional del generador de números aleatorios no se desarrolla cuidadosamente.
+
+
+MCM es una alternativa a la GUM cuando
+
+a. La estimación de la magnitud de salida (mensurando) y su incertidumbre asociada provista por la GUM podría no ser confiable
+
+b. la pdf para la magnitud de salida del mensurando se aparta de una distribución normal
+
+c. para validar los resultados de la GUM
+
+d. La función de medición es no lineal y los parámetros explicativos no son normales.
+
+2. Evaluación de medición datos **– Suplemento 2 del “Guía para la expresión deincertidumbre en la medición” – Ampliación a cualquier número de cantidades de salida.**
+
+
+## Inclusión de términos de orden superior en la serie de Taylor
+
+La inclusión de los términos de tercer orden de la expansión de la serie de Taylor de la función de medición da como resultado un método más completo que la GUM y los métodos de segundo orden.
+
+Por tanto, la evaluación de la incertidumbre de la medición utilizando este método puede considerarse más apropiada y sólida que los últimos métodos.
+
+Estas aproximaciones requieren de varios momentos estadísticos.
 
 **Momentos de la estadística**
 
@@ -169,9 +176,7 @@ Expandiendo la serie se obtiene, la serie de 2 y tercer orden
 knitr::include_graphics("imagen/taylor.png")
 ```
 
-La inclusión de los términos de tercer orden de la expansión de la serie de Taylor de la función de medición da como resultado un método más completo que la GUM y los métodos de segundo orden.
 
-Por tanto, la evaluación de la incertidumbre de la medición utilizando este método puede considerarse más apropiada y sólida que los últimos métodos.
 
 ## Modelos con varias variables dependientes
 

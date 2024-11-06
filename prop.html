@@ -413,9 +413,8 @@ ecuaciones están basadas en un desarrollo en serie de Taylor de primer
 orden de <span class="math inline">\(Y = f(X_1, X_2, ..., X_N)\)</span>,
 expresan lo que en la Guía se denomina <strong>ley de propagación de la
 incertidumbre.</strong></p>
-<ul>
-<li><strong>Para magnitudes independientes</strong></li>
-</ul>
+<div id="para-magnitudes-independientes" class="section level3">
+<h3>Para magnitudes independientes</h3>
 <p>La incertidumbre típica combinada <span
 class="math inline">\(u_c(y)\)</span> es la raíz cuadrada positiva de la
 varianza combinada <span class="math inline">\(u_c^2(y)\)</span>, dada
@@ -439,71 +438,6 @@ x_i}\]</span></p>
 u^2(x_i)\]</span> de forma equivalente:</p>
 <p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1}^N c_i^2
 u^2(x_i)}\]</span></p>
-<ul>
-<li><strong>Para magnitutes correlacionadas</strong></li>
-</ul>
-<p>Cuando las variables no son independientes, la relación es más
-compleja, GUM expresa la incertidumbre típica como:</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
-\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
-x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
-\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
-}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
-<p>donde <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span> son las estimaciones de <span
-class="math inline">\(Xi\)</span> y <span
-class="math inline">\(Xj\)</span>, y <span
-class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span> es la covarianza
-estimada asociada a <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span>.</p>
-<p>El grado de correlación entre xi y xj viene dado por el coeficiente
-de correlación estimado como</p>
-<p><span
-class="math display">\[r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}\]</span>
-donde <span class="math inline">\(r(xi,xj) = r(xj,xi) y −1 ≤ r(xi,xj) ≤
-+1.\)</span></p>
-<p>Si las estimaciones <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span> son independientes, <span
-class="math inline">\(r(x_i,x_j) = 0\)</span>, ees una variación en una
-de las dos no implica una variación en la otra.</p>
-<p>El segundo término de la covarianza, puede escribirse en función de
-los coeficientes de correlación, más fácilmente interpretables que las
-covarianzas, como:</p>
-<p><span class="math display">\[2\sum_{i=1}^{N-1}\sum_{j=i+1}^N
-\frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i)
-u(x_j) r(x_i,x_j)\]</span> La ecuación queda transformada en</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
-\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
-x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
-\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
-}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j)
-r(x_i,x_j))\]</span> En esta ecuación haciendo</p>
-<p><span class="math display">\[c_i=\frac{\partial f}{\partial x_i}\quad
-u_i(y)=|c_i|u(x_i)\]</span> y asumiendo que las correlaciones son 0, el
-2 termino no existe Se llega a:</p>
-<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1,n}c_i^2
-u^2(x_i)}\]</span></p>
-<p>donde</p>
-<ul>
-<li>f es la función del mesurando dada por:</li>
-</ul>
-<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
-<ul>
-<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
-incertidumbre típica, (Tipo A o Tipo B).</p></li>
-<li><p><span class="math inline">\(c_i\)</span> y <span
-class="math inline">\(c_k\)</span>, son los coeficientes de
-sensibilidad</p></li>
-<li><p><span class="math inline">\(u(x_i,x_j)\)</span> es la covarianza
-entre <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_k\)</span></p>
-<p>La covarianza se relaciona con el coeficiente de correlación <span
-class="math inline">\(r_{ik}\)</span> de este modo:</p>
-<p><span class="math display">\[u(x_i,x_k) =
-u(x_i)*u(x_k)*r_{ik}\]</span></p>
-<p>donde <span class="math inline">\(-1 \leq rik \leq
-1\)</span></p></li>
-</ul>
 <p><strong>Otras formas</strong></p>
 <p>En algunos casos, las expresiones para combinar incertidumbres se
 reducen a formas más sencillas. Aquí se dan dos reglas simples para
@@ -514,7 +448,7 @@ por ejemplo <span class="math inline">\(y=(p+q+r+...)\)</span>, la
 incertidumbre estándar combinada uc(y) viene dada por: <span
 class="math display">\[uc (y(p,q..))=\sqrt {u(p)^2
 +u(q)2^.....}\]</span></p>
-<p><strong>EJEMPLO 6</strong> sea la ecuación</p>
+<p><strong>EJEMPLO 1</strong> sea la ecuación</p>
 <p><span class="math display">\[y = (p-q+r)\]</span></p>
 <table>
 <thead>
@@ -553,7 +487,7 @@ por</p>
 \right]^2+ \left[ \frac{u(q) }{q} \right]^2+.... }\]</span></p>
 <p>donde (u(p)/p) son las incertidumbres en los parámetros, expresadas
 como desviaciones estándar relativas.</p>
-<p><strong>EJEMPLO 7</strong> <span class="math display">\[y =
+<p><strong>EJEMPLO 2</strong> <span class="math display">\[y =
 (op/qr)\]</span>.</p>
 <table>
 <thead>
@@ -641,8 +575,127 @@ class="math inline">\(\mu_R=\frac{\mu_A}{A}\)</span></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="para-magnitutes-correlacionadas" class="section level3">
+<h3>Para magnitutes correlacionadas</h3>
+<p>La evaluación de la incertidumbre de la medición cuando existe
+correlación entre fuentes de es una tarea difícil, especialmente cuando
+las cantidades tienen una distribucion de probabilidad diferente a la
+normal (Konopka, K,2007). En muchos casos se asume la normal, lo q puede
+causar errores en la estimación de incertidumbre.</p>
+<p>Algunas situaciones llevan a considerar una correlación significativa
+entre dos magnitudes de entrada, como si se utiliza el mismo instrumento
+de medida, el mismo patrón o la misma referencia con incertidumbre
+típica significativa. Dicha asociación entre variables es posible
+estimarla a través de la matriz de varianzas <span
+class="math inline">\(u^2(xi)\)</span> y covarianzas <span
+class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span>.</p>
+<p><span class="math display">\[\begin{bmatrix}
+u_1^2(xi) &amp; u(x_1,x_2) &amp; \cdots &amp; u(x_1,x_n)\\
+u(x_2,x_1) &amp; u_2^2(x_2) &amp; \cdots &amp; u(x_2,x_n) \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+u(x_n,x_1) &amp; u(x_n,x_2) &amp; \cdots &amp; u_n^2(x_n)
+\end{bmatrix}\]</span></p>
+<p>Si dos estimaciones de entrada no están correlacionadas, su
+covarianza asociada y los elementos correspondientes <span
+class="math inline">\(u_{ij}\)</span> y <span
+class="math inline">\(u_{ji}\)</span> de la matriz varianza-covarianza
+son cero.</p>
+<p><span class="math display">\[\begin{bmatrix}
+u_1^2(xi) &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; u_2^2(x_2) &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; u_n^2(x_n) \end{bmatrix}\]</span></p>
+<ul>
+<li><p>El grado de correlación entre <span
+class="math inline">\(xi\)</span> y <span
+class="math inline">\(x_j\)</span> viene dado por el coeficiente de
+correlación estimado como</p>
+<p><span
+class="math display">\[r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}\]</span>
+donde <span class="math inline">\(r(x_i,x_j)=r(x_j,x_i)\quad y \quad −1
+≤r(x_i,x_j)≤+1.\)</span></p></li>
+<li><p><span class="math inline">\(r(x_i,x_j) = 0\)</span>, significa
+que una variación en una de las dos no implica una variación en la
+otra.</p></li>
+</ul>
+<p>La covarianza asociada a las estimaciones de dos magnitudes de
+entrada <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(y_i\)</span> pueden ignorarse si no están
+correlacionadas, Algunos casos de no correlación sería:</p>
+<ul>
+<li><p>Si se miden de forma repetida pero no simultánea, en ensayos
+independientes y diferentes</p></li>
+<li><p>Si las magnitudes resultantes de evaluaciones diferentes, hechas
+independientemente.</p></li>
+<li><p>Si Una de las magnitudes puede ser tratada como
+constante</p></li>
+<li><p>No se posee información suficiente como para evaluar la
+covarianza asociada a las estimaciones de Xi y Xj.</p></li>
+</ul>
+<p>La relación para estimar la incertidumbre combinada para variables
+correlacionadas, viene dada por la relación:</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
+\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
+x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
+\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
+}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
+<p>Donde:</p>
+<ul>
+<li>f es la función del mensurando dada por:</li>
+</ul>
+<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
+<ul>
+<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
+incertidumbre típica, (Tipo A o Tipo B).</p></li>
+<li><p><span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span> son las estimaciones de <span
+class="math inline">\(X_i\)</span> y <span
+class="math inline">\(X_j\)</span>.</p></li>
+<li><p><span class="math inline">\(c_i\)</span> y <span
+class="math inline">\(c_k\)</span>, son los coeficientes de
+sensibilidad</p></li>
+<li><p><span class="math inline">\(u(x_i,x_j)\)</span> es la covarianza
+entre <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_k\)</span></p></li>
+<li><p>La covarianza se relaciona con el coeficiente de correlación
+<span class="math inline">\(r_{ik}\)</span> de este modo:</p>
+<p><span class="math display">\[u(x_i,x_k) =
+u(x_i)*u(x_k)*r_{ik}\]</span></p>
+<p>donde <span class="math inline">\(-1 \leq rik \leq
+1\)</span></p></li>
+</ul>
+<p>El segundo término de la covarianza, puede escribirse en función de
+los coeficientes de correlación, más fácilmente interpretables que las
+covarianzas, como:</p>
+<p><span class="math display">\[2\sum_{i=1}^{N-1}\sum_{j=i+1}^N
+\frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i)
+u(x_j) r(x_i,x_j)\]</span></p>
+<p>La ecuación queda transformada en</p>
+<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N\left[
+\frac{\partial f }{\partial x_i} \right]^2
+u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial
+x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j)
+r(x_i,x_j)\]</span></p>
+<p>Donde <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span> son las estimaciones de <span
+class="math inline">\(Xi\)</span> y <span
+class="math inline">\(Xj\)</span>, y <span
+class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span> es la covarianza
+estimada asociada a <span class="math inline">\(x_i\)</span> y <span
+class="math inline">\(x_j\)</span>.</p>
+<p>En esta ecuación haciendo</p>
+<p><span class="math display">\[c_i=\frac{\partial f}{\partial x_i}\quad
+u_i(y)=|c_i|u(x_i)\]</span></p>
+<p>se tiene</p>
+<p><span class="math display">\[u_c^2(R)=\sum_{i=1}^Nc_i^2
+u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N c_i * c_j* u(x_i) u(x_j)
+r(x_i,x_j)\]</span> y asumiendo que las correlaciones son 0, el 2
+termino no existe Se llega a:</p>
+<p><span class="math display">\[u_c(y)=\sqrt {\sum_{i=1,n}c_i^2
+u^2(x_i)}\]</span></p>
 <hr />
-<p><strong>Ejemplo 8:</strong></p>
+<p><strong>Ejemplo 3</strong></p>
 <p>Las especificaciones del fabricante de un voltímetro digital indican
 que “entre uno y dos años después de la calibración del instrumento, su
 exactitud en el rango de 1 V es <span class="math inline">\(14 ×
@@ -684,6 +737,7 @@ V}=1\]</span></p>
 (8,7 μV)^2 = 219* 10^{-12} V\]</span></p>
 <p>y la incertidumbre típica combinada es <span
 class="math display">\[u_c(V) = 15 μV\]</span></p>
+</div>
 </div>
 <div id="incertidumbre-dominante" class="section level2">
 <h2>Incertidumbre dominante</h2>
@@ -834,7 +888,7 @@ contribución, y para el nivel de confianza requerido (normalmente
 <p>La elección de k depende del número efectivo de grados de
 libertad.</p>
 <hr />
-<p><strong>Ejemplo 9</strong></p>
+<p><strong>Ejemplo 4</strong></p>
 <p>Una incertidumbre estándar combinada para una operación de pesaje
 está formada por la contribución de la incertidumbre de la calibración
 <span class="math inline">\(u_{cal}=0,01 mg\)</span> y la desviación
@@ -907,13 +961,14 @@ Ecuación se hace cero.</p></li>
 <p>Escrito de otra manera</p>
 <p><span
 class="math display">\[v_{ef}=\frac{U^4_c(y)}{\sum_{i=1}^{n}\frac{c_i^4u^4(x_i)}{vi}}\]</span></p>
-<div id="informar-la-incertidumbre" class="section level3">
-<h3>Informar la incertidumbre</h3>
+</div>
+<div id="informar-la-incertidumbre" class="section level2">
+<h2>Informar la incertidumbre</h2>
 <p><img src="imagen/dire.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Cuando la incertidumbre se exprese como la incertidumbre estándar
 combinada uc (es decir como una desviación estándar simple), se
 recomienda hacerlo de la siguiente forma:</p>
-<p><strong>EJEMPLO 10</strong></p>
+<p><strong>EJEMPLO 5</strong></p>
 <p>Resultado:</p>
 <ul>
 <li><p>x (unidades) [con una] incertidumbre estándar de uc
@@ -922,7 +977,6 @@ recomienda hacerlo de la siguiente forma:</p>
 <li><p>Incertidumbre estándar: 0,07 g/100 g</p></li>
 </ul>
 <p>La incertidumbre estándar corresponde a una desviación estándar</p>
-</div>
 </div>
 
 <br>

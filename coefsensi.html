@@ -11,7 +11,7 @@
 
 
 
-<title>Métodologia para estimar la incertidumbre</title>
+<title>Métodología para estimar la incertidumbre</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -390,18 +390,21 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Métodologia para estimar la
+<h1 class="title toc-ignore">Métodología para estimar la
 incertidumbre</h1>
 
 </div>
 
 
-<div id="metodología-propuesta-por-eurachem." class="section level2">
-<h2>Metodología propuesta por EURACHEM.</h2>
+<p>Cualquiera que sea la metodología propuesta es necesario tener en
+cuenta lo siguiente:</p>
+<p><img src="imagen/tc.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="metodología-eurachem." class="section level2">
+<h2>Metodología EURACHEM.</h2>
 <p>Eurachem propone la siguiente metodología para estimar la
 incertidumbre.</p>
 <p><img src="imagen/df.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><strong>1. Especificación del mensurando</strong></p>
+<p><strong>Etapa 1 Especificación del mensurando</strong></p>
 <p>El mensurando puede expresarse matemáticamente con una función:</p>
 <p><span class="math display">\[X=f(x_1,x_2,..,x_n)\]</span></p>
 <p>Donde:</p>
@@ -431,12 +434,20 @@ son un número menor que las del tipo normal.</p></li>
 </ol>
 <p><img src="imagen/combi.png" width="80%" style="display: block; margin: auto;" />
 Tomado de Llamosa et al (2011).</p>
-<p><strong>2. Identificación de fuentes de incertidumbre</strong></p>
+<p><strong>Etapa 2 Identificación de fuentes de
+incertidumbre</strong></p>
+<p><strong>Etapa 3 Cuantificación de la incertidumbre</strong></p>
+<ul>
+<li><p>Evaluar la incertidumbre de cada fuente individual, para
+posteriormente combinarlas.</p></li>
+<li><p>Aquellos factores que no tienen una contribución significativa
+deberían ser eliminados.</p></li>
+</ul>
+<p><strong>Etapa 4. Cálculo de la Incertidumbre Combinada</strong></p>
 </div>
 <div id="metodología-iso-gum" class="section level2">
 <h2>Metodología ISO-GUM</h2>
 <p><img src="imagen/gumpasos.png" width="80%" style="display: block; margin: auto;" /></p>
-<p><img src="imagen/tc.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo 1</strong></p>
 <p>Se ha efectuado la determinación del valor de una resistencia R,
 empleando el método del voltímetro y el amperímetro (en conexión
@@ -777,100 +788,7 @@ class="math display">\[U=k*u(y)=1.64*0.096 \Omega=0.15744
 </tr>
 </tbody>
 </table>
-</div>
-<div id="magnitudes-dependientes-o-correlacionadas"
-class="section level2">
-<h2>Magnitudes dependientes o correlacionadas</h2>
-<p>Algunas situaciones llevan a considerar una correlación significativa
-entre dos magnitudes de entrada, como si se utiliza el mismo instrumento
-de medida, el mismo patrón o la misma referencia con incertidumbre
-típica significativa.</p>
-<p>Dicha asociación entre variables es posible estimarla a través de la
-matriz de varianzas <span class="math inline">\(u^2(xi)\)</span> y
-covarianzas <span
-class="math inline">\(u(x_i,x_j)=u(x_j,x_i)\)</span>.</p>
-<p><span class="math display">\[\begin{bmatrix}
-u_1^2(xi) &amp; u(x_1,x_2) &amp; \cdots &amp; u(x_1,x_n)\\
-u(x_2,x_1) &amp; u_2^2(x_2) &amp; \cdots &amp; u(x_2,x_n) \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-u(x_n,x_1) &amp; u(x_n,x_2) &amp; \cdots &amp; u_n^2(x_n)
-\end{bmatrix}\]</span></p>
-<p>Si dos estimaciones de entrada no están correlacionadas, su
-covarianza asociada y los elementos correspondientes <span
-class="math inline">\(u_{ij}\)</span> y <span
-class="math inline">\(u_{ji}\)</span> de la matriz varianza-covarianza
-son cero.</p>
-<p><span class="math display">\[\begin{bmatrix}
-u_1^2(xi) &amp; 0 &amp; \cdots &amp; 0\\
-0 &amp; u_2^2(x_2) &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; u_n^2(x_n) \end{bmatrix}\]</span></p>
-<ul>
-<li><p>El grado de correlación entre <span
-class="math inline">\(xi\)</span> y <span
-class="math inline">\(x_j\)</span> viene dado por el coeficiente de
-correlación estimado como</p>
-<p><span
-class="math display">\[r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}\]</span>
-donde <span class="math inline">\(r(x_i,x_j)=r(x_j,x_i)\quad y \quad −1
-≤r(x_i,x_j)≤+1.\)</span></p></li>
-<li><p><span class="math inline">\(r(x_i,x_j) = 0\)</span>, significa
-que una variación en una de las dos no implica una variación en la
-otra.</p></li>
-</ul>
-<p>La covarianza asociada a las estimaciones de dos magnitudes de
-entrada <span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(y_i\)</span> puede considerarse igual a cero o
-ignorarse si no están correlacionadas, por ejemplo:</p>
-<ul>
-<li><p>Si se miden de forma repetida pero no simultánea, en ensayos
-independientes y diferentes</p></li>
-<li><p>Si las magnitudes resultantes de evaluaciones diferentes, hechas
-independientemente.</p></li>
-<li><p>Si Una de las magnitudes puede ser tratada como
-constante</p></li>
-<li><p>No se posee información suficiente como para evaluar la
-covarianza asociada a las estimaciones de Xi y Xj.</p></li>
-</ul>
-<div id="incertidumbre-combinada-para-variables-correlacionadas"
-class="section level3">
-<h3>Incertidumbre combinada para variables correlacionadas</h3>
-<p>La evaluación de la incertidumbre de la medición cuando existe
-correlación entre fuentes de es una tarea difícil, especialmente cuando
-las cantidades tienen una distribucion de probabilidad diferente a la
-normal (Konopka, K,2007). En muchos casos se asume la normal, lo q puede
-causar errores en la estimación de incertidumbre.</p>
-<p>La relación para estimar la incertidumbre combinada para variables
-correlacionadas, viene dada por la relación:</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N
-\frac{\partial f }{\partial x_i}\frac{\partial f }{\partial
-x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i}
-\right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f
-}{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)\]</span></p>
-<p>Donde:</p>
-<ul>
-<li>f es la función del mensurando dada por:</li>
-</ul>
-<p><span class="math display">\[Y=f(X_1,X_2,...,x_n)\]</span></p>
-<ul>
-<li><p>Cada <span class="math inline">\(u(xi)\)</span> es una
-incertidumbre típica, (Tipo A o Tipo B).</p></li>
-<li><p><span class="math inline">\(x_i\)</span> y <span
-class="math inline">\(x_j\)</span> son las estimaciones de <span
-class="math inline">\(X_i\)</span> y <span
-class="math inline">\(X_j\)</span>.</p></li>
-</ul>
-<p>El segundo término de la covarianza, puede escribirse en función de
-los coeficientes de correlación, más fácilmente interpretables que las
-covarianzas, como:</p>
-<p><span class="math display">\[2\sum_{i=1}^{N-1}\sum_{j=i+1}^N
-\frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i)
-u(x_j) r(x_i,x_j)\]</span> La ecuación queda transformada en</p>
-<p><span class="math display">\[u_c^2(y)=\sum_{i=1}^N\left[
-\frac{\partial f }{\partial x_i} \right]^2
-u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial
-x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j) r(x_i,x_j)\]</span>
-<strong>EJEMPLO 2</strong></p>
+<p><strong>EJEMPLO 2</strong></p>
 <p>Retomando el ejercicio anterior.</p>
 <p>Considerando el modelo físico matemático</p>
 <p><span
@@ -1029,7 +947,6 @@ número de cantidades de salida</p></li>
 <p>Hast ahora se han considerado modelos que consideran dos variables de
 entrada y una de salida., el suplemento 2 trata acerca de la estimación
 multivariada tanto de variables de entrada como de salida.</p>
-</div>
 </div>
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>

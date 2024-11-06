@@ -1,14 +1,19 @@
 ---
-title: "Métodologia para estimar la incertidumbre"
+title: "Métodología para estimar la incertidumbre"
 output:
   html_document:
     toc: true
     toc_depth: 5
     
 ---
+Cualquiera que sea la metodología propuesta es necesario tener en cuenta lo siguiente:
+
+```{r, echo=F, out.width="80%", fig.align='center'}
+knitr::include_graphics("imagen/tc.png")
+```
 
 
-## Metodología propuesta por EURACHEM.
+## Metodología EURACHEM.
 
 Eurachem propone la siguiente metodología para estimar la incertidumbre.
 
@@ -17,7 +22,8 @@ Eurachem propone la siguiente metodología para estimar la incertidumbre.
 knitr::include_graphics("imagen/df.png")
 ```
 
-**1. Especificación del mensurando**
+
+**Etapa 1 Especificación del mensurando**
 
 
 El mensurando puede expresarse matemáticamente con una función:
@@ -49,12 +55,17 @@ knitr::include_graphics("imagen/combi.png")
 Tomado de Llamosa et al (2011). 
  
 
+**Etapa 2 Identificación de fuentes de incertidumbre**
+
+**Etapa 3 Cuantificación de la incertidumbre**
+
+- Evaluar la incertidumbre de cada fuente individual, para posteriormente combinarlas.
+
+- Aquellos factores que no tienen una contribución significativa
+deberían ser eliminados.
 
 
-
-
-**2. Identificación de fuentes de incertidumbre**
-
+**Etapa 4. Cálculo de la Incertidumbre Combinada**
 
 
 
@@ -66,10 +77,6 @@ knitr::include_graphics("imagen/gumpasos.png")
 ```
 
 
-
-```{r, echo=F, out.width="80%", fig.align='center'}
-knitr::include_graphics("imagen/tc.png")
-```
 
 **Ejemplo 1**
 
@@ -294,80 +301,7 @@ $$R=(53.18\pm 0.16)\Omega $$
 
 
 
-## Magnitudes dependientes o correlacionadas
 
-
-    
-
-Algunas situaciones llevan a considerar una correlación significativa entre dos magnitudes de entrada, como si se utiliza el mismo instrumento de medida, el mismo patrón o la misma referencia con incertidumbre típica significativa.
-
-Dicha asociación entre variables es posible estimarla a través de la matriz de varianzas $u^2(xi)$ y covarianzas $u(x_i,x_j)=u(x_j,x_i)$. 
-
-
-$$\begin{bmatrix} 
-u_1^2(xi) & u(x_1,x_2) & \cdots & u(x_1,x_n)\\ 
-u(x_2,x_1) & u_2^2(x_2) & \cdots & u(x_2,x_n) \\
-\vdots & \vdots & \ddots & \vdots \\ 
-u(x_n,x_1) & u(x_n,x_2) & \cdots & u_n^2(x_n) \end{bmatrix}$$
-
-
-
-Si dos estimaciones de entrada no están correlacionadas, su covarianza asociada y los elementos correspondientes $u_{ij}$ y $u_{ji}$ de la matriz varianza-covarianza son cero.  
-
-$$\begin{bmatrix} 
-u_1^2(xi) & 0 & \cdots & 0\\ 
-0 & u_2^2(x_2) & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\ 
-0 & 0 & \cdots & u_n^2(x_n) \end{bmatrix}$$
-
-
-- El grado de correlación entre $xi$ y $x_j$ viene dado por el coeficiente de correlación estimado como 
-
-    $$r(x_i,x_j)=\frac{u(x_i,x_j)}{u(x_i)u(x_j)}$$
-    donde $r(x_i,x_j)=r(x_j,x_i)\quad  y \quad −1 ≤r(x_i,x_j)≤+1.$
-    
-- $r(x_i,x_j) = 0$, significa que una variación en una de las dos no implica una variación en la otra.
-
-La covarianza asociada a las estimaciones de dos magnitudes de entrada $x_i$ y $y_i$ puede considerarse  igual a cero o ignorarse si no están correlacionadas, por ejemplo:
-
-   - Si se miden de forma repetida pero no simultánea, en ensayos independientes y diferentes
-     
-   - Si las magnitudes resultantes de evaluaciones diferentes, hechas independientemente.
-     
-   - Si Una de las magnitudes puede ser tratada como constante 
-
-   - No se posee información suficiente como para evaluar la covarianza asociada a las estimaciones de Xi y Xj. 
-
-
-
-
-### Incertidumbre combinada para variables correlacionadas
-
-La evaluación de la incertidumbre de la medición cuando existe correlación entre fuentes de es una tarea difícil, especialmente cuando las cantidades tienen una distribucion de probabilidad diferente a la normal (Konopka, K,2007). 
-En muchos casos   se asume la normal, lo q puede causar errores en la estimación de incertidumbre.
-
-La relación para estimar la incertidumbre combinada para variables correlacionadas, viene dada por la relación:
-
-$$u_c^2(y)=\sum_{i=1}^N \sum_{j=1}^N \frac{\partial f }{\partial x_i}\frac{\partial f }{\partial x_j}u(x_i,x_j)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i,x_j)$$
-
-
-Donde:
-
-- f es la función del mensurando dada por:
-
-$$Y=f(X_1,X_2,...,x_n)$$
-
-
-- Cada $u(xi)$ es una incertidumbre típica, (Tipo A o Tipo B). 
-
-- $x_i$ y $x_j$ son las estimaciones de $X_i$ y $X_j$.
-
-El segundo término de la covarianza, puede escribirse en función de los coeficientes de correlación, más fácilmente interpretables que las covarianzas, como:
-
-$$2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j) r(x_i,x_j)$$
-La ecuación queda transformada en 
-
-$$u_c^2(y)=\sum_{i=1}^N\left[ \frac{\partial f }{\partial x_i} \right]^2 u^2(x_i)+2\sum_{i=1}^{N-1}\sum_{j=i+1}^N \frac{\partial f }{\partial x_i} \frac{\partial f }{\partial x_j} u(x_i) u(x_j) r(x_i,x_j)$$
 **EJEMPLO 2**
 
 Retomando el ejercicio anterior.

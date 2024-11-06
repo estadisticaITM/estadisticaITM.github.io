@@ -27,76 +27,64 @@ Reglas generales para evaluar y expresar la incertidumbre de medición, aplicabl
 
 • Desarrollar, mantener y comparar patrones físicos y materiales de referencia
 
-La GUM cuenta con dos complementos para su aplicación,
-
-1. Evaluación de datos de medición —Suplemento 1 de la “Guía para la expresión de la incertidumbre de medida”—
-Propagación de distribuciones aplicando el método de Monte Carlo.
-
-2. Evaluación de medición datos – Suplemento 2 del “Guía para la expresión deincertidumbre en la medición” – Ampliación a cualquier número de cantidades de salida
 
 
 
-
+Un logro importante de GUM consiste en un enfoque para combinar la incertidumbre de las estadísticas frecuentistas (evaluación Tipo A) y estadísticas bayesianas (evaluación Tipo B), considerando que todas las cantidades se caracterizan por una PDF que describe los posibles valores de estas cantidades. 
 
 ## Incertidumbre
 
-Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010).
-
-
-
-
-
-**Algunas fuentes de incertidumbre**
+- **Definición** Parámetro asociado al resultado de una medición que caracteriza la dispersión de los valores que podrían ser atribuidos al mensurando, (ISP, 2010).
 
 - La incertidumbre generada por efectos sistematicos, es una de las más complejas de controlar, puede obtenerse mediante una evaluación Tipo A ó Tipo B (GUM,p18).
 
-
 - La incertidumbre generada por efectos aleatorios, puede obtenerse mediante una evaluación Tipo A ó  Tipo B (GUM,p18).
 
-
 - Las fuentes potenciales de incertidumbre se investigan y, siempre que sea posible, el método se ajusta para reducir la incertidumbre a un nivel aceptable. 
-
-- El parámetro que mide la incertidumbre  puede ser, una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con un nivel de confianza determinado.
-
-- La incertidumbre de medida puede ser evaluada a partir de la distribución estadística de los resultados de series de mediciones, y pueden caracterizarse por sus desviaciones estándar experimentales. 
 
 - El conocimiento de la incertidumbre implica un aumento de la confianza en la validez del resultado de una medición.
 
 - Cada una de las contribuciones separadas a la incertidumbre es un componente de la incertidumbre. Cuando se expresa como desviación estándar se conoce como incertidumbre estándar.
 
-- Si hay correlación entre las componentes, se tiene en cuenta mediante la covarianza. 
+- Fuentes de incertidumbre internas, incluye:
 
-Listar todas las posibles fuentes de incertidumbre, incluye:
+    - De los parámetros, 
 
-- De los parámetros, 
+    - De las suposiciones químicas. 
 
-- De las suposiciones químicas. 
+    - Por las condiciones ambientales 
 
-- Por las condiciones ambientales 
+    - Por la repitibilidad de las medidas
 
-- Por la repitibilidad de las medidas
+    - Por la exactitud y resolución del equipo 
 
-- Por la exactitud y resolución del equipo 
+    - **Muestreo:** Variaciones aleatorias entre muestras.
 
-- **Muestreo:** Variaciones aleatorias entre muestras.
+    - Condiciones de almacenamiento
 
-- Condiciones de almacenamiento
+    - Efectos instrumentales
 
-- Efectos instrumentales
+    - Pureza de reactivos
 
-- Pureza de reactivos
+    - Estequiometría asumida
 
-- Estequiometría asumida
+    - Condiciones de medida
 
-- Condiciones de medida
+    - Efectos de la muestra, computacionales
 
-- Efectos de la muestra, computacionales
+    - De redondeo 
 
-- De redondeo 
+    - Efectos del operador y aleatorios
+    
+- Fuentes de incertidumbre externas, incluye:
+    
+    - Estudios previos de desempeño de métodos, de los que se requiere demostrar la validez para aplicar dichos resultados.
 
-- Efectos del operador y aleatorios
+    - Materiales de referencia certificados compatibles
 
-
+    - Desarrollo interno y estudios de validación
+    
+    
 ## Tipos de incertidumbre
 
 Incertidumbre del resultado de una medición, expresada en forma de desviación típica, dependiendo del origen se clasifica en tipo A y tipo B, estas categorías se refieren a la incertidumbre y no sustituyen a las palabras “aleatorio” y “sistemático”. 
@@ -105,7 +93,7 @@ Incertidumbre del resultado de una medición, expresada en forma de desviación 
 
 ### Tipo A
 
-Se obtiene mediante un analisis estadístico de los datos, se expresan por medio de varianzas o las desviaciones y el número de grados de libertad.
+Se obtiene mediante un analisis estadístico de los datos, se expresan por medio de varianzas o desviaciones y el número de grados de libertad.
 
 Se asocia comúnmente con mediciones directas o indirectas y está influenciada por factores como la precisión de los instrumentos de medición, la variabilidad de las condiciones de prueba y otros errores experimentales. Se calcula como
 
@@ -122,6 +110,8 @@ Las categorías de incertidumbre tipo A pueden incluir:
 |**Muestreo**|Sesgo en la selección de muestras de una población.|
 |**Errores de modelo**|Representación del fenómeno que se está modelando. Puede incluir simplificaciones excesivas en el modelo, desconocimiento de ciertos efectos o interacciones|
 |**Fuente de datos**|Asociada con los datos utilizados en el análisis o la estimación. Puede incluir errores de medición, sesgos en la recopilación de datos, etc.|
+|**Presición del método de medición**|Estimada durante un prolongado periodo de tiempo de modo que permita que se produzcan variaciones naturales de todos los factores que afectan a los resultados, usando tantos analistas y equipos distintos como sea
+posible (Eurachem)|
 
 
 La replicabilidad se trata de repetir un estudio con un enfoque similar, mientras que la reproducibilidad implica la verificación de resultados usando los mismos datos y métodos. Ambos son esenciales para validar la investigación científica.
@@ -129,17 +119,15 @@ La replicabilidad se trata de repetir un estudio con un enfoque similar, mientra
 
 ### Tipo B
 
-No puede ser evaluada mediante métodos estadísticos, se determina mediante la aplicación de información externa, como datos históricos, conocimiento de expertos, especificaciones de diseño, etc. Las categorías de incertidumbre tipo B pueden incluir:
+No puede ser evaluada mediante métodos estadísticos, se determina mediante la aplicación de información externa, como datos históricos, conocimiento de expertos, especificaciones de diseño, generalmente es una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con un nivel de confianza determinado.
+
+Las categorías de incertidumbre tipo B pueden incluir:
 
 
 
 - **Calibración**
 
 Comparación entre el dispositivo de medición que se va a calibrar y otro de referencia trazable (BIPM).
-
-
-
-
 
 
 - **Precisión del equipo:** 
@@ -218,7 +206,7 @@ La incertidumbre típica del valor de la resistencia puede suponerse que es u(RS
 
 - Dada por los **límites de ±a sin nivel de confianza**
 
--- Si hay valores extremos, suponemos una distribución rectángular, con una desviación estándar de: 
+    - Si hay valores extremos, suponemos una distribución rectángular, con una desviación estándar de: 
 
 $$\frac{a}{\sqrt 3}$$
 
@@ -234,7 +222,9 @@ knitr::include_graphics("imagen/matraz.png")
 
  
     
--- Si no se esperan valores extremos,normalmente es apropiado suponer una distribución triangular, con una desviación estándar de $a/\sqrt6$.
+    - Si no se esperan valores extremos,normalmente es apropiado suponer una distribución triangular, con una desviación estándar de 
+       
+$$a/\sqrt6$$
 
 
 **EJEMPLO 5**
@@ -278,7 +268,7 @@ Es conveniente agrupar en esta fase los términos relacionados con la precisión
 
 
 
-**Ejemplo 1: Determinación de la densidad del etanol**
+**Ejemplo 6: Determinación de la densidad del etanol**
 
 Considerar el caso de la determinación directa de la densidad de etanol d(EtOH) mediante la pesa de un volumen conocido V en un recipiente volumétrico adecuado de tara mtara y peso bruto incluido etanol mbruto. La densidad se calcula a
 partir de
@@ -337,7 +327,7 @@ knitr::include_graphics("imagen/diag1.png")
 
 
 
-**Ejemplo 2: Estudio de caso Determinación de la incertidumbre de método de análisis de aflatoxinas por HPLC en pasa uva (Martinez et al, 2018)**
+**Ejemplo 7: Estudio de caso Determinación de la incertidumbre de método de análisis de aflatoxinas por HPLC en pasa uva (Martinez et al, 2018)**
 
 
 Las aflatoxinas son un tipo de toxinas producidas por ciertos hongos en cultivos agrícolas como el maíz, el maní o cacahuates, la semilla de algodón y los frutos secos (de cáscara dura como las nueces) (NIH,2024), esta sustancias es considerada como un carcinógeno natural más potente conocido hasta el momento.

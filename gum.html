@@ -412,23 +412,18 @@ producción</p>
 trazabilidad</p>
 <p>• Desarrollar, mantener y comparar patrones físicos y materiales de
 referencia</p>
-<p>La GUM cuenta con dos complementos para su aplicación,</p>
-<ol style="list-style-type: decimal">
-<li><p>Evaluación de datos de medición —Suplemento 1 de la “Guía para la
-expresión de la incertidumbre de medida”— Propagación de distribuciones
-aplicando el método de Monte Carlo.</p></li>
-<li><p>Evaluación de medición datos – Suplemento 2 del “Guía para la
-expresión deincertidumbre en la medición” – Ampliación a cualquier
-número de cantidades de salida</p></li>
-</ol>
+<p>Un logro importante de GUM consiste en un enfoque para combinar la
+incertidumbre de las estadísticas frecuentistas (evaluación Tipo A) y
+estadísticas bayesianas (evaluación Tipo B), considerando que todas las
+cantidades se caracterizan por una PDF que describe los posibles valores
+de estas cantidades.</p>
 </div>
 <div id="incertidumbre" class="section level2">
 <h2>Incertidumbre</h2>
-<p>Parámetro asociado al resultado de una medición que caracteriza la
-dispersión de los valores que podrían ser atribuidos al mensurando,
-(ISP, 2010).</p>
-<p><strong>Algunas fuentes de incertidumbre</strong></p>
 <ul>
+<li><p><strong>Definición</strong> Parámetro asociado al resultado de
+una medición que caracteriza la dispersión de los valores que podrían
+ser atribuidos al mensurando, (ISP, 2010).</p></li>
 <li><p>La incertidumbre generada por efectos sistematicos, es una de las
 más complejas de controlar, puede obtenerse mediante una evaluación Tipo
 A ó Tipo B (GUM,p18).</p></li>
@@ -437,22 +432,12 @@ mediante una evaluación Tipo A ó Tipo B (GUM,p18).</p></li>
 <li><p>Las fuentes potenciales de incertidumbre se investigan y, siempre
 que sea posible, el método se ajusta para reducir la incertidumbre a un
 nivel aceptable.</p></li>
-<li><p>El parámetro que mide la incertidumbre puede ser, una desviación
-estándar (o un múltiplo de ésta) o la semiamplitud de un intervalo, con
-un nivel de confianza determinado.</p></li>
-<li><p>La incertidumbre de medida puede ser evaluada a partir de la
-distribución estadística de los resultados de series de mediciones, y
-pueden caracterizarse por sus desviaciones estándar
-experimentales.</p></li>
 <li><p>El conocimiento de la incertidumbre implica un aumento de la
 confianza en la validez del resultado de una medición.</p></li>
 <li><p>Cada una de las contribuciones separadas a la incertidumbre es un
 componente de la incertidumbre. Cuando se expresa como desviación
 estándar se conoce como incertidumbre estándar.</p></li>
-<li><p>Si hay correlación entre las componentes, se tiene en cuenta
-mediante la covarianza.</p></li>
-</ul>
-<p>Listar todas las posibles fuentes de incertidumbre, incluye:</p>
+<li><p>Fuentes de incertidumbre internas, incluye:</p>
 <ul>
 <li><p>De los parámetros,</p></li>
 <li><p>De las suposiciones químicas.</p></li>
@@ -469,6 +454,14 @@ muestras.</p></li>
 <li><p>Efectos de la muestra, computacionales</p></li>
 <li><p>De redondeo</p></li>
 <li><p>Efectos del operador y aleatorios</p></li>
+</ul></li>
+<li><p>Fuentes de incertidumbre externas, incluye:</p>
+<ul>
+<li><p>Estudios previos de desempeño de métodos, de los que se requiere
+demostrar la validez para aplicar dichos resultados.</p></li>
+<li><p>Materiales de referencia certificados compatibles</p></li>
+<li><p>Desarrollo interno y estudios de validación</p></li>
+</ul></li>
 </ul>
 </div>
 <div id="tipos-de-incertidumbre" class="section level2">
@@ -480,7 +473,7 @@ palabras “aleatorio” y “sistemático”.</p>
 <div id="tipo-a" class="section level3">
 <h3>Tipo A</h3>
 <p>Se obtiene mediante un analisis estadístico de los datos, se expresan
-por medio de varianzas o las desviaciones y el número de grados de
+por medio de varianzas o desviaciones y el número de grados de
 libertad.</p>
 <p>Se asocia comúnmente con mediciones directas o indirectas y está
 influenciada por factores como la precisión de los instrumentos de
@@ -534,6 +527,17 @@ de ciertos efectos o interacciones</td>
 estimación. Puede incluir errores de medición, sesgos en la recopilación
 de datos, etc.</td>
 </tr>
+<tr class="odd">
+<td align="left"><strong>Presición del método de medición</strong></td>
+<td align="left">Estimada durante un prolongado periodo de tiempo de
+modo que permita que se produzcan variaciones naturales de todos los
+factores que afectan a los resultados, usando tantos analistas y equipos
+distintos como sea</td>
+</tr>
+<tr class="even">
+<td align="left">posible (Eurachem)</td>
+<td align="left"></td>
+</tr>
 </tbody>
 </table>
 <p>La replicabilidad se trata de repetir un estudio con un enfoque
@@ -545,8 +549,10 @@ validar la investigación científica.</p>
 <h3>Tipo B</h3>
 <p>No puede ser evaluada mediante métodos estadísticos, se determina
 mediante la aplicación de información externa, como datos históricos,
-conocimiento de expertos, especificaciones de diseño, etc. Las
-categorías de incertidumbre tipo B pueden incluir:</p>
+conocimiento de expertos, especificaciones de diseño, generalmente es
+una desviación estándar (o un múltiplo de ésta) o la semiamplitud de un
+intervalo, con un nivel de confianza determinado.</p>
+<p>Las categorías de incertidumbre tipo B pueden incluir:</p>
 <ul>
 <li><strong>Calibración</strong></li>
 </ul>
@@ -645,11 +651,13 @@ que es u(RS) = (129 μΩ) / 2,58 = 50 μΩ, que corresponde a una
 incertidumbre típica relativa u(RS)/RS de <span
 class="math inline">\(5,0×10^{-6}\)</span>.</p>
 <ul>
-<li>Dada por los <strong>límites de ±a sin nivel de
-confianza</strong></li>
+<li><p>Dada por los <strong>límites de ±a sin nivel de
+confianza</strong></p>
+<ul>
+<li>Si hay valores extremos, suponemos una distribución rectángular, con
+una desviación estándar de:</li>
+</ul></li>
 </ul>
-<p>– Si hay valores extremos, suponemos una distribución rectángular,
-con una desviación estándar de:</p>
 <p><span class="math display">\[\frac{a}{\sqrt 3}\]</span></p>
 <p><strong>EJEMPLO 4</strong></p>
 <p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
@@ -657,9 +665,9 @@ con una desviación estándar de:</p>
 <p>La incertidumbre estándar es <span class="math display">\[0,2/\sqrt
 3=0,12 mL\]</span></p>
 <p><img src="imagen/matraz.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>– Si no se esperan valores extremos,normalmente es apropiado suponer
-una distribución triangular, con una desviación estándar de <span
-class="math inline">\(a/\sqrt6\)</span>.</p>
+<pre><code>- Si no se esperan valores extremos,normalmente es apropiado suponer una distribución triangular, con una desviación estándar de 
+   </code></pre>
+<p><span class="math display">\[a/\sqrt6\]</span></p>
 <p><strong>EJEMPLO 5</strong></p>
 <p>Un matraz volumétrico de Clase A de 10 mL está certificado dentro de
 ±0,2 mL, pero controles internos rutinarios muestran que los valores
@@ -698,7 +706,7 @@ precisión en una rama independiente. Es común encontrar el mismo equipo
 usado como instrumento de pesaje, lo que puede llevar a considerar
 varias veces su incertidumbre de calibración. considerarla una sola
 vez.</p>
-<p><strong>Ejemplo 1: Determinación de la densidad del
+<p><strong>Ejemplo 6: Determinación de la densidad del
 etanol</strong></p>
 <p>Considerar el caso de la determinación directa de la densidad de
 etanol d(EtOH) mediante la pesa de un volumen conocido V en un
@@ -737,7 +745,7 @@ respuesta de la balanza, junto con la incertidumbre de calibración
 asociada con la determinación volumétrica.</p></li>
 </ul>
 <p><img src="imagen/diag1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><strong>Ejemplo 2: Estudio de caso Determinación de la incertidumbre
+<p><strong>Ejemplo 7: Estudio de caso Determinación de la incertidumbre
 de método de análisis de aflatoxinas por HPLC en pasa uva (Martinez et
 al, 2018)</strong></p>
 <p>Las aflatoxinas son un tipo de toxinas producidas por ciertos hongos
