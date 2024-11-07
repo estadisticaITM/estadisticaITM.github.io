@@ -33,11 +33,34 @@ MCM es una alternativa a la GUM cuando
 - Los modelos son arbitrariamente complicados
 
 
+
+
+## Librerías de R para estimar la incertidumbre
+
+
+
+Para la implementación del método monte carlo se requiere el uso de software, en el desarrollo de este curso se usará Rstudio, con diferentes librerías, que facilitan la estimación de la incertidumbre. 
+
+
+|Librería|Nombre|Descripción|
+|:------:|:----:|-----------|
+|**boot**|Funciones Bootstrap|Proporciona funciones para el remuestreo para estimar intervalos de confianza y otras medidas de incertidumbre para estadísticas y parámetros|
+|**uncertainty**|Estimación de incertidumbre y análisis de contribución|Ofrece herramientas para la propagación de incertidumbre en cálculos y modelos. Permite realizar análisis de sensibilidad y estimar la incertidumbre en los resultados|
+|**car**|Companion to Applied Regression|incluye funciones para calcular intervalos de confianza y realizar pruebas de hipótesis que pueden ser útiles para estimar la incertidumbre en modelos|
+|**propagate**|propagación de incertidumbre| Ofrece herramientas para realizar análisis de sensibilidad y estimar la incertidumbre en los resultados.|
+|**gamlss**|Generalized Additive Models for Location Scale and Shape|útil para el modelado de distribuciones de probabilidad complejas y puede ser utilizada para estimar la incertidumbre en modelos estadísticos más avanzados.|
+
+
+
+
+__________________________________________________________________________________
+
+## Comparación de la estimación de incertidumbre bajo la GUM y MCM
+
 ```{r, echo=F, out.width="50%", fig.align='center'}
 knitr::include_graphics("imagen/compa.png")
 ```
 
-**Comparación**
 
 
 ```{r, echo=F, out.width="80%", fig.align='center'}
@@ -45,30 +68,10 @@ knitr::include_graphics("imagen/gumvsmcm.png")
 ```
 
 
-**Recorderis**
-Demostración:
-
-la incertidumbre tipo A proviene de la incertidumbre del promedio
+**Propagación de incertidumbres** GUM
 
 
-$$\bar x=\frac{x_1+x_2+x_3+...+x_n}{n}$$
-
-vamos a obtener su incertidumbre:
-
-
-$$u(\bar x)=\sqrt{\left (\frac{1}{n}*u(x_1)\right)^2+\left (\frac{1}{n}*u(x_2)\right)^2+...+\left (\frac{1}{n}*u(x_n)\right)^2}$$
-
-$$u(\bar x)=\sqrt{n \left (\frac{1}{n}*s\right)^2}$$
-
-
-$$u(\bar x)=\sqrt{ \frac{n}{n^2}*s^2}$$
-
-
-$$u(\bar x)=\sqrt{ \frac{n}{n^2}*s^2}$$
-
-$$u(\bar x)= \frac{s}{\sqrt{n}}$$
-
-
+**Propagación de distribuciones** MCM
 
 
 
@@ -88,10 +91,10 @@ N>10^4\frac{1}{1-p},
 $N>219781$
 donde p es el área de cobertura usualmente p=95.45%
 
-# Simulación de las distribuciones de probabilidad
+## Simulación de las distribuciones de probabilidad
 
 
-## Distribución rectangular ó uniforme
+### Distribución rectangular ó uniforme
 
 
 En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
@@ -161,7 +164,7 @@ sd(y)
 
 
 
-## Distribución triangular
+### Distribución triangular
 
 Generar una variable aleatoria continua con distribución triangular con parámetros a=-2 y b=2
 
@@ -177,7 +180,7 @@ hist(x)
 
 ```
 
-## Distribución normal
+### Distribución normal
 
 ```{r  out.width="50%"}
 #rnorm(n, mean = 0, sd = 1)
@@ -189,7 +192,7 @@ hist(y)
 
 ```
 
-## Distribución t de student
+### Distribución t de student
 
 ```{r out.width="50%"}
 
