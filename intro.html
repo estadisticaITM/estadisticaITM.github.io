@@ -535,7 +535,7 @@ International Standardisation Organisation)</td>
 <p><strong>INSTITUTOS NACIONALES ALREDEDOR DEL MUNDO</strong></p>
 <pre><code>## Loading required package: maditr</code></pre>
 <pre><code>## 
-## To get total summary skip &#39;by&#39; argument: take_all(mtcars, mean)</code></pre>
+## To drop variable use NULL: let(mtcars, am = NULL) %&gt;% head()</code></pre>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -945,25 +945,25 @@ Gulf Association for Metrology
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">VIM</td>
+<td align="center"><strong>VIM</strong></td>
 <td align="left">Vocabulario internacional de metrología</td>
 <td align="center">JCGM</td>
 </tr>
 <tr class="even">
-<td align="center">GUM</td>
+<td align="center"><strong>GUM</strong></td>
 <td align="left">Guia para la expresión de la incertidumbre de las
 medidas</td>
 <td align="center">JCGM</td>
 </tr>
 <tr class="odd">
-<td align="center">Norma 10012 (2003)</td>
+<td align="center"><strong>Norma 10012 (2003)</strong></td>
 <td align="left"><strong>Comprobación Metrológica</strong> Orienta los
 procesos y el equipo de medición utilizado para apoyar y demostrar el
 cumplimiento de requisitos metrológicos.</td>
 <td align="center">ISO</td>
 </tr>
 <tr class="even">
-<td align="center">Norma 17025 (2006)</td>
+<td align="center"><strong>Norma 17025 (2006)</strong></td>
 <td align="left">Establece los criterios para los laboratorios que
 desean demostrar su competencia técnica, que poseen un sistema de
 calidad efectivo y que son capaces de producir resultados técnicamente
@@ -972,6 +972,45 @@ válidos</td>
 </tr>
 </tbody>
 </table>
+<div id="gum-jcgm-1002008" class="section level3">
+<h3>GUM JCGM 100:2008</h3>
+<p><strong>Guía para la expresión de la incertidumbre de
+medición</strong></p>
+<p>La GUM es un estándar internacional que proporciona un marco
+sistemático para la estimación y expresión de la incertidumbre de la
+medida. Se basa en la identificación de fuentes de incertidumbre y su
+propagación a través del modelo de medición.</p>
+<p><img src="imagen/GUM.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Contiene reglas generales para evaluar y expresar la incertidumbre de
+medición, aplicable en diversos campos de mediciones, incluyendo las
+necesarias para:</p>
+<ul>
+<li><p>Mantener el control y el aseguramiento de la calidad en
+producción</p></li>
+<li><p>Cumplir con leyes y reglamentos</p></li>
+<li><p>Apoyar I+D aplicados en ciencia e ingeniería</p></li>
+<li><p>Calibrar patrones, equipos y realizar ensayos para demostrar
+trazabilidad</p></li>
+<li><p>Desarrollar, mantener y comparar patrones físicos y materiales de
+referencia</p></li>
+<li><p>Combina la incertidumbre de las estadísticas frecuentistas
+(evaluación Tipo A) y estadísticas bayesianas (evaluación Tipo B),
+considerando que todas las cantidades se caracterizan por una PDF que
+describe los posibles valores de estas cantidades.</p></li>
+</ul>
+<p>La GUM es reconocida para la evaluación de la incertidumbre de la
+medición, este método utiliza una aproximación de la serie de Taylor de
+primer orden para evaluar la estimación de un mensurando y su
+incertidumbre estándar asociada, mediante la ley de propagación de
+incertidumbres (Martins, 2011).</p>
+<p>La GUM cuenta con dos complementos para su aplicación,</p>
+<ul>
+<li><p><strong>Suplemento 1 de la GUM — Propagación de distribuciones
+aplicando el método de Monte Carlo</strong>,</p></li>
+<li><p><strong>Suplemento 2 del “GUM” – Ampliación a cualquier número de
+cantidades de salida.</strong></p></li>
+</ul>
+</div>
 <div id="norma-10012" class="section level3">
 <h3>Norma 10012</h3>
 <p><strong>Comprobación metrológica</strong></p>

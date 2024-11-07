@@ -92,6 +92,28 @@ $$E(x)=\frac{a+b}{2}$$
 
 $$V(x)=\frac{(b-a)^2}{12}$$
 
+
+En una distribución rectangular cada valor en un intervalo dado tiene la misma probabilidad, o sea la función de densidad de probabilidad es constante en este intervalo. 
+
+Sea $X∼U(a,b)$, es decir, una variable aleatoria con distribución uniforme en el intervalo  (a,b), con $a,b \quad \varepsilon \quad \mathbb{R}$:
+
+
+|Descripción|b y a con b>a| a y -a [centrada en cero]|
+|:----------|:------------------:|:--------------:|
+|fdp f(x)   |$\frac{1}{b-a}$     |$\frac{1}{2a}$  |
+|F(x)       |$\frac{x-a}{b-a}$   |$\frac{x-a}{2a}$|
+|prom E(X)  |$\frac{a+b}{2}$     |0               |
+|$E(x^2)$   |$\frac{b^2+ba+a^2}{3}$        |$\frac{a^2}{3}$ |
+|v(x)       |$\frac{(b-a)^2}{12}$|$\frac{a^2}{3}$ |
+|sd=u(x)    |$\frac{(b-a)}{\sqrt{12}}$|$\frac{a}{\sqrt3}$|
+
+
+
+El rango de una distribución de probabilidad se refiere al conjunto de todos los posibles valores que puede tomar una variable aleatoria en esa distribución. Es la diferencia entre el valor máximo y el valor mínimo de esta variable.
+
+
+
+
 ```{r echo=FALSE}
 
 plotunif <- function(x, min = 0, max = 1, lwd = 1, col = 1, ...) {
