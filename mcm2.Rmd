@@ -11,7 +11,7 @@ La GUM cuenta con diferentes complementos para su aplicación, uno de ellos es e
 Esta aproximación requiere un esfuerzo computacional considerable y puede acumular errores numéricos si el algoritmo computacional del generador de números aleatorios no se desarrolla cuidadosamente.
 
 
-MCM es una alternativa a la GUM cuando
+**MCM es una alternativa a la GUM cuando:**
 
 -  La estimación de la magnitud de salida (mensurando) y su incertidumbre asociada provista por la GUM podría no ser confiable
 
@@ -124,10 +124,10 @@ hist(y)
 
 **Simulando la incertidumbre tipo A** 
 
-como la desviación estándar proviene de una distribución uniforme hacemos uso de esta misma para la estimación de la incertidumbre. 
+Como la desviación estándar proviene de una distribución uniforme hacemos uso de esta misma para la estimación de la incertidumbre. 
 
 
-$$u=\frac{s}{\sqrt {10}}=\frac{0.5773}{10}=0.182574$$
+$$u=\frac{s}{\sqrt {10}}=\frac{0.5773}{\sqrt{10}}=0.182574$$
 
 ```{r}
 ysum=0
@@ -419,9 +419,149 @@ summary(RES1)
 fitDistr(RES1)
 ```
 
-## Otro ejemplo
 
-**Calibración de un multímetro DMM**
+**Otro ejemplo teniendo en cuenta la correlación entre variables**
+
+$$y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3$$
+
+
+$$r(x_1,x_2)=-0.5$$
+
+
+
+
+
+
+|variable|Distribución|promedio|$u(x_i)$|$c_i$|
+|:------:|:----------:|:------:|:------:|:---:|
+|$x_1$   |Normal      |     1.5| 1.2    |5|
+|$x_2$   |Normal      |      3 |0.8     |3|
+|$x_3$   |Uniforme    |$\bar x=0$ a=1|$u=1/\sqrt 3=0.5773$|1|
+
+
+**Por el método GUM**
+
+$$u_c(y)=\sqrt{(c_1u_{x_1})^2+(c_2u_{x_2})^2+(c_3u_{x_3})^2+2c_1c_2 u_{x_1} u_{x_2} r(x_1,x_2))}$$
+$$u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51$$
+
+sin correlación=6.48
+
+
+Simulación de $x_1$
+
+
+
+```{r}
+m=1.5
+s=1
+y=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm=rep(m,1e6)
+ipat=(y*sdd)+mm
+
+sd(ipat)
+
+#Simulación de x2
+
+m=3
+s=1
+y1=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm1=rep(m,1e6)
+ipat1=(y1*sdd)+mm1
+
+sd(ipat)
+
+
+```
+
+**encontrar matriz de var-cov**
+
+$$cov=\begin{bmatrix} 
+u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
+u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
+\end{bmatrix}$$
+
+
+$$cov=\begin{bmatrix} 
+1.2^2 & 1.2*0.8*-0.5\\ 
+1.2*0.8*-0.5 & 0.8^2\\
+\end{bmatrix}$$
+
+$$cov=\begin{bmatrix} 
+1.44 & -0.48\\ 
+-0.48 & 0.64\\
+\end{bmatrix}$$
+
+
+$$x=\bar x+x_s*R$$
+
+$$x_{i_{corr}}= \begin{bmatrix} \bar x_1 & \bar x_2 \\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \bar x_1 & \bar x_2\\
+                                    \vdots & \vdots \\
+                                    \bar x_1 & \bar x_2
+                                    \end{bmatrix}
+                                    +\begin{bmatrix} 
+                                     x_{1s} & x_{2s} \\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                     x_{1s} & x_{2s}\\
+                                    \vdots & \vdots \\
+                                     x_{1s} &  x_{2s}
+                                    \end{bmatrix}*
+                                    \begin{bmatrix} 
+1.44 & -0.48\\ 
+-0.48 & 0.64\\
+\end{bmatrix}$$
+
+```{r}
+
+sy2 <- new("dsyMatrix", Dim = as.integer(c(2,2)), x = c(1.44,-0.48,-0.48,0.64))
+(c2 <- chol(sy2))#-> "Cholesky" matrix
+str(c2)
+c2=as.matrix(c2)
+cc=as.matrix(cbind(ipat,ipat1))
+res=cc%*%c2
+
+med=as.matrix(cbind(mm,mm1))
+
+valres=med+res
+v1=valres[,1]
+V2=valres[,2]
+
+
+
+plot(v1,V2)
+cor(v1,V2)
+## rsln=1 semi amplitud=0.0005
+## runif(n, min = 0, max = 1)
+
+V3=runif(n=1e6,min=-0.5,max=0.5)
+
+y=(5*v1)-(3*V2)+V3
+
+sd(y)
+
+##Incertidumbre expandida
+cuartil1 <- quantile(y, probs = c(0.02275,0.97725)) 
+
+ymin=cuartil1[1]
+ymax=as.numeric(cuartil1[2])
+mediae=mean(y)
+sd(y)
+
+U=ymax-mediae
+U
+
+
+```
+
+
+## Ejemplo: Calibración de un multímetro DMM
 
 Punto de medición: 40V
 
@@ -438,7 +578,7 @@ Especificaciones del calibrador: $\pm$ (18 ppm set+150$\mu$ V)
 Resultados calibración del patrón (tensión continua)
 
 
-|Intervalo V      |329.9999|
+|Intervalo V      |39.9999|
 |:----------------|:-------|
 |Valor indicado V |40.0000|
 |Valor patrón   V |40.0020|
@@ -592,145 +732,6 @@ summary(RES2)
 |U     | 0.001342|0.00137|
 
 
-**Otro ejemplo teniendo en cuenta la correlación entre variables**
-
-$$y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3$$
-
-
-$$r(x_1,x_2)=-0.5$$
-
-
-
-
-
-
-|variable|Distribución|promedio|$u(x_i)$|$c_i$|
-|:------:|:----------:|:------:|:------:|:---:|
-|$x_1$   |Normal      |     1.5| 1.2    |5|
-|$x_2$   |Normal      |      3 |0.8     |3|
-|$x_3$   |Uniforme    |$\bar x=0$ a=1|$u=1/\sqrt 3=0.5773$|1|
-
-
-**Por el método GUM**
-
-$$u_c(y)=\sqrt{(c_1u_{x_1})^2+(c_2u_{x_2})^2+(c_3u_{x_3})^2+2c_1c_2 u_{x_1} u_{x_2} r(x_1,x_2))}$$
-$$u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51$$
-
-sin correlación=6.48
-
-
-Simulación de $x_1$
-
-
-
-```{r}
-m=1.5
-s=1
-y=rnorm(1e6, mean = 0, sd = 1)
-sdd=rep(s,1e6)
-mm=rep(m,1e6)
-ipat=(y*sdd)+mm
-
-sd(ipat)
-
-#Simulación de x2
-
-m=3
-s=1
-y1=rnorm(1e6, mean = 0, sd = 1)
-sdd=rep(s,1e6)
-mm1=rep(m,1e6)
-ipat1=(y1*sdd)+mm1
-
-sd(ipat)
-
-
-```
-
-**encontrar matriz de var-cov**
-
-$$cov=\begin{bmatrix} 
-u_1^2(xi) & u(x_1)u(x_2)r(x_1,x_2)\\ 
-u(x_2)u(x_1)r(x_2,x_1) & u_2^2(x_2)\\
-\end{bmatrix}$$
-
-
-$$cov=\begin{bmatrix} 
-1.2^2 & 1.2*0.8*-0.5\\ 
-1.2*0.8*-0.5 & 0.8^2\\
-\end{bmatrix}$$
-
-$$cov=\begin{bmatrix} 
-1.44 & -0.48\\ 
--0.48 & 0.64\\
-\end{bmatrix}$$
-
-
-$$x=\bar x+x_s*R$$
-
-$$x_{i_{corr}}= \begin{bmatrix} \bar x_1 & \bar x_2 \\
-                                    \bar x_1 & \bar x_2\\
-                                    \bar x_1 & \bar x_2\\
-                                    \bar x_1 & \bar x_2\\
-                                    \bar x_1 & \bar x_2\\
-                                    \vdots & \vdots \\
-                                    \bar x_1 & \bar x_2
-                                    \end{bmatrix}
-                                    +\begin{bmatrix} 
-                                     x_{1s} & x_{2s} \\
-                                     x_{1s} & x_{2s}\\
-                                     x_{1s} & x_{2s}\\
-                                     x_{1s} & x_{2s}\\
-                                     x_{1s} & x_{2s}\\
-                                    \vdots & \vdots \\
-                                     x_{1s} &  x_{2s}
-                                    \end{bmatrix}*
-                                    \begin{bmatrix} 
-1.44 & -0.48\\ 
--0.48 & 0.64\\
-\end{bmatrix}$$
-
-```{r}
-
-sy2 <- new("dsyMatrix", Dim = as.integer(c(2,2)), x = c(1.44,-0.48,-0.48,0.64))
-(c2 <- chol(sy2))#-> "Cholesky" matrix
-str(c2)
-c2=as.matrix(c2)
-cc=as.matrix(cbind(ipat,ipat1))
-res=cc%*%c2
-
-med=as.matrix(cbind(mm,mm1))
-
-valres=med+res
-v1=valres[,1]
-V2=valres[,2]
-
-
-
-plot(v1,V2)
-cor(v1,V2)
-## rsln=1 semi amplitud=0.0005
-## runif(n, min = 0, max = 1)
-
-V3=runif(n=1e6,min=-0.5,max=0.5)
-
-y=(5*v1)-(3*V2)+V3
-
-sd(y)
-
-##Incertidumbre expandida
-cuartil1 <- quantile(y, probs = c(0.02275,0.97725)) 
-
-ymin=cuartil1[1]
-ymax=as.numeric(cuartil1[2])
-mediae=mean(y)
-sd(y)
-
-U=ymax-mediae
-U
-
-
-```
 
 ## Bibliografía
 

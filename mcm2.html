@@ -402,7 +402,7 @@ método de Monte Carlo</strong></p>
 <p>Esta aproximación requiere un esfuerzo computacional considerable y
 puede acumular errores numéricos si el algoritmo computacional del
 generador de números aleatorios no se desarrolla cuidadosamente.</p>
-<p>MCM es una alternativa a la GUM cuando</p>
+<p><strong>MCM es una alternativa a la GUM cuando:</strong></p>
 <ul>
 <li><p>La estimación de la magnitud de salida (mensurando) y su
 incertidumbre asociada provista por la GUM podría no ser
@@ -527,14 +527,14 @@ resolución</strong></p>
 definir la simulación</p>
 <pre class="r"><code>y=runif(n=1e6,min=0,max=2)
 sd(y)</code></pre>
-<pre><code>## [1] 0.5775457</code></pre>
+<pre><code>## [1] 0.5775723</code></pre>
 <pre class="r"><code>hist(y)</code></pre>
 <p><img src="mcm2_files/figure-html/unnamed-chunk-4-1.png" width="50%" /></p>
 <p><strong>Simulando la incertidumbre tipo A</strong></p>
-<p>como la desviación estándar proviene de una distribución uniforme
+<p>Como la desviación estándar proviene de una distribución uniforme
 hacemos uso de esta misma para la estimación de la incertidumbre.</p>
 <p><span class="math display">\[u=\frac{s}{\sqrt
-{10}}=\frac{0.5773}{10}=0.182574\]</span></p>
+{10}}=\frac{0.5773}{\sqrt{10}}=0.182574\]</span></p>
 <pre class="r"><code>ysum=0
 for(y in 1:10){
   y=runif(n=1e6,min=-1,max=1)
@@ -543,7 +543,7 @@ for(y in 1:10){
 
 y=(ysum)/10
 sd(y)</code></pre>
-<pre><code>## [1] 0.1826149</code></pre>
+<pre><code>## [1] 0.1825739</code></pre>
 </div>
 <div id="distribución-triangular" class="section level3">
 <h3>Distribución triangular</h3>
@@ -598,7 +598,7 @@ sdd=rep(s,1e6)
 ny=(y*sdd)+m
 
 sd(ny)</code></pre>
-<pre><code>## [1] 0.0003973478</code></pre>
+<pre><code>## [1] 0.0003969754</code></pre>
 <pre class="r"><code>##bajo una distribución normal
 
 y=rnorm(1e6, mean = 0, sd = 1)
@@ -606,7 +606,7 @@ y=rnorm(1e6, mean = 0, sd = 1)
 ny=(y*sdd)+m
 
 sd(ny)</code></pre>
-<pre><code>## [1] 0.0003074026</code></pre>
+<pre><code>## [1] 0.0003069631</code></pre>
 <p><strong>Propagación de incertidumbres</strong> GUM</p>
 <p><strong>Propagación de distribuciones</strong> MCM</p>
 <p><strong>Ejemplo</strong></p>
@@ -640,10 +640,10 @@ x3=rnorm(1e6, mean = 0, sd = 1)
 y=(5*x1)-(3*x2)+(x3)
 
 mean(y)</code></pre>
-<pre><code>## [1] -0.001620832</code></pre>
+<pre><code>## [1] -0.002782795</code></pre>
 <pre class="r"><code>par(mfrow=c(1,4))
 sd(y)</code></pre>
-<pre><code>## [1] 3.28968</code></pre>
+<pre><code>## [1] 3.29181</code></pre>
 <pre class="r"><code>hist(x1)
 hist(x2)
 hist(x3)
@@ -653,9 +653,9 @@ hist(y)</code></pre>
 
 E=sort(y)
 min(E)</code></pre>
-<pre><code>## [1] -10.80659</code></pre>
+<pre><code>## [1] -10.96273</code></pre>
 <pre class="r"><code>min(E)</code></pre>
-<pre><code>## [1] -10.80659</code></pre>
+<pre><code>## [1] -10.96273</code></pre>
 <pre class="r"><code>cuartil1 &lt;- quantile(E, probs = c(0.02275,0.97725)) 
 
 emin=cuartil1[1]
@@ -665,7 +665,7 @@ desv=sd(E)
 
 U=emax-mediae
 U</code></pre>
-<pre><code>## [1] 6.113679</code></pre>
+<pre><code>## [1] 6.1179</code></pre>
 </div>
 </div>
 <div id="librerías-de-r-relacionadas-con-la-incertidumbre"
@@ -673,9 +673,9 @@ class="section level2">
 <h2>Librerías de R relacionadas con la incertidumbre</h2>
 <table>
 <colgroup>
-<col width="18%" />
-<col width="13%" />
-<col width="68%" />
+<col width="16%" />
+<col width="20%" />
+<col width="62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -709,7 +709,7 @@ en modelos</td>
 </tr>
 <tr class="even">
 <td align="center"><strong>propagate</strong></td>
-<td align="center">propagación de incertidumbre</td>
+<td align="center">Propagación de incertidumbre</td>
 <td>Ofrece herramientas para realizar análisis de sensibilidad y estimar
 la incertidumbre en los resultados.</td>
 </tr>
@@ -770,7 +770,7 @@ summary(RES1)</code></pre>
 ##  3.000000  3.000000  3.291129  3.291129 -3.450498  9.450498</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-##  2.998714  3.290244  3.002004  3.295060 -3.453815  9.436626</code></pre>
+##  2.995982  3.291980  2.996795  3.289947 -3.463970  9.441854</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1614466</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -800,11 +800,11 @@ summary(RES1)</code></pre>
 ## x2 0.0000000 0.1384519 0.00000000
 ## x3 0.0000000 0.0000000 0.09232308</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.001289778 / 0.005790922</code></pre>
+<pre><code>## -0.00201573 / -0.003806639</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.8626058 =&gt; normal</code></pre>
+<pre><code>## 0.9753585 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.6208141 =&gt; normal</code></pre>
+<pre><code>## 0.9877168 =&gt; normal</code></pre>
 </div>
 </div>
 <div id="cuál-distribución-de-probabilidad-se-ajusta-mejor-a-los-datos"
@@ -891,12 +891,12 @@ fitDistr(RES1)</code></pre>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##     mean       sd 
-## 3.001616 3.294783</code></pre>
+## 2.998738 3.294475</code></pre>
 <pre><code>## Standard errors:</code></pre>
 <pre><code>##        mean          sd 
-## 0.002677529 0.002186193</code></pre>
+## 0.002682269 0.002190063</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -917.3917</code></pre>
+<pre><code>## BIC = -889.5347</code></pre>
 <p><strong>El ejercicio del parcial hecho en R</strong></p>
 <pre class="r"><code>library(propagate)
 ## =&gt; Normal distribution.
@@ -912,7 +912,7 @@ summary(RES1)</code></pre>
 ## 89.587580 89.587579  1.475181  1.475181 86.696274 92.478883</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##      Mean        sd    Median       MAD      2.5%     97.5% 
-## 89.591168  1.474162 89.590316  1.473022 86.698216 92.484124</code></pre>
+## 89.587559  1.476342 89.588575  1.476117 86.691974 92.485870</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 1000010</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -938,11 +938,11 @@ summary(RES1)</code></pre>
 ## x 0.9999949 0.000000e+00
 ## y 0.0000000 5.128092e-06</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.0005327581 / 0.009510585</code></pre>
+<pre><code>## -0.0003086358 / -4.932412e-05</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.6088106 =&gt; normal</code></pre>
+<pre><code>## 0.8667859 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.7415242 =&gt; normal</code></pre>
+<pre><code>## 0.2840905 =&gt; normal</code></pre>
 <pre class="r"><code>fitDistr(RES1)</code></pre>
 <pre><code>## 1 of 32: Fitting Normal distribution...</code></pre>
 <pre><code>## .........</code></pre>
@@ -1016,16 +1016,171 @@ summary(RES1)</code></pre>
 <pre><code>## Best fit is Normal Distribution.</code></pre>
 <pre><code>## Parameters:</code></pre>
 <pre><code>##      mean        sd 
-## 89.591041  1.473537</code></pre>
+## 89.587875  1.476591</code></pre>
 <pre><code>## Standard errors:</code></pre>
 <pre><code>##        mean          sd 
-## 0.001226648 0.001001554</code></pre>
+## 0.001301956 0.001063043</code></pre>
 <pre><code>## Goodness of fit:</code></pre>
-<pre><code>## BIC = -883.1302</code></pre>
+<pre><code>## BIC = -898.6275</code></pre>
+<p><strong>Otro ejemplo teniendo en cuenta la correlación entre
+variables</strong></p>
+<p><span
+class="math display">\[y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3\]</span></p>
+<p><span class="math display">\[r(x_1,x_2)=-0.5\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">variable</th>
+<th align="center">Distribución</th>
+<th align="center">promedio</th>
+<th align="center"><span class="math inline">\(u(x_i)\)</span></th>
+<th align="center"><span class="math inline">\(c_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x_1\)</span></td>
+<td align="center">Normal</td>
+<td align="center">1.5</td>
+<td align="center">1.2</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(x_2\)</span></td>
+<td align="center">Normal</td>
+<td align="center">3</td>
+<td align="center">0.8</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x_3\)</span></td>
+<td align="center">Uniforme</td>
+<td align="center"><span class="math inline">\(\bar x=0\)</span>
+a=1</td>
+<td align="center"><span class="math inline">\(u=1/\sqrt
+3=0.5773\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Por el método GUM</strong></p>
+<p><span
+class="math display">\[u_c(y)=\sqrt{(c_1u_{x_1})^2+(c_2u_{x_2})^2+(c_3u_{x_3})^2+2c_1c_2
+u_{x_1} u_{x_2} r(x_1,x_2))}\]</span> <span
+class="math display">\[u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51\]</span></p>
+<p>sin correlación=6.48</p>
+<p>Simulación de <span class="math inline">\(x_1\)</span></p>
+<pre class="r"><code>m=1.5
+s=1
+y=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm=rep(m,1e6)
+ipat=(y*sdd)+mm
+
+sd(ipat)</code></pre>
+<pre><code>## [1] 0.9989355</code></pre>
+<pre class="r"><code>#Simulación de x2
+
+m=3
+s=1
+y1=rnorm(1e6, mean = 0, sd = 1)
+sdd=rep(s,1e6)
+mm1=rep(m,1e6)
+ipat1=(y1*sdd)+mm1
+
+sd(ipat)</code></pre>
+<pre><code>## [1] 0.9989355</code></pre>
+<p><strong>encontrar matriz de var-cov</strong></p>
+<p><span class="math display">\[cov=\begin{bmatrix}
+u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
+u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[cov=\begin{bmatrix}
+1.2^2 &amp; 1.2*0.8*-0.5\\
+1.2*0.8*-0.5 &amp; 0.8^2\\
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[cov=\begin{bmatrix}
+1.44 &amp; -0.48\\
+-0.48 &amp; 0.64\\
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[x=\bar x+x_s*R\]</span></p>
+<p><span class="math display">\[x_{i_{corr}}= \begin{bmatrix} \bar x_1
+&amp; \bar x_2 \\
+                                    \bar x_1 &amp; \bar x_2\\
+                                    \bar x_1 &amp; \bar x_2\\
+                                    \bar x_1 &amp; \bar x_2\\
+                                    \bar x_1 &amp; \bar x_2\\
+                                    \vdots &amp; \vdots \\
+                                    \bar x_1 &amp; \bar x_2
+                                    \end{bmatrix}
+                                    +\begin{bmatrix}
+                                     x_{1s} &amp; x_{2s} \\
+                                     x_{1s} &amp; x_{2s}\\
+                                     x_{1s} &amp; x_{2s}\\
+                                     x_{1s} &amp; x_{2s}\\
+                                     x_{1s} &amp; x_{2s}\\
+                                    \vdots &amp; \vdots \\
+                                     x_{1s} &amp;  x_{2s}
+                                    \end{bmatrix}*
+                                    \begin{bmatrix}
+1.44 &amp; -0.48\\
+-0.48 &amp; 0.64\\
+\end{bmatrix}\]</span></p>
+<pre class="r"><code>sy2 &lt;- new(&quot;dsyMatrix&quot;, Dim = as.integer(c(2,2)), x = c(1.44,-0.48,-0.48,0.64))
+(c2 &lt;- chol(sy2))#-&gt; &quot;Cholesky&quot; matrix</code></pre>
+<pre><code>## 2 x 2 Matrix of class &quot;Cholesky&quot;
+##      [,1]       [,2]      
+## [1,]  1.2000000 -0.4000000
+## [2,]          .  0.6928203</code></pre>
+<pre class="r"><code>str(c2)</code></pre>
+<pre><code>## Formal class &#39;Cholesky&#39; [package &quot;Matrix&quot;] with 5 slots
+##   ..@ x       : num [1:4] 1.2 0 -0.4 0.693
+##   ..@ Dim     : int [1:2] 2 2
+##   ..@ Dimnames:List of 2
+##   .. ..$ : NULL
+##   .. ..$ : NULL
+##   ..@ uplo    : chr &quot;U&quot;
+##   ..@ diag    : chr &quot;N&quot;</code></pre>
+<pre class="r"><code>c2=as.matrix(c2)
+cc=as.matrix(cbind(ipat,ipat1))
+res=cc%*%c2
+
+med=as.matrix(cbind(mm,mm1))
+
+valres=med+res
+v1=valres[,1]
+V2=valres[,2]
+
+
+
+plot(v1,V2)</code></pre>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>cor(v1,V2)</code></pre>
+<pre><code>## [1] -0.5001841</code></pre>
+<pre class="r"><code>## rsln=1 semi amplitud=0.0005
+## runif(n, min = 0, max = 1)
+
+V3=runif(n=1e6,min=-0.5,max=0.5)
+
+y=(5*v1)-(3*V2)+V3
+
+sd(y)</code></pre>
+<pre><code>## [1] 7.494577</code></pre>
+<pre class="r"><code>##Incertidumbre expandida
+cuartil1 &lt;- quantile(y, probs = c(0.02275,0.97725)) 
+
+ymin=cuartil1[1]
+ymax=as.numeric(cuartil1[2])
+mediae=mean(y)
+sd(y)</code></pre>
+<pre><code>## [1] 7.494577</code></pre>
+<pre class="r"><code>U=ymax-mediae
+U</code></pre>
+<pre><code>## [1] 14.955</code></pre>
 </div>
-<div id="otro-ejemplo" class="section level2">
-<h2>Otro ejemplo</h2>
-<p><strong>Calibración de un multímetro DMM</strong></p>
+<div id="ejemplo-calibración-de-un-multímetro-dmm"
+class="section level2">
+<h2>Ejemplo: Calibración de un multímetro DMM</h2>
 <p>Punto de medición: 40V</p>
 <p>Especificaciones del calibrador: <span
 class="math inline">\(\pm\)</span> (18 ppm set+150<span
@@ -1059,7 +1214,7 @@ class="math inline">\(\mu\)</span> V)</p>
 <thead>
 <tr class="header">
 <th align="left">Intervalo V</th>
-<th align="left">329.9999</th>
+<th align="left">39.9999</th>
 </tr>
 </thead>
 <tbody>
@@ -1191,7 +1346,7 @@ sdd=rep(s,1e6)
 
 ir=(y*sdd)+m
 sd(ir)</code></pre>
-<pre><code>## [1] 0.0003968311</code></pre>
+<pre><code>## [1] 0.0003977792</code></pre>
 <pre class="r"><code>## vs valor gum 0.0030732 bajo una t
 
 ##______________________________________________________________
@@ -1202,7 +1357,7 @@ sd(ir)</code></pre>
 irsln=runif(n=1e6,min=-0.0005,max=0.0005)
 
 sd(irsln)</code></pre>
-<pre><code>## [1] 0.0002886013</code></pre>
+<pre><code>## [1] 0.0002885928</code></pre>
 <pre class="r"><code>## vs 0.0002886
 ##__________________________
 ## incer patrón
@@ -1215,7 +1370,7 @@ sdd=rep(s,1e6)
 ipat=(y*sdd)+m
 
 sd(ipat)</code></pre>
-<pre><code>## [1] 9.998779e-05</code></pre>
+<pre><code>## [1] 0.0001000409</code></pre>
 <pre class="r"><code>##______________________________________________________________
 ##Incer especif 
 ## rsln=0.001 semi amplitud=0.0005
@@ -1224,16 +1379,16 @@ sd(ipat)</code></pre>
 iesp=runif(n=1e6, min=-0.00087, max=0.00087)
 
 sd(iesp)</code></pre>
-<pre><code>## [1] 0.0005021083</code></pre>
+<pre><code>## [1] 0.0005024307</code></pre>
 <pre class="r"><code>##__forma resultante___________________
 
 e=(ir+irsln)-(ipat+iesp)
 
 # incertidumbre combinada_____
 sd(e)</code></pre>
-<pre><code>## [1] 0.0007089414</code></pre>
+<pre><code>## [1] 0.0007095645</code></pre>
 <pre class="r"><code>hist(e)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-17-1.png" width="50%" /></p>
+<p><img src="mcm2_files/figure-html/unnamed-chunk-19-1.png" width="50%" /></p>
 <pre class="r"><code>##Incertidumbre expandida
 cuartil1 &lt;- quantile(e, probs = c(0.02275,0.97725)) 
 
@@ -1244,7 +1399,7 @@ mediae=mean(e)
 
 U=emax-mediae
 U</code></pre>
-<pre><code>## [1] 0.001373827</code></pre>
+<pre><code>## [1] 0.001373986</code></pre>
 <p><strong>Librería propagate</strong></p>
 <pre class="r"><code>library(propagate)
 
@@ -1263,7 +1418,7 @@ summary(RES2)</code></pre>
 ## 2.0000000000 2.0000000000 0.0006633905 0.0006633905 1.9985130737 2.0014869263</code></pre>
 <pre><code>## Results from Monte Carlo simulation:</code></pre>
 <pre><code>##         Mean           sd       Median          MAD        1.25%       98.75% 
-## 2.0000022143 0.0006614306 2.0000029456 0.0006634171 1.9985150304 2.0014789064</code></pre>
+## 1.9999991001 0.0006647159 2.0000023746 0.0006666525 1.9985129142 2.0014808898</code></pre>
 <pre><code>## Welch-Satterthwaite degrees of freedom:</code></pre>
 <pre><code>## [1] 2432424</code></pre>
 <pre><code>## Coverage factor (k):</code></pre>
@@ -1297,11 +1452,11 @@ summary(RES2)</code></pre>
 ## Vcer 0.0000000 0.0000000 0.02272278 0.0000000
 ## VEsp 0.0000000 0.0000000 0.00000000 0.5733077</code></pre>
 <pre><code>## Skewness / Excess Kurtosis of MC evaluations:</code></pre>
-<pre><code>## -0.004863228 / -0.01138145</code></pre>
+<pre><code>## -0.01117985 / -0.01567156</code></pre>
 <pre><code>## Shapiro-Wilk test for normality:</code></pre>
-<pre><code>## 0.3345701 =&gt; normal</code></pre>
+<pre><code>## 0.3710898 =&gt; normal</code></pre>
 <pre><code>## Kolmogorov-Smirnov test for normality:</code></pre>
-<pre><code>## 0.935581 =&gt; normal</code></pre>
+<pre><code>## 0.1811196 =&gt; normal</code></pre>
 <p><strong>Comparación</strong></p>
 <table>
 <thead>
@@ -1329,161 +1484,6 @@ summary(RES2)</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>Otro ejemplo teniendo en cuenta la correlación entre
-variables</strong></p>
-<p><span
-class="math display">\[y=f(x_1,x_2,x_3)=5x_1-3x_2+x_3\]</span></p>
-<p><span class="math display">\[r(x_1,x_2)=-0.5\]</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">variable</th>
-<th align="center">Distribución</th>
-<th align="center">promedio</th>
-<th align="center"><span class="math inline">\(u(x_i)\)</span></th>
-<th align="center"><span class="math inline">\(c_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(x_1\)</span></td>
-<td align="center">Normal</td>
-<td align="center">1.5</td>
-<td align="center">1.2</td>
-<td align="center">5</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(x_2\)</span></td>
-<td align="center">Normal</td>
-<td align="center">3</td>
-<td align="center">0.8</td>
-<td align="center">3</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(x_3\)</span></td>
-<td align="center">Uniforme</td>
-<td align="center"><span class="math inline">\(\bar x=0\)</span>
-a=1</td>
-<td align="center"><span class="math inline">\(u=1/\sqrt
-3=0.5773\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Por el método GUM</strong></p>
-<p><span
-class="math display">\[u_c(y)=\sqrt{(c_1u_{x_1})^2+(c_2u_{x_2})^2+(c_3u_{x_3})^2+2c_1c_2
-u_{x_1} u_{x_2} r(x_1,x_2))}\]</span> <span
-class="math display">\[u_c(y)=\sqrt{(5*1.2)^2+(3*0.8)^2+(1*0.5773)^2+(2*1.2*0.8*-0.5)}=7.51\]</span></p>
-<p>sin correlación=6.48</p>
-<p>Simulación de <span class="math inline">\(x_1\)</span></p>
-<pre class="r"><code>m=1.5
-s=1
-y=rnorm(1e6, mean = 0, sd = 1)
-sdd=rep(s,1e6)
-mm=rep(m,1e6)
-ipat=(y*sdd)+mm
-
-sd(ipat)</code></pre>
-<pre><code>## [1] 1.000647</code></pre>
-<pre class="r"><code>#Simulación de x2
-
-m=3
-s=1
-y1=rnorm(1e6, mean = 0, sd = 1)
-sdd=rep(s,1e6)
-mm1=rep(m,1e6)
-ipat1=(y1*sdd)+mm1
-
-sd(ipat)</code></pre>
-<pre><code>## [1] 1.000647</code></pre>
-<p><strong>encontrar matriz de var-cov</strong></p>
-<p><span class="math display">\[cov=\begin{bmatrix}
-u_1^2(xi) &amp; u(x_1)u(x_2)r(x_1,x_2)\\
-u(x_2)u(x_1)r(x_2,x_1) &amp; u_2^2(x_2)\\
-\end{bmatrix}\]</span></p>
-<p><span class="math display">\[cov=\begin{bmatrix}
-1.2^2 &amp; 1.2*0.8*-0.5\\
-1.2*0.8*-0.5 &amp; 0.8^2\\
-\end{bmatrix}\]</span></p>
-<p><span class="math display">\[cov=\begin{bmatrix}
-1.44 &amp; -0.48\\
--0.48 &amp; 0.64\\
-\end{bmatrix}\]</span></p>
-<p><span class="math display">\[x=\bar x+x_s*R\]</span></p>
-<p><span class="math display">\[x_{i_{corr}}= \begin{bmatrix} \bar x_1
-&amp; \bar x_2 \\
-                                    \bar x_1 &amp; \bar x_2\\
-                                    \bar x_1 &amp; \bar x_2\\
-                                    \bar x_1 &amp; \bar x_2\\
-                                    \bar x_1 &amp; \bar x_2\\
-                                    \vdots &amp; \vdots \\
-                                    \bar x_1 &amp; \bar x_2
-                                    \end{bmatrix}
-                                    +\begin{bmatrix}
-                                     x_{1s} &amp; x_{2s} \\
-                                     x_{1s} &amp; x_{2s}\\
-                                     x_{1s} &amp; x_{2s}\\
-                                     x_{1s} &amp; x_{2s}\\
-                                     x_{1s} &amp; x_{2s}\\
-                                    \vdots &amp; \vdots \\
-                                     x_{1s} &amp;  x_{2s}
-                                    \end{bmatrix}*
-                                    \begin{bmatrix}
-1.44 &amp; -0.48\\
--0.48 &amp; 0.64\\
-\end{bmatrix}\]</span></p>
-<pre class="r"><code>sy2 &lt;- new(&quot;dsyMatrix&quot;, Dim = as.integer(c(2,2)), x = c(1.44,-0.48,-0.48,0.64))
-(c2 &lt;- chol(sy2))#-&gt; &quot;Cholesky&quot; matrix</code></pre>
-<pre><code>## 2 x 2 Matrix of class &quot;Cholesky&quot;
-##      [,1]       [,2]      
-## [1,]  1.2000000 -0.4000000
-## [2,]          .  0.6928203</code></pre>
-<pre class="r"><code>str(c2)</code></pre>
-<pre><code>## Formal class &#39;Cholesky&#39; [package &quot;Matrix&quot;] with 5 slots
-##   ..@ x       : num [1:4] 1.2 0 -0.4 0.693
-##   ..@ Dim     : int [1:2] 2 2
-##   ..@ Dimnames:List of 2
-##   .. ..$ : NULL
-##   .. ..$ : NULL
-##   ..@ uplo    : chr &quot;U&quot;
-##   ..@ diag    : chr &quot;N&quot;</code></pre>
-<pre class="r"><code>c2=as.matrix(c2)
-cc=as.matrix(cbind(ipat,ipat1))
-res=cc%*%c2
-
-med=as.matrix(cbind(mm,mm1))
-
-valres=med+res
-v1=valres[,1]
-V2=valres[,2]
-
-
-
-plot(v1,V2)</code></pre>
-<p><img src="mcm2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<pre class="r"><code>cor(v1,V2)</code></pre>
-<pre><code>## [1] -0.502291</code></pre>
-<pre class="r"><code>## rsln=1 semi amplitud=0.0005
-## runif(n, min = 0, max = 1)
-
-V3=runif(n=1e6,min=-0.5,max=0.5)
-
-y=(5*v1)-(3*V2)+V3
-
-sd(y)</code></pre>
-<pre><code>## [1] 7.509308</code></pre>
-<pre class="r"><code>##Incertidumbre expandida
-cuartil1 &lt;- quantile(y, probs = c(0.02275,0.97725)) 
-
-ymin=cuartil1[1]
-ymax=as.numeric(cuartil1[2])
-mediae=mean(y)
-sd(y)</code></pre>
-<pre><code>## [1] 7.509308</code></pre>
-<pre class="r"><code>U=ymax-mediae
-U</code></pre>
-<pre><code>## [1] 14.97426</code></pre>
 </div>
 <div id="bibliografía" class="section level2">
 <h2>Bibliografía</h2>
