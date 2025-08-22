@@ -74,9 +74,6 @@ hist(no, xlab = "PH agua no potable", ylab = "Frecuencia", las=1, main = "", col
 hist(si, xlab = "PH agua potable", ylab = "Frecuencia", las=1, main = "", col = "gray")
 ```
 
-
-
-
 ## Grafico cuantil cuantil
 
 Los gráficos cuantil cuantil son una ayuda para explorar si un conjunto de datos proviene de una población con cierta distribución.
@@ -85,8 +82,6 @@ La función **qqnorm** sirve para explorar la normalidad de una muestra, general
 
 
 La función **qqplot** sirve para crear el gráfico cuantil cuantil para cualquier distribución, requiere los cuantiles de la distribución candidata.
-
-
 
 
 **Ejemplo de los datos de agua potable**
@@ -130,8 +125,6 @@ Cada sección contiene el 25% de los datos. La caja muestra la mitad de los dato
 - Permite observar puntos atípicos,los cuales no están contenidos dentro de la caja, ni en sus bigotes.
 
 **Ejemplo**
-
-
 
 construir un boxplot con los datos del ph del agua según su potabilidad, Qué infiere?
 
@@ -230,12 +223,95 @@ sf.test(volumen)
 
 ```
 
-## Pruebas de bondad de ajuste para otras distribuciones
+# Pruebas de independencia de las distribuciones
+
+Existen diferentes pruebas como la prueba de Fisher, y el test chi cuadrado, se utilizan cuando se quiere estudiar si existe asociación entre dos variables cualitativas, es decir, si las proporciones de una variable son diferentes dependiendo del valor que adquiera la otra variable.
+
+**El juego de hipótesis es:**
+
+$$H_o:$$ Las variables son independientes, una variable no varía entre los distintos niveles de la otra variable.
+
+$$H_a:$$ Las variables son dependientes, una variable varía entre los distintos niveles de la otra variable.
+
+## Test exacto de fisher
+
+El test de Fisher se aplica para comparar dos variables categóricas con dos niveles cada una (tabla 2x2), está diseñado para situaciones en las que las frecuencias marginales de filas y columnas (los totales de cada fila y columna) son fijas, se conocen de antemano. Esta condición es relevante en los experimentos biológicos ya que no es común poder cumplirla. Si esta condición no se satisface el test de Fisher deja de ser exacto, por lo general pasando a ser más conservativo. 
+
+Ejemplo de experimentos con y sin frecuencias marginales fijas:
+
+**Frecuencias marginales fijas:**
+
+Supóngase que se quiere saber si la preferencia que tienen dos especies de pájaros (estorninos y gorriones) para refugiarse en casetas artificiales es diferente dependiendo del material de fabricación (madera o metal). Para ellos se disponen en una pajarera 5 casetas de metal y 5 de madera y se sueltan en el interior de la jaula 4 gorriones y 6 estorninos. En este experimento se sabe que las frecuencias marginales van a ser 5, 5, 4, 6 lo que no se sabe es como se van a distribuir las observaciones dentro de la tabla.
+
+|Pájaro|Metal|Madera|total|
+|:----:|:---:|:----:|:---:|
+|Gorrión|?   |     ?|4    |
+|Estornino|? |?     |6    |
+|Total    |5 |5     |10   | 
+
+
+
+**Frecuencias marginales no fijas:** 
+
+
+Supóngase que se quiere determinar si un fármaco acelera la cicatrización. Para ello se selecciona a 50 pacientes que se reparten aleatoriamente en dos grupos iguales (tratamiento y placebo), tras una semana de tratamiento se determina si la cicatrización ha finalizado (si / no). En este caso las frecuencias marginales de los tratamientos son fijas, 25 para cada grupo, sin embargo no se sabe cuántos en cada grupo van a haber cicatrizado o no, por lo que las frecuencias marginales del resultado de cicatrización no son fijas.
+
+
+|Tratamiento|cicatrizado|No cicatrizado|total|
+|:---------:|:---------:|:------------:|:---:|
+|placebo    |?          |     ?        |25   |
+|Tratamiento|?          |?             |25   |
+|Total      |?          |?             |50   | 
+
+
+**Condiciones del test**
+
+
+- Independencia,las observaciones de la muestra deben ser independientes unas de otras.
+
+- Muestreo aleatorio.
+
+- Tamaño de la muestra < 10% población.
+
+- Cada observación contribuye únicamente a uno de los niveles.
+
+- Las frecuencias marginales de columnas y filas tienen que ser fijas. Si esta condición no se cumple, el test de Fisher deja de ser exacto.
+
+
+**Cálculo del p-value**
+
+
+El test exacto de Fisher se basa en la distribución hipergeométrica, que permite calcular la probabilidad exacta de obtener una determinada distribución de eventos dentro de una tabla. Supóngase la siguiente tabla de contingencia:
+
+
+|Niveles |Nivel A1|Nivel A2|total|
+|:------:|:------:|:------:|:---:|
+|Nivel B1|a       |b       |a+b  |
+|Nivel B2|c       |d       |c+d  |
+|Total   |a+c     |b+d     | n   | 
+
+n=a+b+c+d
+
+
+$$p=  \frac{{a+b\choose a}\,{c+d\choose c}}{{n\choose a+c}}= \frac{(a+b)!(c+d)!(a+c)!(b+d)!}{a!b!c!d!n!},  $$
+El test de Fisher calcula las probabilidades de todas las posibles tablas y suma las de aquellas tablas que tengan probabilidades menores o iguales que la tabla observada, generando así el p-value de dos colas.
+Fuerza de asociación (tamaño del efecto)
+
+
+Dado que el test de Fisher contrasta si las variables están relacionadas, al tamaño del efecto se le conoce como fuerza de asociación. Existen múltiples medidas de asociación, entre las que destacan phi o Cramer’s V. Los límites empleados para su clasificación son:
+
+pequeño: 0.1
+mediano: 0.3
+grande: 0.5
+En R se pueden calcular mediante la función assocstats() del paquete vcd.
+
+
+# Pruebas de bondad de ajuste para otras distribuciones
 
 Una alternativa a la no normalidad de los datos, es proceder a implementar pruebas no paramétricas, para evaluar si los datos se ajustan a una distribución hipotética.
 
 
-### Test de Kolmogorov-Smirnov K-S
+## Test de Kolmogorov-Smirnov K-S
 
 Se emplea para saber si una distribución de probabilidad acumulada difiere de una distribución hipotética, por lo general la distribución normal, la uniforme, la de Poisson o la exponencial. Es decir permite contrastar si un conjunto de datos muestrales proviene de un tipo de distribución. 
 
@@ -266,8 +342,7 @@ Celia quiere medir el tiempo de atención a los usuarios. Se seleccionaron 20 pe
 
 ```{r echo=TRUE}
 require(car)
-tiempo<-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,
-          12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
+tiempo<-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
 
 par(mfrow=c(1,4))
 hist(tiempo, xlab = "Tiempo", ylab = "Frecuencia", las=1, main = "", col = "gray")
@@ -301,6 +376,7 @@ Según las pruebas realizadas, no se rechaza la hipótesis nula y por tanto, se 
 
 
 **Ejemplo comparando dos distribuciones**
+
 Se desea saber si los datos de potabilidad de agua (potable y no potable) siguen la misma distribución de probabilidad.
 
 
@@ -318,11 +394,11 @@ ks.test(si, no)
 ```
 
 
-## Prueba chi cuadrado
+# Prueba chi cuadrado
 
 Esta prueba tiene diferentes usos, entre los principales se encuentran
 
-**1. Prueba de independencia**
+## **1. Prueba de independencia**
 
 Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra.
 Asuma que $Oij$ es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que $e_{ij}$ son las correspondientes frecuencias esperadas si X e Y son independientes.
@@ -340,7 +416,7 @@ $$ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}$$
 
 
 
-## Ejemplo en R:
+**Ejemplo en R:**
 
 Se usan los datos de la base survey de la librería MASS de R, que corresponden a 237 observaciones provenientes de una encuesta a estudiantes de estadística de una Universidad en Australia.
 
@@ -389,7 +465,7 @@ chisq.test(ctbl)
 ```
 
 
-**2. Prueba de bondad de ajuste **
+## **2. Prueba de bondad de ajuste**
 
 Se utiliza para determinar si una variable categórica sigue o no una distribución hipotética.
 
@@ -434,7 +510,7 @@ gf$par
 summary(gf)
 ```
 
-**3. Comparación de distribuciones**
+## **3. Comparación de distribuciones**
 
 
 Retomando el ejemplo de el ph de agua potable y no potable
@@ -572,5 +648,150 @@ shapiro.test(c26)
 ks.test(c12,c26)
 
 ```
+
+
+
+# Prueba chi cuadrado
+
+Esta prueba tiene diferentes usos, entre los principales se encuentran
+
+## **1. Prueba de independencia**
+
+Dos variables aleatorias X e Y son llamadas independientes si la distribución de probabilidad de una de las variables no es afectada por la presencia de la otra.
+Asuma que $Oij$ es la frecuencia observada de eventos que pertenecen a ambos, la i−ésima categoría de X y la j−ésima categoría de Y. Además, suponga que $e_{ij}$ son las correspondientes frecuencias esperadas si X e Y son independientes.
+
+**Prueba de hipótesis**
+
+$$H_0:  \quad Los\quad datos\quad son \quad independientes$$
+
+$$H_1:  \quad Los\quad datos\quad no \quad son \quad independientes$$
+
+
+**Estadístico:**
+
+$$ \large \chi^2=\sum_{i,j}^n \frac {(o_{ij}-e_{ij})^2}{e_{ij}}$$
+
+
+
+**Ejemplo en R:**
+
+Se usan los datos de la base survey de la librería MASS de R, que corresponden a 237 observaciones provenientes de una encuesta a estudiantes de estadística de una Universidad en Australia.
+
+1. Valide la hipótesis de si el hábito de fumar es independiente del nivel de ejercicios de los estudiantes usando un nivel de significancia del 0.05.
+
+```{r echo=TRUE}
+## Para inst lar librerías use
+
+# install.packages("MASS")
+
+## Para llamar la librería
+library(MASS)
+library(DT)
+
+##la base de datos total corresponde a 
+DT::datatable(survey, filter = 'top', 
+              options = list(pageLength = 5, autoWidth = TRUE ))
+
+
+
+## Para obtener un resumen de los datos
+
+summary(survey)
+
+
+## se usan las variables
+## FUMA (Smoke) con los niveles: Heavy, Regul, Occas y Never 
+## EJERCICIO (Exer) con los niveles: Freq, Some, y None
+##se tabulan
+
+tbl=table(survey$Smoke,survey$Exer)
+tbl
+
+chisq.test(tbl)
+
+
+#Note que aparece un mensaje de alerta. Esto es debido a que en algunas celdas las
+#frecuencias son muy pequeñas. Podemos solucionar esto agrupando algunas columnas.
+
+ctbl = cbind(tbl[,"Freq"], tbl[,"None"] + tbl[,"Some"])
+ctbl
+
+chisq.test(ctbl)
+
+
+```
+
+
+## **2. Prueba de bondad de ajuste**
+
+Se utiliza para determinar si una variable categórica sigue o no una distribución hipotética.
+
+Para estimar los parámetros de una distribución de probabilidad discreta (poisson y binomial), se requiere la función goodfit del paquete vcd. Esta función también realiza la prueba de bondad de ajuste y sus argumentos son: variable de interés, tipo de distribución y método. Se usará el test de Chi-cuadradado a través del argumento “MinChisq”
+
+
+
+
+
+
+**Ejemplo**
+En un supermercado se está estudiando el comportamiento del número de personas que llegan cada hora. Se analizaron 20 horas, cuyos datos se consignan a continuación:
+
+
+**Análisis exploratorio**
+Se analiza los gráficos para determinar una distribución hipotética.
+
+```{r echo=TRUE }
+
+personas<-c(13, 14, 14, 19, 17, 14, 13,  9, 16, 16,13, 13, 15, 13,  7, 14, 14, 13, 20, 15)
+
+par(mfrow=c(1,2))
+hist(personas, xlab = "personas", ylab = "Frecuencia", las=1, main = "", col = "gray")
+plot(density(personas), xlab = "personas", ylab = "Densidad", las=1, main = "")
+
+
+```
+
+En este caso, la variable de interés registra un número de eventos por unidad de tiempo, por lo que se sugiere analizar el ajuste a una distribución poisson. Se muestra la respectiva prueba de hipótesis. Sea X el número de clientes que visitan Celia Express.
+
+$H_0:$X∼Poisson
+
+$H_1:$X≁Poisson
+
+Se realizará el análisis con un α=0.01
+
+```{r}
+require(vcd)
+gf<-goodfit(personas, type = "poisson", method = "MinChisq")
+gf$par
+
+summary(gf)
+```
+
+## **3. Comparación de distribuciones**
+
+
+Retomando el ejemplo de el ph de agua potable y no potable
+
+
+$H_0:X_{si}∼y_{no}$
+
+$H_1:X_{si}≁y_{no}$
+
+
+```{r echo=TRUE}
+
+chisq.test(no,si)
+
+```
+
+
+------
+# Prueba chi cuadrado
+
+Esta prueba tiene diferentes usos, entre los principales se encuentran
+
+## **1. Prueba de independencia**
+## **2. Prueba de bondad de ajuste**
+# **3. Comparación de distribuciones**
 
 
