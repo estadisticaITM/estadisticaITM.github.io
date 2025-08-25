@@ -177,84 +177,7 @@ Calcular la probabilidad de
 
 
 
-__________________________________________________________________________________________
 
-**Otros ejemplos**
-
-1. Encuentre la probabilidad de que pase la corriente por cada uno de los circuitos mostrados en la figura, si la probabilidad de que cada relé este cerrado es p.
-
-
-pi = probabilidad de que pase corriente en i , además es la misma para cada relé (p)
-
-
-
-```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/cir2.png")
-```
-
-
-
-
-**Circuito 1**
-
-
-
-$$P (1 \cap  2) = p * p = p^2$$
-
-**Circuito 2**
-
-$$P(1U2)=p+p-p^2$$
-
-**Circuito 3**
-
-$$P(1U(2\cap 3)=P(1)+P(2\cap 3)-P(1\cap 2 \cap 3) $$
-$$p+(p*p)-p*p*p=p+p^2-p^3$$
-
-El circuito ilustrado debajo opera si y sólo si hay una trayectoria de dispositivos funcionales de izquierda a derecha. La probabilidad de que cada dispositivo funcione se indica en el gráfico. 
-
-Suponga que los dispositivos fallan independientemente. ¿Cuál es la probabilidad de que el circuito opere?
-
-```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/cir.png")
-```
-
-2.Tenemos un circuito
-
-
-     |--A--|       |--D--E--|
-            |--C--|            
-     |--B--|       |----F----|
-
-La pregunta es que probabilidades hay de que el circuito funcione.
-Por si alguien no lo pilla
-Si A ó B funciona el circuito funciona
-C debe funcionar si o si
-D,E ó F deben funcionar para que funcione el circuito
-
-Creo que se entiende
-
-P(A)=0,9
-P(B)=0,8
-P(C)=0,95
-P(D)=0,9
-P(E)=0,9
-P(F)=0,5
-
-3. Un ingeniero desea seleccionar, entre los dos dise˜nos de circuitos que se muestran en la Figura 1, aquel que brinda una mayor probabilidad de que la corriente circule entre el punto A y el punto B. Si las componentes (resistencias) funcionan de forma independiente y cada una tiene una probabilidad 0.1 de fallar.
-
-```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/cir1.png")
-```
-
-
-a) Calcular la probabilidad de que el Circuito 1 funcione.
-b) Calcular la probabilidad de que el Circuito 2 funcione.
-c) ¿Cu´al de los dos dise˜nos debiera seleccionar el ingeniero?.
-
-
-
-
-__________________________________________________________________________________________
 
 
 ## Probabilidad condicional
@@ -353,6 +276,41 @@ knitr::include_graphics("imagen/ESAY.png")
 *Independencia de eventos*
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/d4yIg-nEk-M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+__________________________________________________________________________________________
+
+**Otros ejemplos**
+
+1. Encuentre la probabilidad de que pase la corriente por cada uno de los circuitos mostrados en la figura, si la probabilidad de que cada relé este cerrado es p.
+
+
+pi = probabilidad de que pase corriente en i , además es la misma para cada relé (p)
+
+
+
+```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/cir2.png")
+```
+
+
+
+
+**Circuito 1**
+
+
+
+$$P (1 \cap  2) = p * p = p^2$$
+
+**Circuito 2**
+$$P(AUB)=P(A)+P(B)-P(AUB)$$
+$$p+p-p^2$$
+$$P(1U2)=p+p-p^2$$
+
+**Circuito 3**
+
+$$P(1U(2\cap 3)=P(1)+P(2\cap 3)-P(1\cap 2 \cap 3) $$
+$$p+(p*p)-p*p*p=p+p^2-p^3$$
+
+
 ____________________________________________________________________________________
 
 ## Regla de la multiplicación

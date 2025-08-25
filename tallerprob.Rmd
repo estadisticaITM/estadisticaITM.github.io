@@ -240,6 +240,49 @@ c. Calcule P(B ∩ C). rta(0.68)
 d. Calcule P(C). rta(0.74)
 e. Calcule P(A | B ∩ C), la probabilidad de la compra de un refrigerador fabricado en EU dado que también se adquirieron una máquina de hacer hielos y una garantía ampliada. rta(0.7941)
 
+# Probabilidades independientes
+
+El circuito ilustrado debajo opera si y sólo si hay una trayectoria de dispositivos funcionales de izquierda a derecha. La probabilidad de que cada dispositivo funcione se indica en el gráfico. 
+
+Suponga que los dispositivos fallan independientemente. ¿Cuál es la probabilidad de que el circuito opere?
+
+```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/cir.png")
+```
+
+2.Tenemos un circuito
+
+
+     |--A--|       |--D--E--|
+            |--C--|            
+     |--B--|       |----F----|
+
+La pregunta es que probabilidades hay de que el circuito funcione.
+Por si alguien no lo pilla
+Si A ó B funciona el circuito funciona
+C debe funcionar si o si
+D,E ó F deben funcionar para que funcione el circuito
+
+Creo que se entiende
+
+P(A)=0,9
+P(B)=0,8
+P(C)=0,95
+P(D)=0,9
+P(E)=0,9
+P(F)=0,5
+
+3. Un ingeniero desea seleccionar, entre los dos dise˜nos de circuitos que se muestran en la Figura 1, aquel que brinda una mayor probabilidad de que la corriente circule entre el punto A y el punto B. Si las componentes (resistencias) funcionan de forma independiente y cada una tiene una probabilidad 0.1 de fallar.
+
+```{r, echo=F, fig.cap='Teoría de conjuntos', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/cir1.png")
+```
+
+
+a) Calcular la probabilidad de que el Circuito 1 funcione.
+b) Calcular la probabilidad de que el Circuito 2 funcione.
+c) ¿Cu´al de los dos dise˜nos debiera seleccionar el ingeniero?.
+
 
 
 
