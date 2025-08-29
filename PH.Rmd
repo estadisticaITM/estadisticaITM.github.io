@@ -678,6 +678,15 @@ mtext(expression(H[1] ~ theta !=  theta[0]) , side = 3,cex=1.5)
 
 ## PH diferencia de medias
 
+- Se prueba si dos muestras tienen igual promedio o si alguna de ellas es mayor que otra
+
+- Ambas muestras son aleatorias e independientes y
+las poblaciones de las cuales provienen se distribuyen normal
+
+- Sean $X_1,X_2,...X_n$ y $Y_1,Y_2,...Y_n$ muestras aleatorias que se obtienen de dos distribuciones normales independientes con media$\mu_x$ y $\mu_y$
+
+- Se identifican 3 casos:
+
 
 ```{r echo=FALSE}
 library(DiagrammeR)
@@ -697,22 +706,72 @@ DiagrammeR("
 
 
 
-
-
-
-
 |Varianzas                |Estadístico                      |Varianza|
 |:-----------------------:|:-------------------------------:|:--------------------------------------------------------------------------------------:|
 |Iguales pero desconocidas|$$t_{n_1+n_2-2}=\frac{(\bar X_1-\bar X_2)-(\mu_1-\mu_2)}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$|$$s^2_p=\left[\frac
 {(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}
 \right]$$|
 |Diferentes y desconocidas|$$t_{n_1+n_2-2}=\frac{\bar x_1-\bar x_2-(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$||
-|diferentes|$$Z=\frac{\bar x_1-\bar x_2-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$||
+|Conocidas|$$Z=\frac{\bar x_1-\bar x_2-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$||
 
 **Hipótesis nula:**
 $$H_0=\mu_x-\mu_y=\mu_d$$
 Donde $\mu_d=0$ representa la diferencia que se desea probar entre los valores desconocidos de las medias poblacionales,si $\mu_d=0$ significa que:
                                        $$H_0=\mu_x=\mu_y$$
+
+
+
+**Hipótesis alternativa:**
+
+
+|Cola    |   $H_1$              |RR (t student)           |RR Normal Z          |
+|:------:|:--------------------:|:-----------------------:|:-------------------:|
+|Superior|$\mu_x-\mu_y>\mu_d$   |$t\geq t_{\alpha,n-1}$   |$Z\geq Z_\alpha$     |
+|Inferior|$\mu_x-\mu_y<\mu_d$   |$t\leq -t_{\alpha,n-1}$  |$Z\leq -Z_\alpha$    |
+|DC sup  |$\mu_x-\mu_y\neq\mu_d$|$t\geq t_{\alpha/2,n-1}$ |$Z\geq Z_{\alpha/2}$ |
+|DC inf  |                      |$t\leq -t_{\alpha/2,n-1}$|$Z\leq -Z_{\alpha/2}$|
+
+**Ejemplos**
+
+
+**Ejemplo con varianzas iguales pero desconocidas**
+Se ha desarrollado una nueva cura para el cemento Pórtland Se efectúan ensayos para determinar si la nueva cura tiene un efecto (positivo o negativo) en la resistencia Se ha producido un lote sometido a ambas curas, la estándar y la experimental Las resistencias a la compresión (psi)son las siguientes:
+
+Cura
+|Valor|estándar|experimental|
+|:---:|:------:|:----------:|
+|     |4.25    |4.12        |
+|     |4.22    |3.95        |
+|     |4.35    |3.9         |
+|     |4.07    |3.57        |
+|     |4.55    |3.87        |
+|     |4.45    |3.82        |
+|     |4.15    |3.97        |
+|     |   4.55 |3.8         |
+|     |4.25    |            |
+|     |3.8     |            |
+|media|        |            |
+|desv |        |            |
+|n    |        |            |
+
+
+- Con un IC de razón de varianzas pruebe si hay igualdad en las varianzas
+
+- Pruebe el efecto en la resistencia del cambio de cura a un nivel de significancia de α= 0.05.
+
+**Ejemplo con varianzas iguales pero conocidas**
+Un fabricante comparó la productividad de trabajadores de ensamblaje para dos tipos de horarios semanales de trabajo de 40 horas Uno cuatro días de 10 horas (horario 1 y el horario estándar de 5 días de 8 horas (horario 2 Se asignaron 15 trabajadores a cada horario de trabajo y se registro el número de unidades armadas durante una semana las medias (en cientos de unidades) y las varianzas muestrales se indican a continuación
+
+
+|Estadística|H1  |H2  |
+|:----------|:--:|:--:|
+|    n      |15  |  15|
+|Media      |43.1|44.6|
+|Varianza   |4.28|3.89|
+
+¿Proporcionan los datos evidencia para indicar una diferencia en la productividad media para los dos horarios de trabajo? Haga la prueba con un nivel de significancia α=0.05
+
+
 
 
 

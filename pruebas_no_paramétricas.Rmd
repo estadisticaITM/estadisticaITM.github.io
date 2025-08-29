@@ -435,6 +435,8 @@ $H_a:$ Las variables son dependientes, una variable varía entre los distintos n
 
 Dado que las pruebas contrastan si las variables están relacionadas, al tamaño del efecto se le conoce como fuerza de asociación. Existen múltiples medidas de asociación, entre las que destacan phi o Cramer’s V. Los límites empleados para su clasificación son:
 
+||||||||||||||||||||
+
 pequeño: 0.1
 mediano: 0.3
 grande: 0.5
@@ -511,6 +513,17 @@ ctbl
 chisq.test(ctbl)
 
 
+mosaicplot(ctbl,
+  main = "Mosaic plot",
+  color = TRUE
+)
+```
+
+**fuerza de asociación**
+
+```{r}
+library(vcd)
+assocstats(x = tbl)
 ```
 
 

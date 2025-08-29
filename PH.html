@@ -499,8 +499,8 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-d2fbcd160935b2d45196" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d2fbcd160935b2d45196">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5eecf09600db50b8a73c" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5eecf09600db50b8a73c">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -525,8 +525,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-60339ddb492eafd26bee" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-60339ddb492eafd26bee">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ddcad6995a43bc6e0fc6" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ddcad6995a43bc6e0fc6">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -668,7 +668,10 @@ resultados</p>
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>vec=c(502,501,497,491,496,501,502,500,489,490)
+mean(vec)</code></pre>
 <pre><code>## [1] 496.9</code></pre>
+<pre class="r"><code>sd(vec)</code></pre>
 <pre><code>## [1] 5.173651</code></pre>
 <p>Está el proceso llenando bolsas conforme a lo que dice la
 envoltura?</p>
@@ -701,6 +704,7 @@ definen los cuantiles que satisfacen esas condiciones.</p>
 <p><span class="math display">\[t_{v=9,0.975}=2.26\]</span></p>
 <p><img src="PH_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><strong>En R</strong></p>
+<pre class="r"><code>t.test(vec,mu=500)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -916,8 +920,20 @@ diferente de 0.18</p>
 <h1>Pruebas de hipótesis para dos muestras</h1>
 <div id="ph-diferencia-de-medias" class="section level2">
 <h2>PH diferencia de medias</h2>
-<div id="htmlwidget-445e6b0b0bb412d165a7" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-445e6b0b0bb412d165a7">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li><p>Se prueba si dos muestras tienen igual promedio o si alguna de
+ellas es mayor que otra</p></li>
+<li><p>Ambas muestras son aleatorias e independientes y las poblaciones
+de las cuales provienen se distribuyen normal</p></li>
+<li><p>Sean <span class="math inline">\(X_1,X_2,...X_n\)</span> y <span
+class="math inline">\(Y_1,Y_2,...Y_n\)</span> muestras aleatorias que se
+obtienen de dos distribuciones normales independientes con media<span
+class="math inline">\(\mu_x\)</span> y <span
+class="math inline">\(\mu_y\)</span></p></li>
+<li><p>Se identifican 3 casos:</p></li>
+</ul>
+<div id="htmlwidget-7a566a897078864602a9" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7a566a897078864602a9">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />
@@ -949,7 +965,7 @@ x_2-(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\]</span></td>
 <td align="center"></td>
 </tr>
 <tr class="odd">
-<td align="center">diferentes</td>
+<td align="center">Conocidas</td>
 <td align="center"><span class="math display">\[Z=\frac{\bar x_1-\bar
 x_2-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}\]</span></td>
 <td align="center"></td>
@@ -962,6 +978,114 @@ class="math inline">\(\mu_d=0\)</span> representa la diferencia que se
 desea probar entre los valores desconocidos de las medias
 poblacionales,si <span class="math inline">\(\mu_d=0\)</span> significa
 que: <span class="math display">\[H_0=\mu_x=\mu_y\]</span></p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="28%" />
+<col width="32%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR (t student)</th>
+<th align="center">RR Normal Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span
+class="math inline">\(\mu_x-\mu_y&gt;\mu_d\)</span></td>
+<td align="center"><span class="math inline">\(t\geq
+t_{\alpha,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span
+class="math inline">\(\mu_x-\mu_y&lt;\mu_d\)</span></td>
+<td align="center"><span class="math inline">\(t\leq
+-t_{\alpha,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span
+class="math inline">\(\mu_x-\mu_y\neq\mu_d\)</span></td>
+<td align="center"><span class="math inline">\(t\geq
+t_{\alpha/2,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_{\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(t\leq
+-t_{\alpha/2,n-1}\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_{\alpha/2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplos</strong></p>
+<p><strong>Ejemplo con varianzas iguales pero desconocidas</strong> Se
+ha desarrollado una nueva cura para el cemento Pórtland Se efectúan
+ensayos para determinar si la nueva cura tiene un efecto (positivo o
+negativo) en la resistencia Se ha producido un lote sometido a ambas
+curas, la estándar y la experimental Las resistencias a la compresión
+(psi)son las siguientes:</p>
+<p>Cura |Valor|estándar|experimental| |:—:|:——:|:———-:| | |4.25 |4.12 |
+| |4.22 |3.95 | | |4.35 |3.9 | | |4.07 |3.57 | | |4.55 |3.87 | | |4.45
+|3.82 | | |4.15 |3.97 | | | 4.55 |3.8 | | |4.25 | | | |3.8 | | |media| |
+| |desv | | | |n | | |</p>
+<ul>
+<li><p>Con un IC de razón de varianzas pruebe si hay igualdad en las
+varianzas</p></li>
+<li><p>Pruebe el efecto en la resistencia del cambio de cura a un nivel
+de significancia de α= 0.05.</p></li>
+</ul>
+<p><strong>Ejemplo con varianzas iguales pero conocidas</strong> Un
+fabricante comparó la productividad de trabajadores de ensamblaje para
+dos tipos de horarios semanales de trabajo de 40 horas Uno cuatro días
+de 10 horas (horario 1 y el horario estándar de 5 días de 8 horas
+(horario 2 Se asignaron 15 trabajadores a cada horario de trabajo y se
+registro el número de unidades armadas durante una semana las medias (en
+cientos de unidades) y las varianzas muestrales se indican a
+continuación</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Estadística</th>
+<th align="center">H1</th>
+<th align="center">H2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">n</td>
+<td align="center">15</td>
+<td align="center">15</td>
+</tr>
+<tr class="even">
+<td align="left">Media</td>
+<td align="center">43.1</td>
+<td align="center">44.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Varianza</td>
+<td align="center">4.28</td>
+<td align="center">3.89</td>
+</tr>
+</tbody>
+</table>
+<p>¿Proporcionan los datos evidencia para indicar una diferencia en la
+productividad media para los dos horarios de trabajo? Haga la prueba con
+un nivel de significancia α=0.05</p>
 </div>
 <div id="ph-diferencia-de-medias-pareadas" class="section level2">
 <h2>PH diferencia de medias pareadas</h2>
