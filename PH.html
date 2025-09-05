@@ -499,8 +499,8 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-5eecf09600db50b8a73c" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5eecf09600db50b8a73c">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-794abb85cdd936786e03" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-794abb85cdd936786e03">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -525,8 +525,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-ddcad6995a43bc6e0fc6" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ddcad6995a43bc6e0fc6">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-98f880de9f9e0a2d266a" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-98f880de9f9e0a2d266a">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -932,8 +932,8 @@ class="math inline">\(\mu_x\)</span> y <span
 class="math inline">\(\mu_y\)</span></p></li>
 <li><p>Se identifican 3 casos:</p></li>
 </ul>
-<div id="htmlwidget-7a566a897078864602a9" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7a566a897078864602a9">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-47ef255e769078679788" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-47ef255e769078679788">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />
@@ -1039,20 +1039,93 @@ ensayos para determinar si la nueva cura tiene un efecto (positivo o
 negativo) en la resistencia Se ha producido un lote sometido a ambas
 curas, la estándar y la experimental Las resistencias a la compresión
 (psi)son las siguientes:</p>
-<p>Cura |Valor|estándar|experimental| |:—:|:——:|:———-:| | |4.25 |4.12 |
-| |4.22 |3.95 | | |4.35 |3.9 | | |4.07 |3.57 | | |4.55 |3.87 | | |4.45
-|3.82 | | |4.15 |3.97 | | | 4.55 |3.8 | | |4.25 | | | |3.8 | | |media| |
-| |desv | | | |n | | |</p>
+<p>Cura</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Valor</th>
+<th align="center">estándar</th>
+<th align="center">experimental</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">4.25</td>
+<td align="center">4.12</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">4.22</td>
+<td align="center">3.95</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">4.35</td>
+<td align="center">3.9</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">4.07</td>
+<td align="center">3.57</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">4.55</td>
+<td align="center">3.87</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">4.45</td>
+<td align="center">3.82</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">4.15</td>
+<td align="center">3.97</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">4.55</td>
+<td align="center">3.8</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">4.25</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">3.8</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">media</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">desv</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">n</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><p>Con un IC de razón de varianzas pruebe si hay igualdad en las
 varianzas</p></li>
 <li><p>Pruebe el efecto en la resistencia del cambio de cura a un nivel
 de significancia de α= 0.05.</p></li>
 </ul>
-<p><strong>Ejemplo con varianzas iguales pero conocidas</strong> Un
-fabricante comparó la productividad de trabajadores de ensamblaje para
-dos tipos de horarios semanales de trabajo de 40 horas Uno cuatro días
-de 10 horas (horario 1 y el horario estándar de 5 días de 8 horas
+<p><strong>Ejemplo con varianzas iguales pero conocidas</strong></p>
+<p>Un fabricante comparó la productividad de trabajadores de ensamblaje
+para dos tipos de horarios semanales de trabajo de 40 horas Uno cuatro
+días de 10 horas (horario 1 y el horario estándar de 5 días de 8 horas
 (horario 2 Se asignaron 15 trabajadores a cada horario de trabajo y se
 registro el número de unidades armadas durante una semana las medias (en
 cientos de unidades) y las varianzas muestrales se indican a
@@ -1087,14 +1160,208 @@ continuación</p>
 productividad media para los dos horarios de trabajo? Haga la prueba con
 un nivel de significancia α=0.05</p>
 </div>
-<div id="ph-diferencia-de-medias-pareadas" class="section level2">
-<h2>PH diferencia de medias pareadas</h2>
-</div>
 <div id="diferencia-de-proporciones" class="section level2">
 <h2>Diferencia de proporciones</h2>
+<p>Se quiere comparar dos muestras cuyo parámetro de interés es la
+proporción, deseamos conocer si pertenecen a la misma población o
+corroborar si la diferencia entre estas excede cierto porcentaje</p>
+<p><strong>Hipótesis nula:</strong> <span
+class="math display">\[H_0=\quad p_x-p_y=p_0\]</span> Donde <span
+class="math inline">\(p_0=0\)</span> representa la diferencia que se
+desea probar entre los valores desconocidos de las medias
+poblacionales,si <span class="math inline">\(\mu_d=0\)</span> significa
+que: <span class="math display">\[H_0=p_x-p_y=p_0\]</span></p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR Normal Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span
+class="math inline">\(p_x-p_y&gt;p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span
+class="math inline">\(p_x-p_y&lt;p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span class="math inline">\(p_x-p_y\neq
+p_0\)</span></td>
+<td align="center"><span class="math inline">\(Z\geq
+Z_{\alpha/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(Z\leq
+-Z_{\alpha/2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estadístico</strong></p>
+<p><span class="math display">\[Z=\frac{(\hat p_1-\hat
+p_2)-(P_1-P_2)}{\sqrt{\frac{\hat p_1 \hat q_1}{n_1}+\frac{\hat p_2 \hat
+q_2}{n_2}}} \]</span></p>
+<p><span class="math inline">\(\hat p_1,\hat p_2\)</span> son las
+proporciones estimadas</p>
+<p><span class="math inline">\(p_1,p_2\)</span> son las proporciones
+reales</p>
+<p><strong>Ejemplo</strong></p>
+<p>Un genetista esta interesado en la proporción de machos y hembras de
+una población que tiene cierta enfermedad menor en la sangre. En
+unamuestra aleatoria de 100 machos se encuentran 31 afectados mientras
+que solamente 24 de 100 hembras presentan la enfermedad Se puede
+concluir, con un nivel de significancia de 0.01 que la proporción de
+machos afectados por esta enfermedad de la sangre es mayor que la
+proporción de hembras también afectadas?(Walpole V Myers,1989</p>
 </div>
 <div id="razón-de-varianzas" class="section level2">
 <h2>Razón de varianzas</h2>
+<ul>
+<li>Las poblaciones muestreadas son normales e independientes La
+estructura de los datos es:</li>
+</ul>
+<p><span class="math inline">\(x_1,...,x_n\)</span> muestra aleatoria de
+<span class="math inline">\(N(\mu_x,\sigma^2)\)</span></p>
+<p><span class="math inline">\(y_1,...,y_n\)</span> muestra aleatoria de
+<span class="math inline">\(N(\mu_y,\sigma^2)\)</span></p>
+<p><strong>Hipótesis nula:</strong> <span
+class="math display">\[H_0=\sigma^2_x=\sigma^2_y\]</span> Escrito de
+otra manera: <span
+class="math display">\[H_0=\frac{\sigma^2_x}{\sigma^2_y}=1\]</span></p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="36%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Cola</th>
+<th align="center"><span class="math inline">\(H_1\)</span></th>
+<th align="center">RR F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Superior</td>
+<td align="center"><span
+class="math inline">\(\frac{\sigma^2_x}{\sigma^2_y}&gt;1\)</span></td>
+<td align="center"><span class="math inline">\(F \geq
+F_{\alpha,n_1-1,n_2-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Inferior</td>
+<td align="center"><span
+class="math inline">\(\frac{\sigma^2_x}{\sigma^2_y}&lt;1\)</span></td>
+<td align="center"><span class="math inline">\(F \leq
+F_{\alpha,n_1-1,n_2-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">DC sup</td>
+<td align="center"><span
+class="math inline">\(\frac{\sigma^2_x}{\sigma^2_y}\neq1\)</span></td>
+<td align="center"><span class="math inline">\(F \geq
+F_{\alpha/2,n_1-1,n_2-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">DC inf</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(F \leq
+F_{\alpha/2,n_1-1,n_2-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estadístico</strong></p>
+<p><span class="math display">\[F=\frac{S_x^2}{S_y^2}\]</span>
+<strong>Ejemplo</strong></p>
+<p>En un experimento acerca de la contaminación del aire, se comparan
+dos tipos de instrumentos para medir la cantidad de monóxido de sulfuro
+en la atmósfera Se desea determinar si los dos tipos de instrumentos
+producen mediciones que tienen la misma variabilidad Se registraron las
+siguientes lecturas para los dos instrumentos Suponiendo que las
+distribuciones de las poblaciones están distribuidas en forma normal,
+probar la hipótesis planteada con un nivel de significancia de a
+0.02</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Instrumento</th>
+<th align="center">A</th>
+<th align="center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.86</td>
+<td align="center">0.87</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center">0.82</td>
+<td align="center">0.74</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.75</td>
+<td align="center">0.63</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center">0.61</td>
+<td align="center">0.55</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.89</td>
+<td align="center">0.76</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center">0.64</td>
+<td align="center">0.78</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.81</td>
+<td align="center">0.69</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center">0.68</td>
+<td align="center">0.57</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">0.65</td>
+<td align="center">0.53</td>
+</tr>
+<tr class="even">
+<td align="left">media</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">desv</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf">Clase</a></p>
 <p><a

@@ -639,20 +639,23 @@ mosaicplot(tabla,
 
 # Prueba no paramétrica para la diferencias entre dos poblaciones
 
-## Prueba de Mann-Whitney
+## Prueba de Mann-Whitney-wilcoxon
 
-- Es una prueba no paramétrica para identificar **diferencias entre dos poblaciones** basadas en el análisis de dos muestras independientes. 
+- Sirve para identificar diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes**. 
  
 - Se usa cuando los conjuntos de datos no cumplen los requisitos de la prueba de t-Student y la normal, (normalidad de los datos y tamaño de muestra mayor a 30)
 
-- Para realizar la prueba las observaciones de las dos muestras deben estar en orden ascendente.
+- Se conoce con otros nombres: Mann–Whitney–Wilcoxon, Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. 
 
-- También se conoce con otros nombres: Mann–Whitney–Wilcoxon, Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. Por ello está disponible en R por medio de la función wilcox.test.
 
-- La prueba se basa en una comparación de cada observación de una muestra  $x_i$ con cada observación en la segunda muestra $y_i$ Si las muestras tienen la misma mediana, entones cada observación tiene un 50% de probabilidad de ser mayor o menor que la observación correspondiente de la otra muestra. Por tanto plantea las hipotesis:
+- Juego de hipótesis es:
 
-$$H_o:P(x_i>y_i)=0.5$$
-$$H_1: P(x_i>y_i) \neq 0.5$$
+
+Ho: Las muestras provienen de la misma población.
+
+H1: Las muestras provienen de poblaciones diferentes.
+
+
 
 **Ejemplo Prueba de wilcoxon en R**
 
@@ -686,6 +689,8 @@ plot(density(c26), xlab = "Tiempo", ylab = "Densidad", las=1, main = "")
 boxplot(c12,c26, xlab = "Tiempo", ylab = "Densidad", las=1, main = "")
 
 
+wilcox.test(x = c12, y = c26, alternative = "two.sided", mu = 0,
+            paired = FALSE, conf.int = 0.95)
 ```
 
 2. Pruebe mediante un juego de hipotesis y mediante la prueba de shapiro wilk, la normalidad del conjunto de datos

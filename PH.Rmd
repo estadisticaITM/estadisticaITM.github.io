@@ -738,6 +738,7 @@ Donde $\mu_d=0$ representa la diferencia que se desea probar entre los valores d
 Se ha desarrollado una nueva cura para el cemento Pórtland Se efectúan ensayos para determinar si la nueva cura tiene un efecto (positivo o negativo) en la resistencia Se ha producido un lote sometido a ambas curas, la estándar y la experimental Las resistencias a la compresión (psi)son las siguientes:
 
 Cura
+
 |Valor|estándar|experimental|
 |:---:|:------:|:----------:|
 |     |4.25    |4.12        |
@@ -760,6 +761,7 @@ Cura
 - Pruebe el efecto en la resistencia del cambio de cura a un nivel de significancia de α= 0.05.
 
 **Ejemplo con varianzas iguales pero conocidas**
+
 Un fabricante comparó la productividad de trabajadores de ensamblaje para dos tipos de horarios semanales de trabajo de 40 horas Uno cuatro días de 10 horas (horario 1 y el horario estándar de 5 días de 8 horas (horario 2 Se asignaron 15 trabajadores a cada horario de trabajo y se registro el número de unidades armadas durante una semana las medias (en cientos de unidades) y las varianzas muestrales se indican a continuación
 
 
@@ -772,14 +774,96 @@ Un fabricante comparó la productividad de trabajadores de ensamblaje para dos t
 ¿Proporcionan los datos evidencia para indicar una diferencia en la productividad media para los dos horarios de trabajo? Haga la prueba con un nivel de significancia α=0.05
 
 
-
-
-
-## PH diferencia de medias pareadas
-
 ## Diferencia de proporciones
 
+Se quiere comparar dos muestras cuyo parámetro de interés es la proporción, deseamos conocer si pertenecen a la misma población o corroborar si la diferencia entre estas excede cierto porcentaje
+
+
+**Hipótesis nula:**
+$$H_0=\quad p_x-p_y=p_0$$
+Donde $p_0=0$ representa la diferencia que se desea probar entre los valores desconocidos de las medias poblacionales,si $\mu_d=0$ significa que:
+                                       $$H_0=p_x-p_y=p_0$$
+
+
+
+**Hipótesis alternativa:**
+
+
+|Cola    |$H_1$            |RR Normal Z          |
+|:------:|:---------------:|:-------------------:|
+|Superior|$p_x-p_y>p_0$    |$Z\geq Z_\alpha$     |
+|Inferior|$p_x-p_y<p_0$    |$Z\leq -Z_\alpha$    |
+|DC sup  |$p_x-p_y\neq p_0$|$Z\geq Z_{\alpha/2}$ |
+|DC inf  |                 |$Z\leq -Z_{\alpha/2}$|
+
+**Estadístico**
+
+$$Z=\frac{(\hat p_1-\hat p_2)-(P_1-P_2)}{\sqrt{\frac{\hat p_1 \hat q_1}{n_1}+\frac{\hat p_2 \hat q_2}{n_2}}} $$
+
+$\hat p_1,\hat p_2$ son las proporciones estimadas
+
+
+$p_1,p_2$ son las proporciones reales
+
+**Ejemplo**
+
+
+Un genetista esta interesado en la proporción de machos y hembras de una población que tiene cierta enfermedad menor en la sangre. En unamuestra aleatoria de 100 machos se encuentran 31 afectados mientras que
+solamente 24 de 100 hembras presentan la enfermedad Se puede concluir, con un nivel de significancia de 0.01 que la proporción de machos afectados por esta enfermedad de la sangre es mayor que la proporción de
+hembras también afectadas?(Walpole V Myers,1989
+
+
 ## Razón de varianzas
+
+- Las poblaciones muestreadas son normales e independientes La estructura de los datos es:
+
+
+$x_1,...,x_n$ muestra aleatoria de $N(\mu_x,\sigma^2)$
+
+
+$y_1,...,y_n$ muestra aleatoria de $N(\mu_y,\sigma^2)$
+
+**Hipótesis nula:**
+$$H_0=\sigma^2_x=\sigma^2_y$$
+Escrito de otra manera:
+$$H_0=\frac{\sigma^2_x}{\sigma^2_y}=1$$
+
+
+
+**Hipótesis alternativa:**
+
+
+
+
+|Cola    |$H_1$            |RR    F    |
+|:------:|:---------------:|:-------------------:|
+|Superior|$\frac{\sigma^2_x}{\sigma^2_y}>1$   |$F \geq F_{\alpha,n_1-1,n_2-1}$  |
+|Inferior|$\frac{\sigma^2_x}{\sigma^2_y}<1$   |$F \leq F_{\alpha,n_1-1,n_2-1}$  |
+|DC sup  |$\frac{\sigma^2_x}{\sigma^2_y}\neq1$|$F \geq F_{\alpha/2,n_1-1,n_2-1}$|
+|DC inf  |                                    |$F \leq F_{\alpha/2,n_1-1,n_2-1}$|
+
+**Estadístico**
+
+
+$$F=\frac{S_x^2}{S_y^2}$$
+**Ejemplo**
+
+En un experimento acerca de la contaminación del aire, se comparan dos tipos de instrumentos para medir la cantidad de monóxido de sulfuro en la atmósfera Se desea determinar si los dos tipos de instrumentos producen mediciones que tienen la misma variabilidad Se registraron las siguientes lecturas para los dos instrumentos Suponiendo que las distribuciones de las poblaciones están distribuidas en forma normal, probar la hipótesis planteada con un nivel de significancia de a 0.02
+
+|Instrumento|A   |B   |
+|:----------|:--:|:--:|
+| |0.86|0.87|
+||0.82|0.74|
+||0.75|0.63|
+||0.61|0.55|
+||0.89|0.76|
+||0.64|0.78|
+||0.81|0.69|
+||0.68|0.57|
+||0.65|0.53|
+|media||   |
+|desv ||   |
+
 
 [Clase](https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pruebas%20de%20hip%C3%B3tesis%20JTG.pdf)  
 

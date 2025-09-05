@@ -407,8 +407,8 @@ div.tocify {
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/f%C3%B3rmulas.pdf">Fórmulas</a></p>
 <p><a href="tallerIC.html" target="_blank"> Taller intervalos de
 confianza</a></p>
-<div id="htmlwidget-cff0d80a4147115ca93e" style="width:80%;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cff0d80a4147115ca93e">{"x":{"diagram":"graph LR;\n\n           A[Población]-->|Distribuciones de muestreo| B[Muestra]\n           B-->|Inferencial IC PH| A\n           \n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f3833062d62cb380bee9" style="width:80%;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f3833062d62cb380bee9">{"x":{"diagram":"graph LR;\n\n           A[Población]-->|Distribuciones de muestreo| B[Muestra]\n           B-->|Inferencial IC PH| A\n           \n           "},"evals":[],"jsHooks":[]}</script>
 <div id="estimación-por-intervalo" class="section level1">
 <h1>Estimación por intervalo</h1>
 <p>Una estimación por intervalo de un parámetro <span
@@ -450,8 +450,8 @@ class="section level1">
 <h1>Intervalo de confianza para una muestra</h1>
 <div id="ic-para-la-media" class="section level2">
 <h2>IC para la media</h2>
-<div id="htmlwidget-ad987a4d283c8b5b2d64" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad987a4d283c8b5b2d64">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e2c1ff4adb7e305ae0ab" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e2c1ff4adb7e305ae0ab">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n  \n           "},"evals":[],"jsHooks":[]}</script>
 <div id="con-la-varianza-conocida" class="section level3">
 <h3>con la varianza conocida</h3>
 <p>Si <span class="math inline">\(\bar x\)</span> es la media de una
@@ -489,7 +489,7 @@ interprete el intervalo resultante</p>
 ##      0.81</code></pre>
 <p><em>Intervalo de confianza para la media con varianza
 conocida</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/tnDFgEv_a-I?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/tnDFgEv_a-I" title="Intervalo de confianza para la media con varianza conocida" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
 <div id="con-la-varianza-desconocida" class="section level3">
@@ -528,6 +528,9 @@ t.test(x=x,conf.level = 0.9)</code></pre>
 ## sample estimates:
 ## mean of x 
 ##     2.254</code></pre>
+<p><em>Intervalo de confianza para la media con varianza
+desconocida</em>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/ALlp1avfggM" title="Intervalo de confianza para la media con varianza desconocia" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 </div>
 </div>
 <div id="ic-para-la-proporción" class="section level2">
@@ -560,7 +563,7 @@ resultado niños de bajo peso al nacer.</p>
 ##     p 
 ## 0.072</code></pre>
 <p><em>Intervalo de confianza para la proporción</em></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/oJv6d9IECRo?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/oJv6d9IECRo" title="Intervalo de confianza para una proporción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
 <div id="ic-para-la-varianza" class="section level2">
@@ -575,9 +578,10 @@ class="math inline">\(𝜎^2\)</span> está dado por</p>
 <p>donde los denominadores son obtenidos de una chi-cuadrada. Nota: un
 intervalo de confianza para 𝜎 se puede obtener tomando raíz cuadrada en
 los límites del intervalo anterior.</p>
-<p><strong>Ejemplo</strong> Se tienen los datos de las horas de
-ejercicio que hacen 10 adolescentes por semana, calcule un intervalo de
-confianza para la varianza del tiempo con un NC del 98%.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Se tienen los datos de las horas de ejercicio que hacen 10
+adolescentes por semana, calcule un intervalo de confianza para la
+varianza del tiempo con un NC del 98%.</p>
 <pre class="r"><code>library(EnvStats)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;EnvStats&#39;</code></pre>
