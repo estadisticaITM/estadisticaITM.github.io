@@ -637,11 +637,82 @@ mosaicplot(tabla,
 )
 ```
 
-# Prueba no paramétrica para la diferencias entre dos poblaciones
+# Prueba para la diferencias entre dos poblaciones
 
-## Prueba de Mann-Whitney-wilcoxon
+## t-test paramétrica en Rstudio
 
-- Sirve para identificar diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes**. 
+Permite contrastar la hipótesis nula de que las medias de dos poblaciones son iguales, frente a la hipótesis alternativa de que no lo son.
+
+$$H_0:μ_A=μ_B$$
+$$H_a:μ_A≠μ_B$$ 
+
+Otra forma equivalente de definir estas hipótesis es:
+
+$$H_0:μ_A−μ_B=0$$
+$$H_a:μ_A−μ_B≠0$$
+
+**Condiciones:**
+
+-  Las observaciones tienen que ser independientes
+
+- Las poblaciones que se comparan tienen que seguir una distribución normal.
+
+- Igualdad de varianza (homocedasticidad)
+
+**Ejemplo**
+
+**1. prueba para una muestra**
+
+El contenido de siete contenedores similares de ácido sulfúrico son 9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un intervalo de confianza del 95% para la media de todos los contenedores si se supone una distribución aproximadamente normal.
+
+
+```{r}
+T<-c(9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6)
+t.test(T,conf.level=0.95)
+
+```
+
+
+**2. prueba para dos muestras**
+
+Una operación de montaje en una fábrica manufacturera requiere aproximadamente un período de entrenamiento de un mes para que un nuevo operario alcance la máxima eficiencia. Se sugirió un nuevo método para el entrenamiento y se realizó una prueba para comparar el método nuevo con el método estándar. Se entrenaron dos grupos de 9 nuevos empleados durante un período de un mes; un grupo utilizó el método estándar y el otro grupo usó el método nuevo. Se midió el tiempo en minutos que necesito cada empleado en armar cierto dispositivo al final del período de entrenamiento; los resultados obtenidos fueron:
+
+|Método estándar|32|37|35|28|41|44|35|31|34|
+|---------------|--|--|--|--|--|--|--|--|--|
+|Método nuevo   |35|31|29|25|34|40|27|32|31|
+
+Admitiendo que el tiempo de armado utilizado en ambos métodos son variables aleatorias independientes y distribuidas normalmente: ¿Tiene igual varianza? compruebelo a través de un intervalo de confianza para la razón de varianzas con un nivel de confianza del 90%
+
+**2. prueba de igualdad de varianzas**
+```{r}
+
+E<-c(32,37,35,28,41,44,35,31,34)
+N<-c(35,31,29,25,34,40,27,32,31)
+var.test(E,N, alternative = c("two.sided"),
+         conf.level = 0.9) 
+var(E)
+var(N)
+
+qf(0.05,8,8)
+
+```
+
+
+**2. prueba de diferencias de medias globales y pareadas**
+
+¿Se puede aceptar la hipótesis de igualdad de tiempos de armado, en función de los datos construya un IC con un nivel de confianza del 95%?
+
+```{r}
+E<-c(32,37,35,28,41,44,35,31,34)
+N<-c(35,31,29,25,34,40,27,32,31)
+t.test (E,N,paired=T,conf.level=0.95)
+ t.test (E,N,paired=F,conf.level=0.95)
+
+```
+
+## Prueba no paramétrica de Mann-Whitney-wilcoxon
+
+- Identifica diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes**. 
  
 - Se usa cuando los conjuntos de datos no cumplen los requisitos de la prueba de t-Student y la normal, (normalidad de los datos y tamaño de muestra mayor a 30)
 
@@ -655,11 +726,51 @@ Ho: Las muestras provienen de la misma población.
 
 H1: Las muestras provienen de poblaciones diferentes.
 
+si las dos muestras comparadas proceden de la misma población, al juntar todas las observaciones y ordenarlas de menor a mayor, cabría esperar que las observaciones de una y otra muestra estuviesen intercaladas aleatoriamente. 
+
+```{r}
+library(ggplot2)
+set.seed(567)
+datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
+valor = rnorm(n = 20, mean = 10, sd = 5),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab("") + xlab("rango") +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle("Muestras procedentes de la misma población")
+```
+
+
+
+Por lo contrario, si una de las muestras pertenece a una población con valores mayores o menores que la otra población, al ordenar las observaciones, estas tenderán a agruparse de modo que las de una muestra queden por encima de las de la otra.
+
+
+
+```{r}
+set.seed(567)
+datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
+valor = c(rnorm(n = 10, mean = 10, sd = 5), rnorm(n = 10, mean = 20, sd = 5)),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab("") + xlab("rango") +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle("Muestras procedentes de distintas poblaciones")
+```
+
+
+
+
 
 
 **Ejemplo Prueba de wilcoxon en R**
 
-Los datos siguientes datos corresponden a constantes de permeabilidad de la membrana chorioamnion en humanos (una membrana placentaria) medida a las 12 y 26 semanas de edad gestacional.
+Los siguientes datos corresponden a constantes de permeabilidad de la membrana chorioamnion en humanos (una membrana placentaria) medida a las 12 y 26 semanas de edad gestacional.
 
 
 1. Realice un analisis descriptivo para verificar la normalidad en los conjuntos de datos
@@ -689,8 +800,6 @@ plot(density(c26), xlab = "Tiempo", ylab = "Densidad", las=1, main = "")
 boxplot(c12,c26, xlab = "Tiempo", ylab = "Densidad", las=1, main = "")
 
 
-wilcox.test(x = c12, y = c26, alternative = "two.sided", mu = 0,
-            paired = FALSE, conf.int = 0.95)
 ```
 
 2. Pruebe mediante un juego de hipotesis y mediante la prueba de shapiro wilk, la normalidad del conjunto de datos
@@ -709,6 +818,10 @@ shapiro.test(c26)
 
 
 ```{r echo=TRUE}
+
+
+wilcox.test(x = c12, y = c26, alternative = "two.sided", mu = 0,
+            paired = FALSE, conf.int = 0.95) 
 #prueba para saber si provienen de la misma distribución 
 ks.test(c12,c26)
 
