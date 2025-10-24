@@ -13,7 +13,7 @@
 
 <title>Trabajo escrito de estadística inferencial</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -434,397 +431,417 @@ href="https://www.agronet.gov.co/estadistica/Paginas/home.aspx">Agronet</a></p><
 </div>
 <div id="calificación" class="section level2">
 <h2><strong>Calificación</strong></h2>
-<p>La calificación de esta actividad se realizará con la siguiente
-rúbrica:</p>
+<ul>
+<li><p>Cada punto vale 3 puntos</p></li>
+<li><p>Depende de como usted lo realice asi será su
+calificación</p></li>
+<li><p>Si no hace uno de los puntos su calificación será 0</p></li>
+<li><p>La calificación de esta actividad se realizará con la siguiente
+rúbrica:</p></li>
+</ul>
 <table>
 <colgroup>
-<col width="15%" />
+<col width="17%" />
+<col width="12%" />
+<col width="27%" />
+<col width="19%" />
 <col width="22%" />
-<col width="13%" />
-<col width="20%" />
-<col width="11%" />
-<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>subtema</th>
-<th>Ítem</th>
-<th>puntos</th>
-<th>Excelente</th>
-<th>Bueno</th>
-<th>Regular</th>
+<th align="left"><strong>subtema</strong></th>
+<th align="left"><strong>Ítem</strong></th>
+<th align="left"><strong>Excelente (3)</strong></th>
+<th align="left"><strong>Bueno(2)</strong></th>
+<th align="left"><strong>Regular(1)</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">___________</td>
+<td align="left">________</td>
+<td align="left">_________________</td>
+<td align="left">____________</td>
+<td align="left">______________</td>
 </tr>
 <tr class="even">
-<td></td>
-<td>1. Introducción</td>
-<td>3</td>
-<td>Realiza una descripción de la base de datos (3 puntos)</td>
-<td></td>
-<td>no lo hace</td>
+<td align="left"></td>
+<td align="left">1.Introducción</td>
+<td align="left">Realiza una descripción de la base de datos</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>2. Clasificación de variables</td>
-<td>3</td>
-<td>Realiza la clasificación de las variables (3 puntos)</td>
-<td></td>
-<td>no lo hace</td>
+<td align="left"><strong>Estadistica</strong></td>
+<td align="left">2.Clasificación de variables</td>
+<td align="left">Realiza la clasificación de las variables</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td><strong>Descriptiva</strong></td>
-<td>3. Boxplot</td>
-<td>3</td>
-<td>comparativo de los niveles de factor de una variable cualitativa con
-una cuantitativa y su respectivo análisis (3 puntos)</td>
-<td>de una sola variable cuantitativa sin comparar nada y sin analisis
-(1 punto)</td>
-<td>no lo hace</td>
+<td align="left"><strong>Descriptiva</strong></td>
+<td align="left">3.Boxplot</td>
+<td align="left">Con dos variables cualitativas y una cuantitativa, con
+el análisis</td>
+<td align="left">Con una variable cualitativa y una cuantitativa, con el
+análisis</td>
+<td align="left">De una variable cuantitativa con el análisis</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>4. Torta</td>
-<td>3</td>
-<td>Con su respectivo análisis (3 pts)</td>
-<td>Sin análisis (1 puntos)</td>
-<td>no lo hace (0 pts)</td>
+<td align="left"></td>
+<td align="left">4. Torta</td>
+<td align="left">Con la tabla y el análisis</td>
+<td align="left">Con la tabla y sin análisis</td>
+<td align="left">solo el grafico</td>
 </tr>
 <tr class="even">
-<td></td>
-<td>5. Grafico de barras con top 5</td>
-<td>3</td>
-<td>Con su respectivo análisis (3 pts)</td>
-<td>Sin análisis (1 pts)</td>
-<td>no lo hace (0 pts)</td>
+<td align="left"><strong>Estadistica</strong></td>
+<td align="left">5. Grafico de barras con top 5</td>
+<td align="left">Con la tabla y el análisis</td>
+<td align="left">Con la tabla y sin analisis</td>
+<td align="left">solo el grafico</td>
 </tr>
 <tr class="odd">
-<td><strong>Descriptiva</strong></td>
-<td>6. Histograma</td>
-<td>3</td>
-<td>Con su respectivo análisis (3 pts)</td>
-<td>Sin análisis (1 pts)</td>
-<td>no lo hace (0 pts)</td>
+<td align="left"><strong>Descriptiva</strong></td>
+<td align="left">6. Histograma</td>
+<td align="left">Con la tabla y el análisis</td>
+<td align="left">Con la tabla y sin analisis</td>
+<td align="left">solo el grafico</td>
 </tr>
 <tr class="even">
-<td></td>
-<td>7. Gráfico de series de tiempo</td>
-<td>3</td>
-<td>cuando sea el caso, si tiene la variable tiempo con su respectivo
-análisis (3 pts)</td>
-<td>Sin análisis (1 pts)</td>
-<td>no lo hace (0 pts)</td>
+<td align="left">Si tiene la variable tiempo</td>
+<td align="left">7. Gráfico de series de tiempo</td>
+<td align="left">con análisis</td>
+<td align="left">Sin análisis (1.5)</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">____________</td>
+<td align="left">___________</td>
 </tr>
 <tr class="even">
-<td><strong>Intervalos de confianza para una muestra(IC)</strong></td>
-<td>8</td>
-<td>3</td>
-<td>Para la media de una muestra, con editor de texto digital</td>
-<td></td>
-<td></td>
+<td align="left"><strong>Intervalos de confianza para una
+muestra(IC)</strong></td>
+<td align="left">8.Para la media</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>9</td>
-<td>3</td>
-<td>Para la varianza de una muestra, con editor de texto digital</td>
-<td></td>
-<td></td>
+<td align="left">Usa editor de ecuaciones word</td>
+<td align="left">9. Para la varianza</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">____________</td>
+<td align="left">___________</td>
 </tr>
 <tr class="odd">
-<td><strong>Intervalos de confianza para dos muestras(IC)</strong></td>
-<td>10</td>
-<td>3</td>
-<td>Para la diferencia de medias,con editor de texto digital</td>
-<td></td>
-<td></td>
+<td align="left"><strong>IC para dos muestras</strong></td>
+<td align="left">10. Para la diferencia de medias</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td></td>
-<td>11</td>
-<td>3</td>
-<td>Para la razón de varianzas, con editor de texto digital</td>
-<td></td>
-<td></td>
+<td align="left">Usa editor de ecuaciones word</td>
+<td align="left">11. Para la razón de varianzas</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
 </tr>
 <tr class="even">
-<td><strong>Pruebas de hipótesis (PH)</strong></td>
-<td>12. PH</td>
-<td>3</td>
-<td>Para la proporción</td>
-<td></td>
-<td></td>
+<td align="left"><strong>Pruebas de hipótesis (PH)</strong></td>
+<td align="left">12. PH</td>
+<td align="left">Para la proporción</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>13.</td>
-<td>3</td>
-<td>Para la diferencia de proporciones</td>
-<td></td>
-<td></td>
+<td align="left">Usa editor de ecuaciones word</td>
+<td align="left">13. PH</td>
+<td align="left">Para la diferencia de proporciones</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>14. Grafico qqnorm</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td>No lo hace</td>
+<td align="left">Elija una variable continua y realice lo siguiente</td>
+<td align="left">14. Grafico qqnorm</td>
+<td align="left">con análisis</td>
+<td align="left">Sin análisis (1.5)</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td><strong>Pruebas no paramétricas</strong></td>
-<td>15. Grafico densidad</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td>No lo hace</td>
+<td align="left"><strong>Pruebas no paramétricas</strong></td>
+<td align="left">15. Grafico densidad</td>
+<td align="left">Con analisis</td>
+<td align="left">sin analisis (1.5)</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>Elija una variable continua y realice lo siguiente</td>
-<td>16.Prueba de normalidad</td>
-<td>3</td>
-<td>Verifica la normalidad con la prueba de shapiro wilk en R sobre la
-variable respuesta, escribe la PH de normalidad (3 pts)</td>
-<td></td>
-<td>No verifica normalidad</td>
+<td align="left"><strong>En Rstudio</strong></td>
+<td align="left">16.Prueba de normalidad</td>
+<td align="left">Escribe el juego de hipotesis y acepta o rechaza
+normalidad con la prueba de shapiro wilk en R</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">__________________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
+<td align="left">__________</td>
 </tr>
 <tr class="odd">
-<td>Con dos variables cualitativas</td>
-<td>17.</td>
-<td>Tabla de contingencia</td>
-<td>construye una tabla de doble entrada (conteo de variables) con
-totales de columnas y filas</td>
-<td></td>
-<td></td>
+<td align="left">Con dos variables cualitativas</td>
+<td align="left">17.Tabla de contingencia</td>
+<td align="left">Construye una tabla de doble entrada (conteo de
+variables) con totales de columnas y filas</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td><strong>En Rstudio</strong></td>
-<td>18.Prueba de independecia con test exacto de fisher o chi-2</td>
-<td>3</td>
-<td>escribe prueba de hipotesis y verifica la independencia con R (3
-pts)</td>
-<td></td>
-<td></td>
+<td align="left"><strong>En Rstudio</strong></td>
+<td align="left">18.Prueba de independecia con test exacto de fisher o
+chi-2</td>
+<td align="left">escribe prueba de hipotesis y verifica la independencia
+con R</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
 </tr>
 <tr class="even">
-<td><strong>regresión lineal</strong></td>
-<td>19.Estima una matriz de correlaciones entre por lo menos 3 variables
-cuantitativas</td>
-<td>3</td>
-<td>Estima una matriz de correlaciones entre por lo menos 3 variables
-cuantitativas y una cualitativa, con los respectivos graficos de
+<td align="left"><strong>Regresión lineal</strong></td>
+<td align="left">19.Estima una matriz de correlaciones entre por lo
+menos 3 variables cuantitativas</td>
+<td align="left">Estima la matriz de correlaciones con los graficos de
 dispersión usando la función “chart.Correlation” de la librería
 performance analytics</td>
-<td>Estima una matriz de correlaciones entre por lo menos 3 variables
-cuantitativas</td>
-<td></td>
+<td align="left">Estima una matriz de correlaciones entre por lo menos 3
+variables cuantitativas(1.5)</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">_____________________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
+<td align="left">__________</td>
 </tr>
 <tr class="even">
-<td><strong>Regresión lineal simple en excel</strong> teniendo en cuenta
-la mejor correlación entre variables cuantitativas constuye lo
-siguiente</td>
-<td>20. Diagrama de dispersión (DD) entre dos variables cuantitativas,
-discriminendo con colores los niveles de una variable cualitativa,
-superpone cada una de las lineas estimadas</td>
-<td>3</td>
-<td>Contiene el DD discriminando con colores los niveles de una variable
-cualitativa, sin la línea recta superpuesta</td>
-<td>Contiene el DD sin discriminar los niveles de una variable
-cualitativa, superpone una línea recta (1 puntos)</td>
-<td>Contiene el DD sin línea recta superpuesta(0 punto)</td>
+<td align="left">Teniendo en cuenta la mejor correlación entre variables
+cuantitativas construye lo siguiente</td>
+<td align="left">20. Diagrama de dispersión (DD) entre dos variables
+cuantitativas con la linea superpuesta</td>
+<td align="left">Contiene el DD sin la línea recta superpuesta</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td><strong>en excel</strong></td>
-<td>21. Construye un modelo de regresión lineal simple entre dos
-variables cuantitativas, para cada uno de los niveles de factor de una
-variable cualitativa, reporta ecuaciones, valor de <span
-class="math inline">\(R^2\)</span> y valor de R</td>
-<td></td>
-<td>3</td>
-<td></td>
-<td></td>
+<td align="left"><strong>Regresión lineal simple RLS</strong></td>
+<td align="left">21. Construye un modelo de RLS entre dos variables
+cuantitativas, reporta ecn, valor de <span
+class="math inline">\(R^2\)</span> y valor de r.</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td><strong>en excel</strong></td>
-<td>22. Interpretar el valor de intercepto, pendiente y <span
-class="math inline">\(R^2\)</span> de cada una de las ecuaciones</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
+<td align="left"><strong>en excel</strong></td>
+<td align="left">22. Interpretacion del modelo</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">_____________</td>
+<td align="left">________________________________</td>
+<td align="left">___________</td>
+<td align="left">_________</td>
+<td align="left">____</td>
 </tr>
 <tr class="even">
-<td><strong>Regresión multivariada en Rstudio</strong></td>
-<td>23. Diagrama de dispersión discriminando con colores los niveles de
-una variable cualitativa superponiendo las lineas rectas estimadas del
-modelo de regresión con variables indicadoras (3 pts)</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
+<td align="left"><strong>Regresión lineal multivariada RLM</strong></td>
+<td align="left">23. Ajuste del Modelo de regresión lineal multivariada
+(MRLM)</td>
+<td align="left">Ajuste un MRLM entre por lo menos 3 variables
+cuantitativas y una cualitativa,incluya tanto variables significativas
+como no significativas, reporte la salida de R y ANOVA</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>24. Ajuste de la recta del modelo de regresión lineal multivariado,
-muestra la salida de R, escribe y analiza las rectas de regresión (3
-pts)</td>
-<td></td>
-<td>Ajusta un modelo de regresión lineal multivariado con variables
-indicadoras y lo interpreta (3 pts)</td>
-<td></td>
-<td>No ajusta ningún modelo</td>
+<td align="left"><strong>En Rstudio</strong></td>
+<td align="left">24.</td>
+<td align="left">Ajuste un MRLM entre por lo menos 2 variables
+cuantitativas y una cualitativa,incluyendo solo aquellas que son
+significativas, reporte la salida de R, asi como la tabla ANOVA</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td></td>
-<td>25. Escribe la recta multivariada general, asi como las rectas
-ajustadas de cada uno de los niveles y las interpreta</td>
-<td>3</td>
-<td></td>
-<td>Escribe la recta multivariada general, asi como las rectas ajustadas
-de cada uno de los niveles</td>
-<td>No ajusta ningún modelo</td>
+<td align="left"><strong>RLM</strong></td>
+<td align="left">25.Ecuaciones de regresión</td>
+<td align="left">A partir del modelo anterior, escriba la recta
+multivariada general, asi como las rectas ajustadas de cada uno de los
+niveles y las interpreta</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td><strong>Regresión multivariada</strong></td>
-<td>26. validación de la significancia de los parametros estimados,</td>
-<td>3</td>
-<td>escribe la prueba de hipotesis y construye el estadístico (3
-pts)</td>
-<td></td>
-<td></td>
+<td align="left"><strong>En Rstudio</strong></td>
+<td align="left">26. <strong>Diagrama de Dispersión (DD)</strong></td>
+<td align="left">DD discriminando con colores los niveles de una
+variable cualitativa, superpone las lineas rectas estimadas del modelo
+de regresión con variables indicadoras</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left"><strong>RLM</strong></td>
+<td align="left">27. <strong>Test lineal general</strong></td>
+<td align="left">A partir del ANOVA ajusta el test lineal general
+mediante la prueba F, para validar significancia de la regresión,
+escriba prueba de hipotesis y el estadístico</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td>Validación de los supuestos de normalidad sobre residuales</td>
-<td>27.Prueba de normalidad</td>
-<td>4</td>
-<td>Escribe la PH de normalidad sobre los residuales y la verifica con
-la prueba de shapiro wilk en R (3 pts)</td>
-<td>Escribe la PH de normalidad sobre los residuales ó la verifica con
-la prueba de shapiro wilk en R</td>
-<td>No verifica normalidad</td>
+<td align="left"><strong>En Rstudio</strong></td>
+<td align="left">28. validación de la <strong>significancia de los
+parametros estimados</strong></td>
+<td align="left">Escribe la prueba de hipotesis y construye el
+estadístico</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td></td>
-<td>28.Prueba de varianza constante</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">________________</td>
+<td align="left">_________________</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>29. graficas de comportamiento de residuales</td>
-<td>3</td>
-<td>grafica y analisis de comportamiento de residuales (3 pts)</td>
-<td>solo grafica de residuales (1 pts)</td>
-<td></td>
+<td align="left"></td>
+<td align="left">29.<strong>4 Graficas de residuales</strong></td>
+<td align="left">Grafica y analisis de comportamiento de residuales</td>
+<td align="left">solo grafica</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left"><strong>Analisis de residuales</strong></td>
+<td align="left">29.<strong>Prueba de normalidad</strong></td>
+<td align="left">Escribe la PH de normalidad sobre los residuales y la
+verifica con la prueba de shapiro wilk en R</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td><strong>Tamaño de muestra (TM)</strong></td>
-<td>8.</td>
-<td>3</td>
-<td>Estima un TM estratificado para los datos que está tratando (3
-pts)</td>
-<td>Estima un TM para población finita para los datos que está tratando
-(2 pto)</td>
-<td>Estima un TM para población infinita para los datos que está
-tratando (1 pto)</td>
+<td align="left"></td>
+<td align="left">30.<strong>Prueba de varianza constante</strong></td>
+<td align="left">Escribe la PH y muestra salida de R</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td>______________</td>
-<td>_______________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-<td>__________</td>
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">________________</td>
+<td align="left">_________________</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Del modelo resultante en 24. son los residuales
+Normales ?</strong></td>
+<td align="left">31.<strong>Transformaciones</strong></td>
+<td align="left">Ajuste el MRLM con transformacion sobre la variable
+respuesta, reporte la salida de R</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>RLM</strong></td>
+<td align="left">32.Ecuaciones de regresión</td>
+<td align="left">A partir del modelo anterior, escriba la recta
+multivariada general</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">33.<strong>4 Graficas de residuales</strong></td>
+<td align="left">Grafica y analisis de comportamiento de residuales</td>
+<td align="left">solo grafica</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Analisis de residuales</strong></td>
+<td align="left">34.<strong>Prueba de normalidad</strong></td>
+<td align="left">Escribe la PH de normalidad sobre los residuales y la
+verifica con la prueba de shapiro wilk en R</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">35.<strong>Prueba de varianza constante</strong></td>
+<td align="left">Escribe la PH y muestra salida de R</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">____________</td>
+<td align="left">___________________</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Tamaño de muestra (TM)</strong></td>
+<td align="left">36.</td>
+<td align="left">Estima un TM estratificado para los datos que está
+tratando</td>
+<td align="left">Estima un TM para población finita para los datos que
+está tratando</td>
+<td align="left">Estima un TM para población infinita para los datos que
+está tratando</td>
+</tr>
+<tr class="even">
+<td align="left">______________</td>
+<td align="left">_______________</td>
+<td align="left">_________</td>
+<td align="left">_________________</td>
+<td align="left">___________</td>
 </tr>
 </tbody>
 </table>
