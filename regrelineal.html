@@ -13,7 +13,7 @@
 
 <title>Regresión lineal</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -363,24 +360,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -691,20 +674,20 @@ del sépalo y largo y ancho del pétalo, asi como de las especies</p>
 #&gt; 6          5.4         3.9          1.7         0.4  setosa
 
 library(PerformanceAnalytics)
-#&gt; Loading required package: xts
-#&gt; Loading required package: zoo
+#&gt; Cargando paquete requerido: xts
+#&gt; Cargando paquete requerido: zoo
 #&gt; 
-#&gt; Attaching package: &#39;zoo&#39;
+#&gt; Adjuntando el paquete: &#39;zoo&#39;
 #&gt; The following objects are masked from &#39;package:base&#39;:
 #&gt; 
 #&gt;     as.Date, as.Date.numeric
 #&gt; 
-#&gt; Attaching package: &#39;PerformanceAnalytics&#39;
+#&gt; Adjuntando el paquete: &#39;PerformanceAnalytics&#39;
 #&gt; The following object is masked from &#39;package:graphics&#39;:
 #&gt; 
 #&gt;     legend
 library(ppcor)
-#&gt; Loading required package: MASS
+#&gt; Cargando paquete requerido: MASS
 #matriz de correlaciones
 pcor(iris[1:4])
 #&gt; $estimate
@@ -742,9 +725,6 @@ chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species)
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code># install.packages(&quot;GGally&quot;)
 library(GGally)
-#&gt; Registered S3 method overwritten by &#39;GGally&#39;:
-#&gt;   method from   
-#&gt;   +.gg   ggplot2
 
 ggpairs(iris, columns = 1:4, aes(color = Species, alpha = 0.5),
         lower = list(continuous = &quot;smooth&quot;)) </code></pre>
@@ -1354,28 +1334,117 @@ estadístico de prueba y los resultados)</p></li>
 apropiados? ¿Por qué?</p></li>
 </ol>
 </div>
+<div id="validación-cruzada" class="section level2">
+<h2><strong>Validación cruzada</strong></h2>
+<p><strong><span class="math inline">\(R^2\)</span> Coeficiente de
+determinación muestral</strong></p>
+<p>Esta cantidad proviene de la razón SSR/SST (Suma de cuadrados de la
+regresión/ suma de cuadrados totales).</p>
+<p>Proporción de la variabilidad total observada en la variable
+respuesta, que es explicada por la relación lineal con la variable
+predictora considerada. No garantiza que los supuestos básicos del
+modelo lineal se estén cumpliendo.</p>
+<pre class="r"><code>pressure
+#&gt;    temperature pressure
+#&gt; 1            0   0.0002
+#&gt; 2           20   0.0012
+#&gt; 3           40   0.0060
+#&gt; 4           60   0.0300
+#&gt; 5           80   0.0900
+#&gt; 6          100   0.2700
+#&gt; 7          120   0.7500
+#&gt; 8          140   1.8500
+#&gt; 9          160   4.2000
+#&gt; 10         180   8.8000
+#&gt; 11         200  17.3000
+#&gt; 12         220  32.1000
+#&gt; 13         240  57.0000
+#&gt; 14         260  96.0000
+#&gt; 15         280 157.0000
+#&gt; 16         300 247.0000
+#&gt; 17         320 376.0000
+#&gt; 18         340 558.0000
+#&gt; 19         360 806.0000</code></pre>
+</div>
 <div id="transformaciones" class="section level2">
 <h2><strong>Transformaciones</strong></h2>
-<p>En el caso de que los errores no resulten normales o la varianza no
-sea constante, se pueden realizar transformaciones sobre la variable
-respuesta y/o sobre las variables predictoras, como por ejemplo:</p>
-<p>Modelo 1: <span class="math display">\[log(Y_i)=\beta_0*+\beta_1
-X_i+\varepsilon_i*\]</span> Modelo 2: <span
-class="math display">\[log(Y_i)=\beta_0*+\beta_1
-log(X_i)+\varepsilon_i*\]</span> Modelo 2: <span
-class="math display">\[log(Y_i)=\beta_0*+\beta_1
-log(X_i)+\varepsilon_i*\]</span> Modelo 3: <span
-class="math display">\[Y_i=\beta_0*+\beta_1
-log(X_i)+\varepsilon_i*\]</span> Modelo 4: <span
-class="math display">\[log(Y_i)=\beta_0*+\beta_1
-(1/X_i)+\varepsilon_i*\]</span> Modelo 5: <span
-class="math display">\[log(Y_i)=\beta_0*+\beta_1
-(1/X_i)+\varepsilon_i*\]</span> el logaritmo de la variable
-respuesta.</p>
+<p>sea el modelo lineal de la forma:</p>
+<p><span
+class="math display">\[Y_i=\beta_0+\beta_1x+\varepsilon_i\]</span> En el
+caso de que los errores no resulten normales o la varianza no sea
+constante, se pueden realizar transformaciones sobre la variable
+respuesta y/o sobre las variables predictoras ejemplo:</p>
+<table>
+<colgroup>
+<col width="37%" />
+<col width="43%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Denominación</th>
+<th align="center">transformación</th>
+<th align="center">modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Exponencial multiplicativo</td>
+<td align="center"><span class="math inline">\(log(Y_i)=\beta_0*+\beta_1
+X_i+\varepsilon_i*\)</span></td>
+<td align="center"><span
+class="math inline">\(y=\beta_0*e^{\beta_1x}\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Potencial multiplicativo</td>
+<td align="center"><span
+class="math inline">\(Y_i=\beta_0*+\beta_1log(X_i)+\varepsilon_i*\)</span></td>
+<td align="center"><span
+class="math inline">\(Y_i=\beta_0*X^{\beta_1}\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Logarítmico</td>
+<td align="center"><span class="math inline">\(Y_i=\beta_0+\beta_1
+ln{X_i}+\varepsilon_i\)</span></td>
+<td align="center"><span class="math inline">\(Y_i=\beta_0+\beta_1
+ln{X_i}+\varepsilon_i\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Recíproco</td>
+<td align="center"><span class="math inline">\(Y_i=\beta_0*+\beta_1
+(1/X_i)+\varepsilon_i*\)</span></td>
+<td align="center"><span class="math inline">\(Y_i=\beta_0*+\beta_1
+(1/X_i)+\varepsilon_i*\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>Se debe tener cuidado cuando se transforma la variable respuesta, ya
-que pueden resultar en nuevas variables carentes de interpretación
-práctica según el fenómeno o contexto al cual pertenece la variable
+que pueden resultar nuevas variables carentes de interpretación práctica
+según el fenómeno o contexto al cual pertenece la variable
 respuesta.</p>
+<p>Para ver un ejemplo puede consultar el libro de regresión lineal del
+profesor fredy <a
+href="https://fhernanb.github.io/libro_regresion/trans.html#transformaciones-para-linealizar-el-modelo">Aqui</a></p>
 <p>Si las desviaciones respecto al supuesto de normalidad son severas, y
 ninguna transformación resulta útil y/o interpretable, existe otra
 alternativa, los llamados modelos lineales generalizados con los cuales
@@ -1598,11 +1667,11 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <pre class="r"><code>
 par(mfrow=c(2,2))
 plot(model)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(residuals(model))
 #&gt; 
 #&gt;  Shapiro-Wilk normality test
@@ -1664,7 +1733,7 @@ abline(a=57.33,b=0.1,col=2,lwd=3)
 abline(a=19.92,b=0.1,col=3,lwd=3)
 abline(a=9.14,b=0.1,col=4,lwd=3)
 abline(a=12.71,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1742,7 +1811,7 @@ abline(a=13.1,b=0.15,col=2,lwd=3)
 abline(a=18.9,b=0.1,col=3,lwd=3)
 abline(a=18.8,b=0.1,col=4,lwd=3)
 abline(a=6.1,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -1835,7 +1904,7 @@ abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 #Recta para la sección c
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><strong>MODELO CON INTERCEPTO diferente</strong></p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
@@ -1878,7 +1947,7 @@ confint(modelo2)
 #&gt; SeccionC     2.7767893 5.7133597
 plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 <div id="regresión-lineal-con-variables-continuas"
@@ -1924,7 +1993,7 @@ HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95
 VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
 bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(PerformanceAnalytics)
@@ -1960,7 +2029,7 @@ pcor(bosque)
 #&gt; $method
 #&gt; [1] &quot;pearson&quot;
 chart.Correlation(bosque, histogram = F, pch = 19)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <p>El modelo inicial ajustado corresponde a:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT+DBH)
 summary(m1)
@@ -2019,7 +2088,7 @@ summary(m1)
 #&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
 par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>El modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat
 y=-105.9027+7.41D16+0.67HT\]</span></p>
@@ -2027,7 +2096,7 @@ y=-105.9027+7.41D16+0.67HT\]</span></p>
 tiene:</p>
 <pre class="r"><code>
 library(car)
-#&gt; Loading required package: carData
+#&gt; Cargando paquete requerido: carData
 #library(rgl)
 library(perturbR)
 library(leaps)

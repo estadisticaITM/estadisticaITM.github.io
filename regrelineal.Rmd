@@ -697,29 +697,44 @@ b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿
 
 
 
+## **Validación cruzada**
+
+**$R^2$ Coeficiente de determinación muestral**
+
+Esta cantidad proviene de la razón SSR/SST (Suma de cuadrados de la regresión/ suma de cuadrados totales).
+
+Proporción de la variabilidad total observada en la variable respuesta, que es explicada por la relación lineal con la variable predictora considerada. No garantiza que los supuestos básicos del modelo lineal se estén cumpliendo.
+
+
+```{r}
+pressure
+```
+
 
 
 
 ## **Transformaciones**
+sea el modelo lineal de la forma:
 
-En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras, como por ejemplo:
+$$Y_i=\beta_0+\beta_1x+\varepsilon_i$$
+En el caso de que los errores no resulten normales o la varianza no sea constante, se pueden realizar transformaciones sobre la variable respuesta y/o sobre las variables predictoras ejemplo:
 
 
-Modelo 1:
-$$log(Y_i)=\beta_0*+\beta_1 X_i+\varepsilon_i*$$
-Modelo 2:
-$$log(Y_i)=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
-Modelo 2:
-$$log(Y_i)=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
-Modelo 3:
-$$Y_i=\beta_0*+\beta_1 log(X_i)+\varepsilon_i*$$
-Modelo 4:
-$$log(Y_i)=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$$
-Modelo 5:
-$$log(Y_i)=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$$
-el logaritmo de la variable respuesta.
 
-Se debe tener cuidado cuando se transforma la variable respuesta, ya que pueden resultar en nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
+|Denominación|transformación|modelo|
+|:-----------|:------------:|:----:|
+|            |              |      |
+|Exponencial multiplicativo|$log(Y_i)=\beta_0*+\beta_1 X_i+\varepsilon_i*$| $y=\beta_0*e^{\beta_1x}\varepsilon$|
+||||
+|Potencial multiplicativo|$Y_i=\beta_0*+\beta_1log(X_i)+\varepsilon_i*$|$Y_i=\beta_0*X^{\beta_1}\varepsilon$|$y=\beta_0*X^{\beta_1}\varepsilon$|
+||||
+|Logarítmico|$Y_i=\beta_0+\beta_1 ln{X_i}+\varepsilon_i$|$Y_i=\beta_0+\beta_1 ln{X_i}+\varepsilon_i$|
+||||
+|Recíproco|$Y_i=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$|$Y_i=\beta_0*+\beta_1 (1/X_i)+\varepsilon_i*$|
+
+Se debe tener cuidado cuando se transforma la variable respuesta, ya que pueden resultar nuevas variables carentes de interpretación práctica según el fenómeno o contexto al cual pertenece la variable respuesta.
+
+Para ver un ejemplo puede consultar el libro de regresión lineal del profesor fredy [Aqui](https://fhernanb.github.io/libro_regresion/trans.html#transformaciones-para-linealizar-el-modelo)
 
 Si las desviaciones respecto al supuesto de normalidad son severas, y ninguna transformación resulta útil y/o interpretable, existe otra alternativa, los llamados modelos lineales generalizados con los cuales se pueden modelar respuestas que no se distribuyen normales; sin embargo, tales modelos están más allá del alcance de este curso.
 
