@@ -9,20 +9,9 @@ output:
       #smooth_scroll: true
 ---
 
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-
-## **Gráfico de dispersión**
+**Gráfico de dispersión**
 
 Diagrama matemático que utiliza las coordenadas cartesianas para mostrar los valores de dos variables cuantitativas, de la forma (x,y), aunque también se puede incluir una variable cualitativa. Sirve para la detección de puntos atípicos.
-
-
 
 En el siguiente diagrama se ilustra la presión atmosférica en relación a la temperatura
 
@@ -72,8 +61,7 @@ Elabore en su cuaderno un gráfico de dispersión de los siguientes datos, ident
 
 
 
-## **Regresión lineal simple**
-
+# **Regresión lineal simple**
 
 Permite establecer asociaciones entre variables de interés, entre las cuáles la relación usual no es necesariamente de causa efecto. El objetivo es obtener estimaciones razonables de Y para distintos valores de X a partir de una muestra de n pares de valores (x1, y1), . . . ,(xn, yn).
 
@@ -121,7 +109,7 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 - Aproximar la calificación obtenida en una materia según el numero de horas de estudio semanal. 
 
 
-### Estimador de mínimos cuadrados
+**Estimador de mínimos cuadrados**
 
 Gauss propuso en 1809 el método de mínimos cuadrados para obtener los valores $\hat{\beta_0}, \hat {\beta_1}$ que mejor se ajustan a los datos:
 
@@ -154,24 +142,7 @@ grid.raster(IM3)
 
 - $\Large \beta_0$ es el intercepto
 
-- $\Large \beta_1$ es el valor de la pendiente, es decir que por cada unidad que aumente la variable independiente, la variable dependiente aumenta $\beta_1$ unidades
-
-
-
-### Residuales
-
-La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
-$$\Large e_i= y_i- \hat{y_i}$$
-
-
-
-
-```{r fig.asp=0.5, fig.align='right', echo=FALSE}
-library(png)
-library(grid)
-IM4 <- readPNG("img4.png")
-grid.raster(IM4)
-```
+- $\Large \beta_1$ es el valor de la pendiente, es decir que por cada unidad que aumente variable independiente, la variable dependiente aumenta $\beta_1$ unidades
 
 ## **Medidas de dependencia lineal**
 
@@ -222,6 +193,13 @@ $$\Large cor(x,y)=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
 ```{r echo=F, fig.asp=1, fig.align='center'}
 knitr::include_graphics("imagen/cor.png")
 ```
+
+
+
+ **Cómo obtener un modelo de regresión lineal simple en la calculadora**
+ 
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 **Prueba de significancia de la correlación**
 
@@ -277,106 +255,19 @@ SSE: es la suma de cuadrados del error
 
 SST: suma de cuadrados totales
 
-### Error de pronóstico medio MAPE
-
-Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
-
-$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
 
+## **Residuales**
 
+La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
+$$\Large e_i= y_i- \hat{y_i}$$
 
- **Cómo obtener un modelo de regresión lineal simple en la calculadora**
- 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-## **Test lineal general**
-
-
-La varianza de los términos de error $\varepsilon_i$, es decir, $V[\varepsilon_i]=\sigma^2$, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:
-
-$$\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i$$
-La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar $\beta_0$ y $\beta_1$, para obtener a $\hat{y_i}$, de lo anterior se obtiene la media cuadática de errores dada por:
-
-$$\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}$$
-
-Se puede demostrar que MSE, es un estimador insesgado de $\Large \sigma^2$ para el modelo de RLS, es decir que:
-
-$$\Large \sigma^2=MSE$$
-Además
-$$\Large E(MSE)=\sigma$$
-
-
-**Suma total de cuadrados**
-
-La medida de variación de y alrededor de la la media muestral $\bar{y}$ es:
-$$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
-
-**Suma cuadrática de regresión**
-
-La diferencia entre la SST y la SSE se denota por:
-
-$$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$
-
-La SSR es una medida de la parte de la variabilidad de las observaciones $y_i$, la cual está asociada con la línea de regresión ajustada.
-
-De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:
-
-$$\Large SST = SSR + SSE$$
-
-Aquí,
-SST: Variabilidad muestral total y tiene n−1 grados de libertad.
-
-SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.
-
-SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.
-
-
-
-**Medias cuadráticas**
-
-Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:
-
-$\Large MST=\frac{SST}{n-1}$: Cuadrado medio total
-
-$\Large MSR=\frac{SSR}{1}$:Cuadrado medio de la regresión
-
-$\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
-
-
-
-Tabla de resumen del análisis de varianza
-
-|Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
-|---------|------------------|-----------------|------------------|-----------|
-|Regresión|1                 |SSR              |MSR               |Fc         |
-|Error    |n-2               |SSE              |MSE               |           |
-|Total    |n-1               |SST              |MST               |           |
-
-
-### Prueba de significancia de la regresión
-
-Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
-
-Hipótesis nula:   
-
-
-$\Large H_0: \beta_i=0$ el parámetro no es significativo
-
-
-Hipótesis alternativa:  
-
-$\Large H_1: \beta_i \not= 0$: el parámeto es significativo
-
-El estadístico de prueba corresponde a 
-
-$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
-
-
-
-
-## **Análisis de residuales para la validación de los supuestos**
+```{r fig.asp=0.5, fig.align='right', echo=FALSE}
+library(png)
+library(grid)
+IM4 <- readPNG("img4.png")
+grid.raster(IM4)
+```
 
 A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
 
@@ -444,7 +335,7 @@ Que corresponden a observaciones alejadas del resto de la muestra, que afectan l
 
 Para detectar estas observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
 
-## **Residuales escalados**
+### **Tipos de residuales**
 
 ### Residuales estandarizados $d_i$
 
@@ -552,6 +443,103 @@ bptest(md)
 
 
 ```
+## **Pruebas de hipotesis en el modelo de regresión**
+
+### **Test lineal general**
+
+
+La varianza de los términos de error $\varepsilon_i$, es decir, $V[\varepsilon_i]=\sigma^2$, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:
+
+$$\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i$$
+La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar $\beta_0$ y $\beta_1$, para obtener a $\hat{y_i}$, de lo anterior se obtiene la media cuadática de errores dada por:
+
+$$\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}$$
+
+Se puede demostrar que MSE, es un estimador insesgado de $\Large \sigma^2$ para el modelo de RLS, es decir que:
+
+$$\Large \sigma^2=MSE$$
+Además
+$$\Large E(MSE)=\sigma$$
+
+
+**Suma total de cuadrados**
+
+La medida de variación de y alrededor de la la media muestral $\bar{y}$ es:
+$$\Large SST=\sum_{i=1}^n(Y_i-\bar{Y})^2$$
+
+**Suma cuadrática de regresión**
+
+La diferencia entre la SST y la SSE se denota por:
+
+$$\Large SSR=\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$$
+
+La SSR es una medida de la parte de la variabilidad de las observaciones $y_i$, la cual está asociada con la línea de regresión ajustada.
+
+De lo anterior, se obtiene la identidad fundamental del análisis de varianza, la cual está dada por:
+
+$$\Large SST = SSR + SSE$$
+
+Aquí,
+SST: Variabilidad muestral total y tiene n−1 grados de libertad.
+
+SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.
+
+SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.
+
+
+
+**Medias cuadráticas**
+
+Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:
+
+$\Large MST=\frac{SST}{n-1}$: Cuadrado medio total
+
+$\Large MSR=\frac{SSR}{1}$:Cuadrado medio de la regresión
+
+$\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
+
+
+
+Tabla de resumen del análisis de varianza
+
+|Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
+|---------|------------------|-----------------|------------------|-----------|
+|Regresión|1                 |SSR              |MSR               |Fc         |
+|Error    |n-2               |SSE              |MSE               |           |
+|Total    |n-1               |SST              |MST               |           |
+
+
+El estadístico de prueba corresponde a 
+
+$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
+
+**Hipótesis nula: **  
+
+
+$\Large H_0:$ el modelo de regresión no es significativo
+
+
+**Hipótesis alternativa:**  
+
+$\Large H_1: \beta_i \not= 0$: el modelo de regresión es significativo
+
+
+### Prueba de significancia de los parámetros
+
+
+Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
+
+Hipótesis nula:   
+
+
+$\Large H_0: \beta_i=0$ el parámetro no es significativo
+
+
+Hipótesis alternativa:  
+
+$\Large H_1: \beta_i \not= 0$: el parámeto es significativo
+
+
 
 ## **Test de carencia de ajuste**
 
@@ -699,17 +687,52 @@ b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿
 
 ## **Validación cruzada**
 
-**$R^2$ Coeficiente de determinación muestral**
+Se utiliza para:
 
-Esta cantidad proviene de la razón SSR/SST (Suma de cuadrados de la regresión/ suma de cuadrados totales).
+- Comparar la Regresión Lineal con otros modelos predictivos.
 
-Proporción de la variabilidad total observada en la variable respuesta, que es explicada por la relación lineal con la variable predictora considerada. No garantiza que los supuestos básicos del modelo lineal se estén cumpliendo.
+- Seleccionar el número de predictores o el grado polinomial adecuado.
+
+### **Akaike Information Criterion (AIC)**
+
+El AIC se define como:
+
+$$AIC=-2*LogLik+k*n_{par}$$
+donde:
+
+- $LogLik$ Logverosimilitud del modelo para el vector de parámetros Θ
+
+- k valor de penalización por el exceso de parámetros 
+
+- $n_{par}$ corresponde al número de parámetros del modelo.
+
+Se debe recordar siempre que el mejor modelo es aquel que:
+
+- Tiene mayor $LogLik$ 
+
+- Tiene menor $AIC$
+
+Cuando el valor de penalización $k=log(n)$ entonces el $AIC$ se llama $BIC$
+
+### **$R^2$ Coeficiente de determinación muestral**
+
+- Proviene de la razón SSR/SST (Suma de cuadrados de la regresión/ suma de cuadrados totales).
+
+- Proporción de la variabilidad total observada en la variable respuesta, que es explicada por la relación lineal con la variable predictora considerada. 
+
+- No garantiza que los supuestos básicos del modelo lineal se estén cumpliendo.
+
+AIC
 
 
 ```{r}
 pressure
 ```
+### **Error de pronóstico medio MAPE**
 
+Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
+
+$$\Large MAPE=\frac{\sum_{i=1}^n |\frac{y_i-\hat{y_i}}{y_i}|}{n}$$
 
 
 
@@ -756,7 +779,7 @@ Suponemos en principio que las variables predictoras guardan poca asociación li
 $$\Large y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i$$
 
 
-## **Regresión lineal con efectos de interacción**
+### **Regresión lineal con efectos de interacción**
 
 
 Cuando los efectos de una variable predictora depende de los niveles de otras variables predictoras incluidas en el modelo. 
@@ -775,7 +798,7 @@ $$\large Y_i=\beta_0+\beta_1 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i$$
 
 
 
-## **Regresión lineal con variables indicadoras**
+### **Regresión lineal con variables indicadoras**
 
 Suponga que en un modelo de regresión para el gasto mensual por familia en actividades recreativas, se tiene entre las variables predictoras el estrato socioeconómico, definido en cinco niveles, luego, para cada nivel se define una variable indicadora de la siguiente forma:
 
@@ -833,7 +856,7 @@ Podemos considerar las dos siguientes situaciones:
 
 
 
-### Caso 1 Intercepto y pendiente diferente
+**Caso 1 Intercepto y pendiente diferente**
 
 El efecto promedio de $X_1$ sobre la respuesta $Y$ cambia según la categoría en que $X_2$ sea observada, para lo cual es necesario considerar la interacción entre $X_1$ y $X_2$ en el modelo de regresión, y sólo utilizamos c−1 de las posibles variables indicadoras de las categorías de la variable $X_2$, quedando el modelo:
 
@@ -853,9 +876,7 @@ $$\large Y=(\beta_0 +\beta_3)+(\beta_1+\beta_{1,2})X_1+\varepsilon$$
 $$\large Y_i=\beta_0+\beta_1X_1+\varepsilon_i$$
      
 
-###   Caso 2 Intercepto aleatorio
-
-
+**Caso 2 Intercepto aleatorio**
 
 El efecto promedio de $X_1$ sobre la respuesta Y es el mismo en todas las categorías de $X_2$ pero la media general de Y no es igual en todas las categorías. El modelo a considerar está dado por:
 
@@ -1100,7 +1121,7 @@ legend("topleft",legend=c("A","B","C"),pch=c(1:3),col=c(1:3),cex=2)
 
 
 
-## **Regresión lineal con variables continuas**
+### **Regresión lineal con variables continuas**
 
 ### Procedimientos para la selección de variables significativas**
 Básicamente, existen tres procedimientos de selección automática, los cuales son computacionalmente menos costosos que el procedimiento de selección basado en ajustar todas las regresiones posibles, y operan en forma secuencial:

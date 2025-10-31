@@ -392,8 +392,7 @@ div.tocify {
 </div>
 
 
-<div id="gráfico-de-dispersión" class="section level2">
-<h2><strong>Gráfico de dispersión</strong></h2>
+<p><strong>Gráfico de dispersión</strong></p>
 <p>Diagrama matemático que utiliza las coordenadas cartesianas para
 mostrar los valores de dos variables cuantitativas, de la forma (x,y),
 aunque también se puede incluir una variable cualitativa. Sirve para la
@@ -499,9 +498,8 @@ datos, identificando con colores diferentes el tipo de tapa.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="regresión-lineal-simple" class="section level2">
-<h2><strong>Regresión lineal simple</strong></h2>
+<div id="regresión-lineal-simple" class="section level1">
+<h1><strong>Regresión lineal simple</strong></h1>
 <p>Permite establecer asociaciones entre variables de interés, entre las
 cuáles la relación usual no es necesariamente de causa efecto. El
 objetivo es obtener estimaciones razonables de Y para distintos valores
@@ -543,8 +541,7 @@ hijo.</p></li>
 <li><p>Aproximar la calificación obtenida en una materia según el numero
 de horas de estudio semanal.</p></li>
 </ul>
-<div id="estimador-de-mínimos-cuadrados" class="section level3">
-<h3>Estimador de mínimos cuadrados</h3>
+<p><strong>Estimador de mínimos cuadrados</strong></p>
 <p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los
 valores <span class="math inline">\(\hat{\beta_0}, \hat
 {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
@@ -570,20 +567,10 @@ y y, respectivamente <span class="math display">\[\Large
 <li><p><span class="math inline">\(\Large \beta_0\)</span> es el
 intercepto</p></li>
 <li><p><span class="math inline">\(\Large \beta_1\)</span> es el valor
-de la pendiente, es decir que por cada unidad que aumente la variable
+de la pendiente, es decir que por cada unidad que aumente variable
 independiente, la variable dependiente aumenta <span
 class="math inline">\(\beta_1\)</span> unidades</p></li>
 </ul>
-</div>
-<div id="residuales" class="section level3">
-<h3>Residuales</h3>
-<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span>
-de la variable respuesta y su estimación <span
-class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span
-class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-</div>
 <div id="medidas-de-dependencia-lineal" class="section level2">
 <h2><strong>Medidas de dependencia lineal</strong></h2>
 <div id="covarianza" class="section level3">
@@ -652,6 +639,10 @@ relación lineal</p></li>
 </tbody>
 </table>
 <p><img src="imagen/cor.png" width="726" style="display: block; margin: auto;" /></p>
+<p><strong>Cómo obtener un modelo de regresión lineal simple en la
+calculadora</strong></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p><strong>Prueba de significancia de la correlación</strong></p>
 <p>Podemos chequear la significancia de la correlación a través del
 siguiente juego de hipótesis.</p>
@@ -664,71 +655,69 @@ relación lineal entre las variables.</p>
 de datos iris contiene diferentes variables cuantitativas, largo y ancho
 del sépalo y largo y ancho del pétalo, asi como de las especies</p>
 <p><img src="imagen/iris.png" width="534" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>head(iris)
-#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#&gt; 1          5.1         3.5          1.4         0.2  setosa
-#&gt; 2          4.9         3.0          1.4         0.2  setosa
-#&gt; 3          4.7         3.2          1.3         0.2  setosa
-#&gt; 4          4.6         3.1          1.5         0.2  setosa
-#&gt; 5          5.0         3.6          1.4         0.2  setosa
-#&gt; 6          5.4         3.9          1.7         0.4  setosa
-
-library(PerformanceAnalytics)
-#&gt; Cargando paquete requerido: xts
-#&gt; Cargando paquete requerido: zoo
-#&gt; 
-#&gt; Adjuntando el paquete: &#39;zoo&#39;
-#&gt; The following objects are masked from &#39;package:base&#39;:
-#&gt; 
-#&gt;     as.Date, as.Date.numeric
-#&gt; 
-#&gt; Adjuntando el paquete: &#39;PerformanceAnalytics&#39;
-#&gt; The following object is masked from &#39;package:graphics&#39;:
-#&gt; 
-#&gt;     legend
-library(ppcor)
-#&gt; Cargando paquete requerido: MASS
-#matriz de correlaciones
-pcor(iris[1:4])
-#&gt; $estimate
-#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt; Sepal.Length    1.0000000   0.6285707    0.7190656  -0.3396174
-#&gt; Sepal.Width     0.6285707   1.0000000   -0.6152919   0.3526260
-#&gt; Petal.Length    0.7190656  -0.6152919    1.0000000   0.8707698
-#&gt; Petal.Width    -0.3396174   0.3526260    0.8707698   1.0000000
-#&gt; 
-#&gt; $p.value
-#&gt;              Sepal.Length  Sepal.Width Petal.Length  Petal.Width
-#&gt; Sepal.Length 0.000000e+00 1.199846e-17 7.656980e-25 2.412876e-05
-#&gt; Sepal.Width  1.199846e-17 0.000000e+00 8.753029e-17 1.104958e-05
-#&gt; Petal.Length 7.656980e-25 8.753029e-17 0.000000e+00 7.332477e-47
-#&gt; Petal.Width  2.412876e-05 1.104958e-05 7.332477e-47 0.000000e+00
-#&gt; 
-#&gt; $statistic
-#&gt;              Sepal.Length Sepal.Width Petal.Length Petal.Width
-#&gt; Sepal.Length     0.000000    9.765380    12.502483   -4.362929
-#&gt; Sepal.Width      9.765380    0.000000    -9.431189    4.553279
-#&gt; Petal.Length    12.502483   -9.431189     0.000000   21.398708
-#&gt; Petal.Width     -4.362929    4.553279    21.398708    0.000000
-#&gt; 
-#&gt; $n
-#&gt; [1] 150
-#&gt; 
-#&gt; $gp
-#&gt; [1] 2
-#&gt; 
-#&gt; $method
-#&gt; [1] &quot;pearson&quot;
-
-#matriz con grafico de dispersión 
+<pre class="r"><code>head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>library(PerformanceAnalytics)</code></pre>
+<pre><code>## Cargando paquete requerido: xts</code></pre>
+<pre><code>## Cargando paquete requerido: zoo</code></pre>
+<pre><code>## 
+## Adjuntando el paquete: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## 
+## Adjuntando el paquete: &#39;PerformanceAnalytics&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     legend</code></pre>
+<pre class="r"><code>library(ppcor)</code></pre>
+<pre><code>## Cargando paquete requerido: MASS</code></pre>
+<pre class="r"><code>#matriz de correlaciones
+pcor(iris[1:4])</code></pre>
+<pre><code>## $estimate
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    1.0000000   0.6285707    0.7190656  -0.3396174
+## Sepal.Width     0.6285707   1.0000000   -0.6152919   0.3526260
+## Petal.Length    0.7190656  -0.6152919    1.0000000   0.8707698
+## Petal.Width    -0.3396174   0.3526260    0.8707698   1.0000000
+## 
+## $p.value
+##              Sepal.Length  Sepal.Width Petal.Length  Petal.Width
+## Sepal.Length 0.000000e+00 1.199846e-17 7.656980e-25 2.412876e-05
+## Sepal.Width  1.199846e-17 0.000000e+00 8.753029e-17 1.104958e-05
+## Petal.Length 7.656980e-25 8.753029e-17 0.000000e+00 7.332477e-47
+## Petal.Width  2.412876e-05 1.104958e-05 7.332477e-47 0.000000e+00
+## 
+## $statistic
+##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length     0.000000    9.765380    12.502483   -4.362929
+## Sepal.Width      9.765380    0.000000    -9.431189    4.553279
+## Petal.Length    12.502483   -9.431189     0.000000   21.398708
+## Petal.Width     -4.362929    4.553279    21.398708    0.000000
+## 
+## $n
+## [1] 150
+## 
+## $gp
+## [1] 2
+## 
+## $method
+## [1] &quot;pearson&quot;</code></pre>
+<pre class="r"><code>#matriz con grafico de dispersión 
 chart.Correlation(iris[1:4], histogram = T, pch = 19,col=as.factor(iris$Species))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code># install.packages(&quot;GGally&quot;)
 library(GGally)
 
 ggpairs(iris, columns = 1:4, aes(color = Species, alpha = 0.5),
         lower = list(continuous = &quot;smooth&quot;)) </code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="medida-de-bondad-de-ajuste-r2" class="section level3">
 <h3>Medida de bondad de ajuste <span
@@ -745,21 +734,231 @@ R^2=1-\frac{SSE}{SST}=1-\frac{\sum_{i=1}^n
 <p>SSE: es la suma de cuadrados del error</p>
 <p>SST: suma de cuadrados totales</p>
 </div>
-<div id="error-de-pronóstico-medio-mape" class="section level3">
-<h3>Error de pronóstico medio MAPE</h3>
-<p>Es importante evaluar la capacidad predictiva del modelo. Esta medida
-compara promedia la diferencia entre los valores observados con los
-pronosticados. Dado por la fórmula:</p>
-<p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n
-|\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
-<p><strong>Cómo obtener un modelo de regresión lineal simple en la
-calculadora</strong></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/4_WO31Dapv0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+</div>
+<div id="residuales" class="section level2">
+<h2><strong>Residuales</strong></h2>
+<p>La diferencia de cada valor <span class="math inline">\(y_i\)</span>
+de la variable respuesta y su estimación <span
+class="math inline">\(\hat{y_i}\)</span> se llama residuo. <span
+class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p>A través del análisis de residuales del modelo es posible detectar la
+linealidad entre las variables X e Y, la media cero, varianza constante,
+incorrelación, y normalidad.</p>
+<div id="normalidad-en-los-residuales" class="section level3">
+<h3>Normalidad en los residuales</h3>
+<p>Se puede evaluar mediante el gráfico qqplot, en el cual los puntos
+residuales deben estar alineados con la diagonal, dicha normalidad
+también se puede evaluar con la prueba de normalidad de shapiro- wilk,
+con el juego de hipótesis:</p>
+<p><span class="math inline">\(H_o:\)</span>Los residuos son
+normales</p>
+<p><span class="math inline">\(H_1:\)</span>Los residuos no son
+normales</p>
+</div>
+<div id="varianza-constante" class="section level3">
+<h3>Varianza constante</h3>
+<p>Mediante gráficos de residuales vs. respuesta ajustada y
+vs. predictora X. Los residuos están distribuidos alrededor del cero y
+el gráfico no presenta ninguna tendencia, entonces el modelo se
+considera adecuado.</p>
+<ul>
+<li><p>Si se observa una tendencia, estaríamos violando el supuesto de
+linealidad,</p></li>
+<li><p>Si se observa una nube de puntos en forma de embudo, podemos
+tener problemas con el supuesto de homogeneidad de varianzas, también
+conocido como supuesto de homocedasticidad.</p></li>
+</ul>
+<p><img src="imagen/residuals.png" width="348" style="display: block; margin: auto;" /></p>
+<p><strong>Prueba de homocedasticidad</strong></p>
+<p>La homocedasticidad se refiere a la propiedad en la que la varianza
+de los errores del modelo se mantiene constante a lo largo de todas las
+observaciones de la variable independiente.</p>
+<p><img src="imagen/homo.png" width="481" style="display: block; margin: auto;" /></p>
+<p>La prueba de hipótesis para verificar la homogeneidad de varianzas
+es:</p>
+<p><span class="math display">\[H_0:\quad Los \quad errores \quad tienen
+\quad varianza \quad constante\]</span></p>
+<p><span class="math display">\[H_1:\quad Los \quad errores \quad no
+\quad tienen \quad varianza \quad constante\]</span></p>
+<p><strong>Prueba de Breusch-Pagan (1979)</strong></p>
+<p>Consiste en ajustar un modelo de regresión lineal con variable
+respuesta dada por residuales del modelo original al cuadrado <span
+class="math inline">\(e_i^2\)</span> y como covariables las variables
+del modelo original.</p>
+<p>Por ejemplo, si se tienen k=2 covariables para explicar a Y, entonces
+el modelo de regresión para estudiar la homocedasticidad es:</p>
+<p><span class="math display">\[e^2_i= δ_0+δ_1x_1+δ_2x_2+u\]</span></p>
+<p>Si se concluye que <span class="math inline">\(δ_1=δ_2=0\)</span>,
+significa que los residuales no son función de las covariables del
+modelo.</p>
+<p>La función bptest del paquete lmtest Zeileis and Hothorn (2002)
+implementa esta prueba.</p>
+<p><strong>Otros diagnósticos</strong></p>
+<p>Además de la validación de supuestos debemos chequear la presencia
+de:</p>
+<ul>
+<li>Observaciones atípicas</li>
+<li>Puntos de balanceo</li>
+<li>Observaciones influyentes</li>
+</ul>
+<p>Que corresponden a observaciones alejadas del resto de la muestra,
+que afectan los coeficientes de regresión estimados <span
+class="math inline">\(\beta_0, \beta_1\)</span>, y las medidas de bondad
+de ajuste como o sı el <span class="math inline">\(R^2\)</span>.</p>
+<p>Para detectar estas observaciones atípicas construimos residuales
+escalados, los residuales divididos por una estimación de su error
+estándar.</p>
+</div>
+<div id="tipos-de-residuales" class="section level3">
+<h3><strong>Tipos de residuales</strong></h3>
+</div>
+<div id="residuales-estandarizados-d_i" class="section level3">
+<h3>Residuales estandarizados <span
+class="math inline">\(d_i\)</span></h3>
+<p>El MSE aproxima la varianza de un residual, por tanto los residuales
+se dividen por su desviación estándar para obtener los residuales
+estandarizados, los cuales tienen media cero y varianza aproximada de
+1:</p>
+<p><span class="math display">\[\large d_i=\frac{\hat
+\varepsilon_i}{\sqrt{MSE}}\]</span></p>
+<p>Un <span class="math inline">\(d_i\)</span> grande <span
+class="math inline">\((|di| &gt; 3)\)</span> es indicio de una
+observación atípica potencial.</p>
+</div>
+<div id="residuales-estudentizados-r_i" class="section level3">
+<h3>Residuales estudentizados <span
+class="math inline">\(r_i\)</span></h3>
+<p>Si estandarizamos un residual usando su varianza exacta, obtenemos un
+residual estudentizado</p>
+<p><span class="math display">\[\large r_i=\frac{\hat
+\varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> Donde <span
+class="math inline">\(h_{ii}\)</span> es una medida del lugar o
+ubicación del i-ésimo punto residual, conocida como leverage.</p>
+<p>Se considera potencialmente atípica aquella observación con <span
+class="math inline">\(r_i\)</span> grande <span
+class="math inline">\((|ri| &gt; 3)\)</span></p>
+<hr />
+<p><strong>En R</strong></p>
+<p>Sea <em>modelo</em> un objeto de regresión del tipo lm(), las medidas
+de observaciones influenciales y de balanceo pueden obtenerse mediante
+la siguiente función:</p>
+<p>influence.measures(modelo)</p>
+<p>Los residuales estandarizados y los estudentizados pueden obtenerse,
+respectivamente,mediante las funciones:</p>
+<p>rstandard(modelo)</p>
+<p>rstudent(modelo)</p>
+<hr />
+<p><strong>Ejemplo</strong></p>
+<p>Los siguientes datos proveen las velocidades en metros por segundo y
+las distancias necesarias para frenar en metros</p>
+<pre class="r"><code>head(cars)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
+<p>Para este modelo el modelo de regresión lineal simple es:</p>
+<p><span class="math display">\[\Large \hat{y}=-17.57+3.93x\]</span>
+Donde</p>
+<ul>
+<li><p>X representa la velocidad en metros por segundo</p></li>
+<li><p>y es la distancia de frenado en metros</p></li>
+<li><p>Por cada unidad que aumenta la velocidad la distancia de frenado
+aumenta 3.93 unidades</p></li>
+</ul>
+<p><strong>Resultados del modelo en R</strong></p>
+<pre class="r"><code>cor.test(cars$speed,cars$dist)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  cars$speed and cars$dist
+## t = 9.464, df = 48, p-value = 1.49e-12
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.6816422 0.8862036
+## sample estimates:
+##       cor 
+## 0.8068949</code></pre>
+<pre class="r"><code>md=lm(cars$dist~cars$speed)
+summary(md)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = cars$dist ~ cars$speed)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<pre class="r"><code>plot(cars$speed,cars$dist, col=2, lwd=2)
+abline(a=-17.57,b=3.93)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><strong>anova del modelo</strong></p>
+<pre class="r"><code>md=lm(cars$dist~cars$speed)
+anova(md)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: cars$dist
+##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
+## Residuals  48  11354   236.5                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>y=influence.measures(md)
+head(y$infmat)</code></pre>
+<pre><code>##        dfb.1_    dfb.crs$       dffit    cov.r       cook.d        hat
+## 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121 0.11486131
+## 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907 0.11486131
+## 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503 0.07150365
+## 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384 0.07150365
+## 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705 0.05997080
+## 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931 0.04989781</code></pre>
+<pre class="r"><code>head(rstandard(md))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.2660415  0.8189327 -0.4013462  0.8132663  0.1421624 -0.5211526</code></pre>
+<pre class="r"><code>head(rstudent(md))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.2634500  0.8160784 -0.3978115  0.8103526  0.1407033 -0.5171605</code></pre>
+<p><strong>Análisis de residuales</strong></p>
+<pre class="r"><code>md=lm(cars$dist~cars$speed)
+rr=residuals(md)
+par(mfrow=c(2,2))
+plot(md)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>shapiro.test(rr)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  rr
+## W = 0.94509, p-value = 0.02152</code></pre>
+<pre class="r"><code>library(lmtest)
+
+bptest(md)</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  md
+## BP = 3.2149, df = 1, p-value = 0.07297</code></pre>
 </div>
 </div>
-<div id="test-lineal-general" class="section level2">
-<h2><strong>Test lineal general</strong></h2>
+<div id="pruebas-de-hipotesis-en-el-modelo-de-regresión"
+class="section level2">
+<h2><strong>Pruebas de hipotesis en el modelo de regresión</strong></h2>
+<div id="test-lineal-general" class="section level3">
+<h3><strong>Test lineal general</strong></h3>
 <p>La varianza de los términos de error <span
 class="math inline">\(\varepsilon_i\)</span>, es decir, <span
 class="math inline">\(V[\varepsilon_i]=\sigma^2\)</span>, da un
@@ -853,9 +1052,19 @@ Cuadrado medio del error</p>
 </tr>
 </tbody>
 </table>
-<div id="prueba-de-significancia-de-la-regresión"
+<p>El estadístico de prueba corresponde a</p>
+<p><span class="math display">\[\Large F_c=\frac{MSR}{MSE}\sim
+F_{(1,n-2)}\]</span></p>
+<p><strong>Hipótesis nula: </strong></p>
+<p><span class="math inline">\(\Large H_0:\)</span> el modelo de
+regresión no es significativo</p>
+<p><strong>Hipótesis alternativa:</strong></p>
+<p><span class="math inline">\(\Large H_1: \beta_i \not= 0\)</span>: el
+modelo de regresión es significativo</p>
+</div>
+<div id="prueba-de-significancia-de-los-parámetros"
 class="section level3">
-<h3>Prueba de significancia de la regresión</h3>
+<h3>Prueba de significancia de los parámetros</h3>
 <p>Considere las siguientes afirmaciones, las cuales son llamadas
 pruebas de hipótesis o prueba de significancia de la regresión:</p>
 <p>Hipótesis nula:</p>
@@ -864,229 +1073,6 @@ parámetro no es significativo</p>
 <p>Hipótesis alternativa:</p>
 <p><span class="math inline">\(\Large H_1: \beta_i \not= 0\)</span>: el
 parámeto es significativo</p>
-<p>El estadístico de prueba corresponde a</p>
-<p><span class="math display">\[\Large F_c=\frac{MSR}{MSE}\sim
-F_{(1,n-2)}\]</span></p>
-</div>
-</div>
-<div id="análisis-de-residuales-para-la-validación-de-los-supuestos"
-class="section level2">
-<h2><strong>Análisis de residuales para la validación de los
-supuestos</strong></h2>
-<p>A través del análisis de residuales del modelo es posible detectar la
-linealidad entre las variables X e Y, la media cero, varianza constante,
-incorrelación, y normalidad.</p>
-<div id="normalidad-en-los-residuales" class="section level3">
-<h3>Normalidad en los residuales</h3>
-<p>Se puede evaluar mediante el gráfico qqplot, en el cual los puntos
-residuales deben estar alineados con la diagonal, dicha normalidad
-también se puede evaluar con la prueba de normalidad de shapiro- wilk,
-con el juego de hipótesis:</p>
-<p><span class="math inline">\(H_o:\)</span>Los residuos son
-normales</p>
-<p><span class="math inline">\(H_1:\)</span>Los residuos no son
-normales</p>
-</div>
-<div id="varianza-constante" class="section level3">
-<h3>Varianza constante</h3>
-<p>Mediante gráficos de residuales vs. respuesta ajustada y
-vs. predictora X. Los residuos están distribuidos alrededor del cero y
-el gráfico no presenta ninguna tendencia, entonces el modelo se
-considera adecuado.</p>
-<ul>
-<li><p>Si se observa una tendencia, estaríamos violando el supuesto de
-linealidad,</p></li>
-<li><p>Si se observa una nube de puntos en forma de embudo, podemos
-tener problemas con el supuesto de homogeneidad de varianzas, también
-conocido como supuesto de homocedasticidad.</p></li>
-</ul>
-<p><img src="imagen/residuals.png" width="348" style="display: block; margin: auto;" /></p>
-<p><strong>Prueba de homocedasticidad</strong></p>
-<p>La homocedasticidad se refiere a la propiedad en la que la varianza
-de los errores del modelo se mantiene constante a lo largo de todas las
-observaciones de la variable independiente.</p>
-<p><img src="imagen/homo.png" width="481" style="display: block; margin: auto;" /></p>
-<p>La prueba de hipótesis para verificar la homogeneidad de varianzas
-es:</p>
-<p><span class="math display">\[H_0:\quad Los \quad errores \quad tienen
-\quad varianza \quad constante\]</span></p>
-<p><span class="math display">\[H_1:\quad Los \quad errores \quad no
-\quad tienen \quad varianza \quad constante\]</span></p>
-<p><strong>Prueba de Breusch-Pagan (1979)</strong></p>
-<p>Consiste en ajustar un modelo de regresión lineal con variable
-respuesta dada por residuales del modelo original al cuadrado <span
-class="math inline">\(e_i^2\)</span> y como covariables las variables
-del modelo original.</p>
-<p>Por ejemplo, si se tienen k=2 covariables para explicar a Y, entonces
-el modelo de regresión para estudiar la homocedasticidad es:</p>
-<p><span class="math display">\[e^2_i= δ_0+δ_1x_1+δ_2x_2+u\]</span></p>
-<p>Si se concluye que <span class="math inline">\(δ_1=δ_2=0\)</span>,
-significa que los residuales no son función de las covariables del
-modelo.</p>
-<p>La función bptest del paquete lmtest Zeileis and Hothorn (2002)
-implementa esta prueba.</p>
-<p><strong>Otros diagnósticos</strong></p>
-<p>Además de la validación de supuestos debemos chequear la presencia
-de:</p>
-<ul>
-<li>Observaciones atípicas</li>
-<li>Puntos de balanceo</li>
-<li>Observaciones influyentes</li>
-</ul>
-<p>Que corresponden a observaciones alejadas del resto de la muestra,
-que afectan los coeficientes de regresión estimados <span
-class="math inline">\(\beta_0, \beta_1\)</span>, y las medidas de bondad
-de ajuste como o sı el <span class="math inline">\(R^2\)</span>.</p>
-<p>Para detectar estas observaciones atípicas construimos residuales
-escalados, los residuales divididos por una estimación de su error
-estándar.</p>
-</div>
-</div>
-<div id="residuales-escalados" class="section level2">
-<h2><strong>Residuales escalados</strong></h2>
-<div id="residuales-estandarizados-d_i" class="section level3">
-<h3>Residuales estandarizados <span
-class="math inline">\(d_i\)</span></h3>
-<p>El MSE aproxima la varianza de un residual, por tanto los residuales
-se dividen por su desviación estándar para obtener los residuales
-estandarizados, los cuales tienen media cero y varianza aproximada de
-1:</p>
-<p><span class="math display">\[\large d_i=\frac{\hat
-\varepsilon_i}{\sqrt{MSE}}\]</span></p>
-<p>Un <span class="math inline">\(d_i\)</span> grande <span
-class="math inline">\((|di| &gt; 3)\)</span> es indicio de una
-observación atípica potencial.</p>
-</div>
-<div id="residuales-estudentizados-r_i" class="section level3">
-<h3>Residuales estudentizados <span
-class="math inline">\(r_i\)</span></h3>
-<p>Si estandarizamos un residual usando su varianza exacta, obtenemos un
-residual estudentizado</p>
-<p><span class="math display">\[\large r_i=\frac{\hat
-\varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> Donde <span
-class="math inline">\(h_{ii}\)</span> es una medida del lugar o
-ubicación del i-ésimo punto residual, conocida como leverage.</p>
-<p>Se considera potencialmente atípica aquella observación con <span
-class="math inline">\(r_i\)</span> grande <span
-class="math inline">\((|ri| &gt; 3)\)</span></p>
-<hr />
-<p><strong>En R</strong></p>
-<p>Sea <em>modelo</em> un objeto de regresión del tipo lm(), las medidas
-de observaciones influenciales y de balanceo pueden obtenerse mediante
-la siguiente función:</p>
-<p>influence.measures(modelo)</p>
-<p>Los residuales estandarizados y los estudentizados pueden obtenerse,
-respectivamente,mediante las funciones:</p>
-<p>rstandard(modelo)</p>
-<p>rstudent(modelo)</p>
-<hr />
-<p><strong>Ejemplo</strong></p>
-<p>Los siguientes datos proveen las velocidades en metros por segundo y
-las distancias necesarias para frenar en metros</p>
-<pre class="r"><code>head(cars)
-#&gt;   speed dist
-#&gt; 1     4    2
-#&gt; 2     4   10
-#&gt; 3     7    4
-#&gt; 4     7   22
-#&gt; 5     8   16
-#&gt; 6     9   10</code></pre>
-<p>En este caso ¿Cuál es la variable dependiente e independiente?</p>
-<p>Para este modelo el modelo de regresión lineal simple es:</p>
-<p><span class="math display">\[\Large \hat{y}=-17.57+3.93x\]</span>
-Donde</p>
-<ul>
-<li><p>X representa la velocidad en metros por segundo</p></li>
-<li><p>y es la distancia de frenado en metros</p></li>
-<li><p>Por cada unidad que aumenta la velocidad la distancia de frenado
-aumenta 3.93 unidades</p></li>
-</ul>
-<p><strong>Resultados del modelo en R</strong></p>
-<pre class="r"><code>
-
-cor.test(cars$speed,cars$dist)
-#&gt; 
-#&gt;  Pearson&#39;s product-moment correlation
-#&gt; 
-#&gt; data:  cars$speed and cars$dist
-#&gt; t = 9.464, df = 48, p-value = 1.49e-12
-#&gt; alternative hypothesis: true correlation is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;  0.6816422 0.8862036
-#&gt; sample estimates:
-#&gt;       cor 
-#&gt; 0.8068949
-md=lm(cars$dist~cars$speed)
-summary(md)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = cars$dist ~ cars$speed)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -29.069  -9.525  -2.272   9.215  43.201 
-#&gt; 
-#&gt; Coefficients:
-#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
-#&gt; cars$speed    3.9324     0.4155   9.464 1.49e-12 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 15.38 on 48 degrees of freedom
-#&gt; Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
-#&gt; F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
-plot(cars$speed,cars$dist, col=2, lwd=2)
-abline(a=-17.57,b=3.93)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p><strong>anova del modelo</strong></p>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
-anova(md)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: cars$dist
-#&gt;            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-#&gt; cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
-#&gt; Residuals  48  11354   236.5                     
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-y=influence.measures(md)
-head(y$infmat)
-#&gt;        dfb.1_    dfb.crs$       dffit    cov.r       cook.d        hat
-#&gt; 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121 0.11486131
-#&gt; 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907 0.11486131
-#&gt; 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503 0.07150365
-#&gt; 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384 0.07150365
-#&gt; 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705 0.05997080
-#&gt; 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931 0.04989781
-head(rstandard(md))
-#&gt;          1          2          3          4          5          6 
-#&gt;  0.2660415  0.8189327 -0.4013462  0.8132663  0.1421624 -0.5211526
-head(rstudent(md))
-#&gt;          1          2          3          4          5          6 
-#&gt;  0.2634500  0.8160784 -0.3978115  0.8103526  0.1407033 -0.5171605</code></pre>
-<p><strong>Análisis de residuales</strong></p>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
-rr=residuals(md)
-par(mfrow=c(2,2))
-plot(md)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code>shapiro.test(rr)
-#&gt; 
-#&gt;  Shapiro-Wilk normality test
-#&gt; 
-#&gt; data:  rr
-#&gt; W = 0.94509, p-value = 0.02152
-
-library(lmtest)
-
-bptest(md)
-#&gt; 
-#&gt;  studentized Breusch-Pagan test
-#&gt; 
-#&gt; data:  md
-#&gt; BP = 3.2149, df = 1, p-value = 0.07297</code></pre>
 </div>
 </div>
 <div id="test-de-carencia-de-ajuste" class="section level2">
@@ -1214,8 +1200,7 @@ relación existente entre el peso corporal del ganado vacuno (X) y la
 rapidez de eliminación metabólica/peso corporal (Y). Los datos que
 aparecen a continuación son el resultado de varias realizaciones del
 experimento, en distintos niveles del peso.</p>
-<pre class="r"><code>
-peso=c(110,110,110,230,230,230,360,360,360,360,505,505,505,505)
+<pre class="r"><code>peso=c(110,110,110,230,230,230,360,360,360,360,505,505,505,505)
 elimina=c(235,198,173,174,149,124,115,130,102,95,122,112,98,96)
 
 datos=data.frame(peso, elimina)
@@ -1224,69 +1209,62 @@ datos=data.frame(peso, elimina)
 #ajusta el modelo lineal
 
 regre=lm(elimina~peso)
-summary(regre)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = elimina ~ peso)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -34.553 -13.595   2.138  14.381  48.185 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) 212.72093   15.78406   13.48 1.31e-08 ***
-#&gt; peso         -0.23551    0.04486   -5.25 0.000204 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 24.56 on 12 degrees of freedom
-#&gt; Multiple R-squared:  0.6967, Adjusted R-squared:  0.6714 
-#&gt; F-statistic: 27.57 on 1 and 12 DF,  p-value: 0.0002043
-anova(regre)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: elimina
-#&gt;           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; peso       1  16634 16634.2  27.567 0.0002043 ***
-#&gt; Residuals 12   7241   603.4                      
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-
-plot(peso,elimina)
+summary(regre)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = elimina ~ peso)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -34.553 -13.595   2.138  14.381  48.185 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 212.72093   15.78406   13.48 1.31e-08 ***
+## peso         -0.23551    0.04486   -5.25 0.000204 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 24.56 on 12 degrees of freedom
+## Multiple R-squared:  0.6967, Adjusted R-squared:  0.6714 
+## F-statistic: 27.57 on 1 and 12 DF,  p-value: 0.0002043</code></pre>
+<pre class="r"><code>anova(regre)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: elimina
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## peso       1  16634 16634.2  27.567 0.0002043 ***
+## Residuals 12   7241   603.4                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>plot(peso,elimina)
 abline(a=212.72,b=-0.23,col=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<pre class="r"><code>
-
-## residuales del modelo
+<pre class="r"><code>## residuales del modelo
 
 res=residuals(regre)
-shapiro.test(res)
-#&gt; 
-#&gt;  Shapiro-Wilk normality test
-#&gt; 
-#&gt; data:  res
-#&gt; W = 0.97124, p-value = 0.8928
-
-
-#prueba de carencia de ajuste
+shapiro.test(res)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  res
+## W = 0.97124, p-value = 0.8928</code></pre>
+<pre class="r"><code>#prueba de carencia de ajuste
 
 regres1=lm(elimina~peso) #Ajusta modelo de regresión y da el error total SSE
 regres2=lm(elimina~factor(peso)) #Ajusta modelo lineal general o completo y da su error puro
 #SSPE
-anova(regres1,regres2) #Compara los dos modelos anteriores y obtenemos el SSLOF, los grados
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Model 1: elimina ~ peso
-#&gt; Model 2: elimina ~ factor(peso)
-#&gt;   Res.Df  RSS Df Sum of Sq     F  Pr(&gt;F)  
-#&gt; 1     12 7241                             
-#&gt; 2     10 4361  2      2880 3.302 0.07924 .
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#de libertad correspondientes,
-</code></pre>
+anova(regres1,regres2) #Compara los dos modelos anteriores y obtenemos el SSLOF, los grados</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: elimina ~ peso
+## Model 2: elimina ~ factor(peso)
+##   Res.Df  RSS Df Sum of Sq     F  Pr(&gt;F)  
+## 1     12 7241                             
+## 2     10 4361  2      2880 3.302 0.07924 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>#de libertad correspondientes,</code></pre>
 <p>Observe que la variable explicatoria X fue observada en cuatro
 niveles: 110, 230, 360 y 505, es decir, tenemos réplicas de la variable
 respuesta en al menos un nivel de X.</p>
@@ -1336,35 +1314,74 @@ apropiados? ¿Por qué?</p></li>
 </div>
 <div id="validación-cruzada" class="section level2">
 <h2><strong>Validación cruzada</strong></h2>
+<p>Se utiliza para:</p>
+<ul>
+<li><p>Comparar la Regresión Lineal con otros modelos
+predictivos.</p></li>
+<li><p>Seleccionar el número de predictores o el grado polinomial
+adecuado.</p></li>
+</ul>
+<p><strong>Akaike Information Criterion (AIC)</strong></p>
+<p>El AIC se define como:</p>
+<p><span class="math display">\[AIC=-2*LogLik+k*n_{par}\]</span>
+donde:</p>
+<ul>
+<li><p><span class="math inline">\(LogLik\)</span> Logverosimilitud del
+modelo para el vector de parámetros Θ</p></li>
+<li><p>k valor de penalización por el exceso de parámetros</p></li>
+<li><p><span class="math inline">\(n_{par}\)</span> corresponde al
+número de parámetros del modelo.</p></li>
+</ul>
+<p>Se debe recordar siempre que el mejor modelo es aquel que:</p>
+<ul>
+<li><p>Tiene mayor <span class="math inline">\(LogLik\)</span></p></li>
+<li><p>Tiene menor <span class="math inline">\(AIC\)</span></p></li>
+</ul>
+<p>Cuando el valor de penalización <span
+class="math inline">\(k=log(n)\)</span> entonces el <span
+class="math inline">\(AIC\)</span> se llama <span
+class="math inline">\(BIC\)</span></p>
 <p><strong><span class="math inline">\(R^2\)</span> Coeficiente de
 determinación muestral</strong></p>
-<p>Esta cantidad proviene de la razón SSR/SST (Suma de cuadrados de la
-regresión/ suma de cuadrados totales).</p>
-<p>Proporción de la variabilidad total observada en la variable
+<ul>
+<li><p>Proviene de la razón SSR/SST (Suma de cuadrados de la regresión/
+suma de cuadrados totales).</p></li>
+<li><p>Proporción de la variabilidad total observada en la variable
 respuesta, que es explicada por la relación lineal con la variable
-predictora considerada. No garantiza que los supuestos básicos del
-modelo lineal se estén cumpliendo.</p>
-<pre class="r"><code>pressure
-#&gt;    temperature pressure
-#&gt; 1            0   0.0002
-#&gt; 2           20   0.0012
-#&gt; 3           40   0.0060
-#&gt; 4           60   0.0300
-#&gt; 5           80   0.0900
-#&gt; 6          100   0.2700
-#&gt; 7          120   0.7500
-#&gt; 8          140   1.8500
-#&gt; 9          160   4.2000
-#&gt; 10         180   8.8000
-#&gt; 11         200  17.3000
-#&gt; 12         220  32.1000
-#&gt; 13         240  57.0000
-#&gt; 14         260  96.0000
-#&gt; 15         280 157.0000
-#&gt; 16         300 247.0000
-#&gt; 17         320 376.0000
-#&gt; 18         340 558.0000
-#&gt; 19         360 806.0000</code></pre>
+predictora considerada.</p></li>
+<li><p>No garantiza que los supuestos básicos del modelo lineal se estén
+cumpliendo.</p></li>
+</ul>
+<p>AIC</p>
+<pre class="r"><code>pressure</code></pre>
+<pre><code>##    temperature pressure
+## 1            0   0.0002
+## 2           20   0.0012
+## 3           40   0.0060
+## 4           60   0.0300
+## 5           80   0.0900
+## 6          100   0.2700
+## 7          120   0.7500
+## 8          140   1.8500
+## 9          160   4.2000
+## 10         180   8.8000
+## 11         200  17.3000
+## 12         220  32.1000
+## 13         240  57.0000
+## 14         260  96.0000
+## 15         280 157.0000
+## 16         300 247.0000
+## 17         320 376.0000
+## 18         340 558.0000
+## 19         360 806.0000</code></pre>
+<div id="error-de-pronóstico-medio-mape" class="section level3">
+<h3>Error de pronóstico medio MAPE</h3>
+<p>Es importante evaluar la capacidad predictiva del modelo. Esta medida
+compara promedia la diferencia entre los valores observados con los
+pronosticados. Dado por la fórmula:</p>
+<p><span class="math display">\[\Large MAPE=\frac{\sum_{i=1}^n
+|\frac{y_i-\hat{y_i}}{y_i}|}{n}\]</span></p>
+</div>
 </div>
 <div id="transformaciones" class="section level2">
 <h2><strong>Transformaciones</strong></h2>
@@ -1472,10 +1489,9 @@ modelo (hasta cierto grado, la información aportada por cada una no es
 redundante). La ecuación del modelo de regresión en este caso es:</p>
 <p><span class="math display">\[\Large
 y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}\varepsilon_i\]</span></p>
-</div>
 <div id="regresión-lineal-con-efectos-de-interacción"
-class="section level2">
-<h2><strong>Regresión lineal con efectos de interacción</strong></h2>
+class="section level3">
+<h3><strong>Regresión lineal con efectos de interacción</strong></h3>
 <p>Cuando los efectos de una variable predictora depende de los niveles
 de otras variables predictoras incluidas en el modelo.</p>
 <p>Por ejemplo, suponga un modelo de regresión con las variables
@@ -1494,8 +1510,8 @@ rescribimos el modelo como:</p>
 X_{i1}+\beta_2 X_{i2}+\beta_3X_{3}+\varepsilon_i\]</span></p>
 </div>
 <div id="regresión-lineal-con-variables-indicadoras"
-class="section level2">
-<h2><strong>Regresión lineal con variables indicadoras</strong></h2>
+class="section level3">
+<h3><strong>Regresión lineal con variables indicadoras</strong></h3>
 <p>Suponga que en un modelo de regresión para el gasto mensual por
 familia en actividades recreativas, se tiene entre las variables
 predictoras el estrato socioeconómico, definido en cinco niveles, luego,
@@ -1548,9 +1564,7 @@ class="math inline">\(X_1\)</span> depende de la variable categórica
 <span class="math inline">\(X_2\)</span>. Asumiendo que <span
 class="math inline">\(X_2\)</span> es observada en c categorías.</p>
 <p>Podemos considerar las dos siguientes situaciones:</p>
-<div id="caso-1-intercepto-y-pendiente-diferente"
-class="section level3">
-<h3>Caso 1 Intercepto y pendiente diferente</h3>
+<p><strong>Caso 1 Intercepto y pendiente diferente</strong></p>
 <p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre
 la respuesta <span class="math inline">\(Y\)</span> cambia según la
 categoría en que <span class="math inline">\(X_2\)</span> sea observada,
@@ -1587,9 +1601,7 @@ categórica X2, de la forma:</p></li>
 </ul>
 <p><span class="math display">\[\large
 Y_i=\beta_0+\beta_1X_1+\varepsilon_i\]</span></p>
-</div>
-<div id="caso-2-intercepto-aleatorio" class="section level3">
-<h3>Caso 2 Intercepto aleatorio</h3>
+<p><strong>Caso 2 Intercepto aleatorio</strong></p>
 <p>El efecto promedio de <span class="math inline">\(X_1\)</span> sobre
 la respuesta Y es el mismo en todas las categorías de <span
 class="math inline">\(X_2\)</span> pero la media general de Y no es
@@ -1623,36 +1635,36 @@ arboles</strong></p>
 <p><strong>Modelo de regresión lineal simple</strong></p>
 <p>La siguiente base de datos relaciona 7 medidas del crecimiento de 5
 tipos de arboles en el tiempo en meses y el diámetro en mm.</p>
-<pre class="r"><code>head (Orange)
-#&gt; Grouped Data: circumference ~ age | Tree
-#&gt;   Tree  age circumference
-#&gt; 1    1  118            30
-#&gt; 2    1  484            58
-#&gt; 3    1  664            87
-#&gt; 4    1 1004           115
-#&gt; 5    1 1231           120
-#&gt; 6    1 1372           142</code></pre>
+<pre class="r"><code>head (Orange)</code></pre>
+<pre><code>## Grouped Data: circumference ~ age | Tree
+##   Tree  age circumference
+## 1    1  118            30
+## 2    1  484            58
+## 3    1  664            87
+## 4    1 1004           115
+## 5    1 1231           120
+## 6    1 1372           142</code></pre>
 <p>El ajuste del modelo de regresión lineal simple corresponde a:</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age)
-summary(model)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Orange$circumference ~ Orange$age)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -46.310 -14.946  -0.076  19.697  45.111 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) 17.399650   8.622660   2.018   0.0518 .  
-#&gt; Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 23.74 on 33 degrees of freedom
-#&gt; Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
-#&gt; F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Orange$circumference ~ Orange$age)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -46.310 -14.946  -0.076  19.697  45.111 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 17.399650   8.622660   2.018   0.0518 .  
+## Orange$age   0.106770   0.008277  12.900 1.93e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 23.74 on 33 degrees of freedom
+## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
+## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>La ecuación del modelo de regresión general es:</p>
 <p><span class="math display">\[\Large \hat y_i=17.4+0.1x_{i}\]</span>
 Donde</p>
@@ -1668,16 +1680,15 @@ yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<pre class="r"><code>
-par(mfrow=c(2,2))
+<pre class="r"><code>par(mfrow=c(2,2))
 plot(model)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
-<pre class="r"><code>shapiro.test(residuals(model))
-#&gt; 
-#&gt;  Shapiro-Wilk normality test
-#&gt; 
-#&gt; data:  residuals(model)
-#&gt; W = 0.97289, p-value = 0.5273</code></pre>
+<pre class="r"><code>shapiro.test(residuals(model))</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(model)
+## W = 0.97289, p-value = 0.5273</code></pre>
 <p><strong>Significado de los parámetros estimados</strong></p>
 <p>El intercepto es la respuesta media observada en el crecimiento de
 los arboles.</p>
@@ -1687,29 +1698,29 @@ arbol aumenta 0.1 unidades</p>
 misma pendiente:</strong></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
-summary(model)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -30.505  -8.790   3.737   7.650  21.859 
-#&gt; 
-#&gt; Coefficients:
-#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
-#&gt; Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
-#&gt; as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
-#&gt; as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
-#&gt; as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 15.26 on 29 degrees of freedom
-#&gt; Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
-#&gt; F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Orange$circumference ~ Orange$age + as.factor(Orange$Tree))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -30.505  -8.790   3.737   7.650  21.859 
+## 
+## Coefficients:
+##                           Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)              17.399650   5.543461   3.139  0.00388 ** 
+## Orange$age                0.106770   0.005321  20.066  &lt; 2e-16 ***
+## as.factor(Orange$Tree).L 39.935049   5.768048   6.923 1.31e-07 ***
+## as.factor(Orange$Tree).Q  2.519892   5.768048   0.437  0.66544    
+## as.factor(Orange$Tree).C -8.267097   5.768048  -1.433  0.16248    
+## as.factor(Orange$Tree)^4 -4.695541   5.768048  -0.814  0.42224    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.26 on 29 degrees of freedom
+## Multiple R-squared:  0.9399, Adjusted R-squared:  0.9295 
+## F-statistic:  90.7 on 5 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>La recta general del modelo es:</p>
 <p><span class="math display">\[\Large \hat
 y_i=17.4+0.1x_{i}+39.93arbol2_i+2.51arbol3_i-8.26arbol4_i-4.69arbol5_i\]</span></p>
@@ -1746,47 +1757,47 @@ variables.</p>
 esto no garantiza que el modelo resulte útil para hacer
 predicciones.</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age+as.factor(Orange$Tree))
-anova(model)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: Orange$circumference
-#&gt;                        Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; Orange$age              1  93772   93772 402.639 &lt; 2.2e-16 ***
-#&gt; as.factor(Orange$Tree)  4  11841    2960  12.711 4.289e-06 ***
-#&gt; Residuals              29   6754     233                      
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+anova(model)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Orange$circumference
+##                        Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Orange$age              1  93772   93772 402.639 &lt; 2.2e-16 ***
+## as.factor(Orange$Tree)  4  11841    2960  12.711 4.289e-06 ***
+## Residuals              29   6754     233                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Modelo de regresión lineal con pendiente e intercepto
 diferentes</strong></p>
 <p>El modelo de regresión lineal con factores corresponde a</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age*as.factor(Orange$Tree))
-summary(model)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Orange$circumference ~ Orange$age * as.factor(Orange$Tree))
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -18.061  -6.639  -1.482   8.069  16.649 
-#&gt; 
-#&gt; Coefficients:
-#&gt;                                       Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)                          17.399650   3.782659   4.600 0.000105 ***
-#&gt; Orange$age                            0.106770   0.003631  29.406  &lt; 2e-16 ***
-#&gt; as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509 0.615362    
-#&gt; as.factor(Orange$Tree).Q              1.541262   8.458282   0.182 0.856880    
-#&gt; as.factor(Orange$Tree).C              1.387598   8.458282   0.164 0.871009    
-#&gt; as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289 0.209271    
-#&gt; Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909 3.63e-06 ***
-#&gt; Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131 0.897047    
-#&gt; Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290 0.209002    
-#&gt; Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829 0.415032    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 10.41 on 25 degrees of freedom
-#&gt; Multiple R-squared:  0.9759, Adjusted R-squared:  0.9672 
-#&gt; F-statistic: 112.4 on 9 and 25 DF,  p-value: &lt; 2.2e-16</code></pre>
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Orange$circumference ~ Orange$age * as.factor(Orange$Tree))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -18.061  -6.639  -1.482   8.069  16.649 
+## 
+## Coefficients:
+##                                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                          17.399650   3.782659   4.600 0.000105 ***
+## Orange$age                            0.106770   0.003631  29.406  &lt; 2e-16 ***
+## as.factor(Orange$Tree).L             -4.303473   8.458282  -0.509 0.615362    
+## as.factor(Orange$Tree).Q              1.541262   8.458282   0.182 0.856880    
+## as.factor(Orange$Tree).C              1.387598   8.458282   0.164 0.871009    
+## as.factor(Orange$Tree)^4            -10.900936   8.458282  -1.289 0.209271    
+## Orange$age:as.factor(Orange$Tree).L   0.047974   0.008119   5.909 3.63e-06 ***
+## Orange$age:as.factor(Orange$Tree).Q   0.001061   0.008119   0.131 0.897047    
+## Orange$age:as.factor(Orange$Tree).C  -0.010470   0.008119  -1.290 0.209002    
+## Orange$age:as.factor(Orange$Tree)^4   0.006729   0.008119   0.829 0.415032    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 10.41 on 25 degrees of freedom
+## Multiple R-squared:  0.9759, Adjusted R-squared:  0.9672 
+## F-statistic: 112.4 on 9 and 25 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>La recta general del modelo es:</p>
 <p><span class="math display">\[\Large \hat
 y_i=17.4+0.1x_{i}-4.3arbol_2+1.51arbol_3+1.4arbol_4-10.9arbol_5+
@@ -1824,17 +1835,17 @@ variables.</p>
 esto no garantiza que el modelo resulte útil para hacer
 predicciones.</p>
 <pre class="r"><code>model=lm(Orange$circumference~Orange$age*as.factor(Orange$Tree))
-anova(model)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: Orange$circumference
-#&gt;                                   Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
-#&gt; Orange$age                         1  93772   93772 864.7348 &lt; 2.2e-16 ***
-#&gt; as.factor(Orange$Tree)             4  11841    2960  27.2983 8.428e-09 ***
-#&gt; Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206 9.402e-05 ***
-#&gt; Residuals                         25   2711     108                       
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+anova(model)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Orange$circumference
+##                                   Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## Orange$age                         1  93772   93772 864.7348 &lt; 2.2e-16 ***
+## as.factor(Orange$Tree)             4  11841    2960  27.2983 8.428e-09 ***
+## Orange$age:as.factor(Orange$Tree)  4   4043    1011   9.3206 9.402e-05 ***
+## Residuals                         25   2711     108                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Ejemplo 2</strong></p>
 <p><strong>Modelo de pendiente e intercepto diferentes</strong></p>
 <p>Se tienen los datos de las ventas y publicidad invertidos en cada una
@@ -1844,11 +1855,11 @@ Publicidad=c(5.2,5.9,7.7,7.9,9.4,8.2,9,9.1,10.5,10.5,10,10.3,12.1,12.7,13.6)
 Ventas=c(9,10,12,12,14,13,13,12,13,14,18,19,20,21,22)
 datos=data.frame(Seccion,Publicidad,Ventas)
 ###GRAFICANDO VENTAS VS. PUBLICIDAD SEG´UN SECCION###
-attach(datos)
-#&gt; The following objects are masked _by_ .GlobalEnv:
-#&gt; 
-#&gt;     Publicidad, Seccion, Ventas
-plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+attach(datos)</code></pre>
+<pre><code>## The following objects are masked _by_ .GlobalEnv:
+## 
+##     Publicidad, Seccion, Ventas</code></pre>
+<pre class="r"><code>plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)
 
 
@@ -1856,49 +1867,49 @@ legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),p
 ###MODELO GENERAL: RECTAS DIFERENTES TANTO EN PENDIENTE COMO EN INTERCEPTO###
 #Con interacción entre la variable publicidad y sección
 modelo1=lm(Ventas~Publicidad*Seccion)
-summary(modelo1)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Ventas ~ Publicidad * Seccion)
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -0.87683 -0.22516  0.04366  0.14985  0.64418 
-#&gt; 
-#&gt; Coefficients:
-#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)           3.0318     1.0346   2.930   0.0167 *  
-#&gt; Publicidad            1.1590     0.1403   8.262 1.71e-05 ***
-#&gt; SeccionB              6.7317     2.4423   2.756   0.0222 *  
-#&gt; SeccionC              5.2429     2.0724   2.530   0.0322 *  
-#&gt; Publicidad:SeccionB  -0.8169     0.2718  -3.005   0.0148 *  
-#&gt; Publicidad:SeccionC  -0.1603     0.2068  -0.775   0.4581    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 0.4709 on 9 degrees of freedom
-#&gt; Multiple R-squared:  0.9916, Adjusted R-squared:  0.9869 
-#&gt; F-statistic: 211.4 on 5 and 9 DF,  p-value: 4.782e-09
-confint(modelo1)
-#&gt;                          2.5 %     97.5 %
-#&gt; (Intercept)          0.6913867  5.3721561
-#&gt; Publicidad           0.8416690  1.4763999
-#&gt; SeccionB             1.2067246 12.2566144
-#&gt; SeccionC             0.5547971  9.9309735
-#&gt; Publicidad:SeccionB -1.4317793 -0.2020276
-#&gt; Publicidad:SeccionC -0.6280374  0.3074717
-anova(modelo1)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: Ventas
-#&gt;                    Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
-#&gt; Publicidad          1 193.859 193.859 874.1066 2.829e-10 ***
-#&gt; Seccion             2  38.523  19.261  86.8493 1.307e-06 ***
-#&gt; Publicidad:Seccion  2   2.023   1.011   4.5601   0.04289 *  
-#&gt; Residuals           9   1.996   0.222                       
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#recta para la sección a
+summary(modelo1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Ventas ~ Publicidad * Seccion)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.87683 -0.22516  0.04366  0.14985  0.64418 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           3.0318     1.0346   2.930   0.0167 *  
+## Publicidad            1.1590     0.1403   8.262 1.71e-05 ***
+## SeccionB              6.7317     2.4423   2.756   0.0222 *  
+## SeccionC              5.2429     2.0724   2.530   0.0322 *  
+## Publicidad:SeccionB  -0.8169     0.2718  -3.005   0.0148 *  
+## Publicidad:SeccionC  -0.1603     0.2068  -0.775   0.4581    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4709 on 9 degrees of freedom
+## Multiple R-squared:  0.9916, Adjusted R-squared:  0.9869 
+## F-statistic: 211.4 on 5 and 9 DF,  p-value: 4.782e-09</code></pre>
+<pre class="r"><code>confint(modelo1)</code></pre>
+<pre><code>##                          2.5 %     97.5 %
+## (Intercept)          0.6913867  5.3721561
+## Publicidad           0.8416690  1.4763999
+## SeccionB             1.2067246 12.2566144
+## SeccionC             0.5547971  9.9309735
+## Publicidad:SeccionB -1.4317793 -0.2020276
+## Publicidad:SeccionC -0.6280374  0.3074717</code></pre>
+<pre class="r"><code>anova(modelo1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Ventas
+##                    Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## Publicidad          1 193.859 193.859 874.1066 2.829e-10 ***
+## Seccion             2  38.523  19.261  86.8493 1.307e-06 ***
+## Publicidad:Seccion  2   2.023   1.011   4.5601   0.04289 *  
+## Residuals           9   1.996   0.222                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>#recta para la sección a
 abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 # Recta para la sección b
 abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
@@ -1908,51 +1919,51 @@ abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
 <p><strong>MODELO CON INTERCEPTO diferente</strong></p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
-summary(modelo2)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Ventas ~ Publicidad + Seccion)
-#&gt; 
-#&gt; Residuals:
-#&gt;      Min       1Q   Median       3Q      Max 
-#&gt; -1.00202 -0.33520 -0.00202  0.29767  1.21398 
-#&gt; 
-#&gt; Coefficients:
-#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)   4.4437     0.9142   4.861 0.000502 ***
-#&gt; Publicidad    0.9635     0.1210   7.966 6.80e-06 ***
-#&gt; SeccionB     -0.5582     0.4686  -1.191 0.258600    
-#&gt; SeccionC      4.2451     0.6671   6.363 5.34e-05 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 0.6044 on 11 degrees of freedom
-#&gt; Multiple R-squared:  0.983,  Adjusted R-squared:  0.9784 
-#&gt; F-statistic:   212 on 3 and 11 DF,  p-value: 5.186e-10
-anova(modelo2)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: Ventas
-#&gt;            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; Publicidad  1 193.859 193.859 530.631 1.168e-10 ***
-#&gt; Seccion     2  38.523  19.261  52.722 2.312e-06 ***
-#&gt; Residuals  11   4.019   0.365                      
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-confint(modelo2)
-#&gt;                  2.5 %    97.5 %
-#&gt; (Intercept)  2.4316194 6.4557425
-#&gt; Publicidad   0.6972616 1.2296965
-#&gt; SeccionB    -1.5894689 0.4730825
-#&gt; SeccionC     2.7767893 5.7133597
-plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
+summary(modelo2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Ventas ~ Publicidad + Seccion)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.00202 -0.33520 -0.00202  0.29767  1.21398 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.4437     0.9142   4.861 0.000502 ***
+## Publicidad    0.9635     0.1210   7.966 6.80e-06 ***
+## SeccionB     -0.5582     0.4686  -1.191 0.258600    
+## SeccionC      4.2451     0.6671   6.363 5.34e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6044 on 11 degrees of freedom
+## Multiple R-squared:  0.983,  Adjusted R-squared:  0.9784 
+## F-statistic:   212 on 3 and 11 DF,  p-value: 5.186e-10</code></pre>
+<pre class="r"><code>anova(modelo2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Ventas
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Publicidad  1 193.859 193.859 530.631 1.168e-10 ***
+## Seccion     2  38.523  19.261  52.722 2.312e-06 ***
+## Residuals  11   4.019   0.365                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>confint(modelo2)</code></pre>
+<pre><code>##                  2.5 %    97.5 %
+## (Intercept)  2.4316194 6.4557425
+## Publicidad   0.6972616 1.2296965
+## SeccionB    -1.5894689 0.4730825
+## SeccionC     2.7767893 5.7133597</code></pre>
+<pre class="r"><code>plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
-</div>
 <div id="regresión-lineal-con-variables-continuas"
-class="section level2">
-<h2><strong>Regresión lineal con variables continuas</strong></h2>
+class="section level3">
+<h3><strong>Regresión lineal con variables continuas</strong></h3>
+</div>
 <div id="procedimientos-para-la-selección-de-variables-significativas"
 class="section level3">
 <h3>Procedimientos para la selección de variables significativas**</h3>
@@ -1998,95 +2009,95 @@ plot(bosque)</code></pre>
 #install.packages(ppcor)
 library(PerformanceAnalytics)
 library(ppcor)
-pcor(bosque)
-#&gt; $estimate
-#&gt;           VOL        DBH        D16         HT
-#&gt; VOL 1.0000000  0.3683119  0.7627127  0.7285511
-#&gt; DBH 0.3683119  1.0000000  0.2686789 -0.3107753
-#&gt; D16 0.7627127  0.2686789  1.0000000 -0.4513110
-#&gt; HT  0.7285511 -0.3107753 -0.4513110  1.0000000
-#&gt; 
-#&gt; $p.value
-#&gt;              VOL       DBH          D16           HT
-#&gt; VOL 0.0000000000 0.1326107 0.0002324675 0.0006056469
-#&gt; DBH 0.1326107400 0.0000000 0.2810102724 0.2094003059
-#&gt; D16 0.0002324675 0.2810103 0.0000000000 0.0601150552
-#&gt; HT  0.0006056469 0.2094003 0.0601150552 0.0000000000
-#&gt; 
-#&gt; $statistic
-#&gt;          VOL       DBH       D16        HT
-#&gt; VOL 0.000000  1.584644  4.717295  4.254366
-#&gt; DBH 1.584644  0.000000  1.115742 -1.307862
-#&gt; D16 4.717295  1.115742  0.000000 -2.022984
-#&gt; HT  4.254366 -1.307862 -2.022984  0.000000
-#&gt; 
-#&gt; $n
-#&gt; [1] 20
-#&gt; 
-#&gt; $gp
-#&gt; [1] 2
-#&gt; 
-#&gt; $method
-#&gt; [1] &quot;pearson&quot;
-chart.Correlation(bosque, histogram = F, pch = 19)</code></pre>
+pcor(bosque)</code></pre>
+<pre><code>## $estimate
+##           VOL        DBH        D16         HT
+## VOL 1.0000000  0.3683119  0.7627127  0.7285511
+## DBH 0.3683119  1.0000000  0.2686789 -0.3107753
+## D16 0.7627127  0.2686789  1.0000000 -0.4513110
+## HT  0.7285511 -0.3107753 -0.4513110  1.0000000
+## 
+## $p.value
+##              VOL       DBH          D16           HT
+## VOL 0.0000000000 0.1326107 0.0002324675 0.0006056469
+## DBH 0.1326107400 0.0000000 0.2810102724 0.2094003059
+## D16 0.0002324675 0.2810103 0.0000000000 0.0601150552
+## HT  0.0006056469 0.2094003 0.0601150552 0.0000000000
+## 
+## $statistic
+##          VOL       DBH       D16        HT
+## VOL 0.000000  1.584644  4.717295  4.254366
+## DBH 1.584644  0.000000  1.115742 -1.307862
+## D16 4.717295  1.115742  0.000000 -2.022984
+## HT  4.254366 -1.307862 -2.022984  0.000000
+## 
+## $n
+## [1] 20
+## 
+## $gp
+## [1] 2
+## 
+## $method
+## [1] &quot;pearson&quot;</code></pre>
+<pre class="r"><code>chart.Correlation(bosque, histogram = F, pch = 19)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <p>El modelo inicial ajustado corresponde a:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT+DBH)
-summary(m1)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = VOL ~ D16 + HT + DBH)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -5.2548 -1.6765 -0.1277  1.5232  4.9990 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
-#&gt; D16            5.6714     1.2023   4.717 0.000232 ***
-#&gt; HT             0.6938     0.1631   4.254 0.000606 ***
-#&gt; DBH            1.6258     1.0259   1.585 0.132611    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 3.095 on 16 degrees of freedom
-#&gt; Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
-#&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
-anova(m1)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: VOL
-#&gt;           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
-#&gt; D16        1 3401.3  3401.3 354.9987 2.396e-12 ***
-#&gt; HT         1  165.7   165.7  17.2890 0.0007408 ***
-#&gt; DBH        1   24.1    24.1   2.5111 0.1326107    
-#&gt; Residuals 16  153.3     9.6                       
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+summary(m1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = VOL ~ D16 + HT + DBH)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.2548 -1.6765 -0.1277  1.5232  4.9990 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
+## D16            5.6714     1.2023   4.717 0.000232 ***
+## HT             0.6938     0.1631   4.254 0.000606 ***
+## DBH            1.6258     1.0259   1.585 0.132611    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.095 on 16 degrees of freedom
+## Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
+## F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11</code></pre>
+<pre class="r"><code>anova(m1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: VOL
+##           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## D16        1 3401.3  3401.3 354.9987 2.396e-12 ***
+## HT         1  165.7   165.7  17.2890 0.0007408 ***
+## DBH        1   24.1    24.1   2.5111 0.1326107    
+## Residuals 16  153.3     9.6                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Al quitar la variable no significativa del modelo queda:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT)
-summary(m1)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = VOL ~ D16 + HT)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -4.2309 -1.8386 -0.4012  1.0922  6.9373 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) -105.9027    14.6520  -7.228 1.41e-06 ***
-#&gt; D16            7.4128     0.5088  14.568 4.92e-11 ***
-#&gt; HT             0.6765     0.1698   3.985 0.000959 ***
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 3.23 on 17 degrees of freedom
-#&gt; Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
-#&gt; F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12
-par(mfrow=c(2,2))
+summary(m1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = VOL ~ D16 + HT)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.2309 -1.8386 -0.4012  1.0922  6.9373 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -105.9027    14.6520  -7.228 1.41e-06 ***
+## D16            7.4128     0.5088  14.568 4.92e-11 ***
+## HT             0.6765     0.1698   3.985 0.000959 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.23 on 17 degrees of freedom
+## Multiple R-squared:  0.9526, Adjusted R-squared:  0.9471 
+## F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12</code></pre>
+<pre class="r"><code>par(mfrow=c(2,2))
 plot(m1)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>El modelo ajustado corresponde a:</p>
@@ -2094,25 +2105,24 @@ plot(m1)</code></pre>
 y=-105.9027+7.41D16+0.67HT\]</span></p>
 <p>Al evaluar la significancia de los parámetros del modelo se
 tiene:</p>
-<pre class="r"><code>
-library(car)
-#&gt; Cargando paquete requerido: carData
-#library(rgl)
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Cargando paquete requerido: carData</code></pre>
+<pre class="r"><code>#library(rgl)
 library(perturbR)
 library(leaps)
 library(scatterplot3d)
 
-anova(m1)
-#&gt; Analysis of Variance Table
-#&gt; 
-#&gt; Response: VOL
-#&gt;           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-#&gt; D16        1 3401.3  3401.3 326.019  1.58e-12 ***
-#&gt; HT         1  165.7   165.7  15.878 0.0009585 ***
-#&gt; Residuals 17  177.4    10.4                      
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
+anova(m1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: VOL
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## D16        1 3401.3  3401.3 326.019  1.58e-12 ***
+## HT         1  165.7   165.7  15.878 0.0009585 ***
+## Residuals 17  177.4    10.4                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
 miscoeficientes=function(modeloreg,datosreg){
   coefi=coef(modeloreg)
   datos2=as.data.frame(scale(datosreg))
@@ -2127,34 +2137,34 @@ miscoeficientes=function(modeloreg,datosreg){
 
 m1=lm(VOL~D16+HT+DBH)
 
-summary(m1)
-#&gt; 
-#&gt; Call:
-#&gt; lm(formula = VOL ~ D16 + HT + DBH)
-#&gt; 
-#&gt; Residuals:
-#&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -5.2548 -1.6765 -0.1277  1.5232  4.9990 
-#&gt; 
-#&gt; Coefficients:
-#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
-#&gt; D16            5.6714     1.2023   4.717 0.000232 ***
-#&gt; HT             0.6938     0.1631   4.254 0.000606 ***
-#&gt; DBH            1.6258     1.0259   1.585 0.132611    
-#&gt; ---
-#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-#&gt; 
-#&gt; Residual standard error: 3.095 on 16 degrees of freedom
-#&gt; Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
-#&gt; F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11
-miscoeficientes(m1,bosque)
-#&gt; Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados
-#&gt;                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
-#&gt; (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
-#&gt; D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
-#&gt; HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
-#&gt; DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
+summary(m1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = VOL ~ D16 + HT + DBH)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.2548 -1.6765 -0.1277  1.5232  4.9990 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -108.5758    14.1422  -7.677 9.42e-07 ***
+## D16            5.6714     1.2023   4.717 0.000232 ***
+## HT             0.6938     0.1631   4.254 0.000606 ***
+## DBH            1.6258     1.0259   1.585 0.132611    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.095 on 16 degrees of freedom
+## Multiple R-squared:  0.9591, Adjusted R-squared:  0.9514 
+## F-statistic: 124.9 on 3 and 16 DF,  p-value: 2.587e-11</code></pre>
+<pre class="r"><code>miscoeficientes(m1,bosque)</code></pre>
+<pre><code>## Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados</code></pre>
+<pre><code>##                Estimacin Limites.2.5.. Limites.97.5..      Vif  Coef.Std
+## (Intercept) -108.5758465  -138.5559230     -78.595770 0.000000 0.0000000
+## D16            5.6713954     3.1227268       8.220064 7.470209 0.6522030
+## HT             0.6937702     0.3480719       1.039469 1.234397 0.2391034
+## DBH            1.6257654    -0.5491507       3.800682 7.087104 0.2133976</code></pre>
 <p>Examinando los valores en la columna “Standarized Estimate”, vemos
 que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el
 volumen de madera en función de las variables estandarizadas: el
@@ -2205,6 +2215,7 @@ lineal entre variables explicatorias en el MRLM.</p>
 <p>Si existiera dependencia lineal exacta entre dos o más variables
 explicatorias, la matrix XtX seria singular y por tanto no podríamos
 hallar los estimadores de mínimos cuadrados!.</p>
+</div>
 </div>
 </div>
 
