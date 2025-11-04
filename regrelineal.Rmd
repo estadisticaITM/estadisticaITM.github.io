@@ -693,7 +693,7 @@ Se utiliza para:
 
 - Seleccionar el número de predictores o el grado polinomial adecuado.
 
-### **Akaike Information Criterion (AIC)**
+### Akaike Information Criterion (AIC)
 
 El AIC se define como:
 
@@ -714,7 +714,7 @@ Se debe recordar siempre que el mejor modelo es aquel que:
 
 Cuando el valor de penalización $k=log(n)$ entonces el $AIC$ se llama $BIC$
 
-### **$R^2$ Coeficiente de determinación muestral**
+### $R^2$ Coeficiente de determinación muestral
 
 - Proviene de la razón SSR/SST (Suma de cuadrados de la regresión/ suma de cuadrados totales).
 
@@ -728,7 +728,7 @@ AIC
 ```{r}
 pressure
 ```
-### **Error de pronóstico medio MAPE**
+### Error de pronóstico medio MAPE
 
 Es importante evaluar la capacidad predictiva del modelo. Esta medida compara promedia la diferencia entre los valores observados con los pronosticados. Dado por la fórmula:
 
@@ -1257,5 +1257,100 @@ Si existiera dependencia lineal exacta entre dos o más variables explicatorias,
 
 
 
+## Intervalos de confianza en regresión lineal
 
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/icrl.png")
+```
+
+
+**Intervalos de confianza para la línea de regresión**
+
+
+Los IC para la línea de regresión son más angostos que las bandas de confianza para la predicción individual. Ambas crecen en la medida que se alejan de la media de X lo que refleja que las predicciones son menos confiables en los extremos pues se basan en menos datos.
+
+
+Las distribuciones de todos los valores posibles de a y b tienen una distribución Normal con medias a y b, y desviaciones estándar sa y sb que se denominan errores estándar de la intercepción y de la pendiente respectivamente. Estos errores estándar pueden ser usados tal como se usan los errores estándar de la media o de una proporción, para calcular intervalos de confianza y para las pruebas de hipótesis usando la distribución de t. 
+
+Los intervalos de confianza de la línea de regresión se refieren a la línea de las medias y no a la población globalmente. Debe notarse que son angostos y se ensanchan hacia los extremos. No es infrecuente presentar estos como intervalos de confianza de toda la población, lo que no corresponde pues es análogo a usar el error estándar de la media como una medida de la variabilidad de la población en vez de la desviación estándar. 
+
+Distinto es el caso de las bandas de confianza o intervalos de predicción para valores individuales, que son más anchas y que sí nos dan una idea de la variabilidad de la muestra y, por ende, del grado de imprecisión envuelto en la estimación. En el primer caso, nos dicen que podemos estar confiados en un 95% que el valor promedio de Y para un valor determinado de X está dentro de las líneas en cuestión. En el segundo caso, cuantifica la incertidumbre en la estimación de un valor individual de Y a partir de X que es lo que se quiere saber generalmente. El intervalo de confianza de las líneas de regresión puede hacerse más estrecho aumentando el tamaño de la muestra, pero no sucede lo mismo con el intervalo de predicción ya que este refleja fundamentalmente la variabilidad individual en torno a la recta calculada.
+
+**IC para la respuesta media**
+
+En regresión lineal simple, Si  $\hat \mu_{Y|x_o}$ es la media estimada para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $E(Y|x_o)$ está dado por:
+
+$$\hat \mu_{Y|x_o}\pm t_{\alpha/2,n-p}\sqrt {MSR\left(\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
+**IC para la predicción de nuevas observaciones**
+
+En regresión lineal simple, Si  $\hat Y_o}$ es el valor estimado para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $Y_o$ está dado por:
+
+$$\hat Y_o\pm t_{\alpha/2,n-p}\sqrt {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
+**IC para los parámetros del modelo $\beta_i$**
+
+
+$$\beta_i\pm t_{\alpha/2,n-2}*Sd_{\beta_i}$$
+
+- $\beta_i$ pendiente o intercepto
+
+- $Sd_{\beta_i}$ pendiente o intercepto
+
+
+**IC para la pendiente**
+
+El IC para la pendiente es un rango de valores que estima la verdadera pendiente de la línea de regresión de la población con un cierto nivel de confianza. Se basa en la línea de regresión de la muestra, que es la línea de mejor ajuste que describe la relación entre la variable independiente (x) y la variable dependiente (y) en una muestra de datos. El IC para la pendiente refleja la variabilidad e incertidumbre de la línea de regresión de la muestra debido al error de muestreo.
+
+Para probar la hipótesis nula de que la pendiente de la población es cero, puede comprobar si el intervalo de confianza para la pendiente contiene cero o no; Si no lo hace, entonces rechazas la hipótesis nula y concluyes que existe una relación lineal significativa entre X e Y. 
+
+
+
+**IC para el error estándar de la regresión **
+
+
+El error estándar mide la variabilidad o precisión de una estimación, específicamente cuánto varían las estimaciones de la pendiente de la muestra con respecto a la verdadera pendiente de la población.
+
+
+
+
+```{r}
+
+DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+
+
+## modelo completo
+
+full.model <- lm(VOL~., data=bosque)
+summary(full.model)
+
+## busqueda de modelo optimo
+library(MASS)  # Para poder usar la funcion stepAIC
+modback <- stepAIC(full.model, trace=TRUE, direction="backward")
+
+
+modback$anova
+
+
+
+## modelo reducido
+
+redu <- lm(VOL~D16,data=bosque)
+summary(redu)
+
+
+future_y <- predict(object=redu, interval="prediction", level=0.95)
+nuevos_datos <- cbind(VOL, future_y)
+
+library(ggplot2)
+ggplot(nuevos_datos, aes(x=D16,y=VOL))+
+    geom_point() +
+    geom_line(aes(y=lwr), color="red", linetype="dashed") +
+    geom_line(aes(y=upr), color="red", linetype="dashed") +
+    geom_smooth(method=lm, formula=y~x, se=TRUE, level=0.95, col='blue', fill='pink2') +
+    theme_light()
+```
 
