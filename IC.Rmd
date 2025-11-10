@@ -62,6 +62,49 @@ Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \thet
 
 
 
+## Nivel de confianza
+
+
+**Qué es el nivel de confianza**
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado.
+
+- Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.
+
+
+```{r echo=F, out.height=250, out.width=350}
+knitr::include_graphics("imagen/nc.png")
+```
+
+**Ejemplo:**
+
+Si se construyen 100 intervalos de la forma $\hat \theta_{inf}< \theta <\hat \theta_{sup}$ con un nivel de confianza NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
+
+## Nivel de significancia 
+
+- Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta. 
+
+- Máximo error que queremos cometer en nuestra estimación o contraste.
+
+
+```{r echo=F, out.height=250, out.width=350}
+knitr::include_graphics("imagen/ns.png")
+```
+
+
+$$\Huge NC+\alpha=100\% $$
+
+|NC  |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
+|----|-----------|----------|-----------|--------------|
+|90% |10%        |          |         5%|              |
+|95% | 5%        |          |     2.5%  |              |
+|99% |1%         |          |   0.05%   |              |
+
+
+
+
 # Intervalo de confianza para una muestra
 
 ## IC para la media

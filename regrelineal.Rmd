@@ -443,15 +443,18 @@ bptest(md)
 
 
 ```
-## **Pruebas de hipotesis en el modelo de regresión**
+## **Analisis de varianza ANOVA**
 
-### **Test lineal general**
 
+
+**Suma de cuadrados del error**
 
 La varianza de los términos de error $\varepsilon_i$, es decir, $V[\varepsilon_i]=\sigma^2$, da un indicador de la variabilidad de las distribuciones de probabilidad de Y para los distintos valores de X. En este caso la suma cuadrática de errores o residuales es:
 
 $$\Large SSE=\sum_{i=1}^{n}(y_i-\hat{y_i})^2=\sum_{i=1}^n e^2_i$$
-La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar $\beta_0$ y $\beta_1$, para obtener a $\hat{y_i}$, de lo anterior se obtiene la media cuadática de errores dada por:
+**Media cuadrática del error MSE**
+
+La SSE tiene asociada n−2 grados de libertad (gl), pues se pierden 2 (gl) al estimar $\beta_0$ y $\beta_1$, para obtener a $\hat{y_i}$, de lo anterior se obtiene la media cuadática de errores (MSE) dada por:
 
 $$\Large MSE=\frac{SSE}{n-2}=\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}=\frac{\sum_{i=1}^n e^2_i}{n-2}$$
 
@@ -479,28 +482,21 @@ De lo anterior, se obtiene la identidad fundamental del análisis de varianza, l
 
 $$\Large SST = SSR + SSE$$
 
-Aquí,
-SST: Variabilidad muestral total y tiene n−1 grados de libertad.
-
-SSR: Variabilidad explicada por el modelo o por las variables regresoras X y tiene 1 grado de libertad.
-
-SSE: Variabilidad no explicada por el modelo o error y tiene n−2 grados de libertad.
+**Medias cuadráticas** se obtienen de dividir las SS por sus respectivos grados de libertad
 
 
 
-**Medias cuadráticas**
-
-Las medias cuadráticas se obtienen, como las SS divididas por sus respectivos grados de libertad, es decir que:
-
-$\Large MST=\frac{SST}{n-1}$: Cuadrado medio total
-
-$\Large MSR=\frac{SSR}{1}$:Cuadrado medio de la regresión
-
-$\Large MSE=\frac{SSE}{n-2}$: Cuadrado medio del error
+|Suma de cuadrados|Fórmula|componente| variabilidad                     |Grados de libertad|medias cuadráticas          |
+|:-----:|:--------------:|:---------:|:-------------------------------------------|:----------------:|:----------------:|
+|**SST**|$\sum_{i=1}^n(Y_i-\bar{Y})^2$      |totales  |muestral total  |n−1                       |$MST=\frac{SST}{n-1}$|
+|**SSR**|$\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$|regresión|del modelo o por las variables regresoras|1|$MSR=\frac{SSR}{1}$  |
+|**SSE**|$\sum_{i=1}^{n}(y_i-\hat{y_i})^2$  | error   |no explicada por el modelo o error     |n−2|$MSE=\frac{SSE}{n-2}$|
 
 
 
-Tabla de resumen del análisis de varianza
+
+
+**Tabla de resumen del análisis de varianza**
 
 |Factor   |Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
 |---------|------------------|-----------------|------------------|-----------|
@@ -509,9 +505,11 @@ Tabla de resumen del análisis de varianza
 |Total    |n-1               |SST              |MST               |           |
 
 
-El estadístico de prueba corresponde a 
 
-$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
+
+### **Test lineal general**
+
+Se desea probar la significancia del modelo de regresión lineal
 
 **Hipótesis nula: **  
 
@@ -521,10 +519,16 @@ $\Large H_0:$ el modelo de regresión no es significativo
 
 **Hipótesis alternativa:**  
 
-$\Large H_1: \beta_i \not= 0$: el modelo de regresión es significativo
+$\Large H_1:$: el modelo de regresión es significativo
 
 
-### Prueba de significancia de los parámetros
+El estadístico de prueba corresponde a 
+
+$$\Large F_c=\frac{MSR}{MSE}\sim F_{(1,n-2)}$$
+
+
+
+### **Prueba de significancia de los parámetros**
 
 
 Considere las siguientes afirmaciones, las cuales son llamadas pruebas de hipótesis o prueba de significancia de la regresión:
@@ -590,7 +594,7 @@ El estadístico de prueba es:
 
 $$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}$$
 
-En la tabla ANOVA puede presentarse el test de carencia de ajuste descomponiendo el SSE del modelo:
+En la tabla ANOVA puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
 
 
 |Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
@@ -1271,7 +1275,7 @@ knitr::include_graphics("imagen/icrl.png")
 Los IC para la línea de regresión son más angostos que las bandas de confianza para la predicción individual. Ambas crecen en la medida que se alejan de la media de X lo que refleja que las predicciones son menos confiables en los extremos pues se basan en menos datos.
 
 
-Las distribuciones de todos los valores posibles de a y b tienen una distribución Normal con medias a y b, y desviaciones estándar sa y sb que se denominan errores estándar de la intercepción y de la pendiente respectivamente. Estos errores estándar pueden ser usados tal como se usan los errores estándar de la media o de una proporción, para calcular intervalos de confianza y para las pruebas de hipótesis usando la distribución de t. 
+
 
 Los intervalos de confianza de la línea de regresión se refieren a la línea de las medias y no a la población globalmente. Debe notarse que son angostos y se ensanchan hacia los extremos. No es infrecuente presentar estos como intervalos de confianza de toda la población, lo que no corresponde pues es análogo a usar el error estándar de la media como una medida de la variabilidad de la población en vez de la desviación estándar. 
 
@@ -1289,6 +1293,8 @@ En regresión lineal simple, Si  $\hat Y_o}$ es el valor estimado para la variab
 $$\hat Y_o\pm t_{\alpha/2,n-p}\sqrt {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
 **IC para los parámetros del modelo $\beta_i$**
 
+Las distribuciones de todos los valores posibles de a y b tienen una distribución Normal con medias a y b, y desviaciones estándar sa y sb que se denominan errores estándar de la intercepción y de la pendiente respectivamente. Estos errores estándar pueden ser usados tal como se usan los errores estándar de la media o de una proporción, para calcular IC y para las PH  usando la distribución de t. 
+
 
 $$\beta_i\pm t_{\alpha/2,n-2}*Sd_{\beta_i}$$
 
@@ -1299,7 +1305,9 @@ $$\beta_i\pm t_{\alpha/2,n-2}*Sd_{\beta_i}$$
 
 **IC para la pendiente**
 
-El IC para la pendiente es un rango de valores que estima la verdadera pendiente de la línea de regresión de la población con un cierto nivel de confianza. Se basa en la línea de regresión de la muestra, que es la línea de mejor ajuste que describe la relación entre la variable independiente (x) y la variable dependiente (y) en una muestra de datos. El IC para la pendiente refleja la variabilidad e incertidumbre de la línea de regresión de la muestra debido al error de muestreo.
+- Es un rango de valores que estima la verdadera pendiente de la línea de regresión de la población con un cierto nivel de confianza. 
+
+- Refleja la variabilidad e incertidumbre de la línea de regresión de la muestra debido al error de muestreo.
 
 Para probar la hipótesis nula de que la pendiente de la población es cero, puede comprobar si el intervalo de confianza para la pendiente contiene cero o no; Si no lo hace, entonces rechazas la hipótesis nula y concluyes que existe una relación lineal significativa entre X e Y. 
 
