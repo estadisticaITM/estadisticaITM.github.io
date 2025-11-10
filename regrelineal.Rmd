@@ -259,7 +259,7 @@ SST: suma de cuadrados totales
 
 ## **Residuales**
 
-La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo.
+La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo,se espera que los residuales tengan media cero y varianza de 1:
 $$\Large e_i= y_i- \hat{y_i}$$
 
 ```{r fig.asp=0.5, fig.align='right', echo=FALSE}
@@ -269,8 +269,68 @@ IM4 <- readPNG("img4.png")
 grid.raster(IM4)
 ```
 
-A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
 
+### **Tipos de residuales**
+
+|Tipo de residuales|Definición |Fórmula|
+|:------|:---------------------|:------:|
+|**Ordinarios**|Diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ |$e_i= y_i- \hat{y_i}$|
+|**Estandarizados**|Se calculan dividiendo el residual por su desviación estándar (MSE)|$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}$$|
+|**Estudentizados** 
+También se les conoce como jackknife o residuos eliminados|se calculan utilizando una estimación de la desviación estándar del modelo, donde se elimina la observación actual. |$$ r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$ $h_{ii}$ **leverage** es una medida de ubicación del i-ésimo punto residual|
+|**Pearson**|Se utilizan en modelos lineales generalizados, como la regresión logística y de Poisson |$$r_i=\frac{obs_i-esp_i}{\sqrt{var\quad esp_i}}$$|
+|**PRESS**|Mide el error que comete el modelo al predecir un punto que nunca ha visto|$$e_i=y_i-\hat y_{i(-i)}$$|
+
+**leverage o apalancamiento** 
+
+Es una medida de qué tan lejos están los valores de las variables predictoras (variables X) de una observación específica con respecto a la media de todas las variables predictoras.
+
+**Formas de interpretar** 
+
+**Punto Distante:** 
+
+Un punto con un alto apalancamiento es un punto de datos que tiene un valor inusual o extremo para la(s) variable(s) independiente(s) (X), en comparación con el resto de los datos.
+
+**Influencia Potencial:**
+
+El apalancamiento mide el potencial que tiene esa observación para influir o "jalar" la línea de regresión hacia sí misma.
+
+**Solo depende de X:**
+
+El apalancamiento de un punto depende únicamente de los valores de las variables predictoras (X), no del valor observado de la variable dependiente (Y).
+
+**Interpretación **
+
+**Alto Leverage:** 
+
+Se encuentra geográficamente lejos del "centro de gravedad" de los datos en el espacio de las variables X. Estos puntos tienen un peso desproporcionado en la determinación de la pendiente de la línea de regresión.
+
+**Bajo Leverage:** 
+
+Un punto con bajo leverage está cerca de la media de las variables X y tiene un impacto mínimo en la forma final de la línea de regresión.
+
+**Diferencia con "Outlier" e "Influential Point"**
+
+Es importante diferenciar el leverage de otros conceptos:
+
+**Outlier (Valor Atípico)** Un outlier tiene un valor Y (variable dependiente) inusual o extremo, resultando en un residuo grande (gran diferencia entre el valor observado y el predicho). Puede tener leverage bajo o alto.
+
+**Punto Influyente** 
+
+Es un punto que, si se elimina del conjunto de datos, cambiaría significativamente los coeficientes (pendiente e intercepto) del modelo de regresión. Un punto influyente suele tener tanto un leverage alto como un residuo grande.
+
+**Fórmula**
+
+El apalancamiento para la  i-ésima observación, denotado como $h_{ii}$, es el i-ésimo elemento diagonal de la matriz hat H.
+
+$$h_{ii}=\frac{1}{n}+\frac{(x_i-\bar x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}$$
+
+
+
+
+A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
+son útiles para identificar valores atípicos, puntos influyentes y comprobar los supuestos del modelo, en general un residual grande, es cuando su valor es superior a 3 $(|di| > 3)$, lo cual  es indicio de una observación atípica potencial.
+Son más eficaces para detectar puntos de datos influyentes.
 
 ### Normalidad en los residuales
 
@@ -335,25 +395,6 @@ Que corresponden a observaciones alejadas del resto de la muestra, que afectan l
 
 Para detectar estas observaciones atípicas construimos residuales escalados, los residuales divididos por una estimación de su error estándar.
 
-### **Tipos de residuales**
-
-### Residuales estandarizados $d_i$
-
-El MSE aproxima la varianza de un residual, por tanto los residuales se dividen por su desviación estándar para obtener los residuales estandarizados, los cuales tienen
-media cero y varianza aproximada de 1:
-
-
-$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}$$
-
-Un $d_i$ grande $(|di| > 3)$ es indicio de una observación atípica potencial.
-
-### Residuales estudentizados $r_i$
-Si estandarizamos un residual usando su varianza exacta, obtenemos un residual estudentizado
-
-$$\large r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$
-Donde $h_{ii}$ es una medida del lugar o ubicación del i-ésimo punto residual, conocida como leverage.
-
-Se considera potencialmente atípica aquella observación con $r_i$ grande $(|ri| > 3)$
 
 
 
@@ -488,10 +529,9 @@ $$\Large SST = SSR + SSE$$
 
 |Suma de cuadrados|Fórmula|componente| variabilidad                     |Grados de libertad|medias cuadráticas          |
 |:-----:|:--------------:|:---------:|:-------------------------------------------|:----------------:|:----------------:|
-|**SST**|$\sum_{i=1}^n(Y_i-\bar{Y})^2$      |totales  |muestral total  |n−1                       |$MST=\frac{SST}{n-1}$|
 |**SSR**|$\sum_{i=1}^n(\hat{Y_i}-\bar{Y})^2$|regresión|del modelo o por las variables regresoras|1|$MSR=\frac{SSR}{1}$  |
 |**SSE**|$\sum_{i=1}^{n}(y_i-\hat{y_i})^2$  | error   |no explicada por el modelo o error     |n−2|$MSE=\frac{SSE}{n-2}$|
-
+|**SST**|$\sum_{i=1}^n(Y_i-\bar{Y})^2$      |totales  |muestral total  |n−1                       |$MST=\frac{SST}{n-1}$|
 
 
 
