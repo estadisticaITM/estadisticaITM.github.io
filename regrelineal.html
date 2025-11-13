@@ -545,10 +545,10 @@ de horas de estudio semanal.</p></li>
 class="section level2">
 <h2><strong>Métodos de estimación del modelo de regresión
 lineal</strong></h2>
-<p><strong>Estimación por máxima verosimilitud</strong> En inglés
-maximum likelihood estimation (MLE), Consiste en encontrar los
-parámetros del modelo (coeficientes) que maximizan la probabilidad de
-obtener los datos observados.</p>
+<p><strong>Estimación por máxima verosimilitud</strong></p>
+<p>En inglés maximum likelihood estimation (MLE), Consiste en encontrar
+los parámetros del modelo (coeficientes) que maximizan la probabilidad
+de obtener los datos observados.</p>
 <p><span class="math display">\[\begin{eqnarray*}
 L\left(\beta_0, \beta_1, \sigma^2 | X_1, \ldots, X_n, Y_1, \ldots, Y_n
 \right)&amp;=&amp;\prod_{i=1}^n\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2\right\}\\
@@ -831,15 +831,15 @@ atípicos, puntos influyentes y comprobar los supuestos del modelo.</p>
 <h3><strong>Tipos de residuales</strong></h3>
 <table>
 <colgroup>
-<col width="14%" />
-<col width="42%" />
-<col width="16%" />
-<col width="28%" />
+<col width="13%" />
+<col width="43%" />
+<col width="15%" />
+<col width="27%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Tipo</th>
-<th align="left">Definición</th>
+<th align="center">Definición</th>
 <th align="center">Fórmula</th>
 <th align="center">Función en R</th>
 </tr>
@@ -847,7 +847,7 @@ atípicos, puntos influyentes y comprobar los supuestos del modelo.</p>
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Ordinarios</strong></td>
-<td align="left">Diferencia de cada valor <span
+<td align="center">Diferencia de cada valor <span
 class="math inline">\(y_i\)</span> de la variable respuesta y su
 estimación <span class="math inline">\(\hat{y_i}\)</span></td>
 <td align="center"><span class="math inline">\(e_i= y_i-
@@ -856,7 +856,7 @@ estimación <span class="math inline">\(\hat{y_i}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Estandarizados</strong></td>
-<td align="left">Se calculan dividiendo el residual por su desviación
+<td align="center">Se calculan dividiendo el residual por su desviación
 estándar (MSE)</td>
 <td align="center"><span class="math display">\[\large d_i=\frac{\hat
 \varepsilon_i}{\sqrt{MSE}}\]</span></td>
@@ -864,16 +864,17 @@ estándar (MSE)</td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Estudentizados</strong> o jackknife</td>
-<td align="left">Se calculan utilizando una estimación de la desviación
-estándar del modelo, donde se elimina la observación actual.</td>
+<td align="center">Se calculan utilizando una estimación de la
+desviación estándar del modelo, donde se elimina la observación
+actual.</td>
 <td align="center"><span class="math display">\[ r_i=\frac{\hat
 \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span></td>
 <td align="center">rstudent(mod)</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Pearson</strong></td>
-<td align="left">Se utilizan en modelos lineales generalizados, como la
-regresión logística y de Poisson</td>
+<td align="center">Se utilizan en modelos lineales generalizados, como
+la regresión logística y de Poisson</td>
 <td align="center"><span
 class="math display">\[r_i=\frac{obs_i-esp_i}{\sqrt{var\quad
 esp_i}}\]</span></td>
@@ -881,8 +882,8 @@ esp_i}}\]</span></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>PRESS</strong></td>
-<td align="left">Mide el error que comete el modelo al predecir un punto
-que nunca ha visto</td>
+<td align="center">Mide el error que comete el modelo al predecir un
+punto que nunca ha visto</td>
 <td align="center"><span class="math display">\[e_i=y_i-\hat
 y_{i(-i)}\]</span></td>
 <td align="center"></td>
@@ -912,37 +913,60 @@ x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}\]</span></p>
 <p><strong>Otros diagnósticos con residuales grandes</strong></p>
 <table>
 <colgroup>
+<col width="16%" />
+<col width="45%" />
+<col width="23%" />
 <col width="15%" />
-<col width="53%" />
-<col width="31%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left"><strong>Nombre</strong></th>
 <th align="center"><strong>Definición</strong></th>
-<th align="center"><strong>Leverage</strong></th>
+<th align="center"><strong>Cómo se detecta</strong></th>
+<th align="left"><strong>Rstudio</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Outlier</strong></td>
-<td align="center">Es un valor atípico, con un valor Y (variable
-dependiente) inusual o extremo,</td>
-<td align="center">Bajo o alto.</td>
+<td align="center">Es un valor atípico con un valor Y (variable
+dependiente) inusual o extremo</td>
+<td align="center">si <span class="math inline">\(d_i\)</span> ó <span
+class="math inline">\(r_i\)</span> son mayores a 3</td>
+<td align="left">outlierTest(md)</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>Punto Influyente o de balanceo</strong></td>
+<td align="left"><strong>Punto Influyente</strong></td>
 <td align="center">Punto que si se elimina del conjunto de datos,
-cambiaría los coeficientes (pendiente e intercepto) del modelo de
-regresión, la función de R que los estima es
-influence.measures(modelo)</td>
-<td align="center">Alto</td>
+cambiaría los coeficientes del modelo de regresión</td>
+<td align="center">las observaciones que presenten Distancia de cook
+<span class="math inline">\(D_i&gt;1\)</span></td>
+<td align="left">influence.measures(md)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Punto balanceo</strong></td>
+<td align="center">Afecta las medidas de bondad de ajuste como <span
+class="math inline">\(R^2\)</span></td>
+<td align="center"></td>
+<td align="left">influence.measures(md)</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Distancia de cook <span
+class="math inline">\(D_i\)</span></strong></p>
+<p>Es una medida de cómo influye la observación i-ésima sobre la
+estimación de β al ser retirada del conjunto de datos. Una distancia de
+Cook grande significa que una observación tiene un peso grande en la
+estimación de β.</p>
 </div>
-<div id="normalidad-en-los-residuales" class="section level3">
-<h3>Normalidad en los residuales</h3>
+<div id="supuestos-de-los-residuales" class="section level3">
+<h3><strong>Supuestos de los residuales</strong></h3>
+<ol style="list-style-type: decimal">
+<li>Normalidad</li>
+<li>Varianza constante</li>
+<li>Valores incorrelacionados</li>
+</ol>
+<p><strong>Normalidad</strong></p>
 <p>Se puede evaluar mediante el gráfico qqplot, en el cual los puntos
 residuales deben estar alineados con la diagonal, dicha normalidad
 también se puede evaluar con la prueba de normalidad de shapiro- wilk,
@@ -951,9 +975,7 @@ con el juego de hipótesis:</p>
 normales</p>
 <p><span class="math inline">\(H_1:\)</span>Los residuos no son
 normales</p>
-</div>
-<div id="varianza-constante" class="section level3">
-<h3>Varianza constante</h3>
+<p><strong>Varianza constante</strong></p>
 <p>Mediante gráficos de residuales vs. respuesta ajustada y
 vs. predictora X. Los residuos están distribuidos alrededor del cero y
 el gráfico no presenta ninguna tendencia, entonces el modelo se
@@ -966,7 +988,7 @@ tener problemas con el supuesto de homogeneidad de varianzas, también
 conocido como supuesto de homocedasticidad.</p></li>
 </ul>
 <p><img src="imagen/residuals.png" width="348" style="display: block; margin: auto;" /></p>
-<p><strong>Prueba de homocedasticidad</strong></p>
+<p><em>Prueba de homocedasticidad</em></p>
 <p>La homocedasticidad se refiere a la propiedad en la que la varianza
 de los errores del modelo se mantiene constante a lo largo de todas las
 observaciones de la variable independiente.</p>
@@ -977,7 +999,7 @@ es:</p>
 \quad varianza \quad constante\]</span></p>
 <p><span class="math display">\[H_1:\quad Los \quad errores \quad no
 \quad tienen \quad varianza \quad constante\]</span></p>
-<p><strong>Prueba de Breusch-Pagan (1979)</strong></p>
+<p><em>Prueba de Breusch-Pagan (1979)</em></p>
 <p>Consiste en ajustar un modelo de regresión lineal con variable
 respuesta dada por residuales del modelo original al cuadrado <span
 class="math inline">\(e_i^2\)</span> y como covariables las variables
@@ -990,6 +1012,17 @@ significa que los residuales no son función de las covariables del
 modelo.</p>
 <p>La función bptest del paquete lmtest Zeileis and Hothorn (2002)
 implementa esta prueba.</p>
+<p><strong>Incorrelación</strong></p>
+<p>Los errores del modelo son independientes entre sí. implica que el
+valor de un residuo no proporciona información sobre el valor de otro
+residuo, es decir, no hay autocorrelación. Esta independencia se
+verifica comúnmente analizando gráficos de residuos o mediante el test
+de Durbin-Watson o El test de Breusch–Godfrey.</p>
+<p><em>Juego de hipótesis</em></p>
+<p><span class="math inline">\(H_0\)</span>: Residuos
+incorrelacionados</p>
+<p><span class="math inline">\(H_1\)</span>: Residuos
+correlacionados</p>
 <hr />
 <p><strong>Ejemplo</strong></p>
 <p>Los siguientes datos proveen las velocidades en metros por segundo y
@@ -1013,19 +1046,12 @@ Donde</p>
 aumenta 3.93 unidades</p></li>
 </ul>
 <p><strong>Resultados del modelo en R</strong></p>
-<pre class="r"><code>cor.test(cars$speed,cars$dist)</code></pre>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  cars$speed and cars$dist
-## t = 9.464, df = 48, p-value = 1.49e-12
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.6816422 0.8862036
-## sample estimates:
-##       cor 
-## 0.8068949</code></pre>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
+<pre class="r"><code>library(lmtest)
+cor(cars$speed,cars$dist)</code></pre>
+<pre><code>## [1] 0.8068949</code></pre>
+<pre class="r"><code>##Ajuste modelo de regresión lineal simple
+
+md=lm(cars$dist~cars$speed)
 summary(md)</code></pre>
 <pre><code>## 
 ## Call:
@@ -1045,56 +1071,283 @@ summary(md)</code></pre>
 ## Residual standard error: 15.38 on 48 degrees of freedom
 ## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
 ## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
-<pre class="r"><code>plot(cars$speed,cars$dist, col=2, lwd=2)
+<pre class="r"><code>## Grafica de dispersión con la linea estimada sobrepuesta
+plot(cars$speed,cars$dist, col=2, lwd=2)
 abline(a=-17.57,b=3.93)</code></pre>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p><strong>anova del modelo</strong></p>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
-anova(md)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: cars$dist
-##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## cars$speed  1  21186 21185.5  89.567 1.49e-12 ***
-## Residuals  48  11354   236.5                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>y=influence.measures(md)
-head(y$infmat)</code></pre>
-<pre><code>##        dfb.1_    dfb.crs$       dffit    cov.r       cook.d        hat
-## 1  0.09440188 -0.08624563  0.09490289 1.174881 0.0045923121 0.11486131
-## 2  0.29242487 -0.26715961  0.29397684 1.145655 0.0435139907 0.11486131
-## 3 -0.10749794  0.09369281 -0.11039550 1.115801 0.0062023503 0.07150365
-## 4  0.21897614 -0.19085472  0.22487854 1.092584 0.0254673384 0.07150365
-## 5  0.03407516 -0.02901384  0.03553887 1.108612 0.0006446705 0.05997080
-## 6 -0.11100703  0.09174024 -0.11851708 1.085395 0.0071319931 0.04989781</code></pre>
-<pre class="r"><code>head(rstandard(md))</code></pre>
-<pre><code>##          1          2          3          4          5          6 
-##  0.2660415  0.8189327 -0.4013462  0.8132663  0.1421624 -0.5211526</code></pre>
-<pre class="r"><code>head(rstudent(md))</code></pre>
-<pre><code>##          1          2          3          4          5          6 
-##  0.2634500  0.8160784 -0.3978115  0.8103526  0.1407033 -0.5171605</code></pre>
-<p><strong>Análisis de residuales</strong></p>
-<pre class="r"><code>md=lm(cars$dist~cars$speed)
-rr=residuals(md)
+<pre class="r"><code>## Analisis de residuales
+
+## tipos de residuales
+cbind(ei=residuals(md, type=&#39;working&#39;),
+      pi=residuals(md, type=&#39;pearson&#39;),
+      di=rstandard(md),
+      ri=rstudent(md))</code></pre>
+<pre><code>##            ei         pi          di          ri
+## 1    3.849460   3.849460  0.26604155  0.26345000
+## 2   11.849460  11.849460  0.81893273  0.81607841
+## 3   -5.947766  -5.947766 -0.40134618 -0.39781154
+## 4   12.052234  12.052234  0.81326629  0.81035256
+## 5    2.119825   2.119825  0.14216236  0.14070334
+## 6   -7.812584  -7.812584 -0.52115255 -0.51716052
+## 7   -3.744993  -3.744993 -0.24869180 -0.24624632
+## 8    4.255007   4.255007  0.28256008  0.27983408
+## 9   12.255007  12.255007  0.81381197  0.81090388
+## 10  -8.677401  -8.677401 -0.57409795 -0.57004675
+## 11   2.322599   2.322599  0.15366341  0.15209173
+## 12 -15.609810 -15.609810 -1.02971654 -1.03037790
+## 13  -9.609810  -9.609810 -0.63392061 -0.62992492
+## 14  -5.609810  -5.609810 -0.37005667 -0.36670509
+## 15  -1.609810  -1.609810 -0.10619272 -0.10509307
+## 16  -7.542219  -7.542219 -0.49644946 -0.49251696
+## 17   0.457781   0.457781  0.03013240  0.02981715
+## 18   0.457781   0.457781  0.03013240  0.02981715
+## 19  12.457781  12.457781  0.82000518  0.81716230
+## 20 -11.474628 -11.474628 -0.75422016 -0.75078438
+## 21  -1.474628  -1.474628 -0.09692637 -0.09592079
+## 22  22.525372  22.525372  1.48057874  1.49972043
+## 23  42.525372  42.525372  2.79516632  3.02282876
+## 24 -21.407036 -21.407036 -1.40612757 -1.42097720
+## 25 -15.407036 -15.407036 -1.01201579 -1.01227617
+## 26  12.592964  12.592964  0.82717256  0.82440767
+## 27 -13.339445 -13.339445 -0.87627072 -0.87411459
+## 28  -5.339445  -5.339445 -0.35074918 -0.34752195
+## 29 -17.271854 -17.271854 -1.13552237 -1.13903469
+## 30  -9.271854  -9.271854 -0.60956963 -0.60553485
+## 31   0.728146   0.728146  0.04787130  0.04737114
+## 32 -11.204263 -11.204263 -0.73777117 -0.73422040
+## 33   2.795737   2.795737  0.18409193  0.18222855
+## 34  22.795737  22.795737  1.50103921  1.52145888
+## 35  30.795737  30.795737  2.02781813  2.09848208
+## 36 -21.136672 -21.136672 -1.39503525 -1.40929208
+## 37 -11.136672 -11.136672 -0.73502818 -0.73145948
+## 38  10.863328  10.863328  0.71698735  0.71330941
+## 39 -29.069080 -29.069080 -1.92452335 -1.98238877
+## 40 -13.069080 -13.069080 -0.86524066 -0.86293622
+## 41  -9.069080  -9.069080 -0.60041999 -0.59637646
+## 42  -5.069080  -5.069080 -0.33559931 -0.33247538
+## 43   2.930920   2.930920  0.19404203  0.19208548
+## 44  -2.933898  -2.933898 -0.19590672 -0.19393283
+## 45 -18.866307 -18.866307 -1.26671228 -1.27493857
+## 46  -6.798715  -6.798715 -0.45938126 -0.45557342
+## 47  15.201285  15.201285  1.02713306  1.02773460
+## 48  16.201285  16.201285  1.09470190  1.09701943
+## 49  43.201285  43.201285  2.91906038  3.18499284
+## 50   4.268876   4.268876  0.29053451  0.28774529</code></pre>
+<pre class="r"><code>##Graficos de residuales
 par(mfrow=c(2,2))
-plot(md)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<pre class="r"><code>shapiro.test(rr)</code></pre>
+plot(md,col=&#39;deepskyblue4&#39;, pch=19)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<pre class="r"><code>## prueba de normalidad en residuales del modelo
+## Ho:Los residuos son normales
+## H1:Los residuos no son normales
+
+rr=residuals(md)
+shapiro.test(rr)</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  rr
 ## W = 0.94509, p-value = 0.02152</code></pre>
-<pre class="r"><code>library(lmtest)
-
+<pre class="r"><code>##prueba de varianza constante
+## H0: Los errores tienen varianza constante
+## H1: Los errores no tienen varianza constante
 bptest(md)</code></pre>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  md
 ## BP = 3.2149, df = 1, p-value = 0.07297</code></pre>
-<pre class="r"><code>### estimación de los tipos de residuales</code></pre>
+<pre class="r"><code>###prueba de incorrelación de residuales del modelo
+## H0: Residuos incorrelacionados
+## H1: Residuos correlacionados
+
+dwtest(md, data = cars)</code></pre>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  md
+## DW = 1.6762, p-value = 0.09522
+## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<pre class="r"><code>bgtest(md, order =1, data = cars)</code></pre>
+<pre><code>## 
+##  Breusch-Godfrey test for serial correlation of order up to 1
+## 
+## data:  md
+## LM test = 1.2908, df = 1, p-value = 0.2559</code></pre>
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Cargando paquete requerido: carData</code></pre>
+<pre class="r"><code>## detección de puntos de influencia
+influence.measures(md)</code></pre>
+<pre><code>## Influence measures of
+##   lm(formula = cars$dist ~ cars$speed) :
+## 
+##      dfb.1_ dfb.crs.    dffit cov.r   cook.d    hat inf
+## 1   0.09440 -0.08625  0.09490 1.175 4.59e-03 0.1149   *
+## 2   0.29242 -0.26716  0.29398 1.146 4.35e-02 0.1149   *
+## 3  -0.10750  0.09369 -0.11040 1.116 6.20e-03 0.0715    
+## 4   0.21898 -0.19085  0.22488 1.093 2.55e-02 0.0715    
+## 5   0.03408 -0.02901  0.03554 1.109 6.45e-04 0.0600    
+## 6  -0.11101  0.09174 -0.11852 1.085 7.13e-03 0.0499    
+## 7  -0.04618  0.03669 -0.05110 1.085 1.33e-03 0.0413    
+## 8   0.05248 -0.04170  0.05807 1.084 1.72e-03 0.0413    
+## 9   0.15209 -0.12083  0.16827 1.058 1.43e-02 0.0413    
+## 10 -0.09168  0.06895 -0.10716 1.065 5.82e-03 0.0341    
+## 11  0.02446 -0.01840  0.02859 1.079 4.17e-04 0.0341    
+## 12 -0.13849  0.09602 -0.17628 1.027 1.55e-02 0.0284    
+## 13 -0.08467  0.05870 -0.10777 1.056 5.88e-03 0.0284    
+## 14 -0.04929  0.03417 -0.06274 1.067 2.00e-03 0.0284    
+## 15 -0.01413  0.00979 -0.01798 1.073 1.65e-04 0.0284    
+## 16 -0.05330  0.03233 -0.07757 1.058 3.06e-03 0.0242    
+## 17  0.00323 -0.00196  0.00470 1.069 1.13e-05 0.0242    
+## 18  0.00323 -0.00196  0.00470 1.069 1.13e-05 0.0242    
+## 19  0.08843 -0.05364  0.12870 1.039 8.34e-03 0.0242    
+## 20 -0.06172  0.02871 -0.11111 1.041 6.23e-03 0.0214    
+## 21 -0.00789  0.00367 -0.01419 1.065 1.03e-04 0.0214    
+## 22  0.12329 -0.05734  0.22194 0.971 2.40e-02 0.0214    
+## 23  0.24851 -0.11558  0.44734 0.747 8.56e-02 0.0214   *
+## 24 -0.08002  0.01551 -0.20360 0.979 2.03e-02 0.0201    
+## 25 -0.05700  0.01105 -0.14504 1.019 1.05e-02 0.0201    
+## 26  0.04643 -0.00900  0.11812 1.034 7.02e-03 0.0201    
+## 27 -0.02664 -0.01432 -0.12571 1.031 7.94e-03 0.0203    
+## 28 -0.01059 -0.00569 -0.04998 1.059 1.27e-03 0.0203    
+## 29 -0.00528 -0.04978 -0.17031 1.010 1.44e-02 0.0219    
+## 30 -0.00281 -0.02647 -0.09054 1.050 4.15e-03 0.0219    
+## 31  0.00022  0.00207  0.00708 1.066 2.56e-05 0.0219    
+## 32  0.01561 -0.05223 -0.11741 1.046 6.96e-03 0.0249    
+## 33 -0.00387  0.01296  0.02914 1.068 4.33e-04 0.0249    
+## 34 -0.03235  0.10823  0.24330 0.972 2.88e-02 0.0249    
+## 35 -0.04462  0.14928  0.33557 0.894 5.26e-02 0.0249    
+## 36  0.06663 -0.13914 -0.24553 0.989 2.95e-02 0.0295    
+## 37  0.03458 -0.07221 -0.12744 1.051 8.20e-03 0.0295    
+## 38 -0.03372  0.07042  0.12428 1.052 7.80e-03 0.0295    
+## 39  0.14564 -0.25086 -0.38002 0.921 6.81e-02 0.0354    
+## 40  0.06340 -0.10920 -0.16542 1.048 1.38e-02 0.0354    
+## 41  0.04382 -0.07547 -0.11432 1.065 6.62e-03 0.0354    
+## 42  0.02443 -0.04207 -0.06373 1.076 2.07e-03 0.0354    
+## 43 -0.01411  0.02431  0.03682 1.080 6.92e-04 0.0354    
+## 44  0.02456 -0.03551 -0.04533 1.098 1.05e-03 0.0518    
+## 45  0.19602 -0.27032 -0.32823 1.039 5.32e-02 0.0622    
+## 46  0.08260 -0.11000 -0.12877 1.116 8.43e-03 0.0740    
+## 47 -0.18634  0.24815  0.29050 1.077 4.21e-02 0.0740    
+## 48 -0.19890  0.26488  0.31008 1.071 4.79e-02 0.0740    
+## 49 -0.57747  0.76902  0.90027 0.762 3.40e-01 0.0740   *
+## 50 -0.06025  0.07812  0.08898 1.139 4.04e-03 0.0873   *</code></pre>
+<pre class="r"><code>library(car)
+influenceIndexPlot(md, vars=&quot;Cook&quot;)</code></pre>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+<pre class="r"><code>## detección de outlier
+outlierTest(md, n.max=4)</code></pre>
+<pre><code>## No Studentized residuals with Bonferroni p &lt; 0.05
+## Largest |rstudent|:
+##    rstudent unadjusted p-value Bonferroni p
+## 49 3.184993          0.0025707      0.12853</code></pre>
+<pre class="r"><code>## Quitando observaciones atipicas y puntos de influencia
+cars2&lt;-cars[-c(1,2,23,49,50),]
+cars2</code></pre>
+<pre><code>##    speed dist
+## 3      7    4
+## 4      7   22
+## 5      8   16
+## 6      9   10
+## 7     10   18
+## 8     10   26
+## 9     10   34
+## 10    11   17
+## 11    11   28
+## 12    12   14
+## 13    12   20
+## 14    12   24
+## 15    12   28
+## 16    13   26
+## 17    13   34
+## 18    13   34
+## 19    13   46
+## 20    14   26
+## 21    14   36
+## 22    14   60
+## 24    15   20
+## 25    15   26
+## 26    15   54
+## 27    16   32
+## 28    16   40
+## 29    17   32
+## 30    17   40
+## 31    17   50
+## 32    18   42
+## 33    18   56
+## 34    18   76
+## 35    18   84
+## 36    19   36
+## 37    19   46
+## 38    19   68
+## 39    20   32
+## 40    20   48
+## 41    20   52
+## 42    20   56
+## 43    20   64
+## 44    22   66
+## 45    23   54
+## 46    24   70
+## 47    24   92
+## 48    24   93</code></pre>
+<pre class="r"><code>##volviendo a estimar el modelo
+md1=lm(cars2$dist~cars2$speed)
+summary(md1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = cars2$dist ~ cars2$speed)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -25.961  -8.199  -2.336   5.664  33.564 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.2886     6.8440  -2.526   0.0153 *  
+## cars2$speed   3.7625     0.4227   8.902 2.61e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 12.97 on 43 degrees of freedom
+## Multiple R-squared:  0.6482, Adjusted R-squared:  0.6401 
+## F-statistic: 79.25 on 1 and 43 DF,  p-value: 2.605e-11</code></pre>
+<pre class="r"><code>AIC(md,md1)</code></pre>
+<pre><code>## Warning in AIC.default(md, md1): No todos los modelos se han ajustado usando el
+## mismo número de observaciones</code></pre>
+<pre><code>##     df      AIC
+## md   3 419.1569
+## md1  3 362.2737</code></pre>
+<p><strong>Validación cruzada de ambos modelos</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">modelo</th>
+<th align="center">AIC</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center"><span class="math inline">\(\beta_0\)</span></th>
+<th align="center"><span class="math inline">\(\beta_1\)</span></th>
+<th align="center">error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Completo</td>
+<td align="center">419.15</td>
+<td align="center">65.11</td>
+<td align="center">-17.58</td>
+<td align="center">3.93</td>
+<td align="center">15.38</td>
+</tr>
+<tr class="even">
+<td align="left">Sin outlier</td>
+<td align="center">362.27</td>
+<td align="center">64.82</td>
+<td align="center">-17.28</td>
+<td align="center">3.76</td>
+<td align="center">12.97</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="analisis-de-varianza-anova" class="section level2">
@@ -1423,7 +1676,7 @@ summary(regre)</code></pre>
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre class="r"><code>plot(peso,elimina)
 abline(a=212.72,b=-0.23,col=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>## residuales del modelo
 
 res=residuals(regre)
@@ -1868,10 +2121,10 @@ plot(Orange$age,Orange$circumference,lwd=3)
 yest=fitted(model)
 lines(Orange$age,yest,col=2)
 abline(coef(model))</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre class="r"><code>par(mfrow=c(2,2))
 plot(model)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(residuals(model))</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -1933,7 +2186,7 @@ abline(a=57.33,b=0.1,col=2,lwd=3)
 abline(a=19.92,b=0.1,col=3,lwd=3)
 abline(a=9.14,b=0.1,col=4,lwd=3)
 abline(a=12.71,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -2011,7 +2264,7 @@ abline(a=13.1,b=0.15,col=2,lwd=3)
 abline(a=18.9,b=0.1,col=3,lwd=3)
 abline(a=18.8,b=0.1,col=4,lwd=3)
 abline(a=6.1,b=0.1,col=5,lwd=3)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Con base en la tabla ANOVA, y bajo los supuestos de los errores, se
 realiza el test de significancia de la regresión el cual se enuncia de
 la siguiente manera:</p>
@@ -2104,7 +2357,7 @@ abline(a=3.03,b=1.16,col=1,pch=1,lwd=2)
 abline(a=9.76,b=0.35,col=2,pch=2,lwd=2)
 #Recta para la sección c
 abline(a=8.27,b=1,col=3,pch=3,lwd=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><strong>MODELO CON INTERCEPTO diferente</strong></p>
 <pre class="r"><code>###MODELO CON RECTAS DIFERENTES SOLO EN EL INTERCEPTO###
 modelo2=lm(Ventas~Publicidad+Seccion)
@@ -2147,7 +2400,7 @@ summary(modelo2)</code></pre>
 ## SeccionC     2.7767893 5.7133597</code></pre>
 <pre class="r"><code>plot(Publicidad,Ventas,pch=1:3,col=1:3,cex=2,cex.lab=1.5)
 legend(&quot;topleft&quot;,legend=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;),pch=c(1:3),col=c(1:3),cex=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="regresión-lineal-con-variables-continuas"
 class="section level3">
@@ -2193,7 +2446,7 @@ HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95
 VOL &lt;-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
 bosque&lt;-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
 plot(bosque)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <pre class="r"><code>###correlaciones entre variables
 #install.packages(ppcor)
 library(PerformanceAnalytics)
@@ -2229,7 +2482,7 @@ pcor(bosque)</code></pre>
 ## $method
 ## [1] &quot;pearson&quot;</code></pre>
 <pre class="r"><code>chart.Correlation(bosque, histogram = F, pch = 19)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 <p>El modelo inicial ajustado corresponde a:</p>
 <pre class="r"><code>m1=lm(VOL~D16+HT+DBH)
 summary(m1)</code></pre>
@@ -2288,15 +2541,14 @@ summary(m1)</code></pre>
 ## F-statistic: 170.9 on 2 and 17 DF,  p-value: 5.515e-12</code></pre>
 <pre class="r"><code>par(mfrow=c(2,2))
 plot(m1)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>El modelo ajustado corresponde a:</p>
 <p><span class="math display">\[\hat
 y=-105.9027+7.41D16+0.67HT\]</span></p>
 <p>Al evaluar la significancia de los parámetros del modelo se
 tiene:</p>
-<pre class="r"><code>library(car)</code></pre>
-<pre><code>## Cargando paquete requerido: carData</code></pre>
-<pre class="r"><code>#library(rgl)
+<pre class="r"><code>library(car)
+#library(rgl)
 library(perturbR)
 library(leaps)
 library(scatterplot3d)
@@ -2573,7 +2825,7 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
     geom_line(aes(y=upr), color=&quot;red&quot;, linetype=&quot;dashed&quot;) +
     geom_smooth(method=lm, formula=y~x, se=TRUE, level=0.95, col=&#39;blue&#39;, fill=&#39;pink2&#39;) +
     theme_light()</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 </div>
 

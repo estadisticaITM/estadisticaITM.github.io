@@ -112,6 +112,8 @@ $$\Large \varepsilon_i \sim N (0,\sigma^2)$$
 
 
 **Estimación por máxima verosimilitud**
+
+
 En inglés maximum likelihood estimation (MLE), Consiste en encontrar los parámetros del modelo (coeficientes) que maximizan la probabilidad de obtener los datos observados.
 
 \begin{eqnarray*}
@@ -334,17 +336,27 @@ $$h_{ii}=\frac{1}{n}+\frac{(x_i-\bar x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}$$
 
 **Otros diagnósticos con residuales grandes**
 
-|**Nombre**|       **Definición**|**Leverage**|
-|:------|:----------------------:|:------------:|
-|**Outlier**|Es un valor atípico, con un valor Y (variable dependiente) inusual o extremo, |Bajo o alto.|
-|**Punto Influyente o de balanceo**| Punto que si se elimina del conjunto de datos, cambiaría los coeficientes (pendiente e intercepto) del modelo de regresión, la función de R que los estima es influence.measures(mod)| Alto| 
+|**Nombre**|       **Definición**|**Cómo se detecta**|**Rstudio**|
+|:---------|:-------------------------:|:------------:|:--------|
+|**Outlier**|Es un valor atípico con un valor Y (variable dependiente) inusual o extremo|si $d_i$ ó $r_i$ son mayores a 3|outlierTest(md)|
+|**Punto Influyente**| Punto que si se elimina del conjunto de datos, cambiaría los coeficientes del modelo de regresión|las observaciones que presenten Distancia de cook $D_i>1$| influence.measures(md)|
+|**Punto balanceo**|Afecta las medidas de bondad de ajuste como $R^2$|| influence.measures(md)|
+
+
+**Distancia de cook $D_i$**
+
+Es una medida de cómo influye la observación i-ésima sobre la estimación de β al ser retirada del conjunto de datos. Una distancia de Cook grande significa que una observación tiene un peso grande en la estimación de β.
 
 
 
+### **Supuestos de los residuales** 
+
+1. Normalidad
+2. Varianza constante
+3. Valores incorrelacionados
 
 
-
-### Normalidad en los residuales
+**Normalidad**
 
 Se puede evaluar mediante el gráfico qqplot, en el cual los puntos residuales deben estar alineados con la diagonal, dicha normalidad también se puede evaluar con la prueba de normalidad de shapiro- wilk, con el juego de hipótesis:
 
@@ -353,7 +365,7 @@ $H_o:$Los residuos son normales
 $H_1:$Los residuos no son normales
 
 
-### Varianza constante
+**Varianza constante**
 
 Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los residuos están distribuidos alrededor del cero y el gráfico no presenta ninguna tendencia, entonces el modelo se considera adecuado. 
 
@@ -365,7 +377,7 @@ Mediante gráficos de residuales vs. respuesta ajustada y vs. predictora X. Los 
 knitr::include_graphics("imagen/residuals.png")
 ```
 
-**Prueba de homocedasticidad**
+*Prueba de homocedasticidad*
 
 La homocedasticidad se refiere a la propiedad en la que la varianza de los errores del modelo se mantiene constante a lo largo de todas las observaciones de la variable independiente.
 
@@ -382,7 +394,7 @@ $$H_0:\quad Los \quad errores \quad tienen \quad varianza \quad constante$$
 $$H_1:\quad Los \quad errores \quad no \quad tienen \quad varianza \quad constante$$
 
 
-**Prueba de Breusch-Pagan (1979)**
+*Prueba de Breusch-Pagan (1979)*
 
 Consiste en ajustar un modelo de regresión lineal con variable respuesta dada por residuales del modelo original al cuadrado  $e_i^2$ y como covariables las variables del modelo original.
 
@@ -397,8 +409,17 @@ La función bptest del paquete lmtest Zeileis and Hothorn (2002) implementa esta
 
 
 
+**Incorrelación**
+
+Los errores del modelo son independientes entre sí. implica que el valor de un residuo no proporciona información sobre el valor de otro residuo, es decir, no hay autocorrelación. Esta independencia se verifica comúnmente analizando gráficos de residuos o mediante el test de Durbin-Watson o El test de Breusch–Godfrey. 
+
+*Juego de hipótesis*
 
 
+$H_0$: Residuos incorrelacionados
+
+
+$H_1$: Residuos correlacionados
 
 _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -427,50 +448,85 @@ Donde
 **Resultados del modelo en R**
 
 ```{r echo=TRUE}
+library(lmtest)
+cor(cars$speed,cars$dist)
 
+##Ajuste modelo de regresión lineal simple
 
-cor.test(cars$speed,cars$dist)
 md=lm(cars$dist~cars$speed)
 summary(md)
+
+## Grafica de dispersión con la linea estimada sobrepuesta
 plot(cars$speed,cars$dist, col=2, lwd=2)
 abline(a=-17.57,b=3.93)
-```
-
-**anova del modelo**
-
-```{r}
-md=lm(cars$dist~cars$speed)
-anova(md)
-
-y=influence.measures(md)
-head(y$infmat)
-head(rstandard(md))
-head(rstudent(md))
 
 
-```
+## Analisis de residuales
 
-
-
-**Análisis de residuales**
-
-
-```{r }
-md=lm(cars$dist~cars$speed)
-rr=residuals(md)
+## tipos de residuales
+cbind(ei=residuals(md, type='working'),
+      pi=residuals(md, type='pearson'),
+      di=rstandard(md),
+      ri=rstudent(md))
+##Graficos de residuales
 par(mfrow=c(2,2))
-plot(md)
+plot(md,col='deepskyblue4', pch=19)
+
+## prueba de normalidad en residuales del modelo
+## Ho:Los residuos son normales
+## H1:Los residuos no son normales
+
+rr=residuals(md)
 shapiro.test(rr)
 
-library(lmtest)
-
+##prueba de varianza constante
+## H0: Los errores tienen varianza constante
+## H1: Los errores no tienen varianza constante
 bptest(md)
 
+###prueba de incorrelación de residuales del modelo
+## H0: Residuos incorrelacionados
+## H1: Residuos correlacionados
 
-### estimación de los tipos de residuales
+dwtest(md, data = cars)
+bgtest(md, order =1, data = cars)
 
+
+library(car)
+
+## detección de puntos de influencia
+influence.measures(md)
+library(car)
+influenceIndexPlot(md, vars="Cook")
+
+## detección de outlier
+outlierTest(md, n.max=4)
+
+
+## Quitando observaciones atipicas y puntos de influencia
+cars2<-cars[-c(1,2,23,49,50),]
+cars2
+
+
+##volviendo a estimar el modelo
+md1=lm(cars2$dist~cars2$speed)
+summary(md1)
+
+AIC(md,md1)
 
 ```
+
+**Validación cruzada de ambos modelos**
+
+
+|modelo     |AIC   |$R^2$|$\beta_0$|$\beta_1$|error|
+|:----------|:----:|:---:|:-------:|:-------:|:---:|
+|Completo   |419.15|65.11|-17.58   |3.93     |15.38|
+|Sin outlier|362.27|64.82|-17.28   | 3.76    |12.97|
+
+
+
+
 ## **Analisis de varianza ANOVA**
 
 
