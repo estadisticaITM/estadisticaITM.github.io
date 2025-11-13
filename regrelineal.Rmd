@@ -285,6 +285,7 @@ SST: suma de cuadrados totales
 
 ## **Residuales**
 
+
 La diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ se llama residuo,se espera que los residuales tengan media cero y varianza de 1:
 $$\Large e_i= y_i- \hat{y_i}$$
 
@@ -296,33 +297,32 @@ grid.raster(IM4)
 ```
 
 
+
+A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
+son útiles para identificar valores atípicos, puntos influyentes y comprobar los supuestos del modelo.
+
 ### **Tipos de residuales**
 
-|Tipo de residuales|Definición |Fórmula|Función en R|
-|:------|:------------------|:------:|:------------:|
+|Tipo      |Definición |Fórmula|Función en R|
+|:------|:--------------------:|:------:|:------------:|
 |**Ordinarios**|Diferencia de cada valor $y_i$ de la variable respuesta y su estimación $\hat{y_i}$ |$e_i= y_i- \hat{y_i}$| residuals(mod)|
 |**Estandarizados**|Se calculan dividiendo el residual por su desviación estándar (MSE)|$$\large d_i=\frac{\hat \varepsilon_i}{\sqrt{MSE}}$$|rstandard(mod)|
-|**Estudentizados** También se les conoce como jackknife o residuos eliminados|se calculan utilizando una estimación de la desviación estándar del modelo, donde se elimina la observación actual. |$$ r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$ $h_{ii}$ **leverage** es una medida de ubicación del i-ésimo punto residual|rstandard(mod)|
+|**Estudentizados** o jackknife|Se calculan utilizando una estimación de la desviación estándar del modelo, donde se elimina la observación actual. |$$ r_i=\frac{\hat \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}$$|rstudent(mod)|
 |**Pearson**|Se utilizan en modelos lineales generalizados, como la regresión logística y de Poisson |$$r_i=\frac{obs_i-esp_i}{\sqrt{var\quad esp_i}}$$|residuals(mod, type='pearson')|
 |**PRESS**|Mide el error que comete el modelo al predecir un punto que nunca ha visto|$$e_i=y_i-\hat y_{i(-i)}$$||
 
-**leverage o apalancamiento** 
+
+
+En general un residual grande, es cuando su valor es superior a 3 $(|di| > 3)$, lo cual  es indicio de una observación atípica potencial.
+
+
+**Leverage o apalancamiento $h_{ii}$** 
 
 Es una medida de qué tan lejos están los valores de las variables predictoras (variables X) de una observación específica con respecto a la media de todas las variables predictoras.
 
-**Formas de interpretar** 
+*Alto Leverage:*  Se encuentra geográficamente lejos del "centro de gravedad" de los datos en el espacio de las variables X. Estos puntos tienen un peso desproporcionado en la determinación de la pendiente de la línea de regresión.
 
-**Punto Distante:** Punto con un valor inusual o extremo para la variable independiente (X), en comparación con el resto de los datos.
-
-**Influencia Potencial:** El apalancamiento mide el potencial que tiene esa observación para influir o "jalar" la línea de regresión hacia sí misma.
-
-**Solo depende de X:** depende únicamente de los valores de las variables predictoras (X), no del valor observado de la variable dependiente (Y).
-
-**Interpretación **
-
-**Alto Leverage:**  Se encuentra geográficamente lejos del "centro de gravedad" de los datos en el espacio de las variables X. Estos puntos tienen un peso desproporcionado en la determinación de la pendiente de la línea de regresión.
-
-**Bajo Leverage:** Cerca de la media de las variables X y tiene un impacto mínimo en la forma final de la línea de regresión.
+*Bajo Leverage:* Cerca de la media de las variables X y tiene un impacto mínimo en la forma final de la línea de regresión.
 
 
 **Fórmula**
@@ -332,18 +332,16 @@ El apalancamiento para la  i-ésima observación, denotado como $h_{ii}$, es el 
 $$h_{ii}=\frac{1}{n}+\frac{(x_i-\bar x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}$$
 
 
-**Otros diagnósticos**
+**Otros diagnósticos con residuales grandes**
 
-El leverage es diferente de otros conceptos como:
+|**Nombre**|       **Definición**|**Leverage**|
+|:------|:----------------------:|:------------:|
+|**Outlier**|Es un valor atípico, con un valor Y (variable dependiente) inusual o extremo, |Bajo o alto.|
+|**Punto Influyente o de balanceo**| Punto que si se elimina del conjunto de datos, cambiaría los coeficientes (pendiente e intercepto) del modelo de regresión, la función de R que los estima es influence.measures(mod)| Alto| 
 
-**Outlier (Valor Atípico)**tiene un valor Y (variable dependiente) inusual o extremo, resultando en un residuo grande (gran diferencia entre el valor observado y el predicho). Puede tener leverage bajo o alto.
-
-**Punto Influyente o de balanceo** Punto que si se elimina del conjunto de datos, cambiaría los coeficientes (pendiente e intercepto) del modelo de regresión. Puede tener un leverage alto como un residuo grande.
 
 
-A través del análisis de residuales del modelo es posible detectar la linealidad entre las variables X e Y, la media cero, varianza constante, incorrelación, y normalidad.
-son útiles para identificar valores atípicos, puntos influyentes y comprobar los supuestos del modelo.
-En general un residual grande, es cuando su valor es superior a 3 $(|di| > 3)$, lo cual  es indicio de una observación atípica potencial.
+
 
 
 ### Normalidad en los residuales
@@ -402,25 +400,7 @@ La función bptest del paquete lmtest Zeileis and Hothorn (2002) implementa esta
 
 
 
-_____________________________________________________________________________________________________________________________________________________________________________________________________
-
-
-**En R**
-
-Sea *modelo* un objeto de regresión del tipo lm(), las medidas de observaciones influenciales y de balanceo pueden obtenerse mediante la siguiente función:
-
-influence.measures(modelo)
-
-
-
-Los residuales estandarizados y los estudentizados pueden obtenerse, respectivamente,mediante las funciones:
-
-
-rstandard(modelo)
-
-rstudent(modelo)
-
-________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 **Ejemplo**
 

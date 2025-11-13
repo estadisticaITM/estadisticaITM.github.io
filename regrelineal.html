@@ -823,18 +823,22 @@ class="math inline">\(\hat{y_i}\)</span> se llama residuo,se espera que
 los residuales tengan media cero y varianza de 1: <span
 class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
 <p><img src="regrelineal_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto 0 auto auto;" /></p>
+<p>A través del análisis de residuales del modelo es posible detectar la
+linealidad entre las variables X e Y, la media cero, varianza constante,
+incorrelación, y normalidad. son útiles para identificar valores
+atípicos, puntos influyentes y comprobar los supuestos del modelo.</p>
 <div id="tipos-de-residuales" class="section level3">
 <h3><strong>Tipos de residuales</strong></h3>
 <table>
 <colgroup>
 <col width="14%" />
-<col width="39%" />
+<col width="42%" />
 <col width="16%" />
-<col width="29%" />
+<col width="28%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Tipo de residuales</th>
+<th align="left">Tipo</th>
 <th align="left">Definición</th>
 <th align="center">Fórmula</th>
 <th align="center">Función en R</th>
@@ -859,15 +863,12 @@ estándar (MSE)</td>
 <td align="center">rstandard(mod)</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>Estudentizados</strong> También se les conoce
-como jackknife o residuos eliminados</td>
-<td align="left">se calculan utilizando una estimación de la desviación
+<td align="left"><strong>Estudentizados</strong> o jackknife</td>
+<td align="left">Se calculan utilizando una estimación de la desviación
 estándar del modelo, donde se elimina la observación actual.</td>
 <td align="center"><span class="math display">\[ r_i=\frac{\hat
-\varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> <span
-class="math inline">\(h_{ii}\)</span> <strong>leverage</strong> es una
-medida de ubicación del i-ésimo punto residual</td>
-<td align="center">rstandard(mod)</td>
+\varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span></td>
+<td align="center">rstudent(mod)</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Pearson</strong></td>
@@ -888,51 +889,57 @@ y_{i(-i)}\]</span></td>
 </tr>
 </tbody>
 </table>
-<p><strong>leverage o apalancamiento</strong></p>
+<p>En general un residual grande, es cuando su valor es superior a 3
+<span class="math inline">\((|di| &gt; 3)\)</span>, lo cual es indicio
+de una observación atípica potencial.</p>
+<p><strong>Leverage o apalancamiento <span
+class="math inline">\(h_{ii}\)</span></strong></p>
 <p>Es una medida de qué tan lejos están los valores de las variables
 predictoras (variables X) de una observación específica con respecto a
 la media de todas las variables predictoras.</p>
-<p><strong>Formas de interpretar</strong></p>
-<p><strong>Punto Distante:</strong> Punto con un valor inusual o extremo
-para la variable independiente (X), en comparación con el resto de los
-datos.</p>
-<p><strong>Influencia Potencial:</strong> El apalancamiento mide el
-potencial que tiene esa observación para influir o “jalar” la línea de
-regresión hacia sí misma.</p>
-<p><strong>Solo depende de X:</strong> depende únicamente de los valores
-de las variables predictoras (X), no del valor observado de la variable
-dependiente (Y).</p>
-<p><strong>Interpretación </strong></p>
-<p><strong>Alto Leverage:</strong> Se encuentra geográficamente lejos
-del “centro de gravedad” de los datos en el espacio de las variables X.
+<p><em>Alto Leverage:</em> Se encuentra geográficamente lejos del
+“centro de gravedad” de los datos en el espacio de las variables X.
 Estos puntos tienen un peso desproporcionado en la determinación de la
 pendiente de la línea de regresión.</p>
-<p><strong>Bajo Leverage:</strong> Cerca de la media de las variables X
-y tiene un impacto mínimo en la forma final de la línea de
-regresión.</p>
+<p><em>Bajo Leverage:</em> Cerca de la media de las variables X y tiene
+un impacto mínimo en la forma final de la línea de regresión.</p>
 <p><strong>Fórmula</strong></p>
 <p>El apalancamiento para la i-ésima observación, denotado como <span
 class="math inline">\(h_{ii}\)</span>, es el i-ésimo elemento diagonal
 de la matriz hat H.</p>
 <p><span class="math display">\[h_{ii}=\frac{1}{n}+\frac{(x_i-\bar
 x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}\]</span></p>
-<p><strong>Otros diagnósticos</strong></p>
-<p>El leverage es diferente de otros conceptos como:</p>
-<p><strong>Outlier (Valor Atípico)</strong>tiene un valor Y (variable
-dependiente) inusual o extremo, resultando en un residuo grande (gran
-diferencia entre el valor observado y el predicho). Puede tener leverage
-bajo o alto.</p>
-<p><strong>Punto Influyente o de balanceo</strong> Punto que si se
-elimina del conjunto de datos, cambiaría los coeficientes (pendiente e
-intercepto) del modelo de regresión. Puede tener un leverage alto como
-un residuo grande.</p>
-<p>A través del análisis de residuales del modelo es posible detectar la
-linealidad entre las variables X e Y, la media cero, varianza constante,
-incorrelación, y normalidad. son útiles para identificar valores
-atípicos, puntos influyentes y comprobar los supuestos del modelo. En
-general un residual grande, es cuando su valor es superior a 3 <span
-class="math inline">\((|di| &gt; 3)\)</span>, lo cual es indicio de una
-observación atípica potencial.</p>
+<p><strong>Otros diagnósticos con residuales grandes</strong></p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="53%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Nombre</strong></th>
+<th align="center"><strong>Definición</strong></th>
+<th align="center"><strong>Leverage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Outlier</strong></td>
+<td align="center">Es un valor atípico, con un valor Y (variable
+dependiente) inusual o extremo,</td>
+<td align="center">Bajo o alto.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Punto Influyente o de balanceo</strong></td>
+<td align="center">Punto que si se elimina del conjunto de datos,
+cambiaría los coeficientes (pendiente e intercepto) del modelo de
+regresión, la función de R que los estima es
+influence.measures(modelo)</td>
+<td align="center">Alto</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="normalidad-en-los-residuales" class="section level3">
 <h3>Normalidad en los residuales</h3>
@@ -983,16 +990,6 @@ significa que los residuales no son función de las covariables del
 modelo.</p>
 <p>La función bptest del paquete lmtest Zeileis and Hothorn (2002)
 implementa esta prueba.</p>
-<hr />
-<p><strong>En R</strong></p>
-<p>Sea <em>modelo</em> un objeto de regresión del tipo lm(), las medidas
-de observaciones influenciales y de balanceo pueden obtenerse mediante
-la siguiente función:</p>
-<p>influence.measures(modelo)</p>
-<p>Los residuales estandarizados y los estudentizados pueden obtenerse,
-respectivamente,mediante las funciones:</p>
-<p>rstandard(modelo)</p>
-<p>rstudent(modelo)</p>
 <hr />
 <p><strong>Ejemplo</strong></p>
 <p>Los siguientes datos proveen las velocidades en metros por segundo y
