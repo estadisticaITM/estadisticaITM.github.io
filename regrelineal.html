@@ -541,7 +541,20 @@ hijo.</p></li>
 <li><p>Aproximar la calificación obtenida en una materia según el numero
 de horas de estudio semanal.</p></li>
 </ul>
-<p><strong>Estimador de mínimos cuadrados</strong></p>
+<div id="métodos-de-estimación-del-modelo-de-regresión-lineal"
+class="section level2">
+<h2><strong>Métodos de estimación del modelo de regresión
+lineal</strong></h2>
+<p><strong>Estimación por máxima verosimilitud</strong> En inglés
+maximum likelihood estimation (MLE), Consiste en encontrar los
+parámetros del modelo (coeficientes) que maximizan la probabilidad de
+obtener los datos observados.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+L\left(\beta_0, \beta_1, \sigma^2 | X_1, \ldots, X_n, Y_1, \ldots, Y_n
+\right)&amp;=&amp;\prod_{i=1}^n\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2\right\}\\
+&amp;=&amp;\frac{1}{(2\pi\sigma^2)^{n/2}}\exp\left\{-\frac{1}{2\sigma^2}\sum_{i=1}^n(Y_i-\beta_0-\beta_1X_i)^2\right\}
+\end{eqnarray*}\]</span></p>
+<p><strong>Estimador de mínimos cuadrados ordinarios</strong></p>
 <p>Gauss propuso en 1809 el método de mínimos cuadrados para obtener los
 valores <span class="math inline">\(\hat{\beta_0}, \hat
 {\beta_1}\)</span> que mejor se ajustan a los datos:</p>
@@ -569,8 +582,75 @@ intercepto</p></li>
 <li><p><span class="math inline">\(\Large \beta_1\)</span> es el valor
 de la pendiente, es decir que por cada unidad que aumente variable
 independiente, la variable dependiente aumenta <span
-class="math inline">\(\beta_1\)</span> unidades</p></li>
+class="math inline">\(\beta_1\)</span> unidades.</p></li>
 </ul>
+<p><strong>Otros tipos de mínimos cuadrados</strong></p>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="54%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Tipo: Mínimos cuadrados</strong></th>
+<th align="left"><strong>Definición</strong></th>
+<th align="center"><strong>Usos</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Lineales u Ordinarios (MCO)</strong></td>
+<td align="left">Se utiliza en modelos con coeficientes lineales, como
+RLS o RLM. El objetivo es encontrar la línea en RLS o hiperplano en RLM,
+que minimice la suma de los residuos al cuadrado.</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Ponderados</strong></td>
+<td align="left">Funciona cuando la varianza de los residuos no es
+constante. Asigna pesos a cada punto de datos, dan más importancia a las
+observaciones con menor varianza.</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Robustos</strong></td>
+<td align="left">Diseñados para conjuntos de datos con valores atípicos.
+Utiliza técnicas iterativas de reponderación para reducir el impacto de
+los valores atípicos.</td>
+<td align="center">En modelación financiera, para tener en cuenta las
+caídas extremas del mercado.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>No lineales</strong></td>
+<td align="left">se utilizan cuando en modelos no lineales en sus
+coeficientes. requieren técnicas de optimización iterativas (como
+Gauss-Newton o Levenberg-Marquardt) para encontrar el mejor ajuste.</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Totales</strong></td>
+<td align="left">útiles cuando la variable independiente como la
+dependiente tienen errores de medición. Este método tiene en cuenta los
+errores en todas las variables.</td>
+<td align="center">útil en astronomía y la geodesia (Medición de la
+forma de la Tierra y el campo gravitatorio), donde los errores de
+medición están presentes en todas las dimensiones debido al alto nivel
+de precisión necesario.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Generalizados</strong></td>
+<td align="left">Aborda los retos que plantean los residuos
+correlacionados. los datos se transforman para aplicar los MCO,
+utilizando la matriz de covarianza de los residuos para tener en cuenta
+su estructura de correlación, lo que permite unas estimaciones más
+precisas de los parámetros.</td>
+<td align="center">Útil en el análisis de series temporales, en los que
+los residuos presentan autocorrelación</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="medidas-de-dependencia-lineal" class="section level2">
 <h2><strong>Medidas de dependencia lineal</strong></h2>
 <div id="covarianza" class="section level3">
@@ -747,15 +827,17 @@ class="math display">\[\Large e_i= y_i- \hat{y_i}\]</span></p>
 <h3><strong>Tipos de residuales</strong></h3>
 <table>
 <colgroup>
-<col width="18%" />
-<col width="59%" />
-<col width="21%" />
+<col width="14%" />
+<col width="39%" />
+<col width="16%" />
+<col width="29%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Tipo de residuales</th>
 <th align="left">Definición</th>
 <th align="center">Fórmula</th>
+<th align="center">Función en R</th>
 </tr>
 </thead>
 <tbody>
@@ -766,6 +848,7 @@ class="math inline">\(y_i\)</span> de la variable respuesta y su
 estimación <span class="math inline">\(\hat{y_i}\)</span></td>
 <td align="center"><span class="math inline">\(e_i= y_i-
 \hat{y_i}\)</span></td>
+<td align="center">residuals(mod)</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Estandarizados</strong></td>
@@ -773,36 +856,35 @@ estimación <span class="math inline">\(\hat{y_i}\)</span></td>
 estándar (MSE)</td>
 <td align="center"><span class="math display">\[\large d_i=\frac{\hat
 \varepsilon_i}{\sqrt{MSE}}\]</span></td>
+<td align="center">rstandard(mod)</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>Estudentizados</strong></td>
-<td align="left"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left">También se les conoce como jackknife o residuos
-eliminados</td>
+<td align="left"><strong>Estudentizados</strong> También se les conoce
+como jackknife o residuos eliminados</td>
 <td align="left">se calculan utilizando una estimación de la desviación
 estándar del modelo, donde se elimina la observación actual.</td>
 <td align="center"><span class="math display">\[ r_i=\frac{\hat
 \varepsilon_i}{\sqrt{MSE(1-h_{ii})}}\]</span> <span
 class="math inline">\(h_{ii}\)</span> <strong>leverage</strong> es una
 medida de ubicación del i-ésimo punto residual</td>
+<td align="center">rstandard(mod)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><strong>Pearson</strong></td>
 <td align="left">Se utilizan en modelos lineales generalizados, como la
 regresión logística y de Poisson</td>
 <td align="center"><span
 class="math display">\[r_i=\frac{obs_i-esp_i}{\sqrt{var\quad
 esp_i}}\]</span></td>
+<td align="center">residuals(mod, type=‘pearson’)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><strong>PRESS</strong></td>
 <td align="left">Mide el error que comete el modelo al predecir un punto
 que nunca ha visto</td>
 <td align="center"><span class="math display">\[e_i=y_i-\hat
 y_{i(-i)}\]</span></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
@@ -811,52 +893,46 @@ y_{i(-i)}\]</span></td>
 predictoras (variables X) de una observación específica con respecto a
 la media de todas las variables predictoras.</p>
 <p><strong>Formas de interpretar</strong></p>
-<p><strong>Punto Distante:</strong></p>
-<p>Un punto con un alto apalancamiento es un punto de datos que tiene un
-valor inusual o extremo para la(s) variable(s) independiente(s) (X), en
-comparación con el resto de los datos.</p>
-<p><strong>Influencia Potencial:</strong></p>
-<p>El apalancamiento mide el potencial que tiene esa observación para
-influir o “jalar” la línea de regresión hacia sí misma.</p>
-<p><strong>Solo depende de X:</strong></p>
-<p>El apalancamiento de un punto depende únicamente de los valores de
-las variables predictoras (X), no del valor observado de la variable
+<p><strong>Punto Distante:</strong> Punto con un valor inusual o extremo
+para la variable independiente (X), en comparación con el resto de los
+datos.</p>
+<p><strong>Influencia Potencial:</strong> El apalancamiento mide el
+potencial que tiene esa observación para influir o “jalar” la línea de
+regresión hacia sí misma.</p>
+<p><strong>Solo depende de X:</strong> depende únicamente de los valores
+de las variables predictoras (X), no del valor observado de la variable
 dependiente (Y).</p>
 <p><strong>Interpretación </strong></p>
-<p><strong>Alto Leverage:</strong></p>
-<p>Se encuentra geográficamente lejos del “centro de gravedad” de los
-datos en el espacio de las variables X. Estos puntos tienen un peso
-desproporcionado en la determinación de la pendiente de la línea de
-regresión.</p>
-<p><strong>Bajo Leverage:</strong></p>
-<p>Un punto con bajo leverage está cerca de la media de las variables X
+<p><strong>Alto Leverage:</strong> Se encuentra geográficamente lejos
+del “centro de gravedad” de los datos en el espacio de las variables X.
+Estos puntos tienen un peso desproporcionado en la determinación de la
+pendiente de la línea de regresión.</p>
+<p><strong>Bajo Leverage:</strong> Cerca de la media de las variables X
 y tiene un impacto mínimo en la forma final de la línea de
 regresión.</p>
-<p><strong>Diferencia con “Outlier” e “Influential Point”</strong></p>
-<p>Es importante diferenciar el leverage de otros conceptos:</p>
-<p><strong>Outlier (Valor Atípico)</strong> Un outlier tiene un valor Y
-(variable dependiente) inusual o extremo, resultando en un residuo
-grande (gran diferencia entre el valor observado y el predicho). Puede
-tener leverage bajo o alto.</p>
-<p><strong>Punto Influyente</strong></p>
-<p>Es un punto que, si se elimina del conjunto de datos, cambiaría
-significativamente los coeficientes (pendiente e intercepto) del modelo
-de regresión. Un punto influyente suele tener tanto un leverage alto
-como un residuo grande.</p>
 <p><strong>Fórmula</strong></p>
 <p>El apalancamiento para la i-ésima observación, denotado como <span
 class="math inline">\(h_{ii}\)</span>, es el i-ésimo elemento diagonal
 de la matriz hat H.</p>
 <p><span class="math display">\[h_{ii}=\frac{1}{n}+\frac{(x_i-\bar
 x)^2}{\sum_{j=1}^n (x_j-\bar x)^2}\]</span></p>
+<p><strong>Otros diagnósticos</strong></p>
+<p>El leverage es diferente de otros conceptos como:</p>
+<p><strong>Outlier (Valor Atípico)</strong>tiene un valor Y (variable
+dependiente) inusual o extremo, resultando en un residuo grande (gran
+diferencia entre el valor observado y el predicho). Puede tener leverage
+bajo o alto.</p>
+<p><strong>Punto Influyente o de balanceo</strong> Punto que si se
+elimina del conjunto de datos, cambiaría los coeficientes (pendiente e
+intercepto) del modelo de regresión. Puede tener un leverage alto como
+un residuo grande.</p>
 <p>A través del análisis de residuales del modelo es posible detectar la
 linealidad entre las variables X e Y, la media cero, varianza constante,
 incorrelación, y normalidad. son útiles para identificar valores
-atípicos, puntos influyentes y comprobar los supuestos del modelo, en
+atípicos, puntos influyentes y comprobar los supuestos del modelo. En
 general un residual grande, es cuando su valor es superior a 3 <span
 class="math inline">\((|di| &gt; 3)\)</span>, lo cual es indicio de una
-observación atípica potencial. Son más eficaces para detectar puntos de
-datos influyentes.</p>
+observación atípica potencial.</p>
 </div>
 <div id="normalidad-en-los-residuales" class="section level3">
 <h3>Normalidad en los residuales</h3>
@@ -907,21 +983,6 @@ significa que los residuales no son función de las covariables del
 modelo.</p>
 <p>La función bptest del paquete lmtest Zeileis and Hothorn (2002)
 implementa esta prueba.</p>
-<p><strong>Otros diagnósticos</strong></p>
-<p>Además de la validación de supuestos debemos chequear la presencia
-de:</p>
-<ul>
-<li>Observaciones atípicas</li>
-<li>Puntos de balanceo</li>
-<li>Observaciones influyentes</li>
-</ul>
-<p>Que corresponden a observaciones alejadas del resto de la muestra,
-que afectan los coeficientes de regresión estimados <span
-class="math inline">\(\beta_0, \beta_1\)</span>, y las medidas de bondad
-de ajuste como o sı el <span class="math inline">\(R^2\)</span>.</p>
-<p>Para detectar estas observaciones atípicas construimos residuales
-escalados, los residuales divididos por una estimación de su error
-estándar.</p>
 <hr />
 <p><strong>En R</strong></p>
 <p>Sea <em>modelo</em> un objeto de regresión del tipo lm(), las medidas
@@ -1036,6 +1097,7 @@ bptest(md)</code></pre>
 ## 
 ## data:  md
 ## BP = 3.2149, df = 1, p-value = 0.07297</code></pre>
+<pre class="r"><code>### estimación de los tipos de residuales</code></pre>
 </div>
 </div>
 <div id="analisis-de-varianza-anova" class="section level2">
