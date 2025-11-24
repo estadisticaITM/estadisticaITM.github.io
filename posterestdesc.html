@@ -13,7 +13,7 @@
 
 <title>Poster de estadística descriptiva</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -438,10 +435,10 @@ rúbrica, donde cada item vale 3 puntos:</p>
 <table>
 <colgroup>
 <col width="20%" />
+<col width="17%" />
+<col width="30%" />
 <col width="16%" />
-<col width="25%" />
-<col width="16%" />
-<col width="20%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -454,11 +451,11 @@ rúbrica, donde cada item vale 3 puntos:</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">_______</td>
-<td align="center">__________</td>
-<td align="center">______</td>
-<td align="center">_________</td>
-<td align="center">_____</td>
+<td align="center">________________</td>
+<td align="center">________________</td>
+<td align="center">________________________</td>
+<td align="center">______________</td>
+<td align="center">______________</td>
 </tr>
 <tr class="even">
 <td align="center"></td>
@@ -468,14 +465,14 @@ rúbrica, donde cada item vale 3 puntos:</p>
 <td align="center"></td>
 </tr>
 <tr class="odd">
-<td align="center"></td>
+<td align="center"><strong>Estadistica</strong></td>
 <td align="center">2. Clasificación de variables</td>
 <td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
 </tr>
 <tr class="even">
-<td align="center"></td>
+<td align="center"><strong>Descriptiva</strong></td>
 <td align="center">3. Boxplot</td>
 <td align="center">comparativo de los niveles de factor de DOS variables
 cualitativas con una variable cuantitativa</td>
@@ -492,7 +489,7 @@ nada</td>
 <td align="center"></td>
 </tr>
 <tr class="even">
-<td align="center">Descriptiva</td>
+<td align="center">En excel</td>
 <td align="center">5. Grafico de barras con top 5</td>
 <td align="center"></td>
 <td align="center"></td>
@@ -506,182 +503,127 @@ nada</td>
 <td align="center"></td>
 </tr>
 <tr class="even">
-<td align="center"></td>
+<td align="center">si tiene la variable tiempo</td>
 <td align="center">7. Gráfico de series de tiempo</td>
-<td align="center">cuando sea el caso, si tiene la variable tiempo</td>
+<td align="center"></td>
 <td align="center"></td>
 <td align="center"></td>
 </tr>
 <tr class="odd">
-<td align="center">_______</td>
-<td align="center">__________</td>
-<td align="center">______</td>
-<td align="center">_________</td>
-<td align="center">_____</td>
-</tr>
-<tr class="even">
-<td align="center">Regresión lineal</td>
-<td align="center">8. Diagrama de dispersión (DD)</td>
-<td align="center">Contiene el DD discriminando con colores los niveles
-de una variable cualitativa, con la línea recta superpuesta, para cada
-uno de los niveles del factor</td>
-<td align="center">Contiene el DD sin discriminar los niveles de una
-variable cualitativa, superpone una línea recta</td>
-<td align="center">Contiene el DD sin línea recta superpuesta</td>
-</tr>
-<tr class="odd">
-<td align="center">Regresión lineal</td>
-<td align="center">9. Ajuste de la recta de regresión lineal</td>
-<td align="center">Ajusta un modelo de regresión lineal
-multivariado</td>
-<td align="center">Ajusta un modelo de regresión lineal simple</td>
-<td align="center">No ajusta ningún modelo</td>
-</tr>
-<tr class="even">
+<td align="center">___________</td>
+<td align="center">________</td>
 <td align="center">_________________</td>
-<td align="center">______</td>
-<td align="center">_________</td>
-<td align="center">_____</td>
-<td align="center">_______</td>
+<td align="center">____________</td>
+<td align="center">______________</td>
 </tr>
-<tr class="odd">
-<td align="center">Medidas de tendencia central y de variabilidad
-(MTCV)</td>
-<td align="center">10. MTCV</td>
+<tr class="even">
+<td align="center"><strong>Medidas de tendencia central y de
+variabilidad (MTCV)</strong></td>
+<td align="center">8. MTCV</td>
 <td align="center">Tabla con las MTCV de una variable cuantitativa según
 los niveles del factor de una variable cualitativa (media, sd, cv)</td>
 <td align="center">Tabla con las MTCV de una variable cuantitativa</td>
 <td align="center"></td>
 </tr>
-<tr class="even">
-<td align="center">_______</td>
-<td align="center">__________</td>
-<td align="center">______</td>
-<td align="center">_________</td>
-<td align="center">_____</td>
-</tr>
 <tr class="odd">
-<td align="center">video de exposición (VE)</td>
-<td align="center">11. VE</td>
+<td align="center">___________</td>
+<td align="center">_______________</td>
+<td align="center">_________________</td>
+<td align="center">____________</td>
+<td align="center">______________</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Video de exposición</strong></td>
+<td align="center">9.</td>
 <td align="center">El vídeo se escucha y se visualiza correctamente, con
 una duración entre 5 y 10 minutos, está subido en youtube.</td>
 <td align="center">El vídeo dura menos de 5 min o más de 10 min, video
 no está en youtube</td>
 <td align="center">no entrega video</td>
 </tr>
-<tr class="even">
-<td align="center">_______</td>
-<td align="center">__________</td>
-<td align="center">______</td>
-<td align="center">_________</td>
-<td align="center">_____</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="adicionales-estadística-general" class="section level2">
-<h2><strong>Adicionales estadística general</strong></h2>
-<table>
-<colgroup>
-<col width="17%" />
-<col width="9%" />
-<col width="43%" />
-<col width="12%" />
-<col width="17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>subtema</th>
-<th align="center">Ítem</th>
-<th>Excelente (3 ptos)</th>
-<th>Bueno (2 ptos)</th>
-<th>Regular (1 pto)</th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td>_______</td>
-<td align="center">____</td>
-<td>__________________</td>
-<td>_____</td>
-<td>__________</td>
-</tr>
-<tr class="even">
-<td><strong>Intervalos de confianza para una muestra(IC)</strong></td>
-<td align="center">12</td>
-<td>Para la media de una muestra, con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>___________</td>
-<td align="center">___________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-</tr>
-<tr class="even">
-<td></td>
-<td align="center">13</td>
-<td>Para la varianza de una muestra, con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>____________</td>
-<td align="center">_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-</tr>
-<tr class="even">
-<td></td>
-<td align="center">14</td>
-<td>Para la proporción de una muestra, con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>____________</td>
-<td align="center">_______________</td>
-<td>_________</td>
-<td>____________</td>
-<td>___________</td>
-</tr>
-<tr class="even">
-<td><strong>Intervalos de confianza para dos muestras(IC)</strong></td>
-<td align="center">15</td>
-<td>Para la diferencia de medias,con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td align="center">16</td>
-<td>Para la razón de varianzas, con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>__________</td>
-<td align="center">___________</td>
-<td>_________</td>
-<td>_________________</td>
-<td>___________</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td align="center">17</td>
-<td>Para la diferencia de proporciones, con editor de texto digital</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>___________</td>
+<td align="center">_______________________</td>
+<td align="center">________</td>
+<td align="center">_______________________</td>
 <td align="center">____________</td>
-<td>_________</td>
-<td>________________</td>
-<td>___________</td>
+<td align="center">______________</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Intervalos</strong></td>
+<td align="center">10.</td>
+<td align="center">Para la media de una muestra</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>de confianza (IC)</strong></td>
+<td align="center">11.</td>
+<td align="center">Para la varianza de una muestra</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Para una muestra</strong></td>
+<td align="center">12.</td>
+<td align="center">Para la proporción de una muestra</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">___________</td>
+<td align="center">________</td>
+<td align="center">________________________</td>
+<td align="center">_______________________</td>
+<td align="center">______________</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">13.</td>
+<td align="center">Para la diferencia de medias</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>IC para dos muestras</strong></td>
+<td align="center">14.</td>
+<td align="center">Para la razón de varianzas</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Usa editor de ecuaciones word</td>
+<td align="center">15.</td>
+<td align="center">Para la diferencia de proporciones</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">________________________</td>
+<td align="center">________</td>
+<td align="center">_________________</td>
+<td align="center">_________________</td>
+<td align="center">______________</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Pruebas de hipótesis (PH)</strong></td>
+<td align="center">16.</td>
+<td align="center">Para la proporción</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Usa editor de ecuaciones word</td>
+<td align="center">17.</td>
+<td align="center">Para la diferencia de proporciones</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">______________________</td>
+<td align="center">_______________</td>
+<td align="center">_________________</td>
+<td align="center">____________</td>
+<td align="center">______________</td>
 </tr>
 </tbody>
 </table>
@@ -690,7 +632,7 @@ no está en youtube</td>
 <h2><strong>Entregables</strong></h2>
 <ul>
 <li><p>Video de 5 minutos con la exposición del poster</p></li>
-<li><p>Pdf con el póster de solo 1 página</p></li>
+<li><p>Pdf con el póster</p></li>
 </ul>
 <p><strong>Observaciones</strong></p>
 <ul>
