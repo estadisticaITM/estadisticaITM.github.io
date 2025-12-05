@@ -13,7 +13,7 @@
 
 <title>Distribuciones muestrales y el teorema de límite central</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -363,24 +360,10 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="pagin2.html">
-    <span class="fa fa-bar-chart-o"></span>
-     
-    Diseño de exp
-  </a>
-</li>
-<li>
-  <a href="pagin3.html">
-    <span class="fa fa-pie-chart"></span>
-     
-    Análisis multivariado
-  </a>
-</li>
-<li>
   <a href="medi.html">
     <span class="fa fa-puzzle-piece"></span>
      
-    Medición
+    Metrología
   </a>
 </li>
 <li>
@@ -575,7 +558,8 @@ Entonces, la probabilidad de que 100 clientes puedan ser atendidos en
 menos de 2 horas es aproximadamente 0.0013. Esta pequeña probabilidad
 indica que es prácticamente imposible atender a 100 clientes en menos de
 2 horas.</p>
-<p><strong>Ejemplo 3</strong> ## Distribución t</p>
+<p><strong>Ejemplo 3</strong></p>
+<p><strong>Distribución t</strong></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/wGSutshZDiA?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla t-student" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 <p>Recordemos que en la distribución t <span
@@ -624,11 +608,8 @@ class="math inline">\(\mu\)</span> con probabilidad de 0.95?</p></li>
 </div>
 <div id="distribución-muestral-de-la-varianza" class="section level2">
 <h2>Distribución muestral de la varianza</h2>
-</div>
-<div id="distribución-chi-cuadrado" class="section level2">
-<h2>Distribución Chi cuadrado</h2>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
+<p><strong>Distribución Chi cuadrado</strong>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 <p>Un buen estimador de <span class="math inline">\(\sigma^2\)</span> es
 la varianza muestral <span class="math inline">\(S^2\)</span>, la
 distribución asociada a esta distribución es la chi cuadrado.</p>
@@ -641,11 +622,11 @@ x &lt;- rchisq(50000, df = 5)
 hist(x, 
      freq = FALSE, 
      xlim = c(0,16), 
-     ylim = c(0,0.2))</code></pre>
-<p><img src="tlc_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>curve(dchisq(x, df = 5), from = 0, to = 15, 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 5), from = 0, to = 15, 
       n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
-<p><img src="tlc_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="tlc_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <hr />
 <p><strong>Teorema</strong></p>
 <p>Se desea hacer una inferencia acerca de la varianza poblacional
@@ -700,11 +681,11 @@ x &lt;- rchisq(50000, df = 9)
 hist(x, 
      freq = FALSE, 
      xlim = c(0,30), 
-     ylim = c(0,0.2))</code></pre>
-<p><img src="tlc_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>curve(dchisq(x, df = 9), from = 0, to = 30, 
+     ylim = c(0,0.2))
+  
+curve(dchisq(x, df = 9), from = 0, to = 30, 
       n = 5000, col= &#39;red&#39;, lwd=2, add = T)</code></pre>
-<p><img src="tlc_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="tlc_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><span class="math display">\[16.919=\frac{(n-1)
 b_2}{\sigma^2}\]</span> <span class="math display">\[16.919=\frac{(9)
 b_2}{\sigma^2}\]</span> como <span
@@ -813,9 +794,8 @@ class="section level1">
 class="section level2">
 <h2>Distribución de la diferencia de medias muestrales</h2>
 <p><img src="imagen/difmed.png" width="408" style="display: block; margin: auto;" /></p>
-</div>
-<div id="varianzas-poblacionales-conocidas" class="section level2">
-<h2>1. Varianzas poblacionales conocidas</h2>
+<div id="varianzas-poblacionales-conocidas" class="section level3">
+<h3>1. Varianzas poblacionales conocidas</h3>
 <p><span class="math display">\[(\bar X - \bar Y) \sim N \left (
 (\mu_x-\mu_y), \frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}\right)
 \]</span></p>
@@ -867,8 +847,8 @@ máximo 0.2 rem superior a la media de la muestra B.</p>
 \]</span></p>
 </div>
 <div id="varianzas-poblacionales-desconocidas-pero-iguales"
-class="section level2">
-<h2>2. Varianzas poblacionales desconocidas pero iguales</h2>
+class="section level3">
+<h3>2. Varianzas poblacionales desconocidas pero iguales</h3>
 <p>La condición de igualdad de varianzas debe comprobarse o
 afirmarse.</p>
 <p><span class="math display">\[\sigma^2_x=\sigma^2_y\]</span></p>
@@ -930,10 +910,10 @@ tres unidades superior a la media muestral de B.</p>
 </div>
 <div
 id="varianzas-poblacionales-desconocidas-o-no-con-tamaños-de-muestra-n_130-y-n_230"
-class="section level2">
-<h2>3. Varianzas poblacionales desconocidas o no con tamaños de muestra
+class="section level3">
+<h3>3. Varianzas poblacionales desconocidas o no con tamaños de muestra
 <span class="math inline">\(n_1&gt;30\)</span> y <span
-class="math inline">\(n_2&gt;30\)</span></h2>
+class="math inline">\(n_2&gt;30\)</span></h3>
 <p><span class="math display">\[(\bar X - \bar Y) \sim N \left (
 (\mu_x-\mu_y), \frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}\right) \]</span> El
 estadístico es:</p>
@@ -942,14 +922,15 @@ Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}}}
 \longrightarrow N(0,1)\]</span></p>
 </div>
 <div id="varianzas-poblacionales-desconocidas-y-diferentes"
-class="section level2">
-<h2>4. Varianzas poblacionales desconocidas y diferentes</h2>
+class="section level3">
+<h3>4. Varianzas poblacionales desconocidas y diferentes</h3>
 <p>El estadístico es:</p>
 <p><span class="math display">\[T=\frac{(\bar X - \bar
 Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}}}
 \longrightarrow t_g\]</span> los grados de libertad están dados por:</p>
 <p><span
 class="math display">\[g=\frac{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{\left(\frac{s_1^2}{n_1}\right)^2}{n_1+1}+\frac{\left(\frac{s_2^2}{n_2}\right)^2}{n_2+1}}-2\]</span></p>
+</div>
 </div>
 <div id="distribución-de-la-diferencia-de-proporciones-muestrales"
 class="section level2">

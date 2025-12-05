@@ -127,7 +127,9 @@ $$\Large P\left(Z \leq \frac{-0.3}{0.1}\right )=P\left(Z \leq -3\right )=0.001$$
 Entonces, la probabilidad de que 100 clientes puedan ser atendidos en menos de 2 horas es aproximadamente 0.0013. Esta pequeña probabilidad indica que es prácticamente imposible atender a 100 clientes en menos de 2 horas.
 
 **Ejemplo 3**
-## Distribución t
+
+
+**Distribución t**
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/wGSutshZDiA?list=PLfX5C7cc6LRIpDDiblGwkJX2k9XG0GU5p" title="Uso de la tabla t-student" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -167,12 +169,8 @@ ____________________________________________________________________________
 
 ## Distribución muestral de la varianza
 
-## Distribución Chi cuadrado
+**Distribución Chi cuadrado**
 <iframe width="280" height="160" src="https://www.youtube.com/embed/teJ2of7rtKo" title="Uso de la tabla chi-cuadrada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-
-
 
 
 
@@ -365,7 +363,7 @@ b) ¿Cuál es la probabilidad de que la proporción muestral sea mas de 0.4?
 knitr::include_graphics("imagen/difmed.png")
 ```
 
-## 1. Varianzas poblacionales conocidas 
+### 1. Varianzas poblacionales conocidas 
 
 $$(\bar X - \bar Y) \sim N \left ( (\mu_x-\mu_y), \frac{\sigma^2_x}{n_x}+\frac{\sigma^2_y}{n_y}\right) $$
 
@@ -398,7 +396,7 @@ $$P(\bar X_A \leq \bar Y_B+0.2) $$
 
 $$P(\bar X - \bar Y \leq 0.2) $$
 
-## 2. Varianzas poblacionales desconocidas pero iguales
+### 2. Varianzas poblacionales desconocidas pero iguales
 
 La condición de igualdad de varianzas debe comprobarse o afirmarse.
 
@@ -443,7 +441,7 @@ pt(1.53, 25, lower.tail = F)
 ```
 
 
-## 3. Varianzas poblacionales desconocidas o no con tamaños de muestra $n_1>30$ y $n_2>30$
+### 3. Varianzas poblacionales desconocidas o no con tamaños de muestra $n_1>30$ y $n_2>30$
 
 
 
@@ -452,7 +450,7 @@ El estadístico es:
 
 $$Z=\frac{(\bar X - \bar Y)-(\mu_x-\mu_y)}{\sqrt{\frac{S^2_x}{n_x}+\frac{S^2_y}{n_y}}} \longrightarrow N(0,1)$$
 
-## 4. Varianzas poblacionales desconocidas y diferentes
+### 4. Varianzas poblacionales desconocidas y diferentes
 
 El estadístico es:
 
