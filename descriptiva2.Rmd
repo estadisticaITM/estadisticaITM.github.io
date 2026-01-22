@@ -66,6 +66,9 @@ Colección de información organizada, de tal modo que sea fácilmente accesible
 **Almacenamiento de bases de datos**
 
 Las bases de datos Surgen de la necesidad de almacenar la información a través de la historia
+```{r, echo=F, fig.cap='Puntos atípicos', fig.asp=0.3, fig.align='center'}
+knitr::include_graphics("imagen/escritura.png")
+```
 
 1. Piedras, madera y arcilla, donde se escribian jeroglíficos.
 
@@ -73,9 +76,6 @@ Las bases de datos Surgen de la necesidad de almacenar la información a través
 
 -La cultura inca que escribian en un sistema de cuerdas anudadas.
 
-```{r, echo=F, fig.cap='Puntos atípicos', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/escritura.png")
-```
 
 
 2. Papel
@@ -96,7 +96,7 @@ A lo largo de la historia se ha buscado el sistema más pequeño físicamente co
 
 
 ```{r, echo=F, fig.cap='Discos duros en la nube', fig.asp=0.3, fig.align='center'}
-knitr::include_graphics("imagen/nube.png")
+
 ```
 
 
@@ -426,6 +426,7 @@ A continuación se ilustra un resumen del número de cilindros que cada uno de l
 
 library(knitr)
 library(ggplot2)
+library(dplyr)
 
 #Base de datos
 head(mtcars)
@@ -459,7 +460,6 @@ boxplot(mtcars[,1]~mtcars[,2],xlab="cilindros",ylab="mpg",col ="pink")
 -  R Core Team (2019). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 
-
-## Amazon, Jeff Bezos y la colección de datos | DW Documental
+**Amazon, Jeff Bezos y la colección de datos | DW Documental**
 
 <div style="text-align: center;"><iframe width="200" height="100" src="https://www.youtube.com/embed/UzGemfwaTT8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
