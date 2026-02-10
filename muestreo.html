@@ -13,7 +13,7 @@
 
 <title>Muestreo</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -615,7 +612,7 @@ esto tiene como beneficio una estimación más exacta.</p>
 <ol style="list-style-type: decimal">
 <li>En una muestra aleatoria de 500 familias que tienen televisores en
 la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a
-HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener
+HBO. ¿Qué tan grande se requiere que sea una muestra si se quiere tener
 95% de confianza de que la estimación de P esté dentro de 0.02?</li>
 </ol>
 <p>Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria
@@ -642,7 +639,7 @@ la muestra? Rta/n=44</p></li>
 <li><p>Un ingeniero de control de calidad quiere estimar la fracción de
 elementos defectuosos en un gran lote de lámparas. Por la experiencia,
 cree que la fracción real de defectuosos tendría que andar alrededor de
-0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere
+0.2. ¿Qué tan grande tendría que seleccionar la muestra si se quiere
 estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de
 confianza fe 95%? rta/6147</p></li>
 </ol>
@@ -739,7 +736,54 @@ ocupación.</p>
 <p>Objetivo: reducir la variabilidad que se puede observar dentro de
 cada estrato</p>
 <p>Dentro de cada estrato se puede proceder con muestreo simple.</p>
+<p>Los individuos de un estrato tienen unas características propias que
+los diferencian de los otros estratos. Por lo tanto, un individuo solo
+puede estar en un único estrato.</p>
 <p><img src="imagen/estrato.png" width="500" height="250" /></p>
+<p><strong>Afijación</strong></p>
+<p>Es el proceso de distribuir el tamaño total de la muestra n entre los
+diferentes estratos de una población en el muestreo aleatorio
+estratificado.</p>
+<p>Busca optimizar la representatividad según el tamaño (afijación
+proporcional) o la varianza (afijación de Neyman/óptima) de cada
+estrato, asegurando estimaciones más precisas.</p>
+<p>La distribución de unidades muestrales en cada estrato depende de
+diversos factores, pero hay tres de ellos que son fundamentales:</p>
+<ul>
+<li><p>La importancia o peso de los estratos Wh.</p></li>
+<li><p>La variabilidad de la variable de estudio S en cada
+estrato.</p></li>
+<li><p>Los costes de muestrear una unidad en el estrato h.</p></li>
+</ul>
+<p><strong>Métodos principales de afijación:</strong></p>
+<p><strong>Afijación Proporcional:</strong> La muestra se distribuye
+según el peso de cada estrato en la población. Si un estrato representa
+el 46% de la población, recibirá el 46% de la muestra total.</p>
+<p><strong>Afijación de Neyman :</strong> Distribuye la muestra
+maximizando la precisión (minimizando la varianza) para un tamaño de
+muestra dado. Asigna más unidades a los estratos con mayor variabilidad
+(S) y mayor tamaño N.</p>
+<p>En el caso de que no haya diferencias entre los costes de un estrato
+a otro (Ch = c para todo h = 1, . . . , L) se tiene un caso particular
+de la afijaci´on ´optima Es decir, el coste total solo depende de n y no
+de cu´al sea la afijaci´on y no se impone ninguna restricción en cuanto
+a quienes sean los nh.</p>
+<p><strong>Afijación óptima</strong> Si las var son iguales la
+asignacion proporcional es la mas recomendable, pero si varıan mucho es
+mejor la afijacion optima. Cuanto mayor sea S mayor sera la proporcion
+de unidades que se deben tomar del estrato h.</p>
+<p><strong>Afijación Uniforme:</strong> Asigna el mismo número de
+elementos a cada estrato, independientemente de su tamaño
+poblacional.</p>
+<p><strong>Pasos para el cálculo:</strong></p>
+<ul>
+<li><p>Determinar tamaño poblacional N y número de estratos <span
+class="math inline">\(\(N_{h}\)\)</span></p></li>
+<li><p>Calcular el tamaño total de la muestra n usando nivel de
+confianza y margen de error.Aplicar la afijación (proporcional:</p></li>
+</ul>
+<p><span class="math display">\[n_{h}=n\times
+\frac{N_{h}}{N}\]</span></p>
 </div>
 <div id="muestreo-por-conglomerados" class="section level3">
 <h3>Muestreo por conglomerados</h3>
@@ -776,7 +820,7 @@ fijo entre sujetos es:</p>
 elegimos al azar un número entre 1 y k=5. Suponemos que nos sale <span
 class="math inline">\(i=2\)</span>. La muestra resultado mediante el
 muestreo sistemático será:</p>
-<p><img src="imagen/SISTEMA2.png" width="500" height="250" /></p>
+<p><img src="imagen/sistema2.png" width="500" height="250" /></p>
 <p><strong>Ejemplo</strong></p>
 <p><img src="imagen/ENCUESTAS%20PRESIDENCIALES.png" width="500" height="250" /></p>
 <p><strong>Ficha técnica de la encuesta</strong></p>

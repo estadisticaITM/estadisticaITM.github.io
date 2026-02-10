@@ -234,7 +234,7 @@ Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene co
 
 **Tamaños de muestra para la proporción**
 
-1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. �Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
+1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. ¿Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
 
 Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
 
@@ -244,7 +244,7 @@ Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confian
 
 3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
 
-4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. �Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147
+4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. ¿Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147
 
 ## Tipos de muestreo
 
@@ -341,13 +341,63 @@ knitr::include_graphics("imagen/bingo.png")
 
 Antes de seleccionar los elementos, se agrupa la población muestral en estratos de acuerdo a una variable importante: edad, género, ocupación.
 
+
+
+
+
 Objetivo: reducir la variabilidad que se puede observar dentro de cada estrato
 
 Dentro de cada estrato se puede proceder con muestreo simple.
 
+
+Los individuos de un estrato tienen unas características propias que los diferencian de los otros estratos. Por lo tanto, un individuo solo puede estar en un único estrato.
+
+
 ```{r echo=F, out.height=250, out.width=500}
 knitr::include_graphics("imagen/estrato.png")
 ```
+
+
+**Afijación**
+
+Es el proceso de distribuir el tamaño total de la muestra n entre los diferentes estratos de una población en el muestreo aleatorio estratificado. 
+
+Busca optimizar la representatividad según el tamaño (afijación proporcional) o la varianza (afijación de Neyman/óptima) de cada estrato, asegurando estimaciones más precisas.
+
+La distribución de unidades muestrales en cada estrato depende de diversos factores, pero hay tres de ellos que son fundamentales:
+
+- La importancia o peso de los estratos Wh.
+
+- La variabilidad de la variable de estudio S en cada estrato.
+
+- Los costes de muestrear una unidad en el estrato h.
+
+**Métodos principales de afijación:**
+
+**Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total.
+
+**Afijación de Neyman :** Distribuye la muestra maximizando la precisión (minimizando la varianza) para un tamaño de muestra dado. Asigna más unidades a los estratos con mayor variabilidad (S)  y mayor tamaño N.
+
+En el caso de que no haya diferencias entre los costes de un estrato a otro (Ch = c para todo h = 1, . . . , L) se tiene un caso particular de la afijaci´on ´optima Es decir, el coste total solo depende de n y no de cu´al sea la afijaci´on y no se impone ninguna restricción en cuanto a quienes sean los nh.
+
+
+
+
+**Afijación óptima**
+Si las var son iguales la asignacion proporcional es la mas recomendable,
+pero si varıan mucho es mejor la afijacion optima. Cuanto mayor sea S mayor sera la proporcion de unidades que se deben tomar del estrato h.
+
+**Afijación Uniforme:** Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
+
+**Pasos para el cálculo:**
+
+- Determinar tamaño poblacional N y número de estratos $\(N_{h}\)$
+
+- Calcular el tamaño total de la muestra n usando nivel de confianza y margen de error.Aplicar la afijación (proporcional:
+
+$$n_{h}=n\times \frac{N_{h}}{N}$$
+
+
 
 ### Muestreo por conglomerados
 
