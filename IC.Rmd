@@ -11,17 +11,54 @@ output:
 
 <a href="tallerIC.html" target="_blank"> Taller intervalos de confianza</a>
 
-```{r echo=FALSE,out.width="80%",fig.align='center'}
-library(DiagrammeR)
-# A minimal plot
-DiagrammeR("graph LR;
+# Definiciones
 
-           A[Población]-->|Distribuciones de muestreo| B[Muestra]
-           B-->|Inferencial IC PH| A
-           
-           ")
 
+**Nivel de confianza y de significancia**
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=PLfX5C7cc6LRJtliCBd6lfRKKkmakQUxe3" title="¿Qué es el Nivel de Confianza de un intervalo?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Nivel de confianza:
+
+- Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado.
+
+- Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.
+
+
+```{r echo=F, out.height=250, out.width=350, fig.align='center'}
+knitr::include_graphics("imagen/nc.png")
 ```
+
+
+## Nivel de significancia:
+
+- Máximo error que se comete en la estimación usualmente se denota como $\alpha$.
+
+- Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta. 
+
+
+$$\Large NC+\alpha=1$$
+Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \theta_{sup}$ con un NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
+
+
+```{r echo=F, out.height=250, out.width=350,  fig.align='center'}
+knitr::include_graphics("imagen/ns.png")
+```
+
+
+
+
+
+$$\Huge NC+\alpha=100\% $$
+
+|NC  |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
+|:--:|:---------:|----------|:---------:|--------------|
+|90% |10%        |          |         5%|              |
+|95% | 5%        |          |     2.5%  |              |
+|99% |1%         |          |   0.05%   |              |
+
+
+
 
 
 # Estimación por intervalo
@@ -39,72 +76,7 @@ knitr::include_graphics("imagen/ic.png")
 ```
 
  
-# Intervalo de confianza
-
-La inferencia estadística consiste en aquellos métodos por medio de los cuales se realizan inferencias o generalizaciones acerca de una población. 
-
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/cMqgG_lBC2U" title="Estimación puntual y estimación por intervalo para un parámetro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-# Nivel de confianza y de significancia
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU" title="¿Qué es el Nivel de Confianza de un intervalo?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-**Nivel de confianza:** 
-
-Probabilidad máxima con la que se asegura que un parámetro a estimar se encuentra dentro de un intervalo estimado.
-
-**Nivel de significancia:**
-
-Máximo error que se comete en la estimación usualmente se denota como $\alpha$.
-
-$$\Large NC+\alpha=1$$
-Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \theta_{sup}$ con un NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
-
-
-
-## Nivel de confianza
-
-
-**Qué es el nivel de confianza**
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado.
-
-- Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.
-
-
-```{r echo=F, out.height=250, out.width=350}
-knitr::include_graphics("imagen/nc.png")
-```
-
-**Ejemplo:**
-
-Si se construyen 100 intervalos de la forma $\hat \theta_{inf}< \theta <\hat \theta_{sup}$ con un nivel de confianza NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
-
-## Nivel de significancia 
-
-- Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta. 
-
-- Máximo error que queremos cometer en nuestra estimación o contraste.
-
-
-```{r echo=F, out.height=250, out.width=350}
-knitr::include_graphics("imagen/ns.png")
-```
-
-
-$$\Huge NC+\alpha=100\% $$
-
-|NC  |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
-|----|-----------|----------|-----------|--------------|
-|90% |10%        |          |         5%|              |
-|95% | 5%        |          |     2.5%  |              |
-|99% |1%         |          |   0.05%   |              |
-
-
-
-
+ 
 # Intervalo de confianza para una muestra
 
 ## IC para la media
