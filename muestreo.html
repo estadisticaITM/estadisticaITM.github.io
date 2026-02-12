@@ -392,36 +392,65 @@ div.tocify {
 </div>
 
 
-<p><img src="imagen/muestreo.png" width="350" height="300" /></p>
-<div id="definiciones" class="section level1">
-<h1>Definiciones</h1>
-<p><strong>Población:</strong> conjunto de elementos sobre los que
-queremos hacer afirmaciones.</p>
-<p><strong>Muestra:</strong> subconjunto de la población que se extrae
-para ser estudiado</p>
-<p><strong>Parámetro:</strong> número derivado del estudio de una
-variable estadística de toda una población.</p>
-<p><strong>Estadístico:</strong> Medida de resumen numérica que se
-calcula a partir de la muestra</p>
-<p><strong>Unidad de observación:</strong> Objeto sobre el cual se
-realiza una medición. En poblaciones humanas las unidades de observación
-son los humanos.</p>
-<p><strong>Unidad de muestreo:</strong> Unidad donde realizamos el
-muestreo</p>
-<p><strong>Marco de muestreo:</strong> Lista de las unidades de
-muestreo</p>
+<p><img src="imagen/muestreo.png" width="350" style="display: block; margin: auto;" /></p>
+<p><strong>Definiciones</strong></p>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Palabra</strong></th>
+<th><strong>Definición</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Inferencia estadística</strong></td>
+<td>Es una rama de la estadística, que a través de métodos y muestras
+realiza inferencias o generalizaciones de una población.</td>
+</tr>
+<tr class="even">
+<td><strong>Población</strong></td>
+<td>Conjunto de elementos sobre los que queremos hacer afirmaciones</td>
+</tr>
+<tr class="odd">
+<td><strong>Muestra</strong></td>
+<td>subconjunto de la población que se extrae para ser estudiado</td>
+</tr>
+<tr class="even">
+<td><strong>Parámetro</strong></td>
+<td>Número derivado del estudio de una variable estadística de toda una
+población.</td>
+</tr>
+<tr class="odd">
+<td><strong>Estadístico</strong></td>
+<td>Medida de resumen numérica que se calcula a partir de la
+muestra</td>
+</tr>
+<tr class="even">
+<td><strong>Unidad de observación</strong></td>
+<td>Objeto sobre el cual se realiza una medición. En poblaciones humanas
+las unidades de observación son los humanos</td>
+</tr>
+<tr class="odd">
+<td><strong>Unidad de muestreo</strong></td>
+<td>Unidad donde realizamos el muestreo</td>
+</tr>
+<tr class="even">
+<td><strong>Marco de muestreo</strong></td>
+<td>Lista de las unidades de muestreo</td>
+</tr>
+</tbody>
+</table>
 <p>Las familias sirven como unidades de muestreo y las unidades de
 observación son los individuos que viven en una familia.</p>
-<p><strong>Inferencia estadística</strong></p>
-<p>Es una rama de la estadística, que a través de métodos y muestras
-realiza inferencias o generalizaciones de una población.</p>
 <p>El muestreo se realiza para obtener información acerca de los
 parámetros desconocidos de la población, por medio de un experimento que
 permite observar o medir las características de la población, de las
 cuáles se tiene incertidumbre.</p>
-<p><img src="imagen/mmm.png" width="300" height="150" /></p>
-<p><img src="imagen/tabla2.png" width="500" height="250" /></p>
-</div>
+<p><img src="imagen/tabla2.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <div id="muestreo" class="section level1">
 <h1>Muestreo</h1>
 <p><strong>Por qué una muestra</strong></p>
@@ -443,6 +472,8 @@ Inferencia Estadística.</p></li>
 tamaño muestral</p></li>
 <li><p>Variabilidad de las características a medir</p></li>
 </ul>
+<p><strong>Teorema</strong></p>
+<hr />
 <p>Se dice que las variables aleatorias <span class="math inline">\(X_1,
 X_2, . . . , X_n\)</span> forman una muestra aleatoria simple de tamaño
 n si:</p>
@@ -458,73 +489,79 @@ muestra se llaman estadístico .</p></li>
 <p>Es decir las <span class="math inline">\(X_i\)</span> son
 independientes e idénticamente distribuidas (iid) <span
 class="math display">\[𝑋_i\sim  N(0,\sigma ^2)\]</span></p>
-<div id="nivel-de-confianza" class="section level2">
-<h2>Nivel de confianza</h2>
-<p><strong>Qué es el nivel de confianza</strong></p>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<ul>
-<li><p>Probabilidad máxima con la que podríamos asegurar que el
-parámetro a estimar se encuentra dentro de nuestro intervalo
-estimado.</p></li>
-<li><p>Representa el porcentaje de intervalos que tomados de 100
-muestras independientes distintas contienen en realidad el valor
-desconocido.</p></li>
-</ul>
-<p><img src="imagen/nc.png" width="350" height="250" /></p>
-<p><strong>Ejemplo:</strong></p>
-<p>Si se construyen 100 intervalos de la forma <span
-class="math inline">\(\hat \theta_{inf}&lt; \theta &lt;\hat
-\theta_{sup}\)</span> con un nivel de confianza NC=0.97 entonces se
-espera que 97 de los 100 intervalos contengan el parámetro <span
-class="math inline">\(\theta\)</span></p>
-</div>
-<div id="nivel-de-significancia" class="section level2">
-<h2>Nivel de significancia</h2>
-<ul>
-<li><p>Es la probabilidad máxima que asumimos de forma voluntaria de
-equivocarnos al rechazar la hipótesis nula cuando en realidad es
-cierta.</p></li>
-<li><p>Máximo error que queremos cometer en nuestra estimación o
-contraste.</p></li>
-</ul>
-<p><img src="imagen/ns.png" width="350" height="250" /></p>
+<hr />
+<p><strong>Aspectos necesarios</strong></p>
+<table>
+<colgroup>
+<col width="46%" />
+<col width="53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Nivel de confianza NC</th>
+<th align="left">Nivel de significancia <span
+class="math inline">\(\alpha\)</span>.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Probabilidad máxima con la que podríamos asegurar que
+el parámetro a estimar se encuentra dentro de nuestro intervalo
+estimado</td>
+<td align="left">Es la probabilidad máxima que asumimos de forma
+voluntaria de equivocarnos al rechazar la hipótesis nula cuando en
+realidad es cierta</td>
+</tr>
+<tr class="even">
+<td align="left">Representa el porcentaje de intervalos que tomados de
+100 muestras independientes distintas contienen en realidad el valor
+desconocido.</td>
+<td align="left">Máximo error que se comete en la estimación</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\Large NC+\alpha=1\]</span> Si se
+construyen 100 intervalos de la forma <span class="math inline">\(\hat
+\theta_{inf}&lt;\theta&lt;\hat \theta_{sup}\)</span> con un NC=0.97
+entonces se espera que 97 de los 100 intervalos contengan el parámetro
+<span class="math inline">\(\theta\)</span></p>
+<p><img src="imagen/nc.png" width="350" height="250" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/ns.png" width="350" height="250" style="display: block; margin: auto;" /></p>
 <p><span class="math display">\[\Huge NC+\alpha=100\% \]</span></p>
 <table>
 <thead>
 <tr class="header">
-<th>NC</th>
-<th>NS <span class="math inline">\(\alpha\)</span></th>
-<th><span class="math inline">\(Z_\alpha\)</span></th>
-<th><span class="math inline">\(\alpha/2\)</span></th>
+<th align="center">NC</th>
+<th align="center">NS <span class="math inline">\(\alpha\)</span></th>
+<th align="center"><span class="math inline">\(Z_\alpha\)</span></th>
+<th align="center"><span class="math inline">\(\alpha/2\)</span></th>
 <th><span class="math inline">\(Z_{\alpha/2}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>90%</td>
-<td>10%</td>
-<td></td>
-<td>5%</td>
+<td align="center">90%</td>
+<td align="center">10%</td>
+<td align="center"></td>
+<td align="center">5%</td>
 <td></td>
 </tr>
 <tr class="even">
-<td>95%</td>
-<td>5%</td>
-<td></td>
-<td>2.5%</td>
+<td align="center">95%</td>
+<td align="center">5%</td>
+<td align="center"></td>
+<td align="center">2.5%</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>99%</td>
-<td>1%</td>
-<td></td>
-<td>0.05%</td>
+<td align="center">99%</td>
+<td align="center">1%</td>
+<td align="center"></td>
+<td align="center">0.05%</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div id="tamaños-de-muestra" class="section level2">
 <h2>Tamaños de muestra</h2>
 <div id="para-la-media" class="section level3">
@@ -532,13 +569,29 @@ contraste.</p></li>
 <p><strong>Video</strong></p>
 <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<p><strong>Población finita</strong></p>
-<p><span class="math display">\[\Large n=\frac{N*Z_{\alpha/2}^2*\sigma
-^2}{(N-1)e^2+Z_{\alpha/2}^2\sigma^2}\]</span> <strong>Población
-Infinita</strong></p>
-<p><span class="math display">\[\Large n=\frac{Z_{\alpha/2}^2\sigma
-^2}{e^2}\]</span></p>
-<p><img src="imagen/mj.png" width="500" height="300" /></p>
+<table>
+<colgroup>
+<col width="47%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Población finita</th>
+<th align="center">Población infinita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math display">\[\Large n=
+\frac{N*Z_{\alpha/2}^2*\sigma^2}{(N-1)e^2 +
+Z_{\alpha/2}^2\sigma^2}\]</span></td>
+<td align="center"><span class="math display">\[\Large
+n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>El error puede considerarse como</p>
+<p><span class="math display">\[e=(e\%)\bar x\]</span></p>
 <p><strong>Ejemplo población infinita</strong></p>
 <p>Se desea estimar el contenido medio de un refresco con un nivel de
 confianza del 93%, con un error máximo de estimación de 5 ml. Muestras
@@ -552,20 +605,34 @@ tamaño de muestra.</p>
 <p><span class="math inline">\(e=5 ml\)</span></p>
 <p><span class="math display">\[\Large n=\frac{Z_{\alpha/2}^2\sigma
 ^2}{e^2}\]</span></p>
-<p><span class="math display">\[\Large n=\frac{1.81^2* 12
-^2}{5^2}=19\]</span></p>
 <p>Se deben hacer mediciones en 19 refrescos.</p>
 </div>
 </div>
 <div id="para-la-proporción" class="section level2">
 <h2>Para la proporción</h2>
+<table>
+<colgroup>
+<col width="47%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Población finita</th>
+<th align="center">Población infinita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math display">\[\Large n=
+\frac{NZ_{\alpha/2}^2pq}{(N-1)e^2 +Z_{\alpha/2}^2pq}\]</span></td>
+<td align="center"><span class="math display">\[\Large
+n=\frac{Z_{\alpha/2}^2pq}{e^2}\]</span></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Video</strong></p>
 <p><iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-<p><strong>Población finita</strong> <span class="math display">\[\Large
-n=\frac{NZ_{\alpha/2}^2pq}{(N-1)e^2+Z_{\alpha/2}^2pq}\]</span></p>
-<p><strong>Población Infinita</strong> <span
-class="math display">\[\Large n=\frac{Z_{\alpha/2}^2pq}{e^2}\]</span>
-<strong>Ejemplo población infinita</strong></p>
+<p><strong>Ejemplo población infinita</strong></p>
 <p>Se desea estimar con un nivel de confianza del 97%, el porcentaje de
 clientes que compraría un nuevo producto, para esto se toma una muestra
 previa de 80 clientes, de los cuales 65 manifestarían que compraría el
@@ -647,7 +714,7 @@ confianza fe 95%? rta/6147</p></li>
 </div>
 <div id="tipos-de-muestreo" class="section level2">
 <h2>Tipos de muestreo</h2>
-<p><img src="imagen/mues.png" width="500" height="350" /></p>
+<p><img src="imagen/mues.png" width="500" height="350" style="display: block; margin: auto;" /></p>
 </div>
 <div id="muestreo-no-probabilístico" class="section level2">
 <h2>Muestreo no-Probabilístico</h2>
@@ -677,6 +744,8 @@ reglas predeterminadas.</p>
 <li><p>Encuestas web</p></li>
 </ul>
 <p><img src="imagen/mj.png" width="500" height="300" /></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/yW9DARfzBeA" title="🔍👉 MUESTREO por CONVENIENCIA &amp; MUESTREO POR CONVENIENCIA EJEMPLOS + VENTAJAS Y DESVENTAJAS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 </div>
 <div id="muestreo-por-cuotas-o-estratos" class="section level3">
 <h3>Muestreo por cuotas o estratos</h3>
@@ -693,6 +762,8 @@ estudio. Así, asegura que la participación de cada género es
 proporcional a la población que representan. A esos porcentajes elegidos
 se les llama cuotas.</p>
 <p><img src="imagen/mc.png" width="400" height="300" /></p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/PmFVVqlKGng" title="🔍👉 #4 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 </div>
 <div id="muestreo-bola-de-nieve" class="section level3">
 <h3>Muestreo bola de nieve</h3>
@@ -739,7 +810,7 @@ cada estrato</p>
 <p>Los individuos de un estrato tienen unas características propias que
 los diferencian de los otros estratos. Por lo tanto, un individuo solo
 puede estar en un único estrato.</p>
-<p><img src="imagen/estrato.png" width="500" height="250" /></p>
+<p><img src="imagen/estrato.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <p><strong>Afijación</strong></p>
 <p>Es el proceso de distribuir el tamaño total de la muestra n entre los
 diferentes estratos de una población en el muestreo aleatorio
@@ -750,10 +821,11 @@ estrato, asegurando estimaciones más precisas.</p>
 <p>La distribución de unidades muestrales en cada estrato depende de
 diversos factores, pero hay tres de ellos que son fundamentales:</p>
 <ul>
-<li><p>La importancia o peso de los estratos Wh.</p></li>
+<li><p>La importancia o peso de los estratos <span
+class="math inline">\(W_h\)</span>.</p></li>
 <li><p>La variabilidad de la variable de estudio S en cada
 estrato.</p></li>
-<li><p>Los costes de muestrear una unidad en el estrato h.</p></li>
+<li><p>Los costos de muestrear una unidad en el estrato h.</p></li>
 </ul>
 <p><strong>Métodos principales de afijación:</strong></p>
 <p><strong>Afijación Proporcional:</strong> La muestra se distribuye
@@ -762,28 +834,225 @@ el 46% de la población, recibirá el 46% de la muestra total.</p>
 <p><strong>Afijación de Neyman :</strong> Distribuye la muestra
 maximizando la precisión (minimizando la varianza) para un tamaño de
 muestra dado. Asigna más unidades a los estratos con mayor variabilidad
-(S) y mayor tamaño N.</p>
-<p>En el caso de que no haya diferencias entre los costes de un estrato
-a otro (Ch = c para todo h = 1, . . . , L) se tiene un caso particular
-de la afijaci´on ´optima Es decir, el coste total solo depende de n y no
-de cu´al sea la afijaci´on y no se impone ninguna restricción en cuanto
-a quienes sean los nh.</p>
-<p><strong>Afijación óptima</strong> Si las var son iguales la
-asignacion proporcional es la mas recomendable, pero si varıan mucho es
-mejor la afijacion optima. Cuanto mayor sea S mayor sera la proporcion
-de unidades que se deben tomar del estrato h.</p>
+(S) y mayor tamaño N. busca estimar el tamaño de muestra de manera
+independiente entre cada uno de los estratos.</p>
+<table>
+<colgroup>
+<col width="37%" />
+<col width="20%" />
+<col width="41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Parametro</th>
+<th align="center">Media</th>
+<th align="center">proporcion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">estimador</td>
+<td align="center"><span class="math display">\[n_o=\frac{W_h
+S_h^2}{\left(\frac{E_h}{z_h}\right)^2}\]</span></td>
+<td align="center"><span class="math display">\[n_o=\frac{W_h P_h
+Q_h}{\left(\frac{E_h}{z_h}\right)^2}\]</span></td>
+</tr>
+<tr class="even">
+<td align="center">corrección</td>
+<td align="center"><span
+class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}\]</span></td>
+<td align="center"><span
+class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}\]</span></td>
+</tr>
+</tbody>
+</table>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/l7dagrCzoGA" title="🔍👉 #7 AFIJACIÓN de NEYMAN / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p><strong>Ejemplo</strong> Se requiere estimar un tamaño de muestra
+estratificado de neyman, para saber que proporción de estudiantes usan
+transporte público (p) por facultad:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Facultad</th>
+<th align="center">conteo</th>
+<th align="center">W %</th>
+<th align="center">p%</th>
+<th align="center">q%</th>
+<th align="center">tamaño</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Artes</td>
+<td align="center">2865</td>
+<td align="center">0.102</td>
+<td align="center">0.4</td>
+<td align="center">0.6</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">Económicas</td>
+<td align="center">11962</td>
+<td align="center">0.425</td>
+<td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">exactas</td>
+<td align="center">3225</td>
+<td align="center">0.115</td>
+<td align="center">0.3</td>
+<td align="center">0.7</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Ingenierías</td>
+<td align="center">10096</td>
+<td align="center">0.358</td>
+<td align="center">0.6</td>
+<td align="center">0.4</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">total</td>
+<td align="center">28148</td>
+<td align="center">100</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[n_o=\frac{W_h P_h
+Q_h}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*0.4*0.6}{\left(\frac{0.1}{1.96}\right)^2}=9.4
+\]</span></p>
+<p><span
+class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{9.4}{1+\frac{9.4}{2865}}=9\]</span></p>
+<p><span
+class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}\]</span>||||</p>
+<p><strong>Ejemplo</strong> Se requiere estimar un tamaño de muestra
+estratificado de neyman por facultad (estrato), para realizar un estudio
+acerca de la edad promedio de los estudiantes</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Facultad</th>
+<th align="center">conteo</th>
+<th align="center">%(<span class="math inline">\(W_h\)</span>)</th>
+<th align="center"><span class="math inline">\(\bar x\)</span> edad
+piloto</th>
+<th align="center">s piloto</th>
+<th align="center">tamaño</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Artes</td>
+<td align="center">2865</td>
+<td align="center">10.2</td>
+<td align="center">25.2</td>
+<td align="center">6.8</td>
+<td align="center">11</td>
+</tr>
+<tr class="even">
+<td align="center">Económicas</td>
+<td align="center">11962</td>
+<td align="center">42.5</td>
+<td align="center">27.1</td>
+<td align="center">7.2</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">exactas</td>
+<td align="center">3225</td>
+<td align="center">11.5</td>
+<td align="center">23.9</td>
+<td align="center">6.6</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Ingenierías</td>
+<td align="center">10096</td>
+<td align="center">35.8</td>
+<td align="center">23.8</td>
+<td align="center">6.6</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">total</td>
+<td align="center">28148</td>
+<td align="center">100</td>
+<td align="center">25.4</td>
+<td align="center">7</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Artes</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Parametro</th>
+<th align="left">valor</th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Nivel de confianza</td>
+<td align="left">95%</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Nivel de significancia<span
+class="math inline">\(\alpha\)</span></td>
+<td align="left">5%</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\alpha\)</span>/2</td>
+<td align="left">2.5%</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Z_{\alpha/2}\)</span></td>
+<td align="left">1.96</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">e%</td>
+<td align="left">5%</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E=(e\%)*\bar
+x\)</span></td>
+<td align="left">5%*25.2=1.26</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[n_a=\frac{W_h
+S_h^2}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*6.8^2}{\left(\frac{1.26}{1.96}\right)^2}=11.4\]</span>
+<span
+class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{11.4}{1+\frac{11.4}{2865}}=11\]</span></p>
+<p><strong>Afijación óptima</strong>: tiene en cuenta los costos de la
+investigación, costos unitarios. Se usa cuando las varianzas son altas.
+Cuanto mayor sea la varianza mayor será la proporcion de unidades que se
+deben tomar del estrato h.</p>
 <p><strong>Afijación Uniforme:</strong> Asigna el mismo número de
 elementos a cada estrato, independientemente de su tamaño
 poblacional.</p>
-<p><strong>Pasos para el cálculo:</strong></p>
-<ul>
-<li><p>Determinar tamaño poblacional N y número de estratos <span
-class="math inline">\(\(N_{h}\)\)</span></p></li>
-<li><p>Calcular el tamaño total de la muestra n usando nivel de
-confianza y margen de error.Aplicar la afijación (proporcional:</p></li>
-</ul>
-<p><span class="math display">\[n_{h}=n\times
-\frac{N_{h}}{N}\]</span></p>
 </div>
 <div id="muestreo-por-conglomerados" class="section level3">
 <h3>Muestreo por conglomerados</h3>
@@ -799,7 +1068,7 @@ conglomerados como las comunidades, provincias, ciudades</p>
 <p><img src="imagen/conglomerados.png" width="500" height="250" /></p>
 <p><strong>Diferencia entre el muestreo por conglomerados y
 estratos</strong></p>
-<p><img src="imagen/diff.png" width="500" height="250" /></p>
+<p><img src="imagen/diff.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 </div>
 <div id="muestreo-sistemático" class="section level3">
 <h3>Muestreo sistemático</h3>
@@ -810,7 +1079,7 @@ azar un número i entre 1 y k (utilizando los números aleatorios, sacar
 una bola de un bombo, etc.). La muestra será el elemento i y los
 elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a
 intervalos fijos k hasta conseguir los n sujetos:</p>
-<p><img src="imagen/sistema.png" width="500" height="250" /></p>
+<p><img src="imagen/sistema.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong> Se quiere saber la opinión sobre un profesor
 de una clase de 60 personas. Dichas personas están ordenadas por orden
 alfabético en la lista de alumnos de clase. Para realizar la encuesta,
@@ -820,9 +1089,9 @@ fijo entre sujetos es:</p>
 elegimos al azar un número entre 1 y k=5. Suponemos que nos sale <span
 class="math inline">\(i=2\)</span>. La muestra resultado mediante el
 muestreo sistemático será:</p>
-<p><img src="imagen/sistema2.png" width="500" height="250" /></p>
+<p><img src="imagen/sistema2.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong></p>
-<p><img src="imagen/ENCUESTAS%20PRESIDENCIALES.png" width="500" height="250" /></p>
+<p><img src="imagen/ENCUESTAS%20PRESIDENCIALES.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <p><strong>Ficha técnica de la encuesta</strong></p>
 <table>
 <colgroup>

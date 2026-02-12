@@ -11,45 +11,34 @@ output:
 ---
 
 
-```{r echo=F, out.height=300, out.width=350 }
+```{r echo=F,fig.align='center', out.width=350 }
 knitr::include_graphics("imagen/muestreo.png")
 ```
 
-# Definiciones
+**Definiciones**
 
-**Población:** conjunto de elementos sobre los que queremos hacer afirmaciones.
 
-**Muestra:** subconjunto de la población que se extrae para ser estudiado
-
-**Parámetro:** número derivado del estudio de una variable estadística de toda una población.
-
-**Estadístico:** Medida de resumen numérica que se calcula a partir de la muestra
-
-**Unidad de observación:** Objeto sobre el cual se realiza una medición. En poblaciones humanas las unidades de observación son los humanos.
-
-**Unidad de muestreo:** Unidad donde realizamos el muestreo
-
-**Marco de muestreo:** Lista de las unidades de muestreo
+|**Palabra**|**Definición**|
+|-------|-----------------|
+|**Inferencia estadística**|Es una rama de la estadística, que a través de métodos y muestras realiza inferencias o generalizaciones de una población.|
+|**Población**|Conjunto de elementos sobre los que queremos hacer afirmaciones|
+|**Muestra**|subconjunto de la población que se extrae para ser estudiado|
+|**Parámetro**|Número derivado del estudio de una variable estadística de toda una población.|
+|**Estadístico**|Medida de resumen numérica que se calcula a partir de la muestra|
+|**Unidad de observación** |Objeto sobre el cual se realiza una medición. En poblaciones humanas las unidades de observación son los humanos|
+|**Unidad de muestreo**|Unidad donde realizamos el muestreo|
+|**Marco de muestreo**|Lista de las unidades de muestreo|
 
 
 Las familias sirven como unidades de muestreo y las unidades
 de observación son los individuos que viven en una familia.
 
 
-
-**Inferencia estadística**
-
-Es una rama de la estadística, que a través de métodos y muestras realiza inferencias o generalizaciones de una población.
-
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
 
 
-```{r echo=F, out.height=150, out.width=300}
-knitr::include_graphics("imagen/mmm.png")
-```
 
-
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/tabla2.png")
 ```
 
@@ -80,6 +69,11 @@ Algunos Criterios Generales son;
 
 - Variabilidad de las características a medir
 
+
+**Teorema**
+
+
+________________________________________________________________________________________________________
  
 Se dice que las variables aleatorias $X_1, X_2, . . . , X_n$ forman una muestra aleatoria simple de tamaño n si:
 
@@ -92,45 +86,47 @@ Se dice que las variables aleatorias $X_1, X_2, . . . , X_n$ forman una muestra 
 Es decir las $X_i$ son independientes e idénticamente distribuidas (iid) $$𝑋_i\sim  N(0,\sigma ^2)$$
 
 
-## Nivel de confianza
+________________________________________________________________________________________________________
 
 
-**Qué es el nivel de confianza**
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/YDFzX4fT1BU?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado.
-
-- Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.
+**Aspectos necesarios**
 
 
-```{r echo=F, out.height=250, out.width=350}
+|Nivel de confianza NC |Nivel de significancia $\alpha$.|
+|:------------------|:---------------------|
+|Probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado|Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta|
+|Representa el porcentaje de intervalos que tomados de 100 muestras independientes distintas contienen en realidad el valor desconocido.|Máximo error que se comete en la estimación|
+
+
+
+$$\Large NC+\alpha=1$$
+Si se construyen 100 intervalos de la forma $\hat \theta_{inf}<\theta<\hat \theta_{sup}$ con un NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
+
+
+```{r echo=F, out.height=250, out.width=350, fig.align='center'}
 knitr::include_graphics("imagen/nc.png")
 ```
 
-**Ejemplo:**
-
-Si se construyen 100 intervalos de la forma $\hat \theta_{inf}< \theta <\hat \theta_{sup}$ con un nivel de confianza NC=0.97 entonces se espera que 97 de los 100 intervalos contengan el parámetro $\theta$
-
-## Nivel de significancia 
-
-- Es la probabilidad máxima que asumimos de forma voluntaria de equivocarnos al rechazar la hipótesis nula cuando en realidad es cierta. 
-
-- Máximo error que queremos cometer en nuestra estimación o contraste.
 
 
-```{r echo=F, out.height=250, out.width=350}
+
+
+
+
+```{r echo=F, out.height=250, out.width=350,  fig.align='center'}
 knitr::include_graphics("imagen/ns.png")
 ```
 
 
+
+
 $$\Huge NC+\alpha=100\% $$
 
-|NC  |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
-|----|-----------|----------|-----------|--------------|
-|90% |10%        |          |         5%|              |
-|95% | 5%        |          |     2.5%  |              |
-|99% |1%         |          |   0.05%   |              |
+|NC |NS $\alpha$|$Z_\alpha$| $\alpha/2$|$Z_{\alpha/2}$|
+|:-:|:---------:|:--------:|:---------:|--------------|
+|90%|10%        |          |         5%|              |
+|95%| 5%        |          |     2.5%  |              |
+|99%|1%         |          |   0.05%   |              |
 
 
 ## Tamaños de muestra
@@ -142,16 +138,15 @@ $$\Huge NC+\alpha=100\% $$
   <iframe width="280" height="158" src="https://www.youtube.com/embed/JX5m7o6rOAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  </div>
 
-**Población finita**
 
-$$\Large n=\frac{N*Z_{\alpha/2}^2*\sigma ^2}{(N-1)e^2+Z_{\alpha/2}^2\sigma^2}$$
-**Población Infinita**
 
-$$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$
+|Población finita|Población infinita|
+|:--------------:|:----------------:|
+|$$\Large n= \frac{N*Z_{\alpha/2}^2*\sigma^2}{(N-1)e^2 + Z_{\alpha/2}^2\sigma^2}$$|$$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$|
+El error puede considerarse como
 
-```{r echo=F, out.height=300, out.width=500}
-knitr::include_graphics("imagen/mj.png")
-```
+$$e=(e\%)\bar x$$
+
 
 
 **Ejemplo población infinita**
@@ -173,23 +168,22 @@ $e=5 ml$
 
 $$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$
 
-$$\Large n=\frac{1.81^2* 12 ^2}{5^2}=19$$
+
 
 Se deben hacer mediciones en 19 refrescos.
 
 ## Para la proporción
+
+|Población finita|Población infinita|
+|:--------------:|:----------------:|
+|$$\Large n= \frac{NZ_{\alpha/2}^2pq}{(N-1)e^2 +Z_{\alpha/2}^2pq}$$|$$\Large n=\frac{Z_{\alpha/2}^2pq}{e^2}$$|
+
 
 **Video**
 
   <iframe width="280" height="158" src="https://www.youtube.com/embed/4G2kKHX5O8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-
-**Población finita**
-$$\Large n=\frac{NZ_{\alpha/2}^2pq}{(N-1)e^2+Z_{\alpha/2}^2pq}$$
-
-**Población Infinita**
-$$\Large n=\frac{Z_{\alpha/2}^2pq}{e^2}$$
 **Ejemplo población infinita**
 
 Se desea estimar con un nivel de confianza del 97%, el porcentaje de clientes que compraría un nuevo producto, para esto se toma una muestra previa de 80 clientes, de los cuales 65 manifestarían que compraría el nuevo producto. Si se desea un error máximo de estimación del 6%. calcule el tamaño de muestra.
@@ -248,7 +242,7 @@ Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confian
 
 ## Tipos de muestreo
 
-```{r echo=F, out.height=350, out.width=500}
+```{r echo=F, out.height=350, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/mues.png")
 ```
 
@@ -285,7 +279,7 @@ Ejemplos:
 knitr::include_graphics("imagen/mj.png")
 ```
 
-
+<iframe width="280" height="160" src="https://www.youtube.com/embed/yW9DARfzBeA" title="🔍👉 MUESTREO por CONVENIENCIA &amp; MUESTREO POR CONVENIENCIA EJEMPLOS + VENTAJAS Y DESVENTAJAS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ### Muestreo por cuotas o estratos
 
 Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
@@ -299,6 +293,8 @@ Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo t
 ```{r echo=F, out.height=300, out.width=400}
 knitr::include_graphics("imagen/mc.png")
 ```
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/PmFVVqlKGng" title="🔍👉 #4 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ###  Muestreo bola de nieve
 
@@ -341,10 +337,6 @@ knitr::include_graphics("imagen/bingo.png")
 
 Antes de seleccionar los elementos, se agrupa la población muestral en estratos de acuerdo a una variable importante: edad, género, ocupación.
 
-
-
-
-
 Objetivo: reducir la variabilidad que se puede observar dentro de cada estrato
 
 Dentro de cada estrato se puede proceder con muestreo simple.
@@ -353,7 +345,7 @@ Dentro de cada estrato se puede proceder con muestreo simple.
 Los individuos de un estrato tienen unas características propias que los diferencian de los otros estratos. Por lo tanto, un individuo solo puede estar en un único estrato.
 
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/estrato.png")
 ```
 
@@ -366,36 +358,82 @@ Busca optimizar la representatividad según el tamaño (afijación proporcional)
 
 La distribución de unidades muestrales en cada estrato depende de diversos factores, pero hay tres de ellos que son fundamentales:
 
-- La importancia o peso de los estratos Wh.
+- La importancia o peso de los estratos $W_h$.
 
 - La variabilidad de la variable de estudio S en cada estrato.
 
-- Los costes de muestrear una unidad en el estrato h.
+- Los costos de muestrear una unidad en el estrato h.
 
 **Métodos principales de afijación:**
 
 **Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total.
 
 **Afijación de Neyman :** Distribuye la muestra maximizando la precisión (minimizando la varianza) para un tamaño de muestra dado. Asigna más unidades a los estratos con mayor variabilidad (S)  y mayor tamaño N.
+busca estimar el tamaño de muestra de manera independiente entre cada uno de los estratos.
 
-En el caso de que no haya diferencias entre los costes de un estrato a otro (Ch = c para todo h = 1, . . . , L) se tiene un caso particular de la afijaci´on ´optima Es decir, el coste total solo depende de n y no de cu´al sea la afijaci´on y no se impone ninguna restricción en cuanto a quienes sean los nh.
+|Parametro|Media|proporcion|
+|:-------:|:---:|:--------:|
+|estimador|$$n_o=\frac{W_h S_h^2}{\left(\frac{E_h}{z_h}\right)^2}$$|$$n_o=\frac{W_h P_h Q_h}{\left(\frac{E_h}{z_h}\right)^2}$$|
+|corrección|$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}$$|$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}$$||||
 
 
 
+<iframe width="280" height="160" src="https://www.youtube.com/embed/l7dagrCzoGA" title="🔍👉 #7 AFIJACIÓN de NEYMAN / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Afijación óptima**
-Si las var son iguales la asignacion proporcional es la mas recomendable,
-pero si varıan mucho es mejor la afijacion optima. Cuanto mayor sea S mayor sera la proporcion de unidades que se deben tomar del estrato h.
+**Ejemplo**
+Se requiere estimar un tamaño de muestra estratificado de neyman, para saber que proporción de estudiantes usan transporte público (p) por facultad:
+
+|Facultad   |conteo|W %   |p%  |q%|tamaño |
+|:---------:|:----:|:----:|:-:|:-:|:-----:|
+|Artes      |2865  |0.102 |0.4|0.6|   9   |
+|Económicas |11962 |0.425 |0.5|0.5|      |
+|exactas    |3225  |0.115 |0.3|0.7|      |
+|Ingenierías|10096 |0.358 |0.6|0.4|      |
+|   total   |28148 |100   |   |   |      |
+
+
+
+$$n_o=\frac{W_h P_h Q_h}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*0.4*0.6}{\left(\frac{0.1}{1.96}\right)^2}=9.4 $$
+
+
+
+$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{9.4}{1+\frac{9.4}{2865}}=9$$
+
+
+$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}$$||||
+
+**Ejemplo**
+Se requiere estimar un tamaño de muestra estratificado de neyman por facultad (estrato), para realizar un estudio acerca de la edad promedio de los estudiantes
+
+|Facultad   |conteo|%($W_h$)|$\bar x$ edad piloto|s piloto|tamaño|
+|:---------:|:----:|:------:|:------------------:|:------:|:----:|
+|Artes      |2865  |10.2    |25.2                |6.8     |11    |
+|Económicas |11962 |42.5    |   27.1             |7.2     |      |
+|exactas    |3225  |11.5    |    23.9            |6.6     |      |
+|Ingenierías|10096 |35.8    |     23.8           |6.6     |      |
+|   total   |28148 |100     |   25.4             |7       |      |
+
+
+________________________________________________________________________________________________________
+**Artes**
+
+|Parametro|valor|
+|:-|:-|:-|:-|
+|Nivel de confianza|95%  |||
+|Nivel de significancia$\alpha$|5%||   |
+|$\alpha$/2        |2.5% |||
+|$Z_{\alpha/2}$    |1.96 |||
+|e%                |5%   |||
+|$E=(e\%)*\bar x$  |5%*25.2=1.26|||
+
+$$n_a=\frac{W_h S_h^2}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*6.8^2}{\left(\frac{1.26}{1.96}\right)^2}=11.4$$
+$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{11.4}{1+\frac{11.4}{2865}}=11$$
+
+**Afijación óptima**: tiene en cuenta los costos de la investigación, costos unitarios. 
+Se usa cuando las varianzas son altas. Cuanto mayor sea la varianza mayor será la proporcion de unidades que se deben tomar del estrato h.
 
 **Afijación Uniforme:** Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
 
-**Pasos para el cálculo:**
-
-- Determinar tamaño poblacional N y número de estratos $\(N_{h}\)$
-
-- Calcular el tamaño total de la muestra n usando nivel de confianza y margen de error.Aplicar la afijación (proporcional:
-
-$$n_{h}=n\times \frac{N_{h}}{N}$$
 
 
 
@@ -414,7 +452,7 @@ knitr::include_graphics("imagen/conglomerados.png")
 
 **Diferencia entre el muestreo por conglomerados y estratos**
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/diff.png")
 ```
 
@@ -426,7 +464,7 @@ Sea k el entero más próximo a N/n.
 Escogemos al azar un número i entre 1 y k (utilizando los números aleatorios, sacar una bola de un bombo, etc.).
 La muestra será el elemento i y los elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a intervalos fijos k hasta conseguir los n sujetos:
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/sistema.png")
 ```
 
@@ -437,7 +475,7 @@ $$k=N/n     =60/12=5$$
 Ahora elegimos al azar un número entre 1 y k=5. Suponemos que nos sale $i=2$. La muestra resultado mediante el muestreo sistemático será:
 
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/sistema2.png")
 ```
 
@@ -445,7 +483,7 @@ knitr::include_graphics("imagen/sistema2.png")
 
 **Ejemplo**
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500,fig.align='center'}
 knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 ```
 
