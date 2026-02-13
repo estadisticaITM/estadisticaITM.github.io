@@ -26,12 +26,11 @@ knitr::include_graphics("imagen/muestreo.png")
 |**Parámetro**|Número derivado del estudio de una variable estadística de toda una población.|
 |**Estadístico**|Medida de resumen numérica que se calcula a partir de la muestra|
 |**Unidad de observación** |Objeto sobre el cual se realiza una medición. En poblaciones humanas las unidades de observación son los humanos|
-|**Unidad de muestreo**|Unidad donde realizamos el muestreo|
+|**Unidad de muestreo**|Unidad donde realizamos el muestreo,Las familias sirven como unidades de muestreo y las unidades de observación son los individuos que viven en una familia.|
 |**Marco de muestreo**|Lista de las unidades de muestreo|
 
 
-Las familias sirven como unidades de muestreo y las unidades
-de observación son los individuos que viven en una familia.
+
 
 
 El muestreo se realiza para obtener información acerca de los parámetros desconocidos de la población, por medio de un experimento que permite observar o medir las características de la población, de las cuáles se tiene incertidumbre.
@@ -275,11 +274,13 @@ Ejemplos:
 
 
 
-```{r echo=F, out.height=300, out.width=500}
+```{r echo=F, out.height=300, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/mj.png")
 ```
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/yW9DARfzBeA" title="🔍👉 MUESTREO por CONVENIENCIA &amp; MUESTREO POR CONVENIENCIA EJEMPLOS + VENTAJAS Y DESVENTAJAS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 ### Muestreo por cuotas o estratos
 
 Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
@@ -290,11 +291,9 @@ Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo t
 
 
 
-```{r echo=F, out.height=300, out.width=400}
+```{r echo=F, out.height=300, out.width=400, fig.align='center'}
 knitr::include_graphics("imagen/mc.png")
 ```
-
-<iframe width="280" height="160" src="https://www.youtube.com/embed/PmFVVqlKGng" title="🔍👉 #4 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ###  Muestreo bola de nieve
 
@@ -305,7 +304,7 @@ Muy utilizado en ciencias sociales, cuando la característica a estudiar es rara
 Por ejemplo: si  un investigador está buscando personas con cierta enfermedad, contacta a uno o dos individuos que presenten dicha condición médica y que ellos mismos sean quienes te recomienden a otros individuos con una historia médica parecida.
 
 
-```{r echo=F, out.height=300, out.width=500}
+```{r echo=F, out.height=300, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/mb.png")
 ```
 
@@ -329,7 +328,7 @@ Muestreo sistemático
 Muestreo estratificado 
 Muestreo por grupos
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/bingo.png")
 ```
 
@@ -367,6 +366,11 @@ La distribución de unidades muestrales en cada estrato depende de diversos fact
 **Métodos principales de afijación:**
 
 **Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total.
+
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/PmFVVqlKGng" title="🔍👉 #4 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 **Afijación de Neyman :** Distribuye la muestra maximizando la precisión (minimizando la varianza) para un tamaño de muestra dado. Asigna más unidades a los estratos con mayor variabilidad (S)  y mayor tamaño N.
 busca estimar el tamaño de muestra de manera independiente entre cada uno de los estratos.
@@ -446,7 +450,7 @@ Si se supone que los conglomerados son muestra significativa de la variable que 
 
 En la práctica, el conglomerado más utilizado es el geográfico. Si queremos hacer un estudio en un país, podemos dividir el país en conglomerados como las comunidades, provincias, ciudades
 
-```{r echo=F, out.height=250, out.width=500}
+```{r echo=F, out.height=250, out.width=500,fig.align='center'}
 knitr::include_graphics("imagen/conglomerados.png")
 ```
 
