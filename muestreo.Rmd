@@ -41,6 +41,8 @@ El muestreo se realiza para obtener información acerca de los parámetros desco
 knitr::include_graphics("imagen/tabla2.png")
 ```
 
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/4Nu0Lpo8nAM?list=PLYqPCyWfFHmbVTdxBk4AXnIApU1EwlMus" title="🔍👉 ¿QUÉ ES MUESTREO EN ESTADÍSTICA? / IMPORTANCIA del MUESTREO &amp; PARA QUÉ SIRVE el MUESTREO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 # Muestreo
 
 **Por qué una muestra**
@@ -171,7 +173,7 @@ $$\Large n=\frac{Z_{\alpha/2}^2\sigma ^2}{e^2}$$
 
 Se deben hacer mediciones en 19 refrescos.
 
-## Para la proporción
+### Para la proporción
 
 |Población finita|Población infinita|
 |:--------------:|:----------------:|
@@ -209,44 +211,24 @@ $$\Large n=\frac{Z^2pq}{e^2}$$
 $$\Large n=\frac{2.17^2*0.8*0.2}{0.06^2}\approx 210$$
 Se deben encuestar 210 personas para conocer sus preferencias sobre la compra o no del producto.
 
-### EJercicios 
-
-**Tamaños de muestra para la media**
-1. Un biólogo quiere estimar el peso promedio de los ciervos cazados en el estado de Maryland. Un estudio anterior de diez ciervos cazados mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe ser una muestra para que el biólogo tenga el 95% de confianza de que el error de estimación es a lo más de 4 libras?
-
-Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de confianza en que $\mu $ difiere en menos de 4 libras de $\bar x$ .
-
-2. Una empresa eléctrica fabrica focos que tienen una duración aproximadamente normal con una desviación estándar de 40 horas. ¿De qué tamaño se necesita una muestra si se desea tener 96% de confianza que la media real esté dentro de 10 horas de la media real?
-
-Rta/ Se necesita una muestra de 68 focos para estimar la media de la población y tener un error máximo de 10 horas.
-
-3. Qué pasaría si en lugar de tener un error de estimación de 10 horas sólo se requiere un error de 5 horas?
 
 
-Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene como beneficio una estimación más exacta.
 
-**Tamaños de muestra para la proporción**
+### Tipos de muestreo
 
-1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. ¿Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
 
-Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
-
-2. Una legisladora estatal desea encuestar a los residentes de su distrito para conocer qué proporción del electorado conoce la opinión de ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué tamaño de muestra se necesita si se requiere un confianza del 95% y un error máximo de estimación de 0.10?
-
-Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confianza del 95% la estimación tenga un error máximo de 0.10.
-
-3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
-
-4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. ¿Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147
-
-## Tipos de muestreo
 
 ```{r echo=F, out.height=350, out.width=500, fig.align='center'}
 knitr::include_graphics("imagen/mues.png")
 ```
 
 
-## Muestreo no-Probabilístico
+<iframe width="280" height="160" src="https://www.youtube.com/embed/o3FlcVm6D_I?list=PLYqPCyWfFHmbVTdxBk4AXnIApU1EwlMus" title="🔍👉 TIPOS de MUESTREO PROBABILÍSTICO y NO PROBABILÍSTICO / TIPOS de MUESTREO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+### Muestreo no-Probabilístico
+
 
 1.Se basa en el juicio personal del investigador. 
 
@@ -260,7 +242,7 @@ Algunos de este tipo de muestreo son:
 - Muestreo por cuotas 
 - Muestreo tipo “bola de nieve” (snowball) 
 
-### Muestreo por Conveniencia 
+**Muestreo por Conveniencia **
 
 Los elementos de la muestra se eligen por estar en el lugar o en el momento adecuado para la investigación. El criterio de selección (lugar, tiempo y demás) es completamente dependiente del investigador, sin reglas predeterminadas. 
 
@@ -281,7 +263,7 @@ knitr::include_graphics("imagen/mj.png")
 <iframe width="280" height="160" src="https://www.youtube.com/embed/yW9DARfzBeA" title="🔍👉 MUESTREO por CONVENIENCIA &amp; MUESTREO POR CONVENIENCIA EJEMPLOS + VENTAJAS Y DESVENTAJAS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-### Muestreo por cuotas o estratos
+**Muestreo por cuotas o estratos**
 
 Permite dividir la población en grupos o estratos que comparten características  como el sexo, la edad, los estudios, etc., y de ellos se selecciona una muestra proporcional y representativa. 
 
@@ -295,7 +277,7 @@ Las mujeres representan el 40 % de los empleados y los hombres el 60 %, por lo t
 knitr::include_graphics("imagen/mc.png")
 ```
 
-###  Muestreo bola de nieve
+**Muestreo bola de nieve**
 
 Se selecciona un grupo inicial, los nuevos encuestados se seleccionan en base a las referencias de los encuestados anteriores, explotando sus “redes sociales”,es útil si el tamaño de la muestra es pequeño y no está disponible fácilmente.esta técnica ayuda a los investigadores a encontrar muestras cuando son difíciles de localizar.  
 
@@ -309,7 +291,7 @@ knitr::include_graphics("imagen/mb.png")
 ```
 
 
-## Muestreo probabilístico
+### Muestreo probabilístico
 
 Se controla la probabilidad de seleccionar un determinado individuo, permite estudiar objetivamente la confianza de las generalizaciones hacia la población objetivo. 
 
@@ -317,7 +299,9 @@ Se controla la probabilidad de seleccionar un determinado individuo, permite est
 Algunos de este tipo de muestreo son:
 
 
-### Muestreo aleatorio simple 
+**Muestreo aleatorio simple** 
+
+
 Cada elemento del marco muestral tiene la misma probabilidad de ser seleccionado y cada elemento se selecciona de manera independiente de los otros.
 
 Con reemplazo: se pueden repetir elementos
@@ -332,7 +316,7 @@ Muestreo por grupos
 knitr::include_graphics("imagen/bingo.png")
 ```
 
-### Muestreo aleatorio estratificado 
+**Muestreo aleatorio estratificado**
 
 Antes de seleccionar los elementos, se agrupa la población muestral en estratos de acuerdo a una variable importante: edad, género, ocupación.
 
@@ -349,7 +333,7 @@ knitr::include_graphics("imagen/estrato.png")
 ```
 
 
-**Afijación**
+### Afijación
 
 Es el proceso de distribuir el tamaño total de la muestra n entre los diferentes estratos de una población en el muestreo aleatorio estratificado. 
 
@@ -365,14 +349,71 @@ La distribución de unidades muestrales en cada estrato depende de diversos fact
 
 **Métodos principales de afijación:**
 
-**Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total.
+**Afijación óptima**: tiene en cuenta los costos de la investigación, costos unitarios. 
+Se usa cuando las varianzas son altas. Cuanto mayor sea la varianza mayor será la proporcion de unidades que se deben tomar del estrato h.
+
+
+<iframe width="280" height="160" src="https://www.youtube.com/embed/GTCFoTK_OYo" title="🔍👉 #6 AFIJACIÓN ÓPTIMA / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+**Afijación Uniforme:** Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
+
+**Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total, la fórmula es:
+
+
+|tamaño|media|proporción|
+|:----:|:---:|:--------:|
+||$$n=\frac{NZ_{\alpha/2}^2\sum W_h S_h^2}{NE^2+Z_{\alpha/2}^2\sum W_h S_h^2}$$|$$n=\frac{NZ_{\alpha/2}^2\sum W_h P_h Q_h} {NE^2+Z_{\alpha/2}^2\sum  W_h P_h Q_h}$$|
 
 
 
-<iframe width="280" height="160" src="https://www.youtube.com/embed/PmFVVqlKGng" title="🔍👉 #4 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+**Ejemplo para la media**
+
+Se requiere estimar un tamaño de muestra estratificado de neyman por facultad (estrato), para realizar un estudio acerca de la edad promedio de los estudiantes
+
+|Facultad   |conteo|%($W_h$)|$\bar x$ edad piloto|s piloto|$W_h*s^2$|muestra|
+|:---------:|:----:|:------:|:------------------:|:------:|:-------:|:-----:|
+|Artes      |2865  |10.2    |25.2                |6.8     | 4.71    |12|
+|Económicas |11962 |42.5    |   27.1             |7.2     |   22.03 |48|
+|exactas    |3225  |11.5    |    23.9            |6.6     | 0.76    |13|
+|Ingenierías|10096 |35.8    |     23.8           |6.6     | 2.36    |41|
+|   total   |28148 |100     |   25.4             |7       | 29.86   |114|
 
 
-**Afijación de Neyman :** Distribuye la muestra maximizando la precisión (minimizando la varianza) para un tamaño de muestra dado. Asigna más unidades a los estratos con mayor variabilidad (S)  y mayor tamaño N.
+sea el error admisible E: 1 año
+
+Nivel de confianza 95%: $Z_{\alpha/2}=1.96$
+
+$$n=\frac{NZ_{\alpha/2}^2\sum W_h S_h^2}{NE^2+Z_{\alpha/2}^2\sum W_h S_h^2}$$
+
+$$n=\frac{(28148)(1.96^2)(29.86)}{(28148)(1^2)+1.96^2(29.86)}=114$$
+**Para la media**
+
+<div style="text-align: center;">
+<iframe 
+width="280" 
+height="160" 
+src="https://www.youtube.com/embed/PmFVVqlKGng" 
+frameborder="0" 
+allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+allowfullscreen>>
+</iframe>
+
+**Para la proporción**
+
+<div style="display: flex; justify-content: center;">
+  <iframe width="280" height="160" 
+    src="https://www.youtube.com/embed/GYRDGXaYGRA" 
+    title="🔍👉 #5 AFIJACIÓN PROPORCIONAL / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+**Afijación de Neyman:** Distribuye la muestra maximizando la precisión (minimizando la varianza) para un tamaño de muestra dado. Asigna más unidades a los estratos con mayor variabilidad (S)  y mayor tamaño N.
 busca estimar el tamaño de muestra de manera independiente entre cada uno de los estratos.
 
 |Parametro|Media|proporcion|
@@ -384,7 +425,8 @@ busca estimar el tamaño de muestra de manera independiente entre cada uno de lo
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/l7dagrCzoGA" title="🔍👉 #7 AFIJACIÓN de NEYMAN / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Ejemplo**
+**Ejemplo para la proporción**
+
 Se requiere estimar un tamaño de muestra estratificado de neyman, para saber que proporción de estudiantes usan transporte público (p) por facultad:
 
 |Facultad   |conteo|W %   |p%  |q%|tamaño |
@@ -404,9 +446,10 @@ $$n_o=\frac{W_h P_h Q_h}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*0.4*0.6}{\l
 $$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{9.4}{1+\frac{9.4}{2865}}=9$$
 
 
-$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}$$||||
+$$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}$$
 
-**Ejemplo**
+**Ejemplo para la media**
+
 Se requiere estimar un tamaño de muestra estratificado de neyman por facultad (estrato), para realizar un estudio acerca de la edad promedio de los estudiantes
 
 |Facultad   |conteo|%($W_h$)|$\bar x$ edad piloto|s piloto|tamaño|
@@ -419,6 +462,9 @@ Se requiere estimar un tamaño de muestra estratificado de neyman por facultad (
 
 
 ________________________________________________________________________________________________________
+
+
+
 **Artes**
 
 |Parametro|valor|
@@ -433,10 +479,7 @@ ________________________________________________________________________________
 $$n_a=\frac{W_h S_h^2}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*6.8^2}{\left(\frac{1.26}{1.96}\right)^2}=11.4$$
 $$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{11.4}{1+\frac{11.4}{2865}}=11$$
 
-**Afijación óptima**: tiene en cuenta los costos de la investigación, costos unitarios. 
-Se usa cuando las varianzas son altas. Cuanto mayor sea la varianza mayor será la proporcion de unidades que se deben tomar del estrato h.
 
-**Afijación Uniforme:** Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
 
 
 
@@ -493,6 +536,18 @@ knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 
 **Ficha técnica de la encuesta**
 
+<iframe 
+  width="280" 
+  height="160" 
+  src="https://www.youtube.com/embed/E9JqtQv1AHA?list=PLYqPCyWfFHmbVTdxBk4AXnIApU1EwlMus"
+  title="FICHA TÉCNICA de INVESTIGACIÓN. INVESTIGACIÓN DE MERCADOS – MARKETING"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+  style="display: block; margin: 0 auto;">
+</iframe>
+
 |Item|Respuesta|
 |------|---------|
 |**Persona jurídica que realizó la encuesta:**| YanHaas S.A Incrito ante el consejo nacional electoral|
@@ -509,4 +564,33 @@ knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 | **Margen de error observado:**|3.2%|
 |**Nivel de confianza:**|95%|
 
+### Ejercicios 
+
+**Tamaños de muestra para la media**
+1. Un biólogo quiere estimar el peso promedio de los ciervos cazados en el estado de Maryland. Un estudio anterior de diez ciervos cazados mostró que la desviación estándar de sus pesos es de 12.2 libras. ¿Qué tan grande debe ser una muestra para que el biólogo tenga el 95% de confianza de que el error de estimación es a lo más de 4 libras?
+
+Rta/ Si el tamaño de la muestra es 36, se puede tener un 95% de confianza en que $\mu $ difiere en menos de 4 libras de $\bar x$ .
+
+2. Una empresa eléctrica fabrica focos que tienen una duración aproximadamente normal con una desviación estándar de 40 horas. ¿De qué tamaño se necesita una muestra si se desea tener 96% de confianza que la media real esté dentro de 10 horas de la media real?
+
+Rta/ Se necesita una muestra de 68 focos para estimar la media de la población y tener un error máximo de 10 horas.
+
+3. Qué pasaría si en lugar de tener un error de estimación de 10 horas sólo se requiere un error de 5 horas?
+
+
+Rta/ Se puede observar como el tamaño de la muestra aumenta, pero esto tiene como beneficio una estimación más exacta.
+
+**Tamaños de muestra para la proporción**
+
+1. En una muestra aleatoria de 500 familias que tienen televisores en la ciudad de Hamilton, Canadá, se encuentra que 340 están suscritas a HBO. ¿Qué tan grande se requiere que sea una muestra si se quiere tener 95% de confianza de que la estimación de P esté dentro de 0.02?
+
+Rta/ Si basamos nuestra estimación de P sobre una muestra aleatoria de tamaño 2090, se puede tener una confianza de 95% de que nuestra proporción muestral no diferirá de la proporción real por más de 0.02.
+
+2. Una legisladora estatal desea encuestar a los residentes de su distrito para conocer qué proporción del electorado conoce la opinión de ella, respecto al uso de fondos estatales para pagar abortos. ¿Qué tamaño de muestra se necesita si se requiere un confianza del 95% y un error máximo de estimación de 0.10?
+
+Rta/ Se requiere un tamaño de muestra de 97 residentes para que con una confianza del 95% la estimación tenga un error máximo de 0.10.
+
+3. Se planea realizar un estudio de tiempos para estimar el tiempo medio de un trabajo, exacto dentro de 4 segundos y con una probabilidad de 0.90, para terminar un trabajo de montaje. Si la experiencia previa sugiere que $\sigma= 16 seg$. mide la variación en el tiempo de montaje entre un trabajador y otro al realizar una sola operación de montaje, ¿cuántos operarios habrá que incluir en la muestra? Rta/n=44
+
+4. Un ingeniero de control de calidad quiere estimar la fracción de elementos defectuosos en un gran lote de lámparas. Por la experiencia, cree que la fracción real de defectuosos tendría que andar alrededor de 0.2. ¿Qué tan grande tendría que seleccionar la muestra si se quiere estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de confianza fe 95%? rta/6147
 
