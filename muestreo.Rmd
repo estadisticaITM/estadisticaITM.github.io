@@ -333,7 +333,59 @@ knitr::include_graphics("imagen/estrato.png")
 ```
 
 
-### Afijación
+
+
+
+### Muestreo por conglomerados
+
+El método de muestreo por conglomerados se utiliza cuando la población está agrupada naturalmente.
+
+Si se supone que los conglomerados son muestra significativa de la variable que se está estudiando, se puede seleccionar algunos grupos al azar (todos los conglomerados deben tener las mismas probabilidades de ser seleccionados) y utilizarlos en representación de la población.
+
+
+En la práctica, el conglomerado más utilizado es el geográfico. Si queremos hacer un estudio en un país, podemos dividir el país en conglomerados como las comunidades, provincias, ciudades
+
+```{r echo=F, out.height=250, out.width=500,fig.align='center'}
+knitr::include_graphics("imagen/conglomerados.png")
+```
+
+**Diferencia entre el muestreo por conglomerados y estratos**
+
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
+knitr::include_graphics("imagen/diff.png")
+```
+
+### Muestreo sistemático
+
+Se utiliza en muestras ordenadas del 1 al N.
+Supongamos que tenemos una población de N individuos ordenados del 1 al N. Queremos seleccionar una muestra de tamaño n.
+Sea k el entero más próximo a N/n.
+Escogemos al azar un número i entre 1 y k (utilizando los números aleatorios, sacar una bola de un bombo, etc.).
+La muestra será el elemento i y los elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a intervalos fijos k hasta conseguir los n sujetos:
+
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
+knitr::include_graphics("imagen/sistema.png")
+```
+
+**Ejemplo**
+Se quiere saber la opinión sobre un profesor de una clase de 60 personas. Dichas personas están ordenadas por orden alfabético en la lista de alumnos de clase. Para realizar la encuesta, seleccionamos a 12 personas. Por lo tanto, N=60 y n=12. El intervalo fijo entre sujetos es:
+
+$$k=N/n     =60/12=5$$
+Ahora elegimos al azar un número entre 1 y k=5. Suponemos que nos sale $i=2$. La muestra resultado mediante el muestreo sistemático será:
+
+
+```{r echo=F, out.height=250, out.width=500, fig.align='center'}
+knitr::include_graphics("imagen/sistema2.png")
+```
+
+
+
+
+### Afijación o Asignación de la muestra
+
+
+
+
 
 Es el proceso de distribuir el tamaño total de la muestra n entre los diferentes estratos de una población en el muestreo aleatorio estratificado. 
 
@@ -349,13 +401,18 @@ La distribución de unidades muestrales en cada estrato depende de diversos fact
 
 **Métodos principales de afijación:**
 
-**Afijación óptima**: tiene en cuenta los costos de la investigación, costos unitarios. 
+### Afijación óptima
+
+
+Tiene en cuenta los costos de la investigación, costos unitarios. 
 Se usa cuando las varianzas son altas. Cuanto mayor sea la varianza mayor será la proporcion de unidades que se deben tomar del estrato h.
 
 
 <iframe width="280" height="160" src="https://www.youtube.com/embed/GTCFoTK_OYo" title="🔍👉 #6 AFIJACIÓN ÓPTIMA / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Afijación Uniforme o igual:** Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
+### Afijación Uniforme o igual:
+
+Asigna el mismo número de elementos a cada estrato, independientemente de su tamaño poblacional.
 
 $$n_{preliminar}=Error porcentual*tamaño muestral $$
 
@@ -371,7 +428,9 @@ Una encuesta arrojó los siguientes resultados, acerca de la edad de un grupo de
 
 Aplicando el método de afijación igual, Determine el tamaño de la muestra para cada estrato, asuma un error del 4%
 
-**Afijación Proporcional:** La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población, recibirá el 46% de la muestra total, la fórmula es:
+### Afijación Proporcional
+
+La muestra se distribuye según el peso de cada estrato en la población. Si un estrato representa el 46% de la población,recibirá el 46% de la muestra total, la fórmula es:
 
 
 |tamaño|media|proporción|
@@ -496,51 +555,7 @@ $$n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{11.4}{1+\frac{11.4}{2865}}=11$$
 
 
 
-
-
-### Muestreo por conglomerados
-
-El método de muestreo por conglomerados se utiliza cuando la población está agrupada naturalmente.
-
-Si se supone que los conglomerados son muestra significativa de la variable que se está estudiando, se puede seleccionar algunos grupos al azar (todos los conglomerados deben tener las mismas probabilidades de ser seleccionados) y utilizarlos en representación de la población.
-
-
-En la práctica, el conglomerado más utilizado es el geográfico. Si queremos hacer un estudio en un país, podemos dividir el país en conglomerados como las comunidades, provincias, ciudades
-
-```{r echo=F, out.height=250, out.width=500,fig.align='center'}
-knitr::include_graphics("imagen/conglomerados.png")
-```
-
-**Diferencia entre el muestreo por conglomerados y estratos**
-
-```{r echo=F, out.height=250, out.width=500, fig.align='center'}
-knitr::include_graphics("imagen/diff.png")
-```
-
-### Muestreo sistemático
-
-Se utiliza en muestras ordenadas del 1 al N.
-Supongamos que tenemos una población de N individuos ordenados del 1 al N. Queremos seleccionar una muestra de tamaño n.
-Sea k el entero más próximo a N/n.
-Escogemos al azar un número i entre 1 y k (utilizando los números aleatorios, sacar una bola de un bombo, etc.).
-La muestra será el elemento i y los elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a intervalos fijos k hasta conseguir los n sujetos:
-
-```{r echo=F, out.height=250, out.width=500, fig.align='center'}
-knitr::include_graphics("imagen/sistema.png")
-```
-
-**Ejemplo**
-Se quiere saber la opinión sobre un profesor de una clase de 60 personas. Dichas personas están ordenadas por orden alfabético en la lista de alumnos de clase. Para realizar la encuesta, seleccionamos a 12 personas. Por lo tanto, N=60 y n=12. El intervalo fijo entre sujetos es:
-
-$$k=N/n     =60/12=5$$
-Ahora elegimos al azar un número entre 1 y k=5. Suponemos que nos sale $i=2$. La muestra resultado mediante el muestreo sistemático será:
-
-
-```{r echo=F, out.height=250, out.width=500, fig.align='center'}
-knitr::include_graphics("imagen/sistema2.png")
-```
-
-
+## Ficha técnica de una encuesta
 
 **Ejemplo**
 
@@ -548,7 +563,7 @@ knitr::include_graphics("imagen/sistema2.png")
 knitr::include_graphics("imagen/ENCUESTAS PRESIDENCIALES.png")
 ```
 
-**Ficha técnica de la encuesta**
+
 
 <iframe 
   width="280" 

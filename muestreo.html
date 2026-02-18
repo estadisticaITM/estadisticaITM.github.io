@@ -743,8 +743,45 @@ los diferencian de los otros estratos. Por lo tanto, un individuo solo
 puede estar en un único estrato.</p>
 <p><img src="imagen/estrato.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 </div>
-<div id="afijación" class="section level3">
-<h3>Afijación</h3>
+<div id="muestreo-por-conglomerados" class="section level3">
+<h3>Muestreo por conglomerados</h3>
+<p>El método de muestreo por conglomerados se utiliza cuando la
+población está agrupada naturalmente.</p>
+<p>Si se supone que los conglomerados son muestra significativa de la
+variable que se está estudiando, se puede seleccionar algunos grupos al
+azar (todos los conglomerados deben tener las mismas probabilidades de
+ser seleccionados) y utilizarlos en representación de la población.</p>
+<p>En la práctica, el conglomerado más utilizado es el geográfico. Si
+queremos hacer un estudio en un país, podemos dividir el país en
+conglomerados como las comunidades, provincias, ciudades</p>
+<p><img src="imagen/conglomerados.png" width="500" height="250" style="display: block; margin: auto;" /></p>
+<p><strong>Diferencia entre el muestreo por conglomerados y
+estratos</strong></p>
+<p><img src="imagen/diff.png" width="500" height="250" style="display: block; margin: auto;" /></p>
+</div>
+<div id="muestreo-sistemático" class="section level3">
+<h3>Muestreo sistemático</h3>
+<p>Se utiliza en muestras ordenadas del 1 al N. Supongamos que tenemos
+una población de N individuos ordenados del 1 al N. Queremos seleccionar
+una muestra de tamaño n. Sea k el entero más próximo a N/n. Escogemos al
+azar un número i entre 1 y k (utilizando los números aleatorios, sacar
+una bola de un bombo, etc.). La muestra será el elemento i y los
+elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a
+intervalos fijos k hasta conseguir los n sujetos:</p>
+<p><img src="imagen/sistema.png" width="500" height="250" style="display: block; margin: auto;" /></p>
+<p><strong>Ejemplo</strong> Se quiere saber la opinión sobre un profesor
+de una clase de 60 personas. Dichas personas están ordenadas por orden
+alfabético en la lista de alumnos de clase. Para realizar la encuesta,
+seleccionamos a 12 personas. Por lo tanto, N=60 y n=12. El intervalo
+fijo entre sujetos es:</p>
+<p><span class="math display">\[k=N/n     =60/12=5\]</span> Ahora
+elegimos al azar un número entre 1 y k=5. Suponemos que nos sale <span
+class="math inline">\(i=2\)</span>. La muestra resultado mediante el
+muestreo sistemático será:</p>
+<p><img src="imagen/sistema2.png" width="500" height="250" style="display: block; margin: auto;" /></p>
+</div>
+<div id="afijación-o-asignación-de-la-muestra" class="section level3">
+<h3>Afijación o Asignación de la muestra</h3>
 <p>Es el proceso de distribuir el tamaño total de la muestra n entre los
 diferentes estratos de una población en el muestreo aleatorio
 estratificado.</p>
@@ -761,15 +798,19 @@ estrato.</p></li>
 <li><p>Los costos de muestrear una unidad en el estrato h.</p></li>
 </ul>
 <p><strong>Métodos principales de afijación:</strong></p>
-<p><strong>Afijación óptima</strong>: tiene en cuenta los costos de la
-investigación, costos unitarios. Se usa cuando las varianzas son altas.
-Cuanto mayor sea la varianza mayor será la proporcion de unidades que se
-deben tomar del estrato h.</p>
+</div>
+<div id="afijación-óptima" class="section level3">
+<h3>Afijación óptima</h3>
+<p>Tiene en cuenta los costos de la investigación, costos unitarios. Se
+usa cuando las varianzas son altas. Cuanto mayor sea la varianza mayor
+será la proporcion de unidades que se deben tomar del estrato h.</p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/GTCFoTK_OYo" title="🔍👉 #6 AFIJACIÓN ÓPTIMA / MUESTREO ESTRATIFICADO EJEMPLOS / MUESTREO ESTRATIFICADO 👍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
-<p><strong>Afijación Uniforme o igual:</strong> Asigna el mismo número
-de elementos a cada estrato, independientemente de su tamaño
-poblacional.</p>
+</div>
+<div id="afijación-uniforme-o-igual" class="section level3">
+<h3>Afijación Uniforme o igual:</h3>
+<p>Asigna el mismo número de elementos a cada estrato,
+independientemente de su tamaño poblacional.</p>
 <p><span class="math display">\[n_{preliminar}=Error porcentual*tamaño
 muestral \]</span></p>
 <p><strong>Ejemplo</strong> Una encuesta arrojó los siguientes
@@ -806,10 +847,12 @@ resultados, acerca de la edad de un grupo de estudiantes:</p>
 </table>
 <p>Aplicando el método de afijación igual, Determine el tamaño de la
 muestra para cada estrato, asuma un error del 4%</p>
-<p><strong>Afijación Proporcional:</strong> La muestra se distribuye
-según el peso de cada estrato en la población. Si un estrato representa
-el 46% de la población, recibirá el 46% de la muestra total, la fórmula
-es:</p>
+</div>
+<div id="afijación-proporcional" class="section level3">
+<h3>Afijación Proporcional</h3>
+<p>La muestra se distribuye según el peso de cada estrato en la
+población. Si un estrato representa el 46% de la población,recibirá el
+46% de la muestra total, la fórmula es:</p>
 <table style="width:100%;">
 <colgroup>
 <col width="28%" />
@@ -1150,45 +1193,10 @@ x\)</span></td>
 S_h^2}{\left(\frac{E_h}{z_h}\right)^2}=\frac{0.102*6.8^2}{\left(\frac{1.26}{1.96}\right)^2}=11.4\]</span>
 <span
 class="math display">\[n_h=\frac{n_o}{1+\frac{n_o}{N_h}}=\frac{11.4}{1+\frac{11.4}{2865}}=11\]</span></p>
-<div id="muestreo-por-conglomerados" class="section level3">
-<h3>Muestreo por conglomerados</h3>
-<p>El método de muestreo por conglomerados se utiliza cuando la
-población está agrupada naturalmente.</p>
-<p>Si se supone que los conglomerados son muestra significativa de la
-variable que se está estudiando, se puede seleccionar algunos grupos al
-azar (todos los conglomerados deben tener las mismas probabilidades de
-ser seleccionados) y utilizarlos en representación de la población.</p>
-<p>En la práctica, el conglomerado más utilizado es el geográfico. Si
-queremos hacer un estudio en un país, podemos dividir el país en
-conglomerados como las comunidades, provincias, ciudades</p>
-<p><img src="imagen/conglomerados.png" width="500" height="250" style="display: block; margin: auto;" /></p>
-<p><strong>Diferencia entre el muestreo por conglomerados y
-estratos</strong></p>
-<p><img src="imagen/diff.png" width="500" height="250" style="display: block; margin: auto;" /></p>
-</div>
-<div id="muestreo-sistemático" class="section level3">
-<h3>Muestreo sistemático</h3>
-<p>Se utiliza en muestras ordenadas del 1 al N. Supongamos que tenemos
-una población de N individuos ordenados del 1 al N. Queremos seleccionar
-una muestra de tamaño n. Sea k el entero más próximo a N/n. Escogemos al
-azar un número i entre 1 y k (utilizando los números aleatorios, sacar
-una bola de un bombo, etc.). La muestra será el elemento i y los
-elementos i+k, i+2k, etc. Es decir, el elemento k y los elementos a
-intervalos fijos k hasta conseguir los n sujetos:</p>
-<p><img src="imagen/sistema.png" width="500" height="250" style="display: block; margin: auto;" /></p>
-<p><strong>Ejemplo</strong> Se quiere saber la opinión sobre un profesor
-de una clase de 60 personas. Dichas personas están ordenadas por orden
-alfabético en la lista de alumnos de clase. Para realizar la encuesta,
-seleccionamos a 12 personas. Por lo tanto, N=60 y n=12. El intervalo
-fijo entre sujetos es:</p>
-<p><span class="math display">\[k=N/n     =60/12=5\]</span> Ahora
-elegimos al azar un número entre 1 y k=5. Suponemos que nos sale <span
-class="math inline">\(i=2\)</span>. La muestra resultado mediante el
-muestreo sistemático será:</p>
-<p><img src="imagen/sistema2.png" width="500" height="250" style="display: block; margin: auto;" /></p>
+<div id="ficha-técnica-de-una-encuesta" class="section level2">
+<h2>Ficha técnica de una encuesta</h2>
 <p><strong>Ejemplo</strong></p>
 <p><img src="imagen/ENCUESTAS%20PRESIDENCIALES.png" width="500" height="250" style="display: block; margin: auto;" /></p>
-<p><strong>Ficha técnica de la encuesta</strong></p>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/E9JqtQv1AHA?list=PLYqPCyWfFHmbVTdxBk4AXnIApU1EwlMus" title="FICHA TÉCNICA de INVESTIGACIÓN. INVESTIGACIÓN DE MERCADOS – MARKETING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block; margin: 0 auto;">
 </iframe>
 <table>
@@ -1262,7 +1270,6 @@ colombia, que manifestaron intención de voto</td>
 </tr>
 </tbody>
 </table>
-</div>
 <div id="ejercicios" class="section level3">
 <h3>Ejercicios</h3>
 <p><strong>Tamaños de muestra para la media</strong> 1. Un biólogo
@@ -1323,6 +1330,7 @@ cree que la fracción real de defectuosos tendría que andar alrededor de
 estimar la fracción real, exacta dentro de 0.01, utilizando un nivel de
 confianza fe 95%? rta/6147</p></li>
 </ol>
+</div>
 </div>
 </div>
 </div>
