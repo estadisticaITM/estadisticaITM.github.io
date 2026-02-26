@@ -37,8 +37,12 @@ knitr::include_graphics("imagen/CRONO (2).jpg")
 
  **Ramas de la estadística**
 
+
+|Estadística|Definción|Metoodos|
+|:-------------------:|:------:|
+|Descriptiva|Organiza y describe las características de un conjunto de datos con el propósito de facilitar su aplicación, |gráficas, tablas o medidas numéricas.|||||||||||||||
 **Estadística descriptiva:**
-Organiza y describe las características de un conjunto de datos con el propósito de facilitar su aplicación, generalmente con el apoyo de gráficas, tablas o medidas numéricas.
+
 
 Los parámetros estadísticos usados son las medidas de tendencia central y de variabilidad, y los gráficos de barras, de tortas y  el histograma.
 
@@ -108,8 +112,10 @@ Característica o condición que puede tomar diferentes valores en una muestra. 
 - Edad de los pacientes de un médico
 
 *Tipos de variables*
+```{r, echo=F, out.height=250, out.width=500, fig.align='center'}
+knitr::include_graphics("imagen/vble.png")
 
-<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/sQ08tqf-rXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+```
 
 
 **Actividad**
@@ -129,6 +135,9 @@ Clasifique las siguiente variables según sea el caso
 |Número de mensajes enviados por whatsap un dia |  |  | |
 |Número de estudiantes conectados a clase|  |   |  |
 |Días de la semana|       |             |       |
+
+
+<div style="text-align: center;"><iframe width="280" height="160" src="https://www.youtube.com/embed/sQ08tqf-rXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 
 ## Frecuencia estadística
@@ -515,44 +524,30 @@ Si dos datos se repiten con la misma frecuencia se dice que los datos son bimoda
 
 Valor promedio de un conjunto de datos numéricos, calculada como la suma del conjunto de valores dividida entre el número total de valores, la fórmula con la que se estima es:
 
-**Media Muestral**
 
-$$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
 
-**Media poblacional**
 
-$$\hat \mu =\frac{\sum_{i=1}^{n}x_i}{N}$$
+|      |muestral|poblacional|
+|:----:|:------:|:---------:|
+|Media |$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$|$\mu =\frac{\sum_{i=1}^{n}x_i}{N}$|
+|Tamaño|n       |          N|
 
-Donde
-$x_i$ corresponde a cada observación
 
-N es el tamaño poblacional
+- Donde $x_i$ corresponde a cada observación
 
-n es el tamaño muestral
+- Según el teorema de límite central cuando n>30 se considera poblacional
 
-Según el teorema de límite central cuando n>30 se considera poblacional
+### Mediana $M_e$
 
-### Mediana
+Es un valor que se encuentra en la mitad de los datos, cuando estos están **ordenados**
 
-Es un valor que se encuentra en la mitad de los datos, cuando estos están ordenados
 
-a. si los datos son pares, la mediana es la suma de los dos valores centrales dividida por dos
+|Datos|Pares             |Impares            |
+|:---:|:-----------------:|:-----------------:|
+|     |Suma de los dos valores centrales dividida por dos|valor que se encuentra en la mitad|
+|Fórmula|$\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}$|$X_\frac{_{n+1}}{2}$|
 
-$$M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}$$
 
-b. si los datos son impares la mediana es el valor que se encuentra en la posición $\frac{n+1}{2}$
-
-$$M_e=X_\frac{_{n+1}}{2}$$
-
-**Ejemplo**
-
-Se tienen las edades de una muestra de estudiantes de estadística básica compuesta por hombres y mujeres
-
-|Hombre|20|22|26|20|26|19|20|21|26|  |  |  |  |
-|:----:|--|--|--|--|--|--|--|--|--|--|--|--|--|
-|Mujer |20|20|31|26|23|42|23|20|24|25|24|27|22|
-
-Estime la media por género, la moda y la mediana.
 
 *Video medidas de tendencia central*
 
@@ -587,40 +582,21 @@ knitr::include_graphics("imagen/rango.png")
 ```
 
 ### Varianza y Desviación estándar
- indica qué tan dispersos están los datos con respecto a la media
+
+Indica qué tan dispersos están los datos con respecto a la media
 
 ```{r fig.asp=0.7, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/sd.png")
 
 ```
 
-**Caso poblacional**
 
-**Varianza**
 
-$$\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}$$
-**Desviación estándar**
+|          |Parametro poblacional|Estadístico muestral|
+|:-------------------:|:-----:|:-------:|
+|Varianza|$\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}$|$S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}$|
+|Desviación estándar|$\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}$|$S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}$|
 
-$$\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}$$
-**Caso muestral**
-
-**Varianza**
-$$S^2=\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}$$
-**Desviación estándar**
-$$S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}$$
-**Pasos para estimar la desviación estándar**
-
-1. Encuentre la media
-
-2. Encuentre la desviación de cada uno de los valores con respecto a la media.
-
-3. Eleve cada valor obtenido al cuadrado
-
-4. Halle la suma de cada uno de los cuadrados
-
-5. Divida la suma de los cuadrados por el número de ítems
-
-6. Encuentre la raíz cuadrada de la varianza
 
 
 *Medidas de variabilidad*
@@ -635,6 +611,9 @@ $$S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}}$$
 |Media |$\mu$   |$\bar x$|
 |Varianza|$\sigma^2$|$S^2$|
 |Desviación estándar|$\sigma$|S|
+
+
+
 
 **Comparemos**
 

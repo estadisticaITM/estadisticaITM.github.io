@@ -13,7 +13,7 @@
 
 <title>Análisis exploratorio de datos</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,21 +29,22 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -169,11 +170,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -202,8 +207,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -211,16 +216,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -413,7 +411,7 @@ div.tocify {
 </iframe>
 </div>
 <p><strong>Graficamente</strong></p>
-<p><img src="imagen/CRONO%20(2).jpg" width="400" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/CRONO%20(2).jpg" style="display: block; margin: auto;" /></p>
 </div>
 <div id="qué-es-la-estadística" class="section level2">
 <h2>¿Qué es la estadística?</h2>
@@ -429,10 +427,26 @@ ellos.</p></li>
 </iframe>
 </div>
 <p><strong>Ramas de la estadística</strong></p>
-<p><strong>Estadística descriptiva:</strong> Organiza y describe las
-características de un conjunto de datos con el propósito de facilitar su
-aplicación, generalmente con el apoyo de gráficas, tablas o medidas
-numéricas.</p>
+<table>
+<colgroup>
+<col width="72%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Estadística</th>
+<th align="center">Definción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Descriptiva</td>
+<td align="center">Organiza y describe las características de un
+conjunto de datos con el propósito de facilitar su aplicación,</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estadística descriptiva:</strong></p>
 <p>Los parámetros estadísticos usados son las medidas de tendencia
 central y de variabilidad, y los gráficos de barras, de tortas y el
 histograma.</p>
@@ -446,7 +460,7 @@ variables.</p>
 </iframe>
 </div>
 <p><strong>Enfoques de la estadística</strong></p>
-<p><img src="imagen/Enf.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/enf.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="algunas-definiciones" class="section level2">
 <h2>Algunas definiciones</h2>
@@ -484,11 +498,8 @@ muestra. Ejm:</p>
 <li>Estatura de un grupo de estudiantes</li>
 <li>Edad de los pacientes de un médico</li>
 </ul>
-<p><em>Tipos de variables</em></p>
-<div style="text-align: center;">
-<iframe width="280" height="160" src="https://www.youtube.com/embed/sQ08tqf-rXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
+<p><em>Tipos de variables</em>
+<img src="imagen/vble.png" width="500" height="250" style="display: block; margin: auto;" /></p>
 <p><strong>Actividad</strong></p>
 <p>Clasifique las siguiente variables según sea el caso</p>
 <table>
@@ -569,6 +580,10 @@ muestra. Ejm:</p>
 </tr>
 </tbody>
 </table>
+<div style="text-align: center;">
+<iframe width="280" height="160" src="https://www.youtube.com/embed/sQ08tqf-rXU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
 </div>
 <div id="frecuencia-estadística" class="section level2">
 <h2>Frecuencia estadística</h2>
@@ -844,7 +859,7 @@ colnames(m)=c(&quot;cilindros&quot;,&quot;frecuencia absoluta&quot;,&quot;Porcen
 
 barplot(j,col=&#39;#4168c3&#39;,ylab=&quot;Frecuencia absoluta&quot;, xlab=&quot;Número de cilindros&quot;)
 box()</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de tortas
 
 bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
@@ -856,10 +871,10 @@ bar &lt;- ggplot(data=m, aes(x=1,y= porcentajes,
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar</code></pre>
 <pre><code>## Warning: Use of `m$cilindros` is discouraged.
-## i Use `cilindros` instead.
+## ℹ Use `cilindros` instead.
 ## Use of `m$cilindros` is discouraged.
-## i Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+## ℹ Use `cilindros` instead.</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
 <pre class="r"><code>#Gráfico de donas
 
 bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
@@ -871,10 +886,10 @@ bar1 &lt;- ggplot(data=m, aes(x=2,y= porcentajes,
             position=position_stack(vjust=0.5),color=&quot;white&quot;,size=5)
 bar1</code></pre>
 <pre><code>## Warning: Use of `m$cilindros` is discouraged.
-## i Use `cilindros` instead.
+## ℹ Use `cilindros` instead.
 ## Use of `m$cilindros` is discouraged.
-## i Use `cilindros` instead.</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+## ℹ Use `cilindros` instead.</code></pre>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-3.png" width="672" /></p>
 <p><strong>Algunos videos que sirven de ejemplo</strong></p>
 <p><strong>Ejemplo 1</strong></p>
 <div style="text-align: center;">
@@ -936,10 +951,10 @@ datos fueron proporcionados por Erste Bank AG, Viena, Austria.</p>
 continuación.</p>
 <pre class="r"><code>tsData &lt;- EuStockMarkets[,1] # ts data
 plot(tsData,col=4)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code>decomposedRes &lt;- decompose(tsData, type=&quot;mult&quot;) # use type = &quot;additive&quot; for additive components
 plot (decomposedRes,col=4) # see plot below</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
 </div>
 <div id="gráfico-de-líneas" class="section level3">
 <h3>Gráfico de líneas</h3>
@@ -951,8 +966,9 @@ para hacer comparaciones.</p>
 crecimiento de los dientes de un cerdo de guinea (Cuy), suministrado
 bajo dos formas diferentes, jugo de naranja y ácido ascorbico.</p>
 <pre class="r"><code>library(plotly)</code></pre>
+<pre><code>## Warning: package &#39;plotly&#39; was built under R version 4.5.2</code></pre>
 <pre><code>## 
-## Attaching package: &#39;plotly&#39;</code></pre>
+## Adjuntando el paquete: &#39;plotly&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
 ## 
 ##     last_plot</code></pre>
@@ -981,8 +997,8 @@ p &lt;- ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
 fig &lt;- ggplotly(p)
 
 fig</code></pre>
-<div id="htmlwidget-6991351b3fefe28660ba" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6991351b3fefe28660ba">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.7,26.06],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.98,16.77,26.14],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":null,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,3.6],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.072,27.048],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1d1c7d166d0a":{"x":{},"y":{},"colour":{},"type":"scatter"},"1d1c7ab222ea":{"x":{},"y":{},"colour":{}}},"cur_data":"1d1c7d166d0a","visdat":{"1d1c7d166d0a":["function (y) ","x"],"1d1c7ab222ea":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-e23efb647690485be41c" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e23efb647690485be41c">{"x":{"data":[{"x":[1,2,3],"y":[13.23,22.699999999999999,26.059999999999999],"text":["dose: 0.5<br />length: 13.23<br />supp: OJ<br />supp: OJ","dose: 1<br />length: 22.70<br />supp: OJ<br />supp: OJ","dose: 2<br />length: 26.06<br />supp: OJ<br />supp: OJ"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"OJ","legendgroup":"OJ","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"frame":null},{"x":[1,2,3],"y":[7.9800000000000004,16.77,26.140000000000001],"text":["dose: 0.5<br />length:  7.98<br />supp: VC<br />supp: VC","dose: 1<br />length: 16.77<br />supp: VC<br />supp: VC","dose: 2<br />length: 26.14<br />supp: VC<br />supp: VC"],"type":"scatter","mode":"lines+markers","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"VC","legendgroup":"VC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["0.5","1","2"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["0.5","1","2"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"dose","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.0720000000000001,27.048000000000002],"tickmode":"array","ticktext":["10","15","20","25"],"tickvals":[10,15,20.000000000000004,25],"categoryorder":"array","categoryarray":["10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"supp","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"62a076f485d":{"x":{},"y":{},"colour":{},"type":"scatter"},"62a04a721ab3":{"x":{},"y":{},"colour":{}}},"cur_data":"62a076f485d","visdat":{"62a076f485d":["function (y) ","x"],"62a04a721ab3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Ejemplo en excel</strong></p>
 <p>Se tienen los precios de la zanahoria en las plazas de mercado de 3
 ciudades diferentes</p>
@@ -1032,76 +1048,74 @@ que los datos son bimodales.</p>
 <p>Valor promedio de un conjunto de datos numéricos, calculada como la
 suma del conjunto de valores dividida entre el número total de valores,
 la fórmula con la que se estima es:</p>
-<p><strong>Media Muestral</strong></p>
-<p><span class="math display">\[\bar
-x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
-<p><strong>Media poblacional</strong></p>
-<p><span class="math display">\[\hat \mu
-=\frac{\sum_{i=1}^{n}x_i}{N}\]</span></p>
-<p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada
-observación</p>
-<p>N es el tamaño poblacional</p>
-<p>n es el tamaño muestral</p>
-<p>Según el teorema de límite central cuando n&gt;30 se considera
-poblacional</p>
-</div>
-<div id="mediana" class="section level3">
-<h3>Mediana</h3>
-<p>Es un valor que se encuentra en la mitad de los datos, cuando estos
-están ordenados</p>
-<ol style="list-style-type: lower-alpha">
-<li>si los datos son pares, la mediana es la suma de los dos valores
-centrales dividida por dos</li>
-</ol>
-<p><span
-class="math display">\[M_e=\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}\]</span></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>si los datos son impares la mediana es el valor que se encuentra en
-la posición <span class="math inline">\(\frac{n+1}{2}\)</span></li>
-</ol>
-<p><span class="math display">\[M_e=X_\frac{_{n+1}}{2}\]</span></p>
-<p><strong>Ejemplo</strong></p>
-<p>Se tienen las edades de una muestra de estudiantes de estadística
-básica compuesta por hombres y mujeres</p>
 <table>
+<colgroup>
+<col width="24%" />
+<col width="32%" />
+<col width="44%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="center">Hombre</th>
-<th>20</th>
-<th>22</th>
-<th>26</th>
-<th>20</th>
-<th>26</th>
-<th>19</th>
-<th>20</th>
-<th>21</th>
-<th>26</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th align="center"></th>
+<th align="center">muestral</th>
+<th align="center">poblacional</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">Mujer</td>
-<td>20</td>
-<td>20</td>
-<td>31</td>
-<td>26</td>
-<td>23</td>
-<td>42</td>
-<td>23</td>
-<td>20</td>
-<td>24</td>
-<td>25</td>
-<td>24</td>
-<td>27</td>
-<td>22</td>
+<td align="center">Media</td>
+<td align="center"><span class="math inline">\(\bar
+x=\frac{\sum_{i=1}^{n}x_i}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\mu
+=\frac{\sum_{i=1}^{n}x_i}{N}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Tamaño</td>
+<td align="center">n</td>
+<td align="center">N</td>
 </tr>
 </tbody>
 </table>
-<p>Estime la media por género, la moda y la mediana.</p>
+<ul>
+<li><p>Donde <span class="math inline">\(x_i\)</span> corresponde a cada
+observación</p></li>
+<li><p>Según el teorema de límite central cuando n&gt;30 se considera
+poblacional</p></li>
+</ul>
+</div>
+<div id="mediana-m_e" class="section level3">
+<h3>Mediana <span class="math inline">\(M_e\)</span></h3>
+<p>Es un valor que se encuentra en la mitad de los datos, cuando estos
+están <strong>ordenados</strong></p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Datos</th>
+<th align="center">Pares</th>
+<th align="center">Impares</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">Suma de los dos valores centrales dividida por
+dos</td>
+<td align="center">valor que se encuentra en la mitad</td>
+</tr>
+<tr class="even">
+<td align="center">Fórmula</td>
+<td align="center"><span
+class="math inline">\(\frac{X_{\frac{n}{2}}+X_{\frac{n}{2}+1}}{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(X_\frac{_{n+1}}{2}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><em>Video medidas de tendencia central</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/A_u9fS2r-Eg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1140,31 +1154,40 @@ iguales.</p></li>
 </div>
 <div id="varianza-y-desviación-estándar" class="section level3">
 <h3>Varianza y Desviación estándar</h3>
-<p>indica qué tan dispersos están los datos con respecto a la media</p>
+<p>Indica qué tan dispersos están los datos con respecto a la media</p>
 <p><img src="imagen/sd.png" width="414" style="display: block; margin: auto;" /></p>
-<p><strong>Caso poblacional</strong></p>
-<p><strong>Varianza</strong></p>
-<p><span
-class="math display">\[\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\]</span>
-<strong>Desviación estándar</strong></p>
-<p><span
-class="math display">\[\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\]</span>
-<strong>Caso muestral</strong></p>
-<p><strong>Varianza</strong> <span
-class="math display">\[S^2=\frac{\sum_{i=1}^n(x_i-\bar
-x)^2}{n-1}\]</span> <strong>Desviación estándar</strong> <span
-class="math display">\[S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar
-x)^2}{n-1}}\]</span> <strong>Pasos para estimar la desviación
-estándar</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>Encuentre la media</p></li>
-<li><p>Encuentre la desviación de cada uno de los valores con respecto a
-la media.</p></li>
-<li><p>Eleve cada valor obtenido al cuadrado</p></li>
-<li><p>Halle la suma de cada uno de los cuadrados</p></li>
-<li><p>Divida la suma de los cuadrados por el número de ítems</p></li>
-<li><p>Encuentre la raíz cuadrada de la varianza</p></li>
-</ol>
+<table>
+<colgroup>
+<col width="56%" />
+<col width="18%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Parametro poblacional</th>
+<th align="center">Estadístico muestral</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Varianza</td>
+<td align="center"><span
+class="math inline">\(\sigma^2=\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}\)</span></td>
+<td align="center"><span
+class="math inline">\(S^2=\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Desviación estándar</td>
+<td align="center"><span
+class="math inline">\(\sigma=\sqrt{\frac{\sum_{i=1}^n(x_i-\mu)^2}{N}}\)</span></td>
+<td align="center"><span
+class="math inline">\(S=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar
+x)^2}{n-1}}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><em>Medidas de variabilidad</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/cg4kUsbjQms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1436,7 +1459,7 @@ sd(mpg)</code></pre>
 mtcars %&gt;%
   group_by(cyl) %&gt;%
   summarise(mean = mean(mpg))</code></pre>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##     cyl  mean
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1     4  26.7
@@ -1444,7 +1467,7 @@ mtcars %&gt;%
 ## 3     8  15.1</code></pre>
 <pre class="r"><code>#boxplot
 boxplot(mtcars[,1]~mtcars[,2],xlab=&quot;cilindros&quot;,ylab=&quot;mpg&quot;,col =&quot;pink&quot;)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="medidas-de-forma" class="section level2">
 <h2>Medidas de forma</h2>
@@ -1480,7 +1503,7 @@ una medida del apuntalamiento de la distribución. Se definen tres tipos
 de distribuciones según su grado de curtosis, mesocurtica, platicurtica,
 leptocurtica.</p>
 <p><strong>Comparemos</strong></p>
-<p><img src="imagen/CURTOSIS.png" width="252" style="display: block; margin: auto;" /></p>
+<p><img src="imagen/curtosis.png" width="252" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="gráfico-de-densidad" class="section level2">
@@ -1506,11 +1529,11 @@ tmp &lt;- rbind(data.frame(origen = &quot;no&quot;, dato = no),
              data.frame(origen = &quot;si&quot;, dato = si))
 ggplot(tmp, aes(x =dato, fill = origen)) +
   geom_density(alpha = 0.3)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <pre class="r"><code>hist(no, xlab = &quot;PH agua no potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
 
 hist(si, xlab = &quot;PH agua potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
 <p><em>Medidas de tendencia central en tablas de frecuencia</em></p>
 <div style="text-align: center;">
 <iframe width="280" height="160" src="https://www.youtube.com/embed/S0sVP_rUt9s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -1782,7 +1805,7 @@ especies de flores, iris setosa, versicolor y virginica.</p>
 <pre class="r"><code>#install.packages(&quot;janitor&quot;)
 library(dplyr)</code></pre>
 <pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
+## Adjuntando el paquete: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
 ## 
 ##     filter, lag</code></pre>
@@ -1802,7 +1825,7 @@ library(dplyr)</code></pre>
 iris %&gt;% 
   group_by(iris$Sepal.Length) %&gt;% 
   summarise(frequency = n())</code></pre>
-<pre><code>## # A tibble: 35 x 2
+<pre><code>## # A tibble: 35 × 2
 ##    `iris$Sepal.Length` frequency
 ##                  &lt;dbl&gt;     &lt;int&gt;
 ##  1                 4.3         1
@@ -1815,14 +1838,14 @@ iris %&gt;%
 ##  8                 5          10
 ##  9                 5.1         9
 ## 10                 5.2         4
-## # i 25 more rows</code></pre>
+## # ℹ 25 more rows</code></pre>
 <p>La salida de R no muestra todas las entradas, porque son 35 valores
 diferentes, conviene agruparlos, por intervalos de frecuencias.</p>
 <pre class="r"><code>iris %&gt;% 
   mutate(sepal_length_group = cut(iris$Sepal.Length, breaks = 5)) %&gt;% 
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n())</code></pre>
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 5 × 2
 ##   sepal_length_group frequency
 ##   &lt;fct&gt;                  &lt;int&gt;
 ## 1 (4.3,5.02]                32
@@ -1841,7 +1864,7 @@ iris %&gt;%
   group_by(sepal_length_group) %&gt;% 
   summarise(frequency = n()) %&gt;% 
   mutate(cum_frequency = cumsum(frequency))</code></pre>
-<pre><code>## # A tibble: 4 x 3
+<pre><code>## # A tibble: 4 × 3
 ##   sepal_length_group frequency cum_frequency
 ##   &lt;fct&gt;                  &lt;int&gt;         &lt;int&gt;
 ## 1 (4,5]                     32            32
@@ -1858,7 +1881,7 @@ iris %&gt;%
   summarise(frequency = n()) %&gt;% 
   ggplot() +
   geom_bar(aes(x = sepal_length_group, y = frequency), stat = &#39;identity&#39;,col=3)</code></pre>
-<p><img src="descriptiva_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="descriptiva_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p><strong>Analisis de datos agrupados</strong></p>
 <p>medidas de tendencia central en datos agrupados</p>
 <div style="text-align: center;">
