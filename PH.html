@@ -13,7 +13,7 @@
 
 <title>Pruebas de hipótesis</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,13 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="site_libs/d3-3.3.8/d3.min.js"></script>
 <script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
 <link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
@@ -43,8 +44,8 @@
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/chromatography-0.1/chromatography.js"></script>
 <script src="site_libs/DiagrammeR-binding-1.0.11/DiagrammeR.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -170,11 +171,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -203,8 +208,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -212,16 +217,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -414,13 +412,31 @@ quo</p>
 <p><strong>Hipótesis alternativa</strong></p>
 <p><span class="math inline">\(H_1\)</span>= Hipótesis alternativa,
 sospecha</p>
-<p><strong>cola superior</strong></p>
-<p><span class="math display">\[\Large H_0:\theta&gt;\theta_0\]</span>
-<strong>cola inferior</strong></p>
-<p><span class="math display">\[\Large H_0:\theta&lt;\theta_0\]</span>
-<strong>cola doble</strong></p>
-<p><span class="math display">\[\Large H_0:\theta\neq \theta_0\]</span>
-<strong>Nota:</strong></p>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="35%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>cola superior</strong></th>
+<th align="center"><strong>cola inferior</strong></th>
+<th align="center"><strong>cola doble</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\Large
+H_0:\theta&gt;\theta_0\)</span></td>
+<td align="center"><span class="math inline">\(\Large
+H_0:\theta&lt;\theta_0\)</span></td>
+<td align="center"><span class="math inline">\(\Large H_0:\theta\neq
+\theta_0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota:</strong></p>
 <p><span class="math inline">\(\theta\)</span> puede ser cualquier
 estadístico como la media, la varianza, l adiferencia de medias o de
 proporciónes o razón de varianzas, lo que cambia es la distribución
@@ -499,8 +515,10 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
-<div id="htmlwidget-794abb85cdd936786e03" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-794abb85cdd936786e03">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<pre><code>## Warning: package &#39;DiagrammeR&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## Warning: package &#39;greekLetters&#39; was built under R version 4.5.2</code></pre>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-0599fdd50e00e66f8052" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0599fdd50e00e66f8052">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -525,8 +543,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div id="htmlwidget-98f880de9f9e0a2d266a" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-98f880de9f9e0a2d266a">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-3ebbc6427bd72f84bfd0" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3ebbc6427bd72f84bfd0">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -932,8 +950,8 @@ class="math inline">\(\mu_x\)</span> y <span
 class="math inline">\(\mu_y\)</span></p></li>
 <li><p>Se identifican 3 casos:</p></li>
 </ul>
-<div id="htmlwidget-47ef255e769078679788" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-47ef255e769078679788">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-62fa316d34c2c666c508" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-62fa316d34c2c666c508">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />
