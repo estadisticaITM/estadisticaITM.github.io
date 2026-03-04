@@ -440,7 +440,7 @@ H_0:\theta&lt;\theta_0\)</span></td>
 <p><span class="math inline">\(\theta\)</span> puede ser cualquier
 estadístico como la media, la varianza, l adiferencia de medias o de
 proporciónes o razón de varianzas, lo que cambia es la distribución
-asociada, varía dependiendo del caso</p>
+asociada, varía dependiendo del caso.</p>
 </div>
 <div id="tipos-de-errores" class="section level2">
 <h2>Tipos de errores</h2>
@@ -475,6 +475,8 @@ class="math inline">\(H_0\)</span>, dado que es verdadera</p>
 <p><strong>Error tipo II falso positivo <span
 class="math inline">\(\beta\)</span>:</strong> Aceptar <span
 class="math inline">\(H_0\)</span>, dado que es falsa</p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=PLfX5C7cc6LRLXGbE4R1Vz-Q456sgLsbGy" title="Pasos para realizar Pruebas de Hipótesis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 <p><strong>Ejemplos</strong></p>
 <p><img src="imagen/embarazo.png" width="80%" style="display: block; margin: auto;" /></p>
 <table>
@@ -511,18 +513,20 @@ class="math inline">\(H_0\)</span>, dado que es falsa</p>
 </tr>
 </tbody>
 </table>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/G2Q4Dgr_K44?list=PLfX5C7cc6LRLXGbE4R1Vz-Q456sgLsbGy" title="Tipos de errores en pruebas de hipótesis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 </div>
 <div id="pasos-para-realizar-una-prueba-de-hipótesis"
 class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
 <pre><code>## Warning: package &#39;DiagrammeR&#39; was built under R version 4.5.2</code></pre>
 <pre><code>## Warning: package &#39;greekLetters&#39; was built under R version 4.5.2</code></pre>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-0599fdd50e00e66f8052" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-0599fdd50e00e66f8052">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-f6319e0c94d4799c9a33" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f6319e0c94d4799c9a33">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/zP6JsuHm9Hg?list=RDCMUCMLQ_dQirjjwPjR8skwX3gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/hTyJKXWk5bU?list=PLfX5C7cc6LRLXGbE4R1Vz-Q456sgLsbGy" title="¿Qué es una hipótesis estadística?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
 <div id="valor-p" class="section level2">
@@ -543,8 +547,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-3ebbc6427bd72f84bfd0" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-3ebbc6427bd72f84bfd0">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-bffe28471b0098daab80" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-bffe28471b0098daab80">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -950,8 +954,8 @@ class="math inline">\(\mu_x\)</span> y <span
 class="math inline">\(\mu_y\)</span></p></li>
 <li><p>Se identifican 3 casos:</p></li>
 </ul>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-62fa316d34c2c666c508" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-62fa316d34c2c666c508">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-1bf90205b3f4f624d56d" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1bf90205b3f4f624d56d">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />
