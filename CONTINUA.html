@@ -13,7 +13,7 @@
 
 <title>Distribuciones de probabilidad continuas</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -159,11 +159,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -192,8 +196,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -201,16 +205,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -315,34 +312,19 @@ continuas</h1>
 
 
 <ul>
-<li><a href="conn.html" target="_blank"> Distribuciones continuas
-</a></li>
-</ul>
-<div id="distribución-de-probabilidad-normal" class="section level2">
-<h2>Distribución de probabilidad normal</h2>
-<ul>
-<li><a href="normal.html" target="_blank"> Distribución normal </a></li>
-</ul>
-</div>
-<div id="familia-de-la-distribución-de-probabilidad-gama"
-class="section level2">
-<h2>Familia de la distribución de probabilidad Gama</h2>
-<ul>
-<li><a href="exponn.html" target="_blank"> Distribución gama y
-exponencial </a></li>
-</ul>
-</div>
-<div id="distribución-de-probabilidad-uniforme" class="section level2">
-<h2>Distribución de probabilidad uniforme</h2>
-<ul>
-<li><a href="uniforme.html" target="_blank"> Distribución uniforme
-</a></li>
+<li><p><a href="conn.html" target="_blank"> Distribuciones continuas
+empíricas </a></p></li>
+<li><p><a href="normal.html" target="_blank"> Distribución normal
+</a></p></li>
+<li><p><a href="exponn.html" target="_blank"> Distribución gama y
+exponencial </a></p></li>
+<li><p><a href="uniforme.html" target="_blank"> Distribución uniforme
+</a></p></li>
 </ul>
 <p><strong>Aplicativo de distribuciones de probabilidad
 continuas</strong></p>
 <iframe src="https://amgq828.shinyapps.io/appcontinuas/?showcase=0" width="672" height="1000px" data-external="1">
 </iframe>
-</div>
 
 <br>
 <hr>
