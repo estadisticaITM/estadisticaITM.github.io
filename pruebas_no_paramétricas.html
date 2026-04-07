@@ -13,7 +13,7 @@
 
 <title>Pruebas no paramétricas</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -162,11 +162,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -195,8 +199,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +208,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -449,11 +446,11 @@ tmp &lt;- rbind(data.frame(origen = &quot;no&quot;, dato = no),
              data.frame(origen = &quot;si&quot;, dato = si))
 ggplot(tmp, aes(x =dato, fill = origen)) +
   geom_density(alpha = 0.3)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>hist(no, xlab = &quot;PH agua no potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
 
 hist(si, xlab = &quot;PH agua potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 </div>
 <div id="grafico-cuantil-cuantil" class="section level2">
 <h2>Grafico cuantil cuantil</h2>
@@ -477,7 +474,7 @@ qqline(y=si, col=&#39;blue&#39;, lwd=2, lty=2)
 qqnorm(y=no, main=&#39;PH agua no potable&#39;, ylab=&#39;Cuantiles muestrales&#39;,
        xlab=&#39;Cuantiles teóricos&#39;, las=1)
 qqline(y=no, col=&#39;blue&#39;, lwd=2, lty=2)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
@@ -507,7 +504,7 @@ potabilidad, Qué infiere?</p>
 <pre class="r"><code>boxplot(no,si)
 abline(h=6.5,col=2)
 abline(h=8.5,col=2)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 </div>
 <div
@@ -571,16 +568,17 @@ onzas) sigue una distribución normal.</p>
 onzas) no sigue una distribución normal.</p>
 <p>Nivel de significancia: 0.05 (Hipotético).</p>
 <p><strong>Analisis descriptivo</strong></p>
-<pre class="r"><code>library(nortest)
-volumen &lt;-c(8.39,12.14,11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1,11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
+<pre class="r"><code>library(nortest)</code></pre>
+<pre><code>## Warning: package &#39;nortest&#39; was built under R version 4.5.2</code></pre>
+<pre class="r"><code>volumen &lt;-c(8.39,12.14,11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1,11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
 
 mean(volumen)</code></pre>
 <pre><code>## [1] 11.8144</code></pre>
 <pre class="r"><code>sd(volumen)</code></pre>
 <pre><code>## [1] 1.4036</code></pre>
 <pre class="r"><code>require(car)</code></pre>
-<pre><code>## Loading required package: car</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## Cargando paquete requerido: car</code></pre>
+<pre><code>## Cargando paquete requerido: carData</code></pre>
 <pre class="r"><code>library(MASS)
 par(mfrow=c(1,4))
 hist(volumen, xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
@@ -590,10 +588,10 @@ plot(density(volumen), xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Densi
 qqPlot(volumen, xlab=&quot;Cuantiles teóricos&quot;, ylab=&quot;Cuantiles muestrales&quot;, las=1,main=&quot;&quot;)</code></pre>
 <pre><code>## [1] 5 1</code></pre>
 <pre class="r"><code>boxplot(volumen)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>ks.test(volumen, &quot;pnorm&quot;, mean =11.81, sd=1.4)</code></pre>
 <pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
+##  Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  volumen
 ## D = 0.21516, p-value = 0.1703
@@ -661,7 +659,7 @@ qqPlot(tiempo, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1]  2 13</code></pre>
 <pre class="r"><code>plot(density(tiempo), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
 boxplot(tiempo, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Se procede a revisar el ajuste con respecto a una distribución
 exponencial con un α=0.05</p>
 <p>Sea X el tiempo entre llegadas a Celia Express.</p>
@@ -677,7 +675,7 @@ Ajustex</code></pre>
 <pre class="r"><code>Ks&lt;- ks.test(tiempo, &quot;pexp&quot;, rate=Ajustex$estimate[1])
 Ks</code></pre>
 <pre><code>## 
-##  One-sample Kolmogorov-Smirnov test
+##  Exact one-sample Kolmogorov-Smirnov test
 ## 
 ## data:  tiempo
 ## D = 0.13678, p-value = 0.8006
@@ -692,11 +690,12 @@ potable) siguen la misma distribución de probabilidad.</p>
 <pre class="r"><code>par(mfrow=c(1,2))
 hist(si)
 hist(no)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>ks.test(si, no)</code></pre>
-<pre><code>## Warning in ks.test(si, no): p-value will be approximate in the presence of ties</code></pre>
+<pre><code>## Warning in ks.test.default(si, no): p-value will be approximate in the presence
+## of ties</code></pre>
 <pre><code>## 
-##  Two-sample Kolmogorov-Smirnov test
+##  Asymptotic two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  si and no
 ## D = 0.058544, p-value = 0.2289
@@ -774,7 +773,7 @@ mean(personas)</code></pre>
 <pre class="r"><code>par(mfrow=c(1,2))
 hist(personas, xlab = &quot;personas&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
 plot(density(personas), xlab = &quot;personas&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>En este caso, la variable de interés registra un número de eventos
 por unidad de tiempo, por lo que se sugiere analizar el ajuste a una
 distribución poisson. Se muestra la respectiva prueba de hipótesis. Sea
@@ -868,8 +867,9 @@ y sus argumentos son: variable de interés, tipo de distribución y
 método. Se usará el test de Chi-cuadradado a través del argumento
 “MinChisq”</p>
 <pre class="r"><code>require(vcd)</code></pre>
-<pre><code>## Loading required package: vcd</code></pre>
-<pre><code>## Loading required package: grid</code></pre>
+<pre><code>## Cargando paquete requerido: vcd</code></pre>
+<pre><code>## Warning: package &#39;vcd&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## Cargando paquete requerido: grid</code></pre>
 <pre class="r"><code>gf&lt;-goodfit(personas, type = &quot;poisson&quot;, method = &quot;MinChisq&quot;)
 gf$par</code></pre>
 <pre><code>## $lambda
@@ -918,9 +918,9 @@ dependiente de hacer ejercicio</p>
 
 ## Para llamar la librería
 library(MASS)
-library(DT)
-
-## se usan las variables
+library(DT)</code></pre>
+<pre><code>## Warning: package &#39;DT&#39; was built under R version 4.5.3</code></pre>
+<pre class="r"><code>## se usan las variables
 ## FUMA (Smoke) con los niveles: Heavy, Regul, Occas y Never 
 ## EJERCICIO (Exer) con los niveles: Freq, Some, y None
 ##se tabulan
@@ -960,7 +960,7 @@ ctbl</code></pre>
   main = &quot;Mosaic plot&quot;,
   color = TRUE
 )</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><strong>fuerza de asociación</strong></p>
 <pre class="r"><code>library(vcd)
 assocstats(x = tbl)</code></pre>
@@ -1207,7 +1207,7 @@ efecto) cuantificado por phi o Cramer’s V es mediano.</p>
   main = &quot;Mosaic plot&quot;,
   color = TRUE
 )</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 <div id="prueba-para-la-diferencias-entre-dos-poblaciones"
 class="section level1">
@@ -1321,26 +1321,20 @@ función de los datos construya un IC con un nivel de confianza del
 95%?</p>
 <pre class="r"><code>E&lt;-c(32,37,35,28,41,44,35,31,34)
 N&lt;-c(35,31,29,25,34,40,27,32,31)
-t.test (E,N,paired=T,conf.level=0.95)</code></pre>
-<pre><code>## Warning in if (paired) xok &lt;- yok &lt;- complete.cases(x, y) else {: la condición
-## tiene longitud &gt; 1 y sólo el primer elemento será usado</code></pre>
-<pre><code>## Warning in if (paired) {: la condición tiene longitud &gt; 1 y sólo el primer
-## elemento será usado</code></pre>
-<pre><code>## Warning in if (paired) &quot;Paired t-test&quot; else &quot;One Sample t-test&quot;: la condición
-## tiene longitud &gt; 1 y sólo el primer elemento será usado</code></pre>
-<pre><code>## Warning in if (paired) &quot;mean of the differences&quot; else &quot;mean of x&quot;: la condición
-## tiene longitud &gt; 1 y sólo el primer elemento será usado</code></pre>
+E-N</code></pre>
+<pre><code>## [1] -3  6  6  3  7  4  8 -1  3</code></pre>
+<pre class="r"><code>t.test (E-N,conf.level=0.95)</code></pre>
 <pre><code>## 
-##  Paired t-test
+##  One Sample t-test
 ## 
-## data:  E and N
+## data:  E - N
 ## t = 2.9938, df = 8, p-value = 0.01723
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
 ##  0.8423999 6.4909334
 ## sample estimates:
-## mean of the differences 
-##                3.666667</code></pre>
+## mean of x 
+##  3.666667</code></pre>
 <pre class="r"><code> t.test (E,N,paired=F,conf.level=0.95)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -1353,6 +1347,234 @@ t.test (E,N,paired=T,conf.level=0.95)</code></pre>
 ## sample estimates:
 ## mean of x mean of y 
 ##  35.22222  31.55556</code></pre>
+</div>
+</div>
+<div id="pruebas-no-paramétricas" class="section level1">
+<h1>Pruebas no paramétricas</h1>
+<p><img src="imagen/pnp.png" width="350" height="250" style="display: block; margin: auto;" /></p>
+<div id="prueba-de-signo" class="section level2">
+<h2>Prueba de signo</h2>
+<p>Se utiliza para probar hipótesis sobre una mediana de la
+población.</p>
+<p><strong>Hipótesis nula <span
+class="math inline">\(H_0\)</span></strong></p>
+<p><span class="math display">\[\Large H_0:M_e=M_o\]</span></p>
+<p><strong>Hipótesis alternativa <span
+class="math inline">\(H_1\)</span></strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>cola superior</strong></th>
+<th align="center"><strong>cola inferior</strong></th>
+<th align="center"><strong>cola doble</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\Large
+H_0:M_e&gt;M_o\)</span></td>
+<td align="center"><span class="math inline">\(\Large
+H_0:M_e&lt;M_o\)</span></td>
+<td align="center"><span class="math inline">\(\Large H_0:M_e\neq
+M_o\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>si la distribución es simétrica, la media y la mediana de la
+población son iguales. Al probar la hipótesis nula <span
+class="math inline">\(H_0\)</span> de que <span
+class="math inline">\(M_e=M_o\)</span> en comparación con la hipótesis
+alternativa adecuada, con base en una muestra aleatoria de tamaño n,
+reemplazamos cada valor de la muestra que exceda a <span
+class="math inline">\(M_e\)</span> con un signo más, y cada valor de la
+muestra menor que <span class="math inline">\(M_e\)</span> con un signo
+menos. Si la hipótesis nula es verdadera y la población es simétrica, la
+suma de los signos más debería ser casi igual a la suma de los signos
+menos.</p>
+<p><strong>Estadístico</strong></p>
+<p><span class="math inline">\(R^+:\)</span> Numero de diferencias
+positivas encontradas en el experimento</p>
+<p><span class="math display">\[R^+\sim B(n,p) \quad
+R^+={0,1,2,3...n}\]</span> n: cantidad de veces q se repite el
+experimento aleatorio</p>
+<p>E: diferencia positiva</p>
+<p><span class="math inline">\(p=P(E)=\frac{1}{2}\)</span> Probabilidad
+de encontrar una diferencia positiva</p>
+<p><span class="math inline">\(f(x)\)</span> Probabilidad de encontrar x
+diferencias positivas</p>
+<p><span class="math display">\[f(x)=P(R^+=x)=\displaystyle{n \choose
+x}p^x q^{n-x}=\displaystyle{n \choose x}*{\left (\frac{1}{2}
+\right)}^n\]</span> Siempre que n&gt;10, las probabilidades binomiales
+con p=1/2 se pueden aproximar a partir de la curva normal, ya que
+np=nq&gt;5.</p>
+<p><span class="math display">\[μ=np\quad sd=\sqrt{npq}\]</span></p>
+<p><strong>valor p</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">condición</th>
+<th align="center">fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\(r^+&lt;\frac{n}{2}\)</span></td>
+<td align="center"><span class="math inline">\(k*P \left (x\leq
+r^+|p=\frac{1}{2}\right)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span
+class="math inline">\(r^+&gt;\frac{n}{2}\)</span></td>
+<td align="center"><span class="math inline">\(k*P \left (x\geq
+r^+|p=\frac{1}{2}\right)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">prueba unilateral</td>
+<td align="center"><span class="math inline">\(k=1\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">prueba bilateral</td>
+<td align="center"><span class="math inline">\(k=2\)</span></td>
+</tr>
+</tbody>
+</table>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/H16Ou4geBnM" title="Prueba de signos  - Ejercicio 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/lYmVW7R88UQ" title="Prueba de signos  - Ejercicio 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p><strong>Ejemplo</strong></p>
+<p>Los siguientes datos representan el número de horas que funciona una
+guadaña antes de requerir una recarga:</p>
+<p>1.5, 2.2, 0.9, 1.3, 2.0, 1.6, 1.8, 1.5, 2.0, 1.2, 1.7</p>
+<p>A un nivel de significancia de 0.05 utilice la prueba de signo para
+probar la hipótesis de que la guadaña funciona con una mediana de 1.8
+horas antes de requerir una recarga.</p>
+<p><strong>Solución: </strong></p>
+<p><strong>1. juego de hipótesis</strong></p>
+<p><span class="math display">\[H_0: Me= 1.8\]</span> <span
+class="math display">\[H1: M_e≠ 1.8\]</span></p>
+<p><strong>3. α = 0.05</strong></p>
+<p><strong>4. Cálculos: </strong></p>
+<p>Al reemplazar cada valor con el símbolo “+” si excede 1.8, con el
+símbolo “–” si es menor que 1.8 y descartar las mediciones que sean
+iguales a 1.8, obtenemos la siguiente secuencia</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(X_i\)</span></th>
+<th align="center"><span
+class="math inline">\(x_i-M_e=x_i-1.8\)</span></th>
+<th align="center">signo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.5</td>
+<td align="center">-0.3</td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">2.2</td>
+<td align="center">0.4</td>
+<td align="center">+</td>
+</tr>
+<tr class="odd">
+<td align="center">0.9</td>
+<td align="center">-0.9</td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">1.3</td>
+<td align="center">-0.5</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">0.2</td>
+<td align="center">+</td>
+</tr>
+<tr class="even">
+<td align="center">1.6</td>
+<td align="center">-0.2</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">1.8</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">1.5</td>
+<td align="center">-0.3</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">0.2</td>
+<td align="center">+</td>
+</tr>
+<tr class="even">
+<td align="center">1.2</td>
+<td align="center">-0.6</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">1.7</td>
+<td align="center">-0.1</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[n=9 \quad r^+=3 \quad n/2=4.5\quad
+k=2\]</span></p>
+<p><strong>5. Estadístico de prueba</strong></p>
+<p>como <span class="math inline">\(r^+&lt;\frac{n}{2} \quad
+3&lt;4.5\)</span> la fórmula es:</p>
+<p><span class="math display">\[k*P \left (x\leq
+r^+|p=\frac{1}{2}\right)\]</span> <span class="math display">\[2*P(x\leq
+3)=2*\sum_{x=0}^3 \displaystyle{10 \choose x}0.5^x 0.5^{10-x}\]</span>
+<span class="math display">\[2*\sum_{x=0}^3  \displaystyle{10 \choose
+x}*{\left (\frac{1}{2} \right)}^{10}=0.3437\]</span> <strong>6.
+Decisión: </strong></p>
+<p>No se rechaza la hipótesis nula y se concluye que la mediana del
+tiempo de funcionamiento no difiere significativamente de 1.8 horas.</p>
+<p><strong>En R</strong></p>
+<pre class="r"><code>library(BSDA)</code></pre>
+<pre><code>## Warning: package &#39;BSDA&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## Cargando paquete requerido: lattice</code></pre>
+<pre><code>## 
+## Adjuntando el paquete: &#39;BSDA&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:vcd&#39;:
+## 
+##     Trucks</code></pre>
+<pre><code>## The following objects are masked from &#39;package:carData&#39;:
+## 
+##     Vocab, Wool</code></pre>
+<pre><code>## The following object is masked from &#39;package:datasets&#39;:
+## 
+##     Orange</code></pre>
+<pre class="r"><code>x1&lt;-c(1.5,2.2,0.9,1.3,2.0,1.6,1.8,1.5,2.0,1.2,1.7)
+med&lt;-median(x1)
+SIGN.test(x1, md =1.8, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One-sample Sign-Test
+## 
+## data:  x1
+## s = 3, p-value = 0.3437
+## alternative hypothesis: true median is not equal to 1.8
+## 95 percent confidence interval:
+##  1.271273 2.000000
+## sample estimates:
+## median of x 
+##         1.6 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt U.E.pt
+## Lower Achieved CI     0.9346 1.3000      2
+## Interpolated CI       0.9500 1.2713      2
+## Upper Achieved CI     0.9883 1.2000      2</code></pre>
 </div>
 <div id="prueba-de-mann-whitney-wilcoxon" class="section level2">
 <h2>Prueba de Mann-Whitney-wilcoxon</h2>
@@ -1384,7 +1606,7 @@ ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
 theme_bw() +
 theme(axis.text.y = element_blank()) + 
 ggtitle(&quot;Muestras procedentes de la misma población&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Por lo contrario, si una de las muestras pertenece a una población
 con valores mayores o menores que la otra población, al ordenar las
 observaciones, estas tenderán a agruparse de modo que las de una muestra
@@ -1400,7 +1622,7 @@ ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
 theme_bw() +
 theme(axis.text.y = element_blank()) + 
 ggtitle(&quot;Muestras procedentes de distintas poblaciones&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
 <p>Los siguientes datos corresponden a constantes de permeabilidad de la
 membrana chorioamnion en humanos (una membrana placentaria) medida a las
@@ -1423,7 +1645,7 @@ qqPlot(c12, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1] 7 9</code></pre>
 <pre class="r"><code>plot(density(c12), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
 boxplot(c12,c26, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <pre class="r"><code># Para la constante a las 26 semanas
 
 par(mfrow=c(1,4))
@@ -1432,7 +1654,7 @@ qqPlot(c26, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1] 4 5</code></pre>
 <pre class="r"><code>plot(density(c26), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
 boxplot(c12,c26, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Pruebe mediante un juego de hipotesis y mediante la prueba de
 shapiro wilk, la normalidad del conjunto de datos</li>
@@ -1471,7 +1693,7 @@ shapiro.test(c12)</code></pre>
 <pre class="r"><code>#prueba para saber si provienen de la misma distribución 
 ks.test(c12,c26)</code></pre>
 <pre><code>## 
-##  Two-sample Kolmogorov-Smirnov test
+##  Exact two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  c12 and c26
 ## D = 0.6, p-value = 0.1658
@@ -1509,7 +1731,7 @@ grupo1=c(411,466,432,409,381,363,449,483,438,381)
 grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)         
 
 boxplot(grupo1,grupo2)</code></pre>
-<p><img src="pruebas_no_paramétricas_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <pre class="r"><code>## Prueba de normalidad
 shapiro.test(grupo1)</code></pre>
 <pre><code>## 
@@ -1525,12 +1747,11 @@ shapiro.test(grupo1)</code></pre>
 ## W = 0.95245, p-value = 0.673</code></pre>
 <pre class="r"><code>#prueba para saber si provienen de la misma distribución 
 ks.test(grupo1,grupo2)</code></pre>
-<pre><code>## Warning in ks.test(grupo1, grupo2): cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
-##  Two-sample Kolmogorov-Smirnov test
+##  Exact two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  grupo1 and grupo2
-## D = 0.91667, p-value = 0.0002089
+## D = 0.91667, p-value = 3.402e-05
 ## alternative hypothesis: two-sided</code></pre>
 <pre class="r"><code>## Prueba de igualdad entre varinzas
 var.test(grupo1,grupo2)</code></pre>
