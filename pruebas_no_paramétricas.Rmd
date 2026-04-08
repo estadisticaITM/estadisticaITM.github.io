@@ -1042,6 +1042,318 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
 - La prueba chi cuadrado tiene 3 diferentes aplicaciones, entre ellos se encuentran la Prueba de independencia, Prueba de bondad de ajuste y de Comparación de distribuciones**
 
 ## Ejercicios propuestos
+**PRUEBA DE SIGNO**
+1. Los siguientes datos representan el tiempo, en minutos, que un paciente tiene que esperar durante 12 visitas al consultorio de un médico antes de ser atendido:
 
-1. 
+|  |  |  |  |  |  |  |  |  |  |  |  |
+|:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|
+|17|15|20|20|32|28|12|26|25|25|35|24|
+
+
+Utilice la prueba de signo a un nivel de significancia de 0.05 para probar la afirmación del médico de que la mediana del tiempo de espera de sus pacientes no es mayor de 20 minutos.
+
+**rta x = 7 con valor P = 0.1719; no rechace H0**
+
+2. Los siguientes datos representan el número de horas de vuelo de entrenamiento que 18 estudiantes de piloto reciben de cierto instructor antes de su primer vuelo solos:
+
+
+| |  |  |  |  |  |  |  |  |  | |  |  |  |  |  |  |  |
+|:|:-|:-|:-|:-|:-|:-|:-|:-|:-|:|:-|:-|:-|:-|:-|:-|:-|
+|9|12|18|14|12|14|12|10|16|11|9|11|13|11|13|15|13|14|
+
+Con las probabilidades binomiales realice una prueba de signo a un nivel de significancia de
+0.02 para probar la afirmación del instructor de que la mediana del tiempo de vuelo de entrenamiento que sus estudiantes requieren antes de volar solos es de 12 horas.
+
+
+16.3 Un inspector de alimentos examina 16 latas de cierta marca de jamón para determinar el porcentaje de impurezas externas. Se registraron los siguientes datos:
+
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|2.4|2.3|3.1|2.2|2.3|1.2|1.0|2.4|1.7|1.1|4.2|1.9|1.7|3.6|1.6|2.3|
+
+Utilice una aproximación normal a la distribución binomial y realice una prueba de signo a un nivel de significancia de 0.05 para probar la hipótesis nula de que la mediana del porcentaje de impurezas en esta marca de jamón es de 2.5%, en comparación con la hipótesis
+alternativa de que la mediana del porcentaje de impurezas no es de 2.5%.
+
+**x = 3 con valor P = 0.0244; rechace H0**
+
+
+16.4 Un proveedor de pintura acrílica afi rma que un
+nuevo aditivo reducirá el tiempo de secado de su pintura. Para probar esta afi rmación se pintaron 12 paneles
+de madera; la mitad de cada panel se pintó con la pintura que contiene el aditivo regular y la otra mitad con
+la pintura que contiene el nuevo aditivo. Los tiempos
+de secado, en horas, son los siguientes:
+Tiempo de secado (horas)
+Panel Aditivo nuevo Aditivo regular
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+6.4
+5.8
+7.4
+5.5
+6.3
+7.8
+8.6
+8.2
+7.0
+4.9
+5.9
+6.5
+6.6
+5.8
+7.8
+5.7
+6.0
+8.4
+8.8
+8.4
+7.3
+5.8
+5.8
+6.5
+Utilice la prueba de signo a un nivel de 0.05 para probar la hipótesis nula de que el nuevo aditivo no disminuye el tiempo que tarda en secar la pintura con el
+aditivo regular.
+16.5 Se afi rma que una nueva dieta reducirá el peso
+de una persona en 4.5 kilogramos, en promedio, en
+un periodo de dos semanas. Se registran los pesos de
+10 mujeres que siguen esta dieta, antes y después de un
+periodo de dos semanas, y se obtienen los siguientes
+datos:
+Mujer Peso antes Peso después
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+58.5
+60.3
+61.7
+69.0
+64.0
+62.6
+56.7
+63.6
+68.2
+59.4
+60.0
+54.9
+58.1
+62.1
+58.5
+59.9
+54.4
+60.2
+62.3
+58.7
+
+664 Capítulo 16 Estadística no paramétrica
+Utilice la prueba de signo a un nivel de signifi cancia de
+0.05 para probar la hipótesis de que la dieta reduce la
+mediana del peso en 4.5 kilogramos, en comparación
+con la hipótesis alternativa de que la mediana de la pérdida de peso es menor que 4.5 kilogramos.
+16.6 En un experimento de contaminación atmosférica
+se comparan dos tipos de instrumentos para medir la cantidad de monóxido de azufre en la atmósfera. Se registraron las siguientes lecturas diarias durante dos semanas:
+Monóxido de azufre
+Día Instrumento A Instrumento B
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+0.96
+0.82
+0.75
+0.61
+0.89
+0.64
+0.81
+0.68
+0.65
+0.84
+0.59
+0.94
+0.91
+0.77
+0.87
+0.74
+0.63
+0.55
+0.76
+0.70
+0.69
+0.57
+0.53
+0.88
+0.51
+0.79
+0.84
+0.63
+Utilice la aproximación normal a la distribución binomial y realice una prueba de signo para determinar si
+los diferentes instrumentos conducen a diferentes resultados. Utilice un nivel de signifi cancia de 0.05.
+16.7 Las siguientes cifras indican la presión sanguínea sistólica de 16 corredores antes y después de una
+carrera de ocho kilómetros:
+Corredor Antes Después
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+158
+149
+160
+155
+164
+138
+163
+159
+165
+145
+150
+161
+132
+155
+146
+159
+164
+158
+163
+160
+172
+147
+167
+169
+173
+147
+156
+164
+133
+161
+154
+170
+Utilice una prueba de signo a un nivel de signifi cancia
+de 0.05 para probar la hipótesis nula de que correr ocho
+kilómetros aumenta la mediana de la presión sanguínea
+sistólica en ocho puntos, en comparación con la hipótesis alternativa de que el aumento en la mediana es menor que ocho puntos.
+16.8 Analice los datos del ejercicio 16.1 usando la
+prueba de rango con signo.
+16.9 Analice los datos del ejercicio 16.2 usando la
+prueba de rango con signo.
+16.10 Los pesos de 5 personas, en kilogramos, antes
+de dejar de fumar y cinco semanas después de dejar de
+fumar, son los siguientes:
+Individuo
+1 2 3 45
+Antes 66 80 69 52 75
+Después 71 82 68 56 73
+Utilice la prueba de rango con signo para observaciones en pares y pruebe la hipótesis, a un nivel de signifi -
+cancia de 0.05, de que dejar de fumar no infl uye en el
+peso de una persona, en comparación con la hipótesis
+alternativa de que al dejar de fumar se aumenta de peso.
+16.11 Repita el ejercicio 16.5 usando la prueba de
+rango con signo.
+16.12 Los siguientes son los números de recetas
+surti das por dos farmacias en un periodo de 20 días:
+Día Farmacia A Farmacia B
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+19
+21
+15
+17
+24
+12
+19
+14
+20
+18
+23
+21
+17
+12
+16
+15
+20
+18
+14
+22
+17
+15
+12
+12
+16
+15
+11
+13
+14
+21
+19
+15
+11
+10
+20
+12
+13
+17
+16
+18
+A un nivel de signifi cancia de 0.01 utilice la prueba de
+rango con signo para determinar si las dos farmacias
+surten el mismo número de recetas, “en promedio”, en
+comparación con la hipótesis alternativa de que la farmacia A surte más recetas que la farmacia B.
+16.13 Repita el ejercicio 16.7 usando la prueba de
+rango con signo.
+16.14 Repita el ejercicio 16.6 con la prueba de rango
+con signo.
 

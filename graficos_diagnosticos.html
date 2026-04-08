@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Graficos diagnósticos de la distribución de los datos</title>
+
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88209726-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística ITM</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="pagin1.html">
+    <span class="fa fa-line-chart"></span>
+     
+    Est Básica
+  </a>
+</li>
+<li>
+  <a href="inf.html">
+    <span class="fa fa-bar-chart-o"></span>
+     
+    Est inferencial
+  </a>
+</li>
+<li>
+  <a href="medi.html">
+    <span class="fa fa-puzzle-piece"></span>
+     
+    Metrología
+  </a>
+</li>
+<li>
+  <a href="https://www.itm.edu.co">
+    <span class="ion ion-university"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/estadisticaITM">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Graficos diagnósticos de la distribución de
+los datos</h1>
+
+</div>
+
+
+<div id="graficos-para-analizar-la-distribución-de-los-datos"
+class="section level1">
+<h1>Graficos para analizar la distribución de los datos</h1>
+<p>Gran parte de los modelos estadísticos consideran que las
+observaciones provienen de poblaciones normales. En muchas situaciones
+este supuesto no se cumple. A continuación se mencionan algunos gráficos
+utilizados para analizar la distribución de los datos, además de la
+detección de puntos atípicos.</p>
+<p>En metrología los datos atípicos son llamados valores aberrantes,
+conocidos como las observaciones que se desvían significativamente de la
+tendencia general de los datos o que están considerablemente alejados de
+otros valores de la muestra. La detección y gestión de valores
+aberrantes es importante en metrología para garantizar la precisión y
+fiabilidad de las mediciones. Los valores aberrantes pueden sesgar los
+resultados del análisis y afectar la toma de decisiones basada en los
+datos.</p>
+<div id="gráfico-de-densidad" class="section level2">
+<h2>Gráfico de densidad</h2>
+<p>Visualiza la distribución de datos en un intervalo continuo. Este
+gráfico es una variación de un histograma, donde el concepto de
+frecuencia relativa se cambia por el de probabilidad, la suma de todas
+la superficie será 1.</p>
+<p>Los picos ayudan a mostrar dónde los valores se concentran en el
+intervalo, a su vez permite comparar la densidad de una variable
+continua en relación a los niveles de factor de una variable
+cualitativa.</p>
+<p><strong>Ejemplo</strong></p>
+<p>El acceso al agua potable es esencial para la salud, un derecho
+humano básico y un componente de una política eficaz de protección de la
+salud. Esto es importante como cuestión de salud y desarrollo a nivel
+nacional, regional y local. En algunas regiones, se ha demostrado que
+las inversiones en abastecimiento de agua y saneamiento pueden generar
+un beneficio económico neto, ya que las reducciones de los efectos
+adversos para la salud y los costos de atención médica superan los
+costos de llevar a cabo las intervenciones.</p>
+<p>El PH es un parámetro importante para evaluar el equilibrio
+ácido-base del agua. La OMS ha recomendado un límite máximo permitido de
+pH de 6,5 a 8,5.</p>
+<p>Se tienen los datos del ph del agua dependiendo de si el agua es
+potable o no, 632 datos de agua potable y 632 de agua no potable, se
+desea comparar su distribución.</p>
+<pre class="r"><code>library(ggplot2)
+
+head(no)</code></pre>
+<pre><code>## [1]  3.7  8.1  8.3  9.1  5.6 10.2</code></pre>
+<pre class="r"><code>head(si)</code></pre>
+<pre><code>## [1] 9.4 9.0 6.8 7.2 7.7 8.3</code></pre>
+<pre class="r"><code># datos 
+
+par(mfrow=c(1,2))
+tmp &lt;- rbind(data.frame(origen = &quot;no&quot;, dato = no), 
+             data.frame(origen = &quot;si&quot;, dato = si))
+ggplot(tmp, aes(x =dato, fill = origen)) +
+  geom_density(alpha = 0.3)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>hist(no, xlab = &quot;PH agua no potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
+
+hist(si, xlab = &quot;PH agua potable&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+</div>
+<div id="grafico-cuantil-cuantil" class="section level2">
+<h2>Grafico cuantil cuantil</h2>
+<p>Los gráficos cuantil cuantil son una ayuda para explorar si un
+conjunto de datos proviene de una población con cierta distribución.</p>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/kx_o9rnI4DE" title="QQplot" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p>La función <strong>qqnorm</strong> sirve para explorar la normalidad
+de una muestra, generalmente va acompañada de una linea recta de
+referencia, que se estima con la función <strong>qqline</strong>.</p>
+<p>La función <strong>qqplot</strong> sirve para crear el gráfico
+cuantil cuantil para cualquier distribución, requiere los cuantiles de
+la distribución candidata.</p>
+<p><strong>Ejemplo de los datos de agua potable</strong></p>
+<pre class="r"><code>par(mfrow=c(1, 2))
+
+qqnorm(y=si, main=&#39;PH agua potable&#39;, ylab=&#39;Cuantiles muestrales&#39;,
+       xlab=&#39;Cuantiles teóricos&#39;, las=1)
+qqline(y=si, col=&#39;blue&#39;, lwd=2, lty=2)
+
+qqnorm(y=no, main=&#39;PH agua no potable&#39;, ylab=&#39;Cuantiles muestrales&#39;,
+       xlab=&#39;Cuantiles teóricos&#39;, las=1)
+qqline(y=no, col=&#39;blue&#39;, lwd=2, lty=2)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="boxplot" class="section level2">
+<h2>Boxplot</h2>
+<p>El boxplot es una herramienta de análisis que resalta las principales
+características de un conjunto de datos, los números usados para
+construirlo son:</p>
+<ul>
+<li>Valor mínimo</li>
+<li>Los cuartiles <span class="math inline">\(Q_1,Q_2,Q_3\)</span></li>
+<li>Valor máximo</li>
+</ul>
+<p><img src="imagen/boxplot.png" width="294" style="display: block; margin: auto;" /></p>
+<p>Cada sección contiene el 25% de los datos. La caja muestra la mitad
+de los datos, es decir el 50% de ellos, contiene la información entre el
+3 cuartil y el primer cuartil.</p>
+<ul>
+<li><p>Sirve para realizar comparaciones de una variable cuantitativa,
+en relación a los niveles de una variable cualitativa.</p></li>
+<li><p>Es posible observar la dispersión de cada caja, mientras mas
+larga, más dispersión.</p></li>
+<li><p>Permite observar puntos atípicos,los cuales no están contenidos
+dentro de la caja, ni en sus bigotes.</p></li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<p>construir un boxplot con los datos del ph del agua según su
+potabilidad, Qué infiere?</p>
+<pre class="r"><code>boxplot(no,si)
+abline(h=6.5,col=2)
+abline(h=8.5,col=2)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div
+id="pruebas-de-bondad-de-ajuste-para-distribuciones-de-probabilidad"
+class="section level1">
+<h1>Pruebas de bondad de ajuste para distribuciones de probabilidad</h1>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/U8ZpUT1c8A4" title="¿Qué es una prueba de bondad de ajuste?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<div id="pruebas-de-normalidad" class="section level2">
+<h2>Pruebas de normalidad</h2>
+<p>La hipotesis nula y alternativa de normalidad son las siguientes:</p>
+<p><span class="math display">\[H_0:  \quad Los\quad datos\quad se\quad
+distribuyen \quad normal\]</span></p>
+<p><span class="math display">\[H_1:  \quad Los\quad datos\quad no \quad
+se\quad distribuyen \quad normal\]</span> Existen diferentes pruebas
+para evaluar la normalidad, todas son de fácil implementación en R.</p>
+<ul>
+<li><strong>Prueba Shapiro-Wilk</strong></li>
+</ul>
+<p>En R se usa la función <strong>shapiro.test</strong>, se usa cuando
+la muestra es como máximo de tamaño 50. Es más potente que la prueba de
+K-S.</p>
+<ul>
+<li><p>Prueba Anderson-Darling con la función ad.test del paquete
+nortest.</p></li>
+<li><p>Prueba Cramer-von Mises con la función cvm.test del paquete
+nortest.</p></li>
+<li><p>Prueba Lilliefors (Kolmogorov-Smirnov) con la función lillie.test
+del paquete nortest.</p></li>
+<li><p>Prueba Pearson chi-square con la función pearson.test del paquete
+nortest.</p></li>
+<li><p>Prueba Shapiro-Francia con la función sf.test del paquete
+nortest.</p></li>
+</ul>
+<p><strong>Ejemplo en R probando normalidad en los datos de potabilidad
+del agua</strong></p>
+<p>Para los datos del ph del agua, se desea probar mediante una prueba
+estadística si los datos se distribuyen de forma normal</p>
+<pre class="r"><code>shapiro.test(no)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  no
+## W = 0.99749, p-value = 0.4571</code></pre>
+<pre class="r"><code>shapiro.test(si)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  si
+## W = 0.9852, p-value = 5.12e-06</code></pre>
+<p><strong>Otro Ejemplo en R</strong></p>
+<p>Se necesita verificar si es correcto suponer que el volumen de
+llenado (en onzas) de una máquina dispensadora de jugos sigue una
+distribución normal, por lo que se toman 25 botellas de forma aleatoria.
+Los datos del volumen de llenado obtenidos de la muestra se encuentran
+almacenados en el vector volumen.</p>
+<p><strong>Hipótesis</strong></p>
+<p><span class="math inline">\(H_0:\)</span> el volumen de llenado (en
+onzas) sigue una distribución normal.</p>
+<p><span class="math inline">\(H_1:\)</span> el volumen de llenado (en
+onzas) no sigue una distribución normal.</p>
+<p>Nivel de significancia: 0.05 (Hipotético).</p>
+<p><strong>Analisis descriptivo</strong></p>
+<pre class="r"><code>library(nortest)</code></pre>
+<pre><code>## Warning: package &#39;nortest&#39; was built under R version 4.5.2</code></pre>
+<pre class="r"><code>volumen &lt;-c(8.39,12.14,11.80,12.04,7.34,12.62,11.51,12.47,11.08,14.32,11.33,11.56, 12.79,11.72,12.84,11.73,12.1,11.88,11.95,10.84,11.79,13.21,12.56,12.55,12.80)
+
+mean(volumen)</code></pre>
+<pre><code>## [1] 11.8144</code></pre>
+<pre class="r"><code>sd(volumen)</code></pre>
+<pre><code>## [1] 1.4036</code></pre>
+<pre class="r"><code>require(car)</code></pre>
+<pre><code>## Cargando paquete requerido: car</code></pre>
+<pre><code>## Cargando paquete requerido: carData</code></pre>
+<pre class="r"><code>library(MASS)
+par(mfrow=c(1,4))
+hist(volumen, xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
+
+plot(density(volumen), xlab = &quot;Volumen de llenado&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
+
+qqPlot(volumen, xlab=&quot;Cuantiles teóricos&quot;, ylab=&quot;Cuantiles muestrales&quot;, las=1,main=&quot;&quot;)</code></pre>
+<pre><code>## [1] 5 1</code></pre>
+<pre class="r"><code>boxplot(volumen)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>ks.test(volumen, &quot;pnorm&quot;, mean =11.81, sd=1.4)</code></pre>
+<pre><code>## 
+##  Exact one-sample Kolmogorov-Smirnov test
+## 
+## data:  volumen
+## D = 0.21516, p-value = 0.1703
+## alternative hypothesis: two-sided</code></pre>
+<pre class="r"><code>shapiro.test(volumen)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  volumen
+## W = 0.8161, p-value = 0.0004272</code></pre>
+<pre class="r"><code>ad.test(volumen)</code></pre>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  volumen
+## A = 1.6505, p-value = 0.0002268</code></pre>
+<pre class="r"><code>cvm.test(volumen)</code></pre>
+<pre><code>## 
+##  Cramer-von Mises normality test
+## 
+## data:  volumen
+## W = 0.27431, p-value = 0.0005727</code></pre>
+<pre class="r"><code>sf.test(volumen)</code></pre>
+<pre><code>## 
+##  Shapiro-Francia normality test
+## 
+## data:  volumen
+## W = 0.79487, p-value = 0.0004128</code></pre>
+</div>
+<div id="pruebas-para-otras-distribuciones" class="section level2">
+<h2>Pruebas para otras distribuciones</h2>
+<p>Una alternativa a la no normalidad de los datos, es proceder a
+implementar pruebas no paramétricas, para evaluar si los datos se
+ajustan a una distribución hipotética.</p>
+<p><strong>Pruebas de hipótesis</strong></p>
+<p><span class="math inline">\(H_0:\)</span> Los datos analizados siguen
+una distribución M.</p>
+<p><span class="math inline">\(H_1:\)</span> Los datos analizados no
+siguen una distribución M</p>
+<div id="test-de-kolmogorov-smirnov-k-s" class="section level3">
+<h3>Test de Kolmogorov-Smirnov K-S</h3>
+<p>Se emplea para saber si una distribución de probabilidad acumulada
+difiere de una distribución hipotética, por lo general la distribución
+normal, la uniforme, la de Poisson o la exponencial. Es decir permite
+contrastar si un conjunto de datos muestrales proviene de un tipo de
+distribución.</p>
+<p><strong>Estadístico</strong></p>
+<p>Cuando K-S se aplica para contrastar la hipótesis de normalidad de la
+población, el estadístico de prueba es la máxima diferencia entre las
+funciones de distribución de probabilidad muestral y la teórica:</p>
+<p><span class="math display">\[D=max|F_n-F_0(x)|\]</span></p>
+<p>Siendo <span class="math inline">\(F_n(x)\)</span> la función de
+distribución muestral y <span class="math inline">\(F_0(x)\)</span> es
+la función teórica (normal) especificada en la hipotesis nula <span
+class="math inline">\(H_0\)</span></p>
+<p><strong>Ejemplo probando la distribución exponencial</strong></p>
+<p>Celia quiere medir el tiempo de atención a los usuarios. Se
+seleccionaron 20 personas y los tiempos de atención en minutos.</p>
+<pre class="r"><code>require(car)
+tiempo&lt;-c(3.69, 39.50,  4.43,  2.70,  9.11, 10.21, 10.44,  2.57,  5.68,  0.80,12.63,  2.35, 25.47, 8.07,  0.96,  0.21, 12.06, 10.79,  6.58, 13.06)
+
+par(mfrow=c(1,4))
+hist(tiempo, xlab = &quot;Tiempo&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
+qqPlot(tiempo, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
+<pre><code>## [1]  2 13</code></pre>
+<pre class="r"><code>plot(density(tiempo), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
+boxplot(tiempo, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Se procede a revisar el ajuste con respecto a una distribución
+exponencial con un α=0.05</p>
+<p>Sea X el tiempo entre llegadas a Celia Express.</p>
+<p><span class="math display">\[H_0:X∼exp\]</span></p>
+<p><span class="math display">\[H_1:X≁exp\]</span></p>
+<p>La siguiente función ayuda a estimar los parámetros del modelo</p>
+<pre class="r"><code>library(MASS)
+Ajustex &lt;- fitdistr(tiempo,&quot;exponential&quot;)
+Ajustex</code></pre>
+<pre><code>##       rate   
+##   0.11030831 
+##  (0.02466569)</code></pre>
+<pre class="r"><code>Ks&lt;- ks.test(tiempo, &quot;pexp&quot;, rate=Ajustex$estimate[1])
+Ks</code></pre>
+<pre><code>## 
+##  Exact one-sample Kolmogorov-Smirnov test
+## 
+## data:  tiempo
+## D = 0.13678, p-value = 0.8006
+## alternative hypothesis: two-sided</code></pre>
+<p>Según las pruebas realizadas, no se rechaza la hipótesis nula y por
+tanto, se asume la distribución exponencial.</p>
+<p><strong>Ejemplo comparando dos distribuciones</strong></p>
+<p>Se desea saber si los datos de potabilidad de agua (potable y no
+potable) siguen la misma distribución de probabilidad.</p>
+<p><span class="math display">\[H_0:X_{si}∼X_{no}\]</span></p>
+<p><span class="math display">\[H_1:X_{si}≁X_{no}\]</span></p>
+<pre class="r"><code>par(mfrow=c(1,2))
+hist(si)
+hist(no)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>ks.test(si, no)</code></pre>
+<pre><code>## Warning in ks.test.default(si, no): p-value will be approximate in the presence
+## of ties</code></pre>
+<pre><code>## 
+##  Asymptotic two-sample Kolmogorov-Smirnov test
+## 
+## data:  si and no
+## D = 0.058544, p-value = 0.2289
+## alternative hypothesis: two-sided</code></pre>
+<p><strong>Ejemplo comparando dos distribuciones</strong></p>
+<p>Se desea saber si los datos de potabilidad de agua (potable y no
+potable) siguen la misma distribución de probabilidad.</p>
+<p><span class="math display">\[H_0:X_{si}∼X_{no}\]</span></p>
+<p><span class="math display">\[H_1:X_{si}≁X_{no}\]</span></p>
+<pre class="r"><code>par(mfrow=c(1,2))
+hist(si)
+hist(no)</code></pre>
+<p><img src="graficos_diagnosticos_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>ks.test(si, no)</code></pre>
+<pre><code>## Warning in ks.test.default(si, no): p-value will be approximate in the presence
+## of ties</code></pre>
+<pre><code>## 
+##  Asymptotic two-sample Kolmogorov-Smirnov test
+## 
+## data:  si and no
+## D = 0.058544, p-value = 0.2289
+## alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+</div>
+
+<br>
+<hr>
+<p><center>Copyright &copy; 2019, webpage made with Rmarkdown.</center></p>
+<hr>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
