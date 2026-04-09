@@ -521,8 +521,8 @@ class="section level2">
 <h2>Pasos para realizar una prueba de hipótesis</h2>
 <pre><code>## Warning: package &#39;DiagrammeR&#39; was built under R version 4.5.2</code></pre>
 <pre><code>## Warning: package &#39;greekLetters&#39; was built under R version 4.5.2</code></pre>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-f6319e0c94d4799c9a33" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f6319e0c94d4799c9a33">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-19c4f95199662c7ae934" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-19c4f95199662c7ae934">{"x":{"diagram":"graph TB;\n\n  A[1. Definir las hipótesis]-->F[2. Definir el error tipo I denotado por alfa]\n  F-->B{3. Calcular el estadístico}\n  B-->D[4. Definir región de aceptación y rechazo con alfa]\n  B-->C[4. Calcular valor p]\n  C-->E[5. Tomar desición comparando vp con alfa]\n  D-->G[5. Tomar desición comparando región de aceptación y de rechazo]\n\n"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>Algunos videos de interés</li>
 </ul>
@@ -547,8 +547,8 @@ Acepta la hipotesis nula</p></li>
 <h1>Pruebas de hipótesis para una muestra</h1>
 <div id="ph-para-la-media" class="section level2">
 <h2>PH para la media</h2>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-bffe28471b0098daab80" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-bffe28471b0098daab80">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-4f38088cd321c90433a6" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4f38088cd321c90433a6">{"x":{"diagram":"graph TB;\n  \n  A{sigma conocida}-->|Si| C[Normal]\n  A-->|No| B{n mayor q 30}\n  B-->|No| D[t student]\n  B-->|Si| C\n           "},"evals":[],"jsHooks":[]}</script>
 <p><strong>Hipótesis nula:</strong></p>
 <p><span class="math display">\[H_0= \mu=\mu_0\]</span></p>
 <p><strong>Estadístico</strong></p>
@@ -954,8 +954,8 @@ class="math inline">\(\mu_x\)</span> y <span
 class="math inline">\(\mu_y\)</span></p></li>
 <li><p>Se identifican 3 casos:</p></li>
 </ul>
-<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-1bf90205b3f4f624d56d" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1bf90205b3f4f624d56d">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
+<div class="DiagrammeR html-widget html-fill-item" id="htmlwidget-0902e4efef62871b1057" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0902e4efef62871b1057">{"x":{"diagram":"\n graph LR;\n \n \n \n     A{Varianza} --> B(Iguales pero desconocidas)\n     A --> C(Diferentes y desconocidas)\n     A --> D(conocidas)\n            "},"evals":[],"jsHooks":[]}</script>
 <table>
 <colgroup>
 <col width="17%" />
@@ -1389,6 +1389,142 @@ href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/pru
 <p><a
 href="https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/INTERVALOS%20DE%20CONFIANZA%20Y%20TEST%20DE%20HIPOTESIS%20CON%20R.pdf">Intervalos
 de confianza y test de hipótesis con R</a></p>
+</div>
+<div id="t-test-paramétrica-en-rstudio" class="section level2">
+<h2>t-test paramétrica en Rstudio</h2>
+<p>Permite contrastar la hipótesis nula de que las medias de dos
+poblaciones son iguales, frente a la hipótesis alternativa de que no lo
+son.</p>
+<p><span class="math display">\[H_0:μ_A=μ_B\]</span> <span
+class="math display">\[H_a:μ_A≠μ_B\]</span></p>
+<p>Otra forma equivalente de definir estas hipótesis es:</p>
+<p><span class="math display">\[H_0:μ_A−μ_B=0\]</span> <span
+class="math display">\[H_a:μ_A−μ_B≠0\]</span></p>
+<p><strong>Condiciones:</strong></p>
+<ul>
+<li><p>Las observaciones tienen que ser independientes</p></li>
+<li><p>Las poblaciones que se comparan tienen que seguir una
+distribución normal.</p></li>
+<li><p>Igualdad de varianza (homocedasticidad)</p></li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<p><strong>1. prueba para una muestra</strong></p>
+<p>El contenido de siete contenedores similares de ácido sulfúrico son
+9.8, 10.2, 10.4, 9.8, 10.0, 10.2, y 9.6 litros. Encuentre un intervalo
+de confianza del 95% para la media de todos los contenedores si se
+supone una distribución aproximadamente normal.</p>
+<pre class="r"><code>T&lt;-c(9.8, 10.2, 10.4, 9.8, 10.0, 10.2, 9.6)
+t.test(T,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  T
+## t = 93.541, df = 6, p-value = 1.006e-10
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##   9.738414 10.261586
+## sample estimates:
+## mean of x 
+##        10</code></pre>
+<p><strong>2. prueba para dos muestras</strong></p>
+<p>Una operación de montaje en una fábrica manufacturera requiere
+aproximadamente un período de entrenamiento de un mes para que un nuevo
+operario alcance la máxima eficiencia. Se sugirió un nuevo método para
+el entrenamiento y se realizó una prueba para comparar el método nuevo
+con el método estándar. Se entrenaron dos grupos de 9 nuevos empleados
+durante un período de un mes; un grupo utilizó el método estándar y el
+otro grupo usó el método nuevo. Se midió el tiempo en minutos que
+necesito cada empleado en armar cierto dispositivo al final del período
+de entrenamiento; los resultados obtenidos fueron:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Método estándar</th>
+<th>32</th>
+<th>37</th>
+<th>35</th>
+<th>28</th>
+<th>41</th>
+<th>44</th>
+<th>35</th>
+<th>31</th>
+<th>34</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Método nuevo</td>
+<td>35</td>
+<td>31</td>
+<td>29</td>
+<td>25</td>
+<td>34</td>
+<td>40</td>
+<td>27</td>
+<td>32</td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+<p>Admitiendo que el tiempo de armado utilizado en ambos métodos son
+variables aleatorias independientes y distribuidas normalmente: ¿Tiene
+igual varianza? compruebelo a través de un intervalo de confianza para
+la razón de varianzas con un nivel de confianza del 90%</p>
+<p><strong>2. prueba de igualdad de varianzas</strong></p>
+<pre class="r"><code>E&lt;-c(32,37,35,28,41,44,35,31,34)
+N&lt;-c(35,31,29,25,34,40,27,32,31)
+var.test(E,N, alternative = c(&quot;two.sided&quot;),
+         conf.level = 0.9) </code></pre>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  E and N
+## F = 1.2205, num df = 8, denom df = 8, p-value = 0.7849
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 90 percent confidence interval:
+##  0.3550003 4.1962955
+## sample estimates:
+## ratio of variances 
+##           1.220527</code></pre>
+<pre class="r"><code>var(E)</code></pre>
+<pre><code>## [1] 24.44444</code></pre>
+<pre class="r"><code>var(N)</code></pre>
+<pre><code>## [1] 20.02778</code></pre>
+<pre class="r"><code>qf(0.05,8,8)</code></pre>
+<pre><code>## [1] 0.2908582</code></pre>
+<p><strong>2. prueba de diferencias de medias globales y
+pareadas</strong></p>
+<p>¿Se puede aceptar la hipótesis de igualdad de tiempos de armado, en
+función de los datos construya un IC con un nivel de confianza del
+95%?</p>
+<pre class="r"><code>E&lt;-c(32,37,35,28,41,44,35,31,34)
+N&lt;-c(35,31,29,25,34,40,27,32,31)
+E-N</code></pre>
+<pre><code>## [1] -3  6  6  3  7  4  8 -1  3</code></pre>
+<pre class="r"><code>t.test (E-N,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  E - N
+## t = 2.9938, df = 8, p-value = 0.01723
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.8423999 6.4909334
+## sample estimates:
+## mean of x 
+##  3.666667</code></pre>
+<pre class="r"><code> t.test (E,N,paired=F,conf.level=0.95)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  E and N
+## t = 1.6495, df = 15.844, p-value = 0.1187
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.049486  8.382820
+## sample estimates:
+## mean of x mean of y 
+##  35.22222  31.55556</code></pre>
 </div>
 </div>
 
