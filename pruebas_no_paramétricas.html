@@ -418,9 +418,10 @@ la otra.</li>
 <p><strong>El juego de hipótesis es:</strong></p>
 <p><span class="math inline">\(H_o:\)</span> Las variables son
 independientes, una variable no varía entre los distintos niveles de la
-otra variable. <span class="math inline">\(H_a:\)</span> Las variables
-son dependientes, una variable varía entre los distintos niveles de la
 otra variable.</p>
+<p><span class="math inline">\(H_a:\)</span> Las variables son
+dependientes, una variable varía entre los distintos niveles de la otra
+variable.</p>
 <p><strong>Grados de libertad</strong></p>
 <p><span class="math display">\[df=(columnas−1)*(filas−1)\]</span></p>
 <ul>
@@ -435,11 +436,12 @@ probabilidad de x no es similar a y.</p>
 <p>En todos los casos el <strong>estadístico</strong> corresponde a:</p>
 <p><span class="math display">\[ \large \chi^2=\sum_{i,j}^n \frac
 {(o_{ij}-e_{ij})^2}{e_{ij}}\]</span></p>
-<p>Asuma que <span class="math inline">\(Oij\)</span> es la frecuencia
-observada de eventos que pertenecen a ambos, la i−ésima categoría de X y
-la j−ésima categoría de Y. Además, suponga que <span
-class="math inline">\(e_{ij}\)</span> son las correspondientes
-frecuencias esperadas si X e Y son independientes.</p>
+<p>Asuma que:</p>
+<p><span class="math inline">\(Oij\)</span> es la frecuencia observada
+de eventos que pertenecen a la i−ésima categoría de X y la j−ésima
+categoría de Y.</p>
+<p><span class="math inline">\(e_{ij}\)</span> es la frecuencia esperada
+si X e Y son independientes.</p>
 <p><strong>Videos ejemplo</strong></p>
 <p><strong>Prueba chi cuadrado para la independencia de dos
 distribuciones</strong></p>
@@ -1328,6 +1330,46 @@ rendimiento inferior en suavidad y eficiencia.</p>
 </tr>
 </tbody>
 </table>
+<ol style="list-style-type: decimal">
+<li>Realice la prueba de signos</li>
+<li>Realice la prueba de rangos con signos de wilcoxon</li>
+</ol>
+<p><strong>En rstudio</strong></p>
+<pre class="r"><code>library(BSDA)
+rad=c(4.2,4.7,6.6,7,6.7,4.5,5.7,6,7.4,4.9,6.1,5.2,5.7,6.9,6.8,4.9)
+cin=c(4.1,4.9,6.2,6.9,6.8,4.4,5.7,5.8,6.9,4.9,6,4.9,5.3,6.5,7.1,4.8)
+
+
+wilcox.test(rad,cin,paired=TRUE) </code></pre>
+<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
+## p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
+## p-value with zeroes</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  rad and cin
+## V = 85.5, p-value = 0.04063
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<pre class="r"><code>SIGN.test(rad,cin, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  Dependent-samples Sign-Test
+## 
+## data:  rad and cin
+## S = 11, p-value = 0.05737
+## alternative hypothesis: true median difference is not equal to 0
+## 95 percent confidence interval:
+##  0.0000000 0.3482747
+## sample estimates:
+## median of x-y 
+##           0.1 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt U.E.pt
+## Lower Achieved CI     0.9232      0 0.3000
+## Interpolated CI       0.9500      0 0.3483
+## Upper Achieved CI     0.9787      0 0.4000</code></pre>
 </div>
 <div id="prueba-de-rangos-con-signo-de-wilcoxon" class="section level2">
 <h2>prueba de rangos con signo de wilcoxon</h2>
@@ -1603,6 +1645,25 @@ wilcox.test(y1,y2,paired=TRUE) </code></pre>
 ## data:  y1 and y2
 ## V = 13, p-value = 0.1522
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<pre class="r"><code>SIGN.test(y1,y2, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  Dependent-samples Sign-Test
+## 
+## data:  y1 and y2
+## S = 3, p-value = 0.3437
+## alternative hypothesis: true median difference is not equal to 0
+## 95 percent confidence interval:
+##  -0.5287273  0.2000000
+## sample estimates:
+## median of x-y 
+##          -0.2 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level  L.E.pt U.E.pt
+## Lower Achieved CI     0.9346 -0.5000    0.2
+## Interpolated CI       0.9500 -0.5287    0.2
+## Upper Achieved CI     0.9883 -0.6000    0.2</code></pre>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/IBOvUAPtirA" title="prueba de rangos con signo de wilcoxon" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
@@ -1636,7 +1697,7 @@ ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
 theme_bw() +
 theme(axis.text.y = element_blank()) + 
 ggtitle(&quot;Muestras procedentes de la misma población&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Por lo contrario, si una de las muestras pertenece a una población
 con valores mayores o menores que la otra población, al ordenar las
 observaciones, estas tenderán a agruparse de modo que las de una muestra
@@ -1652,7 +1713,7 @@ ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
 theme_bw() +
 theme(axis.text.y = element_blank()) + 
 ggtitle(&quot;Muestras procedentes de distintas poblaciones&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
 <p>Los siguientes datos corresponden a constantes de permeabilidad de la
 membrana chorioamnion en humanos (una membrana placentaria) medida a las
@@ -1682,7 +1743,7 @@ qqPlot(c12, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1] 7 9</code></pre>
 <pre class="r"><code>plot(density(c12), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
 boxplot(c12,c26, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code># Para la constante a las 26 semanas
 
 par(mfrow=c(1,4))
@@ -1691,7 +1752,7 @@ qqPlot(c26, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1] 4 5</code></pre>
 <pre class="r"><code>plot(density(c26), xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)
 boxplot(c12,c26, xlab = &quot;Tiempo&quot;, ylab = &quot;Densidad&quot;, las=1, main = &quot;&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Pruebe mediante un juego de hipotesis y mediante la prueba de
 shapiro wilk, la normalidad del conjunto de datos</li>
@@ -1755,7 +1816,7 @@ grupo1=c(411,466,432,409,381,363,449,483,438,381)
 grupo2=c(584,553,516,688,650,590,574,700,831,688,478,689)         
 
 boxplot(grupo1,grupo2)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <pre class="r"><code>## Prueba de normalidad
 shapiro.test(grupo1)</code></pre>
 <pre><code>## 
@@ -1814,9 +1875,13 @@ de Comparación de distribuciones**</li>
 </ul>
 <div id="ejercicios-propuestos" class="section level2">
 <h2>Ejercicios propuestos</h2>
-<p><strong>PRUEBA DE SIGNO</strong> 1. Los siguientes datos representan
-el tiempo, en minutos, que un paciente tiene que esperar durante 12
-visitas al consultorio de un médico antes de ser atendido:</p>
+<p><strong>Prueba de signo y de rangos con signos de
+wilcoxon</strong></p>
+<ol style="list-style-type: decimal">
+<li>Los siguientes datos representan el tiempo, en minutos, que un
+paciente tiene que esperar durante 12 visitas al consultorio de un
+médico antes de ser atendido:</li>
+</ol>
 <table>
 <tbody>
 <tr class="odd">
@@ -1839,21 +1904,15 @@ visitas al consultorio de un médico antes de ser atendido:</p>
 probar la afirmación del médico de que la mediana del tiempo de espera
 de sus pacientes no es mayor de 20 minutos.</p>
 <p><strong>rta x = 7 con valor P = 0.1719; no rechace H0</strong></p>
+<p>Utilice la prueba de rango de signo de wilcoxon a un nivel de
+significancia de 0.05 para probar la afirmación del médico de que la
+mediana del tiempo de espera de sus pacientes no es mayor de 20
+minutos.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Los siguientes datos representan el número de horas de vuelo de
-entrenamiento que 18 estudiantes de piloto reciben de cierto instructor
-antes de su primer vuelo solos:</li>
+<li>Un inspector de alimentos examina 16 latas de cierta marca de jamón
+para determinar el porcentaje de impurezas externas. Se registraron los
+siguientes datos:</li>
 </ol>
-<div class="line-block">| | | | | | | | | | | | | | | | | |</div>
-<p>|:|:-|:-|:-|:-|:-|:-|:-|:-|:-|:|:-|:-|:-|:-|:-|:-|:-|
-|9|12|18|14|12|14|12|10|16|11|9|11|13|11|13|15|13|14|</p>
-<p>Con las probabilidades binomiales realice una prueba de signo a un
-nivel de significancia de 0.02 para probar la afirmación del instructor
-de que la mediana del tiempo de vuelo de entrenamiento que sus
-estudiantes requieren antes de volar solos es de 12 horas.</p>
-<p>16.3 Un inspector de alimentos examina 16 latas de cierta marca de
-jamón para determinar el porcentaje de impurezas externas. Se
-registraron los siguientes datos:</p>
 <table>
 <tbody>
 <tr class="odd">
@@ -1876,71 +1935,203 @@ registraron los siguientes datos:</p>
 </tr>
 </tbody>
 </table>
-<p>Utilice una aproximación normal a la distribución binomial y realice
-una prueba de signo a un nivel de significancia de 0.05 para probar la
-hipótesis nula de que la mediana del porcentaje de impurezas en esta
-marca de jamón es de 2.5%, en comparación con la hipótesis alternativa
-de que la mediana del porcentaje de impurezas no es de 2.5%.</p>
+<p>Realice una prueba de signo a un nivel de significancia de 0.05 para
+probar la hipótesis nula de que la mediana del porcentaje de impurezas
+en esta marca de jamón es de 2.5%, en comparación con la hipótesis
+alternativa de que la mediana del porcentaje de impurezas no es de
+2.5%.</p>
 <p><strong>x = 3 con valor P = 0.0244; rechace H0</strong></p>
-<p>16.4 Un proveedor de pintura acrílica afi rma que un nuevo aditivo
-reducirá el tiempo de secado de su pintura. Para probar esta afi rmación
-se pintaron 12 paneles de madera; la mitad de cada panel se pintó con la
-pintura que contiene el aditivo regular y la otra mitad con la pintura
-que contiene el nuevo aditivo. Los tiempos de secado, en horas, son los
-siguientes: Tiempo de secado (horas) Panel Aditivo nuevo Aditivo regular
-1 2 3 4 5 6 7 8 9 10 11 12 6.4 5.8 7.4 5.5 6.3 7.8 8.6 8.2 7.0 4.9 5.9
-6.5 6.6 5.8 7.8 5.7 6.0 8.4 8.8 8.4 7.3 5.8 5.8 6.5 Utilice la prueba de
-signo a un nivel de 0.05 para probar la hipótesis nula de que el nuevo
-aditivo no disminuye el tiempo que tarda en secar la pintura con el
-aditivo regular. 16.5 Se afi rma que una nueva dieta reducirá el peso de
-una persona en 4.5 kilogramos, en promedio, en un periodo de dos
-semanas. Se registran los pesos de 10 mujeres que siguen esta dieta,
-antes y después de un periodo de dos semanas, y se obtienen los
-siguientes datos: Mujer Peso antes Peso después 1 2 3 4 5 6 7 8 9 10
-58.5 60.3 61.7 69.0 64.0 62.6 56.7 63.6 68.2 59.4 60.0 54.9 58.1 62.1
-58.5 59.9 54.4 60.2 62.3 58.7</p>
+<p>Realice una prueba de rango de signo de wilcoxon a un nivel de
+significancia de 0.05 para probar la hipótesis nula de que la mediana
+del porcentaje de impurezas en esta marca de jamón es de 2.5%, en
+comparación con la hipótesis alternativa de que la mediana del
+porcentaje de impurezas no es de 2.5%.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Se afirma que una nueva dieta reducirá el peso de una persona en 4.5
+kilogramos, en promedio, en un periodo de dos semanas. Se registran los
+pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo
+de dos semanas, y se obtienen los siguientes datos:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>mujer</strong></th>
+<th align="center"><strong>peso antes</strong></th>
+<th align="center"><strong>peso despues </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">58.5</td>
+<td align="center">60.0</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">60.3</td>
+<td align="center">54.9</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">61.7</td>
+<td align="center">58.1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">69.0</td>
+<td align="center">62.1</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">64.0</td>
+<td align="center">58.5</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">62.6</td>
+<td align="center">59.9</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">56.7</td>
+<td align="center">54.4</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">63.6</td>
+<td align="center">60.2</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">68.2</td>
+<td align="center">62.3</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">59.4</td>
+<td align="center">58.7</td>
+</tr>
+</tbody>
+</table>
 <p>Utilice la prueba de signo a un nivel de significancia de 0.05 para
 probar la hipótesis de que la dieta reduce la mediana del peso en 4.5
 kilogramos, en comparación con la hipótesis alternativa de que la
 mediana de la pérdida de peso es menor que 4.5 kilogramos.</p>
-<p>En un experimento de contaminación atmosférica se comparan dos tipos
-de instrumentos para medir la cantidad de monóxido de azufre en la
-atmósfera. Se registraron las siguientes lecturas diarias durante dos
-semanas: Monóxido de azufre Día Instrumento A Instrumento B 1 2 3 4 5 6
-7 8 9 10 11 12 13 14 0.96 0.82 0.75 0.61 0.89 0.64 0.81 0.68 0.65 0.84
-0.59 0.94 0.91 0.77 0.87 0.74 0.63 0.55 0.76 0.70 0.69 0.57 0.53 0.88
-0.51 0.79 0.84 0.63 Utilice la aproximación normal a la distribución
-binomial y realice una prueba de signo para determinar si los diferentes
-instrumentos conducen a diferentes resultados. Utilice un nivel de
-signifi cancia de 0.05. 16.7 Las siguientes cifras indican la presión
-sanguínea sistólica de 16 corredores antes y después de una carrera de
-ocho kilómetros: Corredor Antes Después 1 2 3 4 5 6 7 8 9 10 11 12 13 14
-15 16 158 149 160 155 164 138 163 159 165 145 150 161 132 155 146 159
-164 158 163 160 172 147 167 169 173 147 156 164 133 161 154 170 Utilice
-una prueba de signo a un nivel de signifi cancia de 0.05 para probar la
-hipótesis nula de que correr ocho kilómetros aumenta la mediana de la
-presión sanguínea sistólica en ocho puntos, en comparación con la
-hipótesis alternativa de que el aumento en la mediana es menor que ocho
-puntos. 16.8 Analice los datos del ejercicio 16.1 usando la prueba de
-rango con signo. 16.9 Analice los datos del ejercicio 16.2 usando la
-prueba de rango con signo. 16.10 Los pesos de 5 personas, en kilogramos,
-antes de dejar de fumar y cinco semanas después de dejar de fumar, son
-los siguientes: Individuo 1 2 3 45 Antes 66 80 69 52 75 Después 71 82 68
-56 73 Utilice la prueba de rango con signo para observaciones en pares y
-pruebe la hipótesis, a un nivel de signifi - cancia de 0.05, de que
-dejar de fumar no infl uye en el peso de una persona, en comparación con
-la hipótesis alternativa de que al dejar de fumar se aumenta de peso.
-16.11 Repita el ejercicio 16.5 usando la prueba de rango con signo.
-16.12 Los siguientes son los números de recetas surti das por dos
-farmacias en un periodo de 20 días: Día Farmacia A Farmacia B 1 2 3 4 5
-6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 19 21 15 17 24 12 19 14 20 18
-23 21 17 12 16 15 20 18 14 22 17 15 12 12 16 15 11 13 14 21 19 15 11 10
-20 12 13 17 16 18 A un nivel de signifi cancia de 0.01 utilice la prueba
-de rango con signo para determinar si las dos farmacias surten el mismo
-número de recetas, “en promedio”, en comparación con la hipótesis
-alternativa de que la farmacia A surte más recetas que la farmacia B.
-16.13 Repita el ejercicio 16.7 usando la prueba de rango con signo.
-16.14 Repita el ejercicio 16.6 con la prueba de rango con signo.</p>
+<p><strong>x=4 vp=03770 no rechace Ho</strong></p>
+<p>Utilice la prueba de rango de signo de wilcoxon a un nivel de
+significancia de 0.05 para probar la hipótesis de que la dieta reduce la
+mediana del peso en 4.5 kilogramos, en comparación con la hipótesis
+alternativa de que la mediana de la pérdida de peso es menor que 4.5
+kilogramos.</p>
+<p><strong>W+=17.5 no rechazo Ho</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Las siguientes cifras indican la presión sanguínea sistólica de 16
+corredores antes y después de una carrera de ocho kms:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>corredor</strong></th>
+<th align="center"><strong>antes</strong></th>
+<th align="center"><strong>despues </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">158</td>
+<td align="center">164</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">149</td>
+<td align="center">158</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">160</td>
+<td align="center">163</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">155</td>
+<td align="center">160</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">164</td>
+<td align="center">172</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">138</td>
+<td align="center">147</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">163</td>
+<td align="center">167</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">159</td>
+<td align="center">169</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">165</td>
+<td align="center">173</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">145</td>
+<td align="center">147</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">150</td>
+<td align="center">156</td>
+</tr>
+<tr class="even">
+<td align="center">12</td>
+<td align="center">161</td>
+<td align="center">164</td>
+</tr>
+<tr class="odd">
+<td align="center">13</td>
+<td align="center">132</td>
+<td align="center">133</td>
+</tr>
+<tr class="even">
+<td align="center">14</td>
+<td align="center">155</td>
+<td align="center">161</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">146</td>
+<td align="center">154</td>
+</tr>
+<tr class="even">
+<td align="center">16</td>
+<td align="center">159</td>
+<td align="center">170</td>
+</tr>
+</tbody>
+</table>
+<p>Utilice una prueba de signo a un nivel de significancia de 0.05 para
+probar la hipótesis nula de que correr ocho kilómetros aumenta la
+mediana de la presión sanguínea sistólica en ocho puntos, en comparación
+con la hipótesis alternativa de que el aumento en la mediana es menor
+que ocho puntos.</p>
+<p><strong>x=4 vp=0.1335 no rechace Ho</strong></p>
+<p>Utilice una prueba de rango con signo de wilcoxon a un nivel de
+significancia de 0.05 para probar la hipótesis nula de que correr ocho
+kilómetros aumenta la mediana de la presión sanguínea sistólica en ocho
+puntos, en comparación con la hipótesis alternativa de que el aumento en
+la mediana es menor que ocho puntos.</p>
+<p><strong>w+=15 n=13 rechazo H0 a favor de me1-m2 menor q
+8</strong></p>
 </div>
 </div>
 
