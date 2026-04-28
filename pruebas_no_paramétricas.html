@@ -11,7 +11,7 @@
 
 
 
-<title>Pruebas no paramétricas</title>
+<title>pruebas_no_paramétricas.knit</title>
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -387,11 +387,12 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Pruebas no paramétricas</h1>
 
 </div>
 
 
+<div id="pruebas-no-paramétricas" class="section level1">
+<h1>Pruebas no paramétricas</h1>
 <p><img src="imagen/pnp.png" width="350" height="250" style="display: block; margin: auto;" /></p>
 <div id="prueba-chi-cuadrado" class="section level2">
 <h2>Prueba Chi cuadrado</h2>
@@ -659,6 +660,7 @@ assocstats(x = tbl)</code></pre>
 ## Contingency Coeff.: 0.151 
 ## Cramer&#39;s V        : 0.108</code></pre>
 </div>
+</div>
 <div id="pruebas-de-independencia-de-las-distribuciones"
 class="section level1">
 <h1>Pruebas de independencia de las distribuciones</h1>
@@ -680,13 +682,8 @@ otra variable.</p>
 <p><span class="math inline">\(H_a:\)</span> Las variables son
 dependientes, una variable varía entre los distintos niveles de la otra
 variable.</p>
-<p><strong>Fuerza de asociación entre variables cualitativas (tamaño del
-efecto)</strong></p>
-<p>Dado que las pruebas contrastan si las variables están relacionadas,
-al tamaño del efecto se le conoce como fuerza de asociación. Existen
-múltiples medidas de asociación, entre las que destacan phi o Cramer’s
-V. Los límites empleados para su clasificación son:</p>
-<p><strong>Test exacto de fisher</strong></p>
+<div id="test-exacto-de-fisher" class="section level2">
+<h2>Test exacto de fisher</h2>
 <p>Se aplica para comparar dos variables categóricas con dos niveles
 cada una (tabla 2x2), está diseñado para situaciones en las que las
 frecuencias marginales de filas y columnas (los totales de cada fila y
@@ -873,7 +870,12 @@ tabla</code></pre>
 ## sample estimates:
 ## odds ratio 
 ##  0.1749975</code></pre>
-<p><strong>Fuerza de asociación</strong></p>
+<p><strong>Fuerza de asociación entre variables cualitativas (tamaño del
+efecto)</strong></p>
+<p>Dado que las pruebas contrastan si las variables están relacionadas,
+al tamaño del efecto se le conoce como fuerza de asociación. Existen
+múltiples medidas de asociación, entre las que destacan phi o Cramer’s
+V.</p>
 <pre class="r"><code>library(vcd)
 assocstats(x = tabla)</code></pre>
 <pre><code>##                     X^2 df P(&gt; X^2)
@@ -894,9 +896,12 @@ efecto) cuantificado por phi o Cramer’s V es mediano.</p>
 )</code></pre>
 <p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
-<div id="prueba-para-la-diferencias-entre-dos-poblaciones"
+</div>
+<div
+id="prueba-de-diferencias-entre-dos-poblaciones-con-relación-a-la-mediana"
 class="section level1">
-<h1>Prueba para la diferencias entre dos poblaciones</h1>
+<h1>Prueba de diferencias entre dos poblaciones con relación a la
+mediana</h1>
 <div id="prueba-de-signo" class="section level2">
 <h2>Prueba de signo</h2>
 <p>Se utiliza para probar hipótesis sobre una mediana de la
@@ -1117,13 +1122,14 @@ SIGN.test(x1, md =1.8, alternative = &quot;two.sided&quot;, conf.level = 0.95)</
 ## Lower Achieved CI     0.9346 1.3000      2
 ## Interpolated CI       0.9500 1.2713      2
 ## Upper Achieved CI     0.9883 1.2000      2</code></pre>
-<p><strong>Otro ejemplo</strong> Una empresa de taxis intenta decidir si
-utilizar neumáticos radiales en vez de neumáticos regulares con cinturón
-le serviría para ahorrar combustible. Se equipan 16 automóviles con
-neumáticos radiales y se conducen por un recorrido de prueba
-establecido. Después se equipan los mismos automóviles con los
-neumáticos regulares con cinturón y se hace que los mismos conductores
-vuelvan a realizar el recorrido de prueba.</p>
+<p><strong>Otro ejemplo</strong></p>
+<p>Una empresa de taxis intenta decidir si utilizar neumáticos radiales
+en vez de neumáticos regulares con cinturón le serviría para ahorrar
+combustible. Se equipan 16 automóviles con neumáticos radiales y se
+conducen por un recorrido de prueba establecido. Después se equipan los
+mismos automóviles con los neumáticos regulares con cinturón y se hace
+que los mismos conductores vuelvan a realizar el recorrido de
+prueba.</p>
 <p>El consumo de gasolina, en kilómetros por litro, se presenta en la
 siguiente tabla, ¿Podemos concluir a un nivel de significancia de 0.05
 que los automóviles equipados con neumáticos radiales ahorran más
@@ -1333,6 +1339,7 @@ rendimiento inferior en suavidad y eficiencia.</p>
 <ol style="list-style-type: decimal">
 <li>Realice la prueba de signos</li>
 <li>Realice la prueba de rangos con signos de wilcoxon</li>
+<li>Realice la prueba de suma de rangos de wilcoxon</li>
 </ol>
 <p><strong>En rstudio</strong></p>
 <pre class="r"><code>library(BSDA)
@@ -1340,18 +1347,8 @@ rad=c(4.2,4.7,6.6,7,6.7,4.5,5.7,6,7.4,4.9,6.1,5.2,5.7,6.9,6.8,4.9)
 cin=c(4.1,4.9,6.2,6.9,6.8,4.4,5.7,5.8,6.9,4.9,6,4.9,5.3,6.5,7.1,4.8)
 
 
-wilcox.test(rad,cin,paired=TRUE) </code></pre>
-<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
-## p-value with ties</code></pre>
-<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
-## p-value with zeroes</code></pre>
-<pre><code>## 
-##  Wilcoxon signed rank test with continuity correction
-## 
-## data:  rad and cin
-## V = 85.5, p-value = 0.04063
-## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<pre class="r"><code>SIGN.test(rad,cin, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
+##Pueba de signos
+SIGN.test(rad,cin, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  Dependent-samples Sign-Test
 ## 
@@ -1370,9 +1367,31 @@ wilcox.test(rad,cin,paired=TRUE) </code></pre>
 ## Lower Achieved CI     0.9232      0 0.3000
 ## Interpolated CI       0.9500      0 0.3483
 ## Upper Achieved CI     0.9787      0 0.4000</code></pre>
+<pre class="r"><code>## Prueba de rangos con signos
+wilcox.test(rad,cin,paired=TRUE) </code></pre>
+<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
+## p-value with ties</code></pre>
+<pre><code>## Warning in wilcox.test.default(rad, cin, paired = TRUE): cannot compute exact
+## p-value with zeroes</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  rad and cin
+## V = 85.5, p-value = 0.04063
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<pre class="r"><code>## Prueba de suma de rangos
+wilcox.test(rad,cin,paired=FALSE) </code></pre>
+<pre><code>## Warning in wilcox.test.default(rad, cin, paired = FALSE): cannot compute exact
+## p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  rad and cin
+## W = 136, p-value = 0.7768
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 <div id="prueba-de-rangos-con-signo-de-wilcoxon" class="section level2">
-<h2>prueba de rangos con signo de wilcoxon</h2>
+<h2>Prueba de rangos con signo de wilcoxon</h2>
 <ul>
 <li><p>Compara el rango medio de dos muestras relacionadas y determina
 si existen diferencias entre ellas.</p></li>
@@ -1667,18 +1686,13 @@ wilcox.test(y1,y2,paired=TRUE) </code></pre>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/IBOvUAPtirA" title="prueba de rangos con signo de wilcoxon" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
-<div id="prueba-de-mann-whitney-wilcoxon" class="section level2">
-<h2>Prueba de Mann-Whitney-wilcoxon</h2>
-<ul>
-<li><p>Identifica diferencias entre dos poblaciones basadas en el
-análisis de <strong>dos muestras independientes</strong>.</p></li>
-<li><p>Se usa cuando los conjuntos de datos no cumplen los requisitos de
-la prueba de t-Student y la normal, (normalidad de los datos y tamaño de
-muestra mayor a 30)</p></li>
-<li><p>Se conoce con otros nombres: Mann–Whitney–Wilcoxon, Wilcoxon
-rank-sum test y Wilcoxon–Mann–Whitney.</p></li>
-<li><p>Juego de hipótesis es:</p></li>
-</ul>
+<div id="prueba-de-la-suma-de-rangos-de-wilcoxon"
+class="section level2">
+<h2>Prueba de la suma de rangos de Wilcoxon</h2>
+<p>Identifica diferencias entre dos poblaciones basadas en el análisis
+de <strong>dos muestras independientes</strong> que no están
+emparejadas.</p>
+<p><strong>Juego de hipótesis:</strong></p>
 <p>Ho: Las muestras provienen de la misma población.</p>
 <p>H1: Las muestras provienen de poblaciones diferentes.</p>
 <p>si las dos muestras comparadas proceden de la misma población, al
@@ -1775,7 +1789,8 @@ shapiro.test(c12)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Pruebe la igualdad entre el conjunto de datos</li>
 </ol>
-<pre class="r"><code>wilcox.test(x = c12, y = c26, alternative = &quot;two.sided&quot;, mu = 0,
+<pre class="r"><code>## Prueba de rango con signo 
+wilcox.test(x = c12, y = c26, alternative = &quot;two.sided&quot;, mu = 0,
             paired = FALSE, conf.int = 0.95) </code></pre>
 <pre><code>## 
 ##  Wilcoxon rank sum exact test
@@ -1878,6 +1893,102 @@ de Comparación de distribuciones**</li>
 <p><strong>Prueba de signo y de rangos con signos de
 wilcoxon</strong></p>
 <ol style="list-style-type: decimal">
+<li>Se afirma que, si se le proporcionan ejemplos de problemas con
+antelacion, un estudiante puede aumentar en al menos 50 puntos su
+calificacion.</li>
+</ol>
+<p>Para probar esta afirmacion se divide a un grupo de 20 estudiantes
+del ultimo ano en 10 pares, de manera que cada par tenga casi la misma
+calificacion promedio durante sus 3 primeros años en la universidad.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>ce</strong></th>
+<th align="center"><strong>se </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">531</td>
+<td align="center">509</td>
+</tr>
+<tr class="even">
+<td align="center">621</td>
+<td align="center">540</td>
+</tr>
+<tr class="odd">
+<td align="center">663</td>
+<td align="center">688</td>
+</tr>
+<tr class="even">
+<td align="center">579</td>
+<td align="center">502</td>
+</tr>
+<tr class="odd">
+<td align="center">451</td>
+<td align="center">424</td>
+</tr>
+<tr class="even">
+<td align="center">660</td>
+<td align="center">683</td>
+</tr>
+<tr class="odd">
+<td align="center">591</td>
+<td align="center">568</td>
+</tr>
+<tr class="even">
+<td align="center">719</td>
+<td align="center">748</td>
+</tr>
+<tr class="odd">
+<td align="center">543</td>
+<td align="center">530</td>
+</tr>
+<tr class="even">
+<td align="center">575</td>
+<td align="center">524</td>
+</tr>
+</tbody>
+</table>
+<p>Los ejemplos de problemas y las respuestas se proporcionan al azar a
+un miembro de cada par una semana antes del examen. Las calificaciones
+del examen se presentan en la sgte tabla.</p>
+<p>Use la prueba de signo y de rango con signo de wilcoxon, para probar
+la hipotesis de si los estudiantes que hacen ejercicios mejoran la nota
+en almenos 50 puntos.</p>
+<pre class="r"><code>library(BSDA)
+ce=c(531,621,663,579,451,660,591,719,543,575)
+se=c(509,540,688,502,424,683,568,748,530,524)
+
+SIGN.test(ce,se,alternative = &quot;less&quot;, conf.level = 0.95,md=50)</code></pre>
+<pre><code>## 
+##  Dependent-samples Sign-Test
+## 
+## data:  ce and se
+## S = 3, p-value = 0.1719
+## alternative hypothesis: true median difference is less than 50
+## 95 percent confidence interval:
+##      -Inf 53.77333
+## sample estimates:
+## median of x-y 
+##          22.5 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt  U.E.pt
+## Lower Achieved CI     0.9453   -Inf 51.0000
+## Interpolated CI       0.9500   -Inf 53.7733
+## Upper Achieved CI     0.9893   -Inf 77.0000</code></pre>
+<pre class="r"><code>wilcox.test(ce,se,paired=TRUE,mu=50)</code></pre>
+<pre><code>## Warning in wilcox.test.default(ce, se, paired = TRUE, mu = 50): cannot compute
+## exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  ce and se
+## V = 10.5, p-value = 0.09239
+## alternative hypothesis: true location shift is not equal to 50</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li>Los siguientes datos representan el tiempo, en minutos, que un
 paciente tiene que esperar durante 12 visitas al consultorio de un
 médico antes de ser atendido:</li>
@@ -1908,7 +2019,39 @@ de sus pacientes no es mayor de 20 minutos.</p>
 significancia de 0.05 para probar la afirmación del médico de que la
 mediana del tiempo de espera de sus pacientes no es mayor de 20
 minutos.</p>
-<ol start="2" style="list-style-type: decimal">
+<pre class="r"><code>library(BSDA)
+time=c(17,15,20,20,32,28,12,26,25,25,35,24)
+ref=rep(20,12)
+
+SIGN.test(time,ref,alternative = &quot;less&quot;, conf.level = 0.95,md=20)</code></pre>
+<pre><code>## 
+##  Dependent-samples Sign-Test
+## 
+## data:  time and ref
+## S = 0, p-value = 0.0002441
+## alternative hypothesis: true median difference is less than 20
+## 95 percent confidence interval:
+##      -Inf 6.856364
+## sample estimates:
+## median of x-y 
+##           4.5 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt U.E.pt
+## Lower Achieved CI     0.9270   -Inf 6.0000
+## Interpolated CI       0.9500   -Inf 6.8564
+## Upper Achieved CI     0.9807   -Inf 8.0000</code></pre>
+<pre class="r"><code>wilcox.test(time,ref,paired=TRUE,mu=20, alternative = &quot;less&quot;)</code></pre>
+<pre><code>## Warning in wilcox.test.default(time, ref, paired = TRUE, mu = 20, alternative =
+## &quot;less&quot;): cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  time and ref
+## V = 0, p-value = 0.001253
+## alternative hypothesis: true location shift is less than 20</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li>Un inspector de alimentos examina 16 latas de cierta marca de jamón
 para determinar el porcentaje de impurezas externas. Se registraron los
 siguientes datos:</li>
@@ -1946,7 +2089,37 @@ significancia de 0.05 para probar la hipótesis nula de que la mediana
 del porcentaje de impurezas en esta marca de jamón es de 2.5%, en
 comparación con la hipótesis alternativa de que la mediana del
 porcentaje de impurezas no es de 2.5%.</p>
-<ol start="3" style="list-style-type: decimal">
+<pre class="r"><code>nv=c(2.4,2.3,3.1,2.2,2.3,1.2,1,2.4,1.1,4.2,1.9,1.7,3.6,1.6,2.3,1.7)
+SIGN.test(nv, md =2.5, alternative = &quot;two.sided&quot;, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One-sample Sign-Test
+## 
+## data:  nv
+## s = 3, p-value = 0.02127
+## alternative hypothesis: true median is not equal to 2.5
+## 95 percent confidence interval:
+##  1.651725 2.400000
+## sample estimates:
+## median of x 
+##        2.25 
+## 
+## Achieved and Interpolated Confidence Intervals: 
+## 
+##                   Conf.Level L.E.pt U.E.pt
+## Lower Achieved CI     0.9232 1.7000    2.4
+## Interpolated CI       0.9500 1.6517    2.4
+## Upper Achieved CI     0.9787 1.6000    2.4</code></pre>
+<pre class="r"><code>wilcox.test(nv, alternative = c(&quot;two.sided&quot;),
+            mu =2.5, conf.level = 0.95) </code></pre>
+<pre><code>## Warning in wilcox.test.default(nv, alternative = c(&quot;two.sided&quot;), mu = 2.5, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  nv
+## V = 35.5, p-value = 0.0976
+## alternative hypothesis: true location is not equal to 2.5</code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li>Se afirma que una nueva dieta reducirá el peso de una persona en 4.5
 kilogramos, en promedio, en un periodo de dos semanas. Se registran los
 pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo

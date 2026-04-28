@@ -1,12 +1,13 @@
 ---
-title: "Pruebas no paramétricas"
+title: 
 output:
   html_document:
     toc: true
     toc_depth: 5
     
 ---
- 
+# Pruebas no paramétricas 
+
 ```{r  out.height=250, out.width=350, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/pnp.png")
 ```
@@ -243,11 +244,9 @@ $H_a:$ Las variables son dependientes, una variable varía entre los distintos n
 
 
 
-**Fuerza de asociación entre variables cualitativas (tamaño del efecto)**
 
-Dado que las pruebas contrastan si las variables están relacionadas, al tamaño del efecto se le conoce como fuerza de asociación. Existen múltiples medidas de asociación, entre las que destacan phi o Cramer’s V. Los límites empleados para su clasificación son:
 
-**Test exacto de fisher**
+## Test exacto de fisher
 
 Se aplica para comparar dos variables categóricas con dos niveles cada una (tabla 2x2), está diseñado para situaciones en las que las frecuencias marginales de filas y columnas (los totales de cada fila y columna) son fijas, se conocen de antemano. Esta condición es relevante en los experimentos biológicos ya que no es común poder cumplirla. Si esta condición no se satisface el test de Fisher deja de ser exacto, por lo general pasando a ser más conservativo. 
 
@@ -339,7 +338,20 @@ tabla
 fisher.test(x = tabla, alternative = "two.sided")
 
 ```
-**Fuerza de asociación**
+
+
+
+**Fuerza de asociación entre variables cualitativas (tamaño del efecto)**
+
+Dado que las pruebas contrastan si las variables están relacionadas, al tamaño del efecto se le conoce como fuerza de asociación. Existen múltiples medidas de asociación, entre las que destacan phi o Cramer’s V. 
+
+
+
+
+
+
+
+
 
 ```{r}
 library(vcd)
@@ -357,7 +369,7 @@ mosaicplot(tabla,
 )
 ```
 
-# Prueba para la diferencias entre dos poblaciones
+# Prueba de diferencias entre dos poblaciones con relación a la mediana 
 
 
 ## Prueba de signo
@@ -519,7 +531,7 @@ ________________________________________________________________________________
    
 1. Realice la prueba de signos
 2. Realice la prueba de rangos con signos de wilcoxon
-
+3. Realice la prueba de suma de rangos de wilcoxon
 
  
 **En rstudio**
@@ -530,16 +542,24 @@ rad=c(4.2,4.7,6.6,7,6.7,4.5,5.7,6,7.4,4.9,6.1,5.2,5.7,6.9,6.8,4.9)
 cin=c(4.1,4.9,6.2,6.9,6.8,4.4,5.7,5.8,6.9,4.9,6,4.9,5.3,6.5,7.1,4.8)
 
 
+##Pueba de signos
+SIGN.test(rad,cin, alternative = "two.sided", conf.level = 0.95)
+
+## Prueba de rangos con signos
 wilcox.test(rad,cin,paired=TRUE) 
 
+## Prueba de suma de rangos
+wilcox.test(rad,cin,paired=FALSE) 
 
 
-SIGN.test(rad,cin, alternative = "two.sided", conf.level = 0.95)
+
+
+
 ```
 
 
 
-## prueba de rangos con signo de wilcoxon
+## Prueba de rangos con signo de wilcoxon
 
 - Compara el rango medio de dos muestras relacionadas y determina si existen diferencias entre ellas. 
 
@@ -684,17 +704,12 @@ SIGN.test(y1,y2, alternative = "two.sided", conf.level = 0.95)
 
 
 
-## Prueba de Mann-Whitney-wilcoxon
+## Prueba de la suma de rangos de Wilcoxon
 
-- Identifica diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes**. 
+Identifica diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes** que no están emparejadas.
  
-- Se usa cuando los conjuntos de datos no cumplen los requisitos de la prueba de t-Student y la normal, (normalidad de los datos y tamaño de muestra mayor a 30)
 
-- Se conoce con otros nombres: Mann–Whitney–Wilcoxon, Wilcoxon rank-sum test y Wilcoxon–Mann–Whitney. 
-
-
-- Juego de hipótesis es:
-
+**Juego de hipótesis:**
 
 Ho: Las muestras provienen de la misma población.
 
@@ -791,9 +806,11 @@ shapiro.test(c26)
 3. Pruebe la igualdad entre el conjunto de datos
 
 
-```{r echo=TRUE}
 
 
+```{r}
+
+## Prueba de rango con signo 
 wilcox.test(x = c12, y = c26, alternative = "two.sided", mu = 0,
             paired = FALSE, conf.int = 0.95) 
 #prueba para saber si provienen de la misma distribución 
@@ -861,7 +878,40 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
 **Prueba de signo y de rangos con signos de wilcoxon**
 
 
-1. Los siguientes datos representan el tiempo, en minutos, que un paciente tiene que esperar durante 12 visitas al consultorio de un médico antes de ser atendido:
+1. Se afirma que, si se le proporcionan ejemplos de problemas con antelacion, un estudiante puede aumentar en al menos 50 puntos su calificacion.
+
+Para probar esta afirmacion se divide a un grupo de 20 estudiantes del ultimo ano en 10 pares, de manera que cada par tenga casi la misma calificacion promedio durante sus 3 primeros años en la universidad. 
+
+| **ce** | **se ** |
+|:------:|:-------:|
+| 531    | 509     |      
+| 621    | 540     |      
+| 663    | 688     |      
+| 579    | 502     |      
+| 451    | 424     |      
+| 660    | 683     |      
+| 591    | 568     |      
+| 719    | 748     |      
+| 543    | 530     |      
+| 575    | 524     |      
+
+Los ejemplos de problemas y las respuestas se proporcionan al azar a un miembro de cada par una semana antes del examen. Las calificaciones del examen se presentan en la sgte tabla.
+
+Use la prueba de signo y de rango con signo de wilcoxon, para probar la hipotesis de si los estudiantes que hacen ejercicios mejoran la nota en almenos 50 puntos.
+
+```{r}
+library(BSDA)
+ce=c(531,621,663,579,451,660,591,719,543,575)
+se=c(509,540,688,502,424,683,568,748,530,524)
+
+SIGN.test(ce,se,alternative = "less", conf.level = 0.95,md=50)
+
+wilcox.test(ce,se,paired=TRUE,mu=50)
+```
+
+ 
+
+2. Los siguientes datos representan el tiempo, en minutos, que un paciente tiene que esperar durante 12 visitas al consultorio de un médico antes de ser atendido:
 
 |  |  |  |  |  |  |  |  |  |  |  |  |
 |:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|
@@ -874,7 +924,22 @@ Utilice la prueba de signo a un nivel de significancia de 0.05 para probar la af
 
 Utilice la prueba de rango de signo de wilcoxon a un nivel de significancia de 0.05 para probar la afirmación del médico de que la mediana del tiempo de espera de sus pacientes no es mayor de 20 minutos.
 
-2. Un inspector de alimentos examina 16 latas de cierta marca de jamón para determinar el porcentaje de impurezas externas. Se registraron los siguientes datos:
+
+```{r}
+
+library(BSDA)
+time=c(17,15,20,20,32,28,12,26,25,25,35,24)
+ref=rep(20,12)
+
+SIGN.test(time,ref,alternative = "less", conf.level = 0.95,md=20)
+
+wilcox.test(time,ref,paired=TRUE,mu=20, alternative = "less")
+
+
+```
+
+
+3. Un inspector de alimentos examina 16 latas de cierta marca de jamón para determinar el porcentaje de impurezas externas. Se registraron los siguientes datos:
 
 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -886,7 +951,16 @@ Realice una prueba de signo a un nivel de significancia de 0.05 para probar la h
 
 Realice una prueba de rango de signo de wilcoxon a un nivel de significancia de 0.05 para probar la hipótesis nula de que la mediana del porcentaje de impurezas en esta marca de jamón es de 2.5%, en comparación con la hipótesis alternativa de que la mediana del porcentaje de impurezas no es de 2.5%.
 
-3. Se afirma que una nueva dieta reducirá el peso de una persona en 4.5 kilogramos, en promedio, en un periodo de dos semanas. Se registran los pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo de dos semanas, y se obtienen los siguientes datos:
+
+```{r}
+nv=c(2.4,2.3,3.1,2.2,2.3,1.2,1,2.4,1.1,4.2,1.9,1.7,3.6,1.6,2.3,1.7)
+SIGN.test(nv, md =2.5, alternative = "two.sided", conf.level = 0.95)
+wilcox.test(nv, alternative = c("two.sided"),
+            mu =2.5, conf.level = 0.95) 
+```
+
+
+4. Se afirma que una nueva dieta reducirá el peso de una persona en 4.5 kilogramos, en promedio, en un periodo de dos semanas. Se registran los pesos de 10 mujeres que siguen esta dieta, antes y después de un periodo de dos semanas, y se obtienen los siguientes datos:
 
 | **mujer** | **peso antes** | **peso despues ** | 
 |:---------:|:--------------:|:-----------------:|
@@ -910,6 +984,9 @@ Utilice la prueba de signo a un nivel de significancia de 0.05 para probar la hi
 Utilice la prueba de rango de signo de wilcoxon a un nivel de significancia de 0.05 para probar la hipótesis de que la dieta reduce la mediana del peso en 4.5 kilogramos, en comparación con la hipótesis alternativa de que la mediana de la pérdida de peso es menor que 4.5 kilogramos.
 
 **W+=17.5 no rechazo Ho**
+
+
+
 
 3. Las siguientes cifras indican la presión sanguínea sistólica de 16 corredores antes y después de una carrera de ocho kms:
 
