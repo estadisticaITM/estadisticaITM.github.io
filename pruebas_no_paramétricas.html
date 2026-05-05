@@ -549,8 +549,8 @@ class="math display">\[p(x=9)=\frac{e^{-\lambda}\lambda^x}{x!}=\frac{e^{-13.95}1
 <p>La frecuencia esperada se obtiene de multiplicar cada valor de
 probabilidad por 20.</p>
 <p>El valor del estadístico es 13.9 los grados de libertad de la
-distribución está dado por: gl=observaciones- k (parámetros
-estimados)-1</p>
+distribución está dado por:</p>
+<p>gl=observaciones- k (parámetros estimados)-1</p>
 <p><span class="math display">\[P(\chi^2_4&gt;13.9)=0.0075 \]</span>
 rechaza la hipotesis nula y se concluye que los datos no se distribuye
 poisson</p>
@@ -902,10 +902,42 @@ id="prueba-de-diferencias-entre-dos-poblaciones-con-relación-a-la-mediana"
 class="section level1">
 <h1>Prueba de diferencias entre dos poblaciones con relación a la
 mediana</h1>
-<div id="prueba-de-signo" class="section level2">
-<h2>Prueba de signo</h2>
-<p>Se utiliza para probar hipótesis sobre una mediana de la
-población.</p>
+<p>si dos muestras comparadas proceden de la misma población, al juntar
+todas las observaciones y ordenarlas de menor a mayor, cabría esperar
+que las observaciones de una y otra muestra estuviesen intercaladas
+aleatoriamente.</p>
+<pre class="r"><code>library(ggplot2)
+set.seed(567)
+datos &lt;- data.frame(muestra = rep(c(&quot;A&quot;, &quot;B&quot;), each = 10),
+valor = rnorm(n = 20, mean = 10, sd = 5),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle(&quot;Muestras procedentes de la misma población&quot;)</code></pre>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Por lo contrario, si una de las muestras pertenece a una población
+con valores mayores o menores que la otra población, al ordenar las
+observaciones, estas tenderán a agruparse de modo que las de una muestra
+queden por encima de las de la otra.</p>
+<pre class="r"><code>set.seed(567)
+datos &lt;- data.frame(muestra = rep(c(&quot;A&quot;, &quot;B&quot;), each = 10),
+valor = c(rnorm(n = 10, mean = 10, sd = 5), rnorm(n = 10, mean = 20, sd = 5)),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle(&quot;Muestras procedentes de distintas poblaciones&quot;)</code></pre>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Las pruebas no paramétricas que veremos a continuación prueban la
+mediana de un conjunto de datos, o las medianas dos conjuntos de datos,
+la prueba de hipotesis es</p>
 <p><strong>Hipótesis nula <span
 class="math inline">\(H_0\)</span></strong></p>
 <p><span class="math display">\[\Large H_0:M_e=M_o\]</span></p>
@@ -930,9 +962,11 @@ M_o\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>si la distribución es simétrica, la media y la mediana de la
-población son iguales. Al probar la hipótesis nula <span
-class="math inline">\(H_0\)</span> de que <span
+<div id="prueba-de-signo" class="section level2">
+<h2>Prueba de signo</h2>
+<p>si la distribución de un conjunto de datos es simétrica, la media y
+la mediana de la población son iguales. Al probar la hipótesis nula
+<span class="math inline">\(H_0\)</span> de que <span
 class="math inline">\(M_e=M_o\)</span> en comparación con la hipótesis
 alternativa adecuada, con base en una muestra aleatoria de tamaño n,
 reemplazamos cada valor de la muestra que exceda a <span
@@ -1689,54 +1723,151 @@ wilcox.test(y1,y2,paired=TRUE) </code></pre>
 <div id="prueba-de-la-suma-de-rangos-de-wilcoxon"
 class="section level2">
 <h2>Prueba de la suma de rangos de Wilcoxon</h2>
-<p>Identifica diferencias entre dos poblaciones basadas en el análisis
-de <strong>dos muestras independientes</strong> que no están
-emparejadas.</p>
+<ul>
+<li><p>Su uso no se restringe a poblaciones no normales. pero esta
+prueba siempre es superior a la prueba t para poblaciones no
+normales</p></li>
+<li><p>Se puede utilizar en vez de la prueba t de dos muestras cuando
+las poblaciones son normales, aunque la potencia será menor.</p></li>
+</ul>
+<p><strong>Condiciones</strong></p>
+<ul>
+<li><p>Identifica diferencias entre dos poblaciones que no son
+normales.</p></li>
+<li><p>Análisis de <strong>dos muestras independientes</strong> que no
+están emparejadas.</p></li>
+</ul>
 <p><strong>Juego de hipótesis:</strong></p>
 <p>Ho: Las muestras provienen de la misma población.</p>
 <p>H1: Las muestras provienen de poblaciones diferentes.</p>
-<p>si las dos muestras comparadas proceden de la misma población, al
-juntar todas las observaciones y ordenarlas de menor a mayor, cabría
-esperar que las observaciones de una y otra muestra estuviesen
-intercaladas aleatoriamente.</p>
-<pre class="r"><code>library(ggplot2)
-set.seed(567)
-datos &lt;- data.frame(muestra = rep(c(&quot;A&quot;, &quot;B&quot;), each = 10),
-valor = rnorm(n = 20, mean = 10, sd = 5),
-cordenada_y = rep(0, 20))
-
-ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
-geom_point(aes(colour = muestra), size = 3) +
-ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
-theme_bw() +
-theme(axis.text.y = element_blank()) + 
-ggtitle(&quot;Muestras procedentes de la misma población&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>Por lo contrario, si una de las muestras pertenece a una población
-con valores mayores o menores que la otra población, al ordenar las
-observaciones, estas tenderán a agruparse de modo que las de una muestra
-queden por encima de las de la otra.</p>
-<pre class="r"><code>set.seed(567)
-datos &lt;- data.frame(muestra = rep(c(&quot;A&quot;, &quot;B&quot;), each = 10),
-valor = c(rnorm(n = 10, mean = 10, sd = 5), rnorm(n = 10, mean = 20, sd = 5)),
-cordenada_y = rep(0, 20))
-
-ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
-geom_point(aes(colour = muestra), size = 3) +
-ylab(&quot;&quot;) + xlab(&quot;rango&quot;) +
-theme_bw() +
-theme(axis.text.y = element_blank()) + 
-ggtitle(&quot;Muestras procedentes de distintas poblaciones&quot;)</code></pre>
-<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>Procedimiento:</strong></p>
+<p>Luego de disponer de las dos muestras, sea n1 el tamaño de la primera
+muestra y n2 el tamaño de la segunda muestra.:</p>
+<ul>
+<li><p>Apilar los datos en una sola columna</p></li>
+<li><p>Ordenar las dos columnas de menor a mayor</p></li>
+<li><p>Asignar el rango o jerarquia a cada uno de los datos
+ordenados.</p></li>
+</ul>
+<p><strong>criterio de asignación:</strong> Cuando el dato se repite, se
+suman todas las repeticiones y se divide entre el número de datos
+repetidos, dicho resultado será el rango de todos ellos. El siguiente
+dato no repetido tendrá por rango el valor entero que le correspondería
+si no hubiera habido repeticiones.</p>
+<ul>
+<li>Se suman todos los valores de los rangos correspondientes a la misma
+muestra. Supongamos que estas sumas son S1 y S2, respectivamente.</li>
+</ul>
+<p><strong>Estadísticos a calcular</strong></p>
+<p><span
+class="math display">\[U_1=n_1*n_2+\frac{1}{2}n_1(n_1+1)-s_1\]</span>
+<span
+class="math display">\[U_2=n_1*n_2+\frac{1}{2}n_2(n_2+1)-s_2\]</span>
+<span class="math display">\[U=min{U_1,U_2}\]</span> Media: <span
+class="math display">\[\mu=\frac{n_1*n_2}{2}\]</span></p>
+<p>Varianza: <span
+class="math display">\[\sigma^2=\frac{1}{12}n_1*n_2(n_1+n_2+1)\]</span>
+estadístico de prueba: <span
+class="math display">\[T_c=\frac{U-\mu_U}{\sigma}\]</span></p>
+<ul>
+<li><strong>Criterio de decisión:</strong> Si el valor absoluto de TC es
+mayor el valor crítico Zα, rechazaremos la hipótesis nula; es decir, las
+muestras no proviene de la misma población o las poblaciones de donde
+provienen no son iguales.</li>
+</ul>
 <p><strong>Ejemplo Prueba de wilcoxon en R</strong></p>
-<p>Los siguientes datos corresponden a constantes de permeabilidad de la
-membrana chorioamnion en humanos (una membrana placentaria) medida a las
-12 y 26 semanas de edad gestacional.</p>
+<p>Las membranas fetales (amnios y corion) forman un saco delgado y
+resistente que rodea al feto. Aunque su espesor es mínimo, se asume un
+grosor de aproximadamente 0.6 mm en el interior del útero hacia el final
+del embarazo. Estas membranas son esenciales para la protección y
+contención del líquido amniótico.</p>
+<p>Los siguientes datos corresponden a medidas del grosor de las
+membranas fetales medida a las 12 y 26 semanas de edad gestacional.</p>
 <ol style="list-style-type: decimal">
-<li>Realice un analisis descriptivo para verificar la normalidad en los
+<li>Realice un analisis descriptivo y verifique la normalidad en los
 conjuntos de datos</li>
 </ol>
-<pre class="r"><code>require(car)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">****</th>
+<th align="center"><strong>c12</strong></th>
+<th align="center"><strong>c26 </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">****</td>
+<td align="center">0.8</td>
+<td align="center">1.15</td>
+</tr>
+<tr class="even">
+<td align="center">****</td>
+<td align="center">0.83</td>
+<td align="center">0.88</td>
+</tr>
+<tr class="odd">
+<td align="center">****</td>
+<td align="center">1.89</td>
+<td align="center">0.9</td>
+</tr>
+<tr class="even">
+<td align="center">****</td>
+<td align="center">1.04</td>
+<td align="center">0.74</td>
+</tr>
+<tr class="odd">
+<td align="center">****</td>
+<td align="center">1.45</td>
+<td align="center">1.21</td>
+</tr>
+<tr class="even">
+<td align="center">****</td>
+<td align="center">1.38</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">****</td>
+<td align="center">1.91</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">****</td>
+<td align="center">1.64</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">****</td>
+<td align="center">0.73</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">****</td>
+<td align="center">1.46</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>media</strong></td>
+<td align="center">1.313</td>
+<td align="center">0.976</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>mediana</strong></td>
+<td align="center">1.415</td>
+<td align="center">0.9</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>desv estándar</strong></td>
+<td align="center">0.441</td>
+<td align="center">0.197</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>c12=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
+c26=c(1.15, 0.88, 0.90, 0.74, 1.21)
+
+# Para la constante a las 12 semanas
+require(car)</code></pre>
 <pre><code>## Cargando paquete requerido: car</code></pre>
 <pre><code>## Cargando paquete requerido: carData</code></pre>
 <pre><code>## 
@@ -1746,12 +1877,7 @@ conjuntos de datos</li>
 ##     Vocab, Wool</code></pre>
 <pre class="r"><code>library(nortest)</code></pre>
 <pre><code>## Warning: package &#39;nortest&#39; was built under R version 4.5.2</code></pre>
-<pre class="r"><code>c12=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
-c26=c(1.15, 0.88, 0.90, 0.74, 1.21)
-
-# Para la constante a las 12 semanas
-
-par(mfrow=c(1,4))
+<pre class="r"><code>par(mfrow=c(1,4))
 hist(c12, xlab = &quot;Tiempo&quot;, ylab = &quot;Frecuencia&quot;, las=1, main = &quot;&quot;, col = &quot;gray&quot;)
 qqPlot(c12, col = &quot;gray&quot;, ylab=&quot;Tiempo&quot;)</code></pre>
 <pre><code>## [1] 7 9</code></pre>
@@ -1787,19 +1913,186 @@ shapiro.test(c12)</code></pre>
 ## data:  c26
 ## W = 0.91538, p-value = 0.5006</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Pruebe la igualdad entre el conjunto de datos</li>
+<li>Mediante la prueba de suma de rangos de wilcoxon pruebe la hipótesis
+de que la membrana es mayor a las 12 semanas que a las 26 semanas, con
+un nivel de significancia de 0.05</li>
 </ol>
+<p><strong>Pasos:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Juego de hipótesis</li>
+</ol>
+<p><span class="math display">\[ H_o:M_{e12 sem}=M_{e26 sem}\]</span>
+<span class="math display">\[ H_1:M_{e12 sem}&gt;M_{e26 sem}\]</span> 2.
+Nivel de significancia:<span
+class="math inline">\(\alpha=0.05\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Cálculos</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>todos</strong></th>
+<th align="center"><strong>pertenece</strong></th>
+<th align="center"><strong>rango </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.73</td>
+<td align="center">c12</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">0.74</td>
+<td align="center">c26</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">0.8</td>
+<td align="center">c12</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">0.83</td>
+<td align="center">c12</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center">0.88</td>
+<td align="center">c26</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">0.9</td>
+<td align="center">c26</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="center">1.04</td>
+<td align="center">c12</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">1.15</td>
+<td align="center">c26</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">1.21</td>
+<td align="center">c26</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">1.38</td>
+<td align="center">c12</td>
+<td align="center">10</td>
+</tr>
+<tr class="odd">
+<td align="center">1.45</td>
+<td align="center">c12</td>
+<td align="center">11</td>
+</tr>
+<tr class="even">
+<td align="center">1.46</td>
+<td align="center">c12</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">1.64</td>
+<td align="center">c12</td>
+<td align="center">13</td>
+</tr>
+<tr class="even">
+<td align="center">1.89</td>
+<td align="center">c12</td>
+<td align="center">14</td>
+</tr>
+<tr class="odd">
+<td align="center">1.91</td>
+<td align="center">c12</td>
+<td align="center">15</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="63%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>Estadístico calculado</strong></th>
+<th align="center"><strong>c12</strong></th>
+<th align="center"><strong>c26 </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Suma Rango</strong></td>
+<td align="center">90</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Tamaño:</strong></td>
+<td align="center">10</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>U</strong></td>
+<td align="center">15</td>
+<td align="center">35</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Determinación del estadístico U =
+</strong></td>
+<td align="center"></td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Media de U = </strong></td>
+<td align="center"></td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Varianza de U = </strong></td>
+<td align="center"></td>
+<td align="center">66.66666667</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Desviación de U = </strong></td>
+<td align="center"></td>
+<td align="center">8.164965809</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Cálculo del estadistico de la prueba =
+</strong></td>
+<td align="center"></td>
+<td align="center">-1.224744871</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Valor crítico Z = </strong></td>
+<td align="center"></td>
+<td align="center">1.96</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>desición </strong></td>
+<td align="center"></td>
+<td align="center">No rechazar Ho</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>## Prueba de rango con signo 
-wilcox.test(x = c12, y = c26, alternative = &quot;two.sided&quot;, mu = 0,
+wilcox.test(x = c12, y = c26, alternative = &quot;greater&quot;, mu = 0,
             paired = FALSE, conf.int = 0.95) </code></pre>
 <pre><code>## 
 ##  Wilcoxon rank sum exact test
 ## 
 ## data:  c12 and c26
-## W = 35, p-value = 0.2544
-## alternative hypothesis: true location shift is not equal to 0
+## W = 35, p-value = 0.1272
+## alternative hypothesis: true location shift is greater than 0
 ## 95 percent confidence interval:
-##  -0.15  0.76
+##  -0.08   Inf
 ## sample estimates:
 ## difference in location 
 ##                  0.305</code></pre>

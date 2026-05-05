@@ -138,8 +138,10 @@ el valor del promedio $\lambda$ se estima asi:
 
 La frecuencia esperada se obtiene de multiplicar cada valor de probabilidad por 20. 
 
-El valor del estadístico es 13.9
-los grados de libertad de la distribución está dado por: gl=observaciones- k (parámetros estimados)-1
+El valor del estadístico es 13.9 los grados de libertad de la distribución está dado por: 
+
+
+gl=observaciones- k (parámetros estimados)-1
 
 $$P(\chi^2_4>13.9)=0.0075 $$
 rechaza la hipotesis nula y se concluye que los datos no se distribuye poisson 
@@ -346,20 +348,12 @@ fisher.test(x = tabla, alternative = "two.sided")
 Dado que las pruebas contrastan si las variables están relacionadas, al tamaño del efecto se le conoce como fuerza de asociación. Existen múltiples medidas de asociación, entre las que destacan phi o Cramer’s V. 
 
 
-
-
-
-
-
-
-
 ```{r}
 library(vcd)
 assocstats(x = tabla)
 ```
 
-En este ejemplo no se satisface la condición de frecuencias marginales fijas y por lo tanto el test de Fisher no es exacto. Aun así, hay evidencias para rechazar la H0
- y considerar que las dos variables sí están relacionadas. El tamaño de la fuerza de asociación (tamaño de efecto) cuantificado por phi o Cramer’s V es mediano.
+En este ejemplo no se satisface la condición de frecuencias marginales fijas y por lo tanto el test de Fisher no es exacto. Aun así, hay evidencias para rechazar la H0  y considerar que las dos variables sí están relacionadas. El tamaño de la fuerza de asociación (tamaño de efecto) cuantificado por phi o Cramer’s V es mediano.
 
 
 ```{r}
@@ -372,12 +366,49 @@ mosaicplot(tabla,
 # Prueba de diferencias entre dos poblaciones con relación a la mediana 
 
 
-## Prueba de signo
-Se utiliza para probar hipótesis sobre una mediana de la población. 
+si dos muestras comparadas proceden de la misma población, al juntar todas las observaciones y ordenarlas de menor a mayor, cabría esperar que las observaciones de una y otra muestra estuviesen intercaladas aleatoriamente. 
+
+```{r}
+library(ggplot2)
+set.seed(567)
+datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
+valor = rnorm(n = 20, mean = 10, sd = 5),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab("") + xlab("rango") +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle("Muestras procedentes de la misma población")
+```
+
+
+
+Por lo contrario, si una de las muestras pertenece a una población con valores mayores o menores que la otra población, al ordenar las observaciones, estas tenderán a agruparse de modo que las de una muestra queden por encima de las de la otra.
+
+
+
+```{r}
+set.seed(567)
+datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
+valor = c(rnorm(n = 10, mean = 10, sd = 5), rnorm(n = 10, mean = 20, sd = 5)),
+cordenada_y = rep(0, 20))
+
+ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
+geom_point(aes(colour = muestra), size = 3) +
+ylab("") + xlab("rango") +
+theme_bw() +
+theme(axis.text.y = element_blank()) + 
+ggtitle("Muestras procedentes de distintas poblaciones")
+```
+
+Las pruebas no paramétricas que veremos a continuación prueban la mediana de un conjunto de datos, o las medianas dos conjuntos de datos, la prueba de hipotesis es
 
 **Hipótesis nula $H_0$**
 
 $$\Large H_0:M_e=M_o$$
+
 
 **Hipótesis alternativa $H_1$**
 
@@ -386,8 +417,10 @@ $$\Large H_0:M_e=M_o$$
 |$\Large H_0:M_e>M_o$|$\Large H_0:M_e<M_o$|$\Large H_0:M_e\neq M_o$|
 
 
-si la distribución es simétrica, la media y la mediana de la población son iguales. Al probar la hipótesis nula $H_0$ de que $M_e=M_o$ en comparación con la hipótesis
-alternativa adecuada, con base en una muestra aleatoria de tamaño n, reemplazamos cada valor de la muestra que exceda a $M_e$ con un signo más, y cada valor de la muestra menor que $M_e$ con un signo menos. Si la hipótesis nula es verdadera y la población es simétrica, la suma de los signos más debería ser casi igual a la suma de los signos menos. 
+
+## Prueba de signo
+
+si la distribución de un conjunto de datos es simétrica, la media y la mediana de la población son iguales. Al probar la hipótesis nula $H_0$ de que $M_e=M_o$ en comparación con la hipótesis alternativa adecuada, con base en una muestra aleatoria de tamaño n, reemplazamos cada valor de la muestra que exceda a $M_e$ con un signo más, y cada valor de la muestra menor que $M_e$ con un signo menos. Si la hipótesis nula es verdadera y la población es simétrica, la suma de los signos más debería ser casi igual a la suma de los signos menos. 
 
 **Estadístico**
 
@@ -496,10 +529,7 @@ SIGN.test(x1, md =1.8, alternative = "two.sided", conf.level = 0.95)
 
 
 
-Una empresa de taxis intenta decidir si utilizar neumáticos radiales en vez de neumáticos
-regulares con cinturón le serviría para ahorrar combustible. Se equipan 16 automóviles
-con neumáticos radiales y se conducen por un recorrido de prueba establecido. Después
-se equipan los mismos automóviles con los neumáticos regulares con cinturón y se hace
+Una empresa de taxis intenta decidir si utilizar neumáticos radiales en vez de neumáticos regulares con cinturón le serviría para ahorrar combustible. Se equipan 16 automóviles con neumáticos radiales y se conducen por un recorrido de prueba establecido. Después se equipan los mismos automóviles con los neumáticos regulares con cinturón y se hace
 que los mismos conductores vuelvan a realizar el recorrido de prueba. 
 
 El consumo de gasolina, en kilómetros por litro, se presenta en la siguiente tabla, ¿Podemos concluir a un nivel de significancia de 0.05 que los automóviles equipados con neumáticos radiales ahorran más combustible que los equipados con neumáticos regulares con cinturón?
@@ -706,7 +736,17 @@ SIGN.test(y1,y2, alternative = "two.sided", conf.level = 0.95)
 
 ## Prueba de la suma de rangos de Wilcoxon
 
-Identifica diferencias entre dos poblaciones basadas en el análisis de **dos muestras independientes** que no están emparejadas.
+- Su uso no se restringe a poblaciones no normales. pero esta prueba siempre es superior a la prueba t para poblaciones no normales
+
+- Se puede utilizar en vez de la prueba t de dos muestras cuando las poblaciones son normales, aunque la potencia será menor.
+
+
+
+**Condiciones**
+
+- Identifica diferencias entre dos poblaciones que no son normales.
+
+- Análisis de **dos muestras independientes** que no están emparejadas.
  
 
 **Juego de hipótesis:**
@@ -715,42 +755,35 @@ Ho: Las muestras provienen de la misma población.
 
 H1: Las muestras provienen de poblaciones diferentes.
 
-si las dos muestras comparadas proceden de la misma población, al juntar todas las observaciones y ordenarlas de menor a mayor, cabría esperar que las observaciones de una y otra muestra estuviesen intercaladas aleatoriamente. 
 
-```{r}
-library(ggplot2)
-set.seed(567)
-datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
-valor = rnorm(n = 20, mean = 10, sd = 5),
-cordenada_y = rep(0, 20))
-
-ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
-geom_point(aes(colour = muestra), size = 3) +
-ylab("") + xlab("rango") +
-theme_bw() +
-theme(axis.text.y = element_blank()) + 
-ggtitle("Muestras procedentes de la misma población")
-```
+**Procedimiento:**
 
 
 
-Por lo contrario, si una de las muestras pertenece a una población con valores mayores o menores que la otra población, al ordenar las observaciones, estas tenderán a agruparse de modo que las de una muestra queden por encima de las de la otra.
+Luego de disponer de las dos muestras, sea n1 el tamaño de la primera muestra y n2 el tamaño de la segunda muestra.:
+
+- Apilar los datos en una sola columna 
+
+- Ordenar las dos columnas de menor a mayor
+
+- Asignar el rango o jerarquia a cada uno de los datos ordenados. 
+
+**criterio de asignación:** Cuando el dato se repite, se suman todas las repeticiones y se divide entre el número de datos repetidos, dicho resultado será el rango de todos ellos. El siguiente dato no repetido tendrá por rango el valor entero que le correspondería si no hubiera habido repeticiones.
+
+- Se suman todos los valores de los rangos correspondientes a la misma muestra. Supongamos que estas sumas son S1 y S2, respectivamente.
+
+**Estadísticos a calcular**
+
+$$U_1=n_1*n_2+\frac{1}{2}n_1(n_1+1)-s_1$$
+$$U_2=n_1*n_2+\frac{1}{2}n_2(n_2+1)-s_2$$
+$$U=min{U_1,U_2}$$
+Media: $$\mu=\frac{n_1*n_2}{2}$$
+
+Varianza: $$\sigma^2=\frac{1}{12}n_1*n_2(n_1+n_2+1)$$
+estadístico de prueba: $$T_c=\frac{U-\mu_U}{\sigma}$$
 
 
-
-```{r}
-set.seed(567)
-datos <- data.frame(muestra = rep(c("A", "B"), each = 10),
-valor = c(rnorm(n = 10, mean = 10, sd = 5), rnorm(n = 10, mean = 20, sd = 5)),
-cordenada_y = rep(0, 20))
-
-ggplot(data = datos, aes(x = valor, y = cordenada_y)) +
-geom_point(aes(colour = muestra), size = 3) +
-ylab("") + xlab("rango") +
-theme_bw() +
-theme(axis.text.y = element_blank()) + 
-ggtitle("Muestras procedentes de distintas poblaciones")
-```
+- **Criterio de decisión:** Si el valor absoluto de TC es mayor el valor crítico Zα, rechazaremos la hipótesis nula; es decir, las muestras no proviene de la misma población o las poblaciones de donde provienen no son iguales.
 
 
 
@@ -759,20 +792,41 @@ ggtitle("Muestras procedentes de distintas poblaciones")
 
 **Ejemplo Prueba de wilcoxon en R**
 
-Los siguientes datos corresponden a constantes de permeabilidad de la membrana chorioamnion en humanos (una membrana placentaria) medida a las 12 y 26 semanas de edad gestacional.
+Las membranas fetales (amnios y corion) forman un saco delgado y resistente que rodea al feto. Aunque su espesor es mínimo, se asume un grosor de aproximadamente 0.6 mm en el interior del útero hacia el final del embarazo. Estas membranas son esenciales para la protección y contención del líquido amniótico.
+
+Los siguientes datos corresponden a medidas del grosor de las membranas fetales medida a las 12 y 26 semanas de edad gestacional.
 
 
-1. Realice un analisis descriptivo para verificar la normalidad en los conjuntos de datos
+1. Realice un analisis descriptivo y verifique la normalidad en los conjuntos de datos
+
+
+
+| ****              | **c12** | **c26 ** |
+|:-----------------:|:-------:|:--------:|
+| ****              | 0.8     | 1.15     |
+| ****              | 0.83    | 0.88     |
+| ****              | 1.89    | 0.9      |
+| ****              | 1.04    | 0.74     |
+| ****              | 1.45    | 1.21     |
+| ****              | 1.38    |          |
+| ****              | 1.91    |          |
+| ****              | 1.64    |          |
+| ****              | 0.73    |          |
+| ****              | 1.46    |          |
+| **media**         | 1.313   | 0.976    |
+| **mediana**       | 1.415   | 0.9      |
+| **desv estándar** | 0.441   | 0.197    |
+
+
 
 ```{r echo=TRUE}
-require(car)
-library(nortest)
 
 c12=c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)
 c26=c(1.15, 0.88, 0.90, 0.74, 1.21)
 
 # Para la constante a las 12 semanas
-
+require(car)
+library(nortest)
 par(mfrow=c(1,4))
 hist(c12, xlab = "Tiempo", ylab = "Frecuencia", las=1, main = "", col = "gray")
 qqPlot(c12, col = "gray", ylab="Tiempo")
@@ -803,15 +857,53 @@ shapiro.test(c26)
 
 ```
 
-3. Pruebe la igualdad entre el conjunto de datos
+3. Mediante la prueba de suma de rangos de wilcoxon pruebe la hipótesis de que la membrana es mayor a las 12 semanas que a las 26 semanas, con un nivel de significancia de 0.05
 
+**Pasos:**
 
+1. Juego de hipótesis
 
+$$ H_o:M_{e12 sem}=M_{e26 sem}$$
+$$ H_1:M_{e12 sem}>M_{e26 sem}$$
+2. Nivel de significancia:$\alpha=0.05$
+
+3. Cálculos
+
+| **todos** | **pertenece** | **rango ** |
+|:---------:|:-------------:|:----------:|
+| 0.73      | c12           | 1          |
+| 0.74      | c26           | 2          |
+| 0.8       | c12           | 3          |
+| 0.83      | c12           | 4          |
+| 0.88      | c26           | 5          |
+| 0.9       | c26           | 6          |
+| 1.04      | c12           | 7          |
+| 1.15      | c26           | 8          |
+| 1.21      | c26           | 9          |
+| 1.38      | c12           | 10         |
+| 1.45      | c12           | 11         |
+| 1.46      | c12           | 12         |
+| 1.64      | c12           | 13         |
+| 1.89      | c12           | 14         |
+| 1.91      | c12           | 15         |
+
+| **Estadístico calculado**                                        | **c12** | **c26 **        |
+|:-------------------------------------------:|:-------:|:---------------:|
+| **Suma Rango**                              | 90      | 30              |
+| **Tamaño:**                                 | 10      | 5               |
+| **U**                                       | 15      | 35              |
+| **Determinación del estadístico U = **      |         | 15              |
+| **Media de U = **                           |         | 25              |
+| **Varianza de U = **                        |         | 66.66666667     |
+| **Desviación de U = **                      |         | 8.164965809     |
+| **Cálculo del estadistico de la prueba = ** |         | -1.224744871    |
+| **Valor crítico Z = **                      |         | 1.96            |
+| **desición **                               |         | No rechazar Ho  |
 
 ```{r}
 
 ## Prueba de rango con signo 
-wilcox.test(x = c12, y = c26, alternative = "two.sided", mu = 0,
+wilcox.test(x = c12, y = c26, alternative = "greater", mu = 0,
             paired = FALSE, conf.int = 0.95) 
 #prueba para saber si provienen de la misma distribución 
 ks.test(c12,c26)
