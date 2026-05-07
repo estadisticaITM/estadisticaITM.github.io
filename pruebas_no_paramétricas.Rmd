@@ -740,7 +740,7 @@ SIGN.test(y1,y2, alternative = "two.sided", conf.level = 0.95)
 
 - Se puede utilizar en vez de la prueba t de dos muestras cuando las poblaciones son normales, aunque la potencia será menor.
 
-
+<iframe width="280" height="160" src="https://www.youtube.com/embed/8yXnpU5xn0M" title="Prueba de Wilcoxon de la suma de rangos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 **Condiciones**
 
@@ -801,21 +801,21 @@ Los siguientes datos corresponden a medidas del grosor de las membranas fetales 
 
 
 
-| ****              | **c12** | **c26 ** |
-|:-----------------:|:-------:|:--------:|
-| ****              | 0.8     | 1.15     |
-| ****              | 0.83    | 0.88     |
-| ****              | 1.89    | 0.9      |
-| ****              | 1.04    | 0.74     |
-| ****              | 1.45    | 1.21     |
-| ****              | 1.38    |          |
-| ****              | 1.91    |          |
-| ****              | 1.64    |          |
-| ****              | 0.73    |          |
-| ****              | 1.46    |          |
-| **media**         | 1.313   | 0.976    |
-| **mediana**       | 1.415   | 0.9      |
-| **desv estándar** | 0.441   | 0.197    |
+|            | **c12** | **c26 ** |
+|:----------:|:-------:|:--------:|
+|            | 0.8     | 1.15     |
+|            | 0.83    | 0.88     |
+|            | 1.89    | 0.9      |
+|            | 1.04    | 0.74     |
+|            | 1.45    | 1.21     |
+|            | 1.38    |          |
+|            | 1.91    |          |
+|            | 1.64    |          |
+|            | 0.73    |          |
+|            | 1.46    |          |
+|**media**   | 1.313   | 0.976    |
+|**mediana** | 1.415   | 0.9      |
+|**desv estándar**|0.441| 0.197   |
 
 
 
@@ -887,7 +887,7 @@ $$ H_1:M_{e12 sem}>M_{e26 sem}$$
 | 1.89      | c12           | 14         |
 | 1.91      | c12           | 15         |
 
-| **Estadístico calculado**                                        | **c12** | **c26 **        |
+| **Estadístico calculado**                   | **c12** | **c26 **        |
 |:-------------------------------------------:|:-------:|:---------------:|
 | **Suma Rango**                              | 90      | 30              |
 | **Tamaño:**                                 | 10      | 5               |
@@ -956,7 +956,11 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)
          
 ```
 
+## Pruebas de corridas aleatorias
 
+<iframe width="280" height="160" src="https://www.youtube.com/embed/8jIkj6lkcvc" title="Prueba de Rachas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+$$H_o= datos aleatorios$$
+$$H_1=datos no aleatorios$$
 
 
 # Conclusiones
