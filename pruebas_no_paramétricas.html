@@ -394,6 +394,107 @@ div.tocify {
 <div id="pruebas-no-paramétricas" class="section level1">
 <h1>Pruebas no paramétricas</h1>
 <p><img src="imagen/pnp.png" width="350" height="250" style="display: block; margin: auto;" /></p>
+<p><strong>Comparación de pruebas paramétricas y no
+paramétricas</strong></p>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="35%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Características</th>
+<th align="center">Pruebas paramétricas</th>
+<th align="center">Pruebas no paramétricas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Supuestos</td>
+<td align="center">Requiere que los datos sean normales y tengan
+varianza constante</td>
+<td align="center">NO requiere normalidad</td>
+</tr>
+<tr class="even">
+<td align="left">Medida de interés</td>
+<td align="center">Media</td>
+<td align="center">Mediana</td>
+</tr>
+<tr class="odd">
+<td align="left">tamaño de la muestra</td>
+<td align="center">Mas eficaces con muestras grandes</td>
+<td align="center">Adecuada para muestras grandes como pequeñas</td>
+</tr>
+<tr class="even">
+<td align="left">Potencia estadística</td>
+<td align="center">Mayor, detecta diferencias facilmente</td>
+<td align="center">Menor potencia, requiere muestras grandes para
+detectar diferencias</td>
+</tr>
+<tr class="odd">
+<td align="left">Sensibilidad a outliers</td>
+<td align="center">alta</td>
+<td align="center">baja</td>
+</tr>
+<tr class="even">
+<td align="left">Resultados</td>
+<td align="center">precisos si se cumplen los supuestos</td>
+<td align="center">menos precisos pero mas robustos, cuando no se
+cumplen los supuestos</td>
+</tr>
+<tr class="odd">
+<td align="left">Pruebas</td>
+<td align="center">student, ANOVA, Regresión</td>
+<td align="center">Mann whitney, signos</td>
+</tr>
+</tbody>
+</table>
+<div id="tipo-de-prueba-paramétricas-y-no-paramétricas-según-el-caso"
+class="section level3">
+<h3>Tipo de prueba paramétricas y no paramétricas, según el caso</h3>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="31%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Objeto de la prueba comparar</th>
+<th align="center">Pruebas paramétricas</th>
+<th align="center">Pruebas no paramétricas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Dos medidas independientes</td>
+<td align="center">Prueba t</td>
+<td align="center">Prueba de wilcoxon</td>
+</tr>
+<tr class="even">
+<td align="left">Medidas pareadas</td>
+<td align="center">Prueba t</td>
+<td align="center">Prueba de wilcoxon</td>
+</tr>
+<tr class="odd">
+<td align="left">Mas de dos muestras</td>
+<td align="center">ANOVA</td>
+<td align="center">Kruskal wallis</td>
+</tr>
+<tr class="even">
+<td align="left">medidas repetidas</td>
+<td align="center">ANOVA medidas repetidas</td>
+<td align="center">Prueba friedman</td>
+</tr>
+<tr class="odd">
+<td align="left">Correlación</td>
+<td align="center">De pearson</td>
+<td align="center">De spearman, kendall</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="prueba-chi-cuadrado" class="section level2">
 <h2>Prueba Chi cuadrado</h2>
 <p>Tiene diferentes usos entre los que se encuentran</p>
@@ -2175,12 +2276,122 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
 ## mean of x mean of y 
 ##  421.3000  628.4167</code></pre>
 </div>
-<div id="pruebas-de-corridas-aleatorias" class="section level2">
-<h2>Pruebas de corridas aleatorias</h2>
-<iframe width="280" height="160" src="https://www.youtube.com/embed/8jIkj6lkcvc" title="Prueba de Rachas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
+<div id="pruebas-de-rachas-o-de-corridas-aleatorias"
+class="section level2">
+<h2>Pruebas de rachas o de corridas aleatorias</h2>
+<p>Se basan en el orden en el que se obtienen las observaciones
+muestrales, constituyen una técnica útil para probar la hipótesis nula
+de que las observaciones en realidad se obtuvieron al azar.</p>
+<p>Sin importar si las mediciones de la muestra representan datos
+cualitativos o cuantitativos, la prueba de rachas divide los datos en
+dos categorías mutuamente excluyentes: hombre o mujer, defectuoso o no
+defectuoso, cara o cruz, arriba o abajo de la mediana, etcétera.</p>
+<p>Una secuencia siempre estará limitada a dos símbolos distintos. Sea
+n1 el número de símbolos asociados con la categoría de menor ocurrencia,
+y n2 el número de símbolos que pertenecen a la otra categoría. Entonces,
+el tamaño de la muestra n = n1 + n2</p>
+<p>se encuesta a 12 personas para saber si utilizan cierto producto. Se
+cuestionaría seriamente la supuesta aleatoriedad de la muestra si las 12
+personas fueran del mismo sexo. Designaremos a un hombre y a una mujer
+con los símbolos H y M, respectivamente, y registraremos los resultados
+de acuerdo con su género en el orden en que ocurren. Una secuencia común
+para el experimento sería</p>
+<p>M M F F F M F F M M M M</p>
+<p>Para los n = 12 símbolos en nuestra encuesta tenemos cinco rachas,
+donde la primera incluye dos H, la segunda tres M, y así sucesivamente.
+Si el número de rachas es mayor o menor que el que esperaríamos por el
+azar, se debe rechazar la hipótesis de que la muestra se extrajo al
+azar.</p>
+<p>una muestra que tiene como resultado sólo dos corridas,</p>
+<p>H H H H H H H M M M M M</p>
+<p>es muy improbable que provenga de un proceso de selección aleatorio.
+Este resultado indicaría que las primeras siete personas entrevistadas
+son hombres, seguidos de cinco mujeres.</p>
+<p><strong>Procedimiento</strong></p>
+<ul>
+<li><p>Consiste en examinar la secuencia de sucesos observados y contar
+el número de rachas</p></li>
+<li><p>Una racha es una serie ininterrumpida de uno de los resultados Si
+se lanza una moneda seis veces, por ejemplo, en H representa cara y T
+representa cruz, resultan las siguientes secuencias en el número de
+rachas indicadas</p>
+<ul>
+<li>HHTTHH tres rachas</li>
+<li>HHHTTT dos rachas</li>
+<li>HTHTHT seis rachas</li>
+</ul></li>
+<li><p>Una vez que se conoce el número de rachas en la secuencia, se
+determina el número total de resultados de un tipo 𝑛1 y el número de
+resultados de otro tipo 𝑛2</p></li>
+<li><p>Enunciar las hipotesis</p></li>
+</ul>
 <p><span class="math display">\[H_o= datos aleatorios\]</span> <span
 class="math display">\[H_1=datos no aleatorios\]</span></p>
+<ul>
+<li>La prueba consiste en encontrar si el número de rachas observado se
+puede considerar proveniente de una curva normal con media y desviación
+estándar siguientes.</li>
+</ul>
+<p><span class="math display">\[\mu_r=\frac{2
+n_1n_2}{n_1+n_2}+1\]</span> <span
+class="math display">\[\sigma_r=\sqrt{\frac{2
+n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2+(n_1+n_2-1)}}\]</span> <span
+class="math display">\[z=\frac{r-\mu_r}{\sigma_r}\]</span></p>
+<ul>
+<li><strong>Regla de decisión</strong> Si es poco probable que el número
+de rachas observado puede venir de una distribución normal, la hipótesis
+nula de un proceso aleatorio se rechaza Si el número de rachas observado
+parece probable, la hipótesis nula se un proceso aleatorio no se
+rechaza.</li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<p>Juan perdío el juego de un casino, que consistia en una secuencia de
+rojo y negro, sospechó que la rueda no era imparcial y decidió registrar
+las ocurrencias durante varios minutos. obteniendo los siguientes
+resultados</p>
+<p>NNN RR N R N RRR NN R N R N RR NNNN RRR NNN R NNN RRRRRR N R N RRR
+NNNN RRR</p>
+<p>Probar la aleatoriedad de la sucesión a un nivel de significancia de
+0.05</p>
+<p>Solución</p>
+<p><strong>Hipótesis</strong></p>
+<p>𝐻0:La sucesión es aleatoria 𝐻1:La sucesión es no aleatoria</p>
+<p>El número de rachas fue 24 El número de rojos fue n1=27 El número de
+negros fue n2=25</p>
+<p>Se usa la distribución normal para probar la hipótesis nula de que el
+proceso que generó esta secuencia es aleatorio</p>
+<p>La media y la desviación estándar de la distribución normal para esta
+prueba están dadas por las ecuaciones siguientes</p>
+<p><span class="math display">\[\mu_r=\frac{2
+n_1n_2}{n_1+n_2}=\frac{2(27)(25)}{27+25}+1=26.96\]</span> <span
+class="math display">\[\sigma_r=\sqrt{\frac{2
+n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2+(n_1+n_2-1)}}=\sqrt{\frac{2
+(27)(25)[2(27)(25)-27-25]}{(27+25)^2+(27+25-1)}}\]</span> <span
+class="math display">\[z=\frac{24-26.96}{3.56}=-0.83\]</span>
+<strong>Decisión</strong>: Como el z calculado -0.83 no es menor que la
+z crítica -1.96 la hipótesis nula no se rechaza, Joe concluye que la
+rueda de la ruleta genera rojos y negros de manera aleatoria,</p>
+<pre class="r"><code>library(DescTools)</code></pre>
+<pre><code>## Warning: package &#39;DescTools&#39; was built under R version 4.5.3</code></pre>
+<pre><code>## 
+## Adjuntando el paquete: &#39;DescTools&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:car&#39;:
+## 
+##     Recode</code></pre>
+<pre class="r"><code>vec=c(&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;R&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,
+       &quot;N&quot;,&quot;R&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,
+       &quot;N&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;R&quot;,&quot;N&quot;,
+       &quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;) 
+
+RunsTest(vec)</code></pre>
+<pre><code>## 
+##  Runs Test for Randomness
+## 
+## data:  vec
+## z = -0.69054, runs = 24, m = 25, n = 27, p-value = 0.4899
+## alternative hypothesis: true number of runs is not equal the expected number</code></pre>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/8jIkj6lkcvc" title="Prueba de Rachas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 </div>
 </div>
 <div id="conclusiones" class="section level1">
