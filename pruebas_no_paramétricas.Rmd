@@ -18,7 +18,7 @@ knitr::include_graphics("imagen/pnp.png")
 |Características|Pruebas paramétricas|Pruebas no paramétricas|
 |:-------------|:------------------:|:---------------------:|
 |Supuestos|Requiere que los datos sean normales y tengan varianza constante|NO requiere normalidad|
-|Medida de interés|Media|Mediana|
+|Medida de interés|Media|Mediana o rango|
 |tamaño de la muestra|Mas eficaces con muestras grandes|Adecuada para muestras grandes como pequeñas|
 |Potencia estadística|Mayor, detecta diferencias facilmente|Menor potencia, requiere muestras grandes para detectar diferencias|
 |Sensibilidad a outliers|alta|baja|
@@ -29,11 +29,13 @@ knitr::include_graphics("imagen/pnp.png")
 
 |Objeto de la prueba comparar|Pruebas paramétricas|Pruebas no paramétricas|
 |:------------------------|:--------------------:|:---------------------:|
-|Dos medidas independientes|Prueba t              | Prueba de wilcoxon    | 
-|Medidas pareadas          |Prueba t              | Prueba de wilcoxon   |
+|Dos muestras independientes|Prueba t              | Prueba de wilcoxon    | 
+|Muestras pareadas          |Prueba t              | Prueba dela suma de rangos con signo de wilcoxon, o de signos   |
 |Mas de dos muestras       |ANOVA                 |Kruskal wallis|
 |medidas repetidas         |ANOVA medidas repetidas|Prueba friedman|
 |Correlación               |De pearson             |De spearman, kendall|
+|aleatoriedad|No aplica|Prueba de rachas||
+
 
 
 
@@ -1085,6 +1087,32 @@ RunsTest(vec)
 ## Ejercicios propuestos
 
 
+**Prueba de rachas**
+1. El supervisor de un sindicato dice que quienes solicitan empleos son seleccionados sin considerar de qué raza son. Los registros de contratación del local, que contiene sólo miembros masculinos, mostraron la siguiente secuencia de contratación de blancos (W) y negros (B):
+
+
+W W W W B W W W B B W B B
+
+¿Estos datos sugieren una selección racial no aleatoria en la contratación de miembros del sindicato?
+**r=6 no**
+
+2. Las condiciones (D por enfermo, S por sano) de los árboles individuales de una fi la de diez álamos se
+encontró que estaban, de izquierda a derecha:
+
+S S D D S D D D S S
+ 
+ ¿Hay suficiente evidencia para indicar no aleatoriedad en la secuencia y por tanto la posibilidad de contagio?
+
+
+3. Las piezas que salen de un proceso continuo de producción se clasifi caron como defectuosas (D) o no
+defectuosas (N). Una secuencia de piezas observada en el tiempo fue como sigue:
+
+D N N N N N N D D N N N N N N D D D N N N N N D N N N D D N N N D D
+
+a Calcule la probabilidad de que R ≤ 11, donde n1 = 11 y n2 = 23. **Rta=0.0256**
+
+b ¿Estos datos sugieren falta de aleatoriedad en la presencia de piezas defectuosas y no defectuosas?
+Use la aproximación de muestra grande para la prueba de corridas de ensayo.
 
 **Prueba de signo y de rangos con signos de wilcoxon**
 

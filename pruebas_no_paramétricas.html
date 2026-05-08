@@ -419,7 +419,7 @@ varianza constante</td>
 <tr class="even">
 <td align="left">Medida de interés</td>
 <td align="center">Media</td>
-<td align="center">Mediana</td>
+<td align="center">Mediana o rango</td>
 </tr>
 <tr class="odd">
 <td align="left">tamaño de la muestra</td>
@@ -468,14 +468,15 @@ class="section level3">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Dos medidas independientes</td>
+<td align="left">Dos muestras independientes</td>
 <td align="center">Prueba t</td>
 <td align="center">Prueba de wilcoxon</td>
 </tr>
 <tr class="even">
-<td align="left">Medidas pareadas</td>
+<td align="left">Muestras pareadas</td>
 <td align="center">Prueba t</td>
-<td align="center">Prueba de wilcoxon</td>
+<td align="center">Prueba dela suma de rangos con signo de wilcoxon, o
+de signos</td>
 </tr>
 <tr class="odd">
 <td align="left">Mas de dos muestras</td>
@@ -491,6 +492,11 @@ class="section level3">
 <td align="left">Correlación</td>
 <td align="center">De pearson</td>
 <td align="center">De spearman, kendall</td>
+</tr>
+<tr class="even">
+<td align="left">aleatoriedad</td>
+<td align="center">No aplica</td>
+<td align="center">Prueba de rachas</td>
 </tr>
 </tbody>
 </table>
@@ -2403,6 +2409,34 @@ de Comparación de distribuciones**</li>
 </ul>
 <div id="ejercicios-propuestos" class="section level2">
 <h2>Ejercicios propuestos</h2>
+<p><strong>Prueba de rachas</strong> 1. El supervisor de un sindicato
+dice que quienes solicitan empleos son seleccionados sin considerar de
+qué raza son. Los registros de contratación del local, que contiene sólo
+miembros masculinos, mostraron la siguiente secuencia de contratación de
+blancos (W) y negros (B):</p>
+<p>W W W W B W W W B B W B B</p>
+<p>¿Estos datos sugieren una selección racial no aleatoria en la
+contratación de miembros del sindicato? <strong>r=6 no</strong></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Las condiciones (D por enfermo, S por sano) de los árboles
+individuales de una fi la de diez álamos se encontró que estaban, de
+izquierda a derecha:</li>
+</ol>
+<p>S S D D S D D D S S</p>
+<p>¿Hay suficiente evidencia para indicar no aleatoriedad en la
+secuencia y por tanto la posibilidad de contagio?</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Las piezas que salen de un proceso continuo de producción se clasifi
+caron como defectuosas (D) o no defectuosas (N). Una secuencia de piezas
+observada en el tiempo fue como sigue:</li>
+</ol>
+<p>D N N N N N N D D N N N N N N D D D N N N N N D N N N D D N N N D
+D</p>
+<p>a Calcule la probabilidad de que R ≤ 11, donde n1 = 11 y n2 = 23.
+<strong>Rta=0.0256</strong></p>
+<p>b ¿Estos datos sugieren falta de aleatoriedad en la presencia de
+piezas defectuosas y no defectuosas? Use la aproximación de muestra
+grande para la prueba de corridas de ensayo.</p>
 <p><strong>Prueba de signo y de rangos con signos de
 wilcoxon</strong></p>
 <ol style="list-style-type: decimal">
