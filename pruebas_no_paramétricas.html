@@ -484,7 +484,7 @@ de signos</td>
 <td align="center">Kruskal wallis</td>
 </tr>
 <tr class="even">
-<td align="left">medidas repetidas</td>
+<td align="left">Medidas repetidas</td>
 <td align="center">ANOVA medidas repetidas</td>
 <td align="center">Prueba friedman</td>
 </tr>
@@ -494,9 +494,24 @@ de signos</td>
 <td align="center">De spearman, kendall</td>
 </tr>
 <tr class="even">
-<td align="left">aleatoriedad</td>
+<td align="left">Aleatoriedad</td>
 <td align="center">No aplica</td>
 <td align="center">Prueba de rachas</td>
+</tr>
+<tr class="odd">
+<td align="left">Homogeneidad de varianzas</td>
+<td align="center">Prueba F o levene</td>
+<td align="center">Prueba Brown-Forsythe</td>
+</tr>
+<tr class="even">
+<td align="left">Regresión</td>
+<td align="center">Regresion lineal simple</td>
+<td align="center">regresión theil-sen o regresión cuantilitca</td>
+</tr>
+<tr class="odd">
+<td align="left">Bondad de ajuste</td>
+<td align="center">Prueba chi cuadrado</td>
+<td align="center">Kolmogorov-smirnov, anderson-Darling</td>
 </tr>
 </tbody>
 </table>
@@ -2285,54 +2300,70 @@ t.test (grupo1,grupo2,paired=FALSE,conf.level=0.95)</code></pre>
 <div id="pruebas-de-rachas-o-de-corridas-aleatorias"
 class="section level2">
 <h2>Pruebas de rachas o de corridas aleatorias</h2>
-<p>Se basan en el orden en el que se obtienen las observaciones
-muestrales, constituyen una técnica útil para probar la hipótesis nula
-de que las observaciones en realidad se obtuvieron al azar.</p>
-<p>Sin importar si las mediciones de la muestra representan datos
-cualitativos o cuantitativos, la prueba de rachas divide los datos en
-dos categorías mutuamente excluyentes: hombre o mujer, defectuoso o no
-defectuoso, cara o cruz, arriba o abajo de la mediana, etcétera.</p>
-<p>Una secuencia siempre estará limitada a dos símbolos distintos. Sea
-n1 el número de símbolos asociados con la categoría de menor ocurrencia,
-y n2 el número de símbolos que pertenecen a la otra categoría. Entonces,
-el tamaño de la muestra n = n1 + n2</p>
+<ul>
+<li><p>Se basan en el orden en el que se obtienen las observaciones
+muestrales que pueden ser cualitativas o cuantitativas</p></li>
+<li><p>Prueba si las observaciones se obtuvieron al azar.</p></li>
+<li><p>Divide los datos en dos categorías mutuamente excluyentes: hombre
+o mujer, defectuoso o no defectuoso, cara o cruz, arriba o abajo de la
+mediana, etcétera.</p></li>
+<li><p>Una <strong>racha</strong> es una serie ininterrumpida de
+resultados</p></li>
+<li><p>Una secuencia siempre estará limitada a dos símbolos
+distintos.</p></li>
+<li><p>Sea n1 el número de símbolos asociados con la categoría de menor
+ocurrencia,</p></li>
+<li><p>Sea n2 el número de símbolos que pertenecen a la otra
+categoría.</p></li>
+<li><p>Tamaño de la muestra n = n1 + n2</p></li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<p>Si se lanza una moneda seis veces, H representa cara y T representa
+cruz, resultan las siguientes secuencias en el número de rachas
+indicadas</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Secuencia</th>
+<th align="center">numero de rachas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(HH\quad TT\quad
+HH\)</span></td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(HHH\quad
+TTT\)</span></td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(H\quad T \quad H \quad
+T\quad H\quad T\)</span></td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table>
 <p>se encuesta a 12 personas para saber si utilizan cierto producto. Se
-cuestionaría seriamente la supuesta aleatoriedad de la muestra si las 12
-personas fueran del mismo sexo. Designaremos a un hombre y a una mujer
-con los símbolos H y M, respectivamente, y registraremos los resultados
-de acuerdo con su género en el orden en que ocurren. Una secuencia común
-para el experimento sería</p>
-<p>M M F F F M F F M M M M</p>
-<p>Para los n = 12 símbolos en nuestra encuesta tenemos cinco rachas,
-donde la primera incluye dos H, la segunda tres M, y así sucesivamente.
-Si el número de rachas es mayor o menor que el que esperaríamos por el
-azar, se debe rechazar la hipótesis de que la muestra se extrajo al
-azar.</p>
-<p>una muestra que tiene como resultado sólo dos corridas,</p>
-<p>H H H H H H H M M M M M</p>
-<p>es muy improbable que provenga de un proceso de selección aleatorio.
-Este resultado indicaría que las primeras siete personas entrevistadas
-son hombres, seguidos de cinco mujeres.</p>
+designa a un hombre y a una mujer con los símbolos H y M,
+respectivamente, y se registra los resultados de acuerdo con su género
+en el orden en que ocurren. Una secuencia para el experimento sería</p>
+<p><span class="math display">\[MM\quad FFF\quad M\quad FF\quad M M M
+M\]</span></p>
+<p>Para los n = 12 símbolos tenemos cinco rachas</p>
+<p>La siguiente muestra que tiene como resultado sólo dos corridas, es
+muy improbable que provenga de un proceso de selección aleatorio.</p>
+<p><span class="math display">\[H H H H H H H \quad M M M M
+M\]</span></p>
 <p><strong>Procedimiento</strong></p>
 <ul>
-<li><p>Consiste en examinar la secuencia de sucesos observados y contar
-el número de rachas</p></li>
-<li><p>Una racha es una serie ininterrumpida de uno de los resultados Si
-se lanza una moneda seis veces, por ejemplo, en H representa cara y T
-representa cruz, resultan las siguientes secuencias en el número de
-rachas indicadas</p>
-<ul>
-<li>HHTTHH tres rachas</li>
-<li>HHHTTT dos rachas</li>
-<li>HTHTHT seis rachas</li>
-</ul></li>
-<li><p>Una vez que se conoce el número de rachas en la secuencia, se
-determina el número total de resultados de un tipo 𝑛1 y el número de
-resultados de otro tipo 𝑛2</p></li>
+<li><p>Contar el número de rachas, y los resultados 𝑛1 y 𝑛2</p></li>
 <li><p>Enunciar las hipotesis</p></li>
 </ul>
-<p><span class="math display">\[H_o= datos aleatorios\]</span> <span
-class="math display">\[H_1=datos no aleatorios\]</span></p>
+<p><span class="math inline">\(H_o=\)</span> datos aleatorios <span
+class="math inline">\(H_1=\)</span> datos no aleatorios</p>
 <ul>
 <li>La prueba consiste en encontrar si el número de rachas observado se
 puede considerar proveniente de una curva normal con media y desviación
@@ -2341,38 +2372,63 @@ estándar siguientes.</li>
 <p><span class="math display">\[\mu_r=\frac{2
 n_1n_2}{n_1+n_2}+1\]</span> <span
 class="math display">\[\sigma_r=\sqrt{\frac{2
-n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2+(n_1+n_2-1)}}\]</span> <span
+n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2*(n_1+n_2-1)}}\]</span> <span
 class="math display">\[z=\frac{r-\mu_r}{\sigma_r}\]</span></p>
 <ul>
-<li><strong>Regla de decisión</strong> Si es poco probable que el número
-de rachas observado puede venir de una distribución normal, la hipótesis
-nula de un proceso aleatorio se rechaza Si el número de rachas observado
-parece probable, la hipótesis nula se un proceso aleatorio no se
-rechaza.</li>
+<li>Valor p <span class="math display">\[P(z&lt;x)=\alpha*2\]</span> se
+multiplica por dos porque corresponde a una prueba de dos colas</li>
 </ul>
 <p><strong>Ejemplo</strong></p>
 <p>Juan perdío el juego de un casino, que consistia en una secuencia de
 rojo y negro, sospechó que la rueda no era imparcial y decidió registrar
 las ocurrencias durante varios minutos. obteniendo los siguientes
 resultados</p>
-<p>NNN RR N R N RRR NN R N R N RR NNNN RRR NNN R NNN RRRRRR N R N RRR
-NNNN RRR</p>
+<p><span class="math display">\[NNN\quad RR\quad N\quad R\quad N\quad
+RRR\quad NN\quad R\quad N\quad R\quad N\quad RR\quad NNNN\]</span> <span
+class="math display">\[\quad RRR\quad NNN\quad R\quad NNN\quad
+RRRRRR\quad N\quad R\quad N\quad RRR\quad NNNN\quad RRR\]</span></p>
 <p>Probar la aleatoriedad de la sucesión a un nivel de significancia de
 0.05</p>
-<p>Solución</p>
-<p><strong>Hipótesis</strong></p>
-<p>𝐻0:La sucesión es aleatoria 𝐻1:La sucesión es no aleatoria</p>
-<p>El número de rachas fue 24 El número de rojos fue n1=27 El número de
-negros fue n2=25</p>
+<p><strong>Solución</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Numero de</th>
+<th align="center">valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">rachas</td>
+<td align="center">r=24</td>
+</tr>
+<tr class="even">
+<td align="center">rojos</td>
+<td align="center">n1=27</td>
+</tr>
+<tr class="odd">
+<td align="center">negros</td>
+<td align="center">n2=25</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(H_O\)</span></td>
+<td align="center">La sucesión es aleatoria</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(H_1\)</span></td>
+<td align="center">La sucesión es no aleatoria</td>
+</tr>
+</tbody>
+</table>
 <p>Se usa la distribución normal para probar la hipótesis nula de que el
 proceso que generó esta secuencia es aleatorio</p>
 <p>La media y la desviación estándar de la distribución normal para esta
 prueba están dadas por las ecuaciones siguientes</p>
 <p><span class="math display">\[\mu_r=\frac{2
-n_1n_2}{n_1+n_2}=\frac{2(27)(25)}{27+25}+1=26.96\]</span> <span
+n_1n_2}{n_1+n_2}+1=\frac{2(27)(25)}{27+25}+1=26.96\]</span> <span
 class="math display">\[\sigma_r=\sqrt{\frac{2
-n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2+(n_1+n_2-1)}}=\sqrt{\frac{2
-(27)(25)[2(27)(25)-27-25]}{(27+25)^2+(27+25-1)}}\]</span> <span
+n_1n_2(2n_1n_2-n_1-n_2)}{(n_1+n_2)^2*(n_1+n_2-1)}}=\sqrt{\frac{2
+(27)(25)[2(27)(25)-27-25]}{(27+25)^2*(27+25-1)}}=3.56\]</span> <span
 class="math display">\[z=\frac{24-26.96}{3.56}=-0.83\]</span>
 <strong>Decisión</strong>: Como el z calculado -0.83 no es menor que la
 z crítica -1.96 la hipótesis nula no se rechaza, Joe concluye que la
@@ -2389,24 +2445,38 @@ rueda de la ruleta genera rojos y negros de manera aleatoria,</p>
        &quot;N&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;R&quot;,&quot;N&quot;,
        &quot;R&quot;,&quot;R&quot;,&quot;R&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;N&quot;,&quot;R&quot;,&quot;R&quot;,&quot;R&quot;) 
 
-RunsTest(vec)</code></pre>
+RunsTest(vec, alternative = c(&quot;two.sided&quot;), correct = FALSE)</code></pre>
 <pre><code>## 
 ##  Runs Test for Randomness
 ## 
 ## data:  vec
-## z = -0.69054, runs = 24, m = 25, n = 27, p-value = 0.4899
+## z = -0.83081, runs = 24, m = 25, n = 27, p-value = 0.4061
 ## alternative hypothesis: true number of runs is not equal the expected number</code></pre>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/8jIkj6lkcvc" title="Prueba de Rachas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
-</div>
-<div id="conclusiones" class="section level1">
-<h1>Conclusiones</h1>
+<div id="coeficiente-de-correlación-no-paramétricos-de-rangos"
+class="section level2">
+<h2>Coeficiente de correlación no paramétricos de rangos</h2>
+<iframe width="280" height="160" src="https://www.youtube.com/embed/7oGyg8oMFcE" title="¿Qué tipo de Correlación debo utilizar: Pearson, Spearman o Kendall?: Diferencias y Similitudes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
 <ul>
-<li>La prueba chi cuadrado tiene 3 diferentes aplicaciones, entre ellos
-se encuentran la Prueba de independencia, Prueba de bondad de ajuste y
-de Comparación de distribuciones**</li>
+<li><p>Entre ellos se tiene el <span class="math inline">\(r_S\)</span>
+de Spearman y el t de Kendall,</p></li>
+<li><p>Mide la correlación monotónica, que aumenta o disminuye, pero no
+necesariamente en línea recta</p></li>
+<li><p>Robusta a outliers y adecuada para variables ordinales.</p></li>
 </ul>
+<p><strong>correlación de Spearman</strong></p>
+<p>El calculo de <span class="math inline">\(r_S\)</span> es análogo al
+del coeficiente r de correlación muestral. <span
+class="math display">\[r_s=1-\frac{6*\sum_{i=1}^nd_i^2}{n(n^2-1)}\]</span>
+donde <span class="math inline">\(d_i=R(x_i)-R(y_i)\)</span></p>
+<ul>
+<li>se puede emplear para probar la hipótesis de que no hay asociación
+entre dos poblaciones.</li>
+</ul>
+</div>
 <div id="ejercicios-propuestos" class="section level2">
 <h2>Ejercicios propuestos</h2>
 <p><strong>Prueba de rachas</strong> 1. El supervisor de un sindicato
@@ -2422,7 +2492,8 @@ contratación de miembros del sindicato? <strong>r=6 no</strong></p>
 individuales de una fi la de diez álamos se encontró que estaban, de
 izquierda a derecha:</li>
 </ol>
-<p>S S D D S D D D S S</p>
+<p><span class="math display">\[ SS \quad DD \quad S \quad DDD \quad
+SS\]</span></p>
 <p>¿Hay suficiente evidencia para indicar no aleatoriedad en la
 secuencia y por tanto la posibilidad de contagio?</p>
 <ol start="3" style="list-style-type: decimal">
@@ -2430,8 +2501,9 @@ secuencia y por tanto la posibilidad de contagio?</p>
 caron como defectuosas (D) o no defectuosas (N). Una secuencia de piezas
 observada en el tiempo fue como sigue:</li>
 </ol>
-<p>D N N N N N N D D N N N N N N D D D N N N N N D N N N D D N N N D
-D</p>
+<p><span class="math display">\[D \quad NNNNNN \quad DD \quad NNNNNN
+\quad DDD \quad NNNNN \quad D \quad NNN \quad DD \quad NNN \quad
+DD\]</span></p>
 <p>a Calcule la probabilidad de que R ≤ 11, donde n1 = 11 y n2 = 23.
 <strong>Rta=0.0256</strong></p>
 <p>b ¿Estos datos sugieren falta de aleatoriedad en la presencia de
