@@ -2455,36 +2455,214 @@ RunsTest(vec, alternative = c(&quot;two.sided&quot;), correct = FALSE)</code></p
 <iframe width="280" height="160" src="https://www.youtube.com/embed/8jIkj6lkcvc" title="Prueba de Rachas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 </div>
-<div id="coeficiente-de-correlación-no-paramétricos-de-rangos"
-class="section level2">
-<h2>Coeficiente de correlación no paramétricos de rangos</h2>
+<div id="coeficientes-de-correlación-de-rangos" class="section level2">
+<h2>Coeficientes de correlación de rangos</h2>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/7oGyg8oMFcE" title="¿Qué tipo de Correlación debo utilizar: Pearson, Spearman o Kendall?: Diferencias y Similitudes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 <ul>
+<li><p>Técnica no paramétrica que mide la relación entre dos variables
+mediante el uso de sus rangos, en lugar de sus valores
+absolutos</p></li>
+<li><p>Se basa en el orden de los datos, sin asumir ninguna forma
+específica de la distribución</p></li>
 <li><p>Entre ellos se tiene el <span class="math inline">\(r_S\)</span>
 de Spearman y el t de Kendall,</p></li>
-<li><p>Mide la correlación monotónica, que aumenta o disminuye, pero no
-necesariamente en línea recta</p></li>
-<li><p>Robusta a outliers y adecuada para variables ordinales.</p></li>
+<li><p>No requieren normalidad, es más robusta frente a valores atípicos
+y distribuciones asimétricas.</p></li>
+<li><p>Funcionan bien con:</p>
+<ul>
+<li>Datos ordinales</li>
+<li>Distribuciones no normales</li>
+<li>Presencia de outliers.</li>
+</ul></li>
+<li><p>Una relación monotónica significa que cuando una variable
+aumenta, la otra tiende a aumentar o disminuir, aunque no siga una linea
+recta.</p></li>
+<li><p>Una relación curva creciente puede tener Pearson
+moderado,Spearman alto.</p></li>
+<li><p>En lugar de examinar los valores absolutos, transforman los datos
+en rangos y luego evalúan si las posiciones más altas en una variable
+corresponden a posiciones más altas en la otra (correlación positiva), o
+si sucede lo contrario (correlación negativa).</p></li>
 </ul>
-<p><strong>correlación de Spearman</strong></p>
+<div id="correlación-de-spearman" class="section level3">
+<h3>Correlación de Spearman</h3>
+<ul>
+<li><p>Medida de asociación que evalúa cómo corresponden las
+clasificaciones (rangos) de dos variables, es decir el tipo de relación,
+que hay entre ellas, que no necesariamente es lineal,puede ser monótona,
+es decir que cambia de manera consistente en una dirección creciente o
+decreciente.</p></li>
+<li><p>Calcula los rangos de los valores en cada variable y luego mide
+la correlación entre esos rangos.</p></li>
+<li><p>El uso de rangos hace que sea menos sensible a valores
+atípicos</p></li>
+</ul>
 <p>El calculo de <span class="math inline">\(r_S\)</span> es análogo al
 del coeficiente r de correlación muestral. <span
 class="math display">\[r_s=1-\frac{6*\sum_{i=1}^nd_i^2}{n(n^2-1)}\]</span>
 donde <span class="math inline">\(d_i=R(x_i)-R(y_i)\)</span></p>
+</div>
+<div id="correlación-de-t-de-kendall" class="section level3">
+<h3>Correlación de t de Kendall</h3>
 <ul>
-<li>se puede emplear para probar la hipótesis de que no hay asociación
-entre dos poblaciones.</li>
+<li><p>Evalúa la concordancia en los rangos entre dos variables, pares
+concordantes y discordantes, midiendo la fuerza y la dirección de la
+relación entre dos variables ordinales al observar cómo cambian de
+manera conjunta.</p></li>
+<li><p>La relación entre las variables es ordinal o hay preocupación por
+la precisión en pares concordantes/discordantes.</p></li>
+<li><p>Se usa para obtener una medida más robusta y menos sensible a
+errores en los datos, especialmente si hay pocos datos y el enfoque es
+en la estructura ordinal.</p></li>
+<li><p>Se analizan datos con posibles lazos (empates) que requieren un
+método que pueda ajustar mejor.</p></li>
+<li><p>En situaciones donde los datos contienen muchos empates o para
+pequeñas muestras.</p></li>
+<li><p>La fórmula es:</p></li>
 </ul>
+<p><span class="math display">\[ \tau
+=\frac{n_c-n_d}{0.5n(n-1)}\]</span> <span
+class="math inline">\(n_c:\)</span> Valores concordantes</p>
+<p><span class="math inline">\(n_d:\)</span> Valores discordantes</p>
+<p>n tamaño de los pares</p>
+<p><strong>Ejemplo Tau de Kendall</strong> Supongamos que un médico y
+una médica clasifican a 6 pacientes por salud física en order
+descendente. Uno de los dos médicos, en este caso, la médica, se define
+ahora como la referencia y los pacientes se ordenan del 1 al 6.</p>
+<pre class="r"><code>he=c(10, 8, 7, 6, 4)
+pe=c(95, 80, 78, 60, 65)
+cor(he,pe, method = &quot;spearman&quot;)</code></pre>
+<pre><code>## [1] 0.9</code></pre>
+<pre class="r"><code>cor(he,pe, method = &quot;kendall&quot;)</code></pre>
+<pre><code>## [1] 0.8</code></pre>
+<pre class="r"><code>cor(he,pe, method = &quot;pearson&quot;)</code></pre>
+<pre><code>## [1] 0.8938659</code></pre>
+<p><a href="https://numiqo.es/tutorial/kendalls-tau"
+class="uri">https://numiqo.es/tutorial/kendalls-tau</a></p>
+<hr />
+<table>
+<colgroup>
+<col width="22%" />
+<col width="27%" />
+<col width="26%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>correlación </strong></th>
+<th align="center"><strong>Paramétrica</strong></th>
+<th align="center"><strong>No paramétrica</strong></th>
+<th align="center"><strong>No paramétrica</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Característica</td>
+<td align="center">Pearson</td>
+<td align="center">Spearman</td>
+<td align="center">Kendall</td>
+</tr>
+<tr class="even">
+<td align="center">Autor</td>
+<td align="center">Karl Pearson</td>
+<td align="center">Charles Spearman</td>
+<td align="center">Maurice Kendall</td>
+</tr>
+<tr class="odd">
+<td align="center">Tipo de relación que detecta</td>
+<td align="center">Lineal</td>
+<td align="center">Monotónica</td>
+<td align="center">Monotónica</td>
+</tr>
+<tr class="even">
+<td align="center">Datos utilizados</td>
+<td align="center">Valores originales</td>
+<td align="center">Rangos</td>
+<td align="center">Concordancia entre pares</td>
+</tr>
+<tr class="odd">
+<td align="center">Requiere normalidad</td>
+<td align="center">Sí</td>
+<td align="center">No</td>
+<td align="center">No</td>
+</tr>
+<tr class="even">
+<td align="center">Sensibilidad a outliers</td>
+<td align="center">Alta</td>
+<td align="center">Media</td>
+<td align="center">Baja</td>
+</tr>
+<tr class="odd">
+<td align="center">Tipo de variables</td>
+<td align="center">Cuantitativas continuas</td>
+<td align="center">Ordinales o continuas</td>
+<td align="center">Ordinales o continuas</td>
+</tr>
+<tr class="even">
+<td align="center">Evalúa</td>
+<td align="center">Intensidad de relación lineal</td>
+<td align="center">Asociación monotónica</td>
+<td align="center">Concordancia/desacuerdo</td>
+</tr>
+<tr class="odd">
+<td align="center">Símbolo del coeficiente</td>
+<td align="center">r</td>
+<td align="center"><span class="math inline">\(r_s\)</span></td>
+<td align="center"><span class="math inline">\(\tau\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Rango del coeficiente</td>
+<td align="center">[−1,1]</td>
+<td align="center">[−1,1]</td>
+<td align="center">[−1,1]</td>
+</tr>
+<tr class="odd">
+<td align="center">Más potente cuando se cumplen supuestos</td>
+<td align="center">Sí</td>
+<td align="center">No necesariamente</td>
+<td align="center">No necesariamente</td>
+</tr>
+<tr class="even">
+<td align="center">Robusta ante datos no normales</td>
+<td align="center">No</td>
+<td align="center">Sí</td>
+<td align="center">Sí</td>
+</tr>
+<tr class="odd">
+<td align="center">Robusta ante empates</td>
+<td align="center">Media</td>
+<td align="center">Media</td>
+<td align="center">Alta</td>
+</tr>
+<tr class="even">
+<td align="center">Uso típico</td>
+<td align="center">Modelos lineales y análisis clásicos</td>
+<td align="center">Relaciones curvas</td>
+<td align="center">Muestras pequeñas o muchos empates</td>
+</tr>
+<tr class="odd">
+<td align="center">Ejemplo de aplicación</td>
+<td align="center">Altura vs peso</td>
+<td align="center">Nivel socioeconómico vs satisfacción</td>
+<td align="center">Rankings o preferencias</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
 </div>
 <div id="ejercicios-propuestos" class="section level2">
 <h2>Ejercicios propuestos</h2>
-<p><strong>Prueba de rachas</strong> 1. El supervisor de un sindicato
-dice que quienes solicitan empleos son seleccionados sin considerar de
-qué raza son. Los registros de contratación del local, que contiene sólo
-miembros masculinos, mostraron la siguiente secuencia de contratación de
-blancos (W) y negros (B):</p>
-<p>W W W W B W W W B B W B B</p>
+<p><strong>Prueba de rachas</strong></p>
+<ol style="list-style-type: decimal">
+<li>El supervisor de un sindicato dice que quienes solicitan empleos son
+seleccionados sin considerar de qué raza son. Los registros de
+contratación del local, que contiene sólo miembros masculinos, mostraron
+la siguiente secuencia de contratación de blancos (W) y negros (B):</li>
+</ol>
+<p><span class="math display">\[W W W W \quad B\quad  W W W \quad  B B
+\quad  W\quad  B B\]</span></p>
 <p>¿Estos datos sugieren una selección racial no aleatoria en la
 contratación de miembros del sindicato? <strong>r=6 no</strong></p>
 <ol start="2" style="list-style-type: decimal">
