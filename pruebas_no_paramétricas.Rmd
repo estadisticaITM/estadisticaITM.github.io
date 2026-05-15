@@ -1155,17 +1155,29 @@ n tamaño de los pares
 Supongamos que un médico y una médica clasifican a 6 pacientes por salud física en order descendente. Uno de los dos médicos, en este caso, la médica, se define ahora como la referencia y los pacientes se ordenan del 1 al 6.
 
 
+
+https://numiqo.es/tutorial/kendalls-tau
+
+```{r}
+q1=c(1:6)
+q2=c(3,1,4,2,6,5)
+cor(q1,q2, method = "kendall")
+
+```
+
+
+Se tienen las horas de estudio de los estudaintes y la nota obtenida
 ```{r}
 he=c(10, 8, 7, 6, 4)
 pe=c(95, 80, 78, 60, 65)
+
+plot(he,pe)
 cor(he,pe, method = "spearman")
 cor(he,pe, method = "kendall")
 cor(he,pe, method = "pearson")
 ```
 
 
-
-https://numiqo.es/tutorial/kendalls-tau
 
 
 _________________________________________________________________________________________________________________________________________

@@ -2530,16 +2530,25 @@ class="math inline">\(n_c:\)</span> Valores concordantes</p>
 una médica clasifican a 6 pacientes por salud física en order
 descendente. Uno de los dos médicos, en este caso, la médica, se define
 ahora como la referencia y los pacientes se ordenan del 1 al 6.</p>
+<p><a href="https://numiqo.es/tutorial/kendalls-tau"
+class="uri">https://numiqo.es/tutorial/kendalls-tau</a></p>
+<pre class="r"><code>q1=c(1:6)
+q2=c(3,1,4,2,6,5)
+cor(q1,q2, method = &quot;kendall&quot;)</code></pre>
+<pre><code>## [1] 0.4666667</code></pre>
+<p>Se tienen las horas de estudio de los estudaintes y la nota
+obtenida</p>
 <pre class="r"><code>he=c(10, 8, 7, 6, 4)
 pe=c(95, 80, 78, 60, 65)
-cor(he,pe, method = &quot;spearman&quot;)</code></pre>
+
+plot(he,pe)</code></pre>
+<p><img src="pruebas_no_param%C3%A9tricas_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>cor(he,pe, method = &quot;spearman&quot;)</code></pre>
 <pre><code>## [1] 0.9</code></pre>
 <pre class="r"><code>cor(he,pe, method = &quot;kendall&quot;)</code></pre>
 <pre><code>## [1] 0.8</code></pre>
 <pre class="r"><code>cor(he,pe, method = &quot;pearson&quot;)</code></pre>
 <pre><code>## [1] 0.8938659</code></pre>
-<p><a href="https://numiqo.es/tutorial/kendalls-tau"
-class="uri">https://numiqo.es/tutorial/kendalls-tau</a></p>
 <hr />
 <table>
 <colgroup>
