@@ -1110,54 +1110,46 @@ aumentar una unidad el diametro a los 16 pies de altura, al mantener
 fijo los resultados de las otras tres pruebas. La segunda variable con
 mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto
 significativo sobre el volumen de madera.</p>
-<p>###<strong>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES
-EXPLICATORIAS Y MULTICOLINEALIDAD</strong></p>
-<p>Considere el MRLM</p>
-<p><span class="math display">\[\large
-Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
-<p>Si las variables explicatorias no están en una misma escala de
-medida, no podemos determinar cuál tiene mayor o menor efecto parcial
-sobre la respuesta promedio, en presencia de las demás, esto es, la
-magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las
-unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
-<p>Para hacer comparaciones en forma directa de los coeficientes de
-regresión se recurre al uso de variables escalonadas, tanto la respuesta
-como las explicatorias.</p>
-<p><strong>Escalonamiento normal unitario</strong></p>
-<p>Cada variable es escalonada restando su media muestral y dividiendo
-esta diferencia por la desviación estándar muestral de la variable, es
-decir:</p>
-<p><span class="math display">\[\large Y_i^*=\frac{Y_i-\bar
-Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
-<p><span class="math display">\[\large X_i^*=\frac{X_i-\bar
-X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
-<p>Ajustamos el modelo de regresión sin intercepto <span
-class="math display">\[\large
-Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i
-\]</span> Los coeficientes de regresión estandarizados <span
-class="math inline">\(\beta_j^*\)</span> pueden ser comparados
-directamente teniendo en cuenta que siguen siendo coeficientes de
-regresión parcial, es decir, mide el efecto de <span
-class="math inline">\(X_J\)</span> dado que las demás variables
-explicatorias están en el modelo, además, los <span
-class="math inline">\(\beta_j\)</span> pueden servir para determinar la
-importancia relativa de <span class="math inline">\(X_j\)</span> en
-presencia de las demás variables, en la muestra o conjunto de datos
-particular considerado para el ajuste.</p>
-<p>NOTA: Hay que tener cuidado al interpretar y comparar los
-coeficientes estandarizados pues en presencia de multicolinealidad
-nuestras conclusiones pueden ser erradas.</p>
-<p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi
-lineal entre variables explicatorias en el MRLM.</p>
-<p>Si existiera dependencia lineal exacta entre dos o más variables
-explicatorias, la matrix XtX seria singular y por tanto no podríamos
-hallar los estimadores de mínimos cuadrados!.</p>
 </div>
 </div>
-<div id="intervalos-de-confianza-en-regresión-lineal"
-class="section level2">
-<h2>Intervalos de confianza en regresión lineal</h2>
+<div id="predicción" class="section level2">
+<h2>Predicción</h2>
+<p>La predicción en regresión lineal consiste en usar la ecuación
+estimada del modelo para pronosticar nuevos valores de la variable
+respuesta a partir de valores conocidos de las variables
+explicativas.</p>
+<p>VER (<a
+href="https://fhernanb.github.io/libro_regresion/predict.html#predict"
+class="uri">https://fhernanb.github.io/libro_regresion/predict.html#predict</a>)</p>
+<p><strong>Intervalos de confianza en regresión lineal</strong></p>
 <p><img src="imagen/icrl.png" width="267" style="display: block; margin: auto;" /></p>
+<p><strong>Respuesta media</strong></p>
+<p>La respuesta media es el valor promedio esperado de la variable
+respuesta Y para un valor dado de la variable explicativa X.</p>
+<p>Es decir:</p>
+<p><span class="math display">\[E(Y∣X=x)\]</span></p>
+<p>se lee como: “el valor esperado (o promedio) de Y dado que X=x”.</p>
+<p>En el modelo de regresión lineal simple:</p>
+<p><span class="math display">\[Y=β_0+β_1X+ε\]</span></p>
+<p>la respuesta media está dada por:</p>
+<p><span class="math display">\[E(Y∣X=x)=β_0+β_1x\]</span></p>
+<p>el error aleatorio ε tiene media cero.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Sea X = horas de estudio y Y = nota del examen, para X=5 horas se
+obtiene:</p>
+<p>E(Y∣X=5)=3.8</p>
+<p>significa que el promedio esperado de las notas de todos los
+estudiantes que estudian 5 horas es 3.8.</p>
+<p>No significa que todos obtengan exactamente 3.8, porque existe
+variabilidad individual (el error aleatorio).</p>
+<p>En regresión lineal simple, Si <span class="math inline">\(\hat
+\mu_{Y|x_o}\)</span> es la media estimada para la variable respuesta
+cuando <span class="math inline">\(X=X_o\)</span>, entonces un IC del
+<span class="math inline">\((1-\alpha/2)*100\)</span> para <span
+class="math inline">\(E(Y|x_o)\)</span> está dado por:</p>
+<p><span class="math display">\[\hat Y_0 \pm t_{\alpha/2,n-p}\sqrt
+{MSR\left(\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right)
+}\]</span></p>
 <p><strong>Intervalos de confianza para la línea de
 regresión</strong></p>
 <p>Los IC para la línea de regresión son más angostos que las bandas de
@@ -1185,15 +1177,7 @@ lo mismo con el intervalo de predicción ya que este refleja
 fundamentalmente la variabilidad individual en torno a la recta
 calculada.</p>
 <p><strong>IC para la respuesta media</strong></p>
-<p>En regresión lineal simple, Si <span class="math inline">\(\hat
-\mu_{Y|x_o}\)</span> es la media estimada para la variable respuesta
-cuando <span class="math inline">\(X=X_o\)</span>, entonces un IC del
-<span class="math inline">\((1-\alpha/2)*100\)</span> para <span
-class="math inline">\(E(Y|x_o)\)</span> está dado por:</p>
-<p><span class="math display">\[\hat \mu_{Y|x_o}\pm
-t_{\alpha/2,n-p}\sqrt {MSR\left(\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum
-(x_i-\bar x)}^2\right) }\]</span> <strong>IC para la predicción de
-nuevas observaciones</strong></p>
+<p><strong>IC para la predicción de nuevas observaciones</strong></p>
 <p>En regresión lineal simple, Si <span class="math inline">\(\hat
 Y_o}\)</span> es el valor estimado para la variable respuesta cuando
 <span class="math inline">\(X=X_o\)</span>, entonces un IC del <span
@@ -1201,7 +1185,8 @@ class="math inline">\((1-\alpha/2)*100\)</span> para <span
 class="math inline">\(Y_o\)</span> está dado por:</p>
 <p><span class="math display">\[\hat Y_o\pm t_{\alpha/2,n-p}\sqrt
 {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar
-x)}^2\right) }\]</span> <strong>IC para los parámetros del modelo <span
+x)}^2\right) }\]</span></p>
+<p><strong>IC para los parámetros del modelo <span
 class="math inline">\(\beta_i\)</span></strong></p>
 <p>Las distribuciones de todos los valores posibles de a y b tienen una
 distribución Normal con medias a y b, y desviaciones estándar sa y sb
@@ -1331,6 +1316,52 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
 <iframe width="280" height="160" src="https://www.youtube.com/embed/UhUNy0Bi4PU" title="Regresión lowess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 <p><strong>Regresión loess</strong>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Ymoaur1lFEw" title="Regresión loess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<div
+id="comparación-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad"
+class="section level3">
+<h3>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y
+MULTICOLINEALIDAD</h3>
+<p>Considere el MRLM</p>
+<p><span class="math display">\[\large
+Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
+<p>Si las variables explicatorias no están en una misma escala de
+medida, no podemos determinar cuál tiene mayor o menor efecto parcial
+sobre la respuesta promedio, en presencia de las demás, esto es, la
+magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las
+unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
+<p>Para hacer comparaciones en forma directa de los coeficientes de
+regresión se recurre al uso de variables escalonadas, tanto la respuesta
+como las explicatorias.</p>
+<p><strong>Escalonamiento normal unitario</strong></p>
+<p>Cada variable es escalonada restando su media muestral y dividiendo
+esta diferencia por la desviación estándar muestral de la variable, es
+decir:</p>
+<p><span class="math display">\[\large Y_i^*=\frac{Y_i-\bar
+Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
+<p><span class="math display">\[\large X_i^*=\frac{X_i-\bar
+X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
+<p>Ajustamos el modelo de regresión sin intercepto <span
+class="math display">\[\large
+Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i
+\]</span> Los coeficientes de regresión estandarizados <span
+class="math inline">\(\beta_j^*\)</span> pueden ser comparados
+directamente teniendo en cuenta que siguen siendo coeficientes de
+regresión parcial, es decir, mide el efecto de <span
+class="math inline">\(X_J\)</span> dado que las demás variables
+explicatorias están en el modelo, además, los <span
+class="math inline">\(\beta_j\)</span> pueden servir para determinar la
+importancia relativa de <span class="math inline">\(X_j\)</span> en
+presencia de las demás variables, en la muestra o conjunto de datos
+particular considerado para el ajuste.</p>
+<p>NOTA: Hay que tener cuidado al interpretar y comparar los
+coeficientes estandarizados pues en presencia de multicolinealidad
+nuestras conclusiones pueden ser erradas.</p>
+<p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi
+lineal entre variables explicatorias en el MRLM.</p>
+<p>Si existiera dependencia lineal exacta entre dos o más variables
+explicatorias, la matrix XtX seria singular y por tanto no podríamos
+hallar los estimadores de mínimos cuadrados!.</p>
+</div>
 </div>
 
 <br>

@@ -470,45 +470,72 @@ miscoeficientes(m1,bosque)
 
 Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
 
+## Predicción
 
-###**COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD**
+La predicción en regresión lineal consiste en usar la ecuación estimada del modelo para pronosticar nuevos valores de la variable respuesta a partir de valores conocidos de las variables explicativas.
 
-Considere el MRLM 
+VER (https://fhernanb.github.io/libro_regresion/predict.html#predict)
 
-$$\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i$$
-
-Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de $\beta_j$􀟚􀯝 refleja las unidades de la variable $X_j$.
-
-Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.
-
-**Escalonamiento normal unitario**
-  
-  Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
-  
-  $$\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
-  
-  
-  
-  $$\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
-  
-Ajustamos el modelo de regresión sin intercepto
-$$\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
-Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
-
-NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.
-
-DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.
-
-Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.
-
-
-
-## Intervalos de confianza en regresión lineal
+**Intervalos de confianza en regresión lineal**
 
 
 ```{r fig.asp=0.8, fig.align='center', echo=FALSE}
 knitr::include_graphics("imagen/icrl.png")
 ```
+
+
+**Respuesta media**
+
+
+
+La respuesta media es el valor promedio esperado de la variable respuesta Y para un valor dado de la variable explicativa X.
+
+Es decir:
+
+$$E(Y∣X=x)$$
+
+se lee como: “el valor esperado (o promedio) de Y dado que X=x”.
+
+En el modelo de regresión lineal simple:
+
+$$Y=β_0+β_1X+ε$$
+
+la respuesta media está dada por:
+
+$$E(Y∣X=x)=β_0+β_1x$$
+
+el error aleatorio ε tiene media cero.
+
+**Ejemplo**
+
+Sea  X = horas de estudio y Y = nota del examen, para X=5 horas se obtiene:
+
+E(Y∣X=5)=3.8
+
+significa que el promedio esperado de las notas de todos los estudiantes que estudian 5 horas es 3.8.
+
+No significa que todos obtengan exactamente 3.8, porque existe variabilidad individual (el error aleatorio).
+
+
+**Intervalo de confianza para la respuesta media**
+
+Se estima mediante 
+
+$$\hat Y_0 \pm t_{\alpha/2,n-p}S\sqrt {\frac{1}{n}+\left(\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
+Donde
+
+|Termino           |significado                       |
+|:----------------:|:--------------------------------:|
+|$\hat Y_0$        |Respuesta media estimada          |
+|$t_{\alpha/2,n-p}$|Valor critico de la distribución t|
+|p                 |número de parámetros              |
+|s                 |error estándar                    |
+|n                 |Tamaño muestral                   |
+|$\bar x$          |Promedio de x                     |
+|$x_0$         |valor donde se quiero estimar la media|
+
+
+
 
 
 **Intervalos de confianza para la línea de regresión**
@@ -525,14 +552,14 @@ Distinto es el caso de las bandas de confianza o intervalos de predicción para 
 
 **IC para la respuesta media**
 
-En regresión lineal simple, Si  $\hat \mu_{Y|x_o}$ es la media estimada para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $E(Y|x_o)$ está dado por:
 
-$$\hat \mu_{Y|x_o}\pm t_{\alpha/2,n-p}\sqrt {MSR\left(\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
 **IC para la predicción de nuevas observaciones**
 
 En regresión lineal simple, Si  $\hat Y_o}$ es el valor estimado para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $Y_o$ está dado por:
 
 $$\hat Y_o\pm t_{\alpha/2,n-p}\sqrt {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
+
+
 **IC para los parámetros del modelo $\beta_i$**
 
 Las distribuciones de todos los valores posibles de a y b tienen una distribución Normal con medias a y b, y desviaciones estándar sa y sb que se denominan errores estándar de la intercepción y de la pendiente respectivamente. Estos errores estándar pueden ser usados tal como se usan los errores estándar de la media o de una proporción, para calcular IC y para las PH  usando la distribución de t. 
@@ -615,3 +642,37 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
 
 **Regresión loess**
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Ymoaur1lFEw" title="Regresión loess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+### COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD
+
+Considere el MRLM 
+
+$$\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i$$
+
+Si las variables explicatorias no están en una misma escala de medida, no podemos determinar cuál tiene mayor o menor efecto parcial sobre la respuesta promedio, en presencia de las demás, esto es, la magnitud de $\beta_j$􀟚􀯝 refleja las unidades de la variable $X_j$.
+
+Para hacer comparaciones en forma directa de los coeficientes de regresión se recurre al uso de variables escalonadas, tanto la respuesta como las explicatorias.
+
+**Escalonamiento normal unitario**
+  
+  Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
+  
+  $$\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
+  
+  
+  
+  $$\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
+  
+Ajustamos el modelo de regresión sin intercepto
+$$\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
+Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
+
+NOTA: Hay que tener cuidado al interpretar y comparar los coeficientes estandarizados pues en presencia de multicolinealidad nuestras conclusiones pueden ser erradas.
+
+DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi lineal entre variables explicatorias en el MRLM.
+
+Si existiera dependencia lineal exacta entre dos o más variables explicatorias, la matrix XtX seria singular y por tanto no podríamos hallar los estimadores de mínimos cuadrados!.
+
+
+
