@@ -1142,14 +1142,50 @@ obtiene:</p>
 estudiantes que estudian 5 horas es 3.8.</p>
 <p>No significa que todos obtengan exactamente 3.8, porque existe
 variabilidad individual (el error aleatorio).</p>
-<p>En regresión lineal simple, Si <span class="math inline">\(\hat
-\mu_{Y|x_o}\)</span> es la media estimada para la variable respuesta
-cuando <span class="math inline">\(X=X_o\)</span>, entonces un IC del
-<span class="math inline">\((1-\alpha/2)*100\)</span> para <span
-class="math inline">\(E(Y|x_o)\)</span> está dado por:</p>
-<p><span class="math display">\[\hat Y_0 \pm t_{\alpha/2,n-p}\sqrt
-{MSR\left(\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right)
-}\]</span></p>
+<p><strong>Intervalo de confianza para la respuesta media</strong></p>
+<p>Se estima mediante</p>
+<p><span class="math display">\[\hat Y_0 \pm t_{\alpha/2,n-p}S\sqrt
+{\frac{1}{n}+\left(\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right)
+}\]</span> Donde</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Termino</th>
+<th align="center">significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\hat Y_0\)</span></td>
+<td align="center">Respuesta media estimada</td>
+</tr>
+<tr class="even">
+<td align="center"><span
+class="math inline">\(t_{\alpha/2,n-p}\)</span></td>
+<td align="center">Valor critico de la distribución t</td>
+</tr>
+<tr class="odd">
+<td align="center">p</td>
+<td align="center">número de parámetros</td>
+</tr>
+<tr class="even">
+<td align="center">s</td>
+<td align="center">error estándar</td>
+</tr>
+<tr class="odd">
+<td align="center">n</td>
+<td align="center">Tamaño muestral</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\bar x\)</span></td>
+<td align="center">Promedio de x</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x_0\)</span></td>
+<td align="center">valor donde se quiero estimar la media</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Intervalos de confianza para la línea de
 regresión</strong></p>
 <p>Los IC para la línea de regresión son más angostos que las bandas de
