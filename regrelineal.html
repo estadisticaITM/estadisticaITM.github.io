@@ -1760,10 +1760,31 @@ apropiados? ¿Por qué?</p></li>
 <h2><strong>Validación cruzada</strong></h2>
 <p>Se utiliza para:</p>
 <ul>
-<li><p>Comparar la Regresión Lineal con otros modelos
+<li><p>Comparar la regresión lineal con otros modelos
 predictivos.</p></li>
 <li><p>Seleccionar el número de predictores o el grado polinomial
 adecuado.</p></li>
+</ul>
+<p><strong>Principio de parsimonia (PP)</strong></p>
+<p>El PP en selección de modelos establece que entre varios modelos que
+explican adecuadamente los datos, debe preferirse el modelo más
+simple.</p>
+<p>Se elijen aquellos modelos que tienen menor número posible de
+variables, evitar complejidad innecesaria y conservar únicamente los
+predictores realmente útiles.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Modelo A</p>
+<p><span class="math display">\[ Y=β_0+β_1X_1\]</span></p>
+<p>Modelo B</p>
+<p><span class="math display">\[Y=β_0+β_1X_1+β_2X_2+β_3X_3\]</span></p>
+<p>Si ambos predicen casi igual de bien, se prefiere el Modelo A por ser
+más parsimonioso.</p>
+<p>Los modelos excesivamente complejos pueden:</p>
+<ul>
+<li><p>Sobreajustar (overfitting)</p></li>
+<li><p>Capturar ruido</p></li>
+<li><p>Perder capacidad predictiva futura</p></li>
+<li><p>Ser difíciles de interpretar.</p></li>
 </ul>
 <div id="akaike-information-criterion-aic" class="section level3">
 <h3>Akaike Information Criterion (AIC)</h3>

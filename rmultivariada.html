@@ -1322,7 +1322,18 @@ class="uri">https://fhernanb.github.io/libro_regresion/predict.html#predict</a>)
 <p>El error estándar mide la variabilidad o precisión de una estimación,
 específicamente cuánto varían las estimaciones de la pendiente de la
 muestra con respecto a la verdadera pendiente de la población.</p>
-<p><strong>Ejemplo</strong></p>
+<p><strong>Ejemplo</strong> Para estimar la producción en madera de un
+bosque se suele realizar un muestreo previo en el que se toman una serie
+de mediciones no destructivas. Disponemos de mediciones para 20 árboles,
+así como el volumen de madera que producen una vez cortados. Las
+variables observadas son:</p>
+<p>HT = altura en pies</p>
+<p>DBH = diámetro del tronco a 4 pies de altura (en pulgadas)</p>
+<p>D16 = diámetro del tronco a 16 pies de altura (en pulgadas)</p>
+<p>VOL = volumen de madera obtenida (en pies cúbicos).</p>
+<p>El objetivo del análisis es determinar cuál es la relación entre
+dichas medidas y el volumen de madera, con el fin de poder predecir este
+último en función de las primeras</p>
 <pre class="r"><code>DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
 D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
 HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
