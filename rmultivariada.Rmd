@@ -470,54 +470,42 @@ miscoeficientes(m1,bosque)
 
 Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
 
-## Predicción
+## Intevalos de confianza para la predicción y la respuesta media
 
 La predicción en regresión lineal consiste en usar la ecuación estimada del modelo para pronosticar nuevos valores de la variable respuesta a partir de valores conocidos de las variables explicativas.
 
-VER (https://fhernanb.github.io/libro_regresion/predict.html#predict)
+Para el desarrollo del concepto de predicción y sus intervalos de confianza en regresión lineal es importante tener claro la diferencia entre dos conceptos diferentes como lo son la respuesta media y los valores predictivos.
 
-**Intervalos de confianza en regresión lineal**
+### **Respuesta media (RM)**
 
+La RM estima el valor promedio de Y para todos los individuos que tienen un mismo valor de X, matemáticamente:
 
-```{r fig.asp=0.8, fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/icrl.png")
-```
-
-
-**Respuesta media**
+$$E(Y∣X=x_0)= β_0+β_1x$$
 
 
-
-La respuesta media es el valor promedio esperado de la variable respuesta Y para un valor dado de la variable explicativa X.
-
-Es decir:
-
-$$E(Y∣X=x)$$
-
-se lee como: “el valor esperado (o promedio) de Y dado que X=x”.
-
-En el modelo de regresión lineal simple:
-
-$$Y=β_0+β_1X+ε$$
-
-la respuesta media está dada por:
-
-$$E(Y∣X=x)=β_0+β_1x$$
-
-el error aleatorio ε tiene media cero.
+E(Y∣X=x) se lee como: “el valor esperado (o promedio) de Y dado que X=x”.
 
 **Ejemplo**
 
-Sea  X = horas de estudio y Y = nota del examen, para X=5 horas se obtiene:
+Sea:
 
-E(Y∣X=5)=3.8
+X = horas de estudio
 
-significa que el promedio esperado de las notas de todos los estudiantes que estudian 5 horas es 3.8.
+Y = nota obtenida
 
-No significa que todos obtengan exactamente 3.8, porque existe variabilidad individual (el error aleatorio).
+**Modelo:**
+$$\hat Y=2+0.5X$$
+
+Si X=6 entonces $\hat y=5$
 
 
-**Intervalo de confianza para la respuesta media**
+**Interpretación:**
+
+El promedio de las notas de todos los estudiantes que estudian 6 horas es aproximadamente 5.
+
+**IC para la respuesta media o IC de la regresión**
+
+Este intervalo estima la media verdadera de la variable respuesta sobre la recta de regresión, se refieren a la línea de las medias y no a la población globalmente.
 
 Se estima mediante 
 
@@ -536,59 +524,151 @@ Donde
 
 
 
+### **Valor predictivo VP**
 
+El VP estima el valor que podría obtener un individuo específico futuro. Aquí sí entra la variabilidad individual.
 
-**Intervalos de confianza para la línea de regresión**
+**Ejemplo**
 
+Muchos estudiantes estudian 6 horas, aunque el promedio sea 5
 
-Los IC para la línea de regresión son más angostos que las bandas de confianza para la predicción individual. Ambas crecen en la medida que se alejan de la media de X lo que refleja que las predicciones son menos confiables en los extremos pues se basan en menos datos.
+algunos podrían sacar:
 
+- 3.5
 
+- 4
 
+- 6
 
-Los intervalos de confianza de la línea de regresión se refieren a la línea de las medias y no a la población globalmente. Debe notarse que son angostos y se ensanchan hacia los extremos. No es infrecuente presentar estos como intervalos de confianza de toda la población, lo que no corresponde pues es análogo a usar el error estándar de la media como una medida de la variabilidad de la población en vez de la desviación estándar. 
-
-Distinto es el caso de las bandas de confianza o intervalos de predicción para valores individuales, que son más anchas y que sí nos dan una idea de la variabilidad de la muestra y, por ende, del grado de imprecisión envuelto en la estimación. En el primer caso, nos dicen que podemos estar confiados en un 95% que el valor promedio de Y para un valor determinado de X está dentro de las líneas en cuestión. En el segundo caso, cuantifica la incertidumbre en la estimación de un valor individual de Y a partir de X que es lo que se quiere saber generalmente. El intervalo de confianza de las líneas de regresión puede hacerse más estrecho aumentando el tamaño de la muestra, pero no sucede lo mismo con el intervalo de predicción ya que este refleja fundamentalmente la variabilidad individual en torno a la recta calculada.
-
-**IC para la respuesta media**
+- 7
 
 
 **IC para la predicción de nuevas observaciones**
 
-En regresión lineal simple, Si  $\hat Y_o}$ es el valor estimado para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $Y_o$ está dado por:
+En regresión lineal simple, Si  $\hat Y_o$ es el valor estimado para la variable respuesta cuando $X=X_o$, entonces un IC del $(1-\alpha/2)*100$ para $Y_o$ está dado por:
 
 $$\hat Y_o\pm t_{\alpha/2,n-p}\sqrt {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right) }$$
 
 
+**Comparación de los IC para la respuesta media y para la predicción** 
+
+
+**IC para respuesta media**
+
+Es más estrecho porque solo estima el promedio poblacional.:
+
+$$IC(E(Y∣X))$$
+
+
+
+
+
+**IC para la predicción**
+
+Más ancho porque incluye la incertidumbre del modelo y la variabilidad individual.
+
+$$IP(Y_{nuevo})$$
+
+
+```{r fig.asp=0.8, fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/icrl.png")
+```
+
+Ambos intervalos crecen en la medida que se alejan de la media de X lo que refleja que las predicciones son menos confiables en los extremos pues se basan en menos datos.
+
+
+
+
+**Comparación resumida**
+
+|Descripción            |Respuesta media               |Valor predictivo|
+|:---------------------:|:----------------------------:|:-----------------------------------------:|
+|Diferencia intuitiva   |¿Cuál es el promedio esperado?|¿Qué podría sacar un estudiante particular?|
+|Qué estima             |Promedio poblacional          |Observación individual                     |
+|Notación               |$E(Y∣X)$                       |$Y_{nuevo}$|
+|Variabilidad individual|No                            |	Sí|
+|Intervalo              |Más estrecho                  |Más ancho|
+|Interpretación         |Media esperada                |Valor futuro posible|
+|Idea clave             |Comportamiento promedio.      |pronóstico para un individuo específico.|
+|Idea clave 2           |Representa el centro del grupo| intenta estimar un caso individual|
+
+
+
+
+
 **IC para los parámetros del modelo $\beta_i$**
 
-Las distribuciones de todos los valores posibles de a y b tienen una distribución Normal con medias a y b, y desviaciones estándar sa y sb que se denominan errores estándar de la intercepción y de la pendiente respectivamente. Estos errores estándar pueden ser usados tal como se usan los errores estándar de la media o de una proporción, para calcular IC y para las PH  usando la distribución de t. 
 
 
-$$\beta_i\pm t_{\alpha/2,n-2}*Sd_{\beta_i}$$
-
-- $\beta_i$ pendiente o intercepto
-
-- $Sd_{\beta_i}$ pendiente o intercepto
-
+En regresión lineal, los intervalos de confianza para el intercepto y la pendiente permiten estimar el rango donde probablemente se encuentran los verdaderos parámetros poblacionales:
 
 **IC para la pendiente**
 
-- Es un rango de valores que estima la verdadera pendiente de la línea de regresión de la población con un cierto nivel de confianza. 
+La pendiente mide cuánto cambia Y cuando X aumenta una unidad.
 
-- Refleja la variabilidad e incertidumbre de la línea de regresión de la muestra debido al error de muestreo.
+El intervalo es:
 
-Para probar la hipótesis nula de que la pendiente de la población es cero, puede comprobar si el intervalo de confianza para la pendiente contiene cero o no; Si no lo hace, entonces rechazas la hipótesis nula y concluyes que existe una relación lineal significativa entre X e Y. 
+$$\hat β±t_{α/2,n−2}SE(\hat β_1)$$
+
+**Interpretación**
+
+$$IC(β_1)=(0.30,0.70)$$
+
+Con 95% de confianza, por cada unidad que aumenta X, el valor promedio de Y aumenta entre 0.30 y 0.70 unidades.
+
+**IC para el intercepto**
+
+El intercepto representa el valor esperado de Y cuando X=0, el intervalo es:
+
+$$\hat β_0 ± t_{α/2,n−2} SE(\hat β_0)$$
+
+**Interpretación**
+
+$$ IC(β_0)=(1.2,3.8)$$
+
+Con 95% de confianza, el valor promedio de Y cuando X=0 está entre 1.2 y 3.8.
+
+**Relación con pruebas de hipótesis**
+
+Estos intervalos permiten verificar hipótesis.
+
+Por ejemplo:
+
+**Para la pendiente**
+
+$$H_0:β_1=0$$
+
+Si el intervalo:
+
+contiene 0    → la pendiente podría no ser significativa.
+no contiene 0 → la pendiente es significativa.
+
+En el ejemplo:
+
+(0.294,0.706)
+
+no contiene 0, entonces la pendiente es estadísticamente significativa.
+
+VER (https://fhernanb.github.io/libro_regresion/predict.html#predict)
 
 
 
 **IC para el error estándar de la regresión **
 
-
 El error estándar mide la variabilidad o precisión de una estimación, específicamente cuánto varían las estimaciones de la pendiente de la muestra con respecto a la verdadera pendiente de la población.
 
+**Ejemplo**
+Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
 
+HT = altura en pies
 
+DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+
+D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+
+VOL = volumen de madera obtenida (en pies cúbicos).
+
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
 
 ```{r}
 

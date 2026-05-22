@@ -783,9 +783,41 @@ b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿
 
 Se utiliza para:
 
-- Comparar la Regresión Lineal con otros modelos predictivos.
+- Comparar la regresión lineal con otros modelos predictivos.
 
 - Seleccionar el número de predictores o el grado polinomial adecuado.
+
+
+**Principio de parsimonia (PP)**
+
+El PP en selección de modelos establece que entre varios modelos que explican adecuadamente los datos, debe preferirse el modelo más simple.
+
+Se elijen aquellos modelos que tienen menor número posible de variables, evitar complejidad innecesaria y conservar únicamente los predictores realmente útiles.
+
+**Ejemplo**
+
+Modelo A
+
+$$ Y=β_0+β_1X_1$$
+
+Modelo B
+
+$$Y=β_0+β_1X_1+β_2X_2+β_3X_3$$
+
+Si ambos predicen casi igual de bien, se prefiere el Modelo A por ser más parsimonioso.
+
+
+
+Los modelos excesivamente complejos pueden:
+
+- Sobreajustar (overfitting)
+
+- Capturar ruido
+
+- Perder capacidad predictiva futura
+
+- Ser difíciles de interpretar.
+
 
 ### Akaike Information Criterion (AIC)
 

@@ -1112,37 +1112,38 @@ mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto
 significativo sobre el volumen de madera.</p>
 </div>
 </div>
-<div id="predicción" class="section level2">
-<h2>Predicción</h2>
+<div id="intevalos-de-confianza-para-la-predicción-y-la-respuesta-media"
+class="section level2">
+<h2>Intevalos de confianza para la predicción y la respuesta media</h2>
 <p>La predicción en regresión lineal consiste en usar la ecuación
 estimada del modelo para pronosticar nuevos valores de la variable
 respuesta a partir de valores conocidos de las variables
 explicativas.</p>
-<p>VER (<a
-href="https://fhernanb.github.io/libro_regresion/predict.html#predict"
-class="uri">https://fhernanb.github.io/libro_regresion/predict.html#predict</a>)</p>
-<p><strong>Intervalos de confianza en regresión lineal</strong></p>
-<p><img src="imagen/icrl.png" width="267" style="display: block; margin: auto;" /></p>
-<p><strong>Respuesta media</strong></p>
-<p>La respuesta media es el valor promedio esperado de la variable
-respuesta Y para un valor dado de la variable explicativa X.</p>
-<p>Es decir:</p>
-<p><span class="math display">\[E(Y∣X=x)\]</span></p>
-<p>se lee como: “el valor esperado (o promedio) de Y dado que X=x”.</p>
-<p>En el modelo de regresión lineal simple:</p>
-<p><span class="math display">\[Y=β_0+β_1X+ε\]</span></p>
-<p>la respuesta media está dada por:</p>
-<p><span class="math display">\[E(Y∣X=x)=β_0+β_1x\]</span></p>
-<p>el error aleatorio ε tiene media cero.</p>
+<p>Para el desarrollo del concepto de predicción y sus intervalos de
+confianza en regresión lineal es importante tener claro la diferencia
+entre dos conceptos diferentes como lo son la respuesta media y los
+valores predictivos.</p>
+<div id="respuesta-media-rm" class="section level3">
+<h3><strong>Respuesta media (RM)</strong></h3>
+<p>La RM estima el valor promedio de Y para todos los individuos que
+tienen un mismo valor de X, matemáticamente:</p>
+<p><span class="math display">\[E(Y∣X=x_0)= β_0+β_1x\]</span></p>
+<p>E(Y∣X=x) se lee como: “el valor esperado (o promedio) de Y dado que
+X=x”.</p>
 <p><strong>Ejemplo</strong></p>
-<p>Sea X = horas de estudio y Y = nota del examen, para X=5 horas se
-obtiene:</p>
-<p>E(Y∣X=5)=3.8</p>
-<p>significa que el promedio esperado de las notas de todos los
-estudiantes que estudian 5 horas es 3.8.</p>
-<p>No significa que todos obtengan exactamente 3.8, porque existe
-variabilidad individual (el error aleatorio).</p>
-<p><strong>Intervalo de confianza para la respuesta media</strong></p>
+<p>Sea:</p>
+<p>X = horas de estudio</p>
+<p>Y = nota obtenida</p>
+<p><strong>Modelo:</strong> <span class="math display">\[\hat
+Y=2+0.5X\]</span></p>
+<p>Si X=6 entonces <span class="math inline">\(\hat y=5\)</span></p>
+<p><strong>Interpretación:</strong></p>
+<p>El promedio de las notas de todos los estudiantes que estudian 6
+horas es aproximadamente 5.</p>
+<p><strong>IC para la respuesta media o IC de la regresión</strong></p>
+<p>Este intervalo estima la media verdadera de la variable respuesta
+sobre la recta de regresión, se refieren a la línea de las medias y no a
+la población globalmente.</p>
 <p>Se estima mediante</p>
 <p><span class="math display">\[\hat Y_0 \pm t_{\alpha/2,n-p}S\sqrt
 {\frac{1}{n}+\left(\frac{(x_0-\bar x )^2}{\sum (x_i-\bar x)}^2\right)
@@ -1186,74 +1187,142 @@ class="math inline">\(t_{\alpha/2,n-p}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Intervalos de confianza para la línea de
-regresión</strong></p>
-<p>Los IC para la línea de regresión son más angostos que las bandas de
-confianza para la predicción individual. Ambas crecen en la medida que
-se alejan de la media de X lo que refleja que las predicciones son menos
-confiables en los extremos pues se basan en menos datos.</p>
-<p>Los intervalos de confianza de la línea de regresión se refieren a la
-línea de las medias y no a la población globalmente. Debe notarse que
-son angostos y se ensanchan hacia los extremos. No es infrecuente
-presentar estos como intervalos de confianza de toda la población, lo
-que no corresponde pues es análogo a usar el error estándar de la media
-como una medida de la variabilidad de la población en vez de la
-desviación estándar.</p>
-<p>Distinto es el caso de las bandas de confianza o intervalos de
-predicción para valores individuales, que son más anchas y que sí nos
-dan una idea de la variabilidad de la muestra y, por ende, del grado de
-imprecisión envuelto en la estimación. En el primer caso, nos dicen que
-podemos estar confiados en un 95% que el valor promedio de Y para un
-valor determinado de X está dentro de las líneas en cuestión. En el
-segundo caso, cuantifica la incertidumbre en la estimación de un valor
-individual de Y a partir de X que es lo que se quiere saber
-generalmente. El intervalo de confianza de las líneas de regresión puede
-hacerse más estrecho aumentando el tamaño de la muestra, pero no sucede
-lo mismo con el intervalo de predicción ya que este refleja
-fundamentalmente la variabilidad individual en torno a la recta
-calculada.</p>
-<p><strong>IC para la respuesta media</strong></p>
+</div>
+<div id="valor-predictivo-vp" class="section level3">
+<h3><strong>Valor predictivo VP</strong></h3>
+<p>El VP estima el valor que podría obtener un individuo específico
+futuro. Aquí sí entra la variabilidad individual.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Muchos estudiantes estudian 6 horas, aunque el promedio sea 5</p>
+<p>algunos podrían sacar:</p>
+<ul>
+<li><p>3.5</p></li>
+<li><p>4</p></li>
+<li><p>6</p></li>
+<li><p>7</p></li>
+</ul>
 <p><strong>IC para la predicción de nuevas observaciones</strong></p>
 <p>En regresión lineal simple, Si <span class="math inline">\(\hat
-Y_o}\)</span> es el valor estimado para la variable respuesta cuando
+Y_o\)</span> es el valor estimado para la variable respuesta cuando
 <span class="math inline">\(X=X_o\)</span>, entonces un IC del <span
 class="math inline">\((1-\alpha/2)*100\)</span> para <span
 class="math inline">\(Y_o\)</span> está dado por:</p>
 <p><span class="math display">\[\hat Y_o\pm t_{\alpha/2,n-p}\sqrt
 {MSR\left(1+\frac{1}{n}+\frac{(x_0-\bar x )^2}{\sum (x_i-\bar
 x)}^2\right) }\]</span></p>
+<p><strong>Comparación de los IC para la respuesta media y para la
+predicción</strong></p>
+<p><strong>IC para respuesta media</strong></p>
+<p>Es más estrecho porque solo estima el promedio poblacional.:</p>
+<p><span class="math display">\[IC(E(Y∣X))\]</span></p>
+<p><strong>IC para la predicción</strong></p>
+<p>Más ancho porque incluye la incertidumbre del modelo y la
+variabilidad individual.</p>
+<p><span class="math display">\[IP(Y_{nuevo})\]</span></p>
+<p><img src="imagen/icrl.png" width="267" style="display: block; margin: auto;" /></p>
+<p>Ambos intervalos crecen en la medida que se alejan de la media de X
+lo que refleja que las predicciones son menos confiables en los extremos
+pues se basan en menos datos.</p>
+<p><strong>Comparación resumida</strong></p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="31%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Descripción</th>
+<th align="center">Respuesta media</th>
+<th align="center">Valor predictivo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Diferencia intuitiva</td>
+<td align="center">¿Cuál es el promedio esperado?</td>
+<td align="center">¿Qué podría sacar un estudiante particular?</td>
+</tr>
+<tr class="even">
+<td align="center">Qué estima</td>
+<td align="center">Promedio poblacional</td>
+<td align="center">Observación individual</td>
+</tr>
+<tr class="odd">
+<td align="center">Notación</td>
+<td align="center"><span class="math inline">\(E(Y∣X)\)</span></td>
+<td align="center"><span class="math inline">\(Y_{nuevo}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Variabilidad individual</td>
+<td align="center">No</td>
+<td align="center">Sí</td>
+</tr>
+<tr class="odd">
+<td align="center">Intervalo</td>
+<td align="center">Más estrecho</td>
+<td align="center">Más ancho</td>
+</tr>
+<tr class="even">
+<td align="center">Interpretación</td>
+<td align="center">Media esperada</td>
+<td align="center">Valor futuro posible</td>
+</tr>
+<tr class="odd">
+<td align="center">Idea clave</td>
+<td align="center">Comportamiento promedio.</td>
+<td align="center">pronóstico para un individuo específico.</td>
+</tr>
+<tr class="even">
+<td align="center">Idea clave 2</td>
+<td align="center">Representa el centro del grupo</td>
+<td align="center">intenta estimar un caso individual</td>
+</tr>
+</tbody>
+</table>
 <p><strong>IC para los parámetros del modelo <span
 class="math inline">\(\beta_i\)</span></strong></p>
-<p>Las distribuciones de todos los valores posibles de a y b tienen una
-distribución Normal con medias a y b, y desviaciones estándar sa y sb
-que se denominan errores estándar de la intercepción y de la pendiente
-respectivamente. Estos errores estándar pueden ser usados tal como se
-usan los errores estándar de la media o de una proporción, para calcular
-IC y para las PH usando la distribución de t.</p>
-<p><span class="math display">\[\beta_i\pm
-t_{\alpha/2,n-2}*Sd_{\beta_i}\]</span></p>
-<ul>
-<li><p><span class="math inline">\(\beta_i\)</span> pendiente o
-intercepto</p></li>
-<li><p><span class="math inline">\(Sd_{\beta_i}\)</span> pendiente o
-intercepto</p></li>
-</ul>
+<p>En regresión lineal, los intervalos de confianza para el intercepto y
+la pendiente permiten estimar el rango donde probablemente se encuentran
+los verdaderos parámetros poblacionales:</p>
 <p><strong>IC para la pendiente</strong></p>
-<ul>
-<li><p>Es un rango de valores que estima la verdadera pendiente de la
-línea de regresión de la población con un cierto nivel de
-confianza.</p></li>
-<li><p>Refleja la variabilidad e incertidumbre de la línea de regresión
-de la muestra debido al error de muestreo.</p></li>
-</ul>
-<p>Para probar la hipótesis nula de que la pendiente de la población es
-cero, puede comprobar si el intervalo de confianza para la pendiente
-contiene cero o no; Si no lo hace, entonces rechazas la hipótesis nula y
-concluyes que existe una relación lineal significativa entre X e Y.</p>
+<p>La pendiente mide cuánto cambia Y cuando X aumenta una unidad.</p>
+<p>El intervalo es:</p>
+<p><span class="math display">\[\hat β±t_{α/2,n−2}SE(\hat
+β_1)\]</span></p>
+<p><strong>Interpretación</strong></p>
+<p><span class="math display">\[IC(β_1)=(0.30,0.70)\]</span></p>
+<p>Con 95% de confianza, por cada unidad que aumenta X, el valor
+promedio de Y aumenta entre 0.30 y 0.70 unidades.</p>
+<p><strong>IC para el intercepto</strong></p>
+<p>El intercepto representa el valor esperado de Y cuando X=0, el
+intervalo es:</p>
+<p><span class="math display">\[\hat β_0 ± t_{α/2,n−2} SE(\hat
+β_0)\]</span></p>
+<p><strong>Interpretación</strong></p>
+<p><span class="math display">\[ IC(β_0)=(1.2,3.8)\]</span></p>
+<p>Con 95% de confianza, el valor promedio de Y cuando X=0 está entre
+1.2 y 3.8.</p>
+<p><strong>Relación con pruebas de hipótesis</strong></p>
+<p>Estos intervalos permiten verificar hipótesis.</p>
+<p>Por ejemplo:</p>
+<p><strong>Para la pendiente</strong></p>
+<p><span class="math display">\[H_0:β_1=0\]</span></p>
+<p>Si el intervalo:</p>
+<p>contiene 0 → la pendiente podría no ser significativa. no contiene 0
+→ la pendiente es significativa.</p>
+<p>En el ejemplo:</p>
+<p>(0.294,0.706)</p>
+<p>no contiene 0, entonces la pendiente es estadísticamente
+significativa.</p>
+<p>VER (<a
+href="https://fhernanb.github.io/libro_regresion/predict.html#predict"
+class="uri">https://fhernanb.github.io/libro_regresion/predict.html#predict</a>)</p>
 <p><strong>IC para el error estándar de la regresión </strong></p>
 <p>El error estándar mide la variabilidad o precisión de una estimación,
 específicamente cuánto varían las estimaciones de la pendiente de la
 muestra con respecto a la verdadera pendiente de la población.</p>
+<p><strong>Ejemplo</strong></p>
 <pre class="r"><code>DBH &lt;- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
 D16 &lt;-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
 HT &lt;-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
@@ -1343,6 +1412,7 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
     geom_smooth(method=lm, formula=y~x, se=TRUE, level=0.95, col=&#39;blue&#39;, fill=&#39;pink2&#39;) +
     theme_light()</code></pre>
 <p><img src="rmultivariada_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
 </div>
 <div id="regresión-no-paramétrica" class="section level2">
 <h2>Regresión no paramétrica</h2>
