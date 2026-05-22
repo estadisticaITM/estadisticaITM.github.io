@@ -1541,13 +1541,20 @@ el j –ésimo nivel de X.</p>
 <p><span class="math inline">\(X_j\)</span> El j-ésimo nivel de valores
 de X, supondremos j=1, 2,…, k</p>
 <p><span class="math inline">\(n_j\)</span> Número de observaciones de Y
-tomadas en el j-esimo nivel de X.</p>
+tomadas en el j-esimo nivel de X</p>
 <p>Se define primero un modelo lineal general (<strong>modelo
 completo</strong>) que corresponde a</p>
 <p><span class="math display">\[
 Y_{ij}=\mu_j+\varepsilon_{ij}\]</span></p>
 <p>donde <span class="math inline">\(\mu_j=E(y_{ij})\)</span>, es decir,
 es la media de la variable respuesta en el j-ésimo nivel de X.</p>
+<p>Este modelo no impone linealidad, porque trata los valores de peso
+como categorías, permitiendo detectar:</p>
+<ul>
+<li><p>Curvaturas,</p></li>
+<li><p>Patrones no lineales,</p></li>
+<li><p>Mala especificación del modelo lineal.</p></li>
+</ul>
 <p>Para el anterior modelo, los estimadores de máxima verosimilitud
 corresponden a <span class="math inline">\(\hat \mu=\bar Y_j\)</span>,
 es decir, la media muestral de Y en el nivel j de X. Esta cantidad
@@ -1557,11 +1564,13 @@ de cuadrados del error puro</strong> cuyos grados de libertad son n-k,
 es dada por:</p>
 <p><span
 class="math display">\[SSPE=\sum_{j=1}^k\sum_{i=1}^{n_j}({Y_{ij}-\bar
-Y_j})^2\]</span> Se define ahora el <strong>modelo lineal
-reducido</strong> para la hipótesis nula de la prueba, el cual, para el
-caso de la regresión lineal es <span
-class="math inline">\(E(Y|X)=\beta_0+\beta_1 X\)</span> luego la prueba
-formula que:</p>
+Y_j})^2\]</span></p>
+<p>SSPE suma de cuadrados del error puro mide la variabilidad entre
+observaciones repetidas.</p>
+<p>Se define ahora el <strong>modelo lineal reducido</strong> para la
+hipótesis nula de la prueba, el cual, para el caso de la regresión
+lineal es <span class="math inline">\(E(Y|X)=\beta_0+\beta_1 X\)</span>
+luego la prueba formula que:</p>
 <p><span class="math display">\[H_0=E(Y|X)=\beta_0+\beta_1 X \]</span>
 <span class="math display">\[H_1=E(Y|X)\neq \beta_0+\beta_1 X
 \]</span></p>
@@ -1572,12 +1581,15 @@ se puede descomponer en:</p>
 <p><span class="math display">\[SSE=SSPE+SSLOF\]</span></p>
 <p>suma de cuadrados del error=suma de cuadrados del error puro + suma
 de cuadrados de carencia de ajuste</p>
-<p><span class="math display">\[SSLOF=SSE-SSPE\]</span></p>
+<p><span class="math display">\[SSLOF=SSE-SSPE\]</span> Este valor mide
+qué tan lejos está el modelo lineal de las medias reales.</p>
+<p>Es variación debida a una mala especificación del modelo, curvatura ó
+no linealidad.</p>
 <p>El estadístico de prueba es:</p>
 <p><span
 class="math display">\[F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}\]</span></p>
-<p>En la tabla ANOVA puede presentar el test de carencia de ajuste
-descomponiendo el SSE del modelo:</p>
+<p>En la tabla ANOVA (clásica y pedagógica) puede presentar el test de
+carencia de ajuste descomponiendo el SSE del modelo:</p>
 <table>
 <colgroup>
 <col width="22%" />
@@ -1600,28 +1612,28 @@ descomponiendo el SSE del modelo:</p>
 <td>Regresión</td>
 <td>1</td>
 <td>SSR</td>
-<td>MSR</td>
-<td>Fc</td>
+<td><span class="math inline">\(MSR=\frac{SSR}{1}\)</span></td>
+<td><span class="math inline">\(F_c=\frac{MSR}{MSE}\)</span></td>
 </tr>
 <tr class="even">
 <td>Error</td>
 <td>n-2</td>
 <td>SSE</td>
-<td>MSE</td>
+<td><span class="math inline">\(MSE=\frac{SSE}{n-2}\)</span></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>carencia de ajuste</td>
 <td>k-2</td>
 <td>SSLOF</td>
-<td>MSLOF</td>
-<td>FO</td>
+<td><span class="math inline">\(MSLOF=\frac{SSLOF}{K-2}\)</span></td>
+<td><span class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
 </tr>
 <tr class="even">
 <td>Error puro</td>
 <td>n-k</td>
 <td>SSPE</td>
-<td></td>
+<td><span class="math inline">\(MSPE=\frac{SSLOF}{k-2}\)</span></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -1630,6 +1642,126 @@ descomponiendo el SSE del modelo:</p>
 <td>SST</td>
 <td></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<p>Donde:</p>
+<ul>
+<li>k es el numero de niveles de la variable explicativa x</li>
+</ul>
+<p>La tabla ANOVA arrojada por el software R compara dos modelos, y
+tiene dos componentes está dada por:</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="21%" />
+<col width="20%" />
+<col width="21%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fuente de variación</th>
+<th>Grados de libertad</th>
+<th align="center">Suma de cuadrados</th>
+<th>Medias cuadráticas</th>
+<th>Estadístico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mdlo 1 <span class="math inline">\(y=\beta_0+\beta_1x\)</span></td>
+<td>n-2</td>
+<td align="center"><span class="math inline">\(SSR_1\)</span></td>
+<td>MSR</td>
+<td><span class="math inline">\(F_c\)</span></td>
+</tr>
+<tr class="even">
+<td>Mdlo 2 <span
+class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
+<td>n-k</td>
+<td align="center"><span class="math inline">\(SSR_2\)</span></td>
+<td>MSE</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>carencia de ajuste</td>
+<td>k-2</td>
+<td align="center"><span
+class="math inline">\(SSLOF=SSR_1-SSR_2\)</span></td>
+<td>MSLOF</td>
+<td><span class="math inline">\(F_0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>La tabla ANOVA arrojada por el software R compara dos modelos, y
+tiene dos componentes, la primera parte está dada por:</p>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="12%" />
+<col width="22%" />
+<col width="32%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de Cuadrados Residuales RSS</th>
+<th align="center"><b style = 'color : red;'>Media cuadrática MSR</th>
+<th align="center"><b style = 'color : red;'>valor F</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mdlo 1 <span
+class="math inline">\(y=\beta_0+\beta_1x\)</span></td>
+<td align="center">n-2</td>
+<td align="center"><span
+class="math inline">\(SSR_{lineal}\)</span></td>
+<td align="center"><span
+class="math inline">\(MSR_{lineal}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Mdlo 2 <span
+class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
+<td align="center">n-k</td>
+<td align="center"><span
+class="math inline">\(SSR_{factor}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Falta de ajuste</td>
+<td align="center">k-2</td>
+<td align="center"><span
+class="math inline">\(SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>La segunda parte, habla de la componente de falta de ajuste, está
+dada por:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Df</th>
+<th align="center">Sum of Sq</th>
+<th>F</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">k-2</td>
+<td align="center"><span
+class="math inline">\(SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}\)</span></td>
+<td></td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>

@@ -651,18 +651,37 @@ $Y_{ij}$ La respuesta i-ésima en el j –ésimo nivel de X.
 
 $X_j$ El j-ésimo nivel de valores de X, supondremos j=1, 2,…, k
 
-$n_j$ Número de observaciones de Y tomadas en el j-esimo nivel de X.
+$n_j$ Número de observaciones de Y tomadas en el j-esimo nivel de X
+
 
 
 Se define primero un modelo lineal general (**modelo completo**) que corresponde a
 
 $$ Y_{ij}=\mu_j+\varepsilon_{ij}$$ 
 
+
 donde $\mu_j=E(y_{ij})$, es decir, es la media de la variable respuesta en el j-ésimo nivel de X.
+
+
+Este modelo no impone linealidad, porque trata los valores de peso como categorías, permitiendo detectar:
+
+- Curvaturas,
+
+- Patrones no lineales,
+
+- Mala especificación del modelo lineal.
+
+
+
 
 Para el anterior modelo, los estimadores de máxima verosimilitud corresponden a $\hat \mu=\bar Y_j$, es decir, la media muestral de Y en el nivel j de X. Esta cantidad también corresponde al valor predicho para Y en el nivel j de X. Por tanto, la suma de cuadrados del error del modelo general o **suma de cuadrados del error puro** cuyos grados de libertad son n-k, es dada por:
 
 $$SSPE=\sum_{j=1}^k\sum_{i=1}^{n_j}({Y_{ij}-\bar Y_j})^2$$
+
+SSPE suma de cuadrados del error puro mide la variabilidad entre observaciones repetidas.
+
+
+
 Se define ahora el **modelo lineal reducido** para la hipótesis nula de la prueba, el cual, para el caso de la regresión lineal es $E(Y|X)=\beta_0+\beta_1 X$ luego la prueba formula que:
 
 $$H_0=E(Y|X)=\beta_0+\beta_1 X $$
@@ -679,21 +698,62 @@ $$SSE=SSPE+SSLOF$$
 suma de cuadrados del error=suma de cuadrados del error puro + suma de cuadrados de carencia de ajuste 
 
 $$SSLOF=SSE-SSPE$$
+Este valor mide qué tan lejos está el modelo lineal de las medias reales.
+
+Es variación debida a una mala especificación del modelo, curvatura ó no linealidad.
+
+
+
 
 El estadístico de prueba es:
 
 $$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}$$
 
-En la tabla ANOVA puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
+En la tabla ANOVA (clásica y pedagógica) puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
 
 
 |Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
 |-------------------|------------------|-----------------|------------------|-----------|
-|Regresión          |1                 |SSR              |MSR               |Fc         |
-|Error              |n-2               |SSE              |MSE               |           |
-|carencia de ajuste |k-2               |SSLOF            |MSLOF             | FO        |
-|Error puro         |n-k               |SSPE             |                  |           |
-|Total              |n-1               |SST              |                  |           |
+|Regresión          |1                 |SSR              |$MSR=\frac{SSR}{1}$|$F_c=\frac{MSR}{MSE}$|
+|Error              |n-2               |SSE              |$MSE=\frac{SSE}{n-2}$|                  |
+|carencia de ajuste |k-2               |SSLOF            |$MSLOF=\frac{SSLOF}{K-2}$|$F_0=\frac{MSLOF}{MSPE}$|
+|Error puro         |n-k               |SSPE             |$MSPE=\frac{SSLOF}{k-2}$|      |
+|Total              |n-1               |SST              |                        |           |
+
+Donde:
+
+- k es el numero de niveles de la variable explicativa x
+
+
+
+La tabla ANOVA arrojada por el software R compara dos modelos, y tiene dos componentes está dada por: 
+
+|Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
+|-------------------|------------------|:---------------:|------------------|-----------|
+|Mdlo 1 $y=\beta_0+\beta_1x$|  n-2          |$SSR_1$   |MSR               |    $F_c$  |
+|Mdlo 2 $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k |$SSR_2$   |MSE               |   0        |
+|carencia de ajuste                      |k-2 |$SSLOF=SSR_1-SSR_2$  |MSLOF  |$F_0$      |
+
+
+
+
+La tabla ANOVA arrojada por el software R compara dos modelos, y tiene dos componentes, la primera parte está dada por: 
+
+|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales RSS|<b style = 'color : red;'>Media cuadrática MSR|<b style = 'color : red;'>valor F</b>|
+|:-------------------------------------:|:----------------:|:------------------------------:|:--------------------------------------------:|:-----:|
+|Mdlo 1 $y=\beta_0+\beta_1x$|  n-2       |$SSR_{lineal}$         |$MSR_{lineal}$|
+|Mdlo 2 $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSR_{factor}$       |
+|Falta de ajuste                       |k-2|$SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}$|$F_0=\frac{MSLOF}{MSPE}$|
+
+
+La segunda parte, habla de la componente de falta de ajuste, está dada por:
+
+|Df |	Sum of Sq   |	F |	Pr(>F)|
+|:-:|:-----------:|---|-------:|
+|k-2|$SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}$||
+
+
+
 
 
 
@@ -742,6 +802,9 @@ anova(regres1,regres2) #Compara los dos modelos anteriores y obtenemos el SSLOF,
 
 
 ```
+
+
+
 
 Observe que la variable explicatoria X fue observada en cuatro niveles: 110, 230, 360 y 505, es decir, tenemos réplicas de la
 variable respuesta en al menos un nivel de X.
