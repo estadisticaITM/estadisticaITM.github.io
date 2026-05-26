@@ -723,37 +723,39 @@ En la tabla ANOVA (clásica y pedagógica) puede presentar el test de carencia d
 Donde:
 
 - k es el numero de niveles de la variable explicativa x
+- n pares de observaciones
+
+
+La tabla ANOVA arrojada por el software R compara los dos modelos, y estima el componente de carencia de ajuste: 
 
 
 
-La tabla ANOVA arrojada por el software R compara dos modelos, y tiene dos componentes está dada por: 
-
-|Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
-|-------------------|------------------|:---------------:|------------------|-----------|
-|Mdlo 1 $y=\beta_0+\beta_1x$|  n-2          |$SSR_1$   |MSR               |    $F_c$  |
-|Mdlo 2 $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k |$SSR_2$   |MSE               |   0        |
-|carencia de ajuste                      |k-2 |$SSLOF=SSR_1-SSR_2$  |MSLOF  |$F_0$      |
+```{r out.width="90%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/testlineal.png")
+```
 
 
 
-
-La tabla ANOVA arrojada por el software R compara dos modelos, y tiene dos componentes, la primera parte está dada por: 
-
-|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales RSS|<b style = 'color : red;'>Media cuadrática MSR|<b style = 'color : red;'>valor F</b>|
-|:-------------------------------------:|:----------------:|:------------------------------:|:--------------------------------------------:|:-----:|
-|Mdlo 1 $y=\beta_0+\beta_1x$|  n-2       |$SSR_{lineal}$         |$MSR_{lineal}$|
-|Mdlo 2 $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSR_{factor}$       |
-|Falta de ajuste                       |k-2|$SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}$|$F_0=\frac{MSLOF}{MSPE}$|
+La tabla ANOVA arrojada por el software R se puede completar de la siguiente manera:
 
 
-La segunda parte, habla de la componente de falta de ajuste, está dada por:
-
-|Df |	Sum of Sq   |	F |	Pr(>F)|
-|:-:|:-----------:|---|-------:|
-|k-2|$SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}$||
+|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p|
+|:--------------------------------|:------:|:------------------------------:|:------------------------------------:|:--------:|:-----:|
+|<b style = 'color:red;'>Regresión|<b style ='color:red;'>1|<b style='color:red;'>SSR|<b style='color : red;'>$MSR=\frac{SSR}{1}$|<b style = 'color : red;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color : red;'> vp1|
+|Mdlo 1 (Error total) $y=\beta_0+\beta_1x$|n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
+|Carencia de ajuste (lof)*|k-2 |SSLOF|<b style = 'color : red;'>$MSLOF=\frac{SSLOF}{k-2}$|$F_0=\frac{MSLOF}{MSPE}$|vp2|
+|Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSEP$|<b style = 'color : red;'>$MSEP=\frac{SSR_{EP}}{n-k}$||
+|<b style = 'color : red;'>Total|<b style = 'color : red;'>n-1|<b style = 'color : red;'>SST||||
 
 
 
+**Nota: **
+
+- *Lack of fit, falta de ajuste (Lof)
+
+- **SSLOF=SSE−SSEP
+
+- ***Las letras en color negro son las salidas originales de R, las letras en color rojo corresponde a los valores estimados.
 
 
 

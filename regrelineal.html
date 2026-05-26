@@ -1648,123 +1648,90 @@ carencia de ajuste descomponiendo el SSE del modelo:</p>
 <p>Donde:</p>
 <ul>
 <li>k es el numero de niveles de la variable explicativa x</li>
+<li>n pares de observaciones</li>
 </ul>
-<p>La tabla ANOVA arrojada por el software R compara dos modelos, y
-tiene dos componentes está dada por:</p>
+<p>La tabla ANOVA arrojada por el software R compara los dos modelos, y
+estima el componente de carencia de ajuste:</p>
+<p><img src="imagen/testlineal.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>La tabla ANOVA arrojada por el software R se puede completar de la
+siguiente manera:</p>
 <table>
 <colgroup>
-<col width="22%" />
-<col width="21%" />
-<col width="20%" />
-<col width="21%" />
-<col width="13%" />
+<col width="25%" />
+<col width="6%" />
+<col width="25%" />
+<col width="29%" />
+<col width="7%" />
+<col width="5%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Fuente de variación</th>
-<th>Grados de libertad</th>
-<th align="center">Suma de cuadrados</th>
-<th>Medias cuadráticas</th>
-<th>Estadístico</th>
+<th align="left">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de Cuadrados Residuales</th>
+<th align="center"><b style = 'color : red;'>Media cuadrática MSR</th>
+<th align="center">valor F</th>
+<th align="center">Valor p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mdlo 1 <span class="math inline">\(y=\beta_0+\beta_1x\)</span></td>
-<td>n-2</td>
-<td align="center"><span class="math inline">\(SSR_1\)</span></td>
-<td>MSR</td>
-<td><span class="math inline">\(F_c\)</span></td>
+<td align="left"><b style = 'color:red;'>Regresión</td>
+<td align="center"><b style ='color:red;'>1</td>
+<td align="center"><b style='color:red;'>SSR</td>
+<td align="center"><b style='color : red;'><span
+class="math inline">\(MSR=\frac{SSR}{1}\)</span></td>
+<td align="center"><b style = 'color : red;'><span
+class="math inline">\(F_0=\frac{MSR}{MSE}\)</span></td>
+<td align="center"><b style = 'color : red;'> vp1</td>
 </tr>
 <tr class="even">
-<td>Mdlo 2 <span
-class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
-<td>n-k</td>
-<td align="center"><span class="math inline">\(SSR_2\)</span></td>
-<td>MSE</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>carencia de ajuste</td>
-<td>k-2</td>
-<td align="center"><span
-class="math inline">\(SSLOF=SSR_1-SSR_2\)</span></td>
-<td>MSLOF</td>
-<td><span class="math inline">\(F_0\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>La tabla ANOVA arrojada por el software R compara dos modelos, y
-tiene dos componentes, la primera parte está dada por:</p>
-<table>
-<colgroup>
-<col width="27%" />
-<col width="12%" />
-<col width="22%" />
-<col width="32%" />
-<col width="4%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">Fuente de variación</th>
-<th align="center">Grados de libertad</th>
-<th align="center">Suma de Cuadrados Residuales RSS</th>
-<th align="center"><b style = 'color : red;'>Media cuadrática MSR</th>
-<th align="center"><b style = 'color : red;'>valor F</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">Mdlo 1 <span
+<td align="left">Mdlo 1 (Error total) <span
 class="math inline">\(y=\beta_0+\beta_1x\)</span></td>
 <td align="center">n-2</td>
-<td align="center"><span
-class="math inline">\(SSR_{lineal}\)</span></td>
-<td align="center"><span
-class="math inline">\(MSR_{lineal}\)</span></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">Mdlo 2 <span
-class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
-<td align="center">n-k</td>
-<td align="center"><span
-class="math inline">\(SSR_{factor}\)</span></td>
+<td align="center">SSE</td>
+<td align="center"><b style = 'color : red;'> <span
+class="math inline">\(MSE=\frac{SSE}{n-2}\)</span></td>
 <td align="center"></td>
 <td align="center"></td>
 </tr>
 <tr class="odd">
-<td align="center">Falta de ajuste</td>
+<td align="left">Carencia de ajuste (lof)*</td>
 <td align="center">k-2</td>
-<td align="center"><span
-class="math inline">\(SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}\)</span></td>
+<td align="center">SSLOF</td>
+<td align="center"><b style = 'color : red;'><span
+class="math inline">\(MSLOF=\frac{SSLOF}{k-2}\)</span></td>
 <td align="center"><span
 class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
+<td align="center">vp2</td>
+</tr>
+<tr class="even">
+<td align="left">Mdlo 2 (Error puro EP): <span
+class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
+<td align="center">n-k</td>
+<td align="center"><span class="math inline">\(SSEP\)</span></td>
+<td align="center"><b style = 'color : red;'><span
+class="math inline">\(MSEP=\frac{SSR_{EP}}{n-k}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><b style = 'color : red;'>Total</td>
+<td align="center"><b style = 'color : red;'>n-1</td>
+<td align="center"><b style = 'color : red;'>SST</td>
+<td align="center"></td>
+<td align="center"></td>
 <td align="center"></td>
 </tr>
 </tbody>
 </table>
-<p>La segunda parte, habla de la componente de falta de ajuste, está
-dada por:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Df</th>
-<th align="center">Sum of Sq</th>
-<th>F</th>
-<th align="right">Pr(&gt;F)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">k-2</td>
-<td align="center"><span
-class="math inline">\(SS_{LackOfFit}=SSR_{lineal}−SSR_{factor}\)</span></td>
-<td></td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Nota: </strong></p>
+<ul>
+<li><p>*Lack of fit, falta de ajuste (Lof)</p></li>
+<li><p>**SSLOF=SSE−SSEP</p></li>
+<li><p>***Las letras en color negro son las salidas originales de R, las
+letras en color rojo corresponde a los valores estimados.</p></li>
+</ul>
 <p>En general, la prueba de carencia de ajuste puede aplicarse a otras
 funciones de regresión, sólo se requiere modificar los grados de
 libertad del SSLOF, que en general corresponden a k-p , donde p es el
@@ -1815,7 +1782,7 @@ summary(regre)</code></pre>
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre class="r"><code>plot(peso,elimina)
 abline(a=212.72,b=-0.23,col=2)</code></pre>
-<p><img src="regrelineal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="regrelineal_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>## residuales del modelo
 
 res=residuals(regre)
