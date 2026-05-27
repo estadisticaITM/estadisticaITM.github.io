@@ -702,12 +702,57 @@ Este valor mide qué tan lejos está el modelo lineal de las medias reales.
 
 Es variación debida a una mala especificación del modelo, curvatura ó no linealidad.
 
+**Relación entre componentes**
+
+La variabilidad total se descompone como:
+
+$$SST=SSR+SSE$$
+
+y además:
+
+$$SSE=SSLOF+SSPE$$
+
+Entonces:
+
+$$SST=SSR+SSLOF+SSPE$$
+
+**Qué representa cada parte**
+
+|Componente| Mide la variablididad        |
+|:----------:|:---------------------------:|
+| SSR        | Explicada por la regresión   |
+| SSLOF      | Debida a mala especificación |
+| SSPE       | Natural (ruido)              |
+| SSE        | no explicada total           |
 
 
+
+**Interpretación conjunta**
+
+¿Existe relación lineal entre X y Y?
+
+$$F_c=\frac{SSR/1}{SSE/n-2}=\frac{MSR}{MSE}$$
+
+**Carencia de ajuste**
+
+Pregunta:
+
+¿La forma lineal es adecuada?
 
 El estadístico de prueba es:
 
-$$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}$$
+$$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}\quad F_0=\frac{MSLOF}{MSPE}$$
+
+Situaciones posibles
+
+| Regresión significativa | Carencia de ajuste | Interpretación               |
+|:----------------------- |:------------------ |:---------------------------- |
+| Sí                      | No                 | Buen modelo lineal           |
+| Sí                      | Sí                 | Hay relación, pero no lineal |
+| No                      | No                 | No hay relación importante   |
+| No                      | Sí                 | Modelo mal especificado      |
+
+
 
 En la tabla ANOVA (clásica y pedagógica) puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
 
@@ -739,13 +784,13 @@ knitr::include_graphics("imagen/testlineal.png")
 La tabla ANOVA arrojada por el software R se puede completar de la siguiente manera:
 
 
-|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p|
-|:--------------------------------|:------:|:------------------------------:|:------------------------------------:|:--------:|:-----:|
-|<b style = 'color:red;'>Regresión|<b style ='color:red;'>1|<b style='color:red;'>SSR|<b style='color : red;'>$MSR=\frac{SSR}{1}$|<b style = 'color : red;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color : red;'> vp1|
+|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p  |
+|:--------------------------------|:------------:|:------------------------------:|:------------------------:|:------:|:---------:|
+|<b style='color:blue;'>Regresión|<b style ='color:blue;'>1|<b style='color:blue;'>SSR|<b style='color:blue;'>$MSR=\frac{SSR}{1}$|<b style = 'color:blue;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color :blue;'> vp1|
 |Mdlo 1 (Error total) $y=\beta_0+\beta_1x$|n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
 |Carencia de ajuste (lof)*|k-2 |SSLOF|<b style = 'color : red;'>$MSLOF=\frac{SSLOF}{k-2}$|$F_0=\frac{MSLOF}{MSPE}$|vp2|
-|Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSEP$|<b style = 'color : red;'>$MSEP=\frac{SSR_{EP}}{n-k}$||
-|<b style = 'color : red;'>Total|<b style = 'color : red;'>n-1|<b style = 'color : red;'>SST||||
+|Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSEP$|<b style = 'color : red;'>$MSEP=\frac{SSEP}{n-k}$||
+|<b style='color:blue;'>Total|<b style='color:blue;'>n-1|<b style='color:blue;'>SST||||
 
 
 
@@ -755,7 +800,11 @@ La tabla ANOVA arrojada por el software R se puede completar de la siguiente man
 
 - **SSLOF=SSE−SSEP
 
-- ***Las letras en color negro son las salidas originales de R, las letras en color rojo corresponde a los valores estimados.
+- Las letras en color negro son las salidas del anova(mdlo1,mdlo2)
+
+- Las letras en color azul corresponde a la salida del anova(mdlo1)
+ 
+- Las letras en color rojo corresponde a los valores estimados a partir de as anovas anteriores
 
 
 
@@ -841,6 +890,11 @@ a) ¿Hay carencia de ajuste del modelo postulado para la respectiva respuesta me
 test de hipótesis, el estadístico de prueba y los resultados)
 
 b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿Por qué?
+
+5. A partir de la información brindada en las tablas anovas, del modelo y de carencia de ajuste, realice la tabla ANOVA completa
+
+
+
 
 
 

@@ -723,6 +723,55 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
 **Regresión loess**
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Ymoaur1lFEw" title="Regresión loess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+## Multicolinealidad
+
+ocurre cuando dos o más variables explicativas están fuertemente correlacionadas entre sí, es decir, algunos predictores contienen información muy parecida o redundante.
+
+$$\large Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i$$
+
+existe multicolinealidad si $X_1$ y $X_2$ están altamente correlacionadas.
+
+Supónga un modelo para predecir salario usando años de experiencia y edad.
+
+Estas variables suelen estar muy relacionadas, ya que personas mayores suelen tener más experiencia.
+
+Entonces el modelo tiene dificultad para separar cuánto efecto pertenece a la edad, y cuánto a la experiencia.
+
+
+
+**Consecuencias de la multicolinealidad**
+
+1. Coeficientes inestables 
+ Pequeños cambios en los datos producen grandes cambios en las estimaciones β
+
+2. Errores estándar grandes
+
+  Los coeficientes se vuelven menos precisos.
+
+3. Intervalos de confianza amplios
+   Mayor incertidumbre sobre los parámetros.
+
+4. Variables no significativas
+   Puede ocurrir que el modelo global sea significativo,
+pero variables individuales no lo sean.
+
+5. Signos incoherentes
+
+A veces aparecen coeficientes:
+
+positivos cuando deberían ser negativos,
+o viceversa.
+Importante
+
+La multicolinealidad:
+
+❌ NO afecta mucho la predicción global.
+
+Pero:
+
+✅ sí afecta la interpretación individual de los coeficientes.
+
+Cómo detectarla
 
 ### COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y MULTICOLINEALIDAD
 

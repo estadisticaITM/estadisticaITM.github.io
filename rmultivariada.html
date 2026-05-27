@@ -1433,6 +1433,44 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
 <iframe width="280" height="160" src="https://www.youtube.com/embed/UhUNy0Bi4PU" title="Regresión lowess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 <p><strong>Regresión loess</strong>
 <iframe width="280" height="160" src="https://www.youtube.com/embed/Ymoaur1lFEw" title="Regresión loess" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+</div>
+<div id="multicolinealidad" class="section level2">
+<h2>Multicolinealidad</h2>
+<p>ocurre cuando dos o más variables explicativas están fuertemente
+correlacionadas entre sí, es decir, algunos predictores contienen
+información muy parecida o redundante.</p>
+<p><span class="math display">\[\large
+Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i\]</span></p>
+<p>existe multicolinealidad si <span class="math inline">\(X_1\)</span>
+y <span class="math inline">\(X_2\)</span> están altamente
+correlacionadas.</p>
+<p>Supónga un modelo para predecir salario usando años de experiencia y
+edad.</p>
+<p>Estas variables suelen estar muy relacionadas, ya que personas
+mayores suelen tener más experiencia.</p>
+<p>Entonces el modelo tiene dificultad para separar cuánto efecto
+pertenece a la edad, y cuánto a la experiencia.</p>
+<p><strong>Consecuencias de la multicolinealidad</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Coeficientes inestables Pequeños cambios en los datos producen
+grandes cambios en las estimaciones β</p></li>
+<li><p>Errores estándar grandes</p></li>
+</ol>
+<p>Los coeficientes se vuelven menos precisos.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Intervalos de confianza amplios Mayor incertidumbre sobre los
+parámetros.</p></li>
+<li><p>Variables no significativas Puede ocurrir que el modelo global
+sea significativo, pero variables individuales no lo sean.</p></li>
+<li><p>Signos incoherentes</p></li>
+</ol>
+<p>A veces aparecen coeficientes:</p>
+<p>positivos cuando deberían ser negativos, o viceversa. Importante</p>
+<p>La multicolinealidad:</p>
+<p>❌ NO afecta mucho la predicción global.</p>
+<p>Pero:</p>
+<p>✅ sí afecta la interpretación individual de los coeficientes.</p>
+<p>Cómo detectarla</p>
 <div
 id="comparación-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad"
 class="section level3">
