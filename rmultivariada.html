@@ -1619,12 +1619,20 @@ tiene mayor efecto relativo. Idea clave</p>
 se usa principalmente para comparar la importancia relativa de los
 predictores y facilitar la interpretación de los coeficientes en una
 escala común.</p>
-<p><strong>Ejemplo</strong></p>
-<pre class="r"><code>datos &lt;- read.csv(sep = &quot;;&quot;,dec=&quot;.&quot;,
-                  
-  &quot;https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/refs/heads/master/ejm.csv&quot;,  header = TRUE
-  
-)
+<p><strong>Ejemplo</strong> Este conjunto de datos estudia cómo el uso
+de las redes sociales afecta la salud mental de los adolescentes.
+Incluye hábitos diarios como las horas de uso de redes sociales, el
+sueño, el estrés, la ansiedad y la actividad física.</p>
+<p>El objetivo es comprender si el uso excesivo de redes sociales está
+relacionado con problemas como el estrés, la ansiedad y la depresión.
+Los datos ayudan a analizar el comportamiento y a desarrollar modelos de
+aprendizaje automático para predecir el riesgo de problemas de salud
+mental.</p>
+<p>En resumen, este conjunto de datos es útil para la investigación
+básica y para crear modelos que puedan ayudar a la detección temprana de
+problemas de salud mental en adolescentes.</p>
+<pre class="r"><code>datos &lt;- read.csv(sep = &quot;;&quot;,dec=&quot;.&quot;,header = TRUE,
+  &quot;https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/refs/heads/master/ejm.csv&quot;)
 
 head(datos)</code></pre>
 <pre><code>##   social_interaction_level gender platform_usage sleep_hours
@@ -1648,6 +1656,56 @@ head(datos)</code></pre>
 ## 4             7               9                0  15                      7.4
 ## 5             5               2                0  15                      4.7
 ## 6             5               7                0  19                      7.4</code></pre>
+<pre class="r"><code>library(PerformanceAnalytics)
+## Matriz de correlación
+
+cor(datos[4:13])</code></pre>
+<pre><code>##                           sleep_hours screen_time_before_sleep
+## sleep_hours               1.000000000              0.010235281
+## screen_time_before_sleep  0.010235281              1.000000000
+## academic_performance      0.021866484             -0.034715061
+## physical_activity         0.012700669             -0.026450022
+## stress_level             -0.010979224             -0.008649586
+## anxiety_level            -0.011878693             -0.010343543
+## addiction_level          -0.054837861              0.028883920
+## depression_label         -0.190629632             -0.016501627
+## age                       0.001529615              0.075611831
+## daily_social_media_hours -0.009472174              0.035777475
+##                          academic_performance physical_activity  stress_level
+## sleep_hours                      0.0218664840        0.01270067 -0.0109792243
+## screen_time_before_sleep        -0.0347150611       -0.02645002 -0.0086495864
+## academic_performance             1.0000000000        0.02331183 -0.0006002253
+## physical_activity                0.0233118328        1.00000000  0.0121594672
+## stress_level                    -0.0006002253        0.01215947  1.0000000000
+## anxiety_level                   -0.0643787939       -0.02223335  0.0158112535
+## addiction_level                  0.0293542652        0.02620036 -0.0001293951
+## depression_label                 0.0014407125       -0.01759768  0.1704737134
+## age                             -0.0139725717        0.01108617 -0.0312081715
+## daily_social_media_hours         0.0131789791        0.02554598  0.0306977419
+##                          anxiety_level addiction_level depression_label
+## sleep_hours                -0.01187869   -0.0548378607     -0.190629632
+## screen_time_before_sleep   -0.01034354    0.0288839196     -0.016501627
+## academic_performance       -0.06437879    0.0293542652      0.001440712
+## physical_activity          -0.02223335    0.0262003556     -0.017597683
+## stress_level                0.01581125   -0.0001293951      0.170473713
+## anxiety_level               1.00000000    0.0311537836      0.169566152
+## addiction_level             0.03115378    1.0000000000     -0.013952088
+## depression_label            0.16956615   -0.0139520875      1.000000000
+## age                         0.02636291    0.0382654171      0.010972537
+## daily_social_media_hours    0.02783476   -0.0249640657      0.175200807
+##                                   age daily_social_media_hours
+## sleep_hours               0.001529615             -0.009472174
+## screen_time_before_sleep  0.075611831              0.035777475
+## academic_performance     -0.013972572              0.013178979
+## physical_activity         0.011086166              0.025545976
+## stress_level             -0.031208171              0.030697742
+## anxiety_level             0.026362913              0.027834756
+## addiction_level           0.038265417             -0.024964066
+## depression_label          0.010972537              0.175200807
+## age                       1.000000000             -0.006634980
+## daily_social_media_hours -0.006634980              1.000000000</code></pre>
+<pre class="r"><code>chart.Correlation(datos[4:13], histogram = T, pch = 19,col=as.factor(datos$platform_usage))</code></pre>
+<p><img src="rmultivariada_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>
 

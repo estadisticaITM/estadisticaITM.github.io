@@ -860,20 +860,24 @@ Un modelo sin intercepto, con variables explicativas estandarizadas, se usa prin
 comparar la importancia relativa de los predictores y facilitar la interpretación de los coeficientes en una escala común.
 
 **Ejemplo**
+Este conjunto de datos estudia cómo el uso de las redes sociales afecta la salud mental de los adolescentes. Incluye hábitos diarios como las horas de uso de redes sociales, el sueño, el estrés, la ansiedad y la actividad física.
+
+El objetivo es comprender si el uso excesivo de redes sociales está relacionado con problemas como el estrés, la ansiedad y la depresión. Los datos ayudan a analizar el comportamiento y a desarrollar modelos de aprendizaje automático para predecir el riesgo de problemas de salud mental.
+
+En resumen, este conjunto de datos es útil para la investigación básica y para crear modelos que puedan ayudar a la detección temprana de problemas de salud mental en adolescentes.
 
 ```{r}
 
-
-datos <- read.csv(sep = ";",dec=".",
-                  
-  "https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/refs/heads/master/ejm.csv",  header = TRUE
-  
-)
+datos <- read.csv(sep = ";",dec=".",header = TRUE,
+  "https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/refs/heads/master/ejm.csv")
 
 head(datos)
 
+library(PerformanceAnalytics)
+## Matriz de correlación
 
-
+cor(datos[4:13])
+chart.Correlation(datos[4:13], histogram = T, pch = 19,col=as.factor(datos$platform_usage))
 
 
 ```
