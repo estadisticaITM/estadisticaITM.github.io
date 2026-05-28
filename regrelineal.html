@@ -1619,107 +1619,75 @@ no linealidad.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Interpretación conjunta</strong></p>
-<p>¿Existe relación lineal entre X y Y?</p>
-<p><span
-class="math display">\[F_c=\frac{SSR/1}{SSE/n-2}=\frac{MSR}{MSE}\]</span></p>
-<p><strong>Carencia de ajuste</strong></p>
-<p>Pregunta:</p>
-<p>¿La forma lineal es adecuada?</p>
-<p>El estadístico de prueba es:</p>
-<p><span class="math display">\[F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}\quad
-F_0=\frac{MSLOF}{MSPE}\]</span></p>
-<p>Situaciones posibles</p>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="26%" />
-<col width="40%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Regresión significativa</th>
-<th align="left">Carencia de ajuste</th>
-<th align="left">Interpretación</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Sí</td>
-<td align="left">No</td>
-<td align="left">Buen modelo lineal</td>
-</tr>
-<tr class="even">
-<td align="left">Sí</td>
-<td align="left">Sí</td>
-<td align="left">Hay relación, pero no lineal</td>
-</tr>
-<tr class="odd">
-<td align="left">No</td>
-<td align="left">No</td>
-<td align="left">No hay relación importante</td>
-</tr>
-<tr class="even">
-<td align="left">No</td>
-<td align="left">Sí</td>
-<td align="left">Modelo mal especificado</td>
-</tr>
-</tbody>
-</table>
 <p>En la tabla ANOVA (clásica y pedagógica) puede presentar el test de
 carencia de ajuste descomponiendo el SSE del modelo:</p>
 <table>
 <colgroup>
+<col width="17%" />
+<col width="16%" />
+<col width="14%" />
 <col width="22%" />
-<col width="21%" />
-<col width="20%" />
-<col width="21%" />
-<col width="13%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Fuente de variación</th>
-<th>Grados de libertad</th>
-<th>Suma de cuadrados</th>
-<th>Medias cuadráticas</th>
-<th>Estadístico</th>
+<th align="left">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de cuadrados</th>
+<th align="center">Medias cuadráticas</th>
+<th align="center">Estadístico</th>
+<th align="center">Valor p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Regresión</td>
-<td>1</td>
-<td>SSR</td>
-<td><span class="math inline">\(MSR=\frac{SSR}{1}\)</span></td>
-<td><span class="math inline">\(F_c=\frac{MSR}{MSE}\)</span></td>
+<td align="left">Regresión</td>
+<td align="center">1</td>
+<td align="center">SSR</td>
+<td align="center"><span
+class="math inline">\(MSR=\frac{SSR}{1}\)</span></td>
+<td align="center"><span
+class="math inline">\(F_c=\frac{MSR}{MSE}\)</span></td>
+<td align="center"><span
+class="math inline">\(P(x&gt;F_{1,n-2})\)</span></td>
 </tr>
 <tr class="even">
-<td>Error</td>
-<td>n-2</td>
-<td>SSE</td>
-<td><span class="math inline">\(MSE=\frac{SSE}{n-2}\)</span></td>
-<td></td>
+<td align="left">Error</td>
+<td align="center">n-2</td>
+<td align="center">SSE</td>
+<td align="center"><span
+class="math inline">\(MSE=\frac{SSE}{n-2}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td>carencia de ajuste</td>
-<td>k-2</td>
-<td>SSLOF</td>
-<td><span class="math inline">\(MSLOF=\frac{SSLOF}{K-2}\)</span></td>
-<td><span class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
+<td align="left">carencia de ajuste</td>
+<td align="center">k-2</td>
+<td align="center">SSLOF</td>
+<td align="center"><span
+class="math inline">\(MSLOF=\frac{SSLOF}{K-2}\)</span></td>
+<td align="center"><span
+class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
+<td align="center"><span
+class="math inline">\(P(x&gt;F_{k-2,n-k})\)</span></td>
 </tr>
 <tr class="even">
-<td>Error puro</td>
-<td>n-k</td>
-<td>SSPE</td>
-<td><span class="math inline">\(MSPE=\frac{SSLOF}{k-2}\)</span></td>
-<td></td>
+<td align="left">Error puro</td>
+<td align="center">n-k</td>
+<td align="center">SSPE</td>
+<td align="center"><span
+class="math inline">\(MSPE=\frac{SSLOF}{k-2}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td>Total</td>
-<td>n-1</td>
-<td>SST</td>
-<td></td>
-<td></td>
+<td align="left">Total</td>
+<td align="center">n-1</td>
+<td align="center">SST</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
@@ -1728,11 +1696,14 @@ carencia de ajuste descomponiendo el SSE del modelo:</p>
 <li>k es el numero de niveles de la variable explicativa x</li>
 <li>n pares de observaciones</li>
 </ul>
-<p>La tabla ANOVA arrojada por el software R compara los dos modelos, y
-estima el componente de carencia de ajuste:</p>
+<p>La tabla ANOVA del test de carencia de ajuste arrojada por el
+software R compara los dos modelos, y estima el componente de carencia
+de ajuste:</p>
 <p><img src="imagen/testlineal.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>La tabla ANOVA arrojada por el software R se puede completar de la
-siguiente manera:</p>
+<p>Entre la tabla ANOVA del modelo de regresión lineal y la ANOVA de
+carencia de ajuste se puede realizar una tabla ANOVA completa, que
+permita la validación de la significancia del modelo de regresión, asi
+como el test de carencia de ajuste.</p>
 <table>
 <colgroup>
 <col width="26%" />
@@ -1746,7 +1717,7 @@ siguiente manera:</p>
 <tr class="header">
 <th align="left">Fuente de variación</th>
 <th align="center">Grados de libertad</th>
-<th align="center">Suma de Cuadrados Residuales</th>
+<th align="center">Suma de Cuadrados</th>
 <th align="center"><b style = 'color : red;'>Media cuadrática MSR</th>
 <th align="center">valor F</th>
 <th align="center">Valor p</th>
@@ -1787,7 +1758,7 @@ class="math inline">\(F_0=\frac{MSLOF}{MSPE}\)</span></td>
 <td align="left">Mdlo 2 (Error puro EP): <span
 class="math inline">\(Y_{ij}=\mu_j+\varepsilon_{ij}\)</span></td>
 <td align="center">n-k</td>
-<td align="center"><span class="math inline">\(SSEP\)</span></td>
+<td align="center">SSEP</td>
 <td align="center"><b style = 'color : red;'><span
 class="math inline">\(MSEP=\frac{SSEP}{n-k}\)</span></td>
 <td align="center"></td>
@@ -1803,10 +1774,9 @@ class="math inline">\(MSEP=\frac{SSEP}{n-k}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Nota: </strong></p>
+<p><strong>Nota:</strong></p>
 <ul>
 <li><p>*Lack of fit, falta de ajuste (Lof)</p></li>
-<li><p>**SSLOF=SSE−SSEP</p></li>
 <li><p>Las letras en color negro son las salidas del
 anova(mdlo1,mdlo2)</p></li>
 <li><p>Las letras en color azul corresponde a la salida del
@@ -1814,6 +1784,53 @@ anova(mdlo1)</p></li>
 <li><p>Las letras en color rojo corresponde a los valores estimados a
 partir de as anovas anteriores</p></li>
 </ul>
+<p><strong>Interpretación conjunta</strong></p>
+<p>¿Existe relación lineal entre X y Y?</p>
+<p><span
+class="math display">\[F_c=\frac{SSR/1}{SSE/(n-2)}=\frac{MSR}{MSE}\]</span></p>
+<p><strong>Carencia de ajuste</strong></p>
+<p>Pregunta:</p>
+<p>¿La forma lineal es adecuada?</p>
+<p>El estadístico de prueba es:</p>
+<p><span class="math display">\[F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}\quad
+F_0=\frac{MSLOF}{MSPE}\]</span></p>
+<p><strong>Situaciones posibles</strong></p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="27%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Regresión significativa</th>
+<th align="center">Carencia de ajuste</th>
+<th align="center">Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Sí</td>
+<td align="center">No</td>
+<td align="center">Buen modelo lineal</td>
+</tr>
+<tr class="even">
+<td align="center">Sí</td>
+<td align="center">Sí</td>
+<td align="center">Hay relación, pero no lineal</td>
+</tr>
+<tr class="odd">
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No hay relación importante</td>
+</tr>
+<tr class="even">
+<td align="center">No</td>
+<td align="center">Sí</td>
+<td align="center">Modelo mal especificado</td>
+</tr>
+</tbody>
+</table>
 <p>En general, la prueba de carencia de ajuste puede aplicarse a otras
 funciones de regresión, sólo se requiere modificar los grados de
 libertad del SSLOF, que en general corresponden a k-p , donde p es el

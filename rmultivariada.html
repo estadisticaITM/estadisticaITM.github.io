@@ -1436,57 +1436,150 @@ ggplot(nuevos_datos, aes(x=D16,y=VOL))+
 </div>
 <div id="multicolinealidad" class="section level2">
 <h2>Multicolinealidad</h2>
-<p>ocurre cuando dos o más variables explicativas están fuertemente
+<p>Ocurre cuando dos o más variables explicativas están fuertemente
 correlacionadas entre sí, es decir, algunos predictores contienen
 información muy parecida o redundante.</p>
+<p>En un modelo como:</p>
 <p><span class="math display">\[\large
 Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i\]</span></p>
-<p>existe multicolinealidad si <span class="math inline">\(X_1\)</span>
+<p>Existe multicolinealidad si <span class="math inline">\(X_1\)</span>
 y <span class="math inline">\(X_2\)</span> están altamente
 correlacionadas.</p>
+<p><strong>Ejemplo</strong></p>
 <p>Supónga un modelo para predecir salario usando años de experiencia y
-edad.</p>
-<p>Estas variables suelen estar muy relacionadas, ya que personas
+edad. Estas variables suelen estar muy relacionadas, ya que personas
 mayores suelen tener más experiencia.</p>
 <p>Entonces el modelo tiene dificultad para separar cuánto efecto
 pertenece a la edad, y cuánto a la experiencia.</p>
-<p><strong>Consecuencias de la multicolinealidad</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>Coeficientes inestables Pequeños cambios en los datos producen
-grandes cambios en las estimaciones β</p></li>
-<li><p>Errores estándar grandes</p></li>
-</ol>
-<p>Los coeficientes se vuelven menos precisos.</p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Intervalos de confianza amplios Mayor incertidumbre sobre los
-parámetros.</p></li>
-<li><p>Variables no significativas Puede ocurrir que el modelo global
-sea significativo, pero variables individuales no lo sean.</p></li>
-<li><p>Signos incoherentes</p></li>
-</ol>
-<p>A veces aparecen coeficientes:</p>
-<p>positivos cuando deberían ser negativos, o viceversa. Importante</p>
-<p>La multicolinealidad:</p>
-<p>❌ NO afecta mucho la predicción global.</p>
-<p>Pero:</p>
-<p>✅ sí afecta la interpretación individual de los coeficientes.</p>
-<p>Cómo detectarla</p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Consecuencias de la
+multicolinealidad</strong></th>
+<th align="left"><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Coeficientes inestables</strong></td>
+<td align="left">Pequeños cambios en los datos producen grandes cambios
+en las estimaciones de los parámetros <span
+class="math inline">\(β_i\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Errores estándar grandes</strong></td>
+<td align="left">Los coeficientes se vuelven menos precisos.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>IC amplios</strong></td>
+<td align="left">Mayor incertidumbre sobre los parámetros.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Variables no significativas</strong></td>
+<td align="left">Puede ocurrir que el modelo global sea
+significativo,pero variables individuales no lo sean</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Signos incoherentes</strong></td>
+<td align="left">A veces aparecen coeficientes positivos cuando deberían
+ser negativos, o viceversa.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cómo detectarla</strong></p>
+<p><strong>1. Matriz de correlaciones</strong></p>
+<p>Si: ∣r∣&gt;0.8 puede existir multicolinealidad fuerte.</p>
+<p><strong>2. Factor de Inflación de la Varianza (VIF)</strong></p>
+<p>El VIF mide cuánto aumenta la varianza del coeficiente debido a la
+correlación entre predictores.</p>
+<p>Se calcula como:</p>
+<p><span class="math display">\[VIF_j=\frac{1}{1-R^2_j}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(R^2_j\)</span> proviene de la regresión
+de X sobre las demás variables.</li>
+</ul>
+<p><strong>Interpretación del VIF</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">VIF</th>
+<th align="left">Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">Sin multicolinealidad</td>
+</tr>
+<tr class="even">
+<td align="center">1–5</td>
+<td align="left">Moderada</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;5</td>
+<td align="left">Alta</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;10</td>
+<td align="left">Muy problemática</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cómo solucionarla</strong> 1. Eliminar variables
+redundantes</p>
+<p>Quitar predictores muy correlacionados.</p>
 <div
-id="comparación-de-efectos-parciales-de-las-variables-explicatorias-y-multicolinealidad"
+id="comparación-de-efectos-parciales-de-las-variables-explicativas-y-multicolinealidad"
 class="section level3">
-<h3>COMPARACIÓN DE EFECTOS PARCIALES DE LAS VARIABLES EXPLICATORIAS Y
-MULTICOLINEALIDAD</h3>
+<h3>Comparación de efectos parciales de las variables explicativas y
+multicolinealidad</h3>
 <p>Considere el MRLM</p>
 <p><span class="math display">\[\large
 Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+...+\beta_kX_{ik}+\varepsilon_i\]</span></p>
 <p>Si las variables explicatorias no están en una misma escala de
 medida, no podemos determinar cuál tiene mayor o menor efecto parcial
 sobre la respuesta promedio, en presencia de las demás, esto es, la
-magnitud de <span class="math inline">\(\beta_j\)</span>􀟚􀯝 refleja las
+magnitud de <span class="math inline">\(\beta_j\)</span> refleja las
 unidades de la variable <span class="math inline">\(X_j\)</span>.</p>
+<p>Cuando las variables tienen:</p>
+<pre><code>-  unidades distintas,
+
+-  Escalas muy diferentes,</code></pre>
+<p>los coeficientes originales no son comparables.</p>
+<p><strong>ejemplo</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Unidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ingreso</td>
+<td>dólares</td>
+</tr>
+<tr class="even">
+<td>Edad</td>
+<td>años</td>
+</tr>
+<tr class="odd">
+<td>Temperatura</td>
+<td>°C</td>
+</tr>
+</tbody>
+</table>
 <p>Para hacer comparaciones en forma directa de los coeficientes de
 regresión se recurre al uso de variables escalonadas, tanto la respuesta
 como las explicatorias.</p>
+<p>Con variables estandarizadas todos los predictores quedan en la misma
+escala, entonces coeficientes más grandes indican mayor influencia
+relativa.</p>
 <p><strong>Escalonamiento normal unitario</strong></p>
 <p>Cada variable es escalonada restando su media muestral y dividiendo
 esta diferencia por la desviación estándar muestral de la variable, es
@@ -1495,10 +1588,15 @@ decir:</p>
 Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
 <p><span class="math display">\[\large X_i^*=\frac{X_i-\bar
 X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
-<p>Ajustamos el modelo de regresión sin intercepto <span
-class="math display">\[\large
+<p>De modo que las nuevas variables tienen media cero y desviación
+estándar 1, lo que permite ajustar un modelo de regresión sin
+intercepto,</p>
+<p><span class="math display">\[\large
 Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i
-\]</span> Los coeficientes de regresión estandarizados <span
+\]</span></p>
+<p>El intercepto suele ser aproximadamente 0 ó no aporta mucha
+información.</p>
+<p>Los coeficientes de regresión estandarizados <span
 class="math inline">\(\beta_j^*\)</span> pueden ser comparados
 directamente teniendo en cuenta que siguen siendo coeficientes de
 regresión parcial, es decir, mide el efecto de <span
@@ -1508,14 +1606,19 @@ class="math inline">\(\beta_j\)</span> pueden servir para determinar la
 importancia relativa de <span class="math inline">\(X_j\)</span> en
 presencia de las demás variables, en la muestra o conjunto de datos
 particular considerado para el ajuste.</p>
-<p>NOTA: Hay que tener cuidado al interpretar y comparar los
-coeficientes estandarizados pues en presencia de multicolinealidad
-nuestras conclusiones pueden ser erradas.</p>
-<p>DEFINICIÓN: Multicolinealidad es la existencia de dependencia casi
-lineal entre variables explicatorias en el MRLM.</p>
-<p>Si existiera dependencia lineal exacta entre dos o más variables
-explicatorias, la matrix XtX seria singular y por tanto no podríamos
-hallar los estimadores de mínimos cuadrados!.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Sea:</p>
+<p>Y=rendimiento académico</p>
+<p>y otras variables como</p>
+<pre><code>-  Horas de estudio
+-  Ingreso familiar
+-  asistencia.</code></pre>
+<p>Al estandarizar, todas quedan comparables, puedes identificar cuál
+tiene mayor efecto relativo. Idea clave</p>
+<p>Un modelo sin intercepto, con variables explicativas estandarizadas,
+se usa principalmente para comparar la importancia relativa de los
+predictores y facilitar la interpretación de los coeficientes en una
+escala común.</p>
 </div>
 </div>
 

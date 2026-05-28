@@ -727,11 +727,62 @@ $$SST=SSR+SSLOF+SSPE$$
 
 
 
+
+En la tabla ANOVA (clásica y pedagógica) puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
+
+
+|Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico |Valor p|
+|:-------------|:-----------:|:----------:|:----------------:|:----------:|:----------:|
+|Regresión          |1                    |SSR              |$MSR=\frac{SSR}{1}$|$F_c=\frac{MSR}{MSE}$|$P(x>F_{1,n-2})$|
+|Error              |n-2               |SSE              |$MSE=\frac{SSE}{n-2}$|                  ||
+|carencia de ajuste |k-2               |SSLOF            |$MSLOF=\frac{SSLOF}{K-2}$|$F_0=\frac{MSLOF}{MSPE}$|$P(x>F_{k-2,n-k})$|
+|Error puro         |n-k               |SSPE             |$MSPE=\frac{SSLOF}{k-2}$|      ||
+|Total              |n-1               |SST              |                        |        |   |
+
+Donde:
+
+- k es el numero de niveles de la variable explicativa x
+- n pares de observaciones
+
+
+La tabla ANOVA del test de carencia de ajuste arrojada por el software R compara los dos modelos, y estima el componente de carencia de ajuste: 
+
+
+
+```{r out.width="90%", fig.align='center', echo=FALSE}
+knitr::include_graphics("imagen/testlineal.png")
+```
+
+
+
+Entre la tabla ANOVA del modelo de regresión lineal y la ANOVA de carencia de ajuste se puede realizar una tabla ANOVA completa, que permita la validación de la significancia del modelo de regresión, asi como el test de carencia de ajuste.
+
+|Fuente de variación|Grados de libertad|Suma de Cuadrados |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p  |
+|:--------------------------------|:------------:|:------------------------------:|:------------------------:|:------:|:---------:|
+|<b style='color:blue;'>Regresión|<b style ='color:blue;'>1|<b style='color:blue;'>SSR|<b style='color:blue;'>$MSR=\frac{SSR}{1}$|<b style = 'color:blue;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color :blue;'> vp1|
+|Mdlo 1 (Error total) $y=\beta_0+\beta_1x$|n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
+|Carencia de ajuste (lof)*|k-2 |SSLOF|<b style = 'color : red;'>$MSLOF=\frac{SSLOF}{k-2}$|$F_0=\frac{MSLOF}{MSPE}$|vp2|
+|Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|SSEP|<b style = 'color : red;'>$MSEP=\frac{SSEP}{n-k}$||
+|<b style='color:blue;'>Total|<b style='color:blue;'>n-1|<b style='color:blue;'>SST||||
+
+
+
+**Nota:**
+
+- *Lack of fit, falta de ajuste (Lof)
+
+- Las letras en color negro son las salidas del anova(mdlo1,mdlo2)
+
+- Las letras en color azul corresponde a la salida del anova(mdlo1)
+ 
+- Las letras en color rojo corresponde a los valores estimados a partir de as anovas anteriores
+
+
 **Interpretación conjunta**
 
 ¿Existe relación lineal entre X y Y?
 
-$$F_c=\frac{SSR/1}{SSE/n-2}=\frac{MSR}{MSE}$$
+$$F_c=\frac{SSR/1}{SSE/(n-2)}=\frac{MSR}{MSE}$$
 
 **Carencia de ajuste**
 
@@ -743,80 +794,24 @@ El estadístico de prueba es:
 
 $$F_0=\frac{SSLOF/(k-2)}{SSPE/(n-k)}\quad F_0=\frac{MSLOF}{MSPE}$$
 
-Situaciones posibles
+**Situaciones posibles**
 
-| Regresión significativa | Carencia de ajuste | Interpretación               |
-|:----------------------- |:------------------ |:---------------------------- |
-| Sí                      | No                 | Buen modelo lineal           |
-| Sí                      | Sí                 | Hay relación, pero no lineal |
-| No                      | No                 | No hay relación importante   |
-| No                      | Sí                 | Modelo mal especificado      |
-
-
-
-En la tabla ANOVA (clásica y pedagógica) puede presentar el test de carencia de ajuste descomponiendo el SSE del modelo:
-
-
-|Fuente de variación|Grados de libertad|Suma de cuadrados|Medias cuadráticas|Estadístico|
-|-------------------|------------------|-----------------|------------------|-----------|
-|Regresión          |1                 |SSR              |$MSR=\frac{SSR}{1}$|$F_c=\frac{MSR}{MSE}$|
-|Error              |n-2               |SSE              |$MSE=\frac{SSE}{n-2}$|                  |
-|carencia de ajuste |k-2               |SSLOF            |$MSLOF=\frac{SSLOF}{K-2}$|$F_0=\frac{MSLOF}{MSPE}$|
-|Error puro         |n-k               |SSPE             |$MSPE=\frac{SSLOF}{k-2}$|      |
-|Total              |n-1               |SST              |                        |           |
-
-Donde:
-
-- k es el numero de niveles de la variable explicativa x
-- n pares de observaciones
-
-
-La tabla ANOVA arrojada por el software R compara los dos modelos, y estima el componente de carencia de ajuste: 
+| Regresión significativa | Carencia de ajuste | Interpretación              |
+|:-----------------------:|:------------------:|:---------------------------:|
+| Sí                      | No                 | Buen modelo lineal          |
+| Sí                      | Sí                 | Hay relación, pero no lineal|
+| No                      | No                 | No hay relación importante  |
+| No                      | Sí                 | Modelo mal especificado     |
 
 
 
-```{r out.width="90%", fig.align='center', echo=FALSE}
-knitr::include_graphics("imagen/testlineal.png")
-```
 
 
-
-La tabla ANOVA arrojada por el software R se puede completar de la siguiente manera:
-
-
-|Fuente de variación|Grados de libertad|Suma de Cuadrados Residuales |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p  |
-|:--------------------------------|:------------:|:------------------------------:|:------------------------:|:------:|:---------:|
-|<b style='color:blue;'>Regresión|<b style ='color:blue;'>1|<b style='color:blue;'>SSR|<b style='color:blue;'>$MSR=\frac{SSR}{1}$|<b style = 'color:blue;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color :blue;'> vp1|
-|Mdlo 1 (Error total) $y=\beta_0+\beta_1x$|n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
-|Carencia de ajuste (lof)*|k-2 |SSLOF|<b style = 'color : red;'>$MSLOF=\frac{SSLOF}{k-2}$|$F_0=\frac{MSLOF}{MSPE}$|vp2|
-|Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|$SSEP$|<b style = 'color : red;'>$MSEP=\frac{SSEP}{n-k}$||
-|<b style='color:blue;'>Total|<b style='color:blue;'>n-1|<b style='color:blue;'>SST||||
-
-
-
-**Nota: **
-
-- *Lack of fit, falta de ajuste (Lof)
-
-- **SSLOF=SSE−SSEP
-
-- Las letras en color negro son las salidas del anova(mdlo1,mdlo2)
-
-- Las letras en color azul corresponde a la salida del anova(mdlo1)
- 
-- Las letras en color rojo corresponde a los valores estimados a partir de as anovas anteriores
-
-
-
-En general, la prueba de carencia de ajuste puede aplicarse a otras funciones de regresión, sólo se requiere modificar
-los grados de libertad del SSLOF, que en general corresponden a k-p , donde p es el número de parámetros en la
-función de regresión. Para el caso específico de la regresión lineal simple, p=2.
+En general, la prueba de carencia de ajuste puede aplicarse a otras funciones de regresión, sólo se requiere modificar los grados de libertad del SSLOF, que en general corresponden a k-p , donde p es el número de parámetros en la función de regresión. Para el caso específico de la regresión lineal simple, p=2.
 
 **Ejemplo**
 
-Los siguientes datos se recolectaron con el fin de determinar la relación existente entre el peso corporal del ganado vacuno (X)
-y la rapidez de eliminación metabólica/peso corporal (Y). Los datos que aparecen a continuación son el resultado de varias
-realizaciones del experimento, en distintos niveles del peso.
+Los siguientes datos se recolectaron con el fin de determinar la relación existente entre el peso corporal del ganado vacuno (X) y la rapidez de eliminación metabólica/peso corporal (Y). Los datos que aparecen a continuación son el resultado de varias realizaciones del experimento, en distintos niveles del peso.
 
 ```{r}
 
