@@ -809,7 +809,7 @@ los coeficientes originales no son comparables.
 **ejemplo**
 
 | Variable    | Unidad  |
-| ----------- | ------- |
+|:-----------:|:-------:|
 | Ingreso     | dólares |
 | Edad        | años    |
 | Temperatura | °C      |
@@ -836,7 +836,7 @@ De modo que las nuevas variables tienen media cero y desviación estándar 1, lo
 
 $$\large Y_i^*=\beta_1X_{i1}^*+\beta_2X_{i2}^*+...+\beta_kX_{ik}^*+\varepsilon_i $$
 
-El intercepto suele ser aproximadamente 0 ó no aporta mucha información.
+El intercepto suele ser aproximadamente 0 ó de tener algún valor no aporta mucha información, sobre la variable respuesta.
 
 
 Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
@@ -859,10 +859,19 @@ Idea clave
 Un modelo sin intercepto, con variables explicativas estandarizadas, se usa principalmente para
 comparar la importancia relativa de los predictores y facilitar la interpretación de los coeficientes en una escala común.
 
+**Ejemplo**
+
 ```{r}
 
 
+datos <- read.csv(sep = ";",dec=".",
+  "https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/master/ejm.csv",
+  
+  header = TRUE
+  
+)
 
+head(datos)
 
 
 
