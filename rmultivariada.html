@@ -1584,10 +1584,10 @@ relativa.</p>
 <p>Cada variable es escalonada restando su media muestral y dividiendo
 esta diferencia por la desviación estándar muestral de la variable, es
 decir:</p>
-<p><span class="math display">\[\large Y_i^*=\frac{Y_i-\bar
-Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} \]</span></p>
-<p><span class="math display">\[\large X_i^*=\frac{X_i-\bar
-X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} \]</span></p>
+<p><span class="math display">\[\large Y_i^*=\frac{Y_i-\bar Y}{sd_y}
+\]</span></p>
+<p><span class="math display">\[\large X_i^*=\frac{X_i-\bar X}{sd_x}
+\]</span></p>
 <p>De modo que las nuevas variables tienen media cero y desviación
 estándar 1, lo que permite ajustar un modelo de regresión sin
 intercepto,</p>
@@ -1606,6 +1606,13 @@ class="math inline">\(\beta_j\)</span> pueden servir para determinar la
 importancia relativa de <span class="math inline">\(X_j\)</span> en
 presencia de las demás variables, en la muestra o conjunto de datos
 particular considerado para el ajuste.</p>
+<p>después de estandarizar todas las variables tienen media 0 y
+desviación estándar 1,Entonces los coeficientes sí pueden compararse
+directamente.</p>
+<p>En variables estandarizadas:</p>
+<p>✅ desaparecen las unidades originales ✅ todo queda expresado en
+desviaciones estándar ✅ la interpretación cambia de “unidades físicas”
+a “cambios relativos respecto a la variabilidad”</p>
 <p><strong>Ejemplo</strong></p>
 <p>Sea:</p>
 <p>Y=rendimiento académico</p>
@@ -1631,81 +1638,208 @@ mental.</p>
 <p>En resumen, este conjunto de datos es útil para la investigación
 básica y para crear modelos que puedan ayudar a la detección temprana de
 problemas de salud mental en adolescentes.</p>
-<pre class="r"><code>datos &lt;- read.csv(sep = &quot;;&quot;,dec=&quot;.&quot;,header = TRUE,
-  &quot;https://raw.githubusercontent.com/estadisticaITM/estadisticaITM.github.io/refs/heads/master/ejm.csv&quot;)
-
-head(datos)</code></pre>
-<pre><code>##   social_interaction_level gender platform_usage sleep_hours
-## 1                      low   male      Instagram         7.4
-## 2                     high female         TikTok         8.0
-## 3                     high female      Instagram         7.6
-## 4                   medium   male         TikTok         6.9
-## 5                   medium female           Both         4.9
-## 6                     high female           Both         4.4
-##   screen_time_before_sleep academic_performance physical_activity stress_level
-## 1                      2.9                 3.01               1.5            2
-## 2                      2.9                 3.22               0.8            8
-## 3                      0.5                 3.92               0.0            2
-## 4                      1.6                 3.48               0.8            1
-## 5                      3.0                 2.37               1.4            3
-## 6                      2.4                 2.63               0.6            3
-##   anxiety_level addiction_level depression_label age daily_social_media_hours
-## 1             2               1                0  14                      7.9
-## 2             1              10                0  19                      1.9
-## 3             4               2                0  17                      1.3
-## 4             7               9                0  15                      7.4
-## 5             5               2                0  15                      4.7
-## 6             5               7                0  19                      7.4</code></pre>
 <pre class="r"><code>library(PerformanceAnalytics)
-## Matriz de correlación
-
-cor(datos[4:13])</code></pre>
-<pre><code>##                           sleep_hours screen_time_before_sleep
-## sleep_hours               1.000000000              0.010235281
-## screen_time_before_sleep  0.010235281              1.000000000
-## academic_performance      0.021866484             -0.034715061
-## physical_activity         0.012700669             -0.026450022
-## stress_level             -0.010979224             -0.008649586
-## anxiety_level            -0.011878693             -0.010343543
-## addiction_level          -0.054837861              0.028883920
-## depression_label         -0.190629632             -0.016501627
-## age                       0.001529615              0.075611831
-## daily_social_media_hours -0.009472174              0.035777475
-##                          academic_performance physical_activity  stress_level
-## sleep_hours                      0.0218664840        0.01270067 -0.0109792243
-## screen_time_before_sleep        -0.0347150611       -0.02645002 -0.0086495864
-## academic_performance             1.0000000000        0.02331183 -0.0006002253
-## physical_activity                0.0233118328        1.00000000  0.0121594672
-## stress_level                    -0.0006002253        0.01215947  1.0000000000
-## anxiety_level                   -0.0643787939       -0.02223335  0.0158112535
-## addiction_level                  0.0293542652        0.02620036 -0.0001293951
-## depression_label                 0.0014407125       -0.01759768  0.1704737134
-## age                             -0.0139725717        0.01108617 -0.0312081715
-## daily_social_media_hours         0.0131789791        0.02554598  0.0306977419
-##                          anxiety_level addiction_level depression_label
-## sleep_hours                -0.01187869   -0.0548378607     -0.190629632
-## screen_time_before_sleep   -0.01034354    0.0288839196     -0.016501627
-## academic_performance       -0.06437879    0.0293542652      0.001440712
-## physical_activity          -0.02223335    0.0262003556     -0.017597683
-## stress_level                0.01581125   -0.0001293951      0.170473713
-## anxiety_level               1.00000000    0.0311537836      0.169566152
-## addiction_level             0.03115378    1.0000000000     -0.013952088
-## depression_label            0.16956615   -0.0139520875      1.000000000
-## age                         0.02636291    0.0382654171      0.010972537
-## daily_social_media_hours    0.02783476   -0.0249640657      0.175200807
-##                                   age daily_social_media_hours
-## sleep_hours               0.001529615             -0.009472174
-## screen_time_before_sleep  0.075611831              0.035777475
-## academic_performance     -0.013972572              0.013178979
-## physical_activity         0.011086166              0.025545976
-## stress_level             -0.031208171              0.030697742
-## anxiety_level             0.026362913              0.027834756
-## addiction_level           0.038265417             -0.024964066
-## depression_label          0.010972537              0.175200807
-## age                       1.000000000             -0.006634980
-## daily_social_media_hours -0.006634980              1.000000000</code></pre>
-<pre class="r"><code>chart.Correlation(datos[4:13], histogram = T, pch = 19,col=as.factor(datos$platform_usage))</code></pre>
+library(ppcor)
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>chart.Correlation(iris[1:4], histogram = F, pch = 19,col=as.factor(iris$Species))</code></pre>
 <p><img src="rmultivariada_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code>## construir un modelo de regresión lineal multivariado 
+
+model=lm(iris$Petal.Width~iris$Sepal.Length+iris$Sepal.Width+iris$Petal.Length)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = iris$Petal.Width ~ iris$Sepal.Length + iris$Sepal.Width + 
+##     iris$Petal.Length)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.60959 -0.10134 -0.01089  0.09825  0.60685 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -0.24031    0.17837  -1.347     0.18    
+## iris$Sepal.Length -0.20727    0.04751  -4.363 2.41e-05 ***
+## iris$Sepal.Width   0.22283    0.04894   4.553 1.10e-05 ***
+## iris$Petal.Length  0.52408    0.02449  21.399  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.192 on 146 degrees of freedom
+## Multiple R-squared:  0.9379, Adjusted R-squared:  0.9366 
+## F-statistic: 734.4 on 3 and 146 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>## construir un modelo de regresión lineal multivariado 
+
+model=lm(scale(iris$Petal.Width)~scale(iris$Sepal.Length)+scale(iris$Sepal.Width)+scale(iris$Petal.Length))
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = scale(iris$Petal.Width) ~ scale(iris$Sepal.Length) + 
+##     scale(iris$Sepal.Width) + scale(iris$Petal.Length))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.79974 -0.13295 -0.01429  0.12890  0.79614 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               8.111e-16  2.056e-02   0.000        1    
+## scale(iris$Sepal.Length) -2.252e-01  5.161e-02  -4.363 2.41e-05 ***
+## scale(iris$Sepal.Width)   1.274e-01  2.798e-02   4.553 1.10e-05 ***
+## scale(iris$Petal.Length)  1.214e+00  5.672e-02  21.399  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2518 on 146 degrees of freedom
+## Multiple R-squared:  0.9379, Adjusted R-squared:  0.9366 
+## F-statistic: 734.4 on 3 and 146 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>Interpretación</strong></p>
+<p>Modelo ajustado con variables sin estandarizar</p>
+<p><span class="math display">\[\hat
+Y_{Petal.Width}=-0.24−0.207X_{Sepal.Length}+0.22X_{Sepal.Width}+0.52X_{Petal.Length}\]</span></p>
+<p>Modelo estandarizado <span
+class="math display">\[Z_{Petal.Width}=−0.225Z_{Sepal.Length}+0.127Z_{Sepal.Width}+1.214Z_{Petal.Length}\]</span></p>
+<table>
+<colgroup>
+<col width="30%" />
+<col width="30%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Modelo</th>
+<th align="center">Normal</th>
+<th align="center">con variables estandarizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Intercepto</strong></td>
+<td align="center">-0.24</td>
+<td align="center">8.111e-16 aproximadamente 0</td>
+</tr>
+<tr class="even">
+<td align="center">Interpretación de los coeficientes</td>
+<td align="center"></td>
+<td align="center">los coeficientes son coeficientes beta
+estandarizados,se pueden comparar</td>
+</tr>
+<tr class="odd">
+<td align="center">Sepal.Length</td>
+<td align="center">-0.207</td>
+<td align="center">-0.225</td>
+</tr>
+<tr class="even">
+<td align="center">Manteniendo constantes las demás variables,</td>
+<td align="center">un aumento de 1 unidad en Sepal.Length disminuye en
+promedio 0.207 unidades el ancho del pétalo.</td>
+<td align="center">un aumento de una desviación estándar en Sepal.Length
+disminuye en aproximadamente 0.225 desviaciones estándar el ancho del
+pétalo.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Sepal.Width</strong></td>
+<td align="center">0.223</td>
+<td align="center">0.127</td>
+</tr>
+<tr class="even">
+<td align="center">Un aumento de</td>
+<td align="center">1 unidad en Sepal.Width incrementa aproximadamente
+0.223 unidades el ancho del pétalo.</td>
+<td align="center">una desviación estándar en Sepal.Width aumenta
+aproximadamente 0.127 desviaciones estándar en Petal.Width.</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Petal.Length</strong></td>
+<td align="center">0.524</td>
+<td align="center">1.214</td>
+</tr>
+<tr class="even">
+<td align="center">Un aumento de</td>
+<td align="center">1 unidad en Petal.Length incrementa aproximadamente
+0.524 unidades el ancho del pétalo.</td>
+<td align="center">una desviación estándar en Petal.Length incrementa
+aproximadamente 1.214 desviaciones estándar en Petal.Width. Petal.Length
+es el predictor más importante del modelo</td>
+</tr>
+<tr class="odd">
+<td align="center">Significancia individual</td>
+<td align="center">todos significativos</td>
+<td align="center">Todos los predictores tienen p-value &lt; 0.001,
+entonces todas las variables son estadísticamente significativas.</td>
+</tr>
+<tr class="even">
+<td align="center">Error estándar residual</td>
+<td align="center"></td>
+<td align="center">0.2518 expresado en desviaciones estándar</td>
+</tr>
+<tr class="odd">
+<td align="center">Coeficiente de determinación R-squared</td>
+<td align="center">0.9379</td>
+<td align="center">0.9379 ajuste muy alto.</td>
+</tr>
+<tr class="even">
+<td align="center">Interpretación:</td>
+<td align="center"></td>
+<td align="center">El modelo explica aproximadamente el 93.79% de la
+variabilidad del ancho del pétalo.</td>
+</tr>
+<tr class="odd">
+<td align="center">R² ajustado</td>
+<td align="center">0.9366</td>
+<td align="center">0.9366</td>
+</tr>
+<tr class="even">
+<td align="center">Interpretación</td>
+<td align="center"></td>
+<td align="center">considerando número de variables, tamaño muestral,
+como es muy cercano a R² no parece haber sobreajuste importante.</td>
+</tr>
+<tr class="odd">
+<td align="center">F-statistic</td>
+<td align="center">734.4</td>
+<td align="center">734.4</td>
+</tr>
+<tr class="even">
+<td align="center">p-value</td>
+<td align="center">&lt; 2.2e-16</td>
+<td align="center">&lt; 2.2e-16</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="46%" />
+<col width="53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modelo original</th>
+<th>Modelo estandarizado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Interpreta cambios en unidades reales</td>
+<td>Interpreta cambios en desviaciones estándar</td>
+</tr>
+<tr class="even">
+<td>Útil para predicción práctica</td>
+<td>Útil para comparar importancia</td>
+</tr>
+<tr class="odd">
+<td>Coeficientes dependen de unidades</td>
+<td>Coeficientes comparables</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

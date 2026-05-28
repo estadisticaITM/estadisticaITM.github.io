@@ -824,11 +824,11 @@ Con variables estandarizadas todos los predictores quedan en la misma escala, en
   
   Cada variable es escalonada restando su media muestral y dividiendo esta diferencia por la desviación estándar muestral de la variable, es decir:
   
-  $$\large Y_i^*=\frac{Y_i-\bar Y}{\sum_{i=1}^n (Y_i-\bar Y)^2/(n-1)} $$
+  $$\large Y_i^*=\frac{Y_i-\bar Y}{sd_y} $$
   
   
   
-  $$\large X_i^*=\frac{X_i-\bar X}{\sum_{i=1}^n (X_i-\bar X)^2/(n-1)} $$
+  $$\large X_i^*=\frac{X_i-\bar X}{sd_x} $$
   
   
 De modo que las nuevas variables tienen media cero y desviación estándar 1, lo que permite ajustar un modelo de regresión sin intercepto,
@@ -840,6 +840,16 @@ El intercepto suele ser aproximadamente 0 ó de tener algún valor no aporta muc
 
 
 Los coeficientes de regresión estandarizados $\beta_j^*$ pueden ser comparados directamente teniendo en cuenta que siguen siendo coeficientes de regresión parcial, es decir, mide el efecto de $X_J$ dado que las demás variables explicatorias están en el modelo, además, los $\beta_j$ pueden servir para determinar la importancia relativa de $X_j$ en presencia de las demás variables, en la muestra o conjunto de datos particular considerado para el ajuste.
+
+
+después de estandarizar todas las variables tienen media 0 y desviación estándar 1,Entonces los coeficientes sí pueden compararse directamente.
+
+En variables estandarizadas:
+
+✅ desaparecen las unidades originales
+✅ todo queda expresado en desviaciones estándar
+✅ la interpretación cambia de “unidades físicas” a “cambios relativos respecto a la variabilidad”
+
 
 **Ejemplo**
 
@@ -867,21 +877,61 @@ El objetivo es comprender si el uso excesivo de redes sociales está relacionado
 En resumen, este conjunto de datos es útil para la investigación básica y para crear modelos que puedan ayudar a la detección temprana de problemas de salud mental en adolescentes.
 
 ```{r}
-
-datos <- read.csv(sep = ";",dec=".",header = TRUE,
-  "https://github.com/estadisticaITM/estadisticaITM.github.io/blob/master/ejm.csv")
-
-head(datos)
-
 library(PerformanceAnalytics)
-## Matriz de correlación
+library(ppcor)
+head(iris)
+chart.Correlation(iris[1:4], histogram = F, pch = 19,col=as.factor(iris$Species))
 
-cor(datos[4:13])
-chart.Correlation(datos[5:13], histogram = T, pch = 19,col=as.factor(datos$depresión))
+## construir un modelo de regresión lineal multivariado 
+
+model=lm(iris$Petal.Width~iris$Sepal.Length+iris$Sepal.Width+iris$Petal.Length)
+summary(model)
+
+## construir un modelo de regresión lineal multivariado 
+
+model=lm(scale(iris$Petal.Width)~scale(iris$Sepal.Length)+scale(iris$Sepal.Width)+scale(iris$Petal.Length))
+summary(model)
 
 
 ```
 
 
+**Interpretación**
+
+
+Modelo ajustado con variables sin estandarizar
+
+$$\hat Y_{Petal.Width}=-0.24−0.207X_{Sepal.Length}+0.22X_{Sepal.Width}+0.52X_{Petal.Length}$$
+
+Modelo estandarizado
+$$Z_{Petal.Width}=−0.225Z_{Sepal.Length}+0.127Z_{Sepal.Width}+1.214Z_{Petal.Length}$$
+
+
+
+
+|Modelo        |Normal          |con variables estandarizadas|
+|:-------------:|:-------------:|:-----------------:|
+|**Intercepto**| -0.24 |8.111e-16  aproximadamente 0| |Interpretación|Cuando todas las variables predictoras valen 0, el ancho esperado del pétalo sería -0.240, Aunque biológicamente no tiene mucho sentido, porque valores 0 están fuera del rango real del iris. Además el intercepto NO es significativo (p=0.18). |Las variables predictoras y el valor esperado de la respuesta están en su media, por eso el intercepto desaparece prácticamente.|
+|Interpretación de los coeficientes||los coeficientes son coeficientes beta estandarizados,se pueden comparar|
+|Sepal.Length   |-0.207|-0.225|
+| Manteniendo constantes las demás variables,|un aumento de 1 unidad en Sepal.Length disminuye en promedio 0.207 unidades el ancho del pétalo.| un aumento de una desviación estándar en Sepal.Length disminuye en aproximadamente 0.225 desviaciones estándar el ancho del pétalo.|
+|**Sepal.Width**|0.223| 0.127|
+|Un aumento de| 1 unidad en Sepal.Width incrementa aproximadamente 0.223 unidades el ancho del pétalo.| una desviación estándar en Sepal.Width aumenta aproximadamente 0.127 desviaciones estándar en Petal.Width.|
+|**Petal.Length**|0.524|1.214|
+|Un aumento de| 1 unidad en Petal.Length incrementa aproximadamente 0.524 unidades el ancho del pétalo.| una desviación estándar en Petal.Length incrementa aproximadamente 1.214 desviaciones estándar en Petal.Width. Petal.Length es el predictor más importante del modelo|
+|Significancia individual|todos significativos|Todos los predictores tienen p-value < 0.001, entonces todas las variables son estadísticamente significativas.|
+|Error estándar residual||0.2518 expresado en desviaciones estándar|
+|Coeficiente de determinación R-squared|0.9379|0.9379 ajuste muy alto.|
+|Interpretación:||El modelo explica aproximadamente el 93.79% de la variabilidad del ancho del pétalo.|
+|R² ajustado|0.9366|0.9366|
+|Interpretación||considerando número de variables, tamaño muestral, como es muy cercano a R² no parece haber sobreajuste importante.|
+|F-statistic|734.4|734.4|
+|p-value|< 2.2e-16|< 2.2e-16|
+
+| Modelo original                       | Modelo estandarizado                        |
+| ------------------------------------- | ------------------------------------------- |
+| Interpreta cambios en unidades reales | Interpreta cambios en desviaciones estándar |
+| Útil para predicción práctica         | Útil para comparar importancia              |
+| Coeficientes dependen de unidades     | Coeficientes comparables                    |
 
 
