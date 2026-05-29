@@ -847,34 +847,18 @@ después de estandarizar todas las variables tienen media 0 y desviación están
 En variables estandarizadas:
 
 ✅ desaparecen las unidades originales
+
+
 ✅ todo queda expresado en desviaciones estándar
+
+
 ✅ la interpretación cambia de “unidades físicas” a “cambios relativos respecto a la variabilidad”
 
 
-**Ejemplo**
 
-Sea:
-
-Y=rendimiento académico
-
-y otras variables como 
-
-    -  Horas de estudio
-    -  Ingreso familiar
-    -  asistencia.
-
-Al estandarizar, todas quedan comparables, puedes identificar cuál tiene mayor efecto relativo.
-Idea clave
-
-Un modelo sin intercepto, con variables explicativas estandarizadas, se usa principalmente para
-comparar la importancia relativa de los predictores y facilitar la interpretación de los coeficientes en una escala común.
 
 **Ejemplo**
-Este conjunto de datos estudia cómo el uso de las redes sociales afecta la salud mental de los adolescentes. Incluye hábitos diarios como las horas de uso de redes sociales, el sueño, el estrés, la ansiedad y la actividad física.
 
-El objetivo es comprender si el uso excesivo de redes sociales está relacionado con problemas como el estrés, la ansiedad y la depresión. Los datos ayudan a analizar el comportamiento y a desarrollar modelos de aprendizaje automático para predecir el riesgo de problemas de salud mental.
-
-En resumen, este conjunto de datos es útil para la investigación básica y para crear modelos que puedan ayudar a la detección temprana de problemas de salud mental en adolescentes.
 
 ```{r}
 library(PerformanceAnalytics)

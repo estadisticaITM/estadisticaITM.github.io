@@ -760,7 +760,7 @@ Entre la tabla ANOVA del modelo de regresión lineal y la ANOVA de carencia de a
 |Fuente de variación|Grados de libertad|Suma de Cuadrados |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p  |
 |:--------------------------------|:------------:|:------------------------------:|:------------------------:|:------:|:---------:|
 |<b style='color:blue;'>Regresión|<b style ='color:blue;'>1|<b style='color:blue;'>SSR|<b style='color:blue;'>$MSR=\frac{SSR}{1}$|<b style = 'color:blue;'>$F_0=\frac{MSR}{MSE}$|<b style = 'color :blue;'> vp1|
-|Mdlo 1 (Error total) $y=\beta_0+\beta_1x$|n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
+|<b style='color:blue;'>Error total del mdlo lineal |<b style='color:blue;'>n-2|SSE|<b style = 'color : red;'> $MSE=\frac{SSE}{n-2}$||
 |Carencia de ajuste (lof)*|k-2 |SSLOF|<b style = 'color : red;'>$MSLOF=\frac{SSLOF}{k-2}$|$F_0=\frac{MSLOF}{MSPE}$|vp2|
 |Mdlo 2 (Error puro EP): $Y_{ij}=\mu_j+\varepsilon_{ij}$|n-k|SSEP|<b style = 'color : red;'>$MSEP=\frac{SSEP}{n-k}$||
 |<b style='color:blue;'>Total|<b style='color:blue;'>n-1|<b style='color:blue;'>SST||||
@@ -771,11 +771,13 @@ Entre la tabla ANOVA del modelo de regresión lineal y la ANOVA de carencia de a
 
 - *Lack of fit, falta de ajuste (Lof)
 
+- La fila 2 y 3, regresión y error del modelo respectivamente, son estimadas por el anova del mdlo (letras de color azúl)
+
+- La fila 3, error total está estimada en los dos anovas
+
 - Las letras en color negro son las salidas del anova(mdlo1,mdlo2)
 
-- Las letras en color azul corresponde a la salida del anova(mdlo1)
- 
-- Las letras en color rojo corresponde a los valores estimados a partir de as anovas anteriores
+- Las letras en color rojo corresponde a los valores estimados a partir de los datos de las anovas.
 
 
 **Interpretación conjunta**
@@ -888,6 +890,16 @@ b) Caso que exista carencia de ajuste ¿Qué modelos serían más apropiados? ¿
 
 5. A partir de la información brindada en las tablas anovas, del modelo y de carencia de ajuste, realice la tabla ANOVA completa
 
+
+
+
+|Fuente de variación|Grados de libertad|Suma de Cuadrados |<b style = 'color : red;'>Media cuadrática MSR|valor F|Valor p  |
+|:--------------------------------|:------------:|:------------------------------:|:------------------------:|:------:|:---------:|
+|<b style='color:blue;'>Regresión|<b style ='color:blue;'>1|<b style='color:blue;'>SSR=16634|<b style='color:blue;'>$MSR=16634$|<b style = 'color:blue;'>$F_0=27.56$|<b style = 'color :blue;'> vp1=0.0002|
+|<b style='color:blue;'>Mdlo 1 (Error total)|<b style='color:blue;'>12|<b style='color:blue;'>SSE=7241|<b style = 'color :blue;'> $MSE==603.416$||
+|Carencia de ajuste (lof)*|k-2=2 |SSLOF=2880|<b style = 'color : red;'>$MSLOF=1440$|$F_0=3.3$|vp2=0.0793|
+|Mdlo 2 (Error puro EP): |n-k=10|SSEP=4361|<b style = 'color : red;'>$MSEP=436.1$||
+|<b style='color:blue;'>Total|<b style='color:blue;'>n-1=13|<b style='color:blue;'>SST||||
 
 
 

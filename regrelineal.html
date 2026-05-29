@@ -1735,9 +1735,8 @@ class="math inline">\(F_0=\frac{MSR}{MSE}\)</span></td>
 <td align="center"><b style = 'color :blue;'> vp1</td>
 </tr>
 <tr class="even">
-<td align="left">Mdlo 1 (Error total) <span
-class="math inline">\(y=\beta_0+\beta_1x\)</span></td>
-<td align="center">n-2</td>
+<td align="left"><b style='color:blue;'>Error total del mdlo lineal</td>
+<td align="center"><b style='color:blue;'>n-2</td>
 <td align="center">SSE</td>
 <td align="center"><b style = 'color : red;'> <span
 class="math inline">\(MSE=\frac{SSE}{n-2}\)</span></td>
@@ -1777,12 +1776,13 @@ class="math inline">\(MSEP=\frac{SSEP}{n-k}\)</span></td>
 <p><strong>Nota:</strong></p>
 <ul>
 <li><p>*Lack of fit, falta de ajuste (Lof)</p></li>
+<li><p>La fila 2 y 3, regresión y error del modelo respectivamente, son
+estimadas por el anova del mdlo (letras de color azúl)</p></li>
+<li><p>La fila 3, error total está estimada en los dos anovas</p></li>
 <li><p>Las letras en color negro son las salidas del
 anova(mdlo1,mdlo2)</p></li>
-<li><p>Las letras en color azul corresponde a la salida del
-anova(mdlo1)</p></li>
 <li><p>Las letras en color rojo corresponde a los valores estimados a
-partir de as anovas anteriores</p></li>
+partir de los datos de las anovas.</p></li>
 </ul>
 <p><strong>Interpretación conjunta</strong></p>
 <p>¿Existe relación lineal entre X y Y?</p>
@@ -1957,6 +1957,73 @@ apropiados? ¿Por qué?</p></li>
 <li>A partir de la información brindada en las tablas anovas, del modelo
 y de carencia de ajuste, realice la tabla ANOVA completa</li>
 </ol>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="11%" />
+<col width="25%" />
+<col width="20%" />
+<col width="6%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Fuente de variación</th>
+<th align="center">Grados de libertad</th>
+<th align="center">Suma de Cuadrados</th>
+<th align="center"><b style = 'color : red;'>Media cuadrática MSR</th>
+<th align="center">valor F</th>
+<th align="center">Valor p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><b style='color:blue;'>Regresión</td>
+<td align="center"><b style ='color:blue;'>1</td>
+<td align="center"><b style='color:blue;'>SSR=16634</td>
+<td align="center"><b style='color:blue;'><span
+class="math inline">\(MSR=16634\)</span></td>
+<td align="center"><b style = 'color:blue;'><span
+class="math inline">\(F_0=27.56\)</span></td>
+<td align="center"><b style = 'color :blue;'> vp1=0.0002</td>
+</tr>
+<tr class="even">
+<td align="left"><b style='color:blue;'>Mdlo 1 (Error total)</td>
+<td align="center"><b style='color:blue;'>12</td>
+<td align="center"><b style='color:blue;'>SSE=7241</td>
+<td align="center"><b style = 'color :blue;'> <span
+class="math inline">\(MSE==603.416\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Carencia de ajuste (lof)*</td>
+<td align="center">k-2=2</td>
+<td align="center">SSLOF=2880</td>
+<td align="center"><b style = 'color : red;'><span
+class="math inline">\(MSLOF=1440\)</span></td>
+<td align="center"><span class="math inline">\(F_0=3.3\)</span></td>
+<td align="center">vp2=0.0793</td>
+</tr>
+<tr class="even">
+<td align="left">Mdlo 2 (Error puro EP):</td>
+<td align="center">n-k=10</td>
+<td align="center">SSEP=4361</td>
+<td align="center"><b style = 'color : red;'><span
+class="math inline">\(MSEP=436.1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><b style='color:blue;'>Total</td>
+<td align="center"><b style='color:blue;'>n-1=13</td>
+<td align="center"><b style='color:blue;'>SST</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="validación-cruzada" class="section level2">
 <h2><strong>Validación cruzada</strong></h2>
