@@ -935,3 +935,92 @@ $$Z_{Petal.Width}=−0.225Z_{Sepal.Length}+0.127Z_{Sepal.Width}+1.214Z_{Petal.Le
 | Coeficientes dependen de unidades     | Coeficientes comparables                    |
 
 
+**Ejemplo**
+
+Para estimar la producción en madera de un bosque se suele realizar un muestreo previo en el que se toman una serie de mediciones no destructivas. Disponemos de mediciones para 20 árboles, así como el volumen de madera que producen una vez cortados. Las variables observadas son:
+
+
+HT = altura en pies
+
+DBH = diámetro del tronco a 4 pies de altura (en pulgadas)
+
+D16 = diámetro del tronco a 16 pies de altura (en pulgadas)
+
+VOL = volumen de madera obtenida (en pies cúbicos).
+
+El objetivo del análisis es determinar cuál es la relación entre dichas medidas y el volumen de madera, con el fin de poder predecir este último en función de las primeras
+
+```{r}
+DBH <- c(10.2,13.72,15.43,14.37,15,15.02,15.12,15.24,15.24,15.28, 13.78,15.67,15.67,15.98,16.5,16.87,17.26,17.28,17.87,19.13)
+D16 <-c(9.3,12.1,13.3,13.4,14.2,12.8,14,13.5,14,13.8,13.6,14, 13.7,13.9,14.9,14.9,14.3,14.3,16.9,17.3)
+HT <-c(89,90.07,95.08,98.03,99,91.05,105.6,100.8,94,93.09,89, 102,99,89.02,95.09,95.02,91.02,98.06,96.01,101)
+VOL <-c(25.93,45.87,56.2,58.6,63.36,46.35,68.99,62.91,58.13, 59.79,56.2,66.16,62.18,57.01,65.62,65.03,66.74,73.38,82.87,95.71)
+bosque<-data.frame(VOL=VOL,DBH=DBH,D16=D16,HT=HT)
+plot(bosque)
+###correlaciones entre variables
+#install.packages(ppcor)
+library(PerformanceAnalytics)
+library(ppcor)
+pcor(bosque)
+chart.Correlation(bosque, histogram = F, pch = 19)
+```
+
+
+El modelo inicial ajustado corresponde a:
+
+
+
+```{r}
+m1=lm(VOL~D16+HT+DBH)
+summary(m1)
+anova(m1)
+```
+
+Al quitar la variable no significativa del modelo queda: 
+
+
+```{r}
+m1=lm(VOL~D16+HT)
+summary(m1)
+par(mfrow=c(2,2))
+plot(m1)
+```
+
+El modelo ajustado corresponde a:
+
+$$\hat y=-105.9027+7.41D16+0.67HT$$
+
+Al evaluar la significancia de los parámetros del modelo se tiene:
+
+
+```{r}
+
+library(car)
+#library(rgl)
+library(perturbR)
+library(leaps)
+library(scatterplot3d)
+
+anova(m1)
+##se hace uso de la siguiente función creada para estimar el aporte de los coeficientes estandarizados
+miscoeficientes=function(modeloreg,datosreg){
+  coefi=coef(modeloreg)
+  datos2=as.data.frame(scale(datosreg))
+  coef.std=c(0,coef(lm(update(formula(modeloreg),~.+0),datos2)))
+  limites=confint(modeloreg,level=0.95)
+  vifs=c(0,vif(modeloreg))
+  resul=data.frame(Estimacin=coefi,Limites=limites,Vif=vifs,Coef.Std=coef.std)
+  cat("Coeficientes estimados, sus I.C, Vifs y Coeficientes estimados estandarizados","\n")
+  resul
+}
+
+
+m1=lm(VOL~D16+HT+DBH)
+
+summary(m1)
+miscoeficientes(m1,bosque)
+
+```
+
+Examinando los valores en la columna “Standarized Estimate”, vemos que aparentemente, D16 tiene mayor peso (en términos absolutos) sobre el volumen de madera en función de las variables estandarizadas: el promedio del volumen de madera estandarizado aumenta en 0.65 unidades al aumentar una unidad el diametro a los 16 pies de altura, al mantener fijo los resultados de las otras tres pruebas. La segunda variable con mayor peso es la altura HT. La altura a 4 pies de altura no tiene efecto significativo sobre el volumen de madera. 
+
