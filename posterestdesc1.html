@@ -413,7 +413,7 @@ compromiso académico</p></li>
 <div id="pasos-a-realizar" class="section level2">
 <h2><strong>Pasos a realizar:</strong></h2>
 <ol style="list-style-type: decimal">
-<li>Escoger una base de datos de su preferencia que contenga 3 variables
+<li>Escoger una base de datos de su preferencia que contenga 6 variables
 cuantitativas y dos variables cualitativas, mínimo 100 datos, algunos de
 las bases de datos de donde se pueden obtener datos son:</li>
 </ol>
@@ -439,12 +439,12 @@ calificación</p></li>
 <li><p>La calificación de esta actividad se realizará con la siguiente
 rúbrica:</p></li>
 </ul>
-<table style="width:100%;">
+<table>
 <colgroup>
 <col width="23%" />
-<col width="14%" />
-<col width="31%" />
-<col width="14%" />
+<col width="13%" />
+<col width="27%" />
+<col width="18%" />
 <col width="16%" />
 </colgroup>
 <thead>
@@ -631,47 +631,17 @@ plan de muestreo para analizar sus datos</td>
 <td align="left">___________</td>
 </tr>
 <tr class="even">
-<td align="left">Elija una variable continua y realice lo siguiente</td>
-<td align="left">16. Grafico qqnorm</td>
-<td align="left">con análisis</td>
-<td align="left">Sin análisis (1.5)</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>Graficos y prueba de normalidad</strong></td>
-<td align="left">17. Grafico densidad</td>
-<td align="left">incluye dos variables cualitativas y el analisis</td>
-<td align="left">de una sola variable cuantitativa con analisis</td>
-<td align="left">una sola variable cuantitativa sin analisis</td>
-</tr>
-<tr class="even">
-<td align="left"><strong>En Rstudio</strong></td>
-<td align="left">18.Prueba de normalidad</td>
-<td align="left">Escribe el juego de hipotesis y acepta o rechaza
-normalidad con la prueba de shapiro wilk en R</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">______________</td>
-<td align="left">_______________</td>
-<td align="left">_________</td>
-<td align="left">_________________</td>
-<td align="left">___________</td>
-</tr>
-<tr class="even">
-<td align="left">Elija dos conjuntos de datos y realice lo
-siguiente</td>
-<td align="left">19. En excel la prueba de la suma de rangos de
-Wilcoxon</td>
+<td align="left">Elija dos variables continuas y realice</td>
+<td align="left">17. En <strong>excel</strong> la prueba de la suma de
+rangos de Wilcoxon</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Pruebas no paramétricas</strong></td>
-<td align="left">20.En RStudio la prueba de la suma de rangos de
-Wilcoxon y la compara con la anterior</td>
+<td align="left">18.En <strong>RStudio</strong> la prueba de la suma de
+rangos de Wilcoxon y la compara con la anterior</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -685,7 +655,7 @@ Wilcoxon y la compara con la anterior</td>
 </tr>
 <tr class="odd">
 <td align="left">Con dos variables cualitativas</td>
-<td align="left">21.Tabla de contingencia</td>
+<td align="left">19.Tabla de contingencia</td>
 <td align="left">Construye una tabla de doble entrada (conteo de
 variables) con totales de columnas y filas</td>
 <td align="left"></td>
@@ -693,23 +663,31 @@ variables) con totales de columnas y filas</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>En Rstudio</strong></td>
-<td align="left">22.Prueba de independecia con test exacto de fisher o
+<td align="left">20.Prueba de independecia con test exacto de fisher o
 chi-2</td>
-<td align="left">escribe prueba de hipotesis y verifica la independencia
+<td align="left">Escribe prueba de hipotesis y verifica la independencia
 con R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"><strong>En excel</strong></td>
+<td align="left">21.</td>
+<td align="left">escribe prueba de hipotesis y verifica la independencia
+con R</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
 <td align="left">______________</td>
 <td align="left">_______________</td>
 <td align="left">_________</td>
 <td align="left">_________________</td>
 <td align="left">___________</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Regresión lineal</strong></td>
-<td align="left">23.Estima una matriz de correlaciones entre por lo
+<tr class="odd">
+<td align="left"></td>
+<td align="left">22.Estima una matriz de correlaciones entre por lo
 menos 3 variables cuantitativas</td>
 <td align="left">Estima la matriz de correlaciones con los graficos de
 dispersión usando la función “chart.Correlation” de la librería
@@ -718,33 +696,26 @@ performance analytics</td>
 variables cuantitativas(1.5)</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
-<td align="left">_____________________</td>
-<td align="left">_________</td>
-<td align="left">_________________</td>
-<td align="left">___________</td>
-<td align="left">__________</td>
-</tr>
 <tr class="even">
-<td align="left">Teniendo en cuenta la mejor correlación entre variables
-cuantitativas</td>
-<td align="left">24. Construye un modelo de RLS entre dos variables
-cuantitativas, reporta ecn, valor de <span
-class="math inline">\(R^2\)</span> y valor de r.</td>
+<td align="left"><strong>Modelo de Regresión lineal simple RLS</strong>
+Teniendo en cuenta la mejor correlación entre vbles cuantitativas</td>
+<td align="left">23.Construye un diagrama de dispersión, a partir de el,
+estima el modelo de RLS entre dos variables cuantitativas, reporta ecn,
+valor de <span class="math inline">\(R^2\)</span> y valor de r.</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">****Regresión lineal simple RLS**</td>
-<td align="left">25. Interpretación del modelo</td>
+<td align="left"><strong>En excel</strong></td>
+<td align="left">24. Interpretación del modelo</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">26. Estima los IC para la respuesta media y de
+<td align="left">25. Estima los IC para la respuesta media y de
 predicción</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -752,7 +723,7 @@ predicción</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">27.<strong>Predicción de valores futuros</strong></td>
+<td align="left">26.<strong>Predicción de valores futuros</strong></td>
 <td align="left">Usando la función predict() realiza estimación de 5
 valores futuros</td>
 <td align="left"></td>
@@ -760,7 +731,7 @@ valores futuros</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>en Rstudio</strong></td>
-<td align="left">28. Realiza Diagrama de dispersión (DD) entre dos
+<td align="left">27. Realiza Diagrama de dispersión (DD) entre dos
 variables cuantitativas con la linea superpuesta, y las bandas de
 regresión de la respuesta media y de predicción</td>
 <td align="left"></td>
@@ -775,173 +746,198 @@ regresión de la respuesta media y de predicción</td>
 <td align="left">____</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>Regresión lineal multivariada RLM</strong></td>
-<td align="left">29. Ajuste del Modelo de regresión lineal multivariada
-(MRLM)</td>
-<td align="left">Ajuste un MRLM entre por lo menos 3 variables
-cuantitativas y una cualitativa,incluya tanto variables significativas
-como no significativas, use la función STEPAIC reporte la salida de R y
-ANOVA</td>
+<td align="left"><strong>Modelo de Regresión lineal multivariada
+(MRLM)</strong></td>
+<td align="left">28. Ajuste un MRLM</td>
+<td align="left">Ajuste un MRLM entre por lo menos 5 vbles, incluya
+variables significativas como no significativas, reporte el summary y el
+ANOVA.</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>En Rstudio</strong></td>
-<td align="left">30.</td>
-<td align="left">Ajuste un MRLM entre por lo menos 2 variables
-cuantitativas y una cualitativa,incluyendo solo aquellas que son
-significativas, reporte la salida de R, asi como la tabla ANOVA</td>
+<td align="left"></td>
+<td align="left">29. A partir del modelo anterior quite una a una las
+vbles no significativas, puede usar la función STEPAIC, hasta llegar a
+un modelo que incluya la vble respuesta y dos vbles predictivas, reporte
+el summary y el ANOVA, escriba la ecn de la recta.</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>RLM</strong></td>
-<td align="left">31.Ecuaciones de regresión</td>
-<td align="left">A partir del modelo anterior, escriba la recta
-multivariada general, asi como las rectas ajustadas de cada uno de los
-niveles y las interpreta</td>
+<td align="left"><strong>en Rstudio</strong></td>
+<td align="left">30. con las vbles del modelo anterior, estime un modelo
+con las vbles estandarizadas, reporte el summary y el ANOVA, escriba la
+ecn de la recta</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"></td>
+<td align="left">31. Interprete las salidas tanto del modelo 31 como
+32</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">32. Estime e interprete los VIFS del modelo</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">_____________</td>
+<td align="left">________________________________</td>
+<td align="left">___________</td>
+<td align="left">_________</td>
+<td align="left">____</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>MRLM con vble cualitativa</strong></td>
+<td align="left">33.</td>
+<td align="left">Ajuste un MRLM entre una vble cuantitativa y una
+cualitativa,incluyendo solo aquellas que son significativas, reporte la
+salida de R, asi como la tabla ANOVA</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">34.Ecuaciones de regresión</td>
+<td align="left">A partir del modelo anterior, escriba la recta
+multivariada general, asi como las rectas ajustadas de cada uno de los
+niveles y las interpreta, analice los resultados</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
 <td align="left"><strong>En Rstudio</strong></td>
-<td align="left">32. <strong>Diagrama de Dispersión (DD)</strong></td>
+<td align="left">35. <strong>Diagrama de Dispersión (DD)</strong></td>
 <td align="left">DD discriminando con colores los niveles de una
 variable cualitativa, superpone las lineas rectas estimadas del modelo
 de regresión con variables indicadoras</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
-<td align="left"><strong>RLM</strong></td>
-<td align="left">33. <strong>Test lineal general</strong></td>
-<td align="left">A partir del ANOVA ajusta el test lineal general
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><strong>Test lineal general</strong></td>
+<td align="left">36.A partir del ANOVA ajusta el test lineal general
 mediante la prueba F, para validar significancia de la regresión,
 escriba prueba de hipotesis y el estadístico</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>En Rstudio</strong></td>
-<td align="left">34. validación de la <strong>significancia de los
+<tr class="even">
+<td align="left"></td>
+<td align="left">37. validación de la <strong>significancia de los
 parametros estimados</strong></td>
 <td align="left">Escribe la prueba de hipotesis y construye el
 estadístico</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">35. <strong>Test lineal general</strong></td>
-<td align="left">Escribe la prueba de hipotesis, construye el
-estadístico, muestra la salida de R</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
 <tr class="odd">
-<td align="left">______________</td>
-<td align="left">_______________</td>
-<td align="left">_________</td>
-<td align="left">________________</td>
-<td align="left">_________________</td>
-</tr>
-<tr class="even">
 <td align="left"></td>
-<td align="left">36.<strong>Graficas de residuales 4</strong></td>
+<td align="left">38.<strong>4 Graficas de residuales</strong></td>
 <td align="left">Grafica y analisis de comportamiento de residuales</td>
 <td align="left">solo grafica</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><strong>Analisis de residuales</strong></td>
-<td align="left">37. <strong>Prueba de normalidad</strong></td>
+<td align="left">39. <strong>Prueba de normalidad</strong></td>
 <td align="left">Escribe la PH de normalidad sobre los residuales y la
 verifica con la prueba de shapiro wilk en R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"></td>
-<td align="left">38. <strong>Prueba de varianza constante</strong></td>
+<td align="left">40. <strong>Prueba de varianza constante</strong></td>
 <td align="left">Escribe la PH y muestra salida de R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">______________</td>
 <td align="left">_______________</td>
 <td align="left">_________</td>
 <td align="left">________________</td>
 <td align="left">_________________</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Del modelo resultante en 24. son los residuales
+<tr class="odd">
+<td align="left"><strong>Del modelo resultante en 33. son los residuales
 Normales ?</strong></td>
-<td align="left">39.<strong>Transformaciones</strong></td>
+<td align="left">41.<strong>Transformaciones</strong></td>
 <td align="left">Ajuste el MRLM con transformacion sobre la variable
 respuesta, reporte la salida de R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><strong>RLM</strong></td>
-<td align="left">40. Ecuaciones de regresión</td>
+<td align="left">42. Ecuaciones de regresión</td>
 <td align="left">A partir del modelo anterior, escriba la recta
 multivariada general</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"></td>
-<td align="left">41. <strong>4 Graficas de residuales</strong></td>
+<td align="left">43. <strong>4 Graficas de residuales</strong></td>
 <td align="left">Grafica y analisis de comportamiento de residuales</td>
 <td align="left">solo grafica</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><strong>Analisis de residuales</strong></td>
-<td align="left">42. <strong>Prueba de normalidad</strong></td>
+<td align="left">44. <strong>Prueba de normalidad</strong></td>
 <td align="left">Escribe la PH de normalidad sobre los residuales y la
 verifica con la prueba de shapiro wilk en R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"></td>
-<td align="left">43.<strong>Prueba de varianza constante</strong></td>
+<td align="left">45.<strong>Prueba de varianza constante</strong></td>
 <td align="left">Escribe la PH y muestra salida de R</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">______________</td>
 <td align="left">_______________</td>
 <td align="left">_________</td>
 <td align="left">____________</td>
 <td align="left">___________________</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><strong>Validación cruzada</strong></td>
-<td align="left">44.Comparación</td>
+<td align="left">46.Comparación</td>
 <td align="left">Compara modelo transformado y sin transformar</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">________________</td>
 <td align="left">___________________</td>
 <td align="left">____________________</td>
 <td align="left">_____________</td>
 <td align="left">______________</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><strong>Bibliografia</strong></td>
-<td align="left">45.Usando mendeley</td>
+<td align="left">47.Usando mendeley</td>
 <td align="left">Minimo 3 referencias</td>
 <td align="left">2 referencias</td>
 <td align="left">1 referencia</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">________________</td>
 <td align="left">___________________</td>
 <td align="left">____________________</td>
